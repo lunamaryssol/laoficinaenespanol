@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abrir reuniones con claridad y profesionalismo</title>
+<style>
+  :root{
+    --ink:#1f2937;
+    --muted:#667085;
+    --line:#e5e7eb;
+    --soft:#f7f8fa;
+    --white:#ffffff;
+    --accent:#b4533c;
+    --accent-soft:#f9ece7;
+    --green:#2f855a;
+    --green-soft:#edf7f1;
+    --blue:#315b88;
+    --blue-soft:#edf3f9;
+    --violet:#6b4fa1;
+    --violet-soft:#f3eefb;
+    --gold:#9a6b1a;
+    --shadow:0 14px 35px rgba(31,41,55,.08);
+    --radius:18px;
+    --font:"Google Sans","Inter","Avenir Next","Segoe UI",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--ink);
+    background:linear-gradient(180deg,#fbfbfc 0%,#f5f6f8 100%);
+    line-height:1.55;
+  }
+  button,input,textarea,select{font:inherit}
+  button{cursor:pointer}
+  a{color:inherit}
+  .hidden{display:none!important}
+  .shell{max-width:1120px;margin:0 auto;padding:24px}
+  .brandbar{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    margin-bottom:18px;
+  }
+  .brand{
+    font-weight:800;letter-spacing:-.02em;font-size:1.03rem;
+  }
+  .brand a{text-decoration:none}
+  .brand small{display:block;color:var(--muted);font-weight:600;font-size:.76rem;letter-spacing:.01em}
+  .brandlink{
+    text-decoration:none;font-size:.9rem;color:var(--muted);
+    border-bottom:1px solid transparent;
+  }
+  .brandlink:hover,.brandlink:focus{color:var(--accent);border-bottom-color:var(--accent)}
+  .selection-screen{
+    min-height:calc(100vh - 110px);
+    display:grid;place-items:center;
+  }
+  .selection-card{
+    width:min(940px,100%);
+    background:var(--white);border:1px solid var(--line);border-radius:28px;
+    box-shadow:var(--shadow);padding:clamp(28px,5vw,58px);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--accent);background:var(--accent-soft);
+    font-size:.82rem;font-weight:800;padding:7px 11px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+  h1,h2,h3{line-height:1.15;letter-spacing:-.025em}
+  .selection-card h1{font-size:clamp(2rem,5vw,3.6rem);margin:18px 0 12px}
+  .selection-card .lead{font-size:1.08rem;color:var(--muted);max-width:680px;margin:0 0 30px}
+  .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .level-btn{
+    appearance:none;text-align:left;background:#fff;border:1px solid var(--line);
+    border-radius:20px;padding:22px;min-height:180px;transition:.2s ease;
+    color:var(--ink);
+  }
+  .level-btn:hover,.level-btn:focus-visible{
+    transform:translateY(-2px);box-shadow:0 12px 28px rgba(31,41,55,.10);
+    outline:3px solid rgba(180,83,60,.13);border-color:#d7c2bb;
+  }
+  .level-btn .emoji{font-size:2rem}
+  .level-btn strong{display:block;font-size:1.2rem;margin:10px 0 8px}
+  .level-btn span{display:block;color:var(--muted);font-size:.92rem}
+  .level-btn[data-level="principiante"]{border-top:4px solid var(--green)}
+  .level-btn[data-level="intermedio"]{border-top:4px solid var(--blue)}
+  .level-btn[data-level="avanzado"]{border-top:4px solid var(--violet)}
+  .topbar{
+    position:sticky;top:0;z-index:30;background:rgba(251,251,252,.94);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1120px;margin:0 auto;padding:12px 24px;
+    display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+  }
+  .progress-row{display:flex;align-items:center;gap:12px;min-width:0}
+  .progress-wrap{height:10px;background:#e9ebef;border-radius:99px;overflow:hidden;flex:1}
+  .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#d9856c);transition:width .35s ease}
+  .progress-text{font-size:.82rem;color:var(--muted);white-space:nowrap}
+  .route{
+    display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;
+  }
+  .change-level{
+    border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;color:var(--muted);
+  }
+  .layout{
+    max-width:1120px;margin:0 auto;padding:30px 24px 56px;
+    display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;
+  }
+  .sidebar{position:sticky;top:86px;align-self:start}
+  .navcard{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;
+  }
+  .navcard button{
+    width:100%;text-align:left;border:0;background:transparent;border-radius:10px;
+    padding:9px 10px;color:var(--muted);font-size:.84rem;
+  }
+  .navcard button:hover,.navcard button.active{background:var(--soft);color:var(--ink);font-weight:700}
+  .hero{
+    background:var(--ink);color:#fff;border-radius:26px;padding:clamp(28px,5vw,52px);
+    margin-bottom:22px;position:relative;overflow:hidden;
+  }
+  .hero:after{
+    content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+    background:rgba(255,255,255,.05);right:-60px;top:-90px;
+  }
+  .hero .week{font-size:.84rem;text-transform:uppercase;letter-spacing:.08em;color:#d1d5db;font-weight:800}
+  .hero h1{font-size:clamp(2rem,5vw,3.45rem);margin:10px 0 14px;max-width:800px}
+  .hero p{color:#d7dbe1;max-width:750px;margin:0;font-size:1.03rem}
+  .content-section{
+    display:none;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(22px,4vw,34px);margin:0 0 18px;
+    box-shadow:0 8px 24px rgba(31,41,55,.035);
+    scroll-margin-top:90px;
+  }
+  .content-section.active{display:block}
+  .section-kicker{font-size:.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:.07em;font-weight:800}
+  .content-section h2{font-size:clamp(1.4rem,3vw,2rem);margin:6px 0 12px}
+  .content-section p{margin:8px 0}
+  .muted{color:var(--muted)}
+  .callout{
+    border-left:4px solid var(--accent);background:var(--accent-soft);padding:14px 16px;border-radius:10px;margin:16px 0;
+  }
+  .scenario{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px;
+  }
+  .scenario div{background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:14px}
+  .scenario b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+  .vocab-card{
+    border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;text-align:left;
+    min-height:125px;position:relative;transition:.2s ease;
+  }
+  .vocab-card:hover,.vocab-card:focus-visible{border-color:#c9ccd2;box-shadow:0 8px 20px rgba(31,41,55,.06);outline:none}
+  .vocab-card .term{font-size:1.03rem;font-weight:800;padding-right:80px}
+  .vocab-card .hint{position:absolute;right:14px;top:14px;color:var(--muted);font-size:.75rem}
+  .vocab-card .detail{display:none;margin-top:12px;color:var(--muted);font-size:.92rem}
+  .vocab-card.open .detail{display:block}
+  .vocab-card.open{background:var(--soft)}
+  .function-group{
+    border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden;
+  }
+  .function-title{font-weight:800;background:var(--soft);padding:12px 14px}
+  .phrase-row{
+    padding:13px 14px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;
+  }
+  .tiny-btn,.action-btn{
+    border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 11px;color:var(--ink);font-weight:700;font-size:.84rem;
+  }
+  .tiny-btn:hover,.action-btn:hover{border-color:#b7bbc3;background:var(--soft)}
+  .why{display:none;grid-column:1/-1;color:var(--muted);font-size:.9rem;padding-top:4px}
+  .phrase-row.open .why{display:block}
+  .builder{
+    border:1px solid var(--line);border-radius:15px;padding:18px;background:var(--soft);margin-top:14px;
+  }
+  .builder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  label{font-weight:700;font-size:.9rem}
+  select,input[type="text"],textarea{
+    width:100%;border:1px solid #cfd3da;border-radius:11px;background:#fff;color:var(--ink);
+    padding:12px;margin-top:7px;
+  }
+  textarea{min-height:155px;resize:vertical}
+  select:focus,input:focus,textarea:focus{outline:3px solid rgba(180,83,60,.14);border-color:#b97a69}
+  .preview{
+    margin-top:14px;background:#fff;border:1px dashed #bfc4cc;border-radius:12px;padding:15px;font-weight:700;
+  }
+  details{
+    border:1px solid var(--line);border-radius:13px;padding:0 14px;margin:10px 0;background:#fff;
+  }
+  summary{cursor:pointer;font-weight:800;padding:14px 0}
+  details p{padding:0 0 12px}
+  .choice-list{display:grid;gap:10px;margin-top:16px}
+  .choice{
+    border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px;text-align:left;color:var(--ink);
+  }
+  .choice:hover,.choice:focus-visible{border-color:#b8bdc6;outline:none;background:var(--soft)}
+  .choice.selected{border-color:var(--accent);background:var(--accent-soft)}
+  .feedback{
+    display:none;margin-top:14px;border-radius:12px;padding:14px;background:var(--soft);border:1px solid var(--line);
+  }
+  .feedback.show{display:block}
+  .feedback.good{border-left:4px solid var(--green)}
+  .feedback.warn{border-left:4px solid var(--gold)}
+  .model-box{
+    border:1px solid var(--line);border-radius:14px;background:#fbfbfc;padding:18px;margin-top:14px;
+  }
+  .model-text .annot{
+    border-bottom:2px dotted #a7adb7;cursor:pointer;padding-bottom:1px;
+  }
+  .annotation{
+    display:none;margin-top:12px;padding:12px;background:#fff;border-radius:10px;border:1px solid var(--line);color:var(--muted);
+  }
+  .annotation.show{display:block}
+  .exercise{
+    border:1px solid var(--line);border-radius:15px;padding:18px;margin:14px 0;
+  }
+  .exercise h3{font-size:1rem;margin:0 0 9px}
+  .exercise .prompt{margin-bottom:12px}
+  .exercise-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+  .primary{
+    border:0;background:var(--ink);color:#fff;border-radius:11px;padding:10px 14px;font-weight:800;
+  }
+  .primary:hover{background:#111827}
+  .secondary{
+    border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:10px 14px;font-weight:800;
+  }
+  .token-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .token{
+    border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-weight:700;
+  }
+  .token.used{opacity:.45}
+  .ordered{
+    min-height:48px;border:1px dashed #b9bec6;border-radius:12px;padding:9px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  }
+  .requirements{padding-left:20px}
+  .requirements li{margin:5px 0}
+  .model-answer{display:none;margin-top:14px;background:var(--soft);border-radius:13px;padding:16px;border:1px solid var(--line)}
+  .model-answer.show{display:block}
+  .checklist{display:grid;gap:10px;margin-top:16px}
+  .check-item{
+    display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;
+  }
+  .check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+  .check-progress{height:10px;background:#e8eaee;border-radius:99px;overflow:hidden;margin-top:14px}
+  .check-progress span{display:block;height:100%;width:0;background:var(--green);transition:.3s}
+  .completion{
+    display:none;margin-top:18px;border-radius:16px;padding:22px;background:var(--green-soft);border:1px solid #cfe7d8;
+  }
+  .completion.show{display:block}
+  .challenge-link{
+    display:inline-block;margin-top:12px;text-decoration:none;background:var(--accent);color:#fff;
+    border-radius:12px;padding:12px 16px;font-weight:800;
+  }
+  .pager{
+    display:flex;justify-content:space-between;gap:10px;margin-top:18px;
+  }
+  .pager button{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 14px;font-weight:800}
+  .footer{
+    max-width:1120px;margin:0 auto;padding:0 24px 38px;color:var(--muted);font-size:.84rem;text-align:center;
+  }
+  .footer a{color:var(--accent)}
+  .level-principiante .route-badge{color:var(--green)}
+  .level-intermedio .route-badge{color:var(--blue)}
+  .level-avanzado .route-badge{color:var(--violet)}
+  @media (max-width:880px){
+    .level-grid{grid-template-columns:1fr}
+    .level-btn{min-height:auto}
+    .layout{grid-template-columns:1fr;padding-top:18px}
+    .sidebar{display:none}
+    .cards,.scenario,.builder-grid{grid-template-columns:1fr}
+    .topbar-inner{grid-template-columns:1fr}
+    .route{justify-content:space-between}
+  }
+  @media (max-width:520px){
+    .shell,.layout,.topbar-inner,.footer{padding-left:15px;padding-right:15px}
+    .selection-card{padding:24px 18px;border-radius:20px}
+    .hero{border-radius:18px}
+    .content-section{padding:20px 16px}
+    .phrase-row{grid-template-columns:1fr}
+    .tiny-btn{justify-self:start}
+    .progress-text{font-size:.74rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important;transition:none!important}
+  }
+
+  /* ===== APOYO ADICIONAL PARA RUTA PRINCIPIANTE ===== */
+  .sublevel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+  .sublevel-btn{
+    appearance:none;text-align:left;background:#fff;border:1px solid var(--line);border-top:4px solid var(--green);
+    border-radius:20px;padding:22px;min-height:190px;transition:.2s ease;color:var(--ink);
+  }
+  .sublevel-btn:hover,.sublevel-btn:focus-visible{
+    transform:translateY(-2px);box-shadow:0 12px 28px rgba(31,41,55,.10);
+    outline:3px solid rgba(47,133,90,.13);border-color:#b9d8c5;
+  }
+  .sublevel-btn .emoji{font-size:2rem}
+  .sublevel-btn strong{display:block;font-size:1.18rem;margin:10px 0 4px}
+  .sublevel-btn .cefr{display:inline-block;font-size:.78rem;font-weight:800;color:var(--green);background:var(--green-soft);padding:4px 8px;border-radius:999px;margin-bottom:9px}
+  .sublevel-btn span{display:block;color:var(--muted);font-size:.92rem}
+  .route{flex-wrap:wrap;justify-content:flex-end}
+  .audio-note{border-left:4px solid var(--green);background:var(--green-soft);padding:13px 15px;border-radius:10px;margin:14px 0;color:#245f42}
+  .audio-controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:9px}
+  .audio-btn{
+    border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;color:var(--ink);
+    font-weight:750;font-size:.79rem;line-height:1.2;
+  }
+  .audio-btn:hover,.audio-btn:focus-visible{background:var(--soft);border-color:#b7bbc3;outline:2px solid rgba(47,133,90,.14)}
+  .audio-btn:disabled{cursor:not-allowed;opacity:.5}
+  .vocab-reveal{
+    width:100%;border:0;background:transparent;padding:0;text-align:left;color:inherit;cursor:pointer;
+  }
+  .vocab-reveal:focus-visible{outline:3px solid rgba(47,133,90,.14);border-radius:10px}
+  .vocab-card.beginner-card{cursor:default}
+  .vocab-card.beginner-card .term{padding-right:90px}
+  .pronunciation{margin-top:9px;padding:9px 11px;background:var(--green-soft);border-radius:10px;color:#245f42;font-size:.86rem}
+  .pronunciation strong{letter-spacing:.03em}
+  .phrase-translation{color:var(--muted);font-size:.88rem;margin-top:4px}
+  .phrase-blocks{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;grid-column:1/-1}
+  .phrase-block{display:flex;align-items:center;gap:6px;border:1px solid #d7e9de;background:var(--green-soft);border-radius:12px;padding:7px 9px;font-size:.86rem}
+  .phrase-block .audio-btn{padding:5px 8px;background:#fff}
+  .choice-audio-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+  .choice-audio-row .choice{width:100%}
+  .builder-audio{margin-top:8px}
+  .support-panel{border:1px solid #cfe7d8;background:var(--green-soft);border-radius:14px;padding:15px;margin:14px 0}
+  .support-panel h3{margin:0 0 8px;font-size:1rem}
+  .support-blocks{display:grid;gap:8px;margin-top:10px}
+  .support-block{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;background:#fff;border:1px solid #d9e8df;border-radius:11px;padding:10px}
+  .model-line{border-bottom:1px solid var(--line);padding:10px 0}
+  .model-line:last-child{border-bottom:0}
+  .model-line .annot{display:inline-block;font-weight:700}
+  .audio-exercise-cue{padding:12px;background:var(--green-soft);border-radius:12px;margin:10px 0}
+  .token-audio-wrap{display:flex;align-items:center;gap:5px}
+  .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  @media (max-width:700px){
+    .sublevel-grid{grid-template-columns:1fr}
+    .choice-audio-row{grid-template-columns:1fr}
+    .choice-audio-row .audio-controls{margin-top:0}
+    .support-block{grid-template-columns:1fr}
+  }
+
+</style>
+</head>
+<body>
+  <div id="selectionView" class="shell selection-screen">
+    <div style="width:100%">
+      <div class="brandbar">
+        <div class="brand"><a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a><small>Business Spanish para trabajar</small></div>
+        <a class="brandlink" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com ↗</a>
+      </div>
+      <main class="selection-card" aria-labelledby="levelTitle">
+        <span class="eyebrow">Reuniones</span>
+        <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+        <p class="lead">Elige una ruta. Trabajarás la misma habilidad profesional, pero el apoyo y la dificultad cambiarán según tu nivel.</p>
+        <div class="level-grid">
+          <button class="level-btn" data-level="principiante" aria-label="Seleccionar Principiante">
+            <span class="emoji">🌱</span><strong>Principiante</strong>
+            <span>Necesito vocabulario, estructuras y ejemplos para poder responder.</span>
+          </button>
+          <button class="level-btn" data-level="intermedio" aria-label="Seleccionar Intermedio">
+            <span class="emoji">💼</span><strong>Intermedio</strong>
+            <span>Ya puedo comunicarme y quiero hacerlo con más precisión, libertad y naturalidad.</span>
+          </button>
+          <button class="level-btn" data-level="avanzado" aria-label="Seleccionar Avanzado">
+            <span class="emoji">🚀</span><strong>Avanzado</strong>
+            <span>Puedo comunicarme con autonomía y quiero trabajar precisión, matiz y situaciones más exigentes.</span>
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+  <div id="beginnerSelectionView" class="shell selection-screen hidden">
+    <div style="width:100%">
+      <div class="brandbar">
+        <div class="brand"><a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a><small>Business Spanish para trabajar</small></div>
+        <a class="brandlink" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com ↗</a>
+      </div>
+      <main class="selection-card" aria-labelledby="beginnerTrackTitle">
+        <span class="eyebrow">🌱 Principiante / Beginner</span>
+        <h1 id="beginnerTrackTitle">Una pregunta más para adaptar tu material</h1>
+        <p class="lead"><strong>¿Cuánto español sabes actualmente?</strong><br>How much Spanish do you know right now?</p>
+        <div class="sublevel-grid">
+          <button class="sublevel-btn beginner-track-btn" data-track="preA1" aria-label="Seleccionar Desde cero, Pre-A1">
+            <span class="emoji">🌱</span>
+            <strong>Empiezo desde cero / Starting from zero</strong>
+            <span class="cefr">Pre-A1</span>
+            <span>Almost everything in Spanish is new to me. I need help understanding, hearing and pronouncing basic words and phrases.</span>
+          </button>
+          <button class="sublevel-btn beginner-track-btn" data-track="base" aria-label="Seleccionar Principiante con base, A1 a A2">
+            <span class="emoji">🌱</span>
+            <strong>Ya tengo una base / I already know some basic Spanish</strong>
+            <span class="cefr">A1–A2</span>
+            <span>I understand some basic words and simple sentences and can work with guided examples.</span>
+          </button>
+        </div>
+        <div style="margin-top:18px">
+          <button id="backToLevels" class="change-level">← Volver a niveles / Back to levels</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="moduleView" class="hidden">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="progress-row">
+          <div class="progress-wrap" aria-label="Progreso del módulo"><div id="progressBar" class="progress-bar"></div></div>
+          <div id="progressText" class="progress-text">0% completado</div>
+        </div>
+        <div class="route">
+          <span id="routeLabel" class="route-badge"></span>
+          <button id="changeBeginnerTrack" class="change-level hidden">Cambiar subruta / Change beginner route</button>
+          <button id="changeLevel" class="change-level">Cambiar nivel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="navcard" id="sectionNav" aria-label="Navegación del módulo"></div>
+      </aside>
+
+      <main>
+        <header class="hero">
+          <div class="week" id="weekLabel"></div>
+          <h1 id="heroTitle">Abrir reuniones con claridad y profesionalismo</h1>
+          <p id="heroIntro"></p>
+        </header>
+        <div id="audioStatus" class="sr-only" aria-live="polite"></div>
+        <div id="sections"></div>
+      </main>
+    </div>
+    <footer class="footer">
+      <strong>La Oficina en Español</strong> · <span id="footerTagline">Aprende y practica el español que necesitas para trabajar</span> ·
+      <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com</a>
+    </footer>
+  </div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const semana = {
+  numero: 1,
+  habilidad: "Abrir reuniones con claridad y profesionalismo"
+};
+
+const contenido = {
+  principiante: {
+    emoji:"🌱", nombre:"Principiante",
+    base:{
+    emoji:"🌱", nombre:"Principiante · A1–A2",
+    intro:"Aprenderás una secuencia simple y reutilizable para abrir una reunión en español sin quedarte en blanco. / You will learn a simple, reusable sequence to open a meeting in Spanish without freezing.",
+    objetivo:"Al terminar esta semana podrás dar la bienvenida, agradecer la asistencia, explicar el objetivo de una reunión y presentar brevemente la agenda. / By the end of this week, you will be able to welcome people, thank them for attending, explain the purpose of a meeting, and briefly present the agenda.",
+    situacion:{
+      quien:"Eres responsable de coordinar una reunión breve. / You are responsible for coordinating a short meeting.",
+      conQuien:"Hablas con dos compañeros y un cliente. / You are speaking with two colleagues and one client.",
+      contexto:"Reunión virtual de 20 minutos. / A 20-minute online meeting.",
+      objetivo:"Abrir la reunión con claridad y explicar qué van a hacer. / Open the meeting clearly and explain what you are going to do.",
+      dificultad:"Es la primera vez que diriges una reunión en español. / It is your first time leading a meeting in Spanish."
+    },
+    vocab:[
+      ["dar la bienvenida","to welcome","Dar la bienvenida = recibir a las personas al inicio. / to welcome people at the beginning.","Bienvenidos. Gracias por estar aquí. / Welcome. Thank you for being here."],
+      ["reunión","meeting","Encuentro de trabajo para hablar, decidir o coordinar. / A work meeting to discuss, decide, or coordinate.","La reunión empieza a las nueve. / The meeting starts at nine."],
+      ["objetivo","objective / purpose","Lo que queremos conseguir. / What we want to achieve.","El objetivo de esta reunión es revisar el proyecto. / The purpose of this meeting is to review the project."],
+      ["agenda","agenda","Los temas que vamos a tratar. / The topics we are going to discuss.","Tenemos tres puntos en la agenda. / We have three items on the agenda."],
+      ["revisar","to review","Mirar algo para comprobarlo o analizarlo. / To look at something to check or analyze it.","Primero vamos a revisar los resultados. / First, we are going to review the results."],
+      ["empezar / comenzar","to start / begin","Los dos verbos sirven para iniciar una acción. / Both verbs can be used to begin an action.","Si les parece, podemos empezar. / If that works for you, we can start."]
+    ],
+    frases:[
+      {funcion:"Dar la bienvenida / Welcoming",items:[
+        ["Buenos días a todos. Gracias por estar aquí.","Profesional y fácil de usar en reuniones internas o con clientes. / Professional and easy to use in internal or client meetings."],
+        ["Bienvenidos. Gracias por acompañarnos hoy.","Útil cuando hay personas externas o quieres sonar un poco más formal. / Useful with external participants or when you want to sound slightly more formal."]
+      ]},
+      {funcion:"Explicar el objetivo / Explaining the purpose",items:[
+        ["El objetivo de esta reunión es revisar el proyecto.","Usa «es + infinitivo» para decir claramente qué quieren hacer. / Use “es + infinitive” to clearly state what you want to do."],
+        ["Hoy vamos a hablar de los próximos pasos.","«Vamos a + infinitivo» es una estructura muy útil para explicar el plan. / “Vamos a + infinitive” is a very useful structure for explaining the plan."]
+      ]},
+      {funcion:"Presentar la agenda / Presenting the agenda",items:[
+        ["Tenemos tres puntos en la agenda.","Frase directa para anunciar cuántos temas hay. / A direct phrase to announce how many topics there are."],
+        ["Primero vamos a revisar los resultados y después hablaremos de los próximos pasos.","«Primero… y después…» te ayuda a ordenar la reunión. / “First… and then…” helps you organize the meeting."]
+      ]},
+      {funcion:"Comenzar / Starting",items:[
+        ["Si les parece, podemos empezar.","Cortés y profesional. Invita al grupo a comenzar. / Polite and professional. It invites the group to begin."],
+        ["¿Empezamos?","Más breve e informal. Mejor con compañeros que ya conoces. / Shorter and more informal. Better with colleagues you already know."]
+      ]}
+    ],
+    builder:{
+      mode:"select",
+      prompts:[
+        ["Saludo / Greeting",["Buenos días a todos.","Buenas tardes a todos.","Bienvenidos."]],
+        ["Agradecimiento / Thanks",["Gracias por estar aquí.","Gracias por acompañarnos hoy.","Gracias por su tiempo."]],
+        ["Objetivo / Purpose",["El objetivo de esta reunión es revisar el proyecto.","Hoy vamos a hablar de los próximos pasos.","El objetivo de hoy es confirmar el plan."]],
+        ["Inicio / Start",["Si les parece, podemos empezar.","Podemos empezar con el primer punto.","Empecemos por el primer punto."]]
+      ]
+    },
+    gramatica:[
+      ["Intención: explicar el objetivo / Intention: state the purpose","El objetivo de esta reunión es + infinitivo.","Después de «es» puedes usar un infinitivo para decir la acción: revisar, confirmar, analizar, decidir. / After “es” you can use an infinitive to state the action.","El objetivo de esta reunión es confirmar las fechas."],
+      ["Intención: anunciar el plan / Intention: announce the plan","Vamos a + infinitivo.","«Vamos a» + infinitivo expresa lo que haremos a continuación. / “Vamos a” + infinitive expresses what you will do next.","Primero vamos a revisar los resultados."],
+      ["Intención: ordenar la agenda / Intention: organize the agenda","Primero… después… finalmente…","Estos conectores muestran el orden. / These connectors show sequence.","Primero revisamos los datos, después hablamos del presupuesto y finalmente confirmamos los próximos pasos."]
+    ],
+    registro:{
+      escenario:"Estás abriendo una reunión con un cliente que conoces por primera vez. / You are opening a meeting with a client you are meeting for the first time.",
+      opciones:[
+        ["Hola, ¿qué más? Bueno, arranquemos.","Esta opción puede sonar demasiado informal para un primer encuentro con un cliente. / This option may sound too informal for a first meeting with a client."],
+        ["Buenos días. Gracias por su tiempo. El objetivo de esta reunión es revisar la propuesta.","Esta formulación funciona bien: es clara, profesional y no resulta distante. / This wording works well: it is clear, professional and not distant."],
+        ["Muy distinguidos asistentes, procedamos a dar inicio formal a la sesión.","Es gramaticalmente posible, pero demasiado ceremoniosa para la mayoría de reuniones de negocio. / It is grammatically possible, but too ceremonial for most business meetings."]
+      ],
+      correcta:1
+    },
+    modelo:{
+      texto:[
+        ["Buenos días a todos.","saludo"],
+        [" Gracias por estar aquí.","agradecimiento"],
+        [" El objetivo de esta reunión es revisar el estado del proyecto y confirmar los próximos pasos.","objetivo"],
+        [" Tenemos dos puntos en la agenda: primero, los avances; después, las fechas.","agenda"],
+        [" Si les parece, podemos empezar.","inicio"]
+      ],
+      notas:{
+        saludo:"Abre la interacción de forma neutral y profesional. / Opens the interaction in a neutral, professional way.",
+        agradecimiento:"Reconoce el tiempo de los participantes. / Acknowledges participants’ time.",
+        objetivo:"Dice con claridad para qué existe la reunión. / Clearly states why the meeting exists.",
+        agenda:"Organiza las expectativas y el orden. / Organizes expectations and sequence.",
+        inicio:"Hace una transición cortés hacia el primer tema. / Makes a polite transition to the first topic."
+      }
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"¿Qué frase explica mejor el objetivo de una reunión? / Which sentence best explains a meeting’s purpose?",opciones:["¿Cómo están todos?","El objetivo de esta reunión es revisar el presupuesto.","Nos vemos mañana."],correcta:1,feedback:"«El objetivo de esta reunión es…» nombra directamente la finalidad de la reunión. / It directly states the meeting’s purpose."},
+      {tipo:"fill",pregunta:"Completa: «El objetivo de esta reunión es ____ los próximos pasos.» / Complete the sentence.",respuesta:["confirmar"],feedback:"Después de «es» usamos aquí el infinitivo: confirmar. / Here we use the infinitive after “es”: confirmar."},
+      {tipo:"order",pregunta:"Ordena una apertura lógica. / Put the opening in a logical order.",tokens:["Si les parece, podemos empezar.","Buenos días a todos.","El objetivo de esta reunión es revisar el proyecto.","Gracias por estar aquí."],orden:["Buenos días a todos.","Gracias por estar aquí.","El objetivo de esta reunión es revisar el proyecto.","Si les parece, podemos empezar."],feedback:"Una secuencia clara es: saludo → agradecimiento → objetivo → transición al inicio. / greeting → thanks → purpose → transition."},
+      {tipo:"mc",pregunta:"¿Cuál suena más apropiada para un cliente nuevo? / Which sounds more appropriate for a new client?",opciones:["Bueno, pues, vamos al grano.","Gracias por su tiempo. Si les parece, podemos empezar.","Ey, empecemos ya."],correcta:1,feedback:"La segunda mantiene un tono profesional y natural sin ser excesivamente formal. / The second option keeps a professional, natural tone without being overly formal."}
+    ],
+    practica:{
+      situacion:"Diriges una reunión virtual de 15 minutos con un cliente y dos compañeros. Es la primera vez que tú abres la reunión. / You are leading a 15-minute online meeting with a client and two colleagues. It is your first time opening the meeting.",
+      requisitos:["Escribe 4 frases. / Write 4 sentences.","Incluye un saludo. / Include a greeting.","Agradece la asistencia. / Thank people for attending.","Explica el objetivo. / State the purpose.","Indica al menos un punto de la agenda. / Mention at least one agenda item."],
+      modelo:"Buenos días a todos. Gracias por estar aquí. El objetivo de esta reunión es revisar la propuesta y confirmar los próximos pasos. Primero vamos a revisar los cambios y después hablaremos de las fechas. Si les parece, podemos empezar."
+    },
+    checklist:[
+      "Puedo saludar y dar la bienvenida al comenzar una reunión. / I can greet and welcome people at the start of a meeting.",
+      "Puedo explicar el objetivo con una frase simple. / I can state the purpose with a simple sentence.",
+      "Puedo presentar el orden básico de la agenda. / I can present the basic agenda sequence.",
+      "Puedo usar una frase profesional para empezar. / I can use a professional phrase to begin.",
+      "Estoy listo para practicar esta habilidad durante la semana. / I am ready to practice this skill during the week."
+    ]
+  
+    },
+
+    preA1:{
+      emoji:"🌱", nombre:"Desde cero / Starting from zero · Pre-A1",
+      intro:"Vas a aprender una apertura profesional muy breve desde cero. Primero escucharás y reconocerás palabras y frases; después las construirás con apoyo y al final podrás decir o escribir una apertura simple. / You will learn a very short professional opening from zero. First you will listen to and recognize words and phrases; then you will build them with support and finally you will be able to say or write a simple opening.",
+      objetivo:"Al terminar esta semana podrás saludar, agradecer, decir un objetivo simple y comenzar una reunión breve en español usando cuatro bloques que ya habrás escuchado y practicado. / By the end of this week, you will be able to greet people, thank them, state a simple purpose and start a short meeting in Spanish using four blocks you have already heard and practiced.",
+      situacion:{
+        quien:"Tú abres una reunión breve. / You open a short meeting.",
+        conQuien:"Hablas con dos compañeros y un cliente. / You are speaking with two colleagues and one client.",
+        contexto:"Reunión virtual de 15 minutos. / A 15-minute online meeting.",
+        objetivo:"Saludar, agradecer, decir qué van a revisar y comenzar. / Greet people, thank them, say what you are going to review and begin.",
+        dificultad:"Casi todas las palabras y su pronunciación son nuevas para ti. / Almost all the words and their pronunciation are new to you."
+      },
+      vocab:[
+        ["buenos días","good morning","Saludo profesional que puedes usar por la mañana. / A professional greeting you can use in the morning.","Buenos días a todos. / Good morning, everyone.","BUE-nos DÍ-as"],
+        ["gracias","thank you","Palabra para agradecer. / A word used to thank someone.","Gracias por estar aquí. / Thank you for being here.","GRA-cias"],
+        ["reunión","meeting","Encuentro de trabajo con otras personas. / A work meeting with other people.","Esta reunión es breve. / This meeting is short.","reu-NIÓN"],
+        ["objetivo","purpose / objective","Lo que queremos conseguir en la reunión. / What we want to achieve in the meeting.","El objetivo es revisar el proyecto. / The purpose is to review the project.","ob-je-TI-vo"],
+        ["revisar","to review","Mirar o comprobar algo. / To look at or check something.","Vamos a revisar el proyecto. / We are going to review the project.","re-vi-SAR"],
+        ["agenda","agenda","Los temas que se van a tratar. / The topics that will be discussed.","Tenemos una agenda breve. / We have a short agenda.","a-GEN-da"],
+        ["primero","first","Palabra para indicar el primer paso. / A word used to indicate the first step.","Primero, vamos a revisar el proyecto. / First, we are going to review the project.","pri-ME-ro"],
+        ["empezar","to start","Iniciar una actividad. / To begin an activity.","Podemos empezar. / We can start.","em-pe-ZAR"]
+      ],
+      frases:[
+        {funcion:"Saludar / Greeting",items:[
+          ["Buenos días a todos.","Saludo neutral y profesional para comenzar por la mañana. / A neutral, professional greeting to begin in the morning.","Good morning, everyone.",["Buenos días","a todos"],"BUE-nos DÍ-as a TO-dos","↘ La voz baja suavemente al terminar. / Your voice falls gently at the end."]
+        ]},
+        {funcion:"Agradecer / Thanking",items:[
+          ["Gracias por estar aquí.","Agradece la presencia de las personas con una frase corta. / Thank people for being present with a short sentence.","Thank you for being here.",["Gracias","por estar aquí"],"GRA-cias por es-TAR a-QUÍ","↘ Afirmación breve: termina con caída suave. / Short statement: finish with a gentle fall."]
+        ]},
+        {funcion:"Decir el objetivo / Stating the purpose",items:[
+          ["Hoy vamos a revisar el proyecto.","Dice de forma simple qué harán en la reunión. / It simply states what you will do in the meeting.","Today we are going to review the project.",["Hoy","vamos a revisar","el proyecto"],"HOY VA-mos a re-vi-SAR el pro-YEC-to","↘ La voz baja al terminar la idea. / Your voice falls at the end of the idea."]
+        ]},
+        {funcion:"Comenzar / Starting",items:[
+          ["Podemos empezar.","Transición simple y profesional hacia el primer tema. / A simple, professional transition to the first topic.","We can start.",["Podemos","empezar"],"po-DE-mos em-pe-ZAR","↘ Termina con una caída suave. / Finish with a gentle fall."]
+        ]}
+      ],
+      builder:{
+        mode:"select",
+        prompts:[
+          ["Saludo / Greeting",["Buenos días a todos.","Buenas tardes a todos."]],
+          ["Agradecimiento / Thanks",["Gracias por estar aquí.","Gracias por su tiempo."]],
+          ["Objetivo / Purpose",["Hoy vamos a revisar el proyecto.","Hoy vamos a revisar la agenda."]],
+          ["Inicio / Start",["Podemos empezar.","Podemos empezar con el primer punto."]]
+        ]
+      },
+      gramatica:[
+        ["Intención: decir qué harán / Intention: say what you will do","Vamos a + infinitivo.","Usa «vamos a» y después un verbo en su forma básica: revisar, empezar, hablar. No necesitas conjugar ese segundo verbo. / Use “vamos a” followed by the basic form of the verb: revisar, empezar, hablar. You do not need to conjugate that second verb.","Hoy vamos a revisar el proyecto."],
+        ["Intención: proponer el inicio / Intention: suggest starting","Podemos + infinitivo.","Después de «podemos» también usamos el verbo en su forma básica. / After “podemos”, we also use the verb in its basic form.","Podemos empezar."]
+      ],
+      registro:{
+        escenario:"Abres una reunión con un cliente que conoces por primera vez. / You are opening a meeting with a client you are meeting for the first time.",
+        opciones:[
+          ["Hola. Vamos.","Se entiende, pero puede sonar demasiado brusco para un cliente nuevo. / It is understandable, but it may sound too abrupt for a new client."],
+          ["Buenos días. Gracias por estar aquí.","Funciona bien porque es breve, clara y profesional. / It works well because it is short, clear and professional."],
+          ["Muy distinguidos asistentes, procedamos a dar inicio.","Es demasiado formal y contiene vocabulario innecesariamente difícil para esta situación. / It is too formal and contains unnecessarily difficult vocabulary for this situation."]
+        ],
+        correcta:1
+      },
+      modelo:{
+        texto:[
+          ["Buenos días a todos.","saludo"],
+          [" Gracias por estar aquí.","agradecimiento"],
+          [" Hoy vamos a revisar el proyecto.","objetivo"],
+          [" Podemos empezar.","inicio"]
+        ],
+        notas:{
+          saludo:"Saludo profesional. / Professional greeting.",
+          agradecimiento:"Agradece la presencia de las personas. / Thanks people for being present.",
+          objetivo:"Dice qué harán hoy. / States what you will do today.",
+          inicio:"Indica que la reunión puede comenzar. / Signals that the meeting can begin."
+        }
+      },
+      ejercicios:[
+        {tipo:"mc",pregunta:"¿Qué significa «reunión»? / What does “reunión” mean?",opciones:["meeting","project","thank you"],correcta:0,feedback:"«Reunión» significa “meeting”. Escucha la palabra otra vez antes de continuar. / “Reunión” means “meeting”. Listen to the word again before continuing.",audio:"reunión"},
+        {tipo:"audioMc",pregunta:"Escucha y elige el significado. / Listen and choose the meaning.",audio:"Gracias por estar aquí.",opciones:["Thank you for being here.","We can start.","Good morning, everyone."],correcta:0,feedback:"«Gracias por estar aquí» significa “Thank you for being here.” / “Gracias por estar aquí” means “Thank you for being here.”"},
+        {tipo:"order",pregunta:"Ordena estos cuatro bloques para abrir una reunión. / Put these four blocks in order to open a meeting.",tokens:["Podemos empezar.","Hoy vamos a revisar el proyecto.","Buenos días a todos.","Gracias por estar aquí."],orden:["Buenos días a todos.","Gracias por estar aquí.","Hoy vamos a revisar el proyecto.","Podemos empezar."],feedback:"La secuencia es: saludo → agradecimiento → objetivo → inicio. / The sequence is: greeting → thanks → purpose → start."},
+        {tipo:"fill",pregunta:"Completa: «Hoy vamos a ____ el proyecto.» / Complete: “Hoy vamos a ____ el proyecto.”",respuesta:["revisar"],feedback:"Después de «vamos a» usamos el infinitivo: revisar. / After “vamos a”, we use the infinitive: revisar.",audio:"Hoy vamos a revisar el proyecto."}
+      ],
+      practica:{
+        situacion:"Vas a abrir una reunión virtual breve con un cliente y dos compañeros. Usa los bloques que ya practicaste. / You are going to open a short online meeting with a client and two colleagues. Use the blocks you have already practiced.",
+        requisitos:[
+          "Construye 4 frases breves. Puedes copiar los bloques practicados. / Build 4 short sentences. You may copy the blocks you practiced.",
+          "Incluye un saludo. / Include a greeting.",
+          "Incluye un agradecimiento. / Include a thank-you sentence.",
+          "Di qué van a revisar. Puedes cambiar «proyecto» por «agenda». / Say what you are going to review. You may change “proyecto” to “agenda”.",
+          "Termina con una frase para empezar. / Finish with a sentence to start."
+        ],
+        apoyos:["Buenos días a todos.","Gracias por estar aquí.","Hoy vamos a revisar el proyecto.","Hoy vamos a revisar la agenda.","Podemos empezar."],
+        modelo:"Buenos días a todos. Gracias por estar aquí. Hoy vamos a revisar el proyecto. Podemos empezar."
+      },
+      checklist:[
+        "Puedo reconocer y comprender las palabras principales de esta apertura. / I can recognize and understand the main words in this opening.",
+        "Puedo escuchar y reconocer las cuatro frases principales. / I can listen to and recognize the four main sentences.",
+        "Puedo repetir las frases usando el audio como modelo. / I can repeat the sentences using the audio as a model.",
+        "Puedo construir una apertura breve usando bloques. / I can build a short opening using blocks.",
+        "Puedo decir o escribir una apertura breve antes del reto de la semana. / I can say or write a short opening before this week’s challenge."
+      ]
+    }
+  },
+
+  intermedio: {
+    emoji:"💼", nombre:"Intermedio",
+    intro:"Vas a convertir una apertura correcta en una apertura más precisa, fluida y profesional: marcarás propósito, agenda, expectativas y transición sin sonar rígido.",
+    objetivo:"Al terminar esta semana podrás abrir una reunión con una introducción breve, explicar con precisión el propósito, organizar la agenda y establecer una transición profesional hacia el primer punto.",
+    situacion:{
+      quien:"Eres la persona responsable de coordinar un proyecto.",
+      conQuien:"Participan tu equipo interno y dos representantes de un cliente.",
+      contexto:"Reunión de seguimiento mensual de 30 minutos.",
+      objetivo:"Alinear a todos sobre el propósito, el orden de los temas y el resultado esperado.",
+      dificultad:"Hay poco tiempo y algunos participantes no se conocen entre sí."
+    },
+    vocab:[
+      ["alinear expectativas","Asegurar que las personas entienden de forma similar el propósito, el alcance o los próximos pasos.","Antes de entrar en detalle, me gustaría alinear expectativas sobre el objetivo de hoy.","Colocaciones: alinear expectativas, alinear prioridades, alinear al equipo."],
+      ["orden del día","Lista organizada de temas que se tratarán en una reunión.","El orden del día incluye resultados, bloqueos y próximos pasos.","Alternativa frecuente: agenda. «Orden del día» puede sonar ligeramente más formal."],
+      ["poner en contexto","Dar la información necesaria para que todos entiendan la situación.","Antes de revisar los datos, voy a poner brevemente en contexto el cambio.","Muy útil al abrir reuniones con participantes nuevos."],
+      ["dar paso a","Introducir el siguiente punto o a la siguiente persona.","Después de esta introducción, daré paso a Marta para revisar las cifras.","Registro profesional y natural."],
+      ["centrarnos en","Dirigir la atención hacia un tema concreto.","Hoy me gustaría que nos centráramos en las decisiones pendientes.","Alternativa: enfocarnos en."],
+      ["resultado esperado","Resultado concreto que se quiere obtener al finalizar.","El resultado esperado de hoy es salir con una fecha acordada.","Ayuda a evitar reuniones sin cierre claro."]
+    ],
+    frases:[
+      {funcion:"Abrir y situar",items:[
+        ["Buenos días. Gracias por reservar este espacio.","Natural y profesional cuando quieres reconocer el tiempo de los participantes."],
+        ["Antes de empezar, me gustaría poner brevemente en contexto el objetivo de hoy.","Útil si necesitas explicar por qué se convocó la reunión."]
+      ]},
+      {funcion:"Definir propósito y resultado",items:[
+        ["El objetivo principal de hoy es revisar los avances y acordar los próximos pasos.","Combina revisión + decisión; deja claro qué debe ocurrir al final."],
+        ["Me gustaría que al final de esta reunión tuviéramos una decisión sobre la fecha de lanzamiento.","Hace explícito el resultado esperado."]
+      ]},
+      {funcion:"Presentar el orden",items:[
+        ["Propongo que empecemos por los resultados, pasemos después a los bloqueos y cerremos con las decisiones pendientes.","«Propongo que…» permite presentar la agenda sin sonar autoritario."],
+        ["Tenemos tres puntos principales. Si están de acuerdo, los veremos en ese orden.","Invita al grupo a validar la estructura."]
+      ]},
+      {funcion:"Transicionar",items:[
+        ["Si no hay nada que añadir antes de empezar, pasamos al primer punto.","Buena transición cuando quieres dejar un espacio breve para observaciones."],
+        ["Dicho esto, empezamos con el estado del proyecto.","Más fluida cuando la agenda ya está aceptada."]
+      ]}
+    ],
+    builder:{
+      mode:"guided",
+      intents:[
+        "Reconoce el tiempo de los participantes sin usar «gracias por estar aquí».",
+        "Explica el propósito e incluye un resultado esperado.",
+        "Presenta tres puntos del orden del día con conectores.",
+        "Haz una transición al primer punto sin usar «podemos empezar»."
+      ]
+    },
+    gramatica:[
+      ["Intención: proponer una estructura con tacto","Propongo que + presente de subjuntivo.","Después de expresiones de propuesta como «propongo que», usamos normalmente subjuntivo porque presentamos una acción deseada, no un hecho.","Propongo que empecemos por los resultados y dejemos las preguntas para el final."],
+      ["Intención: expresar una expectativa","Me gustaría que + imperfecto de subjuntivo.","Permite expresar un resultado deseado con un tono profesional y menos directivo.","Me gustaría que al final de la reunión tuviéramos una decisión clara."],
+      ["Intención: ordenar con fluidez","antes de + infinitivo / después de + sustantivo o infinitivo / para cerrar","Estas estructuras conectan etapas de la reunión sin enumerarlas de forma mecánica.","Antes de entrar en detalle, revisaremos el contexto; después de ver los datos, pasaremos a las decisiones."]
+    ],
+    registro:{
+      escenario:"Abres una reunión mensual con un cliente con el que ya trabajas, pero hay dos personas nuevas en la llamada.",
+      opciones:[
+        ["Bueno, ya saben cómo funciona esto, así que vayamos directamente a los números.","Puede excluir a las personas nuevas y presupone demasiado contexto."],
+        ["Gracias por reservar este espacio. Para quienes se incorporan hoy, pondré brevemente en contexto el objetivo y después pasaremos a los resultados.","Funciona mejor porque integra a las personas nuevas y mantiene ritmo profesional."],
+        ["Agradecemos sobremanera su gentil presencia en esta sesión de seguimiento.","Es demasiado ceremoniosa para una reunión de seguimiento habitual."]
+      ],
+      correcta:1
+    },
+    modelo:{
+      texto:[
+        ["Buenos días. Gracias por reservar este espacio.","saludo"],
+        [" Para quienes se incorporan hoy, voy a poner brevemente en contexto el objetivo de la reunión.","contexto"],
+        [" Queremos revisar los avances del último mes, resolver dos bloqueos y salir con una decisión sobre la nueva fecha de entrega.","objetivo"],
+        [" Propongo que empecemos por los resultados, pasemos después a los bloqueos y cerremos con la decisión pendiente.","agenda"],
+        [" Si no hay nada que añadir antes de empezar, damos paso al primer punto.","inicio"]
+      ],
+      notas:{
+        saludo:"Reconoce el tiempo del grupo y evita una apertura genérica.",
+        contexto:"Incluye a quienes no tienen el mismo nivel de información.",
+        objetivo:"Combina propósito con un resultado observable de la reunión.",
+        agenda:"Presenta el orden como propuesta, no como imposición.",
+        inicio:"Deja un espacio mínimo para intervenir y transiciona."
+      }
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"¿Qué apertura gestiona mejor una reunión con participantes nuevos?",opciones:["Como todos saben, tenemos un problema con las fechas.","Para quienes se incorporan hoy, voy a resumir brevemente el contexto antes de entrar en los datos.","No perderé tiempo explicando el contexto."],correcta:1,feedback:"La segunda reduce la asimetría de información sin alargar innecesariamente la apertura."},
+      {tipo:"fill",pregunta:"Completa con la forma adecuada: «Propongo que ____ por los resultados.»",respuesta:["empecemos"],feedback:"«Propongo que» introduce una propuesta y normalmente va seguida de presente de subjuntivo: empecemos."},
+      {tipo:"order",pregunta:"Ordena una apertura profesional.",tokens:["Propongo que empecemos por los avances y cerremos con las decisiones.","Gracias por reservar este espacio.","El objetivo de hoy es revisar el estado del proyecto y acordar los próximos pasos.","Si no hay nada que añadir, pasamos al primer punto."],orden:["Gracias por reservar este espacio.","El objetivo de hoy es revisar el estado del proyecto y acordar los próximos pasos.","Propongo que empecemos por los avances y cerremos con las decisiones.","Si no hay nada que añadir, pasamos al primer punto."],feedback:"La secuencia crea contexto antes de entrar en la ejecución: reconocimiento → propósito → agenda → transición."},
+      {tipo:"mc",pregunta:"¿Cuál formula mejor un resultado esperado?",opciones:["Hoy hablaremos de varias cosas.","Me gustaría que al final tuviéramos una decisión sobre la fecha de lanzamiento.","La agenda está en la invitación."],correcta:1,feedback:"Un resultado esperado describe lo que debe quedar resuelto al terminar, no solo el tema."}
+    ],
+    practica:{
+      situacion:"Abres una reunión de seguimiento con un cliente y cuatro compañeros. Dos personas se incorporan por primera vez. Hay 30 minutos y necesitas terminar con una decisión sobre una fecha.",
+      requisitos:["Escribe entre 6 y 8 frases.","Incluye una frase para situar a quienes son nuevos.","Formula propósito + resultado esperado.","Presenta al menos tres puntos del orden del día.","Usa dos conectores de secuencia.","Haz una transición al primer tema."],
+      modelo:"Buenos días. Gracias por reservar este espacio. Para quienes se incorporan hoy, voy a resumir brevemente el contexto antes de entrar en los datos. El objetivo principal es revisar los avances, entender los dos bloqueos actuales y terminar con una decisión sobre la fecha de lanzamiento. Propongo que empecemos por los resultados del último mes, pasemos después a los bloqueos y cerremos con la decisión pendiente. Si están de acuerdo con ese orden, damos paso al primer punto."
+    },
+    checklist:[
+      "Puedo abrir una reunión sin depender de una frase memorizada.",
+      "Puedo expresar propósito y resultado esperado con precisión.",
+      "Puedo presentar una agenda de forma fluida y profesional.",
+      "Puedo adaptar el tono cuando hay clientes o participantes nuevos.",
+      "Estoy listo para practicar esta habilidad durante la semana."
+    ]
+  },
+
+  avanzado: {
+    emoji:"🚀", nombre:"Avanzado",
+    intro:"Trabajarás aperturas donde el reto no es «qué decir», sino decidir cuánto contexto dar, qué tono usar y cómo encuadrar una reunión cuando existe presión, desacuerdo o ambigüedad.",
+    objetivo:"Al terminar esta semana podrás encuadrar una reunión compleja, calibrar el nivel de formalidad, declarar el resultado esperado, gestionar expectativas y abrir espacio a la participación sin perder dirección.",
+    situacion:{
+      quien:"Lideras una reunión de decisión entre tu empresa y un cliente estratégico.",
+      conQuien:"Directivos, responsables técnicos y una persona que ha cuestionado el proyecto.",
+      contexto:"Reunión híbrida de 45 minutos tras un retraso relevante.",
+      objetivo:"Restablecer foco, acordar qué debe decidirse y evitar que la reunión se convierta en una discusión desordenada.",
+      dificultad:"Hay tensión, distintos niveles jerárquicos y no todos comparten la misma lectura del problema."
+    },
+    vocab:[
+      ["encuadrar la conversación","Definir desde el inicio qué problema se tratará, con qué alcance y para qué.","Antes de entrar en posiciones, conviene encuadrar la conversación alrededor de las dos decisiones que necesitamos tomar.","No equivale a «controlar» la conversación: establece límites útiles."],
+      ["delimitar el alcance","Precisar qué entra y qué no entra en la discusión.","Para aprovechar el tiempo, propongo delimitar el alcance de hoy a impacto, alternativas y decisión.","Útil cuando la reunión corre riesgo de dispersarse."],
+      ["poner sobre la mesa","Introducir explícitamente un asunto que debe tratarse.","Quiero poner sobre la mesa una preocupación antes de revisar las opciones.","Puede aportar franqueza; el tono depende de lo que se introduce."],
+      ["punto de partida","Supuesto, dato o acuerdo desde el cual se inicia la discusión.","Tomemos como punto de partida los datos validados ayer.","Sirve para reducir debates sobre premisas ya acordadas."],
+      ["salir de la reunión con","Expresión orientada a resultado para definir un cierre concreto.","Necesitamos salir de la reunión con una decisión y un responsable por cada acción.","Más directa que «el objetivo es hablar de…»."],
+      ["abrir el espacio a","Invitar deliberadamente a comentarios, objeciones o preguntas.","Antes de pasar a las opciones, abriré el espacio a cualquier objeción sobre el diagnóstico.","Ayuda a mostrar escucha sin perder la conducción."]
+    ],
+    frases:[
+      {funcion:"Encuadrar sin dramatizar",items:[
+        ["Dado el contexto de las últimas semanas, me parece importante que hoy partamos de un marco común.","Reconoce la situación sin convertir la apertura en una defensa o disculpa extensa."],
+        ["Antes de entrar en las posiciones de cada parte, propongo que acordemos qué necesitamos resolver hoy.","Desplaza el foco de las posiciones al resultado."]
+      ]},
+      {funcion:"Definir alcance y resultado",items:[
+        ["Para que esta conversación sea útil, limitaría el alcance a tres cuestiones: impacto, alternativas y decisión.","El condicional suaviza una propuesta de estructura sin restarle dirección."],
+        ["Necesitamos salir de esta reunión con una opción acordada, un responsable y una fecha.","Formula criterios de cierre verificables."]
+      ]},
+      {funcion:"Gestionar participación",items:[
+        ["Haré una breve síntesis del contexto y después abriré el espacio a objeciones antes de pasar a las alternativas.","Anticipa cuándo se escucharán objeciones y evita interrupciones desordenadas."],
+        ["Si hay desacuerdo con el punto de partida, prefiero identificarlo ahora para no construir sobre supuestos distintos.","Invita a cuestionar premisas de forma controlada."]
+      ]},
+      {funcion:"Transicionar con autoridad",items:[
+        ["Con ese marco, si les parece, entremos en el primer punto.","Cierra el encuadre y marca transición sin sonar abrupto."],
+        ["Si estamos de acuerdo con el objetivo y el alcance, paso directamente al diagnóstico.","Condiciona la transición a un mínimo de alineación."]
+      ]}
+    ],
+    builder:{
+      mode:"advanced",
+      intents:[
+        "Abre una reunión tensa sin pedir disculpas de forma defensiva ni ignorar el retraso.",
+        "Delimita el alcance a tres decisiones y explica qué queda fuera.",
+        "Define un resultado esperado que pueda verificarse al final.",
+        "Da espacio a objeciones sin ceder la estructura de la reunión."
+      ]
+    },
+    gramatica:[
+      ["Intención: proponer sin imponer","Condicional de cortesía: limitaría, propondría, empezaría.","El condicional puede rebajar la fuerza de una instrucción manteniendo capacidad de dirección. El riesgo es abusar de él y sonar indeciso.","Para aprovechar el tiempo, limitaría el alcance de hoy a las decisiones que dependen de este grupo."],
+      ["Intención: marcar una condición operativa","Si + presente, presente / futuro / imperativo discursivo.","Permite hacer explícito qué debe cumplirse para avanzar.","Si estamos de acuerdo con este punto de partida, pasamos al análisis de alternativas."],
+      ["Intención: gestionar desacuerdo potencial","Subjuntivo en cláusulas de existencia o eventualidad: si hay algo que no esté claro…","El subjuntivo ayuda a referirse a información no identificada o eventual, útil al abrir espacio a objeciones.","Si hay algún supuesto que no esté suficientemente respaldado, prefiero que lo señalemos ahora."]
+    ],
+    registro:{
+      escenario:"Abres una reunión con un cliente estratégico tras un retraso. Hay tensión, pero todavía no se han establecido responsabilidades.",
+      opciones:[
+        ["Antes que nada, quiero dejar claro que el retraso no fue responsabilidad de nuestro equipo.","Abre una defensa antes de acordar hechos y puede polarizar la conversación."],
+        ["Dado el retraso, propongo que hoy distingamos primero hechos, impacto y decisiones. Si les parece, acordemos ese marco antes de entrar en responsabilidades.","Funciona porque reconoce la tensión, evita prejuzgar responsabilidades y estructura la discusión."],
+        ["Lamentamos profundamente todos los inconvenientes y esperamos que sepan disculparnos antes de continuar.","Puede asumir responsabilidad antes de analizarla y desplazar el foco hacia una disculpa general."]
+      ],
+      correcta:1
+    },
+    modelo:{
+      texto:[
+        ["Gracias por estar aquí. Dado el contexto de las últimas semanas, me parece importante que hoy partamos de un marco común.","contexto"],
+        [" Antes de entrar en responsabilidades, propongo que distingamos hechos, impacto y decisiones.","encuadre"],
+        [" Necesitamos salir de esta reunión con una opción acordada, un responsable para cada acción y una fecha revisada.","objetivo"],
+        [" Haré una síntesis de dos minutos, abriré después el espacio a objeciones sobre el diagnóstico y, si estamos alineados, pasaremos a las alternativas.","agenda"],
+        [" Si hay algún supuesto que no compartamos, prefiero identificarlo al principio para no construir sobre premisas distintas.","participacion"],
+        [" Con ese marco, entro en el primer punto.","inicio"]
+      ],
+      notas:{
+        contexto:"Reconoce la realidad sin sobreactuar ni adoptar una posición defensiva.",
+        encuadre:"Separa categorías de discusión para evitar mezclar hechos con atribución de responsabilidad.",
+        objetivo:"Define un cierre verificable y orientado a decisión.",
+        agenda:"Administra el momento de las objeciones sin eliminarlas.",
+        participacion:"Invita al desacuerdo sobre premisas antes de invertir tiempo en soluciones.",
+        inicio:"Transición corta; la autoridad proviene del marco anterior, no de una frase grandilocuente."
+      }
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"¿Qué apertura encuadra mejor una reunión tensa sin prejuzgar responsabilidades?",opciones:["Hoy vamos a demostrar que cumplimos con nuestra parte.","Propongo que empecemos por acordar los hechos y el impacto antes de entrar en responsabilidades.","Sabemos que todos están molestos, pero debemos seguir adelante."],correcta:1,feedback:"La segunda separa hechos, impacto y responsabilidad. Reduce la probabilidad de entrar directamente en posiciones defensivas."},
+      {tipo:"fill",pregunta:"Completa con una formulación natural: «Para aprovechar el tiempo, ____ el alcance de hoy a las dos decisiones pendientes.»",respuesta:["limitaría","limitaria"],feedback:"«Limitaría» usa el condicional para proponer una estructura con tacto, sin perder dirección."},
+      {tipo:"order",pregunta:"Ordena el encuadre para una reunión compleja.",tokens:["Abriré después el espacio a objeciones sobre el diagnóstico.","Necesitamos salir con una decisión, un responsable y una fecha.","Dado el contexto, conviene que partamos de un marco común.","Propongo que distingamos hechos, impacto y decisiones."],orden:["Dado el contexto, conviene que partamos de un marco común.","Propongo que distingamos hechos, impacto y decisiones.","Necesitamos salir con una decisión, un responsable y una fecha.","Abriré después el espacio a objeciones sobre el diagnóstico."],feedback:"Primero reconoces contexto, luego encuadras, defines el cierre y finalmente explicas cómo se gestionará la participación."},
+      {tipo:"mc",pregunta:"¿Qué formulación conserva mejor autoridad sin sonar impositiva?",opciones:["Vamos a hacer esto así porque no tenemos tiempo.","Para aprovechar el tiempo, propondría centrar hoy la discusión en las decisiones que dependen de este grupo.","Quizás podríamos hablar un poco de algunos temas, si quieren."],correcta:1,feedback:"La segunda combina dirección, justificación y cortesía. La primera impone; la tercera diluye demasiado la conducción."}
+    ],
+    practica:{
+      situacion:"Abres una reunión con un cliente estratégico después de un retraso de tres semanas. Hay responsables comerciales y técnicos, dos interpretaciones distintas de la causa y solo 45 minutos. Necesitas evitar una discusión defensiva y conseguir una decisión sobre el plan revisado.",
+      requisitos:["Escribe entre 8 y 10 frases o prepara una intervención de 90 segundos.","Reconoce el contexto sin asumir responsabilidades no acordadas.","Delimita el alcance de la reunión.","Define un resultado final verificable.","Indica cuándo y cómo se escucharán objeciones.","Incluye una frase que permita detectar desacuerdo sobre las premisas.","Transiciona con naturalidad al primer punto."],
+      modelo:"Gracias por estar aquí. Dado el retraso y las distintas lecturas que han surgido, me parece importante que empecemos por un marco común. Antes de entrar en responsabilidades, propongo que distingamos hechos, impacto y decisiones. Para aprovechar los 45 minutos, limitaría el alcance de hoy a validar el diagnóstico, comparar las dos alternativas y acordar un plan revisado. Necesitamos salir con una opción elegida, un responsable por cada acción y una fecha confirmada. Haré una síntesis breve del estado actual y después abriré el espacio a objeciones sobre el diagnóstico. Si hay algún supuesto que no compartamos, prefiero identificarlo en ese momento antes de pasar a las soluciones. Si estamos de acuerdo con ese enfoque, entro directamente en el primer punto."
+    },
+    checklist:[
+      "Puedo encuadrar una reunión compleja sin sobreactuar la tensión.",
+      "Puedo delimitar alcance y criterios de cierre.",
+      "Puedo gestionar el momento de las objeciones y preguntas.",
+      "Puedo adaptar la formalidad y la fuerza directiva al interlocutor.",
+      "Estoy listo para practicar esta habilidad durante la semana."
+    ]
+  }
+};
+
+const ui = {
+  principiante:{
+    sectionTitles:[
+      "🎯 TU OBJETIVO ESTA SEMANA / YOUR GOAL THIS WEEK",
+      "🏢 LA SITUACIÓN / THE SITUATION",
+      "🗣️ VOCABULARIO CLAVE / KEY VOCABULARY",
+      "💬 FRASES QUE PUEDES USAR / PHRASES YOU CAN USE",
+      "🧩 CONSTRUYE TU MENSAJE / BUILD YOUR MESSAGE",
+      "📚 GRAMÁTICA QUE NECESITAS / GRAMMAR YOU NEED",
+      "🎭 ELIGE EL REGISTRO / CHOOSE THE REGISTER",
+      "💼 MIRA CÓMO SE HACE / SEE HOW IT'S DONE",
+      "✍️ COMPRUEBA LO QUE APRENDISTE / CHECK WHAT YOU LEARNED",
+      "🏢 AHORA TE TOCA A TI / NOW IT'S YOUR TURN",
+      "💡 VER MODELO / SEE A MODEL",
+      "✅ CHECKLIST FINAL / FINAL CHECKLIST"
+    ],
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo. / At the end of the module, you will check whether you can already do it.",
+    click:"Haz clic para ver / Click to reveal",
+    use:"Ver cuándo usarla / See when to use it",
+    practicePlaceholder:"Escribe tu apertura aquí… / Write your opening here…",
+    modelButton:"Ver una posible respuesta / See one possible answer",
+    modelNote:"Esta es una posible respuesta. No necesitas escribir exactamente lo mismo. / This is one possible answer. You do not need to write exactly the same thing.",
+    retry:"Volver a intentar / Try again",
+    check:"Comprobar / Check",
+    prev:"Anterior / Previous",
+    next:"Siguiente / Next",
+    close:"No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento. / You do not need to memorize everything. This week you will use these structures several times in different situations. Repetition and adaptation are part of the training.",
+    ready:"🎯 Ya estás listo para practicar / You are ready to practice",
+    challenge:"🔥 Ir al reto de hoy / Go to today’s challenge"
+  },
+  intermedio:{
+    sectionTitles:["🎯 TU OBJETIVO ESTA SEMANA","🏢 LA SITUACIÓN","💬 VOCABULARIO CLAVE","💬 FRASES QUE PUEDES USAR","🧩 CONSTRUYE TU MENSAJE","📚 GRAMÁTICA QUE NECESITAS","🎭 ELIGE EL REGISTRO","💼 MIRA CÓMO SE HACE","✍️ COMPRUEBA LO QUE APRENDISTE","🏢 AHORA TE TOCA A TI","💡 VER MODELO","✅ CHECKLIST FINAL"],
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo.",click:"Haz clic para descubrir",use:"Ver cuándo usarla",practicePlaceholder:"Escribe tu apertura aquí…",modelButton:"Ver una posible respuesta",modelNote:"Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.",retry:"Volver a intentar",check:"Comprobar",prev:"Anterior",next:"Siguiente",close:"No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.",ready:"🎯 Ya estás listo para practicar",challenge:"🔥 Ir al reto de hoy"
+  },
+  avanzado:{
+    sectionTitles:["🎯 TU OBJETIVO ESTA SEMANA","🏢 LA SITUACIÓN","💬 VOCABULARIO CLAVE","💬 FRASES QUE PUEDES USAR","🧩 CONSTRUYE TU MENSAJE","📚 GRAMÁTICA QUE NECESITAS","🎭 ELIGE EL REGISTRO","💼 MIRA CÓMO SE HACE","✍️ COMPRUEBA LO QUE APRENDISTE","🏢 AHORA TE TOCA A TI","💡 VER MODELO","✅ CHECKLIST FINAL"],
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo.",click:"Haz clic para descubrir",use:"Ver el matiz",practicePlaceholder:"Redacta tu apertura aquí…",modelButton:"Ver una posible respuesta",modelNote:"Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.",retry:"Volver a intentar",check:"Comprobar",prev:"Anterior",next:"Siguiente",close:"No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.",ready:"🎯 Ya estás listo para practicar",challenge:"🔥 Ir al reto de hoy"
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+let currentLevel = null;
+let currentBeginnerTrack = null;
+let viewedSections = new Set();
+let completedActivities = new Set();
+let exerciseStates = {};
+const REQUIRED_DISCOVERY_INTERACTIONS = 6;
+
+const selectionView = document.getElementById("selectionView");
+const beginnerSelectionView = document.getElementById("beginnerSelectionView");
+const moduleView = document.getElementById("moduleView");
+const sectionsEl = document.getElementById("sections");
+const navEl = document.getElementById("sectionNav");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const routeLabel = document.getElementById("routeLabel");
+const audioStatus = document.getElementById("audioStatus");
+const changeBeginnerTrack = document.getElementById("changeBeginnerTrack");
+
+function isBeginner(){return currentLevel==="principiante";}
+function isPreA1(){return isBeginner() && currentBeginnerTrack==="preA1";}
+function getCurrentContent(){
+  if(isBeginner()) return contenido.principiante[currentBeginnerTrack || "base"];
+  return contenido[currentLevel];
+}
+
+function cancelSpeech(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function showMainSelection(){
+  cancelSpeech();
+  moduleView.classList.add("hidden");
+  beginnerSelectionView.classList.add("hidden");
+  selectionView.classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function showBeginnerSelection(){
+  cancelSpeech();
+  currentLevel="principiante";
+  currentBeginnerTrack=null;
+  selectionView.classList.add("hidden");
+  moduleView.classList.add("hidden");
+  beginnerSelectionView.classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.querySelectorAll(".level-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    if(btn.dataset.level==="principiante") showBeginnerSelection();
+    else loadLevel(btn.dataset.level);
+  });
+});
+document.querySelectorAll(".beginner-track-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>loadLevel("principiante",btn.dataset.track));
+});
+document.getElementById("backToLevels").addEventListener("click",showMainSelection);
+document.getElementById("changeLevel").addEventListener("click",showMainSelection);
+changeBeginnerTrack.addEventListener("click",showBeginnerSelection);
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function spanishFromBilingual(s){return String(s).split(" / ")[0].trim();}
+
+// ===== AUDIO REUTILIZABLE PARA TODA LA RUTA PRINCIPIANTE =====
+let selectedSpanishVoice = null;
+function voiceScore(v){
+  const lang=(v.lang||"").toLowerCase().replace("_","-");
+  const name=(v.name||"").toLowerCase();
+  if(lang==="es-co" || name.includes("colombia") || name.includes("colombian")) return 0;
+  if(["es-mx","es-us","es-ar","es-cl","es-pe","es-ve","es-uy","es-ec","es-cr","es-pa","es-do","es-pr"].includes(lang)) return 1;
+  if(lang.startsWith("es-")) return 2;
+  if(lang==="es") return 3;
+  return 9;
+}
+function refreshSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices=window.speechSynthesis.getVoices().filter(v=>/^es(?:[-_]|$)/i.test(v.lang||""));
+  voices.sort((a,b)=>voiceScore(a)-voiceScore(b));
+  selectedSpanishVoice=voices[0]||null;
+  return selectedSpanishVoice;
+}
+if("speechSynthesis" in window){
+  refreshSpanishVoice();
+  window.speechSynthesis.addEventListener?.("voiceschanged",refreshSpanishVoice);
+}
+function setAudioStatus(message){
+  if(audioStatus) audioStatus.textContent=message;
+}
+function speakSpanish(text,slow=false){
+  const clean=String(text||"").replace(/\s+/g," ").trim();
+  if(!clean) return;
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    setAudioStatus("El audio no está disponible en este navegador. / Audio is not available in this browser.");
+    return;
+  }
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const utterance=new SpeechSynthesisUtterance(clean);
+  const voice=selectedSpanishVoice||refreshSpanishVoice();
+  if(voice){utterance.voice=voice;utterance.lang=voice.lang;}
+  else utterance.lang="es-CO";
+  utterance.rate=slow?0.68:0.92;
+  utterance.pitch=1;
+  utterance.volume=1;
+  utterance.onerror=()=>setAudioStatus("No se pudo reproducir este audio. / This audio could not be played.");
+  synth.speak(utterance);
+}
+function audioControls(text,label="",compact=false){
+  if(!isBeginner()) return "";
+  const disabled=!("speechSynthesis" in window)?" disabled":"";
+  const safe=esc(text);
+  const name=label?` ${esc(label)}`:"";
+  return `<div class="audio-controls${compact?" compact":""}">
+    <button type="button" class="audio-btn speakBtn" data-speak="${safe}" data-slow="0" aria-label="Escuchar${name} en español"${disabled}>🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn speakBtn" data-speak="${safe}" data-slow="1" aria-label="Escuchar lentamente${name} en español"${disabled}>🐢 Lento / Slow</button>
+  </div>`;
+}
+function dynamicAudioControls(targetId,label=""){
+  if(!isBeginner()) return "";
+  const disabled=!("speechSynthesis" in window)?" disabled":"";
+  return `<div class="audio-controls builder-audio">
+    <button type="button" class="audio-btn speakBtn" data-speak-target="${esc(targetId)}" data-slow="0" aria-label="Escuchar ${esc(label)}"${disabled}>🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn speakBtn" data-speak-target="${esc(targetId)}" data-slow="1" aria-label="Escuchar lentamente ${esc(label)}"${disabled}>🐢 Lento / Slow</button>
+  </div>`;
+}
+function getSpeechTargetText(selector){
+  const el=document.querySelector(selector);
+  if(!el) return "";
+  if(el.tagName==="SELECT") return el.value||"";
+  if(el.tagName==="TEXTAREA" || el.tagName==="INPUT") return el.value||"";
+  return el.textContent||"";
+}
+function bindAudioControls(){
+  document.querySelectorAll(".speakBtn").forEach(btn=>{
+    btn.addEventListener("click",e=>{
+      e.stopPropagation();
+      const text=btn.dataset.speakTarget?getSpeechTargetText(btn.dataset.speakTarget):btn.dataset.speak;
+      if(!text){
+        setAudioStatus("Selecciona o escribe una frase primero. / Select or write a sentence first.");
+        return;
+      }
+      speakSpanish(text,btn.dataset.slow==="1");
+    });
+  });
+}
+
+function sec(id,title,body,index){
+  return `<section class="content-section" id="${id}" data-section="${index}" tabindex="-1">
+    <div class="section-kicker">0${index+1}</div>
+    <h2>${title}</h2>${body}
+    <div class="pager">
+      <button class="prevBtn" ${index===0?"disabled":""}>← ${ui[currentLevel].prev}</button>
+      <button class="nextBtn" ${index===11?"disabled":""}>${ui[currentLevel].next} →</button>
+    </div>
+  </section>`;
+}
+
+function loadLevel(level,beginnerTrack=null){
+  cancelSpeech();
+  currentLevel=level;
+  currentBeginnerTrack=level==="principiante"?(beginnerTrack||"base"):null;
+  viewedSections=new Set();
+  completedActivities=new Set();
+  exerciseStates={};
+  document.body.className=`level-${level}${isPreA1()?" track-preA1":""}`;
+  selectionView.classList.add("hidden");
+  beginnerSelectionView.classList.add("hidden");
+  moduleView.classList.remove("hidden");
+  const c=getCurrentContent();
+  if(isBeginner()){
+    routeLabel.textContent=isPreA1()
+      ? "Tu ruta / Your route: 🌱 Principiante · Desde cero / Starting from zero · Pre-A1"
+      : "Tu ruta / Your route: 🌱 Principiante · Ya tengo una base / I already know some basic Spanish · A1–A2";
+  }else{
+    routeLabel.textContent=`Tu ruta: ${c.emoji} ${c.nombre}`;
+  }
+  changeBeginnerTrack.classList.toggle("hidden",!isBeginner());
+  document.getElementById("changeLevel").textContent=isBeginner()?"Cambiar nivel / Change level":"Cambiar nivel";
+  document.getElementById("weekLabel").textContent="";
+  document.getElementById("heroTitle").textContent=isBeginner()
+    ? "Abrir reuniones con claridad y profesionalismo / Open meetings clearly and professionally"
+    : semana.habilidad;
+  document.getElementById("footerTagline").textContent=isBeginner()
+    ? "Aprende y practica el español que necesitas para trabajar / Learn and practice the Spanish you need for work"
+    : "Aprende y practica el español que necesitas para trabajar";
+  document.getElementById("heroIntro").textContent=c.intro;
+  renderSections();
+  renderNav();
+  bindInteractions();
+  activateSection(0,false);
+  updateProgress();
+  window.scrollTo({top:0});
+}
+
+function renderBeginnerVocabCard(v,i,t){
+  const exampleEs=spanishFromBilingual(v[3]);
+  const pronunciation=isPreA1() && v[4]
+    ? `<div class="pronunciation">🗣️ Pronunciación / Pronunciation: <strong>${esc(v[4])}</strong></div>`:"";
+  return `<div class="vocab-card beginner-card" data-vocab="${i}">
+    <button type="button" class="vocab-reveal" aria-expanded="false">
+      <span class="hint">${t.click}</span><div class="term">${esc(v[0])}</div>
+    </button>
+    ${audioControls(v[0],v[0],true)}
+    <div class="detail"><strong>${esc(v[1])}</strong><p>${esc(v[2])}</p>${pronunciation}<p><em>${esc(v[3])}</em></p>${audioControls(exampleEs,"ejemplo / example",true)}</div>
+  </div>`;
+}
+function renderPhraseItem(it){
+  if(!isBeginner()){
+    return `<div class="phrase-row"><div><strong>${esc(it[0])}</strong></div><button class="tiny-btn phraseInfo">${ui[currentLevel].use}</button><div class="why">${esc(it[1])}</div></div>`;
+  }
+  const translation=isPreA1() && it[2]?`<div class="phrase-translation">${esc(it[2])}</div>`:"";
+  const pron=isPreA1() && it[4]?`<div class="pronunciation">🗣️ Pronunciación / Pronunciation: <strong>${esc(it[4])}</strong>${it[5]?`<div style="margin-top:5px">${esc(it[5])}</div>`:""}</div>`:"";
+  const blocks=isPreA1() && Array.isArray(it[3])?`<div class="phrase-blocks">${it[3].map(b=>`<div class="phrase-block"><span>${esc(b)}</span>${audioControls(b,"bloque / block",true)}</div>`).join("")}</div>`:"";
+  return `<div class="phrase-row"><div><strong>${esc(it[0])}</strong>${translation}${audioControls(it[0],"frase / phrase",true)}${pron}</div><button class="tiny-btn phraseInfo">${ui[currentLevel].use}</button><div class="why">${esc(it[1])}</div>${blocks}</div>`;
+}
+
+function renderSections(){
+  const c=getCurrentContent(),t=ui[currentLevel];
+  const audioIntro=isBeginner()?`<div class="audio-note">${("speechSynthesis" in window)
+    ? (isPreA1()?"🔊 Escucha primero, usa 🐢 Lento cuando lo necesites y repite en voz alta. / Listen first, use 🐢 Slow when you need it, and repeat aloud.":"🔊 Puedes escuchar las palabras, frases, ejemplos y modelos en velocidad normal o lenta. / You can listen to words, phrases, examples and models at normal or slow speed.")
+    : "El audio del navegador no está disponible aquí; el resto del módulo seguirá funcionando. / Browser audio is not available here; the rest of the module will still work."}</div>`:"";
+  const prea1Guide=isPreA1()?`<div class="support-panel"><h3>Tu secuencia / Your sequence</h3><p style="margin:0">escuchar → comprender → repetir → reconocer → construir con bloques → adaptar → producir<br><span class="muted">listen → understand → repeat → recognize → build with blocks → adapt → produce</span></p></div>`:"";
+  const objetivo=`<p>${c.objetivo}</p>${audioIntro}${prea1Guide}<div class="callout">${t.finalHint}</div>`;
+
+  const sit=`<p class="muted">${isBeginner()?"Usa esta situación como referencia durante todo el módulo. / Use this situation as your reference throughout the module.":"Usa esta situación como hilo conductor del módulo."}</p>
+    <div class="scenario">
+      <div><b>${isBeginner()?"Quién habla / Who speaks":"Quién habla"}</b>${c.situacion.quien}</div>
+      <div><b>${isBeginner()?"Con quién / With whom":"Con quién"}</b>${c.situacion.conQuien}</div>
+      <div><b>${isBeginner()?"Contexto / Context":"Contexto"}</b>${c.situacion.contexto}</div>
+      <div><b>${isBeginner()?"Qué quiere conseguir / Goal":"Qué quiere conseguir"}</b>${c.situacion.objetivo}</div>
+      <div style="grid-column:1/-1"><b>${isBeginner()?"Dificultad / Challenge":"Dificultad"}</b>${c.situacion.dificultad}</div>
+    </div>`;
+
+  const vocabIntro=isPreA1()?"Abre cada tarjeta, escucha la palabra y el ejemplo, y repítelos. No intentes memorizar todo de una vez. / Open each card, listen to the word and example, and repeat them. Do not try to memorize everything at once.":isBeginner()?"Abre cada tarjeta. Puedes escuchar la palabra y el ejemplo. No necesitas memorizar todo. / Open each card. You can listen to the word and example. You do not need to memorize everything.":"Abre las tarjetas y fíjate en el uso profesional, no solo en la definición.";
+  const vocab=`<p class="muted">${vocabIntro}</p><div class="cards">${c.vocab.map((v,i)=>isBeginner()?renderBeginnerVocabCard(v,i,t):`<button class="vocab-card" data-vocab="${i}"><span class="hint">${t.click}</span><div class="term">${esc(v[0])}</div><div class="detail"><strong>${esc(v[1])}</strong><p>${esc(v[2])}</p><p><em>${esc(v[3])}</em></p></div></button>`).join("")}</div>`;
+
+  const frases=c.frases.map(g=>`<div class="function-group"><div class="function-title">${esc(g.funcion)}</div>${g.items.map(renderPhraseItem).join("")}</div>`).join("");
+
+  let builder="";
+  if(c.builder.mode==="select"){
+    const builderInstruction=isPreA1()?"Elige un bloque en cada paso. No tienes que inventar las frases: primero constrúyelas y después podrás cambiar una parte. / Choose one block at each step. You do not have to invent the sentences: build them first and then you can change one part.":"Combina bloques para crear una apertura completa. / Combine blocks to build a complete opening.";
+    builder=`<p class="muted">${builderInstruction}</p><div class="builder"><div class="builder-grid">
+      ${c.builder.prompts.map((p,i)=>`<label>${esc(p[0])}<select id="builder-select-${i}" class="builderSelect" data-index="${i}"><option value="">Selecciona una opción… / Choose an option…</option>${p[1].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("")}</select>${isBeginner()?dynamicAudioControls(`#builder-select-${i}`,"la selección / selection"):""}</label>`).join("")}
+      </div><div id="builderPreview" class="preview"></div>${isBeginner()?dynamicAudioControls("#builderPreview","tu mensaje / your message"):""}</div>`;
+  }else if(c.builder.mode==="guided"){
+    builder=`<p class="muted">No copies una frase modelo. Resuelve cada intención con tus propias palabras.</p><div class="builder">${c.builder.intents.map((x,i)=>`<label style="display:block;margin-bottom:12px">${i+1}. ${esc(x)}<input type="text" class="builderInput" data-index="${i}" placeholder="Escribe una formulación propia"></label>`).join("")}<div class="preview" id="builderPreview">Tu apertura irá apareciendo aquí cuando escribas.</div></div>`;
+  }else{
+    builder=`<p class="muted">En este nivel no se te da la formulación. Decide la estrategia lingüística y construye el mensaje.</p><div class="builder">${c.builder.intents.map((x,i)=>`<label style="display:block;margin-bottom:12px">${i+1}. ${esc(x)}<textarea class="builderInput" data-index="${i}" style="min-height:85px" placeholder="Formula una opción y justifica, si lo necesitas, la decisión de registro."></textarea></label>`).join("")}<div class="preview" id="builderPreview">Tu encuadre se construirá aquí.</div></div>`;
+  }
+
+  const grammar=`<p class="muted">${isPreA1()?"Solo verás dos estructuras que necesitas para estas frases. / You will only see two structures you need for these sentences.":isBeginner()?"Solo aparece la gramática que necesitas para abrir la reunión. / Only the grammar you need to open the meeting appears here.":"La forma lingüística aparece porque resuelve una intención comunicativa concreta."}</p>
+    ${c.gramatica.map((g,i)=>`<details><summary>${esc(g[0])}</summary><p><strong>${esc(g[1])}</strong></p>${isBeginner()?audioControls(g[1],"estructura / structure",true):""}<p>${esc(g[2])}</p><p><em>${isBeginner()?"Ejemplo / Example":"Ejemplo"}: ${esc(g[3])}</em></p>${isBeginner()?audioControls(g[3],"ejemplo / example",true):""}</details>`).join("")}`;
+
+  const registro=`<p><strong>${esc(c.registro.escenario)}</strong></p><div class="choice-list">${c.registro.opciones.map((o,i)=>isBeginner()?`<div class="choice-audio-row"><button class="choice registerChoice" data-choice="${i}">${esc(o[0])}</button>${audioControls(spanishFromBilingual(o[0]),"opción / option",true)}</div>`:`<button class="choice registerChoice" data-choice="${i}">${esc(o[0])}</button>`).join("")}</div><div id="registerFeedback" class="feedback" role="status"></div>`;
+
+  let modelText="";
+  if(isPreA1()){
+    modelText=c.modelo.texto.map(x=>`<div class="model-line"><span class="annot" tabindex="0" role="button" data-note="${esc(x[1])}">${esc(x[0].trim())}</span>${audioControls(x[0].trim(),"bloque / block",true)}</div>`).join("");
+  }else{
+    modelText=c.modelo.texto.map(x=>`<span class="annot" tabindex="0" role="button" data-note="${esc(x[1])}">${esc(x[0])}</span>`).join("");
+  }
+  const modelPlain=c.modelo.texto.map(x=>x[0].trim()).join(" ");
+  const model=`<p class="muted">${isPreA1()?"Escucha cada bloque por separado y después escucha la apertura completa. Haz clic en el texto para ver su función. / Listen to each block separately and then listen to the complete opening. Click the text to see its function.":isBeginner()?"Haz clic en una parte para ver su función. / Click a part to see its function.":"Pulsa una parte de la apertura para identificar qué función cumple."}</p><div class="model-box"><div class="model-text">${modelText}</div>${isBeginner()?audioControls(modelPlain,"apertura completa / complete opening"):""}<div id="annotationBox" class="annotation"></div></div>`;
+
+  const ex=c.ejercicios.map((e,i)=>renderExercise(e,i)).join("");
+
+  const support=isPreA1() && Array.isArray(c.practica.apoyos)?`<div class="support-panel"><h3>Bloques de apoyo / Support blocks</h3><p class="muted">Escúchalos y úsalos para construir tu respuesta. / Listen to them and use them to build your answer.</p><div class="support-blocks">${c.practica.apoyos.map(x=>`<div class="support-block"><span>${esc(x)}</span>${audioControls(x,"bloque de apoyo / support block",true)}</div>`).join("")}</div></div>`:"";
+  const practica=`<p>${esc(c.practica.situacion)}</p><ul class="requirements">${c.practica.requisitos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${support}<label>${isBeginner()?"Tu respuesta / Your answer":"Tu respuesta"}<textarea id="finalPractice" placeholder="${esc(isPreA1()?"Construye aquí tus 4 frases… / Build your 4 sentences here…":t.practicePlaceholder)}"></textarea></label>${isBeginner()?dynamicAudioControls("#finalPractice","tu respuesta / your answer"):""}<div id="practiceStatus" class="muted" style="font-size:.86rem;margin-top:7px"></div>`;
+
+  const modelAnswer=`<p class="muted">${isPreA1()?"Primero construye tu apertura con los bloques. Después compara. / First build your opening with the blocks. Then compare.":isBeginner()?"Primero intenta escribir tu propia apertura. / First, try to write your own opening.":"La respuesta modelo es una referencia, no una plantilla obligatoria."}</p><button id="showModel" class="primary">${t.modelButton}</button><div id="modelAnswer" class="model-answer"><strong>${t.modelNote}</strong><p>${esc(c.practica.modelo)}</p>${isBeginner()?audioControls(c.practica.modelo,"respuesta modelo / model answer"):""}</div>`;
+
+  const checklist=`<p>${isBeginner()?"Antes de terminar, comprueba: / Before you finish, check:":"Antes de terminar, comprueba:"}</p><div class="checklist">${c.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" class="finalCheck" data-index="${i}"><span>${esc(x)}</span></label>`).join("")}</div><div class="check-progress" aria-label="Progreso del checklist"><span id="checkProgressBar"></span></div><div id="completionBox" class="completion"><h3 style="margin-top:0">${t.ready}</h3><p>${t.close}</p><a href="https://www.skool.com/la-oficina-en-espanol-1822?c=3f3ed257db434c239c2ab2348ab64bba&s=newest&fl=" class="challenge-link" target="_blank" rel="noopener">${t.challenge}</a></div>`;
+
+  const bodies=[objetivo,sit,vocab,frases,builder,grammar,registro,model,ex,practica,modelAnswer,checklist];
+  sectionsEl.innerHTML=bodies.map((b,i)=>sec(`sec-${i+1}`,t.sectionTitles[i],b,i)).join("");
+}
+
+function renderExercise(e,i){
+  const t=ui[currentLevel];
+  if(e.tipo==="audioMc"){
+    return `<div class="exercise" data-ex="${i}"><h3>${i+1}. ${esc(e.pregunta)}</h3><div class="audio-exercise-cue"><strong>👂 Escucha antes de responder / Listen before answering</strong>${audioControls(e.audio,"ejercicio / exercise")}</div><div class="choice-list">${e.opciones.map((o,j)=>`<button class="choice exChoice" data-ex="${i}" data-option="${j}">${esc(o)}</button>`).join("")}</div><div class="feedback exFeedback" id="exfb-${i}"></div><div class="exercise-actions"><button class="secondary retryEx" data-ex="${i}">${t.retry}</button></div></div>`;
+  }
+  if(e.tipo==="mc"){
+    const cue=isBeginner() && e.audio?`<div class="audio-exercise-cue">${audioControls(e.audio,"pista / cue")}</div>`:"";
+    const options=e.opciones.map((o,j)=>isBeginner() && /[áéíóúñ¿¡]|\b(el|la|los|las|un|una|gracias|buenos|objetivo|reunión|vamos|podemos|nos|cómo|están)\b/i.test(o)?`<div class="choice-audio-row"><button class="choice exChoice" data-ex="${i}" data-option="${j}">${esc(o)}</button>${audioControls(spanishFromBilingual(o),"opción / option",true)}</div>`:`<button class="choice exChoice" data-ex="${i}" data-option="${j}">${esc(o)}</button>`).join("");
+    return `<div class="exercise" data-ex="${i}"><h3>${i+1}. ${esc(e.pregunta)}</h3>${cue}<div class="choice-list">${options}</div><div class="feedback exFeedback" id="exfb-${i}"></div><div class="exercise-actions"><button class="secondary retryEx" data-ex="${i}">${t.retry}</button></div></div>`;
+  }
+  if(e.tipo==="fill"){
+    return `<div class="exercise" data-ex="${i}"><h3>${i+1}. ${esc(e.pregunta)}</h3>${isBeginner() && e.audio?audioControls(e.audio,"frase / sentence"):""}<input type="text" id="fill-${i}" autocomplete="off"><div class="exercise-actions"><button class="primary checkFill" data-ex="${i}">${t.check}</button><button class="secondary retryEx" data-ex="${i}">${t.retry}</button></div><div class="feedback exFeedback" id="exfb-${i}"></div></div>`;
+  }
+  if(e.tipo==="order"){
+    const tokens=e.tokens.map((o,j)=>isBeginner()?`<div class="token-audio-wrap"><button class="token orderToken" data-ex="${i}" data-token="${j}">${esc(o)}</button>${audioControls(o,"bloque / block",true)}</div>`:`<button class="token orderToken" data-ex="${i}" data-token="${j}">${esc(o)}</button>`).join("");
+    return `<div class="exercise" data-ex="${i}"><h3>${i+1}. ${esc(e.pregunta)}</h3><div class="token-list" id="tokens-${i}">${tokens}</div><div class="ordered" id="ordered-${i}" aria-live="polite"></div><div class="exercise-actions"><button class="primary checkOrder" data-ex="${i}">${t.check}</button><button class="secondary retryEx" data-ex="${i}">${t.retry}</button></div><div class="feedback exFeedback" id="exfb-${i}"></div></div>`;
+  }
+  return "";
+}
+
+function renderNav(){
+  const titles=ui[currentLevel].sectionTitles;
+  navEl.innerHTML=titles.map((t,i)=>`<button data-target="sec-${i+1}">${t.replace(/ \/ .*/,"").replace(/^[^ ]+ /,"")}</button>`).join("");
+  navEl.querySelectorAll("button").forEach((b,i)=>b.addEventListener("click",()=>activateSection(i,true)));
+}
+
+function bindInteractions(){
+  document.querySelectorAll(".vocab-card").forEach(card=>{
+    const trigger=card.querySelector(".vocab-reveal")||card;
+    trigger.addEventListener("click",()=>{
+      card.classList.toggle("open");
+      trigger.setAttribute?.("aria-expanded",card.classList.contains("open")?"true":"false");
+      completedActivities.add(`vocab-${card.dataset.vocab}`);
+      updateProgress();
+    });
+  });
+  document.querySelectorAll(".phraseInfo").forEach((b,i)=>b.addEventListener("click",()=>{
+    b.closest(".phrase-row").classList.toggle("open");
+    completedActivities.add(`phrase-${i}`);
+    updateProgress();
+  }));
+  document.querySelectorAll("details").forEach((d,i)=>d.addEventListener("toggle",()=>{
+    if(d.open){completedActivities.add(`grammar-${i}`);updateProgress();}
+  }));
+
+  const c=getCurrentContent();
+  if(c.builder.mode==="select"){
+    document.querySelectorAll(".builderSelect").forEach(s=>s.addEventListener("change",updateBuilder));
+    updateBuilder();
+  }else{
+    document.querySelectorAll(".builderInput").forEach(s=>s.addEventListener("input",updateBuilder));
+  }
+
+  document.querySelectorAll(".registerChoice").forEach(btn=>btn.addEventListener("click",()=>{
+    document.querySelectorAll(".registerChoice").forEach(x=>x.classList.remove("selected"));
+    btn.classList.add("selected");
+    const i=Number(btn.dataset.choice),correct=i===c.registro.correcta;
+    const fb=document.getElementById("registerFeedback");
+    fb.className=`feedback show ${correct?"good":"warn"}`;
+    fb.textContent=c.registro.opciones[i][1];
+    if(correct) completedActivities.add("register"); else completedActivities.delete("register");
+    updateProgress();
+  }));
+
+  const activateAnnotation=a=>{
+    const box=document.getElementById("annotationBox");
+    box.textContent=c.modelo.notas[a.dataset.note];
+    box.classList.add("show");
+    completedActivities.add(`annot-${a.dataset.note}`);
+    updateProgress();
+  };
+  document.querySelectorAll(".annot").forEach(a=>{
+    a.addEventListener("click",()=>activateAnnotation(a));
+    a.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activateAnnotation(a);}});
+  });
+
+  bindExercises();
+  bindAudioControls();
+
+  const fp=document.getElementById("finalPractice");
+  fp.addEventListener("input",()=>{
+    const min=isPreA1()?25:isBeginner()?45:currentLevel==="intermedio"?90:150;
+    const n=fp.value.trim().length;
+    document.getElementById("practiceStatus").textContent=n>=min
+      ? (isPreA1()?"✓ Ya construiste una apertura breve para comparar con el modelo. / You have built a short opening to compare with the model.":isBeginner()?"✓ Ya tienes una respuesta para comparar con el modelo. / You now have an answer to compare with the model.":"✓ Ya tienes una producción suficiente para compararla con el modelo.")
+      : (isBeginner()?`${n}/${min} caracteres orientativos / suggested characters`:`${n}/${min} caracteres orientativos`);
+    if(n>=min) completedActivities.add("practice"); else completedActivities.delete("practice");
+    updateProgress();
+  });
+
+  document.getElementById("showModel").addEventListener("click",()=>{
+    document.getElementById("modelAnswer").classList.add("show");
+    completedActivities.add("model-answer");
+    updateProgress();
+  });
+  document.querySelectorAll(".finalCheck").forEach(ch=>ch.addEventListener("change",updateChecklist));
+  document.querySelectorAll(".prevBtn").forEach((b,i)=>b.addEventListener("click",()=>goSection(i-1)));
+  document.querySelectorAll(".nextBtn").forEach((b,i)=>b.addEventListener("click",()=>goSection(i+1)));
+}
+
+function updateBuilder(){
+  const c=getCurrentContent();
+  let lines=[];
+  if(c.builder.mode==="select"){
+    const selects=[...document.querySelectorAll(".builderSelect")];
+    selects.forEach(s=>{if(s.value) lines.push(s.value);});
+    if(selects.length>0 && selects.every(s=>s.value)) completedActivities.add("builder"); else completedActivities.delete("builder");
+  }else{
+    document.querySelectorAll(".builderInput").forEach(s=>{if(s.value.trim()) lines.push(s.value.trim());});
+    if(lines.length>=2) completedActivities.add("builder"); else completedActivities.delete("builder");
+  }
+  document.getElementById("builderPreview").textContent=lines.length?lines.join(" "):(isBeginner()?"Tu mensaje aparecerá aquí. / Your message will appear here.":"Tu apertura irá apareciendo aquí.");
+  updateProgress();
+}
+
+function bindExercises(){
+  const c=getCurrentContent();
+  document.querySelectorAll(".exChoice").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.ex),opt=Number(btn.dataset.option),e=c.ejercicios[i];
+    document.querySelectorAll(`.exChoice[data-ex="${i}"]`).forEach(x=>x.classList.remove("selected"));
+    btn.classList.add("selected");
+    const bad=isPreA1()?"Escucha o revisa el significado y vuelve a intentarlo. / Listen or review the meaning and try again.":isBeginner()?"Revisa qué significa o qué intención resuelve la frase y vuelve a intentarlo. / Review the meaning or purpose of the sentence and try again.":"Revisa qué intención profesional debe resolver la frase.";
+    showExFeedback(i,opt===e.correcta,e.feedback,bad);
+  }));
+  document.querySelectorAll(".checkFill").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.ex),e=c.ejercicios[i];
+    const val=normalize(document.getElementById(`fill-${i}`).value);
+    const ok=e.respuesta.some(x=>normalize(x)===val);
+    showExFeedback(i,ok,e.feedback,isBeginner()?"Mira la estructura y vuelve a intentarlo. / Look at the structure and try again.":"Revisa la estructura necesaria y vuelve a intentarlo.");
+  }));
+  document.querySelectorAll('input[id^="fill-"]').forEach(inp=>inp.addEventListener("input",()=>{
+    const i=Number(inp.id.replace("fill-",""));
+    if(completedActivities.delete(`exercise-${i}`)) updateProgress();
+  }));
+  document.querySelectorAll(".orderToken").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.ex);
+    exerciseStates[i]=exerciseStates[i]||[];
+    const token=getCurrentContent().ejercicios[i].tokens[Number(btn.dataset.token)];
+    exerciseStates[i].push(token);
+    btn.classList.add("used");btn.disabled=true;
+    const dest=document.getElementById(`ordered-${i}`);
+    const chip=document.createElement("button");chip.className="token";chip.textContent=token;
+    chip.addEventListener("click",()=>{
+      const pos=exerciseStates[i].indexOf(token);
+      if(pos>-1) exerciseStates[i].splice(pos,1);
+      completedActivities.delete(`exercise-${i}`);updateProgress();
+      btn.disabled=false;btn.classList.remove("used");chip.remove();
+    });
+    dest.appendChild(chip);
+  }));
+  document.querySelectorAll(".checkOrder").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.ex),e=c.ejercicios[i],arr=exerciseStates[i]||[];
+    const ok=JSON.stringify(arr)===JSON.stringify(e.orden);
+    const bad=isPreA1()?"Piensa en: saludo → agradecimiento → objetivo → inicio. / Think: greeting → thanks → purpose → start.":isBeginner()?"Piensa en: saludo → agradecimiento → objetivo → comienzo. / Think: greeting → thanks → purpose → start.":"Revisa la lógica de la apertura: contexto, propósito, estructura y transición.";
+    showExFeedback(i,ok,e.feedback,bad);
+  }));
+  document.querySelectorAll(".retryEx").forEach(btn=>btn.addEventListener("click",()=>resetExercise(Number(btn.dataset.ex))));
+}
+
+function showExFeedback(i,ok,good,bad){
+  const fb=document.getElementById(`exfb-${i}`);
+  fb.className=`feedback exFeedback show ${ok?"good":"warn"}`;
+  fb.textContent=ok?good:bad;
+  if(ok) completedActivities.add(`exercise-${i}`); else completedActivities.delete(`exercise-${i}`);
+  updateProgress();
+}
+function resetExercise(i){
+  completedActivities.delete(`exercise-${i}`);updateProgress();
+  const box=document.querySelector(`.exercise[data-ex="${i}"]`);
+  box.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
+  const inp=document.getElementById(`fill-${i}`);if(inp)inp.value="";
+  const dest=document.getElementById(`ordered-${i}`);if(dest)dest.innerHTML="";
+  document.querySelectorAll(`.orderToken[data-ex="${i}"]`).forEach(x=>{x.disabled=false;x.classList.remove("used");});
+  exerciseStates[i]=[];
+  const fb=document.getElementById(`exfb-${i}`);fb.className="feedback exFeedback";fb.textContent="";
+}
+function normalize(s){return s.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.!?]/g,"");}
+
+function updateChecklist(){
+  const checks=[...document.querySelectorAll(".finalCheck")],done=checks.filter(x=>x.checked).length;
+  document.getElementById("checkProgressBar").style.width=`${done/checks.length*100}%`;
+  checks.forEach((x,i)=>x.checked?completedActivities.add(`check-${i}`):completedActivities.delete(`check-${i}`));
+  document.getElementById("completionBox").classList.toggle("show",done===checks.length);
+  if(done===checks.length) completedActivities.add("checklist-complete"); else completedActivities.delete("checklist-complete");
+  updateProgress();
+}
+function activateSection(i,scroll=true){
+  if(i<0||i>11)return;
+  document.querySelectorAll(".content-section").forEach((section,j)=>section.classList.toggle("active",j===i));
+  navEl.querySelectorAll("button").forEach((b,j)=>b.classList.toggle("active",j===i));
+  markViewed(i);
+  if(scroll) window.scrollTo({top:0,behavior:"smooth"});
+}
+function goSection(i){activateSection(i,true);}
+function markViewed(idx){viewedSections.add(idx);updateProgress();}
+function updateProgress(){
+  const sectionScore=(viewedSections.size/12)*35;
+  const exerciseCount=[...completedActivities].filter(x=>x.startsWith("exercise-")).length;
+  const exerciseScore=(Math.min(exerciseCount,4)/4)*25;
+  const coreKeys=["builder","register","practice","model-answer"];
+  const coreCount=coreKeys.filter(x=>completedActivities.has(x)).length;
+  const coreScore=(coreCount/coreKeys.length)*20;
+  const discoveryCount=[...completedActivities].filter(x=>x.startsWith("vocab-")||x.startsWith("phrase-")||x.startsWith("grammar-")||x.startsWith("annot-")).length;
+  const discoveryScore=(Math.min(discoveryCount,REQUIRED_DISCOVERY_INTERACTIONS)/REQUIRED_DISCOVERY_INTERACTIONS)*5;
+  const checks=[...completedActivities].filter(x=>x.startsWith("check-")).length;
+  const checklistScore=(Math.min(checks,5)/5)*15;
+  const pct=Math.min(100,Math.round(sectionScore+exerciseScore+coreScore+discoveryScore+checklistScore));
+  progressBar.style.width=`${pct}%`;
+  progressText.textContent=isBeginner()?`${pct}% completado / completed`:`${pct}% completado`;
+}
+</script>
+</body>
+</html>
