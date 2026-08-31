@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Módulo interactivo de Business Spanish: participar, pedir aclaraciones y responder en reuniones.">
+<title>Participar en reuniones | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893; --yellow:#FCD116; --red:#CE1126; --white:#FFFFFF; --black:#000000;
+  --ink:#14213d; --muted:#5b6780; --bg:#f4f7fb; --panel:#ffffff; --line:#dce4f1;
+  --shadow:0 12px 30px rgba(0,56,147,.10); --radius:18px; --max:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Level gate */
+#levelGate{min-height:100vh;display:grid;place-items:center;padding:28px;background:
+  radial-gradient(circle at 10% 10%, rgba(252,209,22,.24), transparent 32%),
+  radial-gradient(circle at 90% 0%, rgba(206,17,38,.10), transparent 28%),
+  linear-gradient(145deg,#eef4ff,#ffffff 55%,#f8fbff)}
+.gate-card{width:min(980px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,48px)}
+.brandline{display:flex;align-items:center;gap:12px;color:var(--blue);font-weight:800;letter-spacing:.02em;margin-bottom:18px}
+.brandmark{width:38px;height:38px;border-radius:11px;background:linear-gradient(180deg,var(--yellow) 0 33%,var(--blue) 33% 66%,var(--red) 66%);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+h1,h2,h3{font-family:"Archivo Black",Arial Black,Arial,sans-serif;line-height:1.15;margin-top:0}
+.gate-card h1{font-size:clamp(2rem,5vw,3.8rem);color:var(--blue);margin-bottom:10px}
+.gate-sub{color:var(--muted);font-size:1.05rem;margin-bottom:28px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.level-btn{text-align:left;background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px;min-height:210px;transition:.2s transform,.2s border-color,.2s box-shadow;color:var(--ink)}
+.level-btn:hover,.level-btn:focus-visible{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 24px rgba(0,56,147,.12);outline:none}
+.level-btn strong{display:block;font-size:1.2rem;color:var(--blue);margin-bottom:10px}
+.level-btn span{color:var(--muted);font-size:.96rem}
+
+/* App shell */
+#app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:var(--max);margin:auto;padding:12px 18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.route-pill{display:inline-flex;align-items:center;gap:8px;background:#edf3ff;color:var(--blue);border:1px solid #cbd9f3;border-radius:999px;padding:8px 12px;font-weight:800;font-size:.92rem;width:max-content}
+.change-level{border:0;background:transparent;color:var(--blue);font-weight:800;text-decoration:underline;text-underline-offset:3px;padding:8px}
+.progress-wrap{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-size:.82rem;color:var(--muted)}
+.progress-track{height:9px;background:#e7edf6;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#245bb5);transition:width .3s ease}
+
+.hero{max-width:var(--max);margin:0 auto;padding:38px 18px 18px}
+.hero-card{background:linear-gradient(135deg,var(--blue),#0d4caf);color:#fff;border-radius:26px;padding:clamp(26px,5vw,48px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card:after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:rgba(252,209,22,.17)}
+.hero-kicker{display:inline-block;background:var(--yellow);color:#16224a;border-radius:999px;padding:7px 11px;font-weight:900;font-size:.82rem;margin-bottom:14px;position:relative;z-index:1}
+.hero h1{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:12px;position:relative;z-index:1}
+.hero p{max-width:760px;margin:0;color:#eef5ff;position:relative;z-index:1}
+
+.section-nav{max-width:var(--max);margin:0 auto;padding:14px 18px 6px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav-chip{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);padding:9px 12px;border-radius:999px;font-weight:800;font-size:.84rem}
+.nav-chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+main{max-width:var(--max);margin:0 auto;padding:16px 18px 60px}
+.lesson-section{display:none;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(20,33,61,.06);padding:clamp(22px,4vw,38px);margin-bottom:18px}
+.lesson-section.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.section-title{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
+.section-number{flex:0 0 auto;width:36px;height:36px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:900;color:#14213d}
+.section-title h2{font-size:clamp(1.45rem,3vw,2.1rem);color:var(--blue);margin:2px 0 0}
+.lead{font-size:1.06rem;color:#293650}
+.muted{color:var(--muted)}
+.callout{border-left:5px solid var(--yellow);background:#fff9da;padding:14px 16px;border-radius:10px;margin:18px 0}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.info-card{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:15px}
+.info-card strong{color:var(--blue)}
+
+.cards-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.flip-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:0;overflow:hidden;text-align:left;color:var(--ink)}
+.flip-head{width:100%;border:0;background:#fff;text-align:left;padding:16px 18px;font-weight:900;color:var(--blue);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.flip-body{padding:0 18px 18px;display:none;color:var(--muted)}
+.flip-card.open .flip-body{display:block}
+.flip-card.open .flip-head{background:#f1f6ff}
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.audio-btn{border:1px solid #b9c9e5;background:#fff;color:var(--blue);border-radius:999px;padding:7px 10px;font-size:.82rem;font-weight:800}
+.audio-btn:hover,.audio-btn:focus-visible{border-color:var(--blue);outline:2px solid rgba(0,56,147,.15)}
+
+.function-block{border:1px solid var(--line);border-radius:16px;margin:12px 0;overflow:hidden}
+.function-label{background:#edf3ff;color:var(--blue);font-weight:900;padding:11px 14px}
+.phrase-item{padding:14px;border-top:1px solid var(--line)}
+.phrase-main{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.phrase-text{font-weight:800}
+.small-btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 10px;color:var(--blue);font-weight:800;font-size:.82rem}
+.when{display:none;margin-top:9px;color:var(--muted);font-size:.94rem}
+.when.show{display:block}
+
+.builder{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.builder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+label{font-weight:800;color:#273551}
+select,input[type=text],textarea{width:100%;border:1px solid #bcc9dc;border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}
+textarea{min-height:150px;resize:vertical}
+select:focus,input:focus,textarea:focus{outline:3px solid rgba(0,56,147,.13);border-color:var(--blue)}
+.output-box{margin-top:14px;background:#fff;border:2px solid #d7e3f6;border-radius:14px;padding:15px;font-weight:800;min-height:56px}
+
+.accordion{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:12px 0}
+.accordion button{width:100%;border:0;background:#f8faff;color:var(--blue);padding:14px;text-align:left;font-weight:900;display:flex;justify-content:space-between}
+.accordion-panel{display:none;padding:15px;background:#fff}
+.accordion.open .accordion-panel{display:block}
+
+.option-list{display:grid;gap:10px;margin:14px 0}
+.option{display:block;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:left;color:var(--ink)}
+.option:hover,.option:focus-visible{border-color:var(--blue);outline:none}
+.option.selected{border:2px solid var(--blue);background:#eef4ff}
+.feedback{margin-top:12px;border-radius:12px;padding:12px 14px;background:#f2f5fa;color:#33415f;display:none}
+.feedback.show{display:block}
+.feedback.good{border-left:4px solid #1f7a4f;background:#eef9f3}
+.feedback.warn{border-left:4px solid var(--yellow);background:#fff9df}
+
+.example-box{background:#f7f9fd;border:1px solid var(--line);border-radius:16px;padding:18px;font-size:1.04rem}
+.annotated{border-bottom:2px dotted var(--blue);background:none;border-top:0;border-left:0;border-right:0;color:var(--ink);padding:1px 2px;font-weight:800;cursor:pointer}
+.annotation{margin-top:12px;background:#edf3ff;color:#253554;padding:12px;border-radius:12px;display:none}
+.annotation.show{display:block}
+
+.quiz-card{border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+.quiz-card h3{font-family:Montserrat,Arial,sans-serif;font-size:1rem;margin-bottom:10px;color:#26334d}
+.retry{margin-top:10px}
+.inline-form{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}
+
+.requirements{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.requirements ul{margin:8px 0 0;padding-left:22px}
+.model-box{display:none;margin-top:12px;border:1px solid #cbd9f3;background:#f4f8ff;border-radius:14px;padding:16px}
+.model-box.show{display:block}
+
+.checklist{display:grid;gap:10px}
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+.check-progress{margin-top:14px;height:10px;background:#e7edf6;border-radius:999px;overflow:hidden}
+.check-progress > div{height:100%;width:0;background:var(--yellow);transition:width .25s ease}
+
+.section-controls{display:flex;justify-content:space-between;gap:12px;margin-top:24px;border-top:1px solid var(--line);padding-top:18px}
+.nav-btn{border:0;border-radius:12px;padding:11px 15px;font-weight:900}
+.nav-btn.primary{background:var(--blue);color:#fff}
+.nav-btn.secondary{background:#edf3ff;color:var(--blue)}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+
+.ready{display:none;margin-top:18px;background:linear-gradient(135deg,#eef5ff,#fff9da);border:1px solid #cad8ee;border-radius:18px;padding:22px}
+.ready.show{display:block}
+.cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;border-radius:12px;padding:12px 16px;font-weight:900;margin-top:10px}
+.site-link{display:inline-block;margin-top:16px;color:var(--blue);font-weight:800}
+
+@media(max-width:760px){
+  .level-grid,.cards-grid,.info-grid,.builder-grid{grid-template-columns:1fr}
+  .level-btn{min-height:auto}
+  .topbar-inner{grid-template-columns:1fr auto}
+  .progress-wrap{grid-template-columns:auto 1fr auto}
+  .phrase-main{display:block}
+  .small-btn{margin-top:8px}
+  .inline-form{grid-template-columns:1fr}
+  .hero{padding-top:24px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section id="levelGate" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <div class="brandline"><span class="brandmark" aria-hidden="true"></span> La Oficina en Español</div>
+    <h1 id="gateTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="gate-sub">Elige una ruta para adaptar el apoyo, la dificultad y la práctica de esta semana.</p>
+    <div class="level-grid">
+      <button class="level-btn" data-level="a2"><strong>🌱 A2 — Principiante</strong><span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+      <button class="level-btn" data-level="b1"><strong>💼 B1 — Intermedio</strong><span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+      <button class="level-btn" data-level="b2"><strong>🚀 B2 — Avanzado</strong><span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div id="routePill" class="route-pill"></div>
+      <button id="changeLevel" class="change-level">Cambiar nivel</button>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <span>Progreso</span>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <strong id="progressText">0%</strong>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-card">
+      <span class="hero-kicker">HABILIDAD PROFESIONAL DE LA SEMANA</span>
+      <h1 id="heroTitle"></h1>
+      <p id="heroIntro"></p>
+    </div>
+  </div>
+
+  <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+  <main id="lesson"></main>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  meta: {
+    habilidad: "Participar, pedir aclaraciones y responder en reuniones",
+    intro: "Entrena cómo entrar en la conversación, pedir precisión cuando algo no está claro y responder sin perder el hilo de una reunión profesional.",
+    secciones: [
+      "🎯 Tu objetivo esta semana", "🏢 La situación", "🗣️ Vocabulario clave", "💬 Frases que puedes usar", "🧩 Construye tu mensaje", "📚 Gramática que necesitas",
+      "🎭 Elige el registro", "💼 Mira cómo se hace", "✍️ Comprueba lo que aprendiste", "🏢 Ahora te toca a ti", "💡 Ver modelo", "✅ Checklist final"
+    ]
+  },
+  a2: {
+    ruta: "🌱 A2 — Principiante",
+    objetivo: "Al terminar esta semana podrás participar con una frase breve, pedir una aclaración sencilla y responder a una pregunta básica durante una reunión de trabajo.",
+    situacion: {
+      resumen: "Estás en una reunión virtual con tu equipo. La jefa de proyecto explica un cambio en una fecha de entrega. Tú necesitas confirmar una parte, hacer una pregunta y responder cuando te preguntan si puedes cumplir el nuevo plazo.",
+      datos: [
+        ["Quién habla", "Tú, miembro del equipo / You, a team member"],
+        ["Con quién", "Tu jefa y dos compañeros / Your manager and two colleagues"],
+        ["Objetivo", "Entender el cambio y responder con claridad / Understand the change and respond clearly"],
+        ["Dificultad", "La información llega rápido y una fecha no queda clara / The information is fast and one date is unclear"]
+      ]
+    },
+    vocabulario: [
+      {t:"aclarar", en:"to clarify", exp:"Hacer que una información sea más clara.", ej:"¿Podrías aclarar la nueva fecha de entrega?", extra:"Pronunciación: a-cla-RAR"},
+      {t:"fecha de entrega", en:"deadline / delivery date", exp:"El día acordado para entregar un trabajo o proyecto.", ej:"La fecha de entrega es el viernes.", extra:"Pronunciación: FE-cha de en-TRE-ga"},
+      {t:"entonces", en:"so / then", exp:"Sirve para confirmar una consecuencia o conclusión.", ej:"Entonces, ¿entregamos el informe el viernes?", extra:"Útil para confirmar lo que entendiste."},
+      {t:"de acuerdo", en:"agreed / okay", exp:"Sirve para mostrar acuerdo de forma profesional y sencilla.", ej:"De acuerdo. Puedo enviar mi parte el jueves.", extra:"↘ Entonación descendente al confirmar."},
+      {t:"añadir", en:"to add", exp:"Incluir una idea o información en la conversación.", ej:"Quisiera añadir una cosa.", extra:"Pronunciación: a-ña-DIR"},
+      {t:"confirmar", en:"to confirm", exp:"Verificar que una información es correcta.", ej:"Quiero confirmar el plazo antes de terminar.", extra:"Pronunciación: con-fir-MAR"}
+    ],
+    vocabQuiz: {prompt:"Which expression means “to clarify”?", options:["aclarar","añadir","confirmar"], correct:0, feedback:"Aclarar = to clarify. Es la acción que usas cuando necesitas que una idea sea más clara."},
+    frases: [
+      {grupo:"Entrar en la conversación", items:[
+        {t:"Quisiera añadir una cosa.", uso:"Úsala para participar sin interrumpir de forma brusca. / Use it to add a brief point politely."},
+        {t:"Tengo una pregunta.", uso:"Úsala para señalar que necesitas información antes de continuar. / Use it before asking for information."}
+      ]},
+      {grupo:"Pedir aclaración", items:[
+        {t:"¿Podrías repetirlo, por favor?", uso:"Úsala cuando no escuchaste o no comprendiste una parte. / Use it when you did not hear or understand part of the message."},
+        {t:"¿Podrías aclarar la fecha de entrega?", uso:"Úsala cuando sabes qué parte concreta necesitas entender mejor. / Use it when you can name the exact point you need clarified."},
+        {t:"Entonces, ¿la nueva fecha es el viernes?", uso:"Úsala para confirmar lo que crees que entendiste. / Use it to confirm your understanding."}
+      ]},
+      {grupo:"Responder", items:[
+        {t:"Sí, puedo hacerlo para el viernes.", uso:"Respuesta breve para confirmar capacidad y plazo. / Brief response to confirm ability and deadline."},
+        {t:"No estoy seguro. Necesito revisar mi calendario.", uso:"Úsala cuando todavía no puedes confirmar. / Use it when you cannot confirm yet."}
+      ]}
+    ],
+    builder: {
+      tipo:"select",
+      instruccion:"Construye una intervención breve. Elige una frase de cada columna. Todas las combinaciones forman una secuencia correcta.",
+      labels:["Inicio / Start","Pregunta o confirmación / Question or confirmation","Respuesta / Response"],
+      opciones:[
+        ["Tengo una pregunta.","Antes de continuar, quisiera aclarar un punto.","Quiero confirmar una cosa."],
+        ["¿Podrías aclarar la nueva fecha?","¿Podrías repetir el plazo, por favor?","Entonces, ¿la fecha de entrega es el viernes?"],
+        ["Puedo entregar mi parte el viernes.","Necesito revisar mi calendario.","De acuerdo. Puedo enviarlo el jueves."]
+      ]
+    },
+    gramatica: [
+      {titulo:"¿Podrías + infinitivo...?", cuerpo:"Situación: necesitas pedir algo con cortesía. Intención: pedir una aclaración sin sonar demasiado directo. Estructura: ¿Podrías + infinitivo...? Ejemplo: ¿Podrías repetir la última parte, por favor?"},
+      {titulo:"Entonces, ¿...? para confirmar", cuerpo:"Situación: crees que entendiste, pero quieres verificar. Intención: confirmar información. Estructura: Entonces, ¿+ información que quieres confirmar? Ejemplo: Entonces, ¿la reunión termina a las cuatro?"},
+      {titulo:"Puedo + infinitivo para responder", cuerpo:"Situación: te preguntan si puedes hacer una tarea. Intención: confirmar capacidad o compromiso. Estructura: Puedo + infinitivo + plazo. Ejemplo: Puedo enviar el documento mañana."}
+    ],
+    registro: {
+      contexto:"Hablas con una clienta durante una reunión y no entendiste la última fecha que mencionó. ¿Qué opción funciona mejor?",
+      opciones:[
+        "¿Qué? Repite.",
+        "¿Podrías repetir la fecha, por favor?",
+        "No entendí nada."
+      ],
+      mejor:1,
+      feedback:[
+        "Es comprensible, pero suena demasiado brusca para una clienta.",
+        "Esta formulación funciona bien: es clara, concreta y mantiene un tono profesional.",
+        "Expresa el problema, pero es demasiado general. Conviene pedir exactamente la información que necesitas."
+      ]
+    },
+    ejemplo: {
+      texto:"Quisiera añadir una cosa. No me quedó clara la nueva fecha. ¿Podrías repetirla, por favor? Entonces, ¿entregamos el informe el viernes? De acuerdo. Puedo enviar mi parte el jueves.",
+      partes:[
+        ["Quisiera añadir una cosa.","Entra en la conversación de forma profesional."],
+        ["¿Podrías repetirla, por favor?","Pide una aclaración concreta con cortesía."],
+        ["Entonces, ¿entregamos el informe el viernes?","Comprueba si entendiste correctamente."],
+        ["Puedo enviar mi parte el jueves.","Responde con una acción y un plazo claro."]
+      ]
+    },
+    quiz: [
+      {tipo:"mc", q:"Necesitas confirmar lo que entendiste. ¿Qué frase eliges?", opciones:["Entonces, ¿la llamada es a las tres?","Dime otra vez.","No sé."], correct:0, feedback:"“Entonces, ¿...?” te permite confirmar tu interpretación de forma breve y clara."},
+      {tipo:"fill", q:"Completa: ¿Podrías ______ la última parte, por favor?", audioText:"¿Podrías repetir la última parte, por favor?", accepted:["repetir","aclarar"], feedback:"Puedes usar “repetir” si no escuchaste bien y “aclarar” si necesitas una explicación más clara."},
+      {tipo:"mc", q:"Tu jefa pregunta si puedes enviar un archivo mañana. ¿Qué respuesta es más completa?", opciones:["Sí.","Sí, puedo enviarlo mañana por la mañana.","Bueno..."], correct:1, feedback:"La segunda respuesta confirma la acción y añade un plazo más preciso."}
+    ],
+    practica: {
+      situacion:"En una reunión, tu jefa dice que una tarea debe terminar “a finales de la semana”, pero tú necesitas saber el día exacto. Después te pregunta si puedes enviar tu parte antes.",
+      requisitos:["Entra en la conversación.","Pide una aclaración sobre el día exacto.","Confirma lo que entendiste.","Responde si puedes entregar tu parte antes."],
+      apoyos:["Tengo una pregunta.","¿Podrías aclarar... ?","Entonces, ¿... ?","Sí, puedo... / Necesito revisar..."],
+      placeholder:"Escribe 3–4 frases breves..."
+    },
+    modelo:"Tengo una pregunta. ¿Podrías aclarar qué día termina exactamente el plazo, por favor? Entonces, ¿debemos terminar todo el viernes? De acuerdo. Sí, puedo enviar mi parte el jueves por la tarde.",
+    checklist:[
+      "Puedo entrar en una reunión con una frase breve.",
+      "Puedo pedir que repitan o aclaren información.",
+      "Puedo confirmar lo que entendí.",
+      "Puedo responder con una acción y un plazo sencillo.",
+      "Puedo adaptar estas estructuras a una reunión de trabajo."
+    ]
+  },
+  b1: {
+    ruta:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás intervenir con naturalidad en una reunión, pedir aclaraciones específicas, comprobar tu interpretación y responder organizando mejor tu idea según el interlocutor.",
+    situacion:{
+      resumen:"Participas en una reunión de seguimiento de proyecto. El responsable presenta un cambio de alcance y menciona varios plazos. Quieres plantear una duda, confirmar qué entregable cambia y responder cuando te preguntan por el impacto en tu área.",
+      datos:[
+        ["Quién habla","Tú, responsable de una parte del proyecto"],
+        ["Con quién","Responsable del proyecto y equipo multidisciplinario"],
+        ["Objetivo","Entender el cambio, intervenir y responder con una propuesta clara"],
+        ["Dificultad","La información es parcial y debes reaccionar sin preparar toda la respuesta"]
+      ]
+    },
+    vocabulario:[
+      {t:"plantear una duda",exp:"Introducir una pregunta o incertidumbre de forma profesional.",ej:"Quisiera plantear una duda sobre el nuevo alcance.",extra:"Alternativas: plantear una pregunta, plantear una cuestión."},
+      {t:"alcance",exp:"Conjunto de tareas, entregables o límites que forman parte de un proyecto.",ej:"El cambio afecta al alcance de la segunda fase.",extra:"Colocaciones: definir el alcance, ampliar el alcance, cambio de alcance."},
+      {t:"entregable",exp:"Resultado concreto que debe entregarse dentro de un proyecto.",ej:"¿Qué entregable queda afectado por este cambio?",extra:"Frecuente en gestión de proyectos."},
+      {t:"si te he entendido bien",exp:"Fórmula para comprobar una interpretación antes de reaccionar.",ej:"Si te he entendido bien, el informe se mantiene, pero cambia la fecha.",extra:"Útil para resumir y confirmar."},
+      {t:"en ese caso",exp:"Conector para introducir una consecuencia o respuesta a la información anterior.",ej:"En ese caso, necesitaríamos dos días más.",extra:"Ayuda a organizar la reacción."},
+      {t:"desde mi perspectiva",exp:"Introduce una opinión profesional sin presentarla como verdad absoluta.",ej:"Desde mi perspectiva, el cambio es viable si ajustamos el plazo.",extra:"Registro profesional neutro."}
+    ],
+    vocabQuiz:{prompt:"¿Qué expresión sirve mejor para comprobar una interpretación?",options:["Si te he entendido bien...","Desde mi perspectiva...","En cualquier caso..."],correct:0,feedback:"“Si te he entendido bien...” resume tu interpretación y da a la otra persona la oportunidad de corregirte."},
+    frases:[
+      {grupo:"Intervenir",items:[
+        {t:"Quisiera añadir un punto antes de pasar al siguiente tema.",uso:"Permite tomar la palabra y señalizar que tu intervención será breve y relevante."},
+        {t:"Hay un aspecto que me gustaría comentar.",uso:"Útil cuando quieres introducir una observación sin interrumpir de forma abrupta."}
+      ]},
+      {grupo:"Pedir aclaración",items:[
+        {t:"¿Podrías precisar qué parte del alcance cambia exactamente?",uso:"Pide precisión sobre un elemento concreto; resulta más útil que pedir que repitan todo."},
+        {t:"Cuando dices “segunda fase”, ¿te refieres también a la validación con el cliente?",uso:"Comprueba el significado de un término o una referencia específica."},
+        {t:"Si te he entendido bien, mantenemos el entregable, pero cambia el plazo. ¿Es correcto?",uso:"Resume tu interpretación y solicita confirmación."}
+      ]},
+      {grupo:"Responder",items:[
+        {t:"En ese caso, podríamos mantener la fecha si reducimos el alcance.",uso:"Conecta la información recibida con una propuesta."},
+        {t:"Desde mi perspectiva, necesitaríamos revisar primero la carga del equipo.",uso:"Expresa una posición con prudencia y abre espacio para seguir conversando."}
+      ]}
+    ],
+    builder:{
+      tipo:"free",
+      instruccion:"Organiza una intervención en tres movimientos: 1) toma la palabra, 2) aclara o confirma, 3) reacciona con una consecuencia o propuesta.",
+      marco:["Hay un aspecto que me gustaría comentar...","Si te he entendido bien... ¿es correcto?","En ese caso / Desde mi perspectiva..."],
+      placeholder:"Escribe una intervención de 3–5 frases y adapta el contenido al proyecto."
+    },
+    gramatica:[
+      {titulo:"Cuando dices X, ¿te refieres a Y?",cuerpo:"Situación: una palabra o referencia puede tener más de una interpretación. Intención: negociar el significado sin pedir una explicación general. La estructura te permite anclar la duda en un término concreto."},
+      {titulo:"Si te he entendido bien + indicativo",cuerpo:"Situación: quieres comprobar tu interpretación. Intención: resumir antes de responder. Ejemplo: Si te he entendido bien, la fecha no cambia, pero sí el entregable."},
+      {titulo:"Podríamos / necesitaríamos para reaccionar con margen",cuerpo:"Situación: no quieres presentar tu reacción como una decisión cerrada. Intención: proponer o señalar una necesidad con un tono menos categórico. Ejemplo: Podríamos mantener el plazo si recibimos los datos hoy."}
+    ],
+    registro:{
+      contexto:"Un proveedor presenta una explicación ambigua sobre un retraso. Quieres aclarar la causa sin sonar acusatorio.",
+      opciones:[
+        "No está claro. Explíquese mejor.",
+        "¿Podrías precisar qué parte del proceso está generando el retraso?",
+        "Entonces ustedes son los responsables del retraso, ¿no?"
+      ],
+      mejor:1,
+      feedback:[
+        "Es demasiado impersonal y puede sonar autoritaria en este contexto.",
+        "Funciona mejor porque pide un dato concreto y mantiene el foco en el proceso, no en culpar a la persona.",
+        "Puede cerrar la conversación demasiado pronto porque introduce una conclusión acusatoria antes de aclarar los hechos."
+      ]
+    },
+    ejemplo:{
+      texto:"Hay un aspecto que me gustaría comentar. Cuando dices que cambia la segunda fase, ¿te refieres también a la validación con el cliente? Si te he entendido bien, el entregable se mantiene, pero tendríamos dos días menos. En ese caso, podríamos cumplir el plazo si recibimos la información final hoy.",
+      partes:[
+        ["Hay un aspecto que me gustaría comentar.","Señaliza la entrada y prepara al grupo para tu intervención."],
+        ["¿te refieres también a la validación con el cliente?","Reduce la ambigüedad a una pregunta específica."],
+        ["Si te he entendido bien...","Comprueba tu interpretación antes de responder."],
+        ["En ese caso, podríamos...","Conecta la aclaración con una propuesta concreta."]
+      ]
+    },
+    quiz:[
+      {tipo:"mc",q:"Quieres comprobar el significado de “entrega final”. ¿Qué intervención es más precisa?",opciones:["¿Qué significa eso?","Cuando dices “entrega final”, ¿incluyes también la aprobación del cliente?","¿Puedes hablar más despacio?"],correct:1,feedback:"La segunda opción identifica el término ambiguo y propone una interpretación concreta para confirmar."},
+      {tipo:"fill",q:"Completa con un conector adecuado: “_____ caso, necesitaríamos revisar primero el calendario del equipo.”",accepted:["en ese","en este"],feedback:"“En ese caso” conecta tu respuesta con la información que acaba de aparecer. “En este caso” también puede funcionar si te refieres al escenario actual."},
+      {tipo:"mc",q:"¿Qué respuesta deja más espacio para negociar una solución?",opciones:["No podemos hacerlo.","Podríamos hacerlo si ajustamos el alcance.","Eso es imposible."],correct:1,feedback:"El condicional presenta una posibilidad y añade una condición negociable, en lugar de cerrar la conversación."}
+    ],
+    practica:{
+      situacion:"En una reunión con tu equipo y un proveedor, alguien dice que “la integración estará lista la próxima semana”, pero no especifica si incluye pruebas. Te preguntan si tu área puede comenzar la implementación inmediatamente.",
+      requisitos:["Intervén sin cortar bruscamente.","Aclara qué significa exactamente “lista”.","Confirma tu interpretación.","Responde con una consecuencia, condición o siguiente paso.","Usa al menos un conector."],
+      apoyos:["Hay un aspecto que me gustaría comentar...","Cuando dices..., ¿te refieres a...?","Si te he entendido bien...","En ese caso..."],
+      placeholder:"Escribe una intervención de 5–7 frases."
+    },
+    modelo:"Hay un aspecto que me gustaría aclarar antes de decidir. Cuando dices que la integración estará lista la próxima semana, ¿te refieres a que también estarán terminadas las pruebas? Si te he entendido bien, podríamos empezar la implementación una vez recibamos esa validación. En ese caso, mi equipo podría prepararse desde ahora, pero necesitaríamos confirmar la fecha exacta antes de comprometernos con el inicio.",
+    checklist:[
+      "Puedo tomar la palabra de forma profesional sin depender de una frase única.",
+      "Puedo pedir una aclaración específica en lugar de pedir que repitan todo.",
+      "Puedo resumir mi interpretación y pedir confirmación.",
+      "Puedo organizar una respuesta con conectores, consecuencias o condiciones.",
+      "Puedo adaptar el tono según hable con un compañero, responsable, cliente o proveedor."
+    ]
+  },
+  b2: {
+    ruta:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás intervenir estratégicamente en reuniones, negociar significados ambiguos, pedir precisión sin frenar la conversación y responder bajo presión ajustando tono, grado de certeza y registro.",
+    situacion:{
+      resumen:"Participas en una reunión de decisión con dirección, cliente y equipo técnico. El cliente introduce un cambio ambiguo de prioridad y pide una respuesta inmediata. Debes intervenir, aclarar qué implica realmente la petición y responder sin aceptar un compromiso que todavía no está definido.",
+      datos:[
+        ["Quién habla","Tú, responsable de una decisión o recomendación"],
+        ["Con quién","Dirección, cliente y especialistas técnicos"],
+        ["Objetivo","Reducir ambigüedad y responder sin perder control del compromiso"],
+        ["Dificultad","Hay presión por decidir y distintas personas pueden interpretar de manera diferente la misma petición"]
+      ]
+    },
+    vocabulario:[
+      {t:"acotar",exp:"Delimitar una cuestión para reducir su amplitud o ambigüedad.",ej:"Antes de responder, convendría acotar qué entendemos por “prioridad inmediata”.",extra:"Matiz: más analítico que simplemente “aclarar”."},
+      {t:"matizar",exp:"Introducir una precisión que modifica o limita una afirmación previa.",ej:"Quisiera matizar un punto antes de cerrar esta decisión.",extra:"Útil cuando no discrepas por completo, pero necesitas ajustar el alcance de lo dicho."},
+      {t:"dar por sentado",exp:"Considerar algo como cierto sin haberlo confirmado expresamente.",ej:"No daría por sentado que el cambio incluye también soporte postlanzamiento.",extra:"Frecuente para señalar supuestos no verificados."},
+      {t:"hasta donde entiendo",exp:"Marca que una afirmación depende de la información disponible.",ej:"Hasta donde entiendo, la petición afecta al calendario, no al alcance contractual.",extra:"Reduce la fuerza de una afirmación cuando existe incertidumbre."},
+      {t:"a efectos prácticos",exp:"Introduce la consecuencia operativa de una decisión o distinción.",ej:"A efectos prácticos, esto nos obliga a replantear la secuencia de entregas.",extra:"Registro profesional relativamente formal."},
+      {t:"posponer la confirmación",exp:"Evitar confirmar definitivamente algo hasta disponer de información suficiente.",ej:"Preferiría posponer la confirmación definitiva hasta validar el impacto técnico.",extra:"Permite mantener prudencia sin bloquear la conversación; conviene acompañarlo de un siguiente paso concreto."}
+    ],
+    vocabQuiz:{prompt:"¿Qué verbo expresa mejor la idea de delimitar una cuestión para reducir ambigüedad?",options:["acotar","matizar","suponer"],correct:0,feedback:"“Acotar” centra y delimita la cuestión; “matizar” ajusta una afirmación ya formulada."},
+    frases:[
+      {grupo:"Intervenir con intención",items:[
+        {t:"Antes de cerrar este punto, quisiera matizar una cuestión.",uso:"Permite intervenir cuando la conversación parece avanzar hacia una conclusión demasiado rápida."},
+        {t:"Hay una distinción que convendría hacer antes de comprometernos.",uso:"Señala que la decisión depende de separar dos aspectos que se están mezclando."}
+      ]},
+      {grupo:"Negociar significado",items:[
+        {t:"Cuando hablamos de “prioridad inmediata”, ¿estamos hablando de adelantar la fecha o de reasignar recursos?",uso:"Obliga a concretar el significado operativo de una formulación ambigua."},
+        {t:"¿Podemos acotar qué quedaría dentro y fuera de este cambio?",uso:"Pide límites explícitos antes de asumir consecuencias."},
+        {t:"Hasta donde entiendo, el cambio afecta al calendario, no al alcance. ¿Compartimos esa interpretación?",uso:"Formula una interpretación provisional y la convierte en objeto de validación colectiva."}
+      ]},
+      {grupo:"Responder bajo presión",items:[
+        {t:"A efectos prácticos, podríamos asumirlo, pero solo si mantenemos el alcance actual.",uso:"Acepta una posibilidad y fija una condición que protege el compromiso."},
+        {t:"Preferiría no confirmar hoy una fecha cerrada sin validar primero el impacto técnico.",uso:"Evita un compromiso prematuro y justifica el límite sin bloquear la conversación."}
+      ]}
+    ],
+    builder:{
+      tipo:"free",
+      instruccion:"Formula una intervención propia con cuatro movimientos: 1) señaliza una distinción, 2) acota la ambigüedad, 3) formula tu interpretación provisional, 4) responde con una condición, reserva o recomendación.",
+      marco:["Antes de cerrar este punto...","¿Podemos acotar...?","Hasta donde entiendo... ¿compartimos esa interpretación?","A efectos prácticos... / Preferiría no confirmar... hasta..."],
+      placeholder:"Redacta una intervención de 6–8 frases. No copies el marco literalmente: adáptalo al interlocutor y al grado de tensión."
+    },
+    gramatica:[
+      {titulo:"Condicional para propuestas y límites negociables",cuerpo:"Situación: necesitas responder sin presentar una opción como decisión definitiva. Intención: mantener margen de negociación. Ejemplo: Podríamos asumir el cambio si se mantiene el alcance actual."},
+      {titulo:"Hasta donde + indicativo para marcar alcance epistémico",cuerpo:"Situación: la información disponible es incompleta. Intención: separar lo que sabes de lo que estás infiriendo. Ejemplo: Hasta donde entiendo, el acuerdo no contempla una segunda revisión."},
+      {titulo:"Preferiría + infinitivo / que + imperfecto de subjuntivo",cuerpo:"Situación: necesitas marcar una reserva con cortesía y firmeza. Intención: evitar un compromiso prematuro. Ejemplo: Preferiría que validáramos el impacto antes de confirmar una fecha."}
+    ],
+    registro:{
+      contexto:"Dirección te pide una confirmación inmediata ante un cliente, pero el impacto técnico todavía no está validado. ¿Qué respuesta protege mejor la relación y el compromiso?",
+      opciones:[
+        "No puedo confirmar nada hasta que mi equipo me responda.",
+        "Puedo dar una estimación ahora, aunque prefiero no confirmar una fecha definitiva hasta validar el impacto técnico.",
+        "Sí, en principio llegamos; luego vemos si hay problemas."
+      ],
+      mejor:1,
+      feedback:[
+        "Es clara, pero puede sonar defensiva y no ofrece una vía de avance inmediata.",
+        "Esta opción equilibra cooperación y prudencia: ofrece algo útil ahora y delimita qué no puede confirmarse todavía.",
+        "Reduce fricción a corto plazo, pero crea un compromiso ambiguo y un riesgo operativo posterior."
+      ]
+    },
+    ejemplo:{
+      texto:"Antes de cerrar este punto, quisiera matizar una cuestión. Cuando hablamos de “prioridad inmediata”, ¿nos referimos a adelantar la fecha o también a ampliar el alcance? Hasta donde entiendo, la petición afecta al calendario, no a los entregables. Si compartimos esa interpretación, a efectos prácticos podríamos adelantar la primera entrega, pero preferiría no confirmar hoy la fecha final sin validar el impacto técnico.",
+      partes:[
+        ["quisiera matizar una cuestión","Interviene sin convertir la entrada en una oposición frontal."],
+        ["¿nos referimos a adelantar la fecha o también a ampliar el alcance?","Transforma una ambigüedad general en dos interpretaciones concretas."],
+        ["Hasta donde entiendo...","Separa interpretación de hecho confirmado."],
+        ["podríamos... pero preferiría no confirmar...","Combina cooperación con un límite explícito al compromiso."]
+      ]
+    },
+    quiz:[
+      {tipo:"mc",q:"¿Qué intervención negocia mejor el significado de “urgente”?",opciones:["¿Qué significa urgente?","Cuando dices “urgente”, ¿te refieres a tener una propuesta hoy o a ejecutar el cambio hoy?","Eso no es suficientemente específico."],correct:1,feedback:"La segunda opción propone dos interpretaciones operativas y acelera la aclaración sin sonar confrontativa."},
+      {tipo:"fill",q:"Completa con una formulación que marque información limitada: “_____ entiendo, el cambio no afecta al contrato.”",accepted:["hasta donde","por lo que"],feedback:"“Hasta donde entiendo” marca explícitamente el alcance de tu conocimiento. “Por lo que entiendo” también funciona con un matiz similar."},
+      {tipo:"mc",q:"¿Qué respuesta gestiona mejor un compromiso incierto?",opciones:["Sí, lo hacemos.","No podemos asumirlo.","Podríamos asumirlo si mantenemos el alcance actual; la fecha final la confirmaría después de validar el impacto."],correct:2,feedback:"La tercera opción distingue lo negociable de lo que todavía requiere validación y evita una promesa imprecisa."}
+    ],
+    practica:{
+      situacion:"En una reunión con un cliente estratégico, la dirección propone “acelerar el lanzamiento” y te pide confirmar en ese momento que tu área puede asumirlo. No está claro si acelerar significa adelantar dos semanas la fecha o eliminar parte de las pruebas. Sabes que ambas opciones tienen riesgos diferentes.",
+      requisitos:["Intervén sin bloquear la reunión.","Acota qué significa “acelerar”.","Distingue hechos, interpretación y supuestos.","Responde bajo presión sin aceptar un compromiso ambiguo.","Propón un siguiente paso concreto.","Ajusta el tono para que funcione ante dirección y cliente."],
+      apoyos:["Antes de cerrar este punto...","¿Estamos hablando de... o de...?","Hasta donde entiendo...","A efectos prácticos...","Preferiría no confirmar... hasta..."],
+      placeholder:"Escribe una intervención de 8–10 frases con una estrategia comunicativa clara."
+    },
+    modelo:"Antes de cerrar este punto, quisiera acotar qué entendemos por “acelerar el lanzamiento”. ¿Estamos hablando de adelantar dos semanas la fecha manteniendo todas las pruebas, o de reducir parte de la validación? Hasta donde entiendo, todavía no hemos acordado ese alcance. A efectos prácticos, mi equipo podría trabajar con un calendario más corto, pero no me comprometería hoy con una fecha definitiva sin saber qué controles se mantienen. Propongo que confirmemos ahora el escenario que quiere el cliente y que yo valide el impacto técnico antes de enviar una fecha cerrada esta tarde.",
+    checklist:[
+      "Puedo intervenir estratégicamente cuando una reunión avanza hacia una conclusión ambigua.",
+      "Puedo acotar términos y negociar significados sin frenar innecesariamente la conversación.",
+      "Puedo distinguir hechos, interpretaciones y supuestos al responder.",
+      "Puedo ajustar certeza, cortesía y firmeza mediante elecciones gramaticales y léxicas.",
+      "Puedo responder bajo presión sin asumir compromisos imprecisos y proponiendo un siguiente paso."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const state = { level:null, section:0, done:new Set(), checklist:new Set() };
+const gate = document.getElementById('levelGate');
+const app = document.getElementById('app');
+const lesson = document.getElementById('lesson');
+const sectionNav = document.getElementById('sectionNav');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+}
+function normalizeAnswer(value){
+  return String(value)
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().trim()
+    .replace(/[¿?¡!.,;:]+$/g,'')
+    .replace(/\s+/g,' ');
+}
+function mark(action){ if(!state.done.has(action)){ state.done.add(action); updateProgress(); } }
+function totalTargets(){
+  const d=contenido[state.level];
+  if(!d) return 1;
+  const sectionTargets=contenido.meta.secciones.length;
+  const audioTarget=state.level==='a2' ? 1 : 0;
+  const interactionTargets=6; // vocabulario, frases, gramática, registro, recuperación y ejemplo
+  const quizTargets=d.quiz.length;
+  const productionTargets=3; // constructor, práctica y modelo
+  const checklistTargets=d.checklist.length + 1; // casillas + checklist completo
+  return sectionTargets + audioTarget + interactionTargets + quizTargets + productionTargets + checklistTargets;
+}
+function updateProgress(){
+  const pct = Math.min(100, Math.round((state.done.size / totalTargets())*100));
+  progressBar.style.width = pct + '%'; progressText.textContent = pct + '%';
+}
+function speak(text, slow=false){
+  if(state.level!=='a2') return;
+  if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)){
+    alert('La síntesis de voz no está disponible en este navegador. / Speech synthesis is not available in this browser.');
+    return;
+  }
+  mark('audio:first');
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate=slow ? 0.72 : 0.95; u.pitch=1;
+  const voices=window.speechSynthesis.getVoices();
+  const preferred = voices.find(v=>/^es-CO/i.test(v.lang)) || voices.find(v=>/^es-(MX|US|AR|CL|PE)/i.test(v.lang)) || voices.find(v=>/^es/i.test(v.lang));
+  if(preferred){ u.voice=preferred; u.lang=preferred.lang; }
+  else { u.lang='es-CO'; }
+  window.speechSynthesis.speak(u);
+}
+function audioControls(text){
+  if(state.level!=='a2') return '';
+  const safe = escapeHTML(text);
+  return `<div class="audio-row"><button class="audio-btn speak" data-text="${safe}" data-slow="0" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button><button class="audio-btn speak" data-text="${safe}" data-slow="1" aria-label="Escuchar lento: ${safe}">🐢 Lento / Slow</button></div>`;
+}
+function sectionWrap(i,title,body){
+  return `<section class="lesson-section ${i===0?'active':''}" data-section="${i}" aria-labelledby="s${i}title">
+    <div class="section-title"><span class="section-number">${i+1}</span><h2 id="s${i}title">${title}</h2></div>${body}
+    <div class="section-controls"><button class="nav-btn secondary prev" ${i===0?'disabled':''}>← Anterior</button><button class="nav-btn primary next" ${i===11?'disabled':''}>Siguiente →</button></div>
+  </section>`;
+}
+function buildAudioCards(items){
+  return items.map((v,i)=>`<div class="flip-card" data-vocab="${i}"><button class="flip-head" type="button" aria-expanded="false"><span>${escapeHTML(v.t)}</span><span>＋</span></button><div class="flip-body">${state.level==='a2'?`<strong>${escapeHTML(v.en)}</strong><br>`:''}${escapeHTML(v.exp)}<br><br><strong>Ejemplo:</strong> ${escapeHTML(v.ej)}<br><span class="muted">${escapeHTML(v.extra||'')}</span>${audioControls(v.t)}${audioControls(v.ej)}</div></div>`).join('');
+}
+function renderPhrases(d){
+  return d.frases.map((g,gi)=>`<div class="function-block"><div class="function-label">${escapeHTML(g.grupo)}</div>${g.items.map((p,pi)=>`<div class="phrase-item"><div class="phrase-main"><div><div class="phrase-text">${escapeHTML(p.t)}</div>${audioControls(p.t)}</div><button class="small-btn usage" data-phrase="${gi}-${pi}" aria-expanded="false">Ver cuándo usarla</button></div><div class="when">${escapeHTML(p.uso)}</div></div>`).join('')}</div>`).join('');
+}
+function renderBuilder(d){
+  if(d.builder.tipo==='select'){
+    return `<div class="builder"><p>${escapeHTML(d.builder.instruccion)}</p><div class="builder-grid">${d.builder.labels.map((lab,i)=>`<div><label for="b${i}">${escapeHTML(lab)}</label><select id="b${i}" class="builder-select">${d.builder.opciones[i].map(x=>`<option>${escapeHTML(x)}</option>`).join('')}</select><div class="builder-frag-audio" data-builder-audio="${i}">${audioControls(d.builder.opciones[i][0])}</div></div>`).join('')}</div><div id="builderOutput" class="output-box" aria-live="polite"></div><div id="builderAudio"></div></div>`;
+  }
+  return `<div class="builder"><p>${escapeHTML(d.builder.instruccion)}</p><div class="callout"><strong>Marco de apoyo:</strong><ul>${d.builder.marco.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></div><label for="builderFree">Construye tu intervención</label><textarea id="builderFree" placeholder="${escapeHTML(d.builder.placeholder)}"></textarea></div>`;
+}
+function renderGrammar(d){
+  return d.gramatica.map((g,i)=>`<div class="accordion"><button class="accordion-toggle" data-grammar="${i}" aria-expanded="false"><span>${escapeHTML(g.titulo)}</span><span>＋</span></button><div class="accordion-panel"><p>${escapeHTML(g.cuerpo)}</p>${audioControls(extractExample(g.cuerpo))}</div></div>`).join('');
+}
+function extractExample(text){ const idx=text.indexOf('Ejemplo:'); return idx>=0 ? text.slice(idx+8).trim() : text; }
+function renderRegister(d){
+  return `<p class="lead">${escapeHTML(d.registro.contexto)}</p><div class="option-list">${d.registro.opciones.map((o,i)=>`<button class="option register-option" data-i="${i}">${escapeHTML(o)}</button>${audioControls(o)}`).join('')}</div><div id="registerFeedback" class="feedback" aria-live="polite"></div>`;
+}
+function renderExample(d){
+  let html=escapeHTML(d.ejemplo.text);
+  d.ejemplo.partes.forEach((p,i)=>{ html=html.replace(escapeHTML(p[0]),`<button class="annotated" data-ann="${i}">${escapeHTML(p[0])}</button>`); });
+  return `<div class="example-box">${html}${audioControls(d.ejemplo.text)}</div><div id="annotation" class="annotation"></div>`;
+}
+function renderQuiz(d){
+  return d.quiz.map((q,i)=>{
+    if(q.tipo==='fill') return `<div class="quiz-card" data-quiz="${i}"><h3>${i+1}. ${escapeHTML(q.q)}</h3>${q.audioText?audioControls(q.audioText):''}<div class="inline-form"><div><label class="sr-only" for="fill${i}">Respuesta</label><input id="fill${i}" type="text" class="fill-answer" autocomplete="off"></div><button class="nav-btn primary check-fill">Comprobar</button></div><div class="feedback quiz-feedback" aria-live="polite"></div></div>`;
+    return `<div class="quiz-card" data-quiz="${i}"><h3>${i+1}. ${escapeHTML(q.q)}</h3><div class="option-list">${q.opciones.map((o,j)=>`<button class="option quiz-option" data-q="${i}" data-o="${j}">${escapeHTML(o)}</button>${audioControls(o)}`).join('')}</div><div class="feedback quiz-feedback" aria-live="polite"></div></div>`;
+  }).join('');
+}
+function renderPractice(d){
+  return `<p class="lead">${escapeHTML(d.practica.situacion)}</p><div class="requirements"><strong>Tu respuesta debe:</strong><ul>${d.practica.requisitos.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></div><div class="callout"><strong>${state.level==='a2'?'Estructuras de apoyo / Support':'Recursos de apoyo'}:</strong><ul>${d.practica.apoyos.map(x=>`<li>${escapeHTML(x)}${audioControls(x)}</li>`).join('')}</ul></div><label for="finalPractice">Tu respuesta</label><textarea id="finalPractice" placeholder="${escapeHTML(d.practica.placeholder)}"></textarea><p class="muted">No se corrige automáticamente. El objetivo es que compares después tus decisiones con una posible respuesta.</p>`;
+}
+function renderModel(d){
+  return `<p>No veas el modelo antes de intentar tu propia respuesta.</p><button id="showModel" class="nav-btn primary">Ver una posible respuesta</button><div id="modelBox" class="model-box"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${escapeHTML(d.modelo)}</p>${audioControls(d.modelo)}</div>`;
+}
+function renderChecklist(d){
+  return `<p>Antes de terminar, comprueba:</p><div class="checklist">${d.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" class="check" data-check="${i}"><span>${escapeHTML(x)}</span></label>`).join('')}</div><div class="check-progress"><div id="checkBar"></div></div><p id="checkText" class="muted">0 de ${d.checklist.length}</p><div id="readyBox" class="ready"><h3>🎯 Ya estás listo para practicar</h3><p>No necesitas memorizar todo. Durante los próximos siete días vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. --><a class="cta" href="#" aria-disabled="true" onclick="event.preventDefault()">🔥 Ir al reto de hoy</a><br><a class="site-link" href="https://laoficinaenespanol.com">La Oficina en Español</a></div>`;
+}
+
+function render(){
+  const d=contenido[state.level];
+  document.getElementById('routePill').textContent='Tu ruta: '+d.ruta;
+  document.getElementById('heroTitle').textContent=contenido.meta.habilidad;
+  document.getElementById('heroIntro').textContent=contenido.meta.intro;
+  sectionNav.innerHTML=contenido.meta.secciones.map((s,i)=>`<button class="nav-chip ${i===0?'active':''}" data-nav="${i}">${i+1}. ${s}</button>`).join('');
+
+  const obj=`<p class="lead">${escapeHTML(d.objetivo)}</p><div class="callout">Al final del módulo comprobarás si ya puedes hacerlo.</div>`;
+  const sit=`<p class="lead">${escapeHTML(d.situacion.resumen)}</p><div class="info-grid">${d.situacion.datos.map(x=>`<div class="info-card"><strong>${escapeHTML(x[0])}</strong><br>${escapeHTML(x[1])}</div>`).join('')}</div>`;
+  const vocab=`<div class="cards-grid">${buildAudioCards(d.vocabulario)}</div><div class="quiz-card"><h3>Recuperación rápida</h3><p>${escapeHTML(d.vocabQuiz.prompt)}</p><div class="option-list">${d.vocabQuiz.options.map((o,i)=>`<button class="option vocab-recall" data-i="${i}">${escapeHTML(o)}</button>${audioControls(o)}`).join('')}</div><div id="vocabFeedback" class="feedback" aria-live="polite"></div></div>`;
+  const frases=renderPhrases(d);
+  const builder=renderBuilder(d);
+  const grammar=renderGrammar(d);
+  const register=renderRegister(d);
+  const example=renderExample(d);
+  const quiz=renderQuiz(d);
+  const practice=renderPractice(d);
+  const model=renderModel(d);
+  const checklist=renderChecklist(d);
+
+  lesson.innerHTML=[obj,sit,vocab,frases,builder,grammar,register,example,quiz,practice,model,checklist].map((b,i)=>sectionWrap(i,contenido.meta.secciones[i],b)).join('');
+  bindInteractions();
+  showSection(0,false);
+  updateProgress();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+
+function showSection(i,shouldScroll=true){
+  state.section=i;
+  document.querySelectorAll('.lesson-section').forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  document.querySelectorAll('.nav-chip').forEach((b,idx)=>b.classList.toggle('active',idx===i));
+  mark('section:'+i);
+  const active=document.querySelector(`.lesson-section[data-section="${i}"]`);
+  if(active && shouldScroll) active.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function bindInteractions(){
+  const d=contenido[state.level];
+  lesson.onclick = e=>{
+    const speakBtn=e.target.closest('.speak'); if(speakBtn){ speak(speakBtn.dataset.text, speakBtn.dataset.slow==='1'); return; }
+    const flipHead=e.target.closest('.flip-head'); if(flipHead){ const flip=flipHead.closest('.flip-card'); flip.classList.toggle('open'); flipHead.setAttribute('aria-expanded',flip.classList.contains('open')); mark('vocab:any'); return; }
+    const usage=e.target.closest('.usage'); if(usage){ const when=usage.closest('.phrase-item').querySelector('.when'); when.classList.toggle('show'); usage.setAttribute('aria-expanded',when.classList.contains('show')); mark('phrase:any'); return; }
+    const acc=e.target.closest('.accordion-toggle'); if(acc){ const box=acc.closest('.accordion'); box.classList.toggle('open'); acc.setAttribute('aria-expanded',box.classList.contains('open')); mark('grammar:any'); return; }
+    const ro=e.target.closest('.register-option'); if(ro){
+      document.querySelectorAll('.register-option').forEach(x=>x.classList.remove('selected')); ro.classList.add('selected');
+      const i=Number(ro.dataset.i), f=document.getElementById('registerFeedback'); f.textContent=d.registro.feedback[i]; f.className='feedback show '+(i===d.registro.mejor?'good':'warn'); mark('register'); return;
+    }
+    const vr=e.target.closest('.vocab-recall'); if(vr){
+      const i=Number(vr.dataset.i), f=document.getElementById('vocabFeedback'); document.querySelectorAll('.vocab-recall').forEach(x=>x.classList.remove('selected')); vr.classList.add('selected');
+      f.textContent=i===d.vocabQuiz.correct?d.vocabQuiz.feedback:'Inténtalo otra vez: busca la expresión que corresponde exactamente a la intención indicada.'; f.className='feedback show '+(i===d.vocabQuiz.correct?'good':'warn'); if(i===d.vocabQuiz.correct) mark('vocabRecall'); return;
+    }
+    const ann=e.target.closest('.annotated'); if(ann){ const p=d.ejemplo.partes[Number(ann.dataset.ann)], box=document.getElementById('annotation'); box.textContent=p[1]; box.classList.add('show'); mark('example:annotation'); return; }
+    const qo=e.target.closest('.quiz-option'); if(qo){
+      const qi=Number(qo.dataset.q), oi=Number(qo.dataset.o), q=d.quiz[qi], card=qo.closest('.quiz-card'), fb=card.querySelector('.quiz-feedback');
+      card.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('selected')); qo.classList.add('selected'); fb.textContent=oi===q.correct?q.feedback:'Esa opción puede aparecer en una conversación, pero no responde tan bien a la intención profesional de esta situación.'; fb.className='feedback quiz-feedback show '+(oi===q.correct?'good':'warn'); if(oi===q.correct) mark('quiz:'+qi); return;
+    }
+    const cf=e.target.closest('.check-fill'); if(cf){
+      const card=cf.closest('.quiz-card'), qi=Number(card.dataset.quiz), q=d.quiz[qi], val=normalizeAnswer(card.querySelector('.fill-answer').value), ok=q.accepted.some(a=>val===normalizeAnswer(a)), fb=card.querySelector('.quiz-feedback');
+      fb.textContent=ok?q.feedback:'Revisa la intención de la frase y prueba con una expresión que encaje en este contexto.'; fb.className='feedback quiz-feedback show '+(ok?'good':'warn'); if(ok) mark('quiz:'+qi); return;
+    }
+    const prev=e.target.closest('.prev'); if(prev){ showSection(Math.max(0,state.section-1)); return; }
+    const next=e.target.closest('.next'); if(next){ showSection(Math.min(11,state.section+1)); return; }
+    const sm=e.target.closest('#showModel'); if(sm){ const mb=document.getElementById('modelBox'); mb.classList.add('show'); sm.disabled=true; mark('model:view'); return; }
+  };
+
+  lesson.onchange = e=>{
+    if(e.target.matches('.builder-select')) updateBuilder(true);
+    if(e.target.matches('.check')){
+      const i=e.target.dataset.check;
+      if(e.target.checked){ state.checklist.add(i); mark('check:'+i); }
+      else { state.checklist.delete(i); state.done.delete('check:'+i); state.done.delete('checklist:complete'); updateProgress(); }
+      updateChecklist(d);
+    }
+  };
+  lesson.oninput = e=>{
+    if(e.target.id==='builderFree' && e.target.value.trim().length>20) mark('builder');
+    if(e.target.id==='finalPractice' && e.target.value.trim().length>20) mark('practice');
+  };
+  sectionNav.onclick = e=>{ const b=e.target.closest('[data-nav]'); if(b) showSection(Number(b.dataset.nav)); };
+  if(d.builder.tipo==='select') updateBuilder(false);
+}
+function updateBuilder(shouldMark=true){
+  const sels=[...document.querySelectorAll('.builder-select')]; if(!sels.length) return;
+  const text=sels.map(s=>s.value).join(' ').replace(/\s+([?.!,])/g,'$1');
+  document.getElementById('builderOutput').textContent=text;
+  document.getElementById('builderAudio').innerHTML=audioControls(text);
+  sels.forEach((sel,i)=>{ const box=document.querySelector(`[data-builder-audio="${i}"]`); if(box) box.innerHTML=audioControls(sel.value); });
+  if(shouldMark) mark('builder');
+}
+function updateChecklist(d){
+  const n=state.checklist.size, total=d.checklist.length, pct=Math.round((n/total)*100);
+  document.getElementById('checkBar').style.width=pct+'%';
+  document.getElementById('checkText').textContent=`${n} de ${total}`;
+  document.getElementById('readyBox').classList.toggle('show',n===total);
+  if(n===total) mark('checklist:complete');
+}
+
+function chooseLevel(level){
+  state.level=level; state.section=0; state.done=new Set(); state.checklist=new Set();
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  gate.classList.add('hidden'); app.classList.remove('hidden'); render();
+}
+document.querySelectorAll('.level-btn').forEach(b=>b.addEventListener('click',()=>chooseLevel(b.dataset.level)));
+document.getElementById('changeLevel').addEventListener('click',()=>{
+  window.speechSynthesis && window.speechSynthesis.cancel(); app.classList.add('hidden'); gate.classList.remove('hidden'); gate.querySelector('.level-btn').focus();
+});
+if('speechSynthesis' in window){ window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices(); }
+</script>
+</body>
+</html>

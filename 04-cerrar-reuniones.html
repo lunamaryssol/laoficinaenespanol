@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Cerrar reuniones y confirmar acuerdos | La Oficina en Español</title>
+  <style>
+    :root {
+      --blue:#003893;
+      --blue-dark:#00286b;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#172033;
+      --muted:#667085;
+      --line:#dbe3ef;
+      --soft:#f5f8fd;
+      --ok:#1f7a4d;
+      --warn:#8a5a00;
+      --radius:18px;
+      --shadow:0 16px 40px rgba(0,56,147,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Montserrat,Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f8fbff 0%,#ffffff 38%,#f8fbff 100%);
+      line-height:1.55;
+    }
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--blue)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ===== PANTALLA DE NIVEL ===== */
+    #levelScreen{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:32px 18px;
+      background:
+        radial-gradient(circle at 18% 20%,rgba(252,209,22,.22),transparent 28%),
+        radial-gradient(circle at 86% 14%,rgba(0,56,147,.13),transparent 26%),
+        linear-gradient(180deg,#f8fbff,#ffffff);
+    }
+    .level-shell{width:min(1040px,100%)}
+    .brand-kicker{font-weight:800;letter-spacing:.06em;color:var(--blue);text-transform:uppercase;font-size:.82rem}
+    .level-title{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(2rem,5vw,4rem);line-height:1.03;margin:.35rem 0 1rem;color:var(--blue-dark)}
+    .level-sub{max-width:760px;color:var(--muted);font-size:1.06rem;margin-bottom:26px}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .level-card{
+      appearance:none;
+      border:2px solid var(--line);
+      background:var(--white);
+      border-radius:22px;
+      padding:24px;
+      text-align:left;
+      min-height:250px;
+      box-shadow:var(--shadow);
+      transition:.2s transform,.2s border-color,.2s box-shadow;
+    }
+    .level-card:hover,.level-card:focus-visible{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 18px 48px rgba(0,56,147,.16);outline:none}
+    .level-card strong{display:block;color:var(--blue-dark);font-size:1.28rem;margin:.35rem 0 .7rem}
+    .level-emoji{font-size:2rem}
+    .level-card p{margin:0;color:#475467}
+    .level-note{margin-top:18px;font-size:.9rem;color:var(--muted)}
+
+    /* ===== APP ===== */
+    #app{display:none;min-height:100vh}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .topbar-inner{width:min(1180px,100%);margin:auto;padding:10px 18px 12px}
+    .toprow{display:flex;align-items:center;gap:12px;justify-content:space-between}
+    .brand-link{text-decoration:none;font-weight:900;color:var(--blue);letter-spacing:-.02em}
+    .route-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .route-badge{font-weight:800;background:#edf4ff;color:var(--blue-dark);padding:8px 12px;border-radius:999px;font-size:.88rem}
+    .ghost-btn{border:1px solid var(--line);background:white;color:var(--blue-dark);padding:8px 11px;border-radius:10px;font-weight:700}
+    .ghost-btn:hover,.ghost-btn:focus-visible{border-color:var(--blue);outline:none}
+    .progress-wrap{margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .progress-track{height:9px;border-radius:999px;background:#e8eef7;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2e67c7);transition:width .3s ease}
+    .progress-text{font-size:.82rem;color:var(--muted);min-width:42px;text-align:right}
+
+    .hero{width:min(1080px,100%);margin:0 auto;padding:42px 18px 18px}
+    .hero-card{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:24px;padding:clamp(26px,5vw,48px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero-card:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(252,209,22,.16);right:-70px;top:-80px}
+    .hero-kicker{position:relative;z-index:1;color:#ffe877;font-weight:900;text-transform:uppercase;letter-spacing:.07em;font-size:.82rem}
+    .hero h1{position:relative;z-index:1;font-family:"Arial Black",Arial,sans-serif;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1.08;margin:.45rem 0 .8rem;max-width:840px}
+    .hero p{position:relative;z-index:1;margin:0;max-width:760px;color:#e8f0ff}
+
+    .layout{width:min(1180px,100%);margin:0 auto;padding:14px 18px 56px;display:grid;grid-template-columns:260px 1fr;gap:24px}
+    .section-nav{position:sticky;top:92px;align-self:start;background:white;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:0 10px 28px rgba(0,56,147,.07);max-height:calc(100vh - 120px);overflow:auto}
+    .section-nav button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:10px 12px;border-radius:10px;color:#475467;font-weight:700;font-size:.9rem}
+    .section-nav button:hover,.section-nav button:focus-visible{background:#f1f6ff;outline:none}
+    .section-nav button.active{background:#eaf2ff;color:var(--blue-dark)}
+    .section-nav button.done:after{content:" ✓";color:var(--ok)}
+
+    .content-panel{min-width:0}
+    .section-card{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:0 12px 34px rgba(0,56,147,.07)}
+    .section-number{color:var(--blue);font-weight:900;font-size:.83rem;text-transform:uppercase;letter-spacing:.06em}
+    .section-card h2{font-family:"Arial Black",Arial,sans-serif;color:var(--blue-dark);font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.18;margin:.35rem 0 1rem}
+    .section-card h3{color:var(--blue-dark);margin-top:1.4rem}
+    .lead{font-size:1.08rem;color:#344054}
+    .hint{background:#fff9d9;border-left:5px solid var(--yellow);padding:14px 16px;border-radius:10px;margin:16px 0;color:#594900}
+    .info{background:#f1f6ff;border-left:5px solid var(--blue);padding:14px 16px;border-radius:10px;margin:16px 0}
+    .warning{background:#fff1f3;border-left:5px solid var(--red);padding:14px 16px;border-radius:10px;margin:16px 0}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tag{background:#edf4ff;color:var(--blue-dark);font-weight:800;padding:6px 10px;border-radius:999px;font-size:.84rem}
+
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+    .card.soft{background:var(--soft)}
+    .card strong{color:var(--blue-dark)}
+
+    /* vocabulario */
+    .vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .vocab-card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+    .vocab-toggle{width:100%;border:0;background:#f8fbff;padding:16px;text-align:left;font-weight:900;color:var(--blue-dark);display:flex;justify-content:space-between;gap:12px}
+    .vocab-toggle:hover,.vocab-toggle:focus-visible{background:#eef5ff;outline:none}
+    .vocab-detail{display:none;padding:16px;border-top:1px solid var(--line)}
+    .vocab-card.open .vocab-detail{display:block}
+    .vocab-detail p{margin:.25rem 0 .65rem}
+    .translation{font-weight:800;color:#475467}
+
+    /* audio */
+    .audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .audio-btn{border:1px solid #c9d8ef;background:white;color:var(--blue-dark);padding:8px 10px;border-radius:10px;font-weight:800;font-size:.88rem}
+    .audio-btn:hover,.audio-btn:focus-visible{border-color:var(--blue);background:#f2f7ff;outline:none}
+    #audioStatus{font-size:.83rem;color:var(--muted);min-height:1.2em;margin-top:6px}
+
+    /* frases */
+    .phrase-group{margin:18px 0}
+    .phrase-list{display:grid;gap:10px}
+    .phrase-item{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+    .phrase-main{font-weight:800;color:#1f2a44}
+    .mini-btn{border:0;background:#edf4ff;color:var(--blue-dark);font-weight:800;padding:7px 10px;border-radius:9px;margin-top:9px}
+    .mini-btn:hover,.mini-btn:focus-visible{background:#dbe9ff;outline:none}
+    .usage{display:none;color:#475467;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
+    .phrase-item.open .usage{display:block}
+    .chunks{display:grid;gap:5px;margin:10px 0}.chunk{padding:8px 10px;background:#f7f9fc;border-radius:9px;border-left:3px solid var(--yellow);width:fit-content}
+
+    /* builders */
+    .builder{border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:18px}
+    .builder-controls{display:grid;gap:12px;margin:14px 0}
+    label{font-weight:800;color:#344054}
+    select,input[type="text"],textarea{width:100%;border:1px solid #bdc9da;border-radius:12px;padding:12px;background:white;color:var(--ink)}
+    select:focus,input:focus,textarea:focus{border-color:var(--blue);outline:3px solid rgba(0,56,147,.12)}
+    .primary-btn{border:0;background:var(--blue);color:white;font-weight:900;padding:12px 16px;border-radius:12px}
+    .primary-btn:hover,.primary-btn:focus-visible{background:var(--blue-dark);outline:none}
+    .result-box{margin-top:14px;padding:16px;border-radius:14px;background:white;border:1px solid #cbd8ec;display:none}
+    .result-box.show{display:block}
+
+    /* actividades */
+    .activity{border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0;background:#fff}
+    .options{display:grid;gap:9px;margin-top:12px}
+    .option-btn{border:1px solid #cdd7e5;background:white;text-align:left;padding:12px;border-radius:11px;color:#27364f}
+    .option-btn:hover,.option-btn:focus-visible{border-color:var(--blue);background:#f4f8ff;outline:none}
+    .option-btn.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.10)}
+    .feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:10px;background:#f4f7fb;color:#344054}
+    .feedback.show{display:block}
+    .feedback.good{background:#edf8f2;color:#185b3b}
+    .feedback.adjust{background:#fff7e5;color:#744e00}
+    .retry-btn{margin-top:8px;border:0;background:transparent;color:var(--blue);font-weight:800;text-decoration:underline;padding:0}
+
+    .scenario-box{background:linear-gradient(180deg,#f6f9ff,#ffffff);border:1px solid #cddbf0;border-radius:18px;padding:18px}
+    .requirements{margin:12px 0;padding-left:20px}
+    textarea{min-height:170px;resize:vertical}
+    .char-count{text-align:right;font-size:.82rem;color:var(--muted)}
+    .model-box{display:none;margin-top:14px;padding:18px;background:#f7f9fc;border:1px solid var(--line);border-radius:14px}
+    .model-box.show{display:block}
+
+    /* checklist */
+    .checklist{display:grid;gap:10px;margin-top:16px}
+    .check-item{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+    .check-progress{height:12px;background:#e8eef7;border-radius:999px;overflow:hidden;margin:16px 0}.check-progress>div{height:100%;width:0;background:var(--yellow);transition:width .25s}
+    .ready-box{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(135deg,#eaf2ff,#fff9d9);border:1px solid #cbd8ec;margin-top:20px}
+    .ready-box.show{display:block}.ready-box h3{font-family:"Arial Black",Arial,sans-serif;margin:.2rem 0 .6rem}
+    .challenge-link{display:inline-block;background:var(--red);color:white;text-decoration:none;font-weight:900;padding:12px 16px;border-radius:12px;margin-top:8px}
+
+    .pager{display:flex;justify-content:space-between;gap:12px;margin-top:16px}
+    .pager button{border:1px solid var(--line);background:white;color:var(--blue-dark);font-weight:900;padding:11px 14px;border-radius:12px}
+    .pager button.next{background:var(--blue);border-color:var(--blue);color:white}
+    .pager button:disabled{opacity:.4;cursor:not-allowed}
+    .mobile-section-select{display:none;margin-bottom:14px}
+
+    @media (max-width:900px){
+      .level-grid{grid-template-columns:1fr}
+      .level-card{min-height:auto}
+      .layout{grid-template-columns:1fr}
+      .section-nav{display:none}
+      .mobile-section-select{display:block}
+      .toprow{align-items:flex-start}
+      .route-box{justify-content:flex-start}
+      .hero{padding-top:28px}
+    }
+    @media (max-width:640px){
+      .grid,.vocab-grid{grid-template-columns:1fr}
+      .toprow{display:grid}
+      .route-box{justify-content:space-between}
+      .hero-card{border-radius:18px}
+      .section-card{border-radius:18px;padding:20px}
+      .pager{position:sticky;bottom:8px;background:rgba(248,251,255,.95);padding:8px;border-radius:14px;box-shadow:0 8px 30px rgba(0,56,147,.12)}
+      .pager button{flex:1}
+    }
+  </style>
+</head>
+<body>
+  <section id="levelScreen" aria-labelledby="levelTitle">
+    <div class="level-shell">
+      <div class="brand-kicker">La Oficina en Español · Español para trabajar</div>
+      <h1 class="level-title" id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p class="level-sub">Selecciona tu ruta para adaptar el apoyo, la dificultad y las actividades. Todos trabajan la misma habilidad profesional.</p>
+      <div class="level-grid">
+        <button class="level-card" data-level="a2">
+          <span class="level-emoji" aria-hidden="true">🌱</span>
+          <strong>A2 — Principiante</strong>
+          <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+        </button>
+        <button class="level-card" data-level="b1">
+          <span class="level-emoji" aria-hidden="true">💼</span>
+          <strong>B1 — Intermedio</strong>
+          <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+        </button>
+        <button class="level-card" data-level="b2">
+          <span class="level-emoji" aria-hidden="true">🚀</span>
+          <strong>B2 — Avanzado</strong>
+          <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+        </button>
+      </div>
+      <p class="level-note">No se guarda información personal ni se solicita acceso a cámara o micrófono.</p>
+    </div>
+  </section>
+
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="toprow">
+          <a class="brand-link" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a>
+          <div class="route-box">
+            <span class="route-badge" id="routeBadge">Tu ruta</span>
+            <button class="ghost-btn" id="changeLevel" type="button">Cambiar nivel</button>
+          </div>
+        </div>
+        <div class="progress-wrap" id="progressWrap" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+          <div class="progress-text" id="progressText">0%</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-kicker">Habilidad profesional de la semana</div>
+        <h1 id="skillTitle"></h1>
+        <p id="skillIntro"></p>
+      </div>
+    </section>
+
+    <div class="layout">
+      <nav class="section-nav" id="sectionNav" aria-label="Secciones del módulo"></nav>
+      <main class="content-panel">
+        <label class="mobile-section-select" for="sectionSelect">Ir a una sección
+          <select id="sectionSelect"></select>
+        </label>
+        <section class="section-card" id="sectionContent" aria-live="polite"></section>
+        <div class="pager">
+          <button id="prevBtn" type="button">← Anterior</button>
+          <button class="next" id="nextBtn" type="button">Siguiente →</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="sr-only" aria-live="polite" id="liveRegion"></div>
+
+  <script>
+    // ===== CONTENIDO EDITABLE DE LA SEMANA =====
+    const semana = {
+      habilidad:"Cerrar reuniones y confirmar acuerdos",
+      heroIntro:"Aprende a terminar una reunión dejando claro qué se decidió, quién hará qué, cuándo debe hacerlo y cuál es el siguiente paso.",
+      // Sustituir # por la URL real del reto diario cuando esté disponible.
+      retoUrl:"#"
+    };
+
+    const contenido = {
+      a2: {
+        meta: { emoji:"🌱", label:"A2 — Principiante" },
+        objective: {
+          text:"Al terminar esta semana podrás cerrar una reunión sencilla, resumir los acuerdos principales, confirmar quién hace cada tarea, indicar un plazo y decir cuál es el siguiente paso.",
+          note:"Al final del módulo comprobarás si ya puedes hacerlo con un mensaje breve y claro.",
+          tags:["resumir","confirmar","responsables","plazos","siguiente paso"]
+        },
+        situation: {
+          intro:"Eres la persona que dirige una reunión corta de proyecto.",
+          facts:[
+            "Hablas con dos compañeros de tu equipo.",
+            "La reunión es por videollamada.",
+            "Ya tomaron dos decisiones y ahora necesitas cerrar.",
+            "Debes confirmar responsables y plazos para evitar confusión.",
+            "Una dificultad posible: todos creen haber entendido, pero nadie repite quién hará cada tarea."
+          ],
+          keyIdea:"Cerrar una reunión no es solo despedirse. Es convertir la conversación en decisiones que las personas puedan ejecutar."
+        },
+        vocabIntro:"Abre las tarjetas y recupera solo el vocabulario que necesitas para cerrar una reunión con claridad.",
+        vocab:[
+          {term:"acuerdo", stress:"a-CUER-do", en:"agreement", meaning:"Una decisión que las personas aceptan.", example:"Tenemos un acuerdo sobre la fecha de entrega."},
+          {term:"responsable", stress:"res-pon-SA-ble", en:"person responsible / owner", meaning:"La persona que debe realizar una tarea.", example:"Ana es responsable de enviar el informe."},
+          {term:"plazo", stress:"PLA-zo", en:"deadline / time limit", meaning:"La fecha o el tiempo máximo para terminar algo.", example:"El plazo es el jueves a las tres."},
+          {term:"siguiente paso", stress:"si-GUIEN-te PA-so", en:"next step", meaning:"La acción que viene después.", example:"El siguiente paso es revisar la propuesta con el cliente."},
+          {term:"quedar pendiente", stress:"que-DAR pen-DIEN-te", en:"to remain pending", meaning:"Algo todavía no está resuelto o terminado.", example:"Queda pendiente confirmar el precio final."},
+          {term:"confirmar", stress:"con-fir-MAR", en:"to confirm", meaning:"Decir claramente que una información o decisión es correcta.", example:"Antes de terminar, quiero confirmar los acuerdos."}
+        ],
+        vocabRecovery:{
+          question:"You need to say “deadline”. Which Spanish word do you choose?",
+          options:["acuerdo","plazo","responsable"],
+          correct:1,
+          feedback:"“Plazo” es la palabra útil para indicar la fecha o el tiempo límite de una tarea.",
+          retry:"Revisa las tarjetas y vuelve a intentarlo. Pista: busca la palabra que nombra una fecha o un tiempo límite."
+        },
+        phrases:[
+          {group:"Cerrar la conversación", items:[
+            {text:"Antes de terminar, vamos a confirmar los acuerdos.", use:"Úsala para avisar que vas a resumir antes de cerrar.", chunks:["Antes de terminar","vamos a confirmar","los acuerdos"]},
+            {text:"Perfecto, entonces cerramos por hoy.", use:"Úsala después de resumir, cuando no quedan dudas importantes."}
+          ]},
+          {group:"Confirmar responsabilidades", items:[
+            {text:"Ana va a enviar el informe mañana.", use:"Usa “va a + infinitivo” para confirmar una acción futura concreta.", chunks:["Ana","va a enviar","el informe","mañana"]},
+            {text:"Carlos es responsable de llamar al proveedor.", use:"Úsala cuando quieres nombrar claramente a la persona responsable."}
+          ]},
+          {group:"Confirmar el siguiente paso", items:[
+            {text:"El siguiente paso es revisar la propuesta.", use:"Úsala para dejar claro qué ocurre después de la reunión."},
+            {text:"Nos reunimos de nuevo el viernes a las diez.", use:"Úsala cuando ya existe una próxima reunión o revisión."}
+          ]},
+          {group:"Señalar algo pendiente", items:[
+            {text:"Queda pendiente confirmar el precio final.", use:"Úsala para un punto que todavía no está resuelto."}
+          ]}
+        ],
+        builder:{
+          mode:"select",
+          intro:"Construye un cierre breve. Elige una opción en cada bloque y escucha el resultado.",
+          resultLabel:"Tu cierre:",
+          fields:[
+            {label:"1. Inicia el cierre", options:["Antes de terminar, vamos a confirmar los acuerdos.","Para cerrar, confirmamos lo siguiente."]},
+            {label:"2. Confirma una acción", options:["Ana va a enviar el informe mañana.","Carlos va a llamar al proveedor el jueves."]},
+            {label:"3. Indica el siguiente paso", options:["El siguiente paso es revisar la propuesta.","Nos reunimos de nuevo el viernes a las diez."]}
+          ]
+        },
+        grammarIntro:"La gramática aparece aquí solo porque ayuda a cerrar la reunión con claridad.",
+        grammar:[
+          {title:"Confirmar una acción futura: ir a + infinitivo", situation:"Durante la reunión ya decidieron quién hará una tarea.", intention:"Quieres confirmar quién hará la acción después de la reunión.", structure:"[persona] + va a + infinitivo + complemento", example:"Ana va a enviar el informe mañana.", why:"Para A2, esta estructura es clara y frecuente para hablar de un plan o una acción futura."},
+          {title:"Indicar un próximo paso: es + infinitivo", situation:"Ya resumiste los acuerdos.", intention:"Quieres decir qué ocurre después.", structure:"El siguiente paso es + infinitivo", example:"El siguiente paso es revisar la propuesta.", why:"El infinitivo nombra la acción sin necesidad de conjugar otro verbo."},
+          {title:"Indicar un punto no resuelto: queda pendiente + infinitivo", situation:"Hay un tema que no pudieron decidir.", intention:"Quieres cerrar sin fingir que todo está resuelto.", structure:"Queda pendiente + infinitivo", example:"Queda pendiente confirmar el precio final.", why:"Esta estructura marca claramente que el punto sigue abierto."}
+        ],
+        register:{
+          context:"Estás cerrando una reunión con un cliente. ¿Qué opción mantiene un tono profesional y claro?",
+          options:[
+            "Bueno, ya está. Chao.",
+            "Antes de terminar, confirmemos los acuerdos y el siguiente paso.",
+            "Listo, más o menos sabemos qué hacer."
+          ],
+          feedback:[
+            {type:"adjust",text:"Esta opción puede sonar demasiado informal y no confirma ninguna responsabilidad ni siguiente paso."},
+            {type:"good",text:"Esta formulación funciona bien porque anuncia el cierre y organiza la confirmación de acuerdos sin sonar rígida."},
+            {type:"adjust",text:"“Más o menos” introduce incertidumbre precisamente en el momento en que necesitas dejar la reunión clara."}
+          ]
+        },
+        model:{
+          intro:"Mira un cierre completo y breve:",
+          text:"Antes de terminar, vamos a confirmar los acuerdos. Ana va a enviar el informe mañana. Carlos va a llamar al proveedor el jueves. Queda pendiente confirmar el precio final. El siguiente paso es revisar la propuesta el viernes. Perfecto, entonces cerramos por hoy. Gracias.",
+          parts:[
+            {label:"1. Avisar que vas a cerrar",text:"Antes de terminar, vamos a confirmar los acuerdos."},
+            {label:"2. Responsables y plazos",text:"Ana va a enviar el informe mañana. Carlos va a llamar al proveedor el jueves."},
+            {label:"3. Punto pendiente",text:"Queda pendiente confirmar el precio final."},
+            {label:"4. Siguiente paso",text:"El siguiente paso es revisar la propuesta el viernes."}
+          ]
+        },
+        exercises:[
+          {type:"choice",prompt:"Completa: “Ana ___ enviar el informe mañana.”",options:["va a","es","queda"],correct:[0],feedback:"“Va a + infinitivo” confirma una acción futura concreta."},
+          {type:"choice",prompt:"Quieres indicar que el precio todavía no está decidido. ¿Qué dices?",options:["El precio va a terminar.","Queda pendiente confirmar el precio.","Cerramos el precio."],correct:[1],feedback:"“Queda pendiente…” evita presentar como cerrado un punto que todavía está abierto."},
+          {type:"text",prompt:"Escribe la palabra que falta: “El siguiente ___ es revisar la propuesta.”",answers:["paso"],feedback:"“El siguiente paso” sirve para nombrar la acción que viene después.",audioAnswer:"El siguiente paso es revisar la propuesta."},
+          {type:"choice",prompt:"¿Qué cierre deja la responsabilidad más clara?",options:["Hay que enviar el informe.","Ana va a enviar el informe mañana.","El informe es importante."],correct:[1],feedback:"Nombrar persona + acción + plazo reduce la ambigüedad."}
+        ],
+        practice:{
+          situation:"Diriges una reunión de proyecto. Ya decidieron que Ana enviará el presupuesto mañana a las 3:00 p. m. y que Daniel confirmará la disponibilidad del proveedor el jueves. El viernes revisarán los avances. El precio final todavía no está confirmado.",
+          interlocutor:"Tu equipo de proyecto.",
+          objective:"Cierra la reunión en 4–6 frases.",
+          requirements:["Anuncia que vas a cerrar.","Confirma al menos dos responsabilidades.","Incluye un plazo.","Indica qué queda pendiente.","Di cuál es el siguiente paso."],
+          supports:["Antes de terminar, vamos a confirmar…","___ va a + infinitivo…","Queda pendiente + infinitivo…","El siguiente paso es + infinitivo…"],
+          placeholder:"Escribe tu cierre aquí...",
+          progress:{type:"sentences",min:4,max:6,label:"4–6 frases"},
+          model:"Antes de terminar, vamos a confirmar los acuerdos. Ana va a enviar el presupuesto mañana a las tres. Daniel va a confirmar la disponibilidad del proveedor el jueves. Queda pendiente confirmar el precio final. El siguiente paso es revisar los avances el viernes. Perfecto, entonces cerramos por hoy."
+        },
+        checklist:[
+          "Puedo anunciar que una reunión está terminando.",
+          "Puedo confirmar quién hará una tarea.",
+          "Puedo decir un plazo de forma clara.",
+          "Puedo señalar un punto que sigue pendiente.",
+          "Puedo decir cuál es el siguiente paso."
+        ]
+      },
+
+      b1: {
+        meta:{emoji:"💼",label:"B1 — Intermedio"},
+        objective:{
+          text:"Al terminar esta semana podrás cerrar una reunión profesional resumiendo decisiones, asignando responsabilidades, confirmando plazos, distinguiendo lo acordado de lo pendiente y dejando un siguiente paso claro.",
+          note:"Al final comprobarás si puedes organizar un cierre sin depender de un modelo completo.",
+          tags:["acuerdos","responsables","plazos","pendientes","siguiente paso"]
+        },
+        situation:{
+          intro:"Coordinas una reunión de seguimiento con tu equipo y un representante de otra área.",
+          facts:[
+            "Han hablado de entregables, un retraso y una próxima revisión.",
+            "Hay dos acuerdos firmes y un punto todavía abierto.",
+            "Necesitas cerrar sin volver a discutir todo el contenido.",
+            "Si el resumen es ambiguo, cada persona puede salir con una interpretación diferente del compromiso."
+          ],
+          keyIdea:"Un buen cierre no repite toda la reunión: selecciona decisiones, responsables, plazos, pendientes y el siguiente paso."
+        },
+        vocabIntro:"Abre las tarjetas y revisa expresiones útiles para resumir acuerdos, responsabilidades, plazos y pendientes con precisión.",
+        vocab:[
+          {term:"dar por cerrado",meaning:"Considerar formalmente que un asunto o una reunión termina.",example:"Si no hay más preguntas, damos por cerrada la reunión.",extra:"Registro neutro-profesional; puede sonar más formal que simplemente “terminamos”."},
+          {term:"quedar en",meaning:"Acordar hacer algo.",example:"Quedamos en enviar la versión final el miércoles.",extra:"Muy útil en español profesional cotidiano para resumir compromisos."},
+          {term:"encargarse de",meaning:"Asumir la responsabilidad de una tarea.",example:"Marta se encargará de coordinar la llamada con el proveedor.",extra:"Permite asignar responsabilidad sin usar repetidamente “responsable de”."},
+          {term:"a más tardar",meaning:"Como fecha o momento límite.",example:"Necesitamos la confirmación a más tardar el jueves.",extra:"Más preciso que “pronto” o “en estos días”."},
+          {term:"quedar pendiente",meaning:"Continuar sin resolverse o completarse.",example:"Queda pendiente definir el presupuesto de la segunda fase.",extra:"Útil para distinguir pendientes de acuerdos firmes."},
+          {term:"recapitular",meaning:"Resumir los puntos principales antes de cerrar.",example:"Antes de terminar, recapitulemos los acuerdos y los próximos pasos.",extra:"Alternativa algo más formal a “resumir”."}
+        ],
+        phrases:[
+          {group:"Introducir el cierre",items:[
+            {text:"Antes de cerrar, me gustaría resumir lo que hemos acordado.",use:"Ordena el cierre y avisa que vas a verificar decisiones."},
+            {text:"Si les parece, repasamos rápidamente acuerdos, responsables y plazos.",use:"Invita a la verificación sin imponer un cierre brusco."}
+          ]},
+          {group:"Confirmar acuerdos",items:[
+            {text:"Entonces, quedamos en enviar la versión revisada el miércoles.",use:"Resume una decisión compartida que ya se tomó."},
+            {text:"Marta se encargará de coordinar la llamada con el proveedor.",use:"Asigna responsabilidad explícita."}
+          ]},
+          {group:"Distinguir pendientes",items:[
+            {text:"Queda pendiente definir el presupuesto de la segunda fase.",use:"Separa un tema abierto de los acuerdos confirmados."},
+            {text:"Ese punto lo retomamos en la próxima reunión.",use:"Evita prolongar el cierre cuando el asunto requiere otra conversación."}
+          ]},
+          {group:"Confirmar el siguiente paso",items:[
+            {text:"Como siguiente paso, revisaremos los avances el viernes.",use:"Conecta los acuerdos con una acción posterior."},
+            {text:"Si no hay ninguna objeción, damos por cerrada la reunión.",use:"Cierre profesional que deja una última oportunidad para señalar un problema."}
+          ]}
+        ],
+        builder:{
+          mode:"free",
+          intro:"Construye un cierre en tres movimientos. Primero intenta formularlo sin ver una respuesta completa.",
+          placeholder:"Formula aquí tu cierre breve...",
+          minWords:12,
+          intentions:[
+            "1. Resume un acuerdo con “quedamos en…”, “hemos acordado…” o una alternativa equivalente.",
+            "2. Asigna una responsabilidad con “se encargará de…”, “será responsable de…” u otra formulación clara.",
+            "3. Cierra con un siguiente paso y una fecha concreta."
+          ],
+          resources:["Antes de cerrar, me gustaría resumir…","Quedamos en + infinitivo…","[persona] se encargará de + infinitivo…","Como siguiente paso…","a más tardar + día/fecha"]
+        },
+        grammarIntro:"La gramática se centra en cómo presentar acuerdos firmes, responsabilidades y pendientes con precisión.",
+        grammar:[
+          {title:"Hemos acordado + infinitivo / que + oración",situation:"Acaban de tomar una decisión durante la reunión.",intention:"Quieres presentar esa decisión como acuerdo alcanzado.",structure:"Hemos acordado + infinitivo / Hemos acordado que + verbo",example:"Hemos acordado enviar la propuesta el miércoles. / Hemos acordado que Marta enviará la propuesta.",why:"La primera opción centra la acción; la segunda facilita nombrar un sujeto diferente y una responsabilidad concreta."},
+          {title:"Futuro simple para responsabilidades confirmadas",situation:"Una persona acepta una tarea que realizará después.",intention:"Quieres dejar constancia clara del compromiso.",structure:"[persona] + se encargará de / enviará / revisará…",example:"Luis se encargará de validar los datos a más tardar el jueves.",why:"En un cierre, el futuro puede sonar más definido que una formulación vaga como “Luis podría revisar…”."},
+          {title:"Queda pendiente + infinitivo / sustantivo",situation:"No todo se resolvió en la reunión.",intention:"Quieres separar lo abierto de lo ya acordado.",structure:"Queda pendiente + infinitivo / Queda pendiente + sustantivo",example:"Queda pendiente confirmar el presupuesto final.",why:"Marca con precisión el estado del asunto y evita que un pendiente se interprete como decisión."}
+        ],
+        register:{
+          context:"Cierras una reunión con un proveedor externo. El plazo ya fue acordado. ¿Qué opción comunica mejor el compromiso?",
+          options:[
+            "Bueno, intentamos tenerlo para el jueves.",
+            "Confirmamos entonces que la documentación estará lista a más tardar el jueves.",
+            "A ver si podemos mandar eso el jueves."
+          ],
+          feedback:[
+            {type:"adjust",text:"“Intentamos” debilita un compromiso que ya estaba acordado y puede reabrir una duda innecesaria."},
+            {type:"good",text:"Esta opción confirma el acuerdo y fija un límite temporal concreto sin añadir presión innecesaria."},
+            {type:"adjust",text:"“A ver si podemos” suena tentativo y demasiado informal para confirmar un compromiso con un proveedor."}
+          ]
+        },
+        model:{
+          intro:"Observa cómo se organiza un cierre sin repetir toda la reunión:",
+          text:"Antes de cerrar, me gustaría resumir los acuerdos. Hemos acordado enviar la versión revisada de la propuesta el miércoles. Marta se encargará de coordinar la llamada con el proveedor y Luis validará los datos a más tardar el jueves. Queda pendiente definir el presupuesto de la segunda fase; ese punto lo retomaremos el viernes. Como siguiente paso, revisaremos los avances en la reunión del viernes. Si no hay ninguna objeción, damos por cerrada la reunión. Gracias a todos.",
+          parts:[
+            {label:"Resumen",text:"Antes de cerrar, me gustaría resumir los acuerdos."},
+            {label:"Compromisos",text:"Hemos acordado enviar la versión revisada… Marta se encargará… Luis validará…"},
+            {label:"Pendiente",text:"Queda pendiente definir el presupuesto…"},
+            {label:"Siguiente paso y cierre",text:"Como siguiente paso… Si no hay ninguna objeción, damos por cerrada la reunión."}
+          ]
+        },
+        exercises:[
+          {type:"choice",prompt:"¿Qué frase distingue mejor un pendiente de un acuerdo?",options:["Tenemos que mirar el presupuesto.","Queda pendiente definir el presupuesto de la segunda fase.","El presupuesto está por ahí."],correct:[1],feedback:"La segunda opción nombra el estado del punto y la acción que falta."},
+          {type:"choice",prompt:"El acuerdo ya es firme. ¿Qué formulación evita debilitarlo?",options:["Luis podría revisar los datos el jueves.","Luis revisará los datos a más tardar el jueves.","Quizá Luis mire los datos."],correct:[1],feedback:"El futuro simple + un plazo concreto refleja mejor un compromiso confirmado."},
+          {type:"text",prompt:"Completa con una expresión de cierre: “Si no hay ninguna ________, damos por cerrada la reunión.”",answers:["objeción","objecion"],feedback:"“Si no hay ninguna objeción…” abre un último espacio de verificación antes del cierre."},
+          {type:"choice",prompt:"¿Cuál es el mejor orden para un cierre profesional?",options:["Despedida → nuevo debate → acuerdos","Acuerdos → responsables/plazos → pendientes → siguiente paso → cierre","Pendientes → despedida → acuerdos"],correct:[1],feedback:"Ese orden reduce ambigüedad y permite que todos salgan con una misma lectura de lo decidido."}
+        ],
+        practice:{
+          situation:"Coordinas una reunión de seguimiento con tu equipo y un proveedor. Han acordado que Laura enviará la especificación técnica el miércoles; el proveedor confirmará costos el jueves; y el equipo revisará todo el viernes. Todavía no está definido quién asumirá una integración adicional.",
+          interlocutor:"Tu equipo y un proveedor externo.",
+          objective:"Cierra la reunión en 6–8 frases con tono profesional.",
+          requirements:["Introduce el resumen.","Confirma dos acuerdos sin sonar tentativo.","Asigna o repite responsables y plazos.","Separa el punto pendiente.","Indica el siguiente paso.","Cierra dejando espacio para una última objeción."],
+          supports:["Hemos acordado…","X se encargará de…","a más tardar…","Queda pendiente…","Como siguiente paso…","Si no hay ninguna objeción…"],
+          placeholder:"Escribe tu cierre aquí...",
+          progress:{type:"sentences",min:6,max:8,label:"6–8 frases"},
+          model:"Antes de cerrar, me gustaría resumir los acuerdos. Hemos acordado que Laura enviará la especificación técnica el miércoles y que el proveedor confirmará los costos a más tardar el jueves. Queda pendiente definir quién asumirá la integración adicional, así que retomaremos ese punto en la revisión del viernes. Como siguiente paso, el equipo revisará toda la información el viernes y confirmará si podemos avanzar. Si no hay ninguna objeción, damos por cerrada la reunión. Gracias a todos."
+        },
+        checklist:[
+          "Puedo resumir acuerdos sin repetir toda la reunión.",
+          "Puedo confirmar responsables y plazos de forma precisa.",
+          "Puedo diferenciar un acuerdo firme de un punto pendiente.",
+          "Puedo organizar el cierre con conectores adecuados.",
+          "Puedo dejar un siguiente paso claro y adaptar el registro al interlocutor."
+        ]
+      },
+
+      b2: {
+        meta:{emoji:"🚀",label:"B2 — Avanzado"},
+        objective:{
+          text:"Al terminar esta semana podrás cerrar reuniones complejas diferenciando compromisos firmes, acuerdos condicionados y asuntos pendientes, atribuyendo responsabilidades con precisión y formulando un cierre que proteja el tono, la trazabilidad y el siguiente paso.",
+          note:"Al final comprobarás si puedes cerrar una conversación exigente sin crear una falsa sensación de consenso.",
+          tags:["compromiso firme","condición","salvedad","trazabilidad","verificación"]
+        },
+        situation:{
+          intro:"Presides una reunión de proyecto con áreas internas y un socio externo después de una discusión sobre plazos.",
+          facts:[
+            "Existe un acuerdo firme sobre una entrega.",
+            "Hay otro compromiso condicionado a recibir información técnica.",
+            "Un riesgo sigue abierto y tiene impacto potencial en el calendario.",
+            "Necesitas cerrar sin borrar los matices ni dejar responsabilidades implícitas.",
+            "La dificultad: una formulación demasiado categórica puede atribuir un compromiso que una parte no aceptó; una formulación demasiado vaga puede hacer inútil el cierre."
+          ],
+          keyIdea:"Un cierre complejo debe conservar la diferencia entre lo firme, lo condicionado y lo pendiente; resumir no significa borrar matices."
+        },
+        vocabIntro:"Abre las tarjetas y revisa recursos para distinguir grados de compromiso, condiciones, salvedades y responsabilidades con precisión.",
+        vocab:[
+          {term:"dar por acordado",meaning:"Presentar un punto como definitivamente aceptado por las partes.",example:"No conviene dar por acordado el nuevo plazo hasta recibir la validación jurídica.",extra:"Úsalo con cuidado: presupone consenso suficiente."},
+          {term:"sujeto a",meaning:"Condicionado al cumplimiento o confirmación de algo.",example:"La fecha queda sujeta a la aprobación del equipo técnico.",extra:"Muy útil para distinguir un compromiso condicionado de uno firme."},
+          {term:"dejar constancia",meaning:"Registrar de forma explícita una decisión, reserva o responsabilidad.",example:"Quiero dejar constancia de que el riesgo de integración sigue abierto.",extra:"Registro más formal; apropiado cuando la trazabilidad importa."},
+          {term:"cerrar el círculo",meaning:"Completar seguimiento y confirmar que una acción quedó resuelta.",example:"Cuando recibamos la validación, cerraremos el círculo con el cliente.",extra:"Expresión frecuente en algunos entornos profesionales; menos neutra que “completar el seguimiento”."},
+          {term:"asumir un compromiso",meaning:"Aceptar formalmente una obligación o entrega.",example:"El proveedor no puede asumir un compromiso de fecha hasta revisar la especificación.",extra:"Más preciso que “decir que sí” en contextos de responsabilidad."},
+          {term:"salvedad",meaning:"Condición, reserva o excepción que limita una afirmación general.",example:"Podemos confirmar el plan, con la salvedad de que el presupuesto sigue pendiente.",extra:"Registro formal; útil para preservar matices en cierres complejos."}
+        ],
+        phrases:[
+          {group:"Delimitar lo acordado",items:[
+            {text:"Para cerrar, voy a separar lo acordado de lo que sigue condicionado o pendiente.",use:"Evita que un resumen compacto borre diferencias importantes entre estados."},
+            {text:"Podemos dar por acordada la entrega del día 18; el resto queda sujeto a la validación técnica.",use:"Combina una decisión firme con una condición explícita."}
+          ]},
+          {group:"Atribuir responsabilidad con precisión",items:[
+            {text:"El equipo de operaciones asume la coordinación de la entrega y Finanzas validará el impacto presupuestario.",use:"Distribuye responsabilidades sin recurrir a formulaciones impersonales vagas."},
+            {text:"Dejo constancia de que la confirmación final del plazo corresponde al proveedor una vez reciba la especificación.",use:"Útil cuando la trazabilidad de la responsabilidad es relevante."}
+          ]},
+          {group:"Mantener abiertas las salvedades",items:[
+            {text:"El acuerdo sobre la fecha es provisional hasta que recibamos la validación jurídica.",use:"Evita convertir una intención en compromiso definitivo."},
+            {text:"Queda abierta una salvedad sobre capacidad; no la consideraremos resuelta hasta contar con los datos de carga.",use:"Hace visible un riesgo que podría perderse en un cierre demasiado positivo."}
+          ]},
+          {group:"Cerrar sin bloquear objeciones",items:[
+            {text:"Si alguien interpreta alguno de estos puntos de otra manera, prefiero que lo aclaremos ahora.",use:"Invita a corregir divergencias antes de terminar."},
+            {text:"Con esas precisiones, damos por cerrada la reunión y retomamos los puntos pendientes en la revisión del jueves.",use:"Cierra después de preservar acuerdos, condiciones y pendientes."}
+          ]}
+        ],
+        builder:{
+          mode:"free",
+          intro:"Formula un cierre que preserve tres estados distintos: firme, condicionado y pendiente. No uses la misma estructura para los tres.",
+          placeholder:"Formula aquí tu cierre con los tres grados de compromiso...",
+          minWords:20,
+          intentions:[
+            "1. Presenta un acuerdo firme sin sobredimensionarlo.",
+            "2. Formula un segundo acuerdo condicionado a una validación externa.",
+            "3. Explicita un riesgo o salvedad pendiente y asigna quién debe cerrarlo.",
+            "4. Termina con un mecanismo para detectar interpretaciones divergentes."
+          ],
+          resources:["dar por acordado/a…","queda sujeto/a a…","con la salvedad de que…","dejar constancia de…","corresponde a…","si alguien interpreta… de otra manera…"]
+        },
+        grammarIntro:"Aquí la gramática importa porque modifica el grado de compromiso, la responsabilidad y el matiz del cierre.",
+        grammar:[
+          {title:"Indicativo para hechos acordados vs. estructuras condicionadas",situation:"Una parte del plan está confirmada y otra depende de una validación.",intention:"Quieres reflejar distintos grados de compromiso.",structure:"Afirmación en indicativo para lo firme + “queda sujeto a / condicionado a” para lo no definitivo",example:"La entrega se realizará el día 18. La ampliación del alcance queda sujeta a la aprobación presupuestaria.",why:"La diferencia gramatical y léxica evita presentar como equivalente lo que tiene distinto grado de certeza."},
+          {title:"Condicional de cortesía: útil, pero puede diluir responsabilidad",situation:"Quieres sonar diplomático al cerrar una reunión tensa.",intention:"Necesitas mantener el tono sin volver ambiguo el compromiso.",structure:"“Quedaría pendiente…” / “Sería conveniente…” frente a “Queda pendiente…” / “X debe confirmar…”",example:"Quedaría pendiente revisar la capacidad técnica.",why:"El condicional suaviza, pero puede sonar hipotético. Si el punto es realmente pendiente y tiene responsable, una formulación más directa puede ser preferible."},
+          {title:"Construcciones impersonales y responsabilidad",situation:"Varios equipos participan en la decisión.",intention:"Quieres evitar acusaciones, pero también evitar que la acción quede sin dueño.",structure:"“Se revisará…” + responsable explícito cuando la trazabilidad sea necesaria",example:"Se revisará el impacto presupuestario; Finanzas enviará la validación final antes del jueves.",why:"La impersonal puede ser útil para el proceso, pero el cierre necesita dueño cuando la ejecución depende de alguien concreto."}
+        ],
+        register:{
+          context:"Cierras un comité con un socio externo. La fecha del 18 solo es viable si el proveedor recibe una especificación antes del lunes. ¿Qué formulación preserva mejor el matiz?",
+          options:[
+            "Entonces queda confirmado que entregamos el 18.",
+            "Podemos mantener el 18 como fecha objetivo, sujeto a que la especificación llegue antes del lunes; el proveedor confirmará el compromiso definitivo al recibirla.",
+            "En principio sería el 18, pero ya veremos."
+          ],
+          feedback:[
+            {type:"adjust",text:"Esta formulación convierte una fecha condicionada en un compromiso firme y puede atribuir al proveedor una aceptación que todavía no existe."},
+            {type:"good",text:"La opción distingue fecha objetivo, condición y momento de confirmación definitiva. Protege precisión y trazabilidad."},
+            {type:"adjust",text:"Conserva la incertidumbre, pero de forma demasiado vaga: no identifica condición, responsable ni mecanismo de confirmación."}
+          ]
+        },
+        model:{
+          intro:"Ejemplo de cierre con varios grados de compromiso:",
+          text:"Para cerrar, voy a separar lo acordado de lo que sigue condicionado o pendiente. Podemos dar por acordada la entrega de la fase uno el día 18; Operaciones coordinará esa entrega. La ampliación del alcance, en cambio, queda sujeta a que el proveedor reciba la especificación técnica antes del lunes y confirme capacidad. Dejo constancia además de que el impacto presupuestario sigue abierto: Finanzas enviará una validación antes del jueves. No consideraremos resuelto ese riesgo hasta recibirla. Como siguiente paso, consolidaremos ambas confirmaciones y actualizaremos el plan el jueves por la tarde. Si alguien interpreta alguno de estos puntos de otra manera, prefiero que lo aclaremos ahora. Con esas precisiones, damos por cerrada la reunión.",
+          parts:[
+            {label:"Estados separados",text:"…separar lo acordado de lo que sigue condicionado o pendiente."},
+            {label:"Acuerdo firme",text:"Podemos dar por acordada la entrega… Operaciones coordinará…"},
+            {label:"Condición",text:"La ampliación… queda sujeta a que…"},
+            {label:"Riesgo y trazabilidad",text:"Dejo constancia… Finanzas enviará… No consideraremos resuelto…"},
+            {label:"Verificación final",text:"Si alguien interpreta… de otra manera, prefiero que lo aclaremos ahora."}
+          ]
+        },
+        exercises:[
+          {type:"choice",prompt:"¿Qué formulación evita presentar como firme un compromiso condicionado?",options:["La ampliación queda aprobada para el día 18.","La ampliación queda sujeta a la validación técnica prevista para el lunes.","La ampliación seguro saldrá el 18."],correct:[1],feedback:"La segunda opción hace visible la condición que todavía controla el compromiso."},
+          {type:"choice",prompt:"Quieres preservar diplomacia sin perder responsabilidad. ¿Qué opción es más sólida?",options:["Se verá el presupuesto.","El presupuesto debería mirarse.","Finanzas validará el impacto presupuestario antes del jueves."],correct:[2],feedback:"La tercera opción mantiene un tono neutro y atribuye con claridad acción y plazo."},
+          {type:"choice",prompt:"Dos opciones pueden ser lingüísticamente correctas. ¿Cuál es más adecuada si el acuerdo aún NO es definitivo?",options:["Damos por acordado el nuevo alcance.","Tomamos el nuevo alcance como propuesta de trabajo, sujeto a validación.","Queda confirmado el nuevo alcance."],correct:[1],feedback:"Las tres frases son posibles en español, pero solo la segunda refleja que la decisión sigue condicionada."},
+          {type:"text",prompt:"Completa con una palabra que mantenga la condición explícita: “La fecha queda ________ a la aprobación jurídica.”",answers:["sujeta","condicionada"],feedback:"“Sujeta” y “condicionada” son opciones válidas; ambas evitan presentar la fecha como definitiva."}
+        ],
+        practice:{
+          situation:"Presides una reunión entre Operaciones, Finanzas y un socio externo. Hay un acuerdo firme: Operaciones entregará la fase uno el día 18. Hay un acuerdo condicionado: el socio podrá ampliar el alcance solo si recibe una especificación técnica antes del lunes y confirma capacidad. El impacto presupuestario sigue abierto y Finanzas debe validarlo antes del jueves. Durante la reunión hubo desacuerdo sobre si la fecha del 18 aplicaba también a la ampliación.",
+          interlocutor:"Responsables internos y socio externo.",
+          objective:"Cierra la reunión en 90–130 palabras sin crear una falsa sensación de consenso.",
+          requirements:["Distingue explícitamente acuerdo firme, condición y pendiente.","Atribuye responsabilidades y plazos.","Aclara que la fecha del 18 no se extiende automáticamente a la ampliación.","Mantén un registro profesional sin sonar acusatorio.","Incluye un mecanismo de verificación final para corregir interpretaciones divergentes."],
+          supports:["dar por acordado…","queda sujeto a…","con la salvedad de que…","dejo constancia de…","no consideraremos resuelto…","si alguien interpreta… de otra manera…"],
+          placeholder:"Escribe tu cierre aquí...",
+          progress:{type:"words",min:90,max:130,label:"90–130 palabras"},
+          model:"Para cerrar, separo los tres estados que tenemos. Damos por acordada la entrega de la fase uno el día 18, bajo coordinación de Operaciones. Esa fecha no se extiende automáticamente a la ampliación: el socio podrá asumir ese compromiso solo si recibe la especificación técnica antes del lunes y confirma capacidad. Queda además pendiente validar el impacto presupuestario; Finanzas enviará esa confirmación antes del jueves. Hasta entonces, no daremos por cerrada esa parte del alcance. Como siguiente paso, consolidaremos ambas validaciones y actualizaremos el plan el jueves por la tarde. Si alguien interpreta alguno de estos puntos de otra manera, prefiero que lo aclaremos ahora antes de cerrar."
+        },
+        checklist:[
+          "Puedo distinguir un compromiso firme de uno condicionado.",
+          "Puedo hacer visibles salvedades y riesgos sin dramatizarlos.",
+          "Puedo atribuir responsabilidad sin recurrir a vaguedad innecesaria.",
+          "Puedo ajustar el registro para preservar diplomacia y trazabilidad.",
+          "Puedo cerrar verificando que las partes comparten la misma interpretación."
+        ]
+      }
+    };
+    // ===== FIN DEL CONTENIDO EDITABLE =====
+
+    const sectionDefs = [
+      ["🎯","Tu objetivo esta semana"],
+      ["🏢","La situación"],
+      ["🗣️","Vocabulario clave"],
+      ["💬","Frases que puedes usar"],
+      ["🧩","Construye tu mensaje"],
+      ["📚","Gramática que necesitas"],
+      ["🎭","Elige el registro"],
+      ["💼","Mira cómo se hace"],
+      ["✍️","Comprueba lo que aprendiste"],
+      ["🏢","Ahora te toca a ti"],
+      ["💡","Ver modelo"],
+      ["✅","Checklist final"]
+    ];
+
+    const state = {
+      level:null,
+      section:0,
+      completed:new Set(),
+      allTasks:new Set(),
+      practiceText:"",
+      builderText:""
+    };
+
+    const levelScreen = document.getElementById("levelScreen");
+    const app = document.getElementById("app");
+    const routeBadge = document.getElementById("routeBadge");
+    const skillTitle = document.getElementById("skillTitle");
+    const skillIntro = document.getElementById("skillIntro");
+    const sectionContent = document.getElementById("sectionContent");
+    const sectionNav = document.getElementById("sectionNav");
+    const sectionSelect = document.getElementById("sectionSelect");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const progressWrap = document.getElementById("progressWrap");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const liveRegion = document.getElementById("liveRegion");
+
+    function esc(str){
+      return String(str ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    }
+
+    function initLevel(level){
+      state.level = level;
+      state.section = 0;
+      state.completed = new Set();
+      state.practiceText = "";
+      state.builderText = "";
+      buildTaskList();
+      const meta = contenido[level].meta;
+      document.title = `${semana.habilidad} | La Oficina en Español`;
+      skillTitle.textContent = semana.habilidad;
+      skillIntro.textContent = semana.heroIntro;
+      routeBadge.textContent = `Tu ruta: ${meta.emoji} ${meta.label}`;
+      levelScreen.style.display = "none";
+      app.style.display = "block";
+      buildNavigation();
+      renderSection();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function buildTaskList(){
+      state.allTasks = new Set();
+      const data = contenido[state.level];
+      sectionDefs.forEach((_,i)=>state.allTasks.add(`section-${i}`));
+      data.vocab.forEach((_,i)=>state.allTasks.add(`vocab-${i}`));
+      if(data.vocabRecovery) state.allTasks.add("vocab-recovery");
+      state.allTasks.add("builder");
+      state.allTasks.add("register");
+      data.exercises.forEach((_,i)=>state.allTasks.add(`exercise-${i}`));
+      state.allTasks.add("practice");
+      state.allTasks.add("model");
+      data.checklist.forEach((_,i)=>state.allTasks.add(`check-${i}`));
+    }
+
+    function markTask(id){
+      if(state.allTasks.has(id)) state.completed.add(id);
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const done = [...state.completed].filter(x=>state.allTasks.has(x)).length;
+      const total = state.allTasks.size || 1;
+      const pct = Math.round((done/total)*100);
+      progressBar.style.width = `${pct}%`;
+      progressText.textContent = `${pct}%`;
+      progressWrap.setAttribute("aria-valuenow", String(pct));
+      [...sectionNav.querySelectorAll("button")].forEach((btn,i)=>{
+        btn.classList.toggle("done",state.completed.has(`section-${i}`));
+      });
+    }
+
+    function buildNavigation(){
+      sectionNav.innerHTML = "";
+      sectionSelect.innerHTML = "";
+      sectionDefs.forEach(([emoji,title],i)=>{
+        const btn=document.createElement("button");
+        btn.type="button";
+        btn.textContent=`${i+1}. ${emoji} ${title}`;
+        btn.addEventListener("click",()=>goSection(i));
+        sectionNav.appendChild(btn);
+
+        const opt=document.createElement("option");
+        opt.value=i;
+        opt.textContent=`${i+1}. ${emoji} ${title}`;
+        sectionSelect.appendChild(opt);
+      });
+    }
+
+    function goSection(i){
+      state.section=Math.max(0,Math.min(sectionDefs.length-1,i));
+      renderSection();
+      const top=sectionContent.getBoundingClientRect().top + window.scrollY - 112;
+      window.scrollTo({top:Math.max(0,top),behavior:"smooth"});
+    }
+
+    function sectionHeader(index){
+      const [emoji,title]=sectionDefs[index];
+      return `<div class="section-number">Sección ${index+1} de ${sectionDefs.length}</div><h2>${emoji} ${title}</h2>`;
+    }
+
+    function renderSection(){
+      const data=contenido[state.level];
+      markTask(`section-${state.section}`);
+      const renderers=[renderObjective,renderSituation,renderVocab,renderPhrases,renderBuilder,renderGrammar,renderRegister,renderModel,renderExercises,renderPractice,renderPossibleModel,renderChecklist];
+      sectionContent.innerHTML=sectionHeader(state.section)+renderers[state.section](data);
+      wireSectionInteractions();
+      sectionSelect.value=state.section;
+      [...sectionNav.children].forEach((btn,i)=>btn.classList.toggle("active",i===state.section));
+      prevBtn.disabled=state.section===0;
+      nextBtn.disabled=state.section===sectionDefs.length-1;
+      updateProgress();
+    }
+
+    function renderObjective(data){
+      return `<p class="lead">${esc(data.objective.text)}</p><div class="hint">${esc(data.objective.note)}</div>${data.objective.tags?.length?`<div class="tags">${data.objective.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join("")}</div>`:""}`;
+    }
+
+    function renderSituation(data){
+      return `<div class="scenario-box"><p class="lead"><strong>${esc(data.situation.intro)}</strong></p><ul>${data.situation.facts.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><div class="info"><strong>Idea clave:</strong> ${esc(data.situation.keyIdea)}</div>`;
+    }
+
+    function audioControls(text,label){
+      if(state.level!=="a2") return "";
+      const safe=encodeURIComponent(text);
+      return `<div class="audio-row"><button class="audio-btn js-audio" type="button" data-text="${safe}" data-rate="1" aria-label="Escuchar ${esc(label)} a velocidad normal">🔊 Escuchar / Listen</button><button class="audio-btn js-audio" type="button" data-text="${safe}" data-rate="0.72" aria-label="Escuchar ${esc(label)} lentamente">🐢 Lento / Slow</button></div>`;
+    }
+
+    function renderVocab(data){
+      const cards=data.vocab.map((v,i)=>`<article class="vocab-card" data-vocab="${i}"><button class="vocab-toggle" type="button" aria-expanded="false"><span>${esc(v.term)}</span><span aria-hidden="true">＋</span></button><div class="vocab-detail"><p>${state.level==="a2"?`<span class="translation">English: ${esc(v.en)}</span><br>`:""}${esc(v.meaning)}</p>${v.stress?`<p><strong>Pronunciación:</strong> ${esc(v.stress)}</p>`:""}<p><strong>Ejemplo:</strong> ${esc(v.example)}</p>${v.extra?`<p><strong>Matiz:</strong> ${esc(v.extra)}</p>`:""}${audioControls(v.term,`la palabra ${v.term}`)}${audioControls(v.example,`el ejemplo ${v.example}`)}</div></article>`).join("");
+      let recovery="";
+      if(data.vocabRecovery){
+        recovery=`<div class="activity" id="vocabRecovery"><strong>Recupera una palabra</strong><p>${esc(data.vocabRecovery.question)}</p><div class="options">${data.vocabRecovery.options.map((o,i)=>`<button class="option-btn js-vocab-recovery" data-index="${i}" type="button" aria-pressed="false">${esc(o)}</button>`).join("")}</div>${state.level==="a2"?data.vocabRecovery.options.map((o,i)=>audioControls(o,`la opción ${i+1} de vocabulario`)).join(""):""}<div class="feedback" id="vocabRecoveryFeedback" aria-live="polite"></div></div>`;
+      }
+      return `<p>${esc(data.vocabIntro)}</p><div class="vocab-grid">${cards}</div>${recovery}<div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderPhrases(data){
+      return data.phrases.map((g,gi)=>`<div class="phrase-group"><h3>${esc(g.group)}</h3><div class="phrase-list">${g.items.map((it,ii)=>`<article class="phrase-item"><div class="phrase-main">${esc(it.text)}</div>${it.chunks&&state.level==="a2"?`<div class="chunks">${it.chunks.map(c=>`<div class="chunk">${esc(c)}${audioControls(c,`el bloque ${c}`)}</div>`).join("")}</div>`:""}${audioControls(it.text,`la frase ${it.text}`)}<button class="mini-btn js-usage" type="button" aria-expanded="false">Ver cuándo usarla</button><div class="usage">${esc(it.use)}</div></article>`).join("")}</div></div>`).join("")+`<div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderBuilder(data){
+      const b=data.builder;
+      if(b.mode==="select"){
+        return `<p>${esc(b.intro)}</p><div class="builder"><div class="builder-controls">${b.fields.map((f,i)=>`<label>${esc(f.label)}<select class="builder-select">${f.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select></label>`).join("")}</div><div class="card soft"><strong>Escucha los bloques disponibles</strong>${b.fields.map(f=>f.options.map(o=>`<div style="margin-top:9px"><span>${esc(o)}</span>${audioControls(o,`el bloque ${o}`)}</div>`).join("")).join("")}</div><button class="primary-btn" id="buildBtn" type="button" style="margin-top:14px">Construir mi mensaje</button><div class="result-box" id="builderResult"></div></div><div id="audioStatus" aria-live="polite"></div>`;
+      }
+      return `<p>${esc(b.intro)}</p><div class="builder"><ol>${b.intentions.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><label for="builderFree">Escribe tu versión</label><textarea id="builderFree" placeholder="${esc(b.placeholder||"Escribe tu versión aquí...")}">${esc(state.builderText)}</textarea><div class="char-count" id="builderStatus">${builderStatusText(state.builderText,b)}</div><button class="primary-btn" id="showResources" type="button">Comparar con recursos posibles</button><div class="result-box" id="builderResources"><strong>Recursos posibles:</strong><ul>${b.resources.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></div>`;
+    }
+
+    function renderGrammar(data){
+      return `<p>${esc(data.grammarIntro)}</p><div class="grid">${data.grammar.map((g,i)=>`<article class="card"><h3>${esc(g.title)}</h3><p><strong>Situación:</strong> ${esc(g.situation)}</p><p><strong>Intención:</strong> ${esc(g.intention)}</p><button class="mini-btn js-grammar" type="button" aria-expanded="false">Ver estructura y ejemplo</button><div class="usage"><p><strong>Estructura:</strong> ${esc(g.structure)}</p><p><strong>Ejemplo:</strong> ${esc(g.example)}</p>${audioControls(g.example,`la estructura aplicada en ${g.example}`)}<p><strong>¿Por qué se usa así?</strong> ${esc(g.why)}</p></div></article>`).join("")}</div><div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderRegister(data){
+      const r=data.register;
+      return `<p class="lead">${esc(r.context)}</p><div class="activity" id="registerActivity"><div class="options">${r.options.map((o,i)=>`<button class="option-btn js-register" data-index="${i}" type="button" aria-pressed="false">${esc(o)}</button>`).join("")}</div><div class="feedback" id="registerFeedback" aria-live="polite"></div>${state.level==="a2"?r.options.map((o,i)=>audioControls(o,`la opción ${i+1}`)).join(""):""}</div><div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderModel(data){
+      return `<p>${esc(data.model.intro)}</p><div class="scenario-box"><p class="lead">${esc(data.model.text)}</p>${audioControls(data.model.text,"el ejemplo profesional completo")}</div><h3>Qué función cumple cada parte</h3><div class="grid">${data.model.parts.map(p=>`<article class="card soft"><strong>${esc(p.label)}</strong><p>${esc(p.text)}</p>${audioControls(p.text,p.label)}</article>`).join("")}</div><div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderExercises(data){
+      return `<p>Responde y usa el feedback para ajustar tu criterio. Puedes volver a intentarlo.</p>${data.exercises.map((ex,i)=>`<article class="activity" data-exercise="${i}"><strong>${i+1}. ${esc(ex.prompt)}</strong>${state.level==="a2"?audioControls(ex.prompt,`la instrucción del ejercicio ${i+1}`):""}${ex.type==="choice"?`<div class="options">${ex.options.map((o,j)=>`<button class="option-btn js-ex-option" data-ex="${i}" data-index="${j}" type="button" aria-pressed="false">${esc(o)}</button>`).join("")}</div>`:`<div style="margin-top:12px"><label for="exInput${i}" class="sr-only">Respuesta del ejercicio ${i+1}</label><input id="exInput${i}" class="js-ex-input" data-ex="${i}" type="text" autocomplete="off"><button class="primary-btn js-check-input" data-ex="${i}" type="button" style="margin-top:9px">Comprobar</button></div>`}<div class="feedback" id="exFeedback${i}" aria-live="polite"></div>${state.level==="a2"&&ex.type==="choice"?ex.options.map((o,j)=>audioControls(o,`la opción ${j+1} del ejercicio ${i+1}`)).join(""):""}</article>`).join("")}<div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderPractice(data){
+      const p=data.practice;
+      return `<div class="scenario-box"><p><strong>Situación:</strong> ${esc(p.situation)}</p><p><strong>Interlocutor:</strong> ${esc(p.interlocutor)}</p><p><strong>Objetivo:</strong> ${esc(p.objective)}</p><strong>Incluye:</strong><ul class="requirements">${p.requirements.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${p.supports?`<div class="hint"><strong>Recursos que puedes reutilizar:</strong><ul>${p.supports.map(x=>`<li>${esc(x)}${audioControls(x,`la estructura ${x}`)}</li>`).join("")}</ul></div>`:""}</div><label for="practiceText" style="display:block;margin-top:16px">Tu respuesta</label><textarea id="practiceText" placeholder="${esc(p.placeholder||"Escribe tu respuesta aquí...")}">${esc(state.practiceText)}</textarea><div class="char-count" id="charCount">${practiceStatusText(state.practiceText,p)}</div><div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderPossibleModel(data){
+      return `<p>Compara tu respuesta después de haber intentado resolver la situación.</p><button class="primary-btn" id="showModelBtn" type="button">Ver una posible respuesta</button><div class="model-box" id="possibleModel"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(data.practice.model)}</p>${audioControls(data.practice.model,"la respuesta modelo")}</div><div id="audioStatus" aria-live="polite"></div>`;
+    }
+
+    function renderChecklist(data){
+      const checkedCount=data.checklist.filter((_,i)=>state.completed.has(`check-${i}`)).length; const checkPct=Math.round((checkedCount/data.checklist.length)*100); return `<p>Antes de terminar, comprueba qué puedes hacer ya.</p><div class="check-progress" id="checkProgressWrap" role="progressbar" aria-label="Progreso del checklist" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${checkPct}"><div id="checkProgressBar" style="width:${checkPct}%"></div></div><div class="checklist">${data.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" class="js-check" data-index="${i}" ${state.completed.has(`check-${i}`)?"checked":""}><span>${esc(x)}</span></label>`).join("")}</div><div class="ready-box ${checkedCount===data.checklist.length?"show":""}" id="readyBox"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><a class="challenge-link" href="${esc(semana.retoUrl)}">🔥 Ir al reto de hoy</a></div>`;
+    }
+
+    function countWords(text){
+      const clean=String(text||"").trim();
+      return clean ? clean.split(/\s+/).filter(Boolean).length : 0;
+    }
+
+    function countSentenceUnits(text){
+      return String(text||"")
+        .split(/(?:[.!?]+|\n+)/)
+        .map(x=>x.trim())
+        .filter(Boolean).length;
+    }
+
+    function builderStatusText(text,builder){
+      const words=countWords(text);
+      const min=Number(builder.minWords)||1;
+      return `${words} palabras · mínimo orientativo: ${min}`;
+    }
+
+    function builderMeetsMinimum(text,builder){
+      return countWords(text)>=(Number(builder.minWords)||1);
+    }
+
+    function practiceStatusText(text,practice){
+      const p=practice.progress||{};
+      if(p.type==="words") return `${countWords(text)} palabras · objetivo: ${esc(p.label||String(p.min||""))}`;
+      const units=countSentenceUnits(text);
+      return `${units} frases · objetivo: ${esc(p.label||String(p.min||""))}`;
+    }
+
+    function practiceMeetsMinimum(text,practice){
+      const p=practice.progress||{};
+      const min=Number(p.min)||1;
+      return p.type==="words" ? countWords(text)>=min : countSentenceUnits(text)>=min;
+    }
+
+    function bindAudioButtons(root=document){
+      root.querySelectorAll(".js-audio").forEach(btn=>{
+        if(btn.dataset.audioBound==="1") return;
+        btn.dataset.audioBound="1";
+        btn.addEventListener("click",()=>{
+          const text=decodeURIComponent(btn.dataset.text);
+          const rate=Number(btn.dataset.rate)||1;
+          speakSpanish(text,rate);
+        });
+      });
+    }
+
+    function wireSectionInteractions(){
+      // Audio reutilizable A2
+      bindAudioButtons();
+
+      // Vocabulario
+      document.querySelectorAll(".vocab-toggle").forEach((btn,i)=>btn.addEventListener("click",()=>{
+        const card=btn.closest(".vocab-card");
+        const open=card.classList.toggle("open");
+        btn.setAttribute("aria-expanded",String(open));
+        if(open) markTask(`vocab-${i}`);
+      }));
+      document.querySelectorAll(".js-vocab-recovery").forEach(btn=>btn.addEventListener("click",()=>{
+        const vr=contenido[state.level].vocabRecovery;
+        const idx=Number(btn.dataset.index);
+        const fb=document.getElementById("vocabRecoveryFeedback");
+        document.querySelectorAll(".js-vocab-recovery").forEach(b=>{
+          const selected=b===btn;
+          b.setAttribute("aria-pressed",String(selected));
+          b.classList.toggle("selected",selected);
+        });
+        fb.textContent=idx===vr.correct?vr.feedback:(vr.retry||"Revisa las tarjetas y vuelve a intentarlo.");
+        fb.className=`feedback show ${idx===vr.correct?"good":"adjust"}`;
+        if(idx===vr.correct) markTask("vocab-recovery");
+      }));
+
+      // Frases / gramática
+      document.querySelectorAll(".js-usage").forEach(btn=>btn.addEventListener("click",()=>{
+        const item=btn.closest(".phrase-item");
+        const open=item.classList.toggle("open");
+        btn.setAttribute("aria-expanded",String(open));
+      }));
+      document.querySelectorAll(".js-grammar").forEach(btn=>btn.addEventListener("click",()=>{
+        const box=btn.nextElementSibling;
+        const open=box.style.display!=="block";
+        box.style.display=open?"block":"none";
+        btn.setAttribute("aria-expanded",String(open));
+      }));
+
+      // Builder
+      const buildBtn=document.getElementById("buildBtn");
+      if(buildBtn) buildBtn.addEventListener("click",()=>{
+        const parts=[...document.querySelectorAll(".builder-select")].map(s=>s.value);
+        const out=parts.join(" ");
+        const box=document.getElementById("builderResult");
+        box.innerHTML=`<strong>${esc(contenido[state.level].builder.resultLabel||"Tu mensaje:")}</strong><p>${esc(out)}</p>${audioControls(out,"tu mensaje construido")}`;
+        box.classList.add("show");
+        bindAudioButtons(box);
+        markTask("builder");
+      });
+      const builderFree=document.getElementById("builderFree");
+      if(builderFree) builderFree.addEventListener("input",()=>{
+        state.builderText=builderFree.value;
+        const status=document.getElementById("builderStatus");
+        const builder=contenido[state.level].builder;
+        if(status) status.textContent=builderStatusText(builderFree.value,builder);
+        if(builderMeetsMinimum(builderFree.value,builder)) markTask("builder");
+        else { state.completed.delete("builder"); updateProgress(); }
+      });
+      const showResources=document.getElementById("showResources");
+      if(showResources) showResources.addEventListener("click",()=>{
+        document.getElementById("builderResources").classList.add("show");
+      });
+
+      // Registro
+      document.querySelectorAll(".js-register").forEach(btn=>btn.addEventListener("click",()=>{
+        const idx=Number(btn.dataset.index);
+        const r=contenido[state.level].register.feedback[idx];
+        document.querySelectorAll(".js-register").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+        btn.classList.add("selected");
+        btn.setAttribute("aria-pressed","true");
+        const fb=document.getElementById("registerFeedback");
+        fb.textContent=r.text;
+        fb.className=`feedback show ${r.type}`;
+        markTask("register");
+      }));
+
+      // Ejercicios
+      document.querySelectorAll(".js-ex-option").forEach(btn=>btn.addEventListener("click",()=>{
+        const exIndex=Number(btn.dataset.ex), optionIndex=Number(btn.dataset.index);
+        const ex=contenido[state.level].exercises[exIndex];
+        const activity=btn.closest(".activity");
+        activity.querySelectorAll(".js-ex-option").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+        btn.classList.add("selected");
+        btn.setAttribute("aria-pressed","true");
+        const ok=ex.correct.includes(optionIndex);
+        const fb=document.getElementById(`exFeedback${exIndex}`);
+        fb.innerHTML=`<strong>${ok?"Esta opción funciona.":"Conviene ajustarla."}</strong> ${esc(ex.feedback)}${!ok?`<br><button type="button" class="retry-btn">Volver a intentar</button>`:""}`;
+        fb.className=`feedback show ${ok?"good":"adjust"}`;
+        if(ok) markTask(`exercise-${exIndex}`);
+        const retry=fb.querySelector(".retry-btn");
+        if(retry) retry.addEventListener("click",()=>{fb.className="feedback";activity.querySelectorAll(".js-ex-option").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});});
+      }));
+      document.querySelectorAll(".js-check-input").forEach(btn=>btn.addEventListener("click",()=>{
+        const exIndex=Number(btn.dataset.ex);
+        const ex=contenido[state.level].exercises[exIndex];
+        const input=document.querySelector(`.js-ex-input[data-ex="${exIndex}"]`);
+        const normalize=s=>s.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+        const ok=ex.answers.some(a=>normalize(a)===normalize(input.value));
+        const fb=document.getElementById(`exFeedback${exIndex}`);
+        fb.innerHTML=`<strong>${ok?"Esta respuesta funciona.":"Revisa la estructura."}</strong> ${esc(ex.feedback)}${ok&&ex.audioAnswer?audioControls(ex.audioAnswer,"la frase completa del ejercicio"):""}`;
+        fb.className=`feedback show ${ok?"good":"adjust"}`;
+        bindAudioButtons(fb);
+        if(ok) markTask(`exercise-${exIndex}`);
+      }));
+
+      // Práctica final
+      const practice=document.getElementById("practiceText");
+      if(practice) practice.addEventListener("input",()=>{
+        state.practiceText=practice.value;
+        const practiceData=contenido[state.level].practice;
+        document.getElementById("charCount").textContent=practiceStatusText(practice.value,practiceData);
+        if(practiceMeetsMinimum(practice.value,practiceData)) markTask("practice");
+        else { state.completed.delete("practice"); updateProgress(); }
+      });
+
+      // Modelo
+      const showModel=document.getElementById("showModelBtn");
+      if(showModel) showModel.addEventListener("click",()=>{
+        document.getElementById("possibleModel").classList.add("show");
+        markTask("model");
+      });
+
+      // Checklist
+      const checks=[...document.querySelectorAll(".js-check")];
+      checks.forEach(ch=>ch.addEventListener("change",()=>{
+        const idx=Number(ch.dataset.index);
+        if(ch.checked) markTask(`check-${idx}`); else {state.completed.delete(`check-${idx}`);updateProgress();}
+        const checked=checks.filter(x=>x.checked).length;
+        const pct=Math.round((checked/checks.length)*100);
+        const bar=document.getElementById("checkProgressBar");
+        if(bar) bar.style.width=`${pct}%`;
+        const wrap=document.getElementById("checkProgressWrap");
+        if(wrap) wrap.setAttribute("aria-valuenow",String(pct));
+        const ready=document.getElementById("readyBox");
+        if(ready) ready.classList.toggle("show",checked===checks.length);
+      }));
+    }
+
+    // ===== AUDIO GENERAL REUTILIZABLE =====
+    function chooseSpanishVoice(){
+      if(!("speechSynthesis" in window)) return null;
+      const voices=window.speechSynthesis.getVoices();
+      const priorities=[
+        v=>/es-(CO|MX|US|419)/i.test(v.lang),
+        v=>/^es-/i.test(v.lang),
+        v=>/^es$/i.test(v.lang)
+      ];
+      for(const rule of priorities){
+        const found=voices.find(rule);
+        if(found) return found;
+      }
+      return null;
+    }
+
+    function speakSpanish(text,rate=1){
+      const status=document.getElementById("audioStatus");
+      if(!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance==="undefined"){
+        if(status) status.textContent="El navegador no ofrece Speech Synthesis. El resto del módulo sigue funcionando.";
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang="es-CO";
+      u.rate=rate;
+      u.pitch=1;
+      const voice=chooseSpanishVoice();
+      if(voice) u.voice=voice;
+      u.onstart=()=>{if(status) status.textContent=rate<1?"Reproduciendo lentamente…":"Reproduciendo…";};
+      u.onend=()=>{if(status) status.textContent="";};
+      u.onerror=()=>{if(status) status.textContent="No fue posible reproducir este audio en el navegador.";};
+      window.speechSynthesis.speak(u);
+    }
+
+    if("speechSynthesis" in window){
+      window.speechSynthesis.onvoiceschanged=()=>chooseSpanishVoice();
+    }
+
+    document.querySelectorAll(".level-card").forEach(btn=>btn.addEventListener("click",()=>initLevel(btn.dataset.level)));
+    document.getElementById("changeLevel").addEventListener("click",()=>{
+      if("speechSynthesis" in window) window.speechSynthesis.cancel();
+      app.style.display="none";
+      levelScreen.style.display="grid";
+      state.level=null;
+      liveRegion.textContent="Selecciona nuevamente tu nivel de español.";
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+    sectionSelect.addEventListener("change",()=>goSection(Number(sectionSelect.value)));
+    prevBtn.addEventListener("click",()=>goSection(state.section-1));
+    nextBtn.addEventListener("click",()=>goSection(state.section+1));
+  </script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Tema 7 · Explicar beneficios, precios y condiciones</title>
+<style>
+:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#fff;--black:#111827;--muted:#5f6b7a;--bg:#f4f7fb;--line:#dce4ef;--ok:#176b45;--shadow:0 14px 40px rgba(0,56,147,.10);--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--bg);color:var(--black);line-height:1.6}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.screen{min-height:100vh}.level-screen{display:grid;place-items:center;padding:28px;background:linear-gradient(145deg,#eef4ff,#fff 60%,#fff8cf)}.level-panel{width:min(1040px,100%);background:#fff;border-radius:28px;padding:34px;box-shadow:var(--shadow);border:1px solid #e5ebf3}.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--blue);letter-spacing:.01em}.brand-dot{width:16px;height:16px;border-radius:50%;background:var(--yellow);border:4px solid var(--blue)}h1,h2,h3{line-height:1.15;margin-top:0}h1{font-family:"Arial Black",Arial,sans-serif;color:var(--blue);font-size:clamp(2rem,4vw,3.5rem);margin-bottom:12px}.intro{max-width:720px;color:var(--muted);font-size:1.05rem}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.level-btn{text-align:left;border:2px solid var(--line);background:#fff;border-radius:20px;padding:22px;min-height:220px;transition:.2s transform,.2s border-color,.2s box-shadow}.level-btn:hover,.level-btn:focus-visible{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 10px 28px rgba(0,56,147,.12);outline:none}.level-btn strong{display:block;color:var(--blue);font-size:1.2rem;margin-bottom:10px}.level-btn .level-desc{display:block;margin:0;color:#425064}.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}.topbar-inner{max-width:1240px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:14px}.route-badge{font-weight:800;color:var(--blue);white-space:nowrap}.progress-wrap{flex:1;display:flex;align-items:center;gap:10px}.progress-track{height:10px;flex:1;background:#e8edf5;border-radius:999px;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2d67bc);transition:width .25s}.progress-label{font-weight:800;font-size:.9rem}.change-btn,.ghost-btn{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:999px;padding:8px 13px;font-weight:700}.layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:230px 1fr;gap:22px;padding:22px 18px 70px}.sidebar{position:sticky;top:72px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 8px 24px rgba(0,0,0,.04)}.nav-btn{width:100%;text-align:left;border:0;background:transparent;padding:10px 12px;border-radius:10px;color:#445064}.nav-btn:hover,.nav-btn:focus-visible,.nav-btn.active{background:#edf3ff;color:var(--blue);font-weight:800;outline:none}.main{min-width:0}.hero{background:linear-gradient(135deg,var(--blue),#174fa6);color:#fff;border-radius:24px;padding:34px;box-shadow:var(--shadow);margin-bottom:20px}.hero h1{color:#fff;font-size:clamp(2rem,4vw,3.3rem)}.eyebrow{font-weight:800;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}.hero p{max-width:800px}.website-link{color:var(--yellow);font-weight:800}.section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.035)}.section-kicker{color:var(--blue);font-weight:900;margin-bottom:8px}.section h2{font-size:clamp(1.45rem,2.5vw,2rem)}.callout{background:#eef4ff;border-left:5px solid var(--blue);padding:14px 16px;border-radius:12px;margin:14px 0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fff}.flip-card{width:100%;min-height:120px}.vocab-toggle{appearance:none;text-align:left;width:100%;border:0;background:transparent;padding:0;color:inherit;cursor:pointer}.vocab-toggle:focus-visible{outline:3px solid rgba(0,56,147,.28);outline-offset:5px;border-radius:8px}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.audio-status{position:fixed;right:18px;bottom:18px;z-index:30;max-width:min(420px,calc(100vw - 36px));background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);font-weight:700;color:#293345}.flip-card .front{font-weight:900;color:var(--blue);font-size:1.08rem}.reveal{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.audio-btn{border:1px solid #bdcbea;background:#f7f9ff;color:var(--blue);border-radius:10px;padding:8px 10px;font-weight:700}.audio-btn:hover,.audio-btn:focus-visible{border-color:var(--blue);outline:none}.small{font-size:.92rem;color:var(--muted)}.phrase-group{margin:14px 0}.phrase{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}.phrase-line{font-weight:800}.use-btn,.primary-btn,.choice-btn,.retry-btn{border:0;border-radius:11px;padding:10px 14px;font-weight:800}.use-btn{background:#eef4ff;color:var(--blue)}.primary-btn{background:var(--blue);color:#fff}.primary-btn:hover,.primary-btn:focus-visible{filter:brightness(1.08);outline:3px solid rgba(252,209,22,.45)}.choice-btn{width:100%;text-align:left;background:#fff;border:1px solid var(--line);margin:7px 0}.choice-btn:hover,.choice-btn:focus-visible{border-color:var(--blue);outline:none}.choice-btn.selected{border-color:var(--blue);background:#eef4ff}.choice-btn.good{border-color:#58a87f;background:#effaf4}.choice-btn.warn{border-color:#d79b9b;background:#fff5f5}.feedback{margin-top:10px;padding:11px 13px;border-radius:10px;background:#f6f8fb}.builder{display:grid;gap:12px}.builder-row{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:center}.builder-output{background:#f7f9fc;border:1px dashed #aab8cc;border-radius:12px;padding:15px;font-weight:700}.token-wrap{display:flex;gap:8px;flex-wrap:wrap}.token{border:1px solid #b6c5dc;background:#fff;border-radius:999px;padding:8px 11px}.token.active{background:#eef4ff;border-color:var(--blue);color:var(--blue);font-weight:800}.grammar-item{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}.grammar-item summary{font-weight:900;color:var(--blue);cursor:pointer}.scenario{background:#fafbfd;border:1px solid var(--line);border-radius:14px;padding:15px}.quiz-item{padding:16px 0;border-bottom:1px solid var(--line)}.quiz-item:last-child{border-bottom:0}.fill-row{display:flex;gap:8px;flex-wrap:wrap}.fill-row input{flex:1;min-width:180px;border:1px solid #b9c5d4;border-radius:10px;padding:10px}.ordering{display:flex;gap:8px;flex-wrap:wrap}.order-token{border:1px solid #b8c4d5;background:#fff;border-radius:10px;padding:9px}.order-output{min-height:48px;border:1px dashed #a7b5c9;border-radius:10px;padding:10px;margin-top:10px}.practice-box textarea{width:100%;min-height:170px;border:1px solid #aebbd0;border-radius:12px;padding:13px;resize:vertical}.model-box{margin-top:12px}.checklist{display:grid;gap:10px}.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:12px}.check-item input{width:20px;height:20px;margin-top:3px}.final-box{background:linear-gradient(135deg,#eef4ff,#fffbe4);border:1px solid #cbd9ef;border-radius:16px;padding:20px;margin-top:18px}.cta-link{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:900;padding:11px 16px;border-radius:11px}.meta{font-size:.91rem;color:var(--muted)}.meaning-blocks{display:grid;gap:6px;margin:10px 0}.meaning-block{background:#f7f9fc;border-radius:8px;padding:7px 10px}.stress{font-weight:900;color:var(--red)}.section-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.section-actions button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px}.status-note{font-size:.9rem;color:var(--muted);margin-top:5px}
+@media(max-width:900px){.level-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:6px;padding:8px}.nav-btn{width:auto;white-space:nowrap}.cards{grid-template-columns:1fr}.topbar-inner{flex-wrap:wrap}.progress-wrap{order:3;flex-basis:100%}.builder-row{grid-template-columns:1fr}.level-panel{padding:24px}.hero,.section{padding:20px}}
+@media(max-width:520px){.level-screen{padding:14px}.level-panel{border-radius:20px;padding:20px}.level-btn{min-height:auto}.route-badge{white-space:normal}.change-btn{margin-left:auto}.hero{border-radius:18px}.section{border-radius:15px}}
+</style>
+</head>
+<body>
+<section id="levelScreen" class="screen level-screen" aria-labelledby="levelTitle">
+  <div class="level-panel">
+    <div class="brand"><span class="brand-dot"></span>La Oficina en Español</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="intro">Selecciona tu ruta para adaptar el apoyo, las expresiones, los ejercicios y la dificultad de este módulo.</p>
+    <div class="level-grid">
+      <button class="level-btn" data-level="a2"><strong>🌱 A2 — Principiante</strong><span class="level-desc">Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+      <button class="level-btn" data-level="b1"><strong>💼 B1 — Intermedio</strong><span class="level-desc">Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+      <button class="level-btn" data-level="b2"><strong>🚀 B2 — Avanzado</strong><span class="level-desc">Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+    </div>
+  </div>
+</section>
+
+<div id="module" class="hidden">
+  <div class="topbar"><div class="topbar-inner">
+    <div id="routeBadge" class="route-badge">Tu ruta:</div>
+    <div class="progress-wrap" aria-label="Progreso del módulo"><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><div id="progressLabel" class="progress-label">0 %</div></div>
+    <button id="changeLevel" class="change-btn" type="button">Cambiar nivel</button>
+  </div></div>
+  <div id="audioStatus" class="audio-status hidden" role="status" aria-live="polite"></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Navegación del módulo"></aside>
+    <main class="main">
+      <section class="hero"><div class="eyebrow">Tema 7 · Presentaciones, ventas y clientes</div><h1>Explicar beneficios, precios y condiciones</h1><p id="heroText"></p><p><a class="website-link" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com</a></p></section>
+      <div id="sections"></div>
+    </main>
+  </div>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  habilidad: "Explicar beneficios, precios y condiciones",
+  contexto: "Presentaciones, ventas y clientes",
+  a2: {
+    routeLabel: "Tu ruta: 🌱 A2 — Principiante",
+    hero: "Aprenderás a explicar de forma sencilla qué incluye una oferta, qué beneficio ofrece, cuánto cuesta y qué condición debe conocer el cliente. / You will learn to explain what an offer includes, its benefit, its price, and one important condition.",
+    objetivo: "Al terminar esta semana podrás explicar una oferta sencilla a un cliente: qué incluye, para qué le sirve, cuánto cuesta y una condición importante.",
+    situacion: `<p><strong>ES:</strong> Trabajas en una empresa que ofrece un servicio de soporte para pequeños negocios. Un cliente quiere saber qué recibe, cuánto cuesta y si puede cancelar.</p><p><strong>EN:</strong> You work for a company that offers a support service for small businesses. A client wants to know what they receive, how much it costs, and whether they can cancel.</p><ul><li><strong>Quién habla / Who:</strong> tú, representante de la empresa.</li><li><strong>Con quién / With whom:</strong> un cliente potencial.</li><li><strong>Objetivo / Goal:</strong> explicar la oferta con claridad.</li><li><strong>Dificultad / Difficulty:</strong> decir varias ideas de forma ordenada sin usar lenguaje demasiado complejo.</li></ul>`,
+    vocab: [
+      {w:"incluye",en:"includes",pron:"in-CLU-ye",meaning:"Indica lo que forma parte de la oferta.",ex:"El servicio incluye soporte por chat."},
+      {w:"beneficio",en:"benefit",pron:"be-ne-FI-cio",meaning:"Resultado útil que recibe el cliente.",ex:"El beneficio principal es ahorrar tiempo."},
+      {w:"precio",en:"price",pron:"PRE-cio",meaning:"Cantidad que paga el cliente.",ex:"El precio es de 65 dólares al mes."},
+      {w:"incluido",en:"included",pron:"in-clu-I-do",meaning:"Algo que ya está dentro del precio.",ex:"El soporte está incluido en el precio."},
+      {w:"coste adicional",en:"additional cost",pron:"COS-te a-di-cio-NAL",meaning:"Dinero extra que no está incluido.",ex:"No hay coste adicional por el soporte."},
+      {w:"cancelar",en:"to cancel",pron:"can-ce-LAR",meaning:"Terminar un servicio o suscripción.",ex:"Puede cancelar antes de la próxima renovación."}
+    ],
+    phrases: [
+      {group:"Explicar qué incluye",text:"El servicio incluye soporte por chat.",en:"The service includes chat support.",use:"Úsala para presentar una característica concreta de la oferta."},
+      {group:"Explicar el beneficio",text:"Esto le permite resolver dudas rápidamente.",en:"This allows you to resolve questions quickly.",use:"Conecta una característica con una utilidad para el cliente."},
+      {group:"Decir el precio",text:"El precio es de 65 dólares al mes.",en:"The price is 65 dollars per month.",use:"Da la cifra de forma directa y clara."},
+      {group:"Aclarar qué está incluido",text:"Todo el soporte está incluido en el precio.",en:"All support is included in the price.",use:"Aclara si el cliente tendrá que pagar algo adicional."},
+      {group:"Explicar una condición",text:"Puede cancelar antes de la próxima renovación.",en:"You can cancel before the next renewal.",use:"Explica una condición concreta sin añadir teoría innecesaria."}
+    ],
+    builder: {
+      intro:"Construye una explicación de cuatro partes. Elige una opción en cada fila y escucha el resultado.",
+      rows:[
+        {label:"1. Incluye",prefix:"El servicio incluye ",options:["soporte por chat","una revisión mensual","dos sesiones de ayuda"]},
+        {label:"2. Beneficio",prefix:". Esto le permite ",options:["resolver dudas rápidamente","revisar sus avances","recibir ayuda cuando la necesita"]},
+        {label:"3. Precio",prefix:". El precio es de ",options:["65 dólares al mes","90 dólares al mes","250 dólares por proyecto"]},
+        {label:"4. Condición",prefix:". ",options:["Puede cancelar antes de la próxima renovación.","No hay permanencia mínima.","El soporte está incluido durante el primer mes."]}
+      ]
+    },
+    grammar:[
+      {title:"Esto le permite + infinitivo",body:"<strong>Situación:</strong> quieres explicar para qué sirve una característica.<br><strong>Intención:</strong> conectar característica y beneficio.<br><strong>Estructura:</strong> Esto le permite + infinitivo.<br><strong>Ejemplo:</strong> Esto le permite <strong>resolver</strong> dudas rápidamente.",audio:"Esto le permite resolver dudas rápidamente."},
+      {title:"El precio es de + cantidad",body:"<strong>Situación:</strong> el cliente pregunta cuánto cuesta.<br><strong>Intención:</strong> dar una cifra clara.<br><strong>Estructura:</strong> El precio es de + cantidad + periodo.<br><strong>Ejemplo:</strong> El precio es de 65 dólares al mes.",audio:"El precio es de sesenta y cinco dólares al mes."},
+      {title:"Puede + infinitivo",body:"<strong>Situación:</strong> necesitas explicar una posibilidad o condición sencilla.<br><strong>Intención:</strong> decir qué puede hacer el cliente.<br><strong>Estructura:</strong> Puede + infinitivo.<br><strong>Ejemplo:</strong> Puede cancelar antes de la próxima renovación.",audio:"Puede cancelar antes de la próxima renovación."}
+    ],
+    register:{prompt:"Un cliente nuevo pregunta por la cancelación. ¿Qué opción funciona mejor?",options:[
+      {text:"Puedes cancelar cuando quieras, no pasa nada.",kind:"warn",feedback:"Es comprensible, pero resulta demasiado informal y poco precisa para un cliente nuevo."},
+      {text:"Puede cancelar antes de la próxima renovación.",kind:"good",feedback:"Funciona bien porque es clara, profesional y explica exactamente la condición."},
+      {text:"La cancelación se efectuará conforme a las disposiciones establecidas.",kind:"warn",feedback:"Es demasiado formal para una explicación sencilla y puede dificultar la comprensión."}
+    ]},
+    modelo:{text:"El servicio incluye soporte por chat y una revisión mensual. Esto le permite resolver dudas rápidamente y revisar sus avances. El precio es de 65 dólares al mes y todo el soporte está incluido. No hay permanencia mínima. Puede cancelar antes de la próxima renovación.",blocks:["El servicio incluye soporte por chat y una revisión mensual.","Esto le permite resolver dudas rápidamente y revisar sus avances.","El precio es de 65 dólares al mes y todo el soporte está incluido.","No hay permanencia mínima.","Puede cancelar antes de la próxima renovación."]},
+    quiz:[
+      {type:"mc",q:"¿Qué frase explica un beneficio?",options:["El servicio incluye soporte.","Esto le permite resolver dudas rápidamente.","El precio es de 65 dólares."],answer:1,exp:"La frase explica qué utilidad obtiene el cliente."},
+      {type:"fill",q:"Completa: El precio ___ de 65 dólares al mes.",answer:"es",audio:"El precio es de 65 dólares al mes.",exp:"Para presentar un precio fijo usamos «El precio es de…»."},
+      {type:"mc",q:"¿Qué opción aclara mejor que no hay un pago extra?",options:["El soporte está incluido en el precio.","El soporte es bueno.","Hay soporte."],answer:0,exp:"«Está incluido en el precio» responde directamente a la posible duda sobre un coste adicional."}
+    ],
+    practica:`<p><strong>Situación:</strong> Un cliente te pregunta por un servicio de soporte.</p><p><strong>Tu objetivo:</strong> responde en 4–5 frases.</p><p><strong>Incluye:</strong></p><ul><li>qué incluye;</li><li>un beneficio;</li><li>el precio;</li><li>una condición.</li></ul><div class="callout"><strong>Puedes usar:</strong><br>El servicio incluye…<br>Esto le permite…<br>El precio es de…<br>Puede… / No hay…</div>`,
+    modelAnswer:"El servicio incluye soporte por chat y una revisión mensual. Esto le permite resolver dudas rápidamente. El precio es de 65 dólares al mes y el soporte está incluido. No hay permanencia mínima. Puede cancelar antes de la próxima renovación.",
+    checklist:["Puedo explicar qué incluye una oferta. / I can explain what an offer includes.","Puedo relacionar una característica con un beneficio. / I can connect a feature with a benefit.","Puedo decir el precio con claridad. / I can state the price clearly.","Puedo explicar una condición importante. / I can explain an important condition.","Puedo construir una respuesta breve para un cliente. / I can build a short response for a client."]
+  },
+  b1: {
+    routeLabel:"Tu ruta: 💼 B1 — Intermedio",
+    hero:"Vas a practicar cómo presentar una oferta de forma organizada: explicar qué incluye, convertir características en beneficios relevantes, contextualizar el precio y aclarar condiciones sin generar ambigüedad.",
+    objetivo:"Al terminar esta semana podrás explicar una propuesta a un cliente, relacionar sus características con beneficios concretos, presentar el precio con contexto y aclarar las condiciones principales.",
+    situacion:`<p>Un cliente potencial está comparando dos proveedores. Ya conoce el tipo de servicio, pero quiere entender por qué tu opción puede resultarle útil, cuánto pagará realmente y qué condiciones podrían afectar la contratación.</p><ul><li><strong>Quién habla:</strong> tú, responsable de presentar la propuesta.</li><li><strong>Con quién:</strong> un cliente potencial.</li><li><strong>Contexto:</strong> conversación comercial después de una primera reunión.</li><li><strong>Objetivo:</strong> explicar la oferta de manera clara y facilitar una decisión informada.</li><li><strong>Dificultad:</strong> no limitarte a enumerar características ni sonar defensivo cuando hablas del precio.</li></ul>`,
+    vocab:[
+      {w:"incluido en el precio",meaning:"Indica que un elemento ya forma parte de la tarifa.",ex:"La implementación inicial está incluida en el precio.",extra:"También: estar incluido en la tarifa."},
+      {w:"coste adicional",meaning:"Importe que se cobra aparte del precio base.",ex:"La personalización avanzada tiene un coste adicional.",extra:"Útil para distinguir incluidos y extras."},
+      {w:"tarifa",meaning:"Precio establecido por un servicio.",ex:"La tarifa mensual es de 120 dólares.",extra:"En servicios suele sonar más específico que «precio»."},
+      {w:"plazo de pago",meaning:"Tiempo acordado para realizar un pago.",ex:"El plazo de pago es de 15 días.",extra:"Colocación frecuente: ampliar / cumplir el plazo de pago."},
+      {w:"renovación",meaning:"Continuación de un servicio al terminar un periodo.",ex:"La renovación es mensual.",extra:"Puede ser automática o requerir confirmación."},
+      {w:"alcance",meaning:"Conjunto de elementos que cubre una propuesta.",ex:"El alcance incluye soporte y dos revisiones.",extra:"Muy útil para delimitar qué cubre y qué no cubre una oferta."},
+      {w:"valor",meaning:"Utilidad o resultado que el cliente obtiene de la oferta.",ex:"El valor principal está en reducir el tiempo de respuesta.",extra:"Evita usar «valor» como simple sinónimo de precio en este contexto."}
+    ],
+    phrases:[
+      {group:"Presentar el alcance",text:"La propuesta incluye…",use:"Introduce el contenido principal de la oferta."},
+      {group:"Presentar el alcance",text:"Dentro de esta tarifa están incluidos…",use:"Aclara qué cubre exactamente el precio."},
+      {group:"Explicar valor",text:"La ventaja principal es que…",use:"Ayuda a priorizar un beneficio relevante para el cliente."},
+      {group:"Explicar valor",text:"Esto le permite…",use:"Conecta una característica con un resultado."},
+      {group:"Contextualizar el precio",text:"La tarifa es de… e incluye…",use:"Evita presentar la cifra de forma aislada."},
+      {group:"Contextualizar el precio",text:"El coste total dependerá de…",use:"Sirve cuando el precio cambia según una variable."},
+      {group:"Aclarar condiciones",text:"La condición principal que conviene tener en cuenta es…",use:"Introduce una condición importante sin esconderla."},
+      {group:"Aclarar condiciones",text:"En caso de cancelación…",use:"Explica una consecuencia asociada a un caso concreto."}
+    ],
+    builder:{intro:"Organiza tu explicación en cuatro movimientos. Selecciona una alternativa en cada paso y observa cómo cambia el mensaje.",rows:[
+      {label:"1. Alcance",prefix:"La propuesta incluye ",options:["configuración inicial, dos sesiones y soporte","capacitación y soporte durante 30 días","implementación y una revisión mensual"]},
+      {label:"2. Valor",prefix:". La ventaja principal es que ",options:["reduce el trabajo interno del equipo","permite resolver incidencias durante la implementación","centraliza el seguimiento del proyecto"]},
+      {label:"3. Precio",prefix:". La tarifa es de ",options:["480 dólares e incluye todo lo anterior","900 dólares por la implementación completa","120 dólares al mes, con soporte incluido"]},
+      {label:"4. Condición",prefix:". ",options:["En caso de cancelación antes de iniciar, no se genera ningún coste adicional.","El 50 % se paga al confirmar y el saldo al finalizar.","La renovación es mensual y puede cancelarse antes del siguiente periodo."]}
+    ]},
+    grammar:[
+      {title:"Relativas con «que» para explicar beneficios",body:"<strong>Situación:</strong> necesitas relacionar una característica con su efecto.<br><strong>Intención:</strong> explicar valor, no solo enumerar.<br><strong>Estructura:</strong> Incluye un sistema <strong>que permite</strong> responder más rápido.<br><strong>Decisión:</strong> la relativa integra la característica y su utilidad en una sola idea."},
+      {title:"Condicionales con «si» para explicar condiciones",body:"<strong>Situación:</strong> aclaras qué ocurre en un caso concreto.<br><strong>Intención:</strong> evitar condiciones vagas.<br><strong>Estructura:</strong> Si cancela antes de la renovación, no se genera el siguiente cobro."},
+      {title:"«En caso de + sustantivo»",body:"<strong>Situación:</strong> quieres presentar una condición de forma compacta.<br><strong>Ejemplo:</strong> En caso de cancelación, necesitamos aviso previo.<br><strong>Registro:</strong> más formal que una condición con «si», pero frecuente en comunicación profesional."},
+      {title:"«Depender de» para precios variables",body:"<strong>Situación:</strong> no existe un precio único.<br><strong>Ejemplo:</strong> El coste final dependerá del número de usuarios.<br><strong>Precisión:</strong> conviene nombrar claramente la variable que modifica el precio."}
+    ],
+    register:{prompt:"Un cliente pregunta: «¿Por qué cuesta más que la otra opción?»",options:[
+      {text:"Porque nuestro servicio es mejor.",kind:"warn",feedback:"La afirmación es demasiado general y no aporta un criterio verificable."},
+      {text:"La tarifa es más alta porque incluye implementación y soporte semanal. Si esos elementos son importantes para su equipo, la diferencia de precio se traduce en menos trabajo interno.",kind:"good",feedback:"La respuesta explica la diferencia y la conecta con una consecuencia relevante para el cliente."},
+      {text:"Ese es nuestro precio y no podemos bajarlo.",kind:"warn",feedback:"Puede ser necesario establecer límites, pero esta respuesta no explica valor ni contexto."}
+    ]},
+    modelo:{text:"La propuesta incluye la configuración inicial, dos sesiones de implementación y soporte semanal durante el primer mes. La ventaja principal es que su equipo no tiene que organizar el proceso por su cuenta y puede resolver dudas mientras empieza a utilizar el servicio. La tarifa es de 480 dólares y todo lo anterior está incluido. Si necesitan soporte adicional después del primer mes, podemos añadirlo con una tarifa mensual. En caso de cancelación antes de iniciar la implementación, no se genera ningún coste adicional."},
+    quiz:[
+      {type:"mc",q:"¿Qué opción explica mejor el valor de una característica?",options:["Incluye soporte semanal.","Incluye soporte semanal, lo que permite resolver incidencias sin esperar a la siguiente revisión.","Tenemos soporte."],answer:1,exp:"La segunda opción conecta la característica con un resultado concreto."},
+      {type:"mc",q:"¿Cuál formula mejor una condición?",options:["Si cancelan después del inicio, se cobra la fase ya ejecutada.","No se puede cancelar y punto.","La cancelación es complicada."],answer:0,exp:"La primera opción define el supuesto y la consecuencia con precisión."},
+      {type:"fill",q:"Completa: El coste final ______ del número de usuarios.",answer:"dependerá",exp:"«Dependerá de» permite explicar una variable que afecta al precio."}
+    ],
+    practica:`<p><strong>Situación:</strong> Un cliente te pide una explicación antes de aprobar una propuesta.</p><p><strong>Incluye:</strong></p><ul><li>qué cubre la propuesta;</li><li>dos beneficios relacionados con su necesidad;</li><li>precio o criterio de precio;</li><li>una condición de pago o cancelación;</li><li>una frase final que facilite el siguiente paso.</li></ul><p>Escribe entre 5 y 7 frases y utiliza al menos un conector como <strong>además, por eso, de este modo</strong> o <strong>si</strong>.</p>`,
+    modelAnswer:"La propuesta incluye la configuración inicial, capacitación para el equipo y soporte durante 30 días. Esto les permite empezar con menos carga interna y resolver incidencias durante la implementación. Además, la tarifa total es de 900 dólares y no hay costes adicionales durante ese periodo. El 50 % se paga al confirmar y el saldo al finalizar la configuración. Si necesitan cancelar antes de comenzar, pueden hacerlo sin coste. Si esta estructura encaja con lo que necesitan, puedo enviarles hoy el documento final.",
+    checklist:["Puedo explicar el alcance sin limitarme a enumerar características.","Puedo relacionar características con beneficios relevantes.","Puedo presentar el precio con suficiente contexto.","Puedo aclarar condiciones usando formulaciones precisas.","Puedo organizar una respuesta y cerrar con un siguiente paso claro."]
+  },
+  b2: {
+    routeLabel:"Tu ruta: 🚀 B2 — Avanzado",
+    hero:"Vas a trabajar cómo explicar valor, estructura de precios y condiciones cuando la oferta incluye variables, exclusiones, posibles objeciones o restricciones. El objetivo es mantener precisión comercial sin perder claridad ni credibilidad.",
+    objetivo:"Al terminar esta semana podrás defender una propuesta compleja, justificar su estructura de precios, delimitar el alcance, anticipar posibles malentendidos y explicar condiciones sensibles con precisión y tacto.",
+    situacion:`<p>Presentas una propuesta a un cliente que ya ha recibido una oferta más barata de un competidor. Tu propuesta tiene un precio superior porque incluye implementación, soporte y un alcance más amplio. Además, existe un compromiso mínimo durante la fase inicial.</p><ul><li><strong>Quién habla:</strong> tú, responsable comercial o consultor.</li><li><strong>Con quién:</strong> un cliente con poder de decisión.</li><li><strong>Contexto:</strong> revisión final de una propuesta.</li><li><strong>Objetivo:</strong> explicar el valor y las condiciones sin descalificar a la competencia ni ocultar restricciones.</li><li><strong>Dificultad:</strong> sostener el precio ante una comparación directa y aclarar una condición potencialmente sensible.</li></ul>`,
+    vocab:[
+      {w:"estructura de precios",meaning:"Forma en que se distribuyen los distintos componentes del coste.",ex:"La estructura de precios combina una tarifa inicial y una cuota mensual.",extra:"Permite hablar del modelo de cobro sin reducirlo a una sola cifra."},
+      {w:"alcance incluido",meaning:"Conjunto preciso de entregables o servicios cubiertos por la propuesta.",ex:"El alcance incluido cubre implementación, soporte y dos revisiones.",extra:"Contrasta con «fuera de alcance»."},
+      {w:"supuesto",meaning:"Condición de partida utilizada para calcular o formular la propuesta.",ex:"Este precio parte del supuesto de hasta 20 usuarios.",extra:"Hacer explícitos los supuestos evita discrepancias posteriores."},
+      {w:"exclusión",meaning:"Elemento que la propuesta no cubre.",ex:"La migración de datos queda fuera del alcance.",extra:"Conviene explicarla antes del cierre, no ocultarla en letra pequeña."},
+      {w:"recargo",meaning:"Importe adicional aplicado cuando se cumple una condición específica.",ex:"Las solicitudes urgentes pueden generar un recargo.",extra:"Es preferible definir qué activa el recargo y cómo se calcula."},
+      {w:"ajuste de tarifa",meaning:"Modificación del precio cuando cambia una variable acordada.",ex:"La tarifa se revisa si cambia el volumen contratado.",extra:"Más preciso que hablar vagamente de un posible aumento."},
+      {w:"compromiso mínimo",meaning:"Periodo o volumen mínimo que forma parte de la condición comercial.",ex:"La fase inicial requiere un compromiso mínimo de tres meses.",extra:"Puede percibirse de forma distinta a «permanencia» según el contexto."},
+      {w:"coste total de implementación",meaning:"Importe completo asociado a poner en marcha la solución.",ex:"El coste total de implementación incluye configuración y capacitación.",extra:"Útil cuando comparar solo cuotas mensuales sería engañoso."}
+    ],
+    phrases:[
+      {group:"Delimitar alcance",text:"Para evitar ambigüedades, el alcance cubre…",use:"Hace explícito qué forma parte de la propuesta y prepara la conversación sobre límites."},
+      {group:"Delimitar alcance",text:"Queda fuera de esta propuesta…",use:"Introduce una exclusión con transparencia."},
+      {group:"Justificar el precio",text:"La diferencia de tarifa responde principalmente a…",use:"Explica una diferencia sin afirmar de forma genérica que la oferta es «mejor»."},
+      {group:"Justificar el precio",text:"El coste se distribuye entre…",use:"Descompone el precio cuando existen varias fases o componentes."},
+      {group:"Explicar condiciones sensibles",text:"Esta condición se aplica únicamente si…",use:"Limita el alcance de una condición para evitar interpretaciones excesivas."},
+      {group:"Explicar condiciones sensibles",text:"En ese supuesto, el ajuste sería…",use:"Vincula una condición con su consecuencia exacta."},
+      {group:"Responder a una comparación",text:"Si comparamos únicamente la cuota mensual, la diferencia es…; si incluimos…, el coste total cambia.",use:"Permite reformular el criterio de comparación sin esquivar la pregunta."}
+    ],
+    builder:{intro:"No construyas una respuesta con plantilla cerrada. Elige la estrategia comunicativa que utilizarías en cada movimiento y observa una formulación posible.",rows:[
+      {label:"1. Encuadre",prefix:"",options:["Para comparar ambas propuestas con el mismo criterio, conviene revisar el alcance incluido.","Antes de hablar de la diferencia de tarifa, separaría implementación y servicio recurrente.","La cifra es importante, pero también lo es qué costes quedan fuera de cada propuesta."]},
+      {label:"2. Justificación",prefix:" ",options:["La diferencia responde principalmente a la implementación y al soporte durante la fase inicial.","Nuestro precio incorpora tareas que en la otra propuesta aparecen como servicios adicionales.","El coste total incluye acompañamiento y capacitación, no solo el acceso al servicio."]},
+      {label:"3. Condición",prefix:" ",options:["El compromiso mínimo se aplica únicamente durante los tres primeros meses.","Si el volumen supera el supuesto acordado, la tarifa se revisaría antes de ampliar el alcance.","Las solicitudes fuera de alcance se cotizan por separado antes de ejecutarse."]},
+      {label:"4. Cierre",prefix:" ",options:["Si le parece, podemos revisar ahora qué elementos son realmente prioritarios para su equipo.","Puedo desglosar ambas opciones para que la comparación se base en el coste total y no solo en la cuota.","Si este marco de comparación le resulta útil, revisamos juntos los dos escenarios."]}
+    ]},
+    grammar:[
+      {title:"Condicional para introducir distancia y negociación",body:"<strong>Situación:</strong> necesitas plantear una consecuencia sin presentarla como automática.<br><strong>Intención:</strong> mantener margen de negociación y precisión.<br><strong>Estructura:</strong> Si aumentara el volumen, la tarifa <strong>se revisaría</strong> antes de ampliar el alcance.<br><strong>Matiz:</strong> el condicional reduce el carácter categórico y presenta el ajuste como parte de un escenario."},
+      {title:"Subjuntivo en condiciones no realizadas",body:"<strong>Situación:</strong> describes un escenario posible que todavía no ha ocurrido.<br><strong>Estructura:</strong> Si el volumen <strong>superara</strong> lo acordado, revisaríamos la tarifa.<br><strong>Decisión:</strong> frente a «si supera», esta opción introduce mayor distancia hipotética."},
+      {title:"Pasiva refleja para centrar el proceso",body:"<strong>Situación:</strong> la acción o política importa más que quién la ejecuta.<br><strong>Ejemplo:</strong> Las solicitudes fuera de alcance <strong>se cotizan</strong> por separado.<br><strong>Registro:</strong> frecuente en explicaciones de procedimientos y condiciones."},
+      {title:"Marcadores para limitar una condición",body:"<strong>Situación:</strong> una condición podría parecer demasiado amplia.<br><strong>Recursos:</strong> «únicamente si», «siempre que», «salvo que», «en el supuesto de que».<br><strong>Función:</strong> precisar cuándo sí y cuándo no se aplica una consecuencia."}
+    ],
+    register:{prompt:"El cliente dice: «La otra empresa cobra menos. ¿Por qué debería pagar más?»",options:[
+      {text:"Nuestra solución es de mayor calidad y por eso cuesta más.",kind:"warn",feedback:"La respuesta es defensiva y no define qué criterio justifica la diferencia."},
+      {text:"Si comparamos solo la cuota mensual, nuestra propuesta es más alta. La diferencia responde a que incluye implementación, capacitación y soporte durante la fase inicial. Si esos elementos no son prioritarios para ustedes, podemos revisar el alcance antes de comparar el coste total.",kind:"good",feedback:"Reconoce la diferencia, explica su origen y devuelve la conversación a los criterios relevantes sin descalificar a la competencia."},
+      {text:"Podríamos hacerle un descuento para igualar la otra oferta.",kind:"warn",feedback:"Puede ser una decisión comercial válida en otro momento, pero aquí evita justificar el valor y concede precio antes de entender la comparación."}
+    ]},
+    modelo:{text:"Si comparamos únicamente la cuota mensual, nuestra propuesta es más alta. La diferencia responde principalmente a que el alcance incluye implementación, capacitación y soporte durante los tres primeros meses. El precio parte del supuesto de hasta 20 usuarios; si el volumen superara ese límite, revisaríamos la tarifa antes de ampliar el servicio. La migración histórica de datos queda fuera del alcance y, si la necesitan, se cotiza por separado. También existe un compromiso mínimo de tres meses durante la fase inicial, porque el trabajo de implementación se distribuye a lo largo de ese periodo. Si le parece, podemos revisar qué componentes son prioritarios para su equipo y comparar el coste total de ambas alternativas con el mismo criterio."},
+    quiz:[
+      {type:"mc",q:"¿Qué formulación delimita mejor una condición sensible?",options:["Hay un recargo si cambia algo.","Las solicitudes urgentes pueden tener un recargo.","El recargo se aplica únicamente a solicitudes que requieran ejecución fuera del plazo estándar acordado."],answer:2,exp:"La tercera opción define con precisión el supuesto que activa el recargo."},
+      {type:"mc",q:"¿Qué respuesta mantiene mejor la neutralidad frente a un competidor?",options:["La otra propuesta es más barata porque ofrece menos.","La diferencia de tarifa responde a componentes de alcance que conviene comparar por separado.","Nuestro servicio es claramente superior."],answer:1,exp:"La formulación centra la comparación en criterios verificables y evita descalificar."},
+      {type:"mc",q:"Si quieres presentar un escenario más hipotético, ¿qué opción aporta mayor distancia?",options:["Si el volumen supera 20 usuarios, revisamos la tarifa.","Si el volumen superara 20 usuarios, revisaríamos la tarifa."],answer:1,exp:"Imperfecto de subjuntivo + condicional presenta el escenario con mayor distancia hipotética."},
+      {type:"mc",q:"Selecciona una formulación que pueda funcionar. Hay más de una respuesta válida para comparar precios sin descalificar al competidor.",options:["La otra empresa cobra menos porque su solución es inferior.","La diferencia de tarifa responde a componentes del alcance que conviene comparar por separado.","Si comparamos solo la cuota mensual, nuestra propuesta es más alta; si incluimos implementación y soporte, cambia el coste total."],answer:[1,2],exp:"Las dos últimas pueden funcionar. Una centra la conversación en el alcance y la otra hace explícito el criterio de comparación. La elección depende de cuánto detalle necesite el interlocutor."}
+    ],
+    practica:`<p><strong>Situación:</strong> El cliente está a punto de decidir entre tu propuesta y otra un 15 % más barata.</p><p><strong>Restricciones:</strong></p><ul><li>Tu oferta incluye implementación, soporte y capacitación.</li><li>El precio se calculó para un máximo de 20 usuarios.</li><li>Existe un compromiso mínimo de tres meses.</li><li>La migración histórica no está incluida.</li><li>No puedes descalificar al competidor ni ofrecer un descuento inmediato.</li></ul><p><strong>Tu respuesta debe:</strong> reconocer la comparación de precio, justificar la diferencia con criterios verificables, explicar dos condiciones, anticipar una posible objeción y cerrar proponiendo un criterio de comparación o siguiente paso. Escribe entre 8 y 10 frases.</p>`,
+    modelAnswer:"Entiendo la comparación y, si miramos únicamente la cuota mensual, nuestra propuesta es aproximadamente un 15 % más alta. La diferencia responde a que el alcance incluye implementación, capacitación y soporte durante la fase inicial. El precio parte del supuesto de hasta 20 usuarios; si ese volumen aumentara, revisaríamos la tarifa antes de ampliar el servicio. También existe un compromiso mínimo de tres meses, porque la implementación y el acompañamiento se distribuyen durante ese periodo. La migración histórica no está incluida y se cotizaría por separado si fuera necesaria. Esto evita incorporar al precio base un trabajo que quizá su equipo no necesite. Si para ustedes la prioridad es minimizar la cuota mensual, conviene compararlo de forma explícita; si la prioridad es reducir carga interna durante la puesta en marcha, el alcance cambia la comparación. Si le parece, revisamos ambos escenarios con el coste total para que puedan decidir con el mismo criterio.",
+    checklist:["Puedo delimitar alcance, supuestos y exclusiones con precisión.","Puedo justificar una diferencia de precio con criterios verificables.","Puedo explicar condiciones sensibles sin sonar evasivo ni excesivamente categórico.","Puedo adaptar registro, distancia y matiz al interlocutor.","Puedo reaccionar a una comparación de precio y conducir la conversación hacia un criterio útil de decisión."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionsMeta=[
+  ["objetivo","🎯 1. Tu objetivo esta semana"],["situacion","🏢 2. La situación"],["vocabulario","🗣️ 3. Vocabulario clave"],["frases","💬 4. Frases que puedes usar"],["construye","🧩 5. Construye tu mensaje"],["gramatica","📚 6. Gramática que necesitas"],["registro","🎭 7. Elige el registro"],["modelo","💼 8. Mira cómo se hace"],["comprueba","✍️ 9. Comprueba lo que aprendiste"],["practica","🏢 10. Ahora te toca a ti"],["modelo-respuesta","💡 11. Ver modelo"],["checklist","✅ 12. Checklist final"]
+];
+
+let currentLevel=null;
+let completed=new Set();
+let targets=new Set();
+let selectedBuilder=[];
+let quizDone=new Set();
+let availableVoice=null;
+let audioStatusTimer=null;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+
+function audioButtons(text){
+  if(currentLevel!=="a2") return "";
+  const safe=esc(text);
+  return `<div class="audio-row"><button type="button" class="audio-btn" data-speak="${safe}" data-rate="0.96" aria-label="Escuchar a velocidad normal: ${safe}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="${safe}" data-rate="0.72" aria-label="Escuchar lentamente: ${safe}">🐢 Lento / Slow</button></div>`;
+}
+
+function selectSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices=window.speechSynthesis.getVoices()||[];
+  const exact=["es-CO","es-MX","es-US","es-419"];
+  for(const lang of exact){
+    const found=voices.find(v=>(v.lang||"").toLowerCase()===lang.toLowerCase());
+    if(found) return found;
+  }
+  return voices.find(v=>/^es[-_]/i.test(v.lang||""))||null;
+}
+function refreshVoices(){availableVoice=selectSpanishVoice();}
+if("speechSynthesis" in window){
+  refreshVoices();
+  window.speechSynthesis.addEventListener?.("voiceschanged",refreshVoices);
+}
+function showAudioStatus(message){
+  const box=$("#audioStatus");
+  if(!box) return;
+  box.textContent=message;
+  box.classList.remove("hidden");
+  clearTimeout(audioStatusTimer);
+  audioStatusTimer=setTimeout(()=>box.classList.add("hidden"),3500);
+}
+function speak(text,rate=0.96){
+  if(!("speechSynthesis" in window) || typeof window.SpeechSynthesisUtterance!=="function"){
+    showAudioStatus("El audio no está disponible en este navegador. El resto del módulo funciona normalmente.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new window.SpeechSynthesisUtterance(text);
+  refreshVoices();
+  u.lang=availableVoice?.lang||"es-CO";
+  if(availableVoice) u.voice=availableVoice;
+  u.rate=rate;
+  window.speechSynthesis.speak(u);
+}
+
+function buildTargets(){
+  targets.clear();
+  const d=contenido[currentLevel];
+  sectionsMeta.forEach(([id])=>targets.add(`section:${id}`));
+  d.vocab.forEach((_,i)=>targets.add(`vocab:${i}`));
+  d.phrases.forEach((_,i)=>targets.add(`phrase:${i}`));
+  if(currentLevel==="a2") targets.add("vocab:recovery");
+  targets.add("builder");
+  targets.add("register");
+  d.quiz.forEach((_,i)=>targets.add(`quiz:${i}`));
+  targets.add("practice");
+  targets.add("model-answer");
+  d.checklist.forEach((_,i)=>targets.add(`check:${i}`));
+}
+function resetState(){
+  completed.clear();
+  selectedBuilder=[];
+  quizDone.clear();
+  buildTargets();
+  updateProgress();
+}
+function mark(key){
+  if(targets.has(key)) completed.add(key);
+  updateProgress();
+}
+function unmark(key){
+  completed.delete(key);
+  updateProgress();
+}
+function updateProgress(){
+  const total=targets.size||1;
+  const pct=Math.round((completed.size/total)*100);
+  if($("#progressBar")) $("#progressBar").style.width=pct+"%";
+  if($("#progressLabel")) $("#progressLabel").textContent=pct+" %";
+}
+
+function nav(){
+  const sb=$(".sidebar");
+  sb.innerHTML=sectionsMeta.map(([id,label],i)=>`<button class="nav-btn ${i===0?'active':''}" data-target="${id}" type="button">${label.replace(/^\S+\s/,"")}</button>`).join("");
+  sb.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>document.getElementById(b.dataset.target).scrollIntoView({behavior:"smooth",block:"start"})));
+}
+function sec(id,kicker,title,body){
+  return `<section id="${id}" class="section trackable"><div class="section-kicker">${kicker}</div><h2>${title}</h2>${body}<div class="section-actions"><button type="button" class="prev-sec">Anterior</button><button type="button" class="next-sec">Siguiente</button></div></section>`;
+}
+
+function render(){
+  const d=contenido[currentLevel];
+  $("#routeBadge").textContent=d.routeLabel;
+  $("#heroText").textContent=d.hero;
+  nav();
+  let html="";
+  html+=sec("objetivo",sectionsMeta[0][1],"Qué podrás hacer",`<p>${d.objetivo}</p><div class="callout">Al final del módulo comprobarás si ya puedes hacerlo.</div>`);
+  html+=sec("situacion",sectionsMeta[1][1],"Una situación profesional realista",d.situacion);
+
+  const vocabCards=d.vocab.map((v,i)=>`<article class="card flip-card" data-vocab="${i}"><button type="button" class="vocab-toggle" aria-expanded="false"><span class="front">${esc(v.w)}</span>${currentLevel==='a2'?`<span class="small">${esc(v.pron||'')}</span>`:''}<span class="small">Pulsa para ver significado y ejemplo</span></button><div class="reveal hidden"><p>${currentLevel==='a2'?`<strong>EN:</strong> ${esc(v.en)}<br>`:''}${esc(v.meaning)}</p><p><strong>Ejemplo:</strong> ${esc(v.ex)}</p>${v.extra?`<p class="small">${esc(v.extra)}</p>`:''}${audioButtons(v.w)}${audioButtons(v.ex)}</div></article>`).join("");
+  const recovery=currentLevel==='a2'?`<div class="callout"><strong>Recupera la palabra</strong><p>¿Cómo dices <em>additional cost</em> en español?</p><div class="token-wrap"><button class="choice-btn vocab-recovery" type="button" data-ok="false">precio</button><button class="choice-btn vocab-recovery" type="button" data-ok="true">coste adicional</button><button class="choice-btn vocab-recovery" type="button" data-ok="false">beneficio</button></div><div id="vocabFeedback" class="feedback hidden" aria-live="polite"></div></div>`:'';
+  html+=sec("vocabulario",sectionsMeta[2][1],"Palabras y expresiones para explicar una oferta",`<div class="cards">${vocabCards}</div>${recovery}`);
+
+  let phraseIndex=0;
+  const groups={};
+  d.phrases.forEach(p=>(groups[p.group]??=[]).push(p));
+  const phraseHtml=Object.entries(groups).map(([g,items])=>`<div class="phrase-group"><h3>${esc(g)}</h3>${items.map(p=>{const idx=phraseIndex++;return `<div class="phrase"><div class="phrase-line">${esc(p.text)}</div>${currentLevel==='a2'&&p.en?`<div class="small">${esc(p.en)}</div>`:''}${audioButtons(p.text)}<button type="button" class="use-btn" data-phrase="${idx}" aria-expanded="false">Ver cuándo usarla</button><div class="reveal hidden">${esc(p.use)}</div></div>`}).join("")}</div>`).join("");
+  html+=sec("frases",sectionsMeta[3][1],"Expresiones según su función",phraseHtml);
+
+  const builderRows=d.builder.rows.map((r,ri)=>`<div class="builder-row"><strong>${esc(r.label)}</strong><div class="token-wrap">${r.options.map(o=>`<button type="button" class="token builder-token" data-row="${ri}" data-value="${esc(o)}">${esc(o)}</button>`).join("")}</div></div>`).join("");
+  html+=sec("construye",sectionsMeta[4][1],"Organiza tu explicación",`<p>${esc(d.builder.intro)}</p><div class="builder">${builderRows}<div id="builderOutput" class="builder-output" aria-live="polite">Selecciona una opción en cada paso.</div><div id="builderAudio"></div></div>`);
+
+  html+=sec("gramatica",sectionsMeta[5][1],"Solo la gramática que necesitas para esta habilidad",d.grammar.map(g=>`<details class="grammar-item"><summary>${esc(g.title)}</summary><p>${g.body}</p>${g.audio?audioButtons(g.audio):''}</details>`).join(""));
+  html+=sec("registro",sectionsMeta[6][1],"¿Qué formulación encaja mejor?",`<div class="scenario"><p><strong>Situación:</strong> ${esc(d.register.prompt)}</p><div>${d.register.options.map((o,i)=>`<button type="button" class="choice-btn register-option" data-index="${i}">${esc(o.text)}</button>`).join("")}</div><div id="registerAudio">${currentLevel==='a2'?d.register.options.map(o=>audioButtons(o.text)).join(''):''}</div><div id="registerFeedback" class="feedback hidden" aria-live="polite"></div></div>`);
+
+  const modelBlocks=d.modelo.blocks&&currentLevel==='a2'?`<div class="meaning-blocks">${d.modelo.blocks.map(b=>`<div class="meaning-block">${esc(b)}${audioButtons(b)}</div>`).join("")}</div>`:'';
+  html+=sec("modelo",sectionsMeta[7][1],"Una explicación profesional completa",`<div class="callout">${esc(d.modelo.text)}</div>${audioButtons(d.modelo.text)}${modelBlocks}`);
+  html+=sec("comprueba",sectionsMeta[8][1],"Mini práctica antes de producir",`<div id="quizArea">${d.quiz.map((q,i)=>renderQuiz(q,i)).join("")}</div>`);
+  html+=sec("practica",sectionsMeta[9][1],"Escribe tu propia respuesta",`<div class="practice-box">${d.practica}${currentLevel==='a2'?`<div class="audio-row">${["El servicio incluye","Esto le permite","El precio es de","Puede cancelar"].map(x=>audioButtons(x)).join("")}</div>`:''}<label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" placeholder="Escribe aquí..."></textarea><p class="status-note">Tu respuesta es abierta: compárala con el modelo, no se evaluará automáticamente.</p></div>`);
+  html+=sec("modelo-respuesta",sectionsMeta[10][1],"Compara tus decisiones",`<button type="button" id="showModel" class="primary-btn" aria-expanded="false">Ver una posible respuesta</button><div id="modelAnswer" class="model-box hidden"><p class="meta"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p><div class="callout">${esc(d.modelAnswer)}</div>${audioButtons(d.modelAnswer)}</div>`);
+  html+=sec("checklist",sectionsMeta[11][1],"Antes de terminar, comprueba",`<div class="checklist">${d.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join("")}</div><div id="finalReady" class="final-box hidden"><h2>🎯 Ya estás listo para practicar</h2><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href cuando exista la URL específica del reto de hoy --><a class="cta-link" href="#" onclick="return false;">🔥 Ir al reto de hoy</a></div>`);
+
+  $("#sections").innerHTML=html;
+  wire();
+  setupObserver();
+  updateProgress();
+}
+
+function renderQuiz(q,i){
+  const questionAudio=currentLevel==='a2' && q.audio ? audioButtons(q.audio) : '';
+  if(q.type==='mc'){
+    return `<div class="quiz-item" data-q="${i}"><p><strong>${i+1}. ${esc(q.q)}</strong></p>${questionAudio}${q.options.map((o,j)=>`<div class="quiz-option-row"><button type="button" class="choice-btn quiz-choice" data-q="${i}" data-opt="${j}">${esc(o)}</button>${currentLevel==='a2'?audioButtons(o):''}</div>`).join("")}<div class="feedback hidden" id="qfb${i}" aria-live="polite"></div></div>`;
+  }
+  return `<div class="quiz-item" data-q="${i}"><p><strong>${i+1}. ${esc(q.q)}</strong></p>${questionAudio}<div class="fill-row"><label class="sr-only" for="fill${i}">Respuesta ${i+1}</label><input aria-label="Respuesta ${i+1}" id="fill${i}"><button type="button" class="primary-btn fill-check" data-q="${i}">Comprobar</button></div><div class="feedback hidden" id="qfb${i}" aria-live="polite"></div></div>`;
+}
+
+function wire(){
+  document.querySelectorAll('.vocab-toggle').forEach(b=>b.addEventListener('click',()=>{
+    const card=b.closest('.flip-card');
+    const r=card.querySelector('.reveal');
+    r.classList.toggle('hidden');
+    b.setAttribute('aria-expanded',String(!r.classList.contains('hidden')));
+    mark(`vocab:${card.dataset.vocab}`);
+  }));
+  document.querySelectorAll('.use-btn').forEach(b=>b.addEventListener('click',()=>{
+    const r=b.nextElementSibling;
+    r.classList.toggle('hidden');
+    b.setAttribute('aria-expanded',String(!r.classList.contains('hidden')));
+    mark(`phrase:${b.dataset.phrase}`);
+  }));
+  document.querySelectorAll('.audio-btn').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speak,Number(b.dataset.rate))));
+  document.querySelectorAll('.vocab-recovery').forEach(b=>b.addEventListener('click',()=>{
+    const fb=$("#vocabFeedback");
+    fb.classList.remove('hidden');
+    const ok=b.dataset.ok==='true';
+    fb.textContent=ok?'Sí. «Coste adicional» corresponde a “additional cost”.':'Prueba otra vez. Piensa en un importe que se paga aparte.';
+    if(ok) mark('vocab:recovery');
+  }));
+  document.querySelectorAll('.builder-token').forEach(b=>b.addEventListener('click',()=>{
+    const r=Number(b.dataset.row);
+    selectedBuilder[r]=b.dataset.value;
+    document.querySelectorAll(`.builder-token[data-row="${r}"]`).forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    renderBuilder();
+  }));
+  document.querySelectorAll('.register-option').forEach(b=>b.addEventListener('click',()=>{
+    const o=contenido[currentLevel].register.options[Number(b.dataset.index)];
+    document.querySelectorAll('.register-option').forEach(x=>x.classList.remove('selected','good','warn'));
+    b.classList.add('selected',o.kind);
+    const fb=$("#registerFeedback");
+    fb.classList.remove('hidden');
+    fb.textContent=o.feedback;
+    mark('register');
+  }));
+  document.querySelectorAll('.quiz-choice').forEach(b=>b.addEventListener('click',()=>checkMC(b)));
+  document.querySelectorAll('.fill-check').forEach(b=>b.addEventListener('click',()=>checkFill(Number(b.dataset.q))));
+  $("#practiceText").addEventListener('input',e=>{
+    if(e.target.value.trim().length>=20) mark('practice'); else unmark('practice');
+  });
+  $("#showModel").addEventListener('click',e=>{
+    const box=$("#modelAnswer");
+    box.classList.toggle('hidden');
+    e.currentTarget.setAttribute('aria-expanded',String(!box.classList.contains('hidden')));
+    if(!box.classList.contains('hidden')) mark('model-answer');
+  });
+  document.querySelectorAll('.check-item input').forEach(c=>c.addEventListener('change',()=>{
+    const key=`check:${c.dataset.check}`;
+    c.checked?mark(key):unmark(key);
+    const all=[...document.querySelectorAll('.check-item input')];
+    $("#finalReady").classList.toggle('hidden',!all.every(x=>x.checked));
+  }));
+  document.querySelectorAll('.next-sec').forEach((b,i)=>b.addEventListener('click',()=>{
+    const n=sectionsMeta[i+1];
+    if(n) document.getElementById(n[0]).scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+  document.querySelectorAll('.prev-sec').forEach((b,i)=>b.addEventListener('click',()=>{
+    const p=sectionsMeta[i-1];
+    if(p) document.getElementById(p[0]).scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+}
+
+function renderBuilder(){
+  const d=contenido[currentLevel];
+  let text='';
+  d.builder.rows.forEach((r,i)=>{if(selectedBuilder[i]) text+=r.prefix+selectedBuilder[i]});
+  const out=$("#builderOutput");
+  out.textContent=text||'Selecciona una opción en cada paso.';
+  if(text&&currentLevel==='a2') $("#builderAudio").innerHTML=audioButtons(text); else $("#builderAudio").innerHTML='';
+  document.querySelectorAll('#builderAudio .audio-btn').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speak,Number(b.dataset.rate))));
+  if(selectedBuilder.filter(Boolean).length===d.builder.rows.length) mark('builder'); else unmark('builder');
+}
+
+function checkMC(b){
+  const qi=Number(b.dataset.q),oi=Number(b.dataset.opt),q=contenido[currentLevel].quiz[qi],fb=$("#qfb"+qi);
+  const valid=Array.isArray(q.answer)?q.answer.includes(oi):oi===q.answer;
+  document.querySelectorAll(`.quiz-choice[data-q="${qi}"]`).forEach(x=>x.classList.remove('good','warn'));
+  b.classList.add(valid?'good':'warn');
+  fb.classList.remove('hidden');
+  fb.textContent=(valid?'Puede funcionar. ':'Prueba otra vez. ')+q.exp;
+  if(valid){quizDone.add(qi);mark(`quiz:${qi}`)}
+}
+function normalizeAnswer(value){return value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function checkFill(qi){
+  const q=contenido[currentLevel].quiz[qi],val=normalizeAnswer($("#fill"+qi).value),ans=normalizeAnswer(q.answer),fb=$("#qfb"+qi);
+  fb.classList.remove('hidden');
+  if(val===ans){fb.textContent='Funciona. '+q.exp;quizDone.add(qi);mark(`quiz:${qi}`)}else fb.textContent='Prueba otra vez. '+q.exp;
+}
+function setupObserver(){
+  if(window._obs) window._obs.disconnect();
+  window._obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        mark(`section:${e.target.id}`);
+        document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.target===e.target.id));
+      }
+    });
+  },{threshold:.35});
+  document.querySelectorAll('.trackable').forEach(s=>window._obs.observe(s));
+}
+function choose(level){
+  currentLevel=level;
+  resetState();
+  $("#levelScreen").classList.add('hidden');
+  $("#module").classList.remove('hidden');
+  render();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+document.querySelectorAll('.level-btn').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.level)));
+$("#changeLevel").addEventListener('click',()=>{
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  $("#module").classList.add('hidden');
+  $("#levelScreen").classList.remove('hidden');
+  currentLevel=null;
+  completed.clear();
+  targets.clear();
+  window.scrollTo({top:0,behavior:'auto'});
+  document.querySelector('.level-btn[data-level="a2"]')?.focus();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#003893">
+  <title>Pedir actualizaciones y dar seguimiento | La Oficina en Español</title>
+  <style>
+    :root{
+      --azul:#003893;
+      --azul-oscuro:#002563;
+      --azul-claro:#eaf1ff;
+      --amarillo:#FCD116;
+      --rojo:#CE1126;
+      --blanco:#FFFFFF;
+      --negro:#000000;
+      --gris:#5a6472;
+      --gris-claro:#f5f7fa;
+      --borde:#d9e0e8;
+      --verde:#17643b;
+      --sombra:0 12px 34px rgba(0,56,147,.10);
+      --radio:18px;
+      --max:1080px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Montserrat, Arial, Helvetica, sans-serif;
+      color:var(--negro);
+      background:linear-gradient(180deg,#f7f9fc 0,#ffffff 28%,#f7f9fc 100%);
+      line-height:1.55;
+    }
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--azul)}
+    .hidden{display:none!important}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .shell{width:min(var(--max),calc(100% - 28px));margin:0 auto}
+
+    /* Pantalla de selección */
+    .level-screen{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:36px 0;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(252,209,22,.25),transparent 26%),
+        radial-gradient(circle at 95% 5%,rgba(0,56,147,.18),transparent 30%),
+        #f8fafc;
+    }
+    .level-wrap{width:min(980px,calc(100% - 28px))}
+    .brand-kicker{font-weight:800;color:var(--azul);letter-spacing:.04em;text-transform:uppercase;font-size:.82rem}
+    .level-card{
+      background:#fff;
+      border:1px solid var(--borde);
+      border-radius:28px;
+      box-shadow:var(--sombra);
+      padding:clamp(24px,4vw,46px);
+    }
+    h1,h2,h3{font-family:"Arial Black",Arial,Helvetica,sans-serif;line-height:1.15;margin:0;color:var(--azul-oscuro)}
+    .level-card h1{font-size:clamp(2rem,5vw,3.4rem);max-width:760px;margin-top:10px}
+    .lead{font-size:1.08rem;color:var(--gris);max-width:760px;margin:16px 0 28px}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .level-choice{
+      text-align:left;
+      min-height:220px;
+      border:2px solid var(--borde);
+      border-radius:20px;
+      background:#fff;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+    }
+    .level-choice:hover,.level-choice:focus-visible{transform:translateY(-2px);border-color:var(--azul);box-shadow:0 12px 24px rgba(0,56,147,.12);outline:none}
+    .level-choice .label{font-weight:900;font-size:1.15rem;color:var(--azul-oscuro)}
+    .level-choice p{margin:0;color:#3d4652}
+    .level-choice .choose{margin-top:auto;font-weight:800;color:var(--azul)}
+
+    /* Módulo */
+    .module-header{
+      position:sticky;top:0;z-index:40;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--borde);
+      backdrop-filter:blur(10px);
+    }
+    .header-inner{padding:12px 0;display:grid;gap:9px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .route-wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .route-badge{background:var(--azul);color:#fff;padding:7px 11px;border-radius:999px;font-weight:800;font-size:.9rem}
+    .btn-ghost{border:1px solid var(--borde);background:#fff;color:var(--azul);border-radius:999px;padding:8px 12px;font-weight:800}
+    .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--azul);outline:2px solid rgba(0,56,147,.18);outline-offset:2px}
+    .brand-small{font-weight:900;color:var(--azul-oscuro);white-space:nowrap}
+    .progress-row{display:flex;align-items:center;gap:10px}
+    .progress-track{height:10px;background:#e7ebf0;border-radius:999px;overflow:hidden;flex:1}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#255eb5);transition:width .25s ease}
+    .progress-text{font-weight:800;color:var(--azul-oscuro);min-width:48px;text-align:right;font-size:.9rem}
+
+    main{padding:28px 0 60px}
+    .hero{
+      background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+      color:#fff;border-radius:24px;padding:clamp(24px,4vw,42px);box-shadow:var(--sombra);margin-bottom:18px
+    }
+    .hero h1{color:#fff;font-size:clamp(2rem,5vw,3.3rem);max-width:850px}
+    .hero p{max-width:760px;margin:14px 0 0;color:#e9f0ff;font-size:1.06rem}
+    .eyebrow{display:inline-block;background:var(--amarillo);color:#1e2a38;padding:6px 10px;border-radius:999px;font-weight:900;margin-bottom:14px}
+
+    .section-nav{display:flex;gap:8px;overflow:auto;padding:4px 2px 14px;scrollbar-width:thin}
+    .section-nav button{flex:0 0 auto;border:1px solid var(--borde);background:#fff;border-radius:999px;padding:9px 12px;font-weight:800;color:#384454}
+    .section-nav button[aria-current="true"]{background:var(--azul);border-color:var(--azul);color:#fff}
+
+    .section-card{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);box-shadow:0 8px 22px rgba(20,40,70,.05);padding:clamp(20px,3.5vw,34px)}
+    .section-card h2{font-size:clamp(1.5rem,3vw,2.15rem);margin-bottom:10px}
+    .section-card .intro{color:var(--gris);margin:0 0 20px}
+    .info-box{border-left:5px solid var(--amarillo);background:#fff9dc;padding:16px 18px;border-radius:12px;margin:16px 0}
+    .mini-note{font-size:.92rem;color:var(--gris)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{border:1px solid var(--borde);border-radius:16px;padding:17px;background:#fff}
+    .card h3{font-size:1.05rem;margin-bottom:8px}
+    .card p{margin:8px 0}
+    .reveal-btn{width:100%;text-align:left;border:1px solid var(--borde);background:#fff;border-radius:16px;padding:16px;font-weight:900;color:var(--azul-oscuro)}
+    .reveal-btn:hover,.reveal-btn:focus-visible{border-color:var(--azul);outline:2px solid rgba(0,56,147,.15);outline-offset:2px}
+    .reveal-panel{border:1px solid var(--borde);border-top:0;border-radius:0 0 16px 16px;padding:16px;background:var(--gris-claro);margin-top:-8px}
+    .tag{display:inline-block;background:var(--azul-claro);color:var(--azul-oscuro);border-radius:999px;padding:4px 9px;font-size:.82rem;font-weight:800;margin-right:6px}
+    .function-label{font-weight:900;color:var(--azul);font-size:.9rem;text-transform:uppercase;letter-spacing:.03em}
+    .phrase{font-size:1.05rem;font-weight:800;color:#15233a}
+    .audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .audio-btn{border:1px solid #b9c7dc;background:#fff;color:var(--azul-oscuro);padding:8px 10px;border-radius:10px;font-weight:800}
+    .audio-btn:hover,.audio-btn:focus-visible{border-color:var(--azul);outline:2px solid rgba(0,56,147,.12);outline-offset:2px}
+    .audio-status{margin-top:8px;color:var(--gris);font-size:.88rem;min-height:1.25em}
+    .stress{font-weight:900;color:var(--rojo)}
+    .blocks{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .block{background:var(--azul-claro);border:1px solid #c8d7f0;border-radius:10px;padding:8px 10px;font-weight:800;color:var(--azul-oscuro)}
+
+    .builder{display:grid;gap:12px}
+    .builder-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label{font-weight:800;color:#2a3645}
+    select,input[type="text"],textarea{width:100%;border:1px solid #bfc8d4;border-radius:12px;padding:12px;background:#fff;color:#172231}
+    select:focus,input:focus,textarea:focus{outline:3px solid rgba(0,56,147,.15);border-color:var(--azul)}
+    textarea{min-height:150px;resize:vertical}
+    .result-box{background:#edf4ff;border:1px solid #c9daf6;border-radius:14px;padding:14px;font-weight:800;color:#16335d}
+
+    .activity{border:1px solid var(--borde);border-radius:16px;padding:18px;margin:14px 0;background:#fff}
+    .activity fieldset{border:0;padding:0;margin:0}
+    .activity legend{font-weight:900;color:#1f2c3e;margin-bottom:12px}
+    .option-list{display:grid;gap:9px}
+    .option{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--borde);border-radius:12px;padding:11px;background:#fff}
+    .option input{margin-top:4px;flex:0 0 auto}
+    .option:has(input:checked){border-color:var(--azul);background:#f0f5ff}
+    .btn{border:0;border-radius:12px;padding:11px 15px;font-weight:900;background:var(--azul);color:#fff}
+    .btn:hover,.btn:focus-visible{background:var(--azul-oscuro);outline:3px solid rgba(0,56,147,.18);outline-offset:2px}
+    .btn-secondary{background:#fff;color:var(--azul);border:1px solid var(--azul)}
+    .btn-secondary:hover,.btn-secondary:focus-visible{background:#eef4ff;color:var(--azul-oscuro)}
+    .btn-accent{background:var(--rojo)}
+    .btn-accent:hover,.btn-accent:focus-visible{background:#a70e1f}
+    .feedback{margin-top:10px;padding:12px 14px;border-radius:12px;background:#f3f6f9;color:#344050}
+    .feedback.good{border-left:4px solid var(--verde);background:#eef8f2}
+    .feedback.adjust{border-left:4px solid var(--amarillo);background:#fff9dc}
+    .feedback strong{color:#1e2b3a}
+
+    .order-list{display:grid;gap:8px;margin:12px 0}
+    .order-item{display:flex;align-items:center;gap:8px;border:1px solid var(--borde);border-radius:12px;padding:10px;background:#fff}
+    .order-item span{flex:1}
+    .order-item button{border:1px solid var(--borde);background:#fff;border-radius:8px;padding:7px 10px;font-weight:800;min-width:42px;min-height:42px}
+
+    .model-sentence{border:1px solid var(--borde);border-radius:14px;padding:15px;background:#fafcff;margin:10px 0}
+    .model-sentence button{border:0;background:none;color:var(--azul);font-weight:900;padding:6px 2px;text-align:left;width:100%;min-height:42px}
+    .function-note{margin-top:7px;padding-top:7px;border-top:1px dashed #cad2dc;color:var(--gris)}
+
+    .requirements{padding-left:20px}
+    .requirements li{margin:7px 0}
+    .support-chip{display:inline-flex;align-items:center;gap:6px;background:#eef4ff;border:1px solid #cbdaf3;color:#17375f;border-radius:999px;padding:7px 10px;margin:4px 5px 4px 0;font-weight:800}
+
+    .checklist{display:grid;gap:10px}
+    .check-item{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--borde);border-radius:12px;padding:12px;background:#fff}
+    .check-item input{margin-top:4px;transform:scale(1.25)}
+    .check-progress{height:9px;background:#e5e9ef;border-radius:999px;overflow:hidden;margin-top:14px}
+    .check-progress > div{height:100%;width:0;background:var(--amarillo);transition:width .2s ease}
+    .ready{margin-top:20px;background:linear-gradient(135deg,#eaf1ff,#fff8d5);border:1px solid #cbd8ec;border-radius:18px;padding:20px}
+    .ready h3{font-size:1.45rem;margin-bottom:8px}
+
+    .section-controls{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+    footer{display:flex;justify-content:space-between;gap:14px;align-items:center;border-top:1px solid var(--borde);padding:22px 0 8px;margin-top:26px;color:var(--gris);font-size:.9rem}
+
+    @media (max-width:820px){
+      .level-grid,.grid-3{grid-template-columns:1fr}
+      .grid-2,.builder-row{grid-template-columns:1fr}
+      .level-choice{min-height:auto}
+      .brand-small{display:none}
+      .topbar{align-items:flex-start}
+      footer{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width:560px){
+      .shell{width:min(100% - 18px,var(--max))}
+      .level-wrap{width:calc(100% - 18px)}
+      .level-card{border-radius:20px;padding:22px 16px}
+      .hero,.section-card{border-radius:16px}
+      .section-card{padding:18px 15px}
+      .route-badge{font-size:.8rem}
+      .btn-ghost{padding:7px 10px;font-size:.84rem}
+      .section-controls{flex-direction:column}
+      .section-controls .btn{width:100%}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+    <div class="level-wrap">
+      <div class="level-card">
+        <div class="brand-kicker">La Oficina en Español · Español para trabajar</div>
+        <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+        <p class="lead">Selecciona una ruta para adaptar el apoyo, el lenguaje y la dificultad de esta misma habilidad profesional.</p>
+        <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+          <button class="level-choice" type="button" data-level="a2">
+            <span class="label">🌱 A2 — Principiante</span>
+            <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+            <span class="choose">Elegir A2</span>
+          </button>
+          <button class="level-choice" type="button" data-level="b1">
+            <span class="label">💼 B1 — Intermedio</span>
+            <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+            <span class="choose">Elegir B1</span>
+          </button>
+          <button class="level-choice" type="button" data-level="b2">
+            <span class="label">🚀 B2 — Avanzado</span>
+            <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+            <span class="choose">Elegir B2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="module" class="hidden">
+    <header class="module-header">
+      <div class="shell header-inner">
+        <div class="topbar">
+          <div class="route-wrap">
+            <span id="routeBadge" class="route-badge"></span>
+            <button id="changeLevel" class="btn-ghost" type="button">Cambiar nivel</button>
+          </div>
+          <div class="brand-small">La Oficina en Español</div>
+        </div>
+        <div class="progress-row" aria-label="Progreso del módulo">
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <span id="progressText" class="progress-text">0%</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="shell">
+        <section class="hero">
+          <span class="eyebrow">Habilidad profesional de la semana</span>
+          <h1 id="heroTitle"></h1>
+          <p id="heroIntro"></p>
+        </section>
+
+        <nav id="sectionNav" class="section-nav" aria-label="Navegación del módulo"></nav>
+        <!-- Para activar el botón del reto diario, sustituir contenido.meta.retoUrl por la URL HTTPS real del reto. -->
+        <section id="sectionHost" aria-live="polite"></section>
+
+        <footer>
+          <span>© La Oficina en Español · Aprende y practica el español que necesitas para trabajar.</span>
+          <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">La Oficina en Español</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  meta: {
+    habilidad: "Pedir actualizaciones y dar seguimiento",
+    intro: "Aprende a obtener un estado claro, detectar lo pendiente y cerrar el seguimiento con un próximo paso concreto, sin convertir la conversación en presión innecesaria.",
+    secciones: [
+      "Objetivo","Situación","Vocabulario","Frases","Construye","Gramática","Registro","Modelo","Comprueba","Tu práctica","Modelo de respuesta","Checklist"
+    ],
+    retoUrl: "#" // Sustituir por la URL real del reto diario cuando esté definida.
+  },
+
+  a2: {
+    label: "🌱 A2 — Principiante",
+    objetivo: {
+      texto: "Al terminar esta semana podrás pedir una actualización breve sobre una tarea o proyecto, preguntar qué falta, confirmar una fecha y decir cuándo volverás a hacer seguimiento.",
+      apoyo: "By the end of the week, you will be able to ask for a short update, ask what is still pending, confirm a date, and say when you will follow up again.",
+      cierre: "Al final del módulo comprobarás si ya puedes hacerlo."
+    },
+    situacion: {
+      texto: "Trabajas con un compañero que está preparando una propuesta para un cliente. La propuesta debe enviarse el viernes. Necesitas saber cómo va, qué queda pendiente y si la fecha sigue siendo posible.",
+      apoyo: "You are following up with a colleague about a client proposal. You need a clear status, the pending work, and to know whether Friday is still realistic.",
+      dificultad: "Quieres obtener información clara sin sonar impaciente."
+    },
+    vocabulario: [
+      {term:"actualización",en:"update",meaning:"Información nueva sobre el estado de una tarea o proyecto.",example:"¿Me puedes dar una actualización sobre la propuesta?",extra:"Combinación útil: dar una actualización.",stress:"ac-tua-li-za-CIÓN"},
+      {term:"avance",en:"progress",meaning:"Lo que ya se ha completado o desarrollado.",example:"Quiero revisar el avance del informe.",extra:"Combinación útil: revisar el avance.",stress:"a-VAN-ce"},
+      {term:"pendiente",en:"pending / still to do",meaning:"Algo que todavía falta completar.",example:"¿Qué queda pendiente antes de enviar la propuesta?",extra:"También puedes decir: una tarea pendiente.",stress:"pen-DIEN-te"},
+      {term:"plazo",en:"deadline / time frame",meaning:"Fecha o tiempo disponible para terminar algo.",example:"¿Podemos cumplir el plazo del viernes?",extra:"Combinación útil: cumplir el plazo.",stress:"PLA-zo"},
+      {term:"seguimiento",en:"follow-up",meaning:"Revisión posterior de un asunto para comprobar cómo avanza.",example:"Te escribo el jueves para hacer seguimiento.",extra:"Combinación útil: hacer seguimiento de una tarea.",stress:"se-gui-MIEN-to"}
+    ],
+    frases: [
+      {funcion:"Pedir una actualización",frase:"¿Me puedes dar una actualización sobre la propuesta?",uso:"Úsala cuando necesitas un estado general pero concreto.",blocks:["¿Me puedes dar","una actualización","sobre la propuesta?"]},
+      {funcion:"Preguntar por lo pendiente",frase:"¿Qué queda pendiente?",uso:"Úsala para saber exactamente qué falta.",blocks:["¿Qué queda","pendiente?"]},
+      {funcion:"Confirmar la fecha",frase:"¿Podemos mantener el viernes como fecha de entrega?",uso:"Úsala cuando ya existe una fecha y quieres confirmar si sigue siendo posible.",blocks:["¿Podemos mantener","el viernes","como fecha de entrega?"]},
+      {funcion:"Detectar un problema",frase:"¿Hay algún problema que pueda afectar la fecha?",uso:"Úsala para preguntar por un posible bloqueo sin culpar a nadie.",blocks:["¿Hay algún problema","que pueda afectar","la fecha?"]},
+      {funcion:"Cerrar el seguimiento",frase:"Perfecto. Te escribo el jueves para hacer seguimiento.",uso:"Úsala para dejar claro cuándo volverás a revisar el tema.",blocks:["Perfecto.","Te escribo el jueves","para hacer seguimiento."]}
+    ],
+    construye: {
+      instrucciones:"Construye un seguimiento breve. Elige una opción en cada paso y escucha el resultado.",
+      campos:[
+        {label:"1. Inicio",options:["Hola, Marta.","Buenos días, Marta."]},
+        {label:"2. Pide el estado",options:["¿Me puedes dar una actualización sobre la propuesta?","¿Cómo va la propuesta?"]},
+        {label:"3. Pregunta qué falta",options:["¿Qué queda pendiente?","¿Falta algo por completar?"]},
+        {label:"4. Confirma la fecha",options:["¿Podemos mantener el viernes como fecha de entrega?","Entonces, ¿la propuesta estará lista el viernes?"]},
+        {label:"5. Define el seguimiento",options:["Te escribo el jueves para hacer seguimiento.","Lo revisamos de nuevo el jueves."]}
+      ],
+      ejemplo:"Buenos días, Marta. ¿Me puedes dar una actualización sobre la propuesta? ¿Qué queda pendiente? ¿Podemos mantener el viernes como fecha de entrega? Te escribo el jueves para hacer seguimiento."
+    },
+    gramatica:[
+      {titulo:"Preguntar por algo posible: que + subjuntivo",situacion:"No sabes si existe un problema.",intencion:"Preguntar por una posibilidad que todavía no está confirmada.",estructura:"¿Hay algún problema que + pueda + infinitivo?",ejemplo:"¿Hay algún problema que pueda afectar la fecha?",porque:"Usamos «pueda» porque el problema es posible, no está identificado como un hecho."},
+      {titulo:"Confirmar una posibilidad con poder",situacion:"Existe una fecha prevista.",intencion:"Comprobar si todavía es viable.",estructura:"¿Podemos + infinitivo + fecha?",ejemplo:"¿Podemos mantener el viernes como fecha de entrega?",porque:"«Podemos» permite confirmar viabilidad sin afirmar algo que todavía necesita validación."}
+    ],
+    registro: {
+      contexto:"Escribes a un compañero con quien trabajas habitualmente. Necesitas una actualización de una propuesta que vence el viernes.",
+      opciones:[
+        {text:"¿Qué pasa con la propuesta? Necesito eso ya.",quality:"adjust",feedback:"Puede sonar brusca y añade presión sin pedir información concreta."},
+        {text:"Hola, ¿me puedes dar una actualización sobre la propuesta? ¿Podemos mantener el viernes como fecha de entrega?",quality:"good",feedback:"Funciona bien: pide el estado y confirma la fecha con un tono profesional y directo."},
+        {text:"Disculpa muchísimo que te moleste, pero quizá cuando puedas me dices algo sobre la propuesta.",quality:"adjust",feedback:"Es demasiado indirecta para una coordinación normal y no define qué información necesitas."}
+      ]
+    },
+    modelo: {
+      intro:"Tu compañero responde: «Ya avancé bastante. Falta revisar los precios y confirmar una cifra con Finanzas. Creo que llegamos al viernes». Tú continúas así:",
+      lineas:[
+        {text:"Gracias por la actualización.",funcion:"Reconoce la información recibida."},
+        {text:"Entonces, ¿queda pendiente revisar los precios y confirmar una cifra con Finanzas?",funcion:"Resume lo pendiente para comprobar que entendiste bien."},
+        {text:"¿Hay algún problema que pueda afectar el viernes?",funcion:"Pregunta por un riesgo posible."},
+        {text:"Perfecto. Te escribo el jueves para hacer seguimiento.",funcion:"Define cuándo volverás a revisar el tema."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"Quieres saber exactamente qué falta. ¿Qué pregunta es más útil?",opciones:["¿Todo bien?","¿Qué queda pendiente?","¿Estás ocupado?"],correctas:[1],feedback:"«¿Qué queda pendiente?» pide información concreta sobre el trabajo que falta."},
+      {tipo:"text",pregunta:"Completa: ¿Hay algún problema que ___ afectar la fecha?",respuesta:"pueda",feedback:"Se usa «pueda» porque preguntas por un problema posible que todavía no está confirmado.",audio:"¿Hay algún problema que pueda afectar la fecha?"},
+      {tipo:"mc",pregunta:"Ya existe una entrega prevista para el viernes. ¿Qué opción confirma la fecha con claridad?",opciones:["¿Podemos mantener el viernes como fecha de entrega?","Bueno, hablamos después.","Espero que todo salga bien."],correctas:[0],feedback:"La primera opción verifica directamente si la fecha sigue siendo viable."},
+      {tipo:"order",pregunta:"Ordena el seguimiento para que avance de forma lógica.",items:["¿Qué queda pendiente?","Buenos días, Marta.","Te escribo el jueves para hacer seguimiento.","¿Me puedes dar una actualización sobre la propuesta?"],answer:["Buenos días, Marta.","¿Me puedes dar una actualización sobre la propuesta?","¿Qué queda pendiente?","Te escribo el jueves para hacer seguimiento."],feedback:"Una secuencia clara es: saludo → actualización → pendiente → próximo seguimiento."}
+    ],
+    practica:{
+      situacion:"Un compañero prepara un informe para un cliente. Debe enviarlo el martes. Hoy es viernes y necesitas saber el estado antes de cerrar la semana.",
+      interlocutor:"Un compañero de tu equipo.",
+      objetivo:"Pide una actualización, pregunta qué falta, confirma el martes y define cuándo volverás a revisar el tema.",
+      requisitos:["Escribe 4–5 frases.","Incluye una pregunta sobre el estado.","Incluye una pregunta sobre lo pendiente.","Confirma la fecha de entrega.","Define el próximo seguimiento."],
+      apoyos:["¿Me puedes dar una actualización sobre…?","¿Qué queda pendiente?","¿Podemos mantener… como fecha de entrega?","Te escribo… para hacer seguimiento."],
+      placeholder:"Escribe aquí tu seguimiento breve…",
+      modelo:"Buenos días, Ana. ¿Me puedes dar una actualización sobre el informe? ¿Qué queda pendiente? ¿Podemos mantener el martes como fecha de entrega? Perfecto. Te escribo el lunes por la mañana para hacer seguimiento."
+    },
+    checklist:[
+      "Puedo pedir una actualización breve y clara.",
+      "Puedo preguntar qué queda pendiente.",
+      "Puedo confirmar si una fecha sigue siendo posible.",
+      "Puedo preguntar por un problema que pueda afectar el plazo.",
+      "Puedo decir cuándo volveré a hacer seguimiento."
+    ]
+  },
+
+  b1: {
+    label:"💼 B1 — Intermedio",
+    objetivo:{
+      texto:"Al terminar esta semana podrás pedir una actualización precisa, separar lo completado de lo pendiente, identificar bloqueos y cerrar el seguimiento con una fecha o próximo paso verificable.",
+      cierre:"Al final del módulo comprobarás si puedes obtener información accionable sin sonar vago ni excesivamente controlador."
+    },
+    situacion:{
+      texto:"Coordinas un proyecto con Operaciones y Marketing. La entrega final está prevista para el viernes. Necesitas saber qué se ha completado, qué sigue pendiente, si existe algún bloqueo y cuándo volveréis a revisar el estado.",
+      dificultad:"La respuesta «todo va bien» no te sirve. Necesitas convertir una actualización general en información que permita decidir y coordinar."
+    },
+    vocabulario:[
+      {term:"estado actual",meaning:"Situación concreta de una tarea o proyecto en este momento.",example:"¿Cuál es el estado actual de la implementación?",extra:"Útil para pedir una actualización estructurada."},
+      {term:"avance",meaning:"Progreso conseguido hasta ahora.",example:"El avance es bueno, pero falta validar dos datos.",extra:"Colocaciones: revisar el avance, informar del avance, avance parcial."},
+      {term:"pendiente",meaning:"Elemento que todavía no se ha completado.",example:"Quedan dos aprobaciones pendientes.",extra:"También puede usarse como sustantivo: «lo pendiente»."},
+      {term:"bloqueo",meaning:"Problema que impide o retrasa avanzar.",example:"El acceso al sistema es el principal bloqueo.",extra:"Distingue una dificultad real de una simple demora."},
+      {term:"dependencia",meaning:"Elemento externo o previo del que depende el avance.",example:"La aprobación legal es una dependencia importante.",extra:"Permite explicar por qué una fecha depende de otra persona o equipo."},
+      {term:"hacer seguimiento",meaning:"Revisar de nuevo un asunto para comprobar avances o cerrar pendientes.",example:"Hacemos seguimiento el jueves y confirmamos la fecha final.",extra:"Combinación habitual: hacer seguimiento de una entrega."}
+    ],
+    frases:[
+      {funcion:"Pedir estado",frase:"¿En qué punto estamos con la propuesta?",uso:"Más preciso que «¿cómo va?» cuando ya existe un trabajo en curso."},
+      {funcion:"Separar avance y pendiente",frase:"¿Qué se ha completado y qué queda pendiente?",uso:"Obliga a diferenciar lo terminado de lo que todavía falta."},
+      {funcion:"Detectar bloqueos",frase:"¿Hay algún bloqueo o dependencia que pueda afectar el plazo?",uso:"Introduce una pregunta de riesgo sin asumir que existe un problema."},
+      {funcion:"Confirmar una fecha",frase:"Con la información actual, ¿podemos mantener el viernes como fecha de entrega?",uso:"Relaciona la fecha con el estado real disponible hoy."},
+      {funcion:"Cerrar el seguimiento",frase:"Si te parece, revisamos el estado el jueves por la mañana y confirmamos la fecha final.",uso:"Define momento y resultado esperado del próximo control."}
+    ],
+    construye:{
+      instrucciones:"Organiza un seguimiento en cuatro movimientos. Escribe una versión propia a partir de las intenciones.",
+      prompts:[
+        {label:"1. Abre el seguimiento",hint:"Menciona el proyecto y pide un estado preciso."},
+        {label:"2. Separa hechos",hint:"Pregunta qué está completado y qué sigue pendiente."},
+        {label:"3. Comprueba el riesgo",hint:"Pregunta por bloqueos o dependencias que puedan afectar el plazo."},
+        {label:"4. Cierra",hint:"Define cuándo volverán a revisar el estado y qué deben confirmar."}
+      ],
+      ejemplo:"Quisiera revisar el estado de la propuesta antes de cerrar la reunión. ¿Qué se ha completado y qué queda pendiente? ¿Hay algún bloqueo que pueda afectar el viernes? Si te parece, revisamos el estado el jueves a primera hora y confirmamos entonces la fecha final."
+    },
+    gramatica:[
+      {titulo:"Pretérito perfecto para avances recientes",situacion:"Hablas del trabajo realizado hasta este momento.",intencion:"Separar lo ya completado de lo que todavía falta.",estructura:"¿Qué se ha + participio?",ejemplo:"¿Qué se ha completado y qué queda pendiente?",porque:"El pretérito perfecto conecta acciones recientes con el estado actual del proyecto."},
+      {titulo:"Subjuntivo en posibilidades no identificadas",situacion:"No sabes si existe un bloqueo concreto.",intencion:"Preguntar por una posibilidad abierta.",estructura:"¿Hay algún + sustantivo + que pueda + infinitivo?",ejemplo:"¿Hay algún bloqueo que pueda afectar el plazo?",porque:"«Pueda» presenta el bloqueo como posible, no como un hecho ya confirmado."}
+    ],
+    registro:{
+      contexto:"Necesitas una actualización de un proveedor con quien tienes una relación habitual, pero el plazo ya se movió una vez.",
+      opciones:[
+        {text:"¿En qué punto estamos y qué falta para poder cerrar la entrega?",quality:"good",feedback:"Funciona: pide estado y pendiente sin añadir acusación."},
+        {text:"Otra vez necesito saber por qué esto no está terminado.",quality:"adjust",feedback:"Introduce reproche antes de conocer el estado y puede cerrar la cooperación."},
+        {text:"Cuando tengas un momento, si no es mucha molestia, quizá podrías contarme algo.",quality:"adjust",feedback:"Es demasiado indirecta para un seguimiento que necesita información operativa."}
+      ]
+    },
+    modelo:{
+      intro:"En una reunión de proyecto recibes la actualización «la propuesta está casi lista». Puedes convertirla en información útil así:",
+      lineas:[
+        {text:"Para concretar el estado, ¿qué se ha completado y qué queda pendiente?",funcion:"Transforma una valoración vaga en dos categorías verificables."},
+        {text:"¿Hay algún bloqueo o dependencia que pueda afectar el viernes?",funcion:"Introduce el riesgo que puede cambiar la fecha."},
+        {text:"Con la información actual, ¿podemos mantener esa fecha o sigue siendo una estimación?",funcion:"Distingue una fecha sostenible de una previsión todavía incierta."},
+        {text:"Si te parece, revisamos el estado el jueves a las nueve y confirmamos la fecha final.",funcion:"Cierra con momento y propósito del seguimiento."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"Alguien dice «ya casi está». ¿Qué pregunta produce información más accionable?",opciones:["Perfecto, gracias.","¿Qué se ha completado y qué queda pendiente exactamente?","¿Seguro?"],correctas:[1],feedback:"La segunda opción obliga a separar hechos y pendientes."},
+      {tipo:"text",pregunta:"Completa: ¿Hay alguna dependencia que ___ afectar el plazo?",respuesta:"pueda",feedback:"Se usa subjuntivo porque preguntas por una dependencia posible que todavía no está identificada."},
+      {tipo:"mc",pregunta:"¿Qué cierre define mejor un seguimiento?",opciones:["Me avisas.","Si te parece, revisamos el estado el jueves a las nueve y confirmamos la fecha final.","Seguimos hablando."],correctas:[1],feedback:"La segunda opción define momento, acción y resultado esperado."},
+      {tipo:"mc",pregunta:"Necesitas confirmar una fecha sin convertir una estimación en un compromiso. ¿Qué opción es más precisa?",opciones:["Entonces queda confirmado el viernes.","Con la información actual, ¿podemos mantener el viernes o sigue siendo una estimación?","Perfecto, viernes sí o sí."],correctas:[1],feedback:"La segunda opción distingue explícitamente entre una fecha viable y una estimación."}
+    ],
+    practica:{
+      situacion:"En una reunión, un compañero afirma que una entrega «va bien» y que «probablemente» estará lista el viernes. Necesitas cerrar una actualización para tu gerente.",
+      interlocutor:"Un compañero responsable de la entrega.",
+      objetivo:"Obtén un estado concreto y acuerda el siguiente control.",
+      requisitos:["Escribe 5–7 frases.","Pide una actualización precisa.","Distingue lo completado de lo pendiente.","Pregunta por un bloqueo o dependencia.","Confirma qué fecha puede sostenerse ahora.","Justifica brevemente por qué mantendrías o cambiarías esa fecha.","Define cuándo volverán a revisar el estado."],
+      placeholder:"Escribe tu intervención completa…",
+      modelo:"Quisiera revisar el estado de la entrega antes de informar a mi gerente. ¿Qué se ha completado y qué queda pendiente exactamente? ¿Hay algún bloqueo o dependencia que pueda afectar el viernes? Con la información actual, ¿podemos mantener esa fecha o sigue siendo una estimación? Si el único pendiente es la aprobación de Marketing, propongo mantener el viernes por ahora. Si te parece, revisamos el estado el jueves a primera hora y confirmamos entonces la fecha final."
+    },
+    checklist:[
+      "Puedo pedir una actualización concreta y no quedarme en «¿cómo va?». ",
+      "Puedo separar lo completado de lo pendiente.",
+      "Puedo identificar bloqueos o dependencias que afectan una fecha.",
+      "Puedo distinguir una estimación de una fecha que puede confirmarse.",
+      "Puedo cerrar el seguimiento con un momento y un siguiente paso claros."
+    ]
+  },
+
+  b2: {
+    label:"🚀 B2 — Avanzado",
+    objetivo:{
+      texto:"Al terminar esta semana podrás solicitar actualizaciones estructuradas, distinguir hechos de previsiones, identificar dependencias críticas, calibrar urgencia y cerrar el seguimiento con compromisos y criterios claros de escalamiento.",
+      cierre:"Al final del módulo comprobarás si puedes obtener trazabilidad sin convertir el seguimiento en vigilancia ni aceptar respuestas ambiguas."
+    },
+    situacion:{
+      texto:"Lideras un proyecto con un proveedor externo y dos equipos internos. Un hito importante ya se movió una vez. El proveedor afirma que «todo está avanzando», pero Dirección necesita hoy un estado verificable y el cliente espera una fecha definitiva.",
+      dificultad:"Debes separar hechos, previsiones y compromisos; identificar la dependencia crítica; ajustar el tono al riesgo y definir qué ocurrirá si el escenario cambia."
+    },
+    vocabulario:[
+      {term:"hito",meaning:"Punto relevante que marca un avance o entrega importante dentro de un proyecto.",example:"El siguiente hito es la validación del entorno de producción.",extra:"Más preciso que «tarea» cuando la etapa tiene impacto en el proyecto."},
+      {term:"trazabilidad",meaning:"Capacidad de reconstruir qué ocurrió, qué se acordó y qué cambió.",example:"Necesitamos trazabilidad de las decisiones que modificaron el plazo.",extra:"Especialmente útil cuando existen múltiples actualizaciones o responsables."},
+      {term:"dependencia crítica",meaning:"Condición externa o previa que puede alterar directamente un compromiso.",example:"La aprobación del cliente sigue siendo una dependencia crítica.",extra:"Permite priorizar qué revisar y qué escalar."},
+      {term:"desvío",meaning:"Diferencia entre lo previsto y lo que está ocurriendo realmente.",example:"El desvío actual es de dos días respecto al plan original.",extra:"Puede ser de plazo, costo, alcance o capacidad."},
+      {term:"previsión",meaning:"Estimación basada en la información disponible, sin implicar necesariamente un compromiso definitivo.",example:"La previsión sigue siendo viernes, pero depende de la validación externa.",extra:"Conviene distinguirla de «compromiso»."},
+      {term:"escalamiento",meaning:"Traslado formal de un asunto a un nivel superior de decisión o responsabilidad.",example:"Si la dependencia sigue abierta mañana, activaremos el escalamiento.",extra:"No debe usarse como amenaza; debe responder a un criterio operativo."}
+    ],
+    frases:[
+      {funcion:"Separar hechos y previsiones",frase:"Antes de hablar de fechas, quisiera separar el estado confirmado de la previsión.",uso:"Evita que una estimación se interprete como un compromiso."},
+      {funcion:"Obtener trazabilidad",frase:"¿Qué está completamente cerrado, qué sigue abierto y de qué depende cada pendiente?",uso:"Estructura la actualización en elementos verificables."},
+      {funcion:"Calibrar el compromiso",frase:"Con la información disponible hoy, ¿qué fecha puedes sostener y qué tendría que ocurrir para confirmarla?",uso:"Pide una previsión responsable sin forzar una certeza falsa."},
+      {funcion:"Gestionar contingencia",frase:"Si la validación no llega hoy, ¿qué cambia y qué alternativa podemos activar?",uso:"Convierte un riesgo en una decisión condicional."},
+      {funcion:"Definir escalamiento",frase:"Si la dependencia sigue abierta mañana a las diez, activamos el escalamiento y actualizamos formalmente la fecha comprometida con el cliente.",uso:"Establece una condición objetiva, un momento y una consecuencia."}
+    ],
+    construye:{
+      instrucciones:"Formula un seguimiento ejecutivo según cuatro decisiones. No hay una única frase correcta; prioriza precisión y efecto comunicativo.",
+      prompts:[
+        {label:"1. Delimita el estado",hint:"Separa hechos confirmados de estimaciones."},
+        {label:"2. Identifica la dependencia",hint:"Pregunta qué condición externa cambia el escenario."},
+        {label:"3. Calibra la fecha",hint:"Distingue previsión de compromiso."},
+        {label:"4. Define contingencia",hint:"Establece próximo control y criterio de escalamiento."}
+      ],
+      ejemplo:"Antes de cerrar la fecha, quisiera separar lo confirmado de la previsión. ¿Qué está completamente cerrado, qué sigue abierto y de qué depende cada pendiente? Con la información disponible hoy, ¿qué fecha puedes sostener y qué tendría que ocurrir para convertirla en un compromiso? Si la validación sigue abierta mañana a las diez, propongo escalarla y actualizar formalmente la fecha con el cliente."
+    },
+    gramatica:[
+      {titulo:"Condicional para escenarios y consecuencias",situacion:"Existe una dependencia cuyo resultado todavía no se conoce.",intencion:"Plantear una consecuencia sin presentarla como un hecho.",estructura:"Si + presente, + presente / futuro / perífrasis de decisión",ejemplo:"Si la validación no llega hoy, revisaremos el compromiso con el cliente.",porque:"La estructura permite vincular una condición realista con una consecuencia operativa."},
+      {titulo:"Subjuntivo para referentes no confirmados",situacion:"Buscas cualquier factor que pueda alterar el plazo, pero no sabes si existe.",intencion:"Abrir una búsqueda sin presuponer el problema.",estructura:"¿Hay alguna dependencia que pueda + infinitivo?",ejemplo:"¿Hay alguna dependencia que pueda comprometer la fecha?",porque:"El subjuntivo mantiene el referente como posible o no identificado."},
+      {titulo:"Modalización para calibrar certeza",situacion:"La información disponible no permite una garantía absoluta.",intencion:"Distinguir previsión de compromiso.",estructura:"Con la información actual, ¿qué fecha puedes sostener / estimas / considerarías viable?",ejemplo:"Con la información actual, ¿qué fecha puedes sostener como previsión?",porque:"Cambiar el verbo modifica el grado de compromiso y la responsabilidad que atribuyes a la respuesta."}
+    ],
+    registro:{
+      contexto:"Hablas con un proveedor externo. El plazo ya se movió una vez y Dirección necesita una actualización fiable hoy.",
+      opciones:[
+        {text:"Necesito que me confirmes hoy una fecha definitiva, aunque todavía falte la validación.",quality:"adjust",feedback:"Presiona para producir certeza donde todavía existe una dependencia; puede generar un compromiso poco fiable."},
+        {text:"Antes de confirmar la fecha, necesito separar lo cerrado de la previsión y entender qué depende todavía de la validación externa.",quality:"good",feedback:"Mantiene exigencia y precisión sin forzar una certeza artificial."},
+        {text:"Si vuelve a fallar, tendré que escalar esto inmediatamente.",quality:"adjust",feedback:"Introduce el escalamiento como amenaza. Es más sólido definir un criterio objetivo y previamente acordado."}
+      ]
+    },
+    modelo:{
+      intro:"El proveedor dice: «Está prácticamente listo; solo falta la validación externa y seguimos pensando en el viernes». Una respuesta B2 puede organizar la conversación así:",
+      lineas:[
+        {text:"Antes de confirmar la fecha, quisiera separar lo completamente cerrado de la previsión.",funcion:"Delimita el marco de la actualización."},
+        {text:"¿Qué parte del hito está terminada, qué sigue abierta y qué depende exactamente de la validación externa?",funcion:"Obtiene trazabilidad y localiza la dependencia crítica."},
+        {text:"Con la información disponible hoy, ¿qué fecha puedes sostener como previsión y qué necesitarías para convertirla en un compromiso definitivo?",funcion:"Calibra certeza y responsabilidad."},
+        {text:"Si la validación no llega hoy, ¿qué impacto tendría y qué alternativa podemos activar sin esperar al siguiente ciclo?",funcion:"Introduce contingencia y capacidad de reacción."},
+        {text:"Propongo revisar el estado mañana a las diez; si la dependencia sigue abierta, activamos el escalamiento y actualizamos formalmente la fecha comprometida con el cliente.",funcion:"Cierra con condición, momento y consecuencia."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"El proveedor dice «seguimos pensando en el viernes». ¿Qué respuesta distingue mejor previsión de compromiso?",opciones:["Entonces confirmamos el viernes.","Con la información disponible hoy, ¿qué fecha puedes sostener como previsión y qué tendría que ocurrir para confirmarla?","Necesito una respuesta definitiva ya."],correctas:[1],feedback:"La segunda opción mantiene la exigencia, pero reconoce el grado real de certeza."},
+      {tipo:"mc",pregunta:"¿Qué formulación introduce un escalamiento de forma más profesional?",opciones:["Si esto vuelve a fallar, lo escalo.","Si la dependencia sigue abierta mañana a las diez, la escalamos y actualizamos la fecha con el cliente.","Voy a escalarlo porque ya hemos esperado demasiado."],correctas:[1],feedback:"La segunda usa un criterio objetivo: condición, hora, acción y consecuencia."},
+      {tipo:"text",pregunta:"Completa con la forma adecuada: ¿Hay alguna dependencia que ___ comprometer la fecha?",respuesta:"pueda",feedback:"El subjuntivo presenta la dependencia como posible y no identificada."},
+      {tipo:"mc-multi",pregunta:"Dos opciones pueden funcionar. ¿Cuáles preservan mejor la precisión sin sonar hostiles?",opciones:["¿Qué está cerrado y qué sigue abierto?","Necesito que me garantices el viernes ahora mismo.","¿Qué tendría que ocurrir para convertir esa previsión en un compromiso?","Otra vez estamos con lo mismo."],correctas:[0,2],feedback:"Las opciones 1 y 3 obtienen información verificable y calibran el compromiso. Las otras introducen presión o reproche sin mejorar la calidad de la actualización."}
+    ],
+    practica:{
+      situacion:"Un proveedor informa que un hito «está prácticamente listo», pero falta una validación externa. Dirección te pide una actualización hoy y el cliente espera una fecha definitiva. El plazo ya se movió una vez.",
+      interlocutor:"Responsable del proveedor, en una reunión de seguimiento.",
+      objetivo:"Obtén un estado verificable, distingue previsión de compromiso y deja definida la contingencia si la validación no llega.",
+      requisitos:["Escribe 7–10 frases o una intervención equivalente de 60–90 segundos.","Separa hechos, pendientes y dependencias.","Pregunta qué fecha puede sostenerse hoy.","Distingue previsión de compromiso.","Define una condición que active una acción alternativa.","Cierra con un próximo seguimiento y un criterio de escalamiento.","Mantén exigencia sin sonar punitivo."],
+      placeholder:"Redacta tu intervención como si estuvieras en la reunión…",
+      modelo:"Necesito cerrar una actualización para Dirección y prefiero separar el estado confirmado de la previsión. ¿Qué parte del hito está completamente terminada y qué sigue pendiente? Entiendo que la validación externa es la dependencia crítica; ¿qué impacto tendría si no llega hoy? Con la información disponible, ¿qué fecha puedes sostener como previsión y qué necesitarías para convertirla en un compromiso definitivo? Si la validación llega hoy, podemos mantener el viernes. Si la validación se retrasa hasta mañana, necesito que evaluemos el lunes como nueva fecha de entrega. Propongo hacer seguimiento mañana a las diez y, si la dependencia sigue abierta en ese momento, activar el escalamiento y actualizar formalmente la fecha comprometida con el cliente."
+    },
+    checklist:[
+      "Puedo pedir una actualización estructurada y verificable.",
+      "Puedo distinguir hechos, previsiones y compromisos.",
+      "Puedo identificar dependencias críticas y su impacto.",
+      "Puedo ajustar el tono y la frecuencia del seguimiento al nivel de riesgo.",
+      "Puedo cerrar con un próximo control y un criterio claro de escalamiento."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const estado = {
+  nivel:null,
+  seccion:0,
+  acciones:new Set(),
+  checklist:new Set(),
+  ejercicios:new Set(),
+  vocabulario:new Set(),
+  frases:new Set(),
+  modelo:new Set(),
+  ordenes:{},
+  modeloVisible:false
+};
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc = (s)=>String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+const esA2 = ()=>estado.nivel==="a2";
+const dataActual = ()=>contenido[estado.nivel];
+
+function reiniciarEstado(nivel){
+  estado.nivel=nivel;
+  estado.seccion=0;
+  estado.acciones=new Set();
+  estado.checklist=new Set();
+  estado.ejercicios=new Set();
+  estado.vocabulario=new Set();
+  estado.frases=new Set();
+  estado.modelo=new Set();
+  estado.ordenes={};
+  estado.modeloVisible=false;
+}
+
+function registrarAccion(id){
+  estado.acciones.add(id);
+  actualizarProgreso();
+}
+
+function totalObjetivos(){
+  const d=dataActual();
+  // Cada objetivo representa una acción distinta. Repetir clics no suma progreso.
+  return 12
+    + d.vocabulario.length
+    + d.frases.length
+    + d.ejercicios.length
+    + d.checklist.length
+    + d.modelo.lineas.length
+    + d.gramatica.length
+    + 4 // construcción, registro, práctica y modelo final
+    + (esA2()?2:0); // uso de audio + recuperación de vocabulario A2
+}
+
+function actualizarProgreso(){
+  if(!estado.nivel) return;
+  const completadas = Math.min(totalObjetivos(), estado.acciones.size + estado.vocabulario.size + estado.frases.size + estado.ejercicios.size + estado.checklist.size + estado.modelo.size);
+  const pct=Math.round((completadas/totalObjetivos())*100);
+  $("#progressBar").style.width=pct+"%";
+  $("#progressText").textContent=pct+"%";
+}
+
+function seleccionarNivel(nivel){
+  reiniciarEstado(nivel);
+  $("#levelScreen").classList.add("hidden");
+  $("#module").classList.remove("hidden");
+  $("#routeBadge").textContent="Tu ruta: "+dataActual().label;
+  $("#heroTitle").textContent=contenido.meta.habilidad;
+  $("#heroIntro").textContent=contenido.meta.intro;
+  estado.acciones.add("visit-0");
+  renderNav();
+  renderSection();
+  actualizarProgreso();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function volverNiveles(){
+  cancelarAudio();
+  estado.nivel=null;
+  $("#module").classList.add("hidden");
+  $("#levelScreen").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// Audio reutilizable para A2.
+let voces=[];
+function cargarVoces(){
+  if("speechSynthesis" in window) voces=window.speechSynthesis.getVoices()||[];
+}
+function elegirVozEspanol(){
+  if(!voces.length) cargarVoces();
+  const orden=[/es[-_]CO/i,/es[-_](MX|US|419|AR|CL|PE|VE|EC|UY|PY|BO|CR|PA|DO|GT|HN|SV|NI|PR)/i,/^es/i];
+  for(const patron of orden){
+    const voz=voces.find(v=>patron.test(v.lang||""));
+    if(voz) return voz;
+  }
+  return null;
+}
+function cancelarAudio(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+function hablar(texto,lento=false){
+  const status=$("#audioStatus");
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    if(status) status.textContent="El audio no está disponible en este navegador. El resto del módulo funciona normalmente.";
+    return;
+  }
+  cancelarAudio();
+  const u=new SpeechSynthesisUtterance(texto);
+  u.lang="es-CO";
+  u.rate=lento?.72:.95;
+  u.pitch=1;
+  const voz=elegirVozEspanol();
+  if(voz) u.voice=voz;
+  u.onstart=()=>{if(status) status.textContent=lento?"Reproduciendo a velocidad lenta…":"Reproduciendo…"};
+  u.onend=()=>{if(status) status.textContent=""};
+  u.onerror=()=>{if(status) status.textContent="No fue posible reproducir este audio. Puedes continuar con el módulo."};
+  window.speechSynthesis.speak(u);
+}
+if("speechSynthesis" in window){
+  cargarVoces();
+  window.speechSynthesis.onvoiceschanged=cargarVoces;
+}
+function audioControles(texto,id){
+  if(!esA2()) return "";
+  const safe=esc(texto);
+  return `<div class="audio-row">
+    <button class="audio-btn" type="button" data-speak="${safe}" data-rate="normal" aria-label="Escuchar en español: ${safe}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" type="button" data-speak="${safe}" data-rate="slow" aria-label="Escuchar lentamente en español: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function renderNav(){
+  $("#sectionNav").innerHTML=contenido.meta.secciones.map((s,i)=>`<button type="button" data-goto="${i}" aria-current="${i===estado.seccion}">${i+1}. ${esc(s)}</button>`).join("");
+}
+function setSection(i){
+  cancelarAudio();
+  estado.seccion=Math.max(0,Math.min(contenido.meta.secciones.length-1,i));
+  registrarAccion("visit-"+estado.seccion);
+  renderNav();
+  renderSection();
+  const top=$("#sectionHost").getBoundingClientRect().top+window.scrollY-118;
+  window.scrollTo({top,behavior:"smooth"});
+}
+function controls(){
+  return `<div class="section-controls">
+    <button class="btn btn-secondary" type="button" data-prev ${estado.seccion===0?"disabled":""}>Anterior</button>
+    <button class="btn" type="button" data-next ${estado.seccion===contenido.meta.secciones.length-1?"disabled":""}>Siguiente</button>
+  </div>`;
+}
+function baseSection(title,body,intro=""){
+  return `<article class="section-card"><h2>${title}</h2>${intro?`<p class="intro">${intro}</p>`:""}${body}<div id="audioStatus" class="audio-status" aria-live="polite"></div>${controls()}</article>`;
+}
+
+function renderSection(){
+  const d=dataActual();
+  const renders=[renderObjetivo,renderSituacion,renderVocabulario,renderFrases,renderConstruye,renderGramatica,renderRegistro,renderModelo,renderEjercicios,renderPractica,renderModeloRespuesta,renderChecklist];
+  $("#sectionHost").innerHTML=renders[estado.seccion](d);
+  bindSectionEvents();
+  actualizarProgreso();
+}
+
+function renderObjetivo(d){
+  let body=`<p>${esc(d.objetivo.texto)}</p>`;
+  if(esA2()&&d.objetivo.apoyo) body+=`<div class="info-box"><strong>English support:</strong> <span lang="en">${esc(d.objetivo.apoyo)}</span></div>`;
+  body+=`<p class="mini-note">${esc(d.objetivo.cierre)}</p>`;
+  if(esA2()) body+=audioControles(d.objetivo.texto,"objective");
+  return baseSection("1. 🎯 TU OBJETIVO ESTA SEMANA",body);
+}
+function renderSituacion(d){
+  let body=`<div class="info-box"><strong>Situación profesional</strong><p>${esc(d.situacion.texto)}</p></div>`;
+  if(esA2()&&d.situacion.apoyo) body+=`<p><strong>English support:</strong> <span lang="en">${esc(d.situacion.apoyo)}</span></p>`;
+  body+=`<p><strong>Dificultad:</strong> ${esc(d.situacion.dificultad)}</p>`;
+  return baseSection("2. 🏢 LA SITUACIÓN",body,"Antes de aprender frases, identifica qué información necesitas conseguir.");
+}
+function renderVocabulario(d){
+  const cards=d.vocabulario.map((v,i)=>`<div>
+    <button class="reveal-btn" type="button" data-reveal="vocab-${i}" aria-expanded="false">${esc(v.term)}${esA2()&&v.en?` · <span lang="en">${esc(v.en)}</span>`:""}</button>
+    <div id="vocab-${i}" class="reveal-panel hidden">
+      ${esA2()&&v.stress?`<p><span class="tag">Pronunciación</span> <span class="stress">${esc(v.stress)}</span></p>`:""}
+      <p><strong>Significado:</strong> ${esc(v.meaning)}</p>
+      <p><strong>Ejemplo profesional:</strong> ${esc(v.example)}</p>
+      <p class="mini-note">${esc(v.extra)}</p>
+      ${audioControles(v.term+". "+v.example,"v-"+i)}
+    </div>
+  </div>`).join("");
+  let recall="";
+  if(esA2()){
+    recall=`<div class="activity">
+      <fieldset><legend>Recuperación rápida: <span lang="en">“pending / still to do”</span></legend>
+        <div class="option-list">
+          <label class="option"><input type="radio" name="recall" value="avance"> avance</label>
+          <label class="option"><input type="radio" name="recall" value="pendiente"> pendiente</label>
+          <label class="option"><input type="radio" name="recall" value="plazo"> plazo</label>
+        </div>
+        <button class="btn" type="button" data-check-recall>Comprobar</button>
+        <div id="recallFeedback" class="feedback hidden"></div>
+      </fieldset>
+    </div>`;
+  }
+  return baseSection("3. 🗣️ VOCABULARIO CLAVE",`<div class="grid-2">${cards}</div>${recall}`,"Abre las tarjetas. El objetivo es recuperar estas palabras cuando necesites usarlas, no memorizarlas de forma aislada.");
+}
+function renderFrases(d){
+  const html=d.frases.map((p,i)=>`<div class="card">
+    <div class="function-label">${esc(p.funcion)}</div>
+    <p class="phrase">${esc(p.frase)}</p>
+    ${esA2()&&p.blocks?`<div class="blocks">${p.blocks.map(b=>`<span class="block">${esc(b)}</span>`).join("<span aria-hidden='true'>→</span>")}</div>`:""}
+    ${audioControles(p.frase,"p-"+i)}
+    <button class="btn btn-secondary" type="button" data-phrase="${i}" aria-expanded="false">Ver cuándo usarla</button>
+    <div id="phrase-${i}" class="feedback hidden">${esc(p.uso)}</div>
+  </div>`).join("");
+  return baseSection("4. 💬 FRASES QUE PUEDES USAR",`<div class="grid-2">${html}</div>`);
+}
+function renderConstruye(d){
+  let body="";
+  if(esA2()){
+    const mensajeInicial=d.construye.campos.map(c=>c.options[0]).join(" ");
+    body=`<p>${esc(d.construye.instrucciones)}</p><div class="builder">${d.construye.campos.map((c,i)=>`<div><label for="build-${i}">${esc(c.label)}</label><select id="build-${i}" data-build>${c.options.map(o=>`<option>${esc(o)}</option>`).join("")}</select></div>`).join("")}
+      <div><strong>Tu mensaje:</strong><div id="buildResult" class="result-box">${esc(mensajeInicial)}</div>${audioControles(mensajeInicial,"builder")}</div></div>`;
+  }else{
+    body=`<p>${esc(d.construye.instrucciones)}</p><div class="grid-2">${d.construye.prompts.map((p,i)=>`<div class="card"><label for="free-${i}">${esc(p.label)}</label><p class="mini-note">${esc(p.hint)}</p><input id="free-${i}" type="text" data-free-build placeholder="Escribe una formulación…"></div>`).join("")}</div>
+      <div class="info-box"><strong>Referencia, no plantilla:</strong><p>${esc(d.construye.ejemplo)}</p></div>`;
+  }
+  return baseSection("5. 🧩 CONSTRUYE TU MENSAJE",body,"La estructura te ayuda a pasar de una pregunta vaga a un seguimiento que produce información útil.");
+}
+function renderGramatica(d){
+  const html=d.gramatica.map((g,i)=>`<div class="card">
+    <h3>${esc(g.titulo)}</h3>
+    <p><strong>Situación:</strong> ${esc(g.situacion)}</p>
+    <p><strong>Intención:</strong> ${esc(g.intencion)}</p>
+    <p><strong>Estructura:</strong> <code>${esc(g.estructura)}</code></p>
+    <p><strong>Ejemplo:</strong> ${esc(g.ejemplo)}</p>
+    ${audioControles(g.ejemplo,"g-"+i)}
+    <button class="btn btn-secondary" type="button" data-grammar="${i}">¿Por qué se usa así?</button>
+    <div id="grammar-${i}" class="feedback hidden">${esc(g.porque)}</div>
+  </div>`).join("");
+  return baseSection("6. 📚 GRAMÁTICA QUE NECESITAS",`<div class="grid-2">${html}</div>`,`Solo aparece la gramática que ayuda a ejecutar esta habilidad profesional.`);
+}
+function renderRegistro(d){
+  const opts=d.registro.opciones.map((o,i)=>`<label class="option"><input type="radio" name="registro" value="${i}"><span>${esc(o.text)}</span></label>${audioControles(o.text,"r-"+i)}`).join("");
+  return baseSection("7. 🎭 ELIGE EL REGISTRO",`<div class="info-box">${esc(d.registro.contexto)}</div><div class="activity"><fieldset><legend>¿Qué opción usarías?</legend><div class="option-list">${opts}</div><button class="btn" type="button" data-check-register>Ver feedback</button><div id="registerFeedback" class="feedback hidden"></div></fieldset></div>`);
+}
+function renderModelo(d){
+  const lines=d.modelo.lineas.map((l,i)=>`<div class="model-sentence"><button type="button" data-model-line="${i}" aria-expanded="false">${esc(l.text)}</button>${audioControles(l.text,"m-"+i)}<div id="model-line-${i}" class="function-note hidden">${esc(l.funcion)}</div></div>`).join("");
+  const all=d.modelo.lineas.map(x=>x.text).join(" ");
+  return baseSection("8. 💼 MIRA CÓMO SE HACE",`<p>${esc(d.modelo.intro)}</p>${lines}${esA2()?audioControles(all,"model-all"):""}`,"Pulsa cada parte para descubrir qué función cumple dentro del seguimiento.");
+}
+function renderEjercicios(d){
+  const html=d.ejercicios.map((e,i)=>renderExercise(e,i)).join("");
+  return baseSection("9. ✍️ COMPRUEBA LO QUE APRENDISTE",html,"No es un examen. Cada actividad prepara una decisión que tendrás que tomar al hablar o escribir.");
+}
+function renderExercise(e,i){
+  if(e.tipo==="text"){
+    return `<div class="activity" data-exercise="${i}"><label for="ex-${i}">${esc(e.pregunta)}</label>${esA2()&&e.audio?audioControles(e.audio,"exaudio-"+i):""}<input id="ex-${i}" type="text" data-text-answer autocomplete="off"><button class="btn" type="button" data-check-exercise="${i}">Comprobar</button><div class="feedback hidden" id="fb-${i}"></div></div>`;
+  }
+  if(e.tipo==="order"){
+    const state=estado.ordenes[i]||[...e.items]; estado.ordenes[i]=state;
+    return `<div class="activity" data-exercise="${i}"><div><strong>${esc(e.pregunta)}</strong></div><div class="order-list" id="order-${i}">${renderOrderItems(i)}</div><button class="btn" type="button" data-check-exercise="${i}">Comprobar</button><div class="feedback hidden" id="fb-${i}"></div></div>`;
+  }
+  const type=e.tipo==="mc-multi"?"checkbox":"radio";
+  const name="exname-"+i;
+  return `<div class="activity" data-exercise="${i}"><fieldset><legend>${esc(e.pregunta)}</legend><div class="option-list">${e.opciones.map((o,j)=>`<label class="option"><input type="${type}" name="${name}" value="${j}"><span>${esc(o)}</span></label>`).join("")}</div><button class="btn" type="button" data-check-exercise="${i}">Comprobar</button><div class="feedback hidden" id="fb-${i}"></div></fieldset></div>`;
+}
+function renderPractica(d){
+  const p=d.practica;
+  return baseSection("10. 🏢 AHORA TE TOCA A TI",`<div class="info-box"><p><strong>Situación:</strong> ${esc(p.situacion)}</p><p><strong>Interlocutor:</strong> ${esc(p.interlocutor)}</p><p><strong>Objetivo:</strong> ${esc(p.objetivo)}</p></div><h3>Requisitos</h3><ul class="requirements">${p.requisitos.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>${esA2()?`<h3>Apoyos que ya practicaste</h3><div>${p.apoyos.map((a,i)=>`<span class="support-chip">${esc(a)}</span>${audioControles(a,"support-"+i)}`).join("")}</div>`:""}<label for="practiceText">Tu respuesta</label><textarea id="practiceText" placeholder="${esc(p.placeholder)}"></textarea><button class="btn" type="button" data-mark-practice>He preparado mi respuesta</button><div id="practiceFeedback" class="feedback hidden">Tu respuesta queda en tu navegador durante esta sesión. Compárala con el modelo en la siguiente sección; no se evalúa automáticamente.</div>`);
+}
+function renderModeloRespuesta(d){
+  const p=d.practica;
+  const body=`<p>No mires el modelo antes de intentar tu propia respuesta.</p><button class="btn" type="button" data-show-answer>Ver una posible respuesta</button><div id="answerBox" class="ready ${estado.modeloVisible?"":"hidden"}"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(p.modelo)}</p>${audioControles(p.modelo,"final-model")}${!esA2()?`<p class="mini-note">Compárala con la tuya: observa qué información aparece primero, cómo se calibra la certeza y cómo se define el siguiente paso.</p>`:""}</div>`;
+  return baseSection("11. 💡 VER MODELO",body);
+}
+function renderChecklist(d){
+  const items=d.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" data-check-item="${i}" ${estado.checklist.has(i)?"checked":""}><span>${esc(x)}</span></label>`).join("");
+  const pct=Math.round((estado.checklist.size/d.checklist.length)*100);
+  const ready=estado.checklist.size===d.checklist.length;
+  return baseSection("12. ✅ CHECKLIST FINAL",`<p>Antes de terminar, comprueba:</p><div class="checklist">${items}</div><div class="check-progress" aria-label="Progreso del checklist"><div style="width:${pct}%"></div></div><p class="mini-note">Checklist: ${pct}%</p><div id="readyBox" class="ready ${ready?"":"hidden"}"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><a class="btn btn-accent" href="${esc(contenido.meta.retoUrl)}">🔥 Ir al reto de hoy</a></div>`);
+}
+
+function renderOrderItems(i){
+  const arr=estado.ordenes[i]||[];
+  return arr.map((x,j)=>`<div class="order-item"><span>${esc(x)}</span><button type="button" data-order-up="${i}:${j}" aria-label="Mover ${esc(x)} hacia arriba">↑</button><button type="button" data-order-down="${i}:${j}" aria-label="Mover ${esc(x)} hacia abajo">↓</button></div>`).join("");
+}
+function bindOrderButtons(root=document){
+  $$('[data-order-up]',root).forEach(btn=>btn.addEventListener('click',()=>moveOrder(btn.dataset.orderUp,-1)));
+  $$('[data-order-down]',root).forEach(btn=>btn.addEventListener('click',()=>moveOrder(btn.dataset.orderDown,1)));
+}
+
+function bindSectionEvents(){
+  $$('[data-prev]').forEach(b=>b.addEventListener('click',()=>setSection(estado.seccion-1)));
+  $$('[data-next]').forEach(b=>b.addEventListener('click',()=>setSection(estado.seccion+1)));
+
+  $$('[data-reveal]').forEach(btn=>btn.addEventListener('click',()=>{
+    const id=btn.dataset.reveal; const panel=$("#"+id); const idx=Number(id.split('-')[1]);
+    panel.classList.toggle('hidden'); btn.setAttribute('aria-expanded',String(!panel.classList.contains('hidden')));
+    if(!panel.classList.contains('hidden')) estado.vocabulario.add(idx);
+    actualizarProgreso();
+  }));
+  $$('[data-phrase]').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=Number(btn.dataset.phrase); const p=$("#phrase-"+i); p.classList.toggle('hidden'); btn.setAttribute('aria-expanded',String(!p.classList.contains('hidden'))); if(!p.classList.contains('hidden')) estado.frases.add(i); actualizarProgreso();
+  }));
+  $$('[data-grammar]').forEach(btn=>btn.addEventListener('click',()=>{const i=btn.dataset.grammar; $("#grammar-"+i).classList.toggle('hidden'); registrarAccion('grammar-'+i)}));
+  $$('[data-model-line]').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.modelLine); const p=$("#model-line-"+i); p.classList.toggle('hidden'); btn.setAttribute('aria-expanded',String(!p.classList.contains('hidden'))); if(!p.classList.contains('hidden')) estado.modelo.add(i); actualizarProgreso()}));
+
+  $$('[data-speak]').forEach(btn=>btn.addEventListener('click',()=>{hablar(btn.dataset.speak,btn.dataset.rate==='slow'); registrarAccion('audio-used')}));
+
+  const recall=$('[data-check-recall]'); if(recall) recall.addEventListener('click',()=>{
+    const v=$('input[name="recall"]:checked'); const fb=$("#recallFeedback"); fb.classList.remove('hidden','good','adjust');
+    if(v&&v.value==='pendiente'){fb.classList.add('good');fb.textContent='Sí. «Pendiente» corresponde a algo que todavía falta completar.';registrarAccion('recall-ok')}else{fb.classList.add('adjust');fb.textContent='Prueba otra vez. Busca la palabra que usamos para algo que todavía falta completar.'}
+  });
+
+  $$('[data-build]').forEach(sel=>sel.addEventListener('change',()=>{
+    const msg=$$('[data-build]').map(s=>s.value).join(' '); $("#buildResult").textContent=msg;
+    $$('.builder [data-speak]').forEach(b=>{b.dataset.speak=msg; b.setAttribute('aria-label',(b.dataset.rate==='slow'?'Escuchar lentamente en español: ':'Escuchar en español: ')+msg)});
+    registrarAccion('builder-change');
+  }));
+  $$('[data-free-build]').forEach(inp=>inp.addEventListener('input',()=>{if(inp.value.trim().length>8) registrarAccion('free-build')}));
+
+  const reg=$('[data-check-register]'); if(reg) reg.addEventListener('click',()=>{
+    const sel=$('input[name="registro"]:checked'); const fb=$("#registerFeedback"); fb.classList.remove('hidden','good','adjust');
+    if(!sel){fb.classList.add('adjust');fb.textContent='Selecciona una opción para comparar su efecto comunicativo.';return}
+    const opt=dataActual().registro.opciones[Number(sel.value)]; fb.classList.add(opt.quality); fb.textContent=opt.feedback; registrarAccion('register')
+  });
+
+  $$('[data-check-exercise]').forEach(btn=>btn.addEventListener('click',()=>checkExercise(Number(btn.dataset.checkExercise))));
+  bindOrderButtons();
+
+  const mark=$('[data-mark-practice]'); if(mark) mark.addEventListener('click',()=>{
+    const t=$("#practiceText"); const fb=$("#practiceFeedback"); fb.classList.remove('hidden','good','adjust');
+    if(t.value.trim().length<20){fb.classList.add('adjust');fb.textContent='Escribe una respuesta suficiente para poder compararla con el modelo. No se evalúa como correcta o incorrecta.'}
+    else{fb.classList.add('good');fb.textContent='Respuesta preparada. En la siguiente sección podrás compararla con una posible respuesta.';registrarAccion('practice')}
+  });
+
+  const show=$('[data-show-answer]'); if(show) show.addEventListener('click',()=>{estado.modeloVisible=true; $("#answerBox").classList.remove('hidden'); registrarAccion('show-model')});
+
+  $$('[data-check-item]').forEach(ch=>ch.addEventListener('change',()=>{
+    const i=Number(ch.dataset.checkItem); if(ch.checked) estado.checklist.add(i); else estado.checklist.delete(i); renderSection();
+  }));
+}
+
+function normalizar(s){return String(s).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function checkExercise(i){
+  const e=dataActual().ejercicios[i]; const box=$(`[data-exercise="${i}"]`); const fb=$("#fb-"+i); let ok=false;
+  if(e.tipo==='text'){
+    const val=$('[data-text-answer]',box).value; ok=normalizar(val)===normalizar(e.respuesta);
+  }else if(e.tipo==='order'){
+    ok=JSON.stringify(estado.ordenes[i])===JSON.stringify(e.answer);
+  }else{
+    const selected=$$(`input[name="exname-${i}"]:checked`,box).map(x=>Number(x.value)).sort((a,b)=>a-b);
+    const correct=[...e.correctas].sort((a,b)=>a-b);
+    ok=JSON.stringify(selected)===JSON.stringify(correct);
+  }
+  fb.classList.remove('hidden','good','adjust');
+  if(ok){fb.classList.add('good');fb.innerHTML=`<strong>Bien resuelto.</strong> ${esc(e.feedback)}`;estado.ejercicios.add(i)}
+  else{fb.classList.add('adjust');fb.innerHTML=`<strong>Revisa tu elección.</strong> ${esc(e.feedback)} Puedes volver a intentarlo.`}
+  actualizarProgreso();
+}
+function moveOrder(spec,dir){
+  const [i0,j0]=spec.split(':').map(Number);
+  const arr=estado.ordenes[i0];
+  const n=j0+dir;
+  if(n<0||n>=arr.length) return;
+  [arr[j0],arr[n]]=[arr[n],arr[j0]];
+  const list=$("#order-"+i0);
+  if(list){
+    list.innerHTML=renderOrderItems(i0);
+    bindOrderButtons(list);
+  }
+}
+
+document.addEventListener('click',e=>{
+  const level=e.target.closest('[data-level]'); if(level) seleccionarNivel(level.dataset.level);
+  const nav=e.target.closest('[data-goto]'); if(nav) setSection(Number(nav.dataset.goto));
+});
+$("#changeLevel").addEventListener('click',volverNiveles);
+
+// Estado inicial: el contenido permanece oculto hasta elegir A2, B1 o B2.
+</script>
+</body>
+</html>

@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Módulo interactivo de Business Spanish: descubrir necesidades y hacer preguntas profesionales.">
+  <title>Descubrir necesidades y hacer preguntas profesionales | La Oficina en Español</title>
+  <style>
+    :root {
+      --blue: #003893;
+      --blue-dark: #002765;
+      --blue-soft: #eaf1ff;
+      --yellow: #FCD116;
+      --yellow-soft: #fff8d6;
+      --red: #CE1126;
+      --white: #FFFFFF;
+      --black: #000000;
+      --ink: #17223a;
+      --muted: #5d6a80;
+      --line: #dce3ef;
+      --surface: #f6f8fc;
+      --success: #157347;
+      --success-soft: #eaf7f0;
+      --warning: #8a6500;
+      --shadow: 0 16px 44px rgba(0, 56, 147, 0.12);
+      --radius: 20px;
+      --radius-sm: 13px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Montserrat, Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f7f9fd 0%, #ffffff 50%, #f7f9fd 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button, select, input[type="checkbox"] { cursor: pointer; }
+    a { color: var(--blue); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .level-gate {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px 18px;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(252, 209, 22, 0.28), transparent 26%),
+        radial-gradient(circle at 88% 82%, rgba(0, 56, 147, 0.16), transparent 30%),
+        var(--white);
+    }
+
+    .gate-card {
+      width: min(980px, 100%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .gate-header {
+      background: var(--blue);
+      color: var(--white);
+      padding: 34px clamp(22px, 5vw, 56px) 30px;
+      position: relative;
+    }
+
+    .gate-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 7px;
+      background: linear-gradient(90deg, var(--yellow) 0 65%, var(--red) 65% 100%);
+    }
+
+    .brand-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      opacity: 0.94;
+    }
+
+    .gate-header h1 {
+      margin: 12px 0 8px;
+      font-family: "Archivo Black", Arial Black, Arial, sans-serif;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .gate-header p { margin: 0; max-width: 720px; line-height: 1.6; color: #e9efff; }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 28px;
+    }
+
+    .level-choice {
+      min-height: 235px;
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      padding: 24px 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--ink);
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .level-choice:hover, .level-choice:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--blue);
+      box-shadow: 0 12px 28px rgba(0, 56, 147, 0.12);
+      outline: none;
+    }
+
+    .level-choice .emoji { font-size: 2.1rem; }
+    .level-choice strong { color: var(--blue); font-size: 1.15rem; }
+    .level-choice span:last-child { line-height: 1.58; color: var(--muted); font-size: 0.95rem; }
+
+    .app { display: none; min-height: 100vh; }
+    .app.active { display: block; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      width: min(1160px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 12px 0;
+      display: grid;
+      grid-template-columns: auto minmax(180px, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .brand-mini { font-weight: 900; color: var(--blue); white-space: nowrap; }
+    .route-chip {
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      border: 1px solid #c6d7fb;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      justify-self: start;
+    }
+
+    .change-level {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--blue);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 800;
+    }
+    .change-level:hover, .change-level:focus-visible { border-color: var(--blue); outline: 2px solid rgba(0,56,147,.15); }
+
+    .progress-shell { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+    .progress-track { height: 9px; background: #e8edf6; border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), #2568d8); border-radius: inherit; transition: width .25s ease; }
+    .progress-label { font-size: .8rem; font-weight: 800; color: var(--muted); min-width: 42px; text-align: right; }
+
+    .hero {
+      background: var(--blue);
+      color: var(--white);
+      padding: 46px 18px 40px;
+      border-bottom: 8px solid var(--yellow);
+    }
+    .hero-inner { width: min(1080px, 100%); margin: 0 auto; }
+    .hero .eyebrow { color: var(--yellow); font-weight: 900; text-transform: uppercase; font-size: .82rem; letter-spacing: .08em; }
+    .hero h2 {
+      margin: 10px 0 12px;
+      max-width: 900px;
+      font-family: "Archivo Black", Arial Black, Arial, sans-serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+    .hero p { max-width: 760px; color: #e9efff; line-height: 1.65; margin: 0; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .meta-pill { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 8px 12px; font-size: .88rem; font-weight: 750; }
+
+    .layout {
+      width: min(1160px, calc(100% - 28px));
+      margin: 26px auto 60px;
+      display: grid;
+      grid-template-columns: 255px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .section-nav {
+      position: sticky;
+      top: 103px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: 0 8px 25px rgba(0,56,147,.06);
+    }
+    .section-nav h3 { margin: 8px 8px 10px; color: var(--blue); font-size: .9rem; }
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      border-radius: 10px;
+      padding: 10px 9px;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.3;
+    }
+    .nav-btn:hover, .nav-btn:focus-visible { background: var(--surface); outline: none; color: var(--blue); }
+    .nav-btn.active { background: var(--blue-soft); color: var(--blue); font-weight: 850; }
+    .nav-btn.visited::after { content: " ✓"; color: var(--success); font-weight: 900; }
+
+    .main-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .module-section { display: none; padding: clamp(22px, 4vw, 42px); min-height: 560px; }
+    .module-section.active { display: block; animation: fade .2s ease; }
+    @keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+    .section-number { font-size: .82rem; color: var(--blue); font-weight: 900; text-transform: uppercase; letter-spacing: .07em; }
+    .module-section h3 { margin: 6px 0 12px; font-size: clamp(1.55rem, 4vw, 2.25rem); line-height: 1.13; color: var(--ink); }
+    .lead { font-size: 1.05rem; line-height: 1.7; color: var(--muted); max-width: 820px; }
+
+    .info-panel, .scenario-card, .tip-panel, .grammar-card, .example-card, .practice-card, .builder-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      margin-top: 18px;
+    }
+    .scenario-card { border-left: 5px solid var(--yellow); background: #fffdf4; }
+    .tip-panel { border-left: 5px solid var(--blue); background: var(--blue-soft); }
+
+    .fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+    .fact { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .fact strong { display: block; color: var(--blue); margin-bottom: 5px; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+    .reveal-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .reveal-trigger {
+      width: 100%; border: 0; background: var(--white); color: var(--ink); padding: 17px; display: flex; justify-content: space-between; gap: 10px; align-items: center; text-align: left; font-weight: 900;
+    }
+    .reveal-trigger:hover, .reveal-trigger:focus-visible { background: var(--surface); outline: none; }
+    .reveal-body { display: none; border-top: 1px solid var(--line); padding: 17px; line-height: 1.6; }
+    .reveal-card.open .reveal-body { display: block; }
+    .reveal-card.open .chev { transform: rotate(180deg); }
+    .chev { transition: transform .2s ease; }
+    .reveal-body p { margin: 0 0 10px; }
+    .reveal-body p:last-child { margin-bottom: 0; }
+    .label { color: var(--blue); font-weight: 850; }
+
+    .audio-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .audio-btn {
+      border: 1px solid #b7c9ef;
+      background: var(--white);
+      color: var(--blue);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: .82rem;
+      font-weight: 850;
+    }
+    .audio-btn:hover, .audio-btn:focus-visible { background: var(--blue-soft); outline: 2px solid rgba(0,56,147,.12); }
+    .audio-note { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+
+    .phrase-group { margin-top: 20px; }
+    .phrase-group h4 { color: var(--blue); margin: 0 0 9px; }
+    .phrase-item { border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin: 10px 0; }
+    .phrase-line { font-weight: 850; font-size: 1.03rem; }
+    .when-btn { border: 0; background: none; color: var(--blue); padding: 7px 0 0; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+    .when-text { display: none; color: var(--muted); margin: 8px 0 0; line-height: 1.55; }
+    .phrase-item.open .when-text { display: block; }
+
+    .meaning-blocks { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .meaning-blocks span { background: var(--yellow-soft); border: 1px solid #f3de79; border-radius: 8px; padding: 6px 9px; font-size: .88rem; font-weight: 750; }
+
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    .field label { display: block; font-size: .86rem; color: var(--muted); font-weight: 800; margin-bottom: 6px; }
+    select, input[type="text"], textarea {
+      width: 100%;
+      border: 1.5px solid #cfd8e8;
+      border-radius: 11px;
+      background: var(--white);
+      color: var(--ink);
+      padding: 12px 13px;
+    }
+    select:focus, input[type="text"]:focus, textarea:focus { outline: 3px solid rgba(0,56,147,.12); border-color: var(--blue); }
+    textarea { min-height: 155px; resize: vertical; line-height: 1.55; }
+    .builder-result { margin-top: 15px; padding: 16px; background: var(--white); border: 2px solid #cbd9f5; border-radius: 12px; font-weight: 850; line-height: 1.55; }
+
+    .grammar-grid { display: grid; gap: 12px; margin-top: 18px; }
+    .grammar-trigger { width: 100%; border: 0; background: transparent; text-align: left; padding: 0; color: var(--blue); font-weight: 900; display: flex; justify-content: space-between; gap: 10px; }
+    .grammar-body { display: none; margin-top: 12px; line-height: 1.6; color: var(--muted); }
+    .grammar-card.open .grammar-body { display: block; }
+    .formula { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin: 10px 0; font-weight: 850; color: var(--ink); }
+
+    .choice-list { display: grid; gap: 10px; margin-top: 16px; }
+    .choice-btn {
+      border: 1.5px solid var(--line); background: var(--white); color: var(--ink); border-radius: 12px; padding: 14px; text-align: left; line-height: 1.5;
+    }
+    .choice-btn:hover, .choice-btn:focus-visible { border-color: var(--blue); outline: 2px solid rgba(0,56,147,.1); }
+    .choice-btn.selected { border-color: var(--blue); background: var(--blue-soft); }
+    .feedback { display: none; margin-top: 14px; border-radius: 12px; padding: 14px; line-height: 1.55; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--success-soft); border: 1px solid #b9e2ca; color: #105b39; }
+    .feedback.neutral { background: var(--yellow-soft); border: 1px solid #ead878; color: #694f00; }
+
+    .dialogue { display: grid; gap: 10px; margin-top: 16px; }
+    .dialogue-line { border-radius: 12px; padding: 14px; background: var(--white); border: 1px solid var(--line); }
+    .dialogue-line .speaker { color: var(--blue); font-weight: 900; margin-bottom: 4px; }
+    .function-chip { display: none; margin-top: 8px; color: var(--muted); font-size: .9rem; border-left: 3px solid var(--yellow); padding-left: 9px; }
+    .dialogue-line.open .function-chip { display: block; }
+    .function-btn { border: 0; background: none; color: var(--blue); padding: 7px 0 0; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+
+    .exercise-card { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 17px; margin: 14px 0; background: var(--white); }
+    .exercise-card h4 { margin: 0 0 9px; }
+    .exercise-card p { color: var(--muted); line-height: 1.55; }
+    .check-btn, .primary-btn, .secondary-btn {
+      border: 0; border-radius: 11px; padding: 11px 15px; font-weight: 900; margin-top: 10px;
+    }
+    .primary-btn, .check-btn { background: var(--blue); color: var(--white); }
+    .primary-btn:hover, .primary-btn:focus-visible, .check-btn:hover, .check-btn:focus-visible { background: var(--blue-dark); outline: 3px solid rgba(0,56,147,.14); }
+    .secondary-btn { background: var(--white); color: var(--blue); border: 1px solid #b9c9e9; }
+    .secondary-btn:hover, .secondary-btn:focus-visible { background: var(--blue-soft); outline: none; }
+
+    .model-box { display: none; margin-top: 16px; border: 1px solid #bfd0f3; background: var(--blue-soft); border-radius: 14px; padding: 17px; line-height: 1.65; }
+    .model-box.show { display: block; }
+
+    .checklist { display: grid; gap: 10px; margin-top: 18px; }
+    .check-item { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--line); border-radius: 12px; padding: 13px; background: var(--white); }
+    .check-item input { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--blue); }
+    .check-item label { line-height: 1.45; cursor: pointer; }
+    .check-summary { margin-top: 14px; font-weight: 900; color: var(--blue); }
+
+    .ready-box { display: none; margin-top: 20px; background: var(--blue); color: var(--white); border-radius: 17px; padding: 22px; }
+    .ready-box.show { display: block; animation: fade .25s ease; }
+    .ready-box h4 { font-size: 1.45rem; margin: 0 0 8px; color: var(--yellow); }
+    .ready-box p { color: #e7efff; line-height: 1.6; }
+    .challenge-link { display: inline-block; margin-top: 8px; text-decoration: none; background: var(--yellow); color: #13213a; font-weight: 950; border-radius: 11px; padding: 12px 16px; }
+    .challenge-link:hover, .challenge-link:focus-visible { outline: 3px solid rgba(255,255,255,.35); }
+
+    .section-footer { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding: 16px clamp(22px,4vw,42px) 22px; background: #fbfcfe; }
+    .nav-move { border: 1px solid var(--line); background: var(--white); color: var(--blue); border-radius: 10px; padding: 10px 14px; font-weight: 900; }
+    .nav-move.next { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .nav-move:disabled { opacity: .4; cursor: not-allowed; }
+
+    .inline-note { color: var(--muted); font-size: .9rem; line-height: 1.55; }
+    .stress { letter-spacing: .02em; font-weight: 900; color: var(--blue); }
+
+    @media (max-width: 900px) {
+      .level-grid { grid-template-columns: 1fr; }
+      .level-choice { min-height: auto; }
+      .layout { grid-template-columns: 1fr; }
+      .section-nav { position: static; display: flex; overflow-x: auto; gap: 6px; padding: 9px; }
+      .section-nav h3 { display: none; }
+      .nav-btn { min-width: 140px; white-space: normal; }
+      .topbar-inner { grid-template-columns: 1fr auto; }
+      .route-chip { grid-column: 1 / -1; grid-row: 2; }
+      .progress-shell { grid-row: 3; }
+      .cards-grid, .form-grid, .fact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .gate-header { padding-top: 28px; }
+      .level-grid { padding: 18px; }
+      .topbar-inner { width: min(100% - 20px, 1160px); gap: 8px; }
+      .brand-mini { font-size: .84rem; }
+      .change-level { padding: 8px 10px; font-size: .82rem; }
+      .layout { width: min(100% - 18px, 1160px); margin-top: 16px; }
+      .module-section { min-height: 0; padding: 22px 18px; }
+      .section-footer { padding: 14px 18px 18px; }
+      .nav-move { flex: 1; }
+      .hero { padding-top: 36px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <section id="levelGate" class="level-gate" aria-labelledby="levelTitle">
+    <div class="gate-card">
+      <div class="gate-header">
+        <div class="brand-kicker">La Oficina en Español · Español para trabajar</div>
+        <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+        <p>Elige una ruta. Todos practicarán la misma habilidad profesional, pero cambiarán el apoyo, la autonomía y la dificultad.</p>
+      </div>
+      <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+        <button class="level-choice" data-level="a2" type="button">
+          <span class="emoji" aria-hidden="true">🌱</span>
+          <strong>A2 — Principiante</strong>
+          <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+        </button>
+        <button class="level-choice" data-level="b1" type="button">
+          <span class="emoji" aria-hidden="true">💼</span>
+          <strong>B1 — Intermedio</strong>
+          <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+        </button>
+        <button class="level-choice" data-level="b2" type="button">
+          <span class="emoji" aria-hidden="true">🚀</span>
+          <strong>B2 — Avanzado</strong>
+          <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="app" class="app" aria-live="polite">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-mini">La Oficina en Español</div>
+        <div id="routeChip" class="route-chip">Tu ruta:</div>
+        <button id="changeLevelBtn" class="change-level" type="button">Cambiar nivel</button>
+        <div class="progress-shell" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0% completado">
+          <div class="progress-track" aria-hidden="true"><div id="progressBar" class="progress-bar"></div></div>
+          <div id="progressLabel" class="progress-label">0%</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Habilidad profesional de la semana</div>
+        <h2 id="heroTitle"></h2>
+        <p id="heroSubtitle"></p>
+        <div class="meta-row">
+          <span class="meta-pill">⏱ 15–25 minutos</span>
+          <span class="meta-pill">aprender → practicar → repetir → adaptar → consolidar</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <nav class="section-nav" aria-label="Secciones del módulo">
+        <h3>Tu recorrido</h3>
+        <div id="sectionNav"></div>
+      </nav>
+
+      <main class="main-card">
+        <div id="sectionHost"></div>
+        <div class="section-footer">
+          <button id="prevBtn" class="nav-move" type="button">← Anterior</button>
+          <button id="nextBtn" class="nav-move next" type="button">Siguiente →</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // ===== CONTENIDO EDITABLE DE LA SEMANA =====
+    const contenido = {
+      a2: {
+        route: "🌱 A2 — Principiante",
+        skill: "Descubrir necesidades y hacer preguntas profesionales",
+        subtitle: "Aprende a hacer preguntas sencillas y claras para entender qué necesita una persona antes de ofrecer una solución.",
+        objective: "Al terminar esta semana podrás hacer preguntas profesionales sencillas para descubrir el problema, la prioridad, el plazo y algunas condiciones básicas de un cliente, compañero o proveedor.",
+        situation: {
+          intro: "Trabajas en una empresa de servicios. Un cliente te dice: «Necesitamos mejorar nuestro proceso de atención». Antes de explicar tu solución, necesitas comprender mejor qué quiere conseguir.",
+          facts: [
+            ["Quién habla", "Tú, en una conversación profesional."],
+            ["Con quién", "Un cliente que necesita ayuda."],
+            ["Objetivo", "Comprender su necesidad antes de proponer."],
+            ["Dificultad", "El cliente da información general y tú debes hacer preguntas claras."]
+          ]
+        },
+        vocab: [
+          {term:"necesidad", stress:"ne-ce-si-DAD", en:"need", meaning:"Algo que una persona o empresa necesita.", example:"Queremos entender mejor su necesidad.", extra:"Colocación útil: identificar una necesidad."},
+          {term:"prioridad", stress:"prio-ri-DAD", en:"priority", meaning:"Lo más importante en este momento.", example:"¿Cuál es su prioridad principal?", extra:"Puedes usar: prioridad principal / máxima prioridad."},
+          {term:"plazo", stress:"PLA-zo", en:"deadline / time frame", meaning:"Tiempo disponible para terminar algo.", example:"¿Qué plazo tienen para implementar el cambio?", extra:"También puedes preguntar: ¿Para cuándo lo necesitan?"},
+          {term:"presupuesto", stress:"pre-su-PUES-to", en:"budget", meaning:"Cantidad de dinero disponible para un proyecto o compra.", example:"¿Tienen un presupuesto aproximado?", extra:"«Aproximado» hace la pregunta más flexible."},
+          {term:"objetivo", stress:"ob-JE-ti-vo", en:"goal / objective", meaning:"Resultado que la persona quiere conseguir.", example:"¿Cuál es el objetivo principal del proyecto?", extra:"Objetivo + principal es una combinación frecuente."},
+          {term:"resolver", stress:"re-sol-VER", en:"to solve", meaning:"Encontrar una solución para un problema.", example:"¿Qué problema quieren resolver?", extra:"Estructura útil: problema + que quieren resolver."}
+        ],
+        vocabRecall: {
+          prompt: "¿Qué palabra significa “priority”?",
+          options: ["plazo", "prioridad", "presupuesto"],
+          correct: 1,
+          feedback: "«Prioridad» es lo más importante que debe atenderse primero."
+        },
+        phrases: [
+          {group:"Entender la necesidad", items:[
+            {text:"¿Qué necesita exactamente?", use:"Úsala cuando la necesidad todavía es muy general.", blocks:["¿Qué necesita", "exactamente?"]},
+            {text:"¿Qué problema quiere resolver?", use:"Ayuda a pasar de una petición general al problema concreto.", blocks:["¿Qué problema", "quiere resolver?"]}
+          ]},
+          {group:"Definir la prioridad", items:[
+            {text:"¿Cuál es su prioridad principal?", use:"Úsala para saber qué resultado o aspecto es más importante.", blocks:["¿Cuál es", "su prioridad principal?"]},
+            {text:"¿Qué es lo más importante para usted?", use:"Alternativa clara y directa cuando «prioridad» resulta difícil.", blocks:["¿Qué es", "lo más importante", "para usted?"]}
+          ]},
+          {group:"Aclarar condiciones", items:[
+            {text:"¿Para cuándo lo necesita?", use:"Pregunta breve para conocer la fecha o el plazo.", blocks:["¿Para cuándo", "lo necesita?"]},
+            {text:"¿Tienen un presupuesto aproximado?", use:"Permite conocer una referencia sin exigir una cifra exacta.", blocks:["¿Tienen", "un presupuesto aproximado?"]},
+            {text:"¿Hay algo más que debamos tener en cuenta?", use:"Pregunta de cierre para descubrir una condición que no apareció antes.", blocks:["¿Hay algo más", "que debamos tener en cuenta?"]}
+          ]}
+        ],
+        builder: {
+          intro:"Construye una pregunta. Cambia solo una parte y conserva una estructura que ya puedes reutilizar.",
+          fields:[
+            {label:"Quiero descubrir", options:[
+              {label:"la prioridad", value:"¿Cuál es su prioridad principal?"},
+              {label:"el problema", value:"¿Qué problema quiere resolver?"},
+              {label:"el plazo", value:"¿Para cuándo lo necesita?"},
+              {label:"el presupuesto", value:"¿Tienen un presupuesto aproximado?"}
+            ]},
+            {label:"Después quiero confirmar", options:[
+              {label:"si falta información", value:"¿Hay algo más que debamos tener en cuenta?"},
+              {label:"el objetivo", value:"¿Cuál es el objetivo principal?"}
+            ]}
+          ],
+          join:" "
+        },
+        grammar: [
+          {title:"Preguntas con qué y cuál", situation:"Necesitas descubrir información concreta.", intention:"Preguntar por una cosa o identificar una opción/prioridad.", structure:"¿Qué + sustantivo/verbo...? / ¿Cuál es + sustantivo...?", explanation:"Usa «qué» para preguntar por información: «¿Qué necesita?». Usa «cuál» con «ser» para identificar una opción o elemento: «¿Cuál es su prioridad?». No necesitas memorizar una regla larga: aprende estas preguntas completas.", examples:["¿Qué problema quiere resolver?", "¿Cuál es su prioridad principal?"]},
+          {title:"Necesitar + sustantivo o infinitivo", situation:"El cliente explica lo que necesita.", intention:"Expresar una necesidad de forma simple.", structure:"necesitar + sustantivo / necesitar + infinitivo", explanation:"Puedes decir «Necesitamos una solución» o «Necesitamos reducir el tiempo de respuesta». Después pregunta para concretar esa necesidad.", examples:["Necesitamos una solución más rápida.", "¿Qué necesitan mejorar?"]},
+          {title:"Para cuándo", situation:"Necesitas conocer la fecha o el plazo.", intention:"Preguntar por el momento límite de una necesidad.", structure:"¿Para cuándo + pronombre + verbo?", explanation:"«¿Para cuándo lo necesita?» pregunta por la fecha esperada. Es muy útil en proyectos, servicios y entregas.", examples:["¿Para cuándo lo necesita?", "¿Para cuándo necesitan la propuesta?"]}
+        ],
+        register: {
+          context:"Un cliente nuevo te dice que necesita una solución pronto. Quieres saber su prioridad.",
+          prompt:"¿Qué opción funciona mejor en esta conversación profesional?",
+          options:[
+            {text:"¿Qué quieres?", quality:"neutral", feedback:"Es gramatical, pero puede sonar demasiado directa y poco específica con un cliente nuevo."},
+            {text:"¿Cuál es su prioridad principal en este momento?", quality:"good", feedback:"Funciona bien porque es clara, específica y mantiene un trato profesional con «usted»."},
+            {text:"Dígame ya su prioridad.", quality:"neutral", feedback:"La intención es comprensible, pero el imperativo y «ya» pueden sonar exigentes."}
+          ]
+        },
+        example: {
+          intro:"Observa cómo las preguntas avanzan de una necesidad general a información más concreta.",
+          lines:[
+            {speaker:"Cliente", text:"Necesitamos mejorar nuestro proceso de atención al cliente.", function:"Presenta una necesidad general."},
+            {speaker:"Tú", text:"Claro. ¿Qué problema quieren resolver exactamente?", function:"Concreta el problema antes de proponer."},
+            {speaker:"Cliente", text:"Los clientes esperan demasiado tiempo para recibir una respuesta.", function:"Aparece el problema específico."},
+            {speaker:"Tú", text:"Entiendo. ¿Cuál es su prioridad principal: responder más rápido o reducir el número de solicitudes pendientes?", function:"Ayuda a identificar la prioridad."},
+            {speaker:"Cliente", text:"Responder más rápido.", function:"El cliente define qué importa más."},
+            {speaker:"Tú", text:"¿Para cuándo necesitan implementar el cambio?", function:"Aclaras el plazo."},
+            {speaker:"Cliente", text:"En dos meses.", function:"Obtienes una condición concreta."},
+            {speaker:"Tú", text:"Perfecto. ¿Hay algo más que debamos tener en cuenta?", function:"Cierras la fase de preguntas sin asumir que ya sabes todo."}
+          ]
+        },
+        exercises:[
+          {type:"mcq", question:"Quieres conocer el plazo. ¿Qué preguntas?", options:["¿Qué problema quiere resolver?", "¿Para cuándo lo necesita?", "¿Cuál es su prioridad principal?"], accepted:[1], feedback:["Esa pregunta descubre el problema, no el plazo.","Sí. «¿Para cuándo lo necesita?» pregunta directamente por la fecha o el plazo.","Esa pregunta descubre la prioridad, no el plazo."]},
+          {type:"fill", question:"Completa la pregunta: «¿Cuál es su ______ principal?»", answer:["prioridad"], hint:"Piensa en lo más importante.", success:"«Prioridad» completa una pregunta profesional muy útil."},
+          {type:"mcq", question:"El cliente dice: «Queremos mejorar el servicio». ¿Cuál es el mejor siguiente paso?", options:["Explicar inmediatamente tu producto.","Preguntar: «¿Qué problema quieren resolver exactamente?»", "Decir: «Eso es fácil»."], accepted:[1], feedback:["Todavía no sabes suficiente para proponer una solución adecuada.","Sí. Primero conviertes una necesidad general en un problema concreto.","No aporta información y puede minimizar la situación del cliente."]}
+        ],
+        practice: {
+          situation:"Un cliente te dice: «Necesitamos una herramienta nueva para organizar las solicitudes de nuestros clientes». Tú todavía no sabes exactamente qué necesita.",
+          interlocutor:"Cliente nuevo",
+          objective:"Haz 3 o 4 preguntas para descubrir el problema, la prioridad y el plazo. Si quieres, pregunta también por presupuesto o por otra condición importante.",
+          requirements:["Incluye una pregunta con «qué». ","Incluye una pregunta con «cuál». ","Incluye una pregunta sobre el plazo.","Mantén el trato profesional con «usted» o «ustedes»."],
+          supports:["¿Qué problema quiere resolver?", "¿Cuál es su prioridad principal?", "¿Para cuándo lo necesita?", "¿Tienen un presupuesto aproximado?", "¿Hay algo más que debamos tener en cuenta?"]
+        },
+        model:"Claro. Para entender mejor su necesidad, ¿qué problema quieren resolver exactamente? ¿Cuál es su prioridad principal? ¿Para cuándo necesitan la herramienta? ¿Hay algo más que debamos tener en cuenta?",
+        modelBlocks:[
+          "Para entender mejor su necesidad, ¿qué problema quieren resolver exactamente?",
+          "¿Cuál es su prioridad principal?",
+          "¿Para cuándo necesitan la herramienta?",
+          "¿Hay algo más que debamos tener en cuenta?"
+        ],
+        checklist:[
+          "Puedo reconocer preguntas para descubrir una necesidad.",
+          "Puedo preguntar por el problema y la prioridad.",
+          "Puedo preguntar por el plazo con «¿Para cuándo…?». ",
+          "Puedo mantener un trato profesional con «usted/ustedes». ",
+          "Puedo hacer varias preguntas sencillas antes de proponer una solución."
+        ]
+      },
+
+      b1: {
+        route: "💼 B1 — Intermedio",
+        skill: "Descubrir necesidades y hacer preguntas profesionales",
+        subtitle: "Organiza una conversación de descubrimiento, formula preguntas de seguimiento y adapta el registro al interlocutor.",
+        objective: "Al terminar esta semana podrás conducir una breve conversación de descubrimiento para comprender el problema, la prioridad, las restricciones y el criterio de éxito antes de recomendar una solución o siguiente paso.",
+        situation: {
+          intro:"Participas en una reunión inicial con una posible clienta que dice que su equipo necesita «trabajar de forma más eficiente». La frase es demasiado amplia para proponer algo útil. Tu tarea es hacer preguntas que conviertan esa necesidad general en información accionable.",
+          facts:[
+            ["Quién habla","Tú, como profesional que necesita diagnosticar antes de proponer."],
+            ["Con quién","Una posible clienta y responsable de un equipo."],
+            ["Objetivo","Entender problema, impacto, prioridad, restricciones y resultado esperado."],
+            ["Dificultad","La interlocutora responde de forma general; debes profundizar sin convertir la conversación en un interrogatorio."]
+          ]
+        },
+        vocab:[
+          {term:"necesidad", meaning:"Requisito o problema que debe atenderse.", example:"Antes de proponer, necesito entender bien la necesidad.", extra:"Colocaciones: detectar una necesidad, cubrir una necesidad, responder a una necesidad."},
+          {term:"restricción", meaning:"Límite que condiciona una decisión o una solución.", example:"¿Hay alguna restricción de tiempo, presupuesto o recursos?", extra:"Sinónimos según contexto: limitación, condición, requisito."},
+          {term:"impacto", meaning:"Efecto que un problema produce en resultados, personas o procesos.", example:"¿Qué impacto está teniendo este retraso en el equipo?", extra:"Preguntar por el impacto ayuda a medir la importancia real del problema."},
+          {term:"criterio de éxito", meaning:"Señal o medida que permitirá saber si una solución funcionó.", example:"¿Cómo sabrían que el cambio ha funcionado?", extra:"Alternativas: resultado esperado, indicador, condición de éxito."},
+          {term:"profundizar", meaning:"Pedir más información sobre un punto relevante.", example:"Me gustaría profundizar un poco en ese problema.", extra:"Útil para introducir una pregunta de seguimiento sin sonar brusco."},
+          {term:"priorizar", meaning:"Decidir qué debe atenderse primero.", example:"Si tuvieran que priorizar un solo resultado, ¿cuál sería?", extra:"Permite pasar de una lista de deseos a una prioridad real."}
+        ],
+        phrases:[
+          {group:"Abrir la exploración", items:[
+            {text:"Para entender mejor la situación, ¿qué está ocurriendo exactamente?", use:"Abre la conversación sin presuponer la causa del problema."},
+            {text:"¿Qué les gustaría conseguir que ahora no están consiguiendo?", use:"Orienta la conversación hacia la diferencia entre el estado actual y el deseado."}
+          ]},
+          {group:"Profundizar", items:[
+            {text:"Cuando dices que el proceso es lento, ¿en qué parte se nota más?", use:"Retoma las palabras del interlocutor y pide precisión."},
+            {text:"¿Qué consecuencias está teniendo eso en el equipo o en los clientes?", use:"Pasa del problema al impacto."},
+            {text:"¿Podrías darme un ejemplo concreto?", use:"Pide evidencia o una situación específica cuando la respuesta es abstracta."}
+          ]},
+          {group:"Definir prioridad y condiciones", items:[
+            {text:"Si tuvieran que priorizar un solo resultado, ¿cuál sería?", use:"Obliga a distinguir lo esencial de lo deseable."},
+            {text:"¿Qué restricciones debemos tener en cuenta desde el principio?", use:"Introduce límites sin reducirlos solo a presupuesto."},
+            {text:"¿Cómo sabrían que la solución ha funcionado?", use:"Descubre el criterio de éxito en palabras del interlocutor."}
+          ]}
+        ],
+        builder:{
+          intro:"Construye una secuencia breve: abre, profundiza y cierra con una pregunta que ayude a priorizar.",
+          fields:[
+            {label:"1. Abrir", options:[
+              {label:"situación actual", value:"Para entender mejor la situación, ¿qué está ocurriendo exactamente?"},
+              {label:"resultado deseado", value:"¿Qué les gustaría conseguir que ahora no están consiguiendo?"}
+            ]},
+            {label:"2. Profundizar", options:[
+              {label:"impacto", value:"¿Qué consecuencias está teniendo eso en el equipo o en los clientes?"},
+              {label:"ejemplo", value:"¿Podrías darme un ejemplo concreto?"},
+              {label:"causa percibida", value:"¿A qué crees que se debe principalmente?"}
+            ]},
+            {label:"3. Priorizar", options:[
+              {label:"resultado clave", value:"Si tuvieran que priorizar un solo resultado, ¿cuál sería?"},
+              {label:"criterio de éxito", value:"¿Cómo sabrían que la solución ha funcionado?"}
+            ]}
+          ],
+          join:"\n"
+        },
+        grammar:[
+          {title:"Preguntas abiertas y cerradas", situation:"Necesitas obtener información y después confirmar un dato.", intention:"Abrir primero; concretar después.", structure:"¿Qué / cómo / cuál...? → ¿Es / tienen / necesitan...?", explanation:"Las preguntas abiertas permiten desarrollar una respuesta. Las cerradas sirven para confirmar información concreta. Una conversación de descubrimiento suele funcionar mejor cuando alternas ambas según lo que ya sabes.", examples:["¿Qué está ocurriendo exactamente?", "Entonces, ¿el principal problema es el tiempo de respuesta?"]},
+          {title:"Condicional para plantear escenarios", situation:"Quieres pedir una prioridad sin imponerla.", intention:"Presentar una situación hipotética y pedir una elección.", structure:"Si + imperfecto de subjuntivo + condicional", explanation:"En B1 puedes reutilizar fórmulas frecuentes como «Si tuvieran que elegir..., ¿cuál sería...?». No necesitas construir hipótesis complejas; la estructura te ayuda a pedir una priorización de manera profesional.", examples:["Si tuvieran que priorizar un solo resultado, ¿cuál sería?", "Si pudieran cambiar una sola cosa, ¿qué cambiarían primero?"]},
+          {title:"Retomar lo que dijo el interlocutor", situation:"La respuesta contiene una palabra vaga: «lento», «difícil», «mejor».", intention:"Profundizar sin cambiar de tema.", structure:"Cuando dices que + idea, ¿qué / cómo / en qué...?", explanation:"Reformular una parte de la respuesta demuestra escucha y convierte términos vagos en información útil.", examples:["Cuando dices que el proceso es lento, ¿en qué parte se nota más?", "Cuando hablas de mejorar la calidad, ¿qué tendría que cambiar concretamente?"]}
+        ],
+        register:{
+          context:"Hablas con una posible clienta en una primera reunión. Ha dicho: «El equipo no está rindiendo como debería».",
+          prompt:"¿Qué pregunta de seguimiento mantiene mejor un tono profesional y exploratorio?",
+          options:[
+            {text:"¿Por qué su equipo no funciona bien?", quality:"neutral", feedback:"Es directa y presupone una valoración negativa. Puede hacer que la interlocutora se ponga a la defensiva."},
+            {text:"Cuando dices que el equipo no está rindiendo como debería, ¿qué diferencias estás observando respecto a lo que esperabas?", quality:"good", feedback:"Recoge su formulación, pide evidencia y evita imponer una causa antes de tener información."},
+            {text:"Entonces el problema es la productividad, ¿verdad?", quality:"neutral", feedback:"Puede servir más adelante para confirmar, pero aquí cierra demasiado pronto una interpretación que todavía no has verificado."}
+          ]
+        },
+        example:{
+          intro:"Fíjate en la secuencia: necesidad general → ejemplo → impacto → prioridad → restricciones → criterio de éxito.",
+          lines:[
+            {speaker:"Clienta", text:"Necesitamos que el equipo trabaje de forma más eficiente.", function:"Necesidad general, todavía poco operativa."},
+            {speaker:"Tú", text:"Para entender mejor la situación, ¿qué está ocurriendo exactamente?", function:"Abres sin asumir la causa."},
+            {speaker:"Clienta", text:"Estamos tardando demasiado en responder las solicitudes internas.", function:"Aparece un problema concreto."},
+            {speaker:"Tú", text:"¿Podrías darme un ejemplo de dónde se produce ese retraso?", function:"Pides evidencia específica."},
+            {speaker:"Clienta", text:"Sobre todo cuando una solicitud pasa de ventas a operaciones.", function:"Localiza el punto de fricción."},
+            {speaker:"Tú", text:"¿Qué impacto está teniendo ese retraso?", function:"Exploras consecuencias antes de hablar de solución."},
+            {speaker:"Clienta", text:"Los clientes esperan más y el equipo repite trabajo.", function:"El problema ya tiene impacto identificable."},
+            {speaker:"Tú", text:"Si tuvieran que priorizar un resultado, ¿sería reducir el tiempo de respuesta o evitar el trabajo duplicado?", function:"Ayudas a ordenar prioridades sin decidir por ella."},
+            {speaker:"Clienta", text:"Reducir el tiempo de respuesta.", function:"Define la prioridad."},
+            {speaker:"Tú", text:"Perfecto. ¿Qué restricciones debemos tener en cuenta y cómo sabrían que la solución ha funcionado?", function:"Cierras con condiciones y criterio de éxito."}
+          ]
+        },
+        exercises:[
+          {type:"mcq", question:"La clienta dice: «Queremos un proceso más sencillo». ¿Qué pregunta profundiza mejor?", options:["¿Cuánto cuesta su proceso actual?", "Cuando dices «más sencillo», ¿qué tendría que cambiar concretamente?", "¿Quieres comprar nuestra solución?"], accepted:[1], feedback:["Puede ser relevante después, pero todavía no aclara qué significa «más sencillo».","Sí. Retomas su palabra y le pides definirla de forma observable.","Es prematuro: todavía no has descubierto suficiente información."]},
+          {type:"fill", question:"Completa: «¿Qué ______ está teniendo ese retraso en el equipo?»", answer:["impacto"], hint:"Buscas conocer la consecuencia.", success:"«Impacto» conecta el problema con sus consecuencias."},
+          {type:"mcq", question:"Ya entiendes el problema. Ahora quieres comprobar una interpretación. ¿Qué opción es más adecuada?", options:["Entonces, si te he entendido bien, la prioridad es reducir el tiempo de respuesta, ¿correcto?", "¿Qué está ocurriendo exactamente?", "¿Por qué no lo solucionaron antes?"], accepted:[0], feedback:["Sí. Resume y confirma sin presentar tu interpretación como un hecho cerrado.","Es una buena pregunta de apertura, pero ya has superado esa fase.","Introduce juicio y puede desplazar la conversación hacia la defensa del pasado."]}
+        ],
+        practice:{
+          situation:"Una responsable de recursos humanos te dice: «Necesitamos mejorar la incorporación de nuevos empleados porque está siendo complicada». Tienes una reunión de diez minutos para entender la situación antes de proponer un servicio.",
+          interlocutor:"Responsable de RR. HH.",
+          objective:"Escribe una secuencia de 6–7 preguntas que te permita descubrir el problema concreto, un ejemplo, el impacto, la prioridad, una restricción y el criterio de éxito, y cerrar con una confirmación breve.",
+          requirements:["Empieza con una pregunta abierta.","Incluye al menos una pregunta de seguimiento basada en lo que podría responder la clienta.","Usa una pregunta para priorizar.","Incluye una confirmación o reformulación al final."],
+          supports:[]
+        },
+        model:"Para entender mejor la situación, ¿qué está ocurriendo durante la incorporación de los nuevos empleados? Cuando dices que está siendo complicada, ¿en qué parte del proceso se nota más? ¿Podrías darme un ejemplo reciente? ¿Qué impacto está teniendo esto en los nuevos empleados o en el equipo? Si tuvieran que priorizar un solo resultado, ¿cuál sería? ¿Hay alguna restricción de tiempo, presupuesto o recursos que debamos considerar? Entonces, si te he entendido bien, la prioridad es reducir el tiempo que tarda una persona nueva en empezar a trabajar con autonomía, ¿correcto?",
+        checklist:[
+          "Puedo abrir una conversación con una pregunta que no presupone la solución.",
+          "Puedo profundizar retomando palabras o ideas del interlocutor.",
+          "Puedo preguntar por impacto, prioridad, restricciones y criterio de éxito.",
+          "Puedo alternar preguntas abiertas con preguntas de confirmación.",
+          "Puedo organizar una breve conversación de descubrimiento con autonomía y un registro profesional."
+        ]
+      },
+
+      b2: {
+        route: "🚀 B2 — Avanzado",
+        skill: "Descubrir necesidades y hacer preguntas profesionales",
+        subtitle: "Diagnostica necesidades complejas, cuestiona supuestos y ajusta el tono sin perder claridad ni relación profesional.",
+        objective: "Al terminar esta semana podrás conducir una conversación diagnóstica en la que distingas síntomas de causas, explores impacto y criterios de decisión, detectes restricciones y formules preguntas sensibles o desafiantes con precisión y tacto.",
+        situation:{
+          intro:"Una directora de operaciones te pide «una solución para automatizar cuanto antes» un proceso que genera retrasos. La dirección ya parece convencida de que la automatización es la respuesta, pero tú todavía no sabes si ese es el problema real. Debes obtener información sin confrontar innecesariamente ni aceptar el diagnóstico inicial como un hecho.",
+          facts:[
+            ["Quién habla","Tú, como consultor/a o profesional responsable de diagnosticar antes de recomendar."],
+            ["Con quién","Una directora de operaciones con poder de decisión."],
+            ["Objetivo","Separar síntoma, causa, impacto, restricciones y criterios de decisión."],
+            ["Dificultad","Existe una solución preferida de antemano y algunas preguntas pueden percibirse como un cuestionamiento de decisiones previas."]
+          ]
+        },
+        vocab:[
+          {term:"supuesto", meaning:"Idea que se da por válida sin haberla comprobado completamente.", example:"Antes de avanzar, me gustaría revisar el supuesto de que la automatización resolverá el cuello de botella.", extra:"Matiz: «supuesto» es neutral; «creencia» puede sonar más personal."},
+          {term:"cuello de botella", meaning:"Punto del proceso que limita el flujo o la capacidad del sistema.", example:"¿Dónde se produce exactamente el cuello de botella?", extra:"Muy frecuente en operaciones y procesos; úsalo cuando exista una restricción real del flujo."},
+          {term:"criterio de decisión", meaning:"Factor utilizado para elegir entre alternativas.", example:"¿Qué criterios pesarán más al comparar las opciones?", extra:"Puede incluir coste, riesgo, tiempo, facilidad de adopción o impacto."},
+          {term:"coste de no actuar", meaning:"Consecuencia de mantener la situación sin cambios.", example:"¿Cuál sería el coste de mantener el proceso actual otros seis meses?", extra:"No se limita a dinero: puede incluir riesgo, tiempo, clientes o capacidad."},
+          {term:"condicionante", meaning:"Factor que limita o influye en una decisión sin ser necesariamente un bloqueo absoluto.", example:"¿Qué condicionantes internos podrían afectar la implementación?", extra:"Más preciso que «problema» cuando hablas de gobernanza, sistemas, plazos o personas."},
+          {term:"alinear expectativas", meaning:"Asegurar que las partes comparten una comprensión razonable de alcance, resultados y límites.", example:"Quiero alinear expectativas antes de valorar una solución concreta.", extra:"Útil para introducir preguntas sobre resultados, alcance o responsabilidades."}
+        ],
+        phrases:[
+          {group:"Cuestionar el diagnóstico sin confrontar", items:[
+            {text:"Antes de dar por hecho que la automatización es la mejor vía, ¿qué evidencia tenemos de que el retraso se origina en tareas manuales?", use:"Cuestiona el supuesto apoyándote en evidencia, no en oposición personal."},
+            {text:"Para no saltar demasiado rápido a la solución, ¿podemos separar primero el síntoma del origen del problema?", use:"Introduce una pausa diagnóstica sin desacreditar la propuesta existente."}
+          ]},
+          {group:"Explorar impacto y urgencia", items:[
+            {text:"¿Qué consecuencias concretas está generando este problema y para quién?", use:"Obliga a distinguir impacto por área o interlocutor."},
+            {text:"Si no cambiara nada durante los próximos seis meses, ¿qué sería lo más preocupante?", use:"Explora coste de no actuar y urgencia real."}
+          ]},
+          {group:"Entender la decisión", items:[
+            {text:"¿Qué criterios van a pesar más cuando comparen alternativas?", use:"Descubre cómo se tomará la decisión, no solo qué quiere la persona que habla."},
+            {text:"¿Quién más necesita estar de acuerdo para que una solución sea viable?", use:"Explora mapa de decisión y posibles dependencias."},
+            {text:"¿Qué condicionantes no son negociables y cuáles admiten margen?", use:"Distingue restricciones absolutas de preferencias."}
+          ]}
+        ],
+        builder:{
+          intro:"Selecciona una intención, una sensibilidad y un objetivo. El resultado no es una frase para copiar: es el encargo lingüístico que debes resolver.",
+          fields:[
+            {label:"Intención", options:[
+              {label:"cuestionar un supuesto", value:"Cuestiona el supuesto sin desacreditar a la persona que lo propone."},
+              {label:"medir urgencia", value:"Explora el coste de no actuar sin dramatizar."},
+              {label:"mapear la decisión", value:"Descubre criterios y actores relevantes sin convertir la reunión en un interrogatorio."}
+            ]},
+            {label:"Sensibilidad", options:[
+              {label:"alta: decisión ya defendida públicamente", value:"Mantén distancia del juicio personal y apóyate en evidencia o proceso."},
+              {label:"media: preferencia todavía abierta", value:"Puedes contrastar alternativas de forma más explícita."}
+            ]},
+            {label:"Objetivo final", options:[
+              {label:"obtener evidencia", value:"Formula una pregunta abierta que pida hechos, ejemplos o datos."},
+              {label:"hacer visible una restricción", value:"Formula una pregunta que distinga lo negociable de lo no negociable."},
+              {label:"confirmar una interpretación", value:"Cierra con una reformulación provisional, no con una conclusión definitiva."}
+            ]}
+          ],
+          join:"\n"
+        },
+        grammar:[
+          {title:"Distancia y cortesía con condicional e imperfecto de subjuntivo", situation:"Necesitas plantear una hipótesis o una pregunta potencialmente sensible.", intention:"Reducir imposición sin volver la pregunta vaga.", structure:"Si + imperfecto de subjuntivo..., ¿qué + condicional...?", explanation:"La distancia verbal puede servir para abrir escenarios y explorar consecuencias: «Si no cambiara nada..., ¿qué sería lo más preocupante?». La cortesía no depende solo del condicional; también importa explicar por qué preguntas y evitar presuposiciones acusatorias.", examples:["Si no cambiara nada durante seis meses, ¿qué sería lo más preocupante?", "Si tuvieran que descartar una de estas condiciones, ¿cuál sería menos crítica?"]},
+          {title:"Presuposición vs. formulación exploratoria", situation:"Una pregunta puede introducir como hecho algo que todavía no está demostrado.", intention:"Evitar sesgar la respuesta.", structure:"Evitar: ¿Por qué X...? cuando X no está verificado → Preferir: ¿Qué evidencia / hasta qué punto / qué factores...?", explanation:"«¿Por qué la automatización es necesaria?» presupone que lo es. «¿Qué evidencia indica que la automatización resolvería el cuello de botella?» deja abierta la conclusión y mejora la calidad del diagnóstico.", examples:["¿Qué evidencia tenemos de que el problema se origina en tareas manuales?", "¿Hasta qué punto el retraso depende del sistema actual y qué otros factores intervienen?"]},
+          {title:"Reformulación provisional", situation:"Has recogido información compleja y quieres confirmar sin cerrar prematuramente.", intention:"Mostrar comprensión y dejar espacio para corregir.", structure:"Si te he entendido bien / Por lo que describes / Parece que..., ¿dirías que...?", explanation:"Marcadores como «por lo que describes» o «parece que» señalan que tu interpretación es provisional. En conversaciones diagnósticas, esa distancia protege contra conclusiones prematuras.", examples:["Por lo que describes, el problema principal parece estar en el traspaso entre áreas, ¿dirías que es así?", "Si te he entendido bien, el plazo es importante, pero el criterio no negociable es la trazabilidad, ¿correcto?"]}
+        ],
+        register:{
+          context:"Una directora acaba de decir: «Ya hemos decidido que necesitamos automatizarlo; solo falta elegir proveedor». Tú detectas que el diagnóstico puede estar incompleto.",
+          prompt:"¿Qué intervención equilibra mejor precisión, tacto y capacidad diagnóstica?",
+          options:[
+            {text:"Creo que están partiendo de un supuesto equivocado. Primero habría que demostrar que la automatización sirve.", quality:"neutral", feedback:"Es clara, pero convierte el desacuerdo en una evaluación frontal de la decisión previa. Puede ser útil en un entorno de alta confianza, aunque eleva innecesariamente la fricción en una primera conversación."},
+            {text:"Entiendo que la automatización es la vía que están priorizando. Para asegurar que evaluemos bien a los proveedores, ¿podemos revisar qué parte del retraso esperan resolver con ella y qué evidencia tienen de que ahí está el cuello de botella?", quality:"good", feedback:"Reconoce la decisión existente, explica por qué conviene profundizar y formula dos preguntas diagnósticas sin asumir que la solución es correcta o incorrecta."},
+            {text:"¿Están completamente seguros de que automatizar es la mejor opción?", quality:"neutral", feedback:"Puede abrir la discusión, pero es demasiado binaria. Invita a defender una posición más que a aportar evidencia o matizar el diagnóstico."}
+          ]
+        },
+        example:{
+          intro:"Aquí no gana quien hace más preguntas, sino quien hace preguntas que reducen incertidumbre sin deteriorar la relación.",
+          lines:[
+            {speaker:"Directora", text:"Queremos automatizar el proceso cuanto antes porque los retrasos ya son insostenibles.", function:"Plantea problema, urgencia y una solución preferida en la misma frase."},
+            {speaker:"Tú", text:"Entiendo la urgencia. Antes de entrar en opciones de automatización, ¿dónde se produce exactamente el retraso y qué evidencia tienen de que se origina en tareas manuales?", function:"Reconoces la urgencia y separas problema de solución."},
+            {speaker:"Directora", text:"El mayor retraso aparece cuando operaciones revisa la información que envía ventas.", function:"El cuello de botella parece estar en un traspaso entre áreas."},
+            {speaker:"Tú", text:"¿Qué ocurre durante esa revisión: falta información, hay validaciones duplicadas o el equipo no tiene capacidad suficiente?", function:"Acotas hipótesis sin presentar ninguna como cierta."},
+            {speaker:"Directora", text:"Muchas solicitudes llegan incompletas y vuelven a ventas.", function:"Aparece una causa posible distinta de la automatización."},
+            {speaker:"Tú", text:"Entonces, por lo que describes, parte del retraso podría estar en la calidad de la información de entrada. ¿Hasta qué punto automatizar reduciría ese problema y qué tendría que cambiar además en el proceso?", function:"Reformula provisionalmente y prueba la solución contra el diagnóstico emergente."},
+            {speaker:"Directora", text:"Probablemente necesitaríamos estandarizar la información que ventas envía.", function:"Surge un requisito complementario."},
+            {speaker:"Tú", text:"Si tuvieran que priorizar, ¿qué pesa más: reducir el tiempo total, disminuir reprocesos o mantener flexibilidad para casos especiales?", function:"Expone criterios de decisión potencialmente en tensión."},
+            {speaker:"Directora", text:"Reducir reprocesos, siempre que no perdamos flexibilidad.", function:"Define prioridad y condicionante."},
+            {speaker:"Tú", text:"Perfecto. Para alinear expectativas, ¿qué resultado considerarían suficiente para decir que el cambio ha funcionado y quién más necesita validarlo?", function:"Cierra con criterio de éxito y mapa de decisión."}
+          ]
+        },
+        exercises:[
+          {type:"mcq", question:"¿Cuál de estas preguntas contiene una presuposición que puede sesgar el diagnóstico?", options:["¿Qué factores están generando el retraso?", "¿Por qué el sistema actual está causando tantos errores?", "¿Qué evidencia tienen sobre el origen de los errores?"], accepted:[1], feedback:["Es exploratoria: no decide de antemano cuál es la causa.","Sí. Da por hecho que el sistema actual es la causa antes de haberlo demostrado.","Pide evidencia y mantiene abierta la explicación."]},
+          {type:"mcq", question:"Necesitas explorar urgencia sin dramatizar. Dos formulaciones son razonables, pero una obtiene información más útil. ¿Cuál elegirías?", options:["¿Esto es urgente?", "Si no cambiara nada durante seis meses, ¿qué consecuencias serían más difíciles de aceptar?", "¿No cree que deberían resolverlo ya?"], accepted:[1], feedback:["Puede confirmar urgencia, pero ofrece poca información sobre sus consecuencias.","Es la opción más diagnóstica: convierte la urgencia en consecuencias observables y deja espacio para matices.","Introduce presión y una expectativa de respuesta afirmativa." ]},
+          {type:"fill", question:"Completa la reformulación provisional: «Por lo que ______, el principal cuello de botella parece estar en el traspaso entre áreas». ", answer:["describes","explicas"], hint:"Necesitas un verbo que atribuya la información al interlocutor.", success:"«Por lo que describes/explicas» marca que la interpretación depende de la información recibida y sigue abierta a corrección."}
+        ],
+        practice:{
+          situation:"Una empresa quiere implantar una nueva plataforma de gestión porque «la actual ya no sirve». En la reunión participan la directora financiera, el responsable de operaciones y la líder de TI. Finanzas quiere reducir costes, operaciones quiere rapidez y TI teme una migración apresurada. Te piden una recomendación en 20 minutos.",
+          interlocutor:"Tres decisores con prioridades distintas",
+          objective:"Escribe 8–10 preguntas diagnósticas que te permitan distinguir síntomas de causas, explorar el coste de no actuar, identificar criterios de decisión, restricciones no negociables, actores relevantes y una posible definición de éxito.",
+          requirements:["Incluye al menos una pregunta que cuestione un supuesto sin confrontar.","Evita preguntas que presupongan que cambiar de plataforma es necesariamente la solución.","Incluye una pregunta que haga visibles prioridades en conflicto.","Incluye una reformulación provisional para comprobar tu lectura de la situación.","Cuida el registro: precisión alta, pero sin tecnicismo innecesario ni tono acusatorio."],
+          supports:[]
+        },
+        model:"Para entender bien el problema antes de valorar una plataforma, ¿qué está dejando de funcionar y qué evidencia tenemos de que el origen está en la herramienta actual? ¿Podrían describir un caso reciente en el que el sistema haya limitado el trabajo? ¿Qué impacto concreto está teniendo ese problema en costes, tiempos, clientes o riesgo operativo? Si no cambiara nada durante los próximos seis meses, ¿qué consecuencia sería la más difícil de aceptar? Antes de dar por hecho que una migración es la mejor vía, ¿qué alternativas han considerado y por qué las han descartado? Cuando comparen opciones, ¿qué criterios van a pesar más para Finanzas, Operaciones y TI, y dónde podrían entrar en conflicto? ¿Qué condicionantes son realmente no negociables —por ejemplo, presupuesto, continuidad operativa, seguridad o plazo— y cuáles admiten margen? ¿Quién más tendría que validar la decisión para que una solución fuera viable? Por lo que describen, parece que el objetivo no es simplemente cambiar de plataforma, sino reducir fricción operativa sin aumentar el riesgo de migración; ¿dirían que esa es una formulación justa del problema? Finalmente, ¿qué tendría que ocurrir para que dentro de seis meses consideraran que la decisión ha sido un éxito?",
+        checklist:[
+          "Puedo distinguir entre una necesidad expresada, un síntoma y una posible causa.",
+          "Puedo cuestionar supuestos mediante preguntas basadas en evidencia y no en confrontación.",
+          "Puedo explorar impacto, coste de no actuar, criterios de decisión y condicionantes.",
+          "Puedo adaptar el registro cuando la pregunta es sensible o el interlocutor tiene poder de decisión.",
+          "Puedo reformular de manera provisional y reaccionar ante información que cambia el diagnóstico."
+        ]
+      }
+    };
+    // ===== FIN DEL CONTENIDO EDITABLE =====
+
+    const sectionDefs = [
+      ["objective", "1. 🎯 Tu objetivo esta semana"],
+      ["situation", "2. 🏢 La situación"],
+      ["vocab", "3. 🗣️ Vocabulario clave"],
+      ["phrases", "4. 💬 Frases que puedes usar"],
+      ["builder", "5. 🧩 Construye tu mensaje"],
+      ["grammar", "6. 📚 Gramática que necesitas"],
+      ["register", "7. 🎭 Elige el registro"],
+      ["example", "8. 💼 Mira cómo se hace"],
+      ["exercises", "9. ✍️ Comprueba lo que aprendiste"],
+      ["practice", "10. 🏢 Ahora te toca a ti"],
+      ["model", "11. 💡 Ver modelo"],
+      ["checklist", "12. ✅ Checklist final"]
+    ];
+
+    const state = {
+      level: null,
+      sectionIndex: 0,
+      milestones: new Set(),
+      targetMilestones: new Set()
+    };
+
+    const levelGate = document.getElementById("levelGate");
+    const app = document.getElementById("app");
+    const routeChip = document.getElementById("routeChip");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSubtitle = document.getElementById("heroSubtitle");
+    const sectionNav = document.getElementById("sectionNav");
+    const sectionHost = document.getElementById("sectionHost");
+    const progressBar = document.getElementById("progressBar");
+    const progressLabel = document.getElementById("progressLabel");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    document.querySelectorAll(".level-choice").forEach(btn => {
+      btn.addEventListener("click", () => selectLevel(btn.dataset.level));
+    });
+
+    document.getElementById("changeLevelBtn").addEventListener("click", resetToLevelGate);
+    prevBtn.addEventListener("click", () => goToSection(state.sectionIndex - 1));
+    nextBtn.addEventListener("click", () => goToSection(state.sectionIndex + 1));
+
+    function selectLevel(level) {
+      state.level = level;
+      state.sectionIndex = 0;
+      state.milestones.clear();
+      state.targetMilestones.clear();
+      buildTargets();
+      renderModule();
+      levelGate.style.display = "none";
+      app.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "auto" });
+      goToSection(0);
+    }
+
+    function resetToLevelGate() {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      app.classList.remove("active");
+      levelGate.style.display = "grid";
+      state.level = null;
+      window.scrollTo({ top: 0, behavior: "auto" });
+      const firstChoice = document.querySelector('.level-choice[data-level="a2"]');
+      if (firstChoice) firstChoice.focus();
+    }
+
+    function buildTargets() {
+      sectionDefs.forEach(([id]) => state.targetMilestones.add(`section:${id}`));
+      const data = contenido[state.level];
+      data.vocab.slice(0, 4).forEach((_, i) => state.targetMilestones.add(`vocab:${i}`));
+      if (data.vocabRecall) state.targetMilestones.add("vocab:recall");
+      let phraseCount = 0;
+      data.phrases.forEach(group => group.items.forEach(() => {
+        if (phraseCount < 4) state.targetMilestones.add(`phrase:${phraseCount}`);
+        phraseCount++;
+      }));
+      state.targetMilestones.add("builder:done");
+      state.targetMilestones.add("grammar:0");
+      state.targetMilestones.add("register:answered");
+      data.exercises.forEach((_, i) => state.targetMilestones.add(`exercise:${i}`));
+      state.targetMilestones.add("practice:written");
+      state.targetMilestones.add("model:revealed");
+      data.checklist.forEach((_, i) => state.targetMilestones.add(`check:${i}`));
+    }
+
+    function markMilestone(id) {
+      if (!state.targetMilestones.has(id)) return;
+      state.milestones.add(id);
+      updateProgress();
+      updateNavVisited();
+    }
+
+    function updateProgress() {
+      const total = state.targetMilestones.size || 1;
+      const done = [...state.milestones].filter(x => state.targetMilestones.has(x)).length;
+      const pct = Math.min(100, Math.round((done / total) * 100));
+      progressBar.style.width = `${pct}%`;
+      progressLabel.textContent = `${pct}%`;
+      const progressShell = progressBar.closest(".progress-shell");
+      if (progressShell) {
+        progressShell.setAttribute("aria-valuenow", String(pct));
+        progressShell.setAttribute("aria-valuetext", `${pct}% completado`);
+      }
+    }
+
+    function renderModule() {
+      const data = contenido[state.level];
+      routeChip.textContent = `Tu ruta: ${data.route}`;
+      heroTitle.textContent = data.skill;
+      heroSubtitle.textContent = data.subtitle;
+      renderSectionNav();
+      sectionHost.innerHTML = "";
+      sectionDefs.forEach(([id, label], index) => {
+        const section = document.createElement("section");
+        section.className = "module-section";
+        section.id = `section-${id}`;
+        section.dataset.index = index;
+        section.setAttribute("aria-labelledby", `title-${id}`);
+        section.innerHTML = renderSection(id, label, data);
+        sectionHost.appendChild(section);
+      });
+      bindInteractions();
+      updateProgress();
+    }
+
+    function renderSectionNav() {
+      sectionNav.innerHTML = sectionDefs.map(([id, label], i) =>
+        `<button class="nav-btn" type="button" data-index="${i}" data-section="${id}">${label}</button>`
+      ).join("");
+      sectionNav.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.addEventListener("click", () => goToSection(Number(btn.dataset.index)));
+      });
+    }
+
+    function renderSection(id, label, data) {
+      const title = label.replace(/^\d+\.\s*/, "");
+      const num = label.match(/^\d+/)?.[0] || "";
+      let body = "";
+      if (id === "objective") body = renderObjective(data);
+      if (id === "situation") body = renderSituation(data);
+      if (id === "vocab") body = renderVocab(data);
+      if (id === "phrases") body = renderPhrases(data);
+      if (id === "builder") body = renderBuilder(data);
+      if (id === "grammar") body = renderGrammar(data);
+      if (id === "register") body = renderRegister(data);
+      if (id === "example") body = renderExample(data);
+      if (id === "exercises") body = renderExercises(data);
+      if (id === "practice") body = renderPractice(data);
+      if (id === "model") body = renderModel(data);
+      if (id === "checklist") body = renderChecklist(data);
+      return `<div class="section-number">Sección ${num} de 12</div><h3 id="title-${id}">${title}</h3>${body}`;
+    }
+
+    function renderObjective(data) {
+      return `
+        <p class="lead">${data.objective}</p>
+        <div class="tip-panel"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong><br><span class="inline-note">No necesitas memorizar cada frase. Necesitas reconocer qué información falta y elegir una pregunta que haga avanzar la conversación.</span></div>
+      `;
+    }
+
+    function renderSituation(data) {
+      return `
+        <p class="lead">${data.situation.intro}</p>
+        <div class="scenario-card">
+          <strong>Tu misión</strong>
+          <div class="fact-grid">${data.situation.facts.map(f => `<div class="fact"><strong>${f[0]}</strong>${f[1]}</div>`).join("")}</div>
+        </div>
+      `;
+    }
+
+    function renderVocab(data) {
+      const cards = data.vocab.map((v, i) => `
+        <article class="reveal-card" data-vocab="${i}">
+          <button class="reveal-trigger" type="button" aria-expanded="false">
+            <span>${escapeHtml(v.term)}${state.level === "a2" && v.stress ? ` <small class="stress">· ${escapeHtml(v.stress)}</small>` : ""}</span><span class="chev">⌄</span>
+          </button>
+          <div class="reveal-body">
+            ${state.level === "a2" ? `<p><span class="label">English:</span> ${escapeHtml(v.en || "")}</p>` : ""}
+            <p><span class="label">Significado:</span> ${escapeHtml(v.meaning)}</p>
+            <p><span class="label">Ejemplo:</span> ${escapeHtml(v.example)}</p>
+            <p><span class="label">Nota:</span> ${escapeHtml(v.extra)}</p>
+            ${audioControls(v.term, `vocab-term-${i}`)}
+            ${audioControls(v.example, `vocab-example-${i}`)}
+          </div>
+        </article>`).join("");
+      const recall = state.level === "a2" && data.vocabRecall ? `
+        <div class="exercise-card" data-recall>
+          <h4>Recupera una palabra</h4>
+          <p>${data.vocabRecall.prompt}</p>
+          <div class="choice-list">${data.vocabRecall.options.map((o, i) => `<button class="choice-btn recall-option" type="button" data-index="${i}">${escapeHtml(o)}</button>`).join("")}</div>
+          <div class="feedback" aria-live="polite"></div>
+        </div>` : "";
+      return `<p class="lead">Abre las tarjetas e intenta recordar el significado antes de leer la explicación.</p><div class="cards-grid">${cards}</div>${recall}`;
+    }
+
+    function renderPhrases(data) {
+      let globalIndex = 0;
+      return `<p class="lead">No son frases para recitar en orden. Son recursos para elegir según la información que todavía necesitas.</p>` +
+        data.phrases.map(group => `<div class="phrase-group"><h4>${escapeHtml(group.group)}</h4>${group.items.map(item => {
+          const idx = globalIndex++;
+          return `<div class="phrase-item" data-phrase="${idx}">
+            <div class="phrase-line">${escapeHtml(item.text)}</div>
+            ${state.level === "a2" && item.blocks ? `<div class="meaning-blocks">${item.blocks.map(b => `<span>${escapeHtml(b)}</span>`).join("")}</div>` : ""}
+            ${audioControls(item.text, `phrase-${idx}`)}
+            <button class="when-btn" type="button" aria-expanded="false">Ver cuándo usarla</button>
+            <p class="when-text">${escapeHtml(item.use)}</p>
+          </div>`;
+        }).join("")}</div>`).join("");
+    }
+
+    function renderBuilder(data) {
+      const fields = data.builder.fields.map((f, i) => `
+        <div class="field"><label for="builder-${i}">${escapeHtml(f.label)}</label>
+          <select id="builder-${i}" class="builder-select" data-index="${i}">${f.options.map(o => `<option value="${escapeAttr(o.value)}">${escapeHtml(o.label)}</option>`).join("")}</select>
+        </div>`).join("");
+      return `
+        <p class="lead">${escapeHtml(data.builder.intro)}</p>
+        <div class="builder-card">
+          <div class="form-grid">${fields}</div>
+          <div id="builderResult" class="builder-result" aria-live="polite"></div>
+          <div id="builderAudio"></div>
+        </div>`;
+    }
+
+    function renderGrammar(data) {
+      return `<p class="lead">Solo la gramática que necesitas para preguntar con más claridad en esta situación.</p>
+      <div class="grammar-grid">${data.grammar.map((g, i) => `
+        <article class="grammar-card" data-grammar="${i}">
+          <button class="grammar-trigger" type="button" aria-expanded="false"><span>${escapeHtml(g.title)}</span><span>＋</span></button>
+          <div class="grammar-body">
+            <p><span class="label">Situación:</span> ${escapeHtml(g.situation)}</p>
+            <p><span class="label">Intención:</span> ${escapeHtml(g.intention)}</p>
+            <div class="formula">${escapeHtml(g.structure)}</div>
+            <p>${escapeHtml(g.explanation)}</p>
+            ${g.examples.map((e, j) => `<div class="info-panel"><strong>${escapeHtml(e)}</strong>${audioControls(e, `grammar-${i}-${j}`)}</div>`).join("")}
+          </div>
+        </article>`).join("")}</div>`;
+    }
+
+    function renderRegister(data) {
+      return `
+        <p class="lead">${escapeHtml(data.register.context)}</p>
+        <div class="practice-card" data-register>
+          <strong>${escapeHtml(data.register.prompt)}</strong>
+          <div class="choice-list">${data.register.options.map((o, i) => `<div><button class="choice-btn register-option" type="button" data-index="${i}">${escapeHtml(o.text)}</button>${audioControls(o.text, `register-${i}`)}</div>`).join("")}</div>
+          <div class="feedback" aria-live="polite"></div>
+        </div>`;
+    }
+
+    function renderExample(data) {
+      const fullText = data.example.lines.map(x => `${x.speaker}: ${x.text}`).join(" ");
+      return `
+        <p class="lead">${escapeHtml(data.example.intro)}</p>
+        ${audioControls(fullText, "example-full", true)}
+        <div class="dialogue">${data.example.lines.map((line, i) => `
+          <div class="dialogue-line" data-line="${i}">
+            <div class="speaker">${escapeHtml(line.speaker)}</div>
+            <div>${escapeHtml(line.text)}</div>
+            ${audioControls(line.text, `example-line-${i}`)}
+            <button class="function-btn" type="button" aria-expanded="false">Ver función</button>
+            <div class="function-chip">${escapeHtml(line.function)}</div>
+          </div>`).join("")}</div>`;
+    }
+
+    function renderExercises(data) {
+      return `<p class="lead">Comprueba si puedes reconocer qué pregunta hace avanzar la conversación. Puedes volver a intentarlo.</p>` +
+        data.exercises.map((ex, i) => {
+          if (ex.type === "mcq") {
+            return `<div class="exercise-card" data-exercise="${i}" data-type="mcq"><h4>Actividad ${i + 1}</h4><p>${escapeHtml(ex.question)}</p>
+              <div class="choice-list">${ex.options.map((o, j) => `<div><button class="choice-btn exercise-option" type="button" data-index="${j}">${escapeHtml(o)}</button>${audioControls(o, `exercise-${i}-${j}`)}</div>`).join("")}</div>
+              <div class="feedback" aria-live="polite"></div></div>`;
+          }
+          return `<div class="exercise-card" data-exercise="${i}" data-type="fill"><h4>Actividad ${i + 1}</h4><p>${escapeHtml(ex.question)}</p>
+            <div class="field"><label for="fill-${i}">Tu respuesta</label><input id="fill-${i}" type="text" class="fill-input" autocomplete="off"></div>
+            <p class="inline-note">Pista: ${escapeHtml(ex.hint)}</p>
+            <button class="check-btn" type="button">Comprobar</button>
+            <div class="feedback" aria-live="polite"></div></div>`;
+        }).join("");
+    }
+
+    function renderPractice(data) {
+      return `
+        <p class="lead">Ahora deja de elegir entre opciones y construye tu propia intervención.</p>
+        <div class="scenario-card"><strong>Situación</strong><p>${escapeHtml(data.practice.situation)}</p><p><span class="label">Interlocutor:</span> ${escapeHtml(data.practice.interlocutor)}</p><p><span class="label">Objetivo:</span> ${escapeHtml(data.practice.objective)}</p></div>
+        <div class="info-panel"><strong>Incluye:</strong><ul>${data.practice.requirements.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul></div>
+        ${data.practice.supports.length ? `<div class="info-panel"><strong>Estructuras que ya practicaste:</strong>${data.practice.supports.map((s, i) => `<div class="phrase-item"><div class="phrase-line">${escapeHtml(s)}</div>${audioControls(s, `practice-support-${i}`)}</div>`).join("")}</div>` : ""}
+        <div class="field" style="margin-top:18px"><label for="practiceText">Escribe tu respuesta</label><textarea id="practiceText" placeholder="Escribe aquí tus preguntas o tu intervención..."></textarea></div>
+        <p class="inline-note">No se corrige automáticamente. La finalidad es preparar tu producción antes de compararla con un modelo posible.</p>
+      `;
+    }
+
+    function renderModel(data) {
+      return `
+        <p class="lead">Primero intenta resolver la situación con tus propios recursos. Después compara decisiones.</p>
+        <button id="showModelBtn" class="primary-btn" type="button">Ver una posible respuesta</button>
+        <div id="modelBox" class="model-box">
+          <strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong>
+          <p>${escapeHtml(data.model)}</p>
+          ${audioControls(data.model, "model-full", true)}
+          ${state.level === "a2" && Array.isArray(data.modelBlocks) ? `<div class="info-panel"><strong>Escucha por bloques:</strong>${data.modelBlocks.map((block, i) => `<div class="phrase-item"><div class="phrase-line">${escapeHtml(block)}</div>${audioControls(block, `model-block-${i}`)}</div>`).join("")}</div>` : ""}
+        </div>`;
+    }
+
+    function renderChecklist(data) {
+      return `
+        <p class="lead">Antes de terminar, comprueba qué puedes hacer ya.</p>
+        <div class="checklist">${data.checklist.map((item, i) => `<div class="check-item"><input id="check-${i}" type="checkbox" data-index="${i}"><label for="check-${i}">${escapeHtml(item)}</label></div>`).join("")}</div>
+        <div id="checkSummary" class="check-summary">0 de ${data.checklist.length} comprobaciones marcadas.</div>
+        <div id="readyBox" class="ready-box">
+          <h4>🎯 Ya estás listo para practicar</h4>
+          <p>No necesitas memorizar todo. Durante los próximos siete días vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+          <!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. -->
+          <a class="challenge-link" href="#">🔥 Ir al reto de hoy</a>
+        </div>`;
+    }
+
+    function audioControls(text, id, includeLabel = false) {
+      if (state.level !== "a2") return "";
+      const safeText = escapeAttr(text);
+      return `<div class="audio-row"${includeLabel ? ` aria-label="Pronunciación del ejemplo completo"` : ""}>
+        <button class="audio-btn" type="button" data-speak="${safeText}" data-rate="0.92" aria-label="Escuchar a velocidad normal: ${safeText}">🔊 Escuchar / Listen</button>
+        <button class="audio-btn" type="button" data-speak="${safeText}" data-rate="0.70" aria-label="Escuchar lentamente: ${safeText}">🐢 Lento / Slow</button>
+      </div>`;
+    }
+
+    function bindInteractions() {
+      document.querySelectorAll("[data-speak]").forEach(btn => {
+        btn.addEventListener("click", () => speakSpanish(btn.dataset.speak, Number(btn.dataset.rate)));
+      });
+
+      document.querySelectorAll(".reveal-card").forEach(card => {
+        const trigger = card.querySelector(".reveal-trigger");
+        trigger.addEventListener("click", () => {
+          const open = card.classList.toggle("open");
+          trigger.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) markMilestone(`vocab:${card.dataset.vocab}`);
+        });
+      });
+
+      document.querySelectorAll(".phrase-item[data-phrase]").forEach(item => {
+        const btn = item.querySelector(".when-btn");
+        btn.addEventListener("click", () => {
+          const open = item.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) markMilestone(`phrase:${item.dataset.phrase}`);
+        });
+      });
+
+      const recallBox = document.querySelector("[data-recall]");
+      if (recallBox) {
+        const feedback = recallBox.querySelector(".feedback");
+        recallBox.querySelectorAll(".recall-option").forEach(btn => btn.addEventListener("click", () => {
+          const correct = Number(btn.dataset.index) === contenido[state.level].vocabRecall.correct;
+          recallBox.querySelectorAll(".recall-option").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          feedback.className = `feedback show ${correct ? "good" : "neutral"}`;
+          feedback.textContent = correct ? contenido[state.level].vocabRecall.feedback : "Inténtalo otra vez. Piensa en la palabra que expresa qué es lo más importante.";
+          if (correct) markMilestone("vocab:recall");
+        }));
+      }
+
+      document.querySelectorAll(".builder-select").forEach(sel => sel.addEventListener("change", () => updateBuilder(true)));
+      updateBuilder(false);
+
+      document.querySelectorAll(".grammar-card").forEach(card => {
+        const btn = card.querySelector(".grammar-trigger");
+        btn.addEventListener("click", () => {
+          const open = card.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.querySelector("span:last-child").textContent = open ? "−" : "＋";
+          if (open) markMilestone(`grammar:${card.dataset.grammar}`);
+        });
+      });
+
+      const register = document.querySelector("[data-register]");
+      if (register) {
+        const feedback = register.querySelector(".feedback");
+        register.querySelectorAll(".register-option").forEach(btn => btn.addEventListener("click", () => {
+          const idx = Number(btn.dataset.index);
+          const option = contenido[state.level].register.options[idx];
+          register.querySelectorAll(".register-option").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          feedback.className = `feedback show ${option.quality === "good" ? "good" : "neutral"}`;
+          feedback.textContent = option.feedback;
+          markMilestone("register:answered");
+        }));
+      }
+
+      document.querySelectorAll(".dialogue-line").forEach(line => {
+        const btn = line.querySelector(".function-btn");
+        btn.addEventListener("click", () => {
+          const open = line.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.textContent = open ? "Ocultar función" : "Ver función";
+        });
+      });
+
+      bindExercises();
+
+      const practiceText = document.getElementById("practiceText");
+      if (practiceText) {
+        practiceText.addEventListener("input", () => {
+          if (practiceText.value.trim().length >= 30) markMilestone("practice:written");
+        });
+      }
+
+      const modelBtn = document.getElementById("showModelBtn");
+      if (modelBtn) modelBtn.addEventListener("click", () => {
+        document.getElementById("modelBox").classList.add("show");
+        modelBtn.textContent = "Modelo visible";
+        modelBtn.disabled = true;
+        markMilestone("model:revealed");
+      });
+
+      document.querySelectorAll('.checklist input[type="checkbox"]').forEach(box => {
+        box.addEventListener("change", updateChecklist);
+      });
+    }
+
+    function updateBuilder(countProgress = false) {
+      const selects = [...document.querySelectorAll(".builder-select")];
+      const result = document.getElementById("builderResult");
+      const audioBox = document.getElementById("builderAudio");
+      if (!selects.length || !result) return;
+      const text = selects.map(s => s.value).join(contenido[state.level].builder.join).trim();
+      result.textContent = text;
+      if (audioBox) audioBox.innerHTML = state.level === "a2" ? audioControls(text, "builder-result", true) : "";
+      if (audioBox) audioBox.querySelectorAll("[data-speak]").forEach(btn => btn.addEventListener("click", () => speakSpanish(btn.dataset.speak, Number(btn.dataset.rate))));
+      if (countProgress) markMilestone("builder:done");
+    }
+
+    function bindExercises() {
+      const data = contenido[state.level];
+      document.querySelectorAll('[data-exercise][data-type="mcq"]').forEach(card => {
+        const exIndex = Number(card.dataset.exercise);
+        const ex = data.exercises[exIndex];
+        const feedback = card.querySelector(".feedback");
+        card.querySelectorAll(".exercise-option").forEach(btn => btn.addEventListener("click", () => {
+          const idx = Number(btn.dataset.index);
+          card.querySelectorAll(".exercise-option").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          const accepted = ex.accepted.includes(idx);
+          feedback.className = `feedback show ${accepted ? "good" : "neutral"}`;
+          feedback.textContent = ex.feedback[idx];
+          if (accepted) markMilestone(`exercise:${exIndex}`);
+        }));
+      });
+
+      document.querySelectorAll('[data-exercise][data-type="fill"]').forEach(card => {
+        const exIndex = Number(card.dataset.exercise);
+        const ex = data.exercises[exIndex];
+        const input = card.querySelector(".fill-input");
+        const feedback = card.querySelector(".feedback");
+        card.querySelector(".check-btn").addEventListener("click", () => {
+          const value = normalize(input.value);
+          const ok = ex.answer.some(a => normalize(a) === value);
+          feedback.className = `feedback show ${ok ? "good" : "neutral"}`;
+          feedback.textContent = ok ? ex.success : `Todavía no. ${ex.hint}`;
+          if (ok) markMilestone(`exercise:${exIndex}`);
+        });
+      });
+    }
+
+    function updateChecklist() {
+      const boxes = [...document.querySelectorAll('.checklist input[type="checkbox"]')];
+      boxes.forEach(box => {
+        const id = `check:${box.dataset.index}`;
+        if (box.checked) state.milestones.add(id); else state.milestones.delete(id);
+      });
+      const checked = boxes.filter(b => b.checked).length;
+      const summary = document.getElementById("checkSummary");
+      if (summary) summary.textContent = `${checked} de ${boxes.length} comprobaciones marcadas.`;
+      const ready = document.getElementById("readyBox");
+      if (ready) ready.classList.toggle("show", checked === boxes.length);
+      updateProgress();
+    }
+
+    function goToSection(index) {
+      if (!state.level) return;
+      const max = sectionDefs.length - 1;
+      state.sectionIndex = Math.max(0, Math.min(index, max));
+      document.querySelectorAll(".module-section").forEach((s, i) => s.classList.toggle("active", i === state.sectionIndex));
+      document.querySelectorAll(".nav-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === state.sectionIndex);
+        if (i === state.sectionIndex) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+      });
+      const sectionId = sectionDefs[state.sectionIndex][0];
+      markMilestone(`section:${sectionId}`);
+      prevBtn.disabled = state.sectionIndex === 0;
+      nextBtn.disabled = state.sectionIndex === max;
+      nextBtn.textContent = state.sectionIndex === max ? "Fin del módulo" : "Siguiente →";
+      const current = document.getElementById(`section-${sectionId}`);
+      if (current) {
+        const y = current.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      }
+    }
+
+    function updateNavVisited() {
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.toggle("visited", state.milestones.has(`section:${btn.dataset.section}`));
+      });
+    }
+
+    let spanishVoice = null;
+    function chooseSpanishVoice() {
+      if (!window.speechSynthesis) return null;
+      const voices = window.speechSynthesis.getVoices();
+      const preferredLangs = ["es-CO", "es-US", "es-MX", "es-419", "es-AR", "es-CL", "es-PE", "es-ES"];
+      for (const lang of preferredLangs) {
+        const found = voices.find(v => v.lang && v.lang.toLowerCase() === lang.toLowerCase());
+        if (found) return found;
+      }
+      return voices.find(v => v.lang && v.lang.toLowerCase().startsWith("es")) || null;
+    }
+
+    function speakSpanish(text, rate = 0.92) {
+      if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        alert("Tu navegador no ofrece Speech Synthesis en este dispositivo. El resto del módulo funciona normalmente.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      spanishVoice = spanishVoice || chooseSpanishVoice();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = spanishVoice?.lang || "es-CO";
+      if (spanishVoice) utterance.voice = spanishVoice;
+      utterance.rate = rate;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged = () => { spanishVoice = chooseSpanishVoice(); };
+    }
+
+    function normalize(text) {
+      return text.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[¿?¡!.,;:]/g, "").replace(/\s+/g, " ");
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/\n/g, "&#10;");
+    }
+  </script>
+</body>
+</html>
