@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Módulo interactivo de Business Spanish: expresar desacuerdo profesional.">
+<title>Expresar desacuerdo profesional | La Oficina en Español</title>
+<style>
+:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--ink:#17233d;--muted:#60708c;--bg:#f4f7fb;--line:#dce4f1;--panel:#fff;--green:#1f7a4f;--radius:18px;--max:1080px;--shadow:0 12px 30px rgba(0,56,147,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 10% 10%,rgba(252,209,22,.24),transparent 30%),radial-gradient(circle at 90% 5%,rgba(206,17,38,.09),transparent 26%),linear-gradient(145deg,#eef4ff,#fff 55%,#f8fbff)}
+.gate-card{width:min(980px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,48px)}.brand{display:flex;align-items:center;gap:12px;color:var(--blue);font-weight:900;margin-bottom:18px}.mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(180deg,var(--yellow) 0 33%,var(--blue) 33% 66%,var(--red) 66%)}h1,h2,h3{line-height:1.18;margin-top:0}.gate-card h1{font-size:clamp(2rem,5vw,3.6rem);color:var(--blue);margin-bottom:10px}.sub{color:var(--muted)}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}.level-btn{border:2px solid var(--line);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:210px;color:var(--ink);transition:.2s}.level-btn:hover,.level-btn:focus-visible{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 24px rgba(0,56,147,.12);outline:none}.level-btn strong{display:block;color:var(--blue);font-size:1.2rem;margin-bottom:10px}.level-btn span{color:var(--muted)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}.topinner{max-width:var(--max);margin:auto;padding:12px 18px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.route{width:max-content;background:#edf3ff;color:var(--blue);border:1px solid #cbd9f3;border-radius:999px;padding:8px 12px;font-weight:900}.change{border:0;background:transparent;color:var(--blue);font-weight:800;text-decoration:underline}.progress-wrap{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-size:.82rem;color:var(--muted)}.track{height:9px;background:#e7edf6;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:var(--blue);transition:.25s}
+.hero{max-width:var(--max);margin:auto;padding:34px 18px 16px}.hero-card{background:linear-gradient(135deg,var(--blue),#0d4caf);color:#fff;border-radius:26px;padding:clamp(26px,5vw,48px);box-shadow:var(--shadow)}.kicker{display:inline-block;background:var(--yellow);color:#17233d;border-radius:999px;padding:7px 11px;font-weight:900;font-size:.8rem;margin-bottom:14px}.hero h1{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:12px}.hero p{max-width:800px;margin:0;color:#eef5ff}
+.nav{max-width:var(--max);margin:auto;padding:10px 18px 4px;display:flex;gap:8px;overflow-x:auto}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);padding:9px 12px;border-radius:999px;font-weight:800;font-size:.83rem}.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+main{max-width:var(--max);margin:auto;padding:16px 18px 60px}.section{display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(20,33,61,.06);padding:clamp(22px,4vw,38px)}.section.active{display:block}.title-row{display:flex;gap:12px;align-items:flex-start}.num{width:36px;height:36px;flex:0 0 36px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:900}.section h2{color:var(--blue);font-size:clamp(1.45rem,3vw,2.1rem);margin:2px 0 18px}.lead{font-size:1.06rem}.callout{border-left:5px solid var(--yellow);background:#fff9da;padding:14px 16px;border-radius:10px;margin:16px 0}.info-grid,.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.info{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:15px}.info strong{color:var(--blue)}
+.card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}.card-head{width:100%;border:0;background:#fff;text-align:left;color:var(--blue);font-weight:900;padding:16px;display:flex;justify-content:space-between}.card-body{display:none;padding:0 16px 16px;color:var(--muted)}.card.open .card-body{display:block}.card.open .card-head{background:#f1f6ff}.audio{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.audio button,.small,.btn{border:1px solid #bdcbe2;background:#fff;color:var(--blue);border-radius:999px;padding:7px 10px;font-weight:800;font-size:.82rem}.small{border-radius:10px}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);border-radius:12px;padding:11px 15px}.btn.red{background:var(--red);color:#fff;border-color:var(--red);border-radius:12px;padding:11px 15px}
+.group{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:12px 0}.group-label{background:#edf3ff;color:var(--blue);font-weight:900;padding:11px 14px}.phrase{padding:14px;border-top:1px solid var(--line)}.phrase-main{display:flex;justify-content:space-between;gap:12px}.phrase-text{font-weight:800}.when{display:none;color:var(--muted);margin-top:8px}.when.show{display:block}
+.builder,.requirements,.example,.quiz{background:#f8faff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}.builder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}label{font-weight:800;color:#273551}select,input[type=text],textarea{width:100%;border:1px solid #bcc9dc;border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}textarea{min-height:160px;resize:vertical}.result{margin-top:12px;background:#fff;border:2px solid #d7e3f6;border-radius:14px;padding:15px;font-weight:800;min-height:56px}.accordion{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:12px 0}.accordion>button{width:100%;border:0;background:#f8faff;color:var(--blue);padding:14px;text-align:left;font-weight:900}.acc-panel{display:none;padding:15px}.accordion.open .acc-panel{display:block}
+.options{display:grid;gap:10px;margin:12px 0}.option{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;text-align:left;color:var(--ink)}.option.selected{border:2px solid var(--blue);background:#eef4ff}.register-row{border:1px solid var(--line);border-radius:14px;padding:10px}.register-row>.option{width:100%}.register-row>.audio{margin-top:8px}.feedback{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:#f2f5fa}.feedback.show{display:block}.feedback.good{border-left:4px solid var(--green);background:#eef9f3}.feedback.warn{border-left:4px solid var(--yellow);background:#fff9df}.annotated{border:0;border-bottom:2px dotted var(--blue);background:transparent;font-weight:800;color:var(--ink)}.annotation{display:none;margin-top:12px;background:#edf3ff;padding:12px;border-radius:12px}.annotation.show{display:block}
+.model{display:none;margin-top:12px;border:1px solid #cbd9f3;background:#f4f8ff;border-radius:14px;padding:16px}.model.show{display:block}.checklist{display:grid;gap:10px}.check{display:flex;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px}.check input{width:20px;height:20px;accent-color:var(--blue)}.checktrack{height:10px;background:#e7edf6;border-radius:999px;overflow:hidden;margin-top:14px}.checkbar{height:100%;width:0;background:var(--yellow);transition:.2s}.ready{display:none;margin-top:18px;background:linear-gradient(135deg,#eef5ff,#fff9da);border:1px solid #cad8ee;border-radius:18px;padding:22px}.ready.show{display:block}.controls{display:flex;justify-content:space-between;gap:12px;margin-top:24px;border-top:1px solid var(--line);padding-top:18px}.navbtn{border:0;border-radius:12px;padding:11px 15px;font-weight:900}.navbtn.prev{background:#edf3ff;color:var(--blue)}.navbtn.next{background:var(--blue);color:#fff}.micro{font-size:.9rem;color:var(--muted)}
+@media(max-width:760px){.level-grid,.cards,.info-grid,.builder-grid{grid-template-columns:1fr}.level-btn{min-height:auto}.phrase-main{display:block}.phrase-main .small{margin-top:8px}}
+</style>
+</head>
+<body>
+<section id="gate">
+<div class="gate-card">
+<div class="brand"><span class="mark" aria-hidden="true"></span>La Oficina en Español</div>
+<h1>¿Cuál es tu nivel de español?</h1>
+<p class="sub">Selecciona tu ruta. El contenido, el apoyo y la dificultad se adaptarán automáticamente.</p>
+<div class="level-grid">
+<button class="level-btn" data-level="a2"><strong>🌱 A2 — Principiante</strong><span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+<button class="level-btn" data-level="b1"><strong>💼 B1 — Intermedio</strong><span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+<button class="level-btn" data-level="b2"><strong>🚀 B2 — Avanzado</strong><span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+</div></div></section>
+
+<div id="app" class="hidden">
+<header class="topbar"><div class="topinner"><div id="route" class="route"></div><button id="change" class="change">Cambiar nivel</button><div class="progress-wrap"><span>Progreso</span><div class="track"><div id="bar" class="bar"></div></div><strong id="pct">0%</strong></div></div></header>
+<div class="hero"><div class="hero-card"><span class="kicker">HABILIDAD PROFESIONAL DE LA SEMANA</span><h1>Expresar desacuerdo profesional</h1><p id="heroIntro"></p></div></div>
+<nav id="nav" class="nav" aria-label="Secciones"></nav><main id="lesson"></main>
+</div>
+
+<script>
+const meta={sections:["🎯 Tu objetivo esta semana","🏢 La situación","🗣️ Vocabulario clave","💬 Frases que puedes usar","🧩 Construye tu mensaje","📚 Gramática que necesitas","🎭 Elige el registro","💼 Mira cómo se hace","✍️ Comprueba lo que aprendiste","🏢 Ahora te toca a ti","💡 Ver modelo","✅ Checklist final"]};
+
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const data={
+a2:{
+route:"🌱 A2 — Principiante",
+intro:"Aprende a decir que no estás de acuerdo de forma sencilla, clara y respetuosa, y a proponer otra opción sin sonar agresivo.",
+objective:"Al terminar esta semana podrás expresar un desacuerdo breve en una reunión o conversación de trabajo, explicar una razón sencilla y proponer una alternativa.",
+situation:{text:"Estás en una reunión con tu equipo. Un compañero propone enviar el informe hoy, pero tú sabes que faltan datos importantes. Necesitas decir que no estás de acuerdo, explicar por qué y proponer enviarlo mañana.",facts:[["Quién habla","Tú, miembro del equipo / You, a team member"],["Con quién","Un compañero y tu supervisora / A colleague and your supervisor"],["Objetivo","Expresar desacuerdo y proponer otra opción / Disagree and propose another option"],["Dificultad","Quieres ser claro sin sonar agresivo / You want to be clear without sounding aggressive"]]},
+vocab:[
+["estar de acuerdo","to agree","Compartir la misma opinión.","Estoy de acuerdo con esa parte.","de a-CUER-do"],
+["no estar de acuerdo","to disagree","Tener una opinión diferente.","No estoy de acuerdo con enviar el informe hoy.","↘ Di la frase con tono calmado."],
+["punto","point","Una idea o parte concreta de una discusión.","Entiendo tu punto, pero faltan datos.","PUN-to"],
+["preocupación","concern","Algo que puede causar un problema.","Mi preocupación es que faltan dos cifras.","pre-o-cu-pa-CIÓN"],
+["alternativa","alternative","Otra opción posible.","Propongo una alternativa: enviarlo mañana.","al-ter-na-TI-va"],
+["sin embargo","however","Conector para introducir una idea diferente.","Entiendo la urgencia; sin embargo, faltan datos.","sin em-BAR-go"]
+],
+phrases:[
+["Reconocer primero",[["Entiendo tu punto.","Reconoce la idea de la otra persona antes de presentar tu desacuerdo."],["Entiendo la urgencia.","Muestra que comprendes la razón de la otra persona."]]],
+["Expresar desacuerdo",[["No estoy de acuerdo con enviar el informe hoy.","Claro y profesional para una situación directa."],["Creo que necesitamos revisar esto antes.","Más suave: expresa una reserva sin usar directamente «no estoy de acuerdo»."]]],
+["Explicar la razón",[["Mi preocupación es que faltan datos.","Da una razón concreta, no solo una opinión."],["Porque todavía faltan dos cifras importantes.","Úsala después de explicar tu posición."]]],
+["Proponer alternativa",[["Propongo enviarlo mañana por la mañana.","Convierte el desacuerdo en un siguiente paso."],["Podemos revisarlo hoy y enviarlo mañana.","Ofrece una solución sencilla."]]]
+],
+builder:{labels:["Inicio","Razón","Alternativa"],opts:[
+["Entiendo tu punto, pero","No estoy de acuerdo porque","Creo que necesitamos esperar porque"],
+["faltan algunos datos.","necesitamos revisar las cifras.","el informe todavía no está completo."],
+["Podemos enviarlo mañana.","Propongo revisarlo hoy y enviarlo mañana.","Podemos hablar de otra opción."]
+]},
+grammar:[
+["Desacuerdo con «estar de acuerdo»","Situación: alguien propone algo. Intención: decir que tienes otra opinión. Estructura: <b>No estoy de acuerdo con + sustantivo / infinitivo.</b><br>Ejemplo: <b>No estoy de acuerdo con cambiar la fecha.</b>"],
+["Suavizar con «creo que»","Situación: quieres discrepar sin sonar demasiado directo. Intención: presentar tu posición como valoración. Estructura: <b>Creo que + presente.</b><br>Ejemplo: <b>Creo que necesitamos más tiempo.</b>"],
+["Proponer con «podemos»","Situación: no aceptas la primera opción. Intención: ofrecer una solución. Estructura: <b>Podemos + infinitivo.</b><br>Ejemplo: <b>Podemos revisar los datos hoy.</b>"]
+],
+register:{who:"un cliente importante",options:[
+["No, eso no funciona.","Puede sonar demasiado tajante con un cliente."],
+["Entiendo su punto. Sin embargo, creo que necesitamos revisar los datos antes de confirmar.","Mejor opción: reconoce la postura, expresa la reserva y mantiene un tono profesional."],
+["No estoy de acuerdo contigo.","Es gramatical, pero «contigo» y la formulación directa pueden resultar menos adecuadas en este contexto."]
+],best:1},
+example:"Entiendo tu punto. Sin embargo, no estoy de acuerdo con enviar el informe hoy porque faltan algunos datos. Podemos revisarlo esta tarde y enviarlo mañana por la mañana.",
+quiz:[
+{q:"Tu compañera propone cerrar el proyecto hoy, pero falta una aprobación. ¿Qué frase abre mejor tu desacuerdo?",opts:["Eso está mal.","Entiendo tu punto, pero creo que necesitamos la aprobación primero.","No."],best:1,fb:"Reconocer la propuesta y después explicar tu posición reduce la brusquedad."},
+{q:"Completa: «No estoy de acuerdo ___ cambiar la fecha sin avisar al cliente».",opts:["de","con","por"],best:1,fb:"La estructura es «estar de acuerdo con»."},
+{q:"¿Qué frase convierte el desacuerdo en una solución?",opts:["No me gusta.","Podemos revisar los datos y decidir mañana.","No estoy de acuerdo."],best:1,fb:"Una alternativa concreta ayuda a que la conversación avance."}
+],
+practice:{text:"Tu supervisora quiere enviar una propuesta hoy. Tú sabes que falta confirmar el precio con un proveedor.",req:["Reconoce su punto.","Expresa tu desacuerdo o reserva.","Da una razón sencilla.","Propón una alternativa."],supports:["Entiendo tu punto, pero…","No estoy de acuerdo con…","Mi preocupación es que…","Podemos…","Propongo…"]},
+model:"Entiendo tu punto, pero creo que necesitamos confirmar el precio antes de enviar la propuesta. Mi preocupación es que el precio puede cambiar. Podemos llamar al proveedor ahora y enviar la propuesta después.",
+checks:["Puedo reconocer la idea de otra persona antes de discrepar.","Puedo decir que no estoy de acuerdo de forma sencilla.","Puedo explicar una razón concreta.","Puedo proponer una alternativa.","Puedo producir una respuesta breve y profesional."]
+},
+b1:{
+route:"💼 B1 — Intermedio",
+intro:"Entrena cómo discrepar con claridad, justificar tu posición y mantener la conversación orientada a una solución.",
+objective:"Al terminar esta semana podrás expresar desacuerdo en situaciones profesionales habituales, justificar tu posición, matizar el tono y proponer un siguiente paso.",
+situation:{text:"En una reunión de proyecto, la responsable propone reducir una fase de pruebas para cumplir la fecha de lanzamiento. Tú consideras que eso aumenta el riesgo de errores. Debes discrepar, explicar el riesgo y proponer una alternativa viable.",facts:[["Quién habla","Tú, responsable de una parte del proyecto"],["Con quién","La responsable del proyecto y el equipo"],["Objetivo","Cuestionar la propuesta sin bloquear la decisión"],["Dificultad","Hay presión por cumplir el plazo y debes justificar tu posición"]]},
+vocab:[
+["plantear una reserva","","Expresar una duda o desacuerdo parcial de forma profesional.","Quisiera plantear una reserva sobre la reducción de pruebas.","Más formal que «no me parece»."],
+["riesgo","","Posibilidad de una consecuencia negativa.","El principal riesgo es lanzar con errores críticos.","Colocaciones: asumir, reducir, evaluar un riesgo."],
+["viable","","Que puede realizarse de manera realista.","Necesitamos una alternativa viable para mantener la fecha.","Sinónimos contextuales: factible, realista."],
+["matizar","","Añadir precisión o limitar una afirmación.","Quisiera matizar un punto antes de decidir.","Útil cuando no rechazas toda la propuesta."],
+["ceder","","Aceptar parcialmente la posición de la otra parte.","Podemos ceder en el alcance, pero no en las pruebas críticas.","Frecuente en negociación."],
+["en cambio","","Introduce contraste y una alternativa.","No eliminaría las pruebas; en cambio, reduciría el alcance del lanzamiento.","Más orientado a contraste que «sin embargo»."]
+],
+phrases:[
+["Reconocer la lógica",[["Entiendo la necesidad de cumplir la fecha.","Reconoce el objetivo compartido."],["Veo la lógica de la propuesta, aunque me preocupa el impacto en calidad.","Combina reconocimiento y reserva."]]],
+["Discrepar y matizar",[["No lo veo exactamente así.","Desacuerdo moderado, útil entre colegas."],["Tengo una reserva con respecto a esa opción.","Más formal y menos frontal."],["Estoy de acuerdo con el objetivo, pero no con la forma de conseguirlo.","Separa objetivo y estrategia."]]],
+["Justificar",[["El problema es que reducir las pruebas aumenta el riesgo de errores críticos.","Explica una consecuencia concreta."],["Desde mi perspectiva, deberíamos priorizar las pruebas de mayor impacto.","Marca tu posición sin presentarla como verdad absoluta."]]],
+["Proponer",[["Una alternativa sería mantener las pruebas críticas y reducir el alcance inicial.","Presenta una solución específica."],["¿Qué les parece si revisamos qué pruebas son imprescindibles antes de decidir?","Convierte el desacuerdo en una propuesta colaborativa."]]]
+],
+builder:{labels:["Reconocimiento","Reserva","Propuesta"],opts:[
+["Entiendo la necesidad de cumplir la fecha;","Veo la lógica de la propuesta;","Estoy de acuerdo con el objetivo;"],
+["sin embargo, me preocupa el riesgo de reducir las pruebas.","aun así, no creo que debamos eliminar las pruebas críticas.","pero tengo una reserva con respecto a la ejecución."],
+["Una alternativa sería reducir el alcance inicial.","Propongo priorizar las pruebas de mayor impacto.","¿Qué les parece si revisamos las opciones antes de decidir?"]
+]},
+grammar:[
+["Indicativo o subjuntivo tras valoración","Cuando afirmas tu posición: <b>Creo que necesitamos más pruebas.</b> Cuando niegas una creencia: <b>No creo que sea conveniente reducirlas.</b> El cambio de modo modifica cómo presentas la valoración."],
+["Condicional para propuestas menos directas","<b>Yo mantendría las pruebas críticas.</b> El condicional puede presentar una recomendación con más distancia que «debemos mantener»."],
+["Conectores de contraste","<b>sin embargo, aun así, en cambio, aunque</b> no son intercambiables en todos los casos. «Sin embargo» introduce contraste; «en cambio» contrapone alternativas; «aunque» integra la concesión dentro de la misma oración."]
+],
+register:{who:"tu directora en una reunión con otros departamentos",options:[
+["No estoy de acuerdo. Esa decisión es demasiado arriesgada.","Es clara, pero puede sonar abrupta en una reunión con varios interlocutores si no justificas de inmediato."],
+["Entiendo la presión por cumplir la fecha. Aun así, me preocupa que reducir las pruebas aumente el riesgo. Propondría revisar primero cuáles son imprescindibles.","Mejor equilibrio entre reconocimiento, reserva, justificación y propuesta."],
+["Yo no haría eso.","Demasiado vaga: expresa posición, pero no aporta criterio ni siguiente paso."]
+],best:1},
+example:"Entiendo la necesidad de cumplir la fecha y veo la lógica de reducir trabajo. Aun así, tengo una reserva con respecto a eliminar pruebas críticas, porque podríamos trasladar el problema al cliente. Propondría mantener las pruebas de mayor impacto y reducir, en cambio, el alcance inicial. Así protegemos la fecha sin asumir el mismo nivel de riesgo.",
+quiz:[
+{q:"¿Qué formulación separa mejor el objetivo compartido de la estrategia discutida?",opts:["No estoy de acuerdo con nada.","Estoy de acuerdo con el objetivo, pero no con la forma de conseguirlo.","Tu propuesta no sirve."],best:1,fb:"Esta formulación permite discrepar sobre el método sin rechazar el objetivo común."},
+{q:"Elige la opción más natural: «No creo que ___ conveniente reducir las pruebas críticas».",opts:["es","sea","será"],best:1,fb:"Tras «no creo que», el subjuntivo es la opción esperable en esta valoración."},
+{q:"Quieres contrastar dos alternativas. ¿Qué conector encaja mejor?",opts:["en cambio","porque","además"],best:0,fb:"«En cambio» contrapone una opción con otra."}
+],
+practice:{text:"Un cliente pide entregar una funcionalidad adicional sin mover la fecha. Tu equipo considera que aceptarla comprometería la calidad.",req:["Reconoce la prioridad del cliente.","Expresa una reserva clara.","Justifica con una consecuencia.","Propón una alternativa viable y un siguiente paso."],supports:["Entiendo la prioridad de…","Tengo una reserva con respecto a…","El problema es que…","Una alternativa sería…","¿Qué les parece si…?"]},
+model:"Entiendo que para ustedes es importante mantener la fecha y añadir esta funcionalidad. Aun así, tengo una reserva con respecto a incorporarla sin ajustar el alcance, porque aumentaría el riesgo de errores. Una alternativa sería incluir una versión básica ahora y completar el resto en la siguiente entrega. Si están de acuerdo, podemos revisar hoy mismo qué parte es prioritaria.",
+checks:["Puedo discrepar sin rechazar innecesariamente a la otra persona.","Puedo justificar mi posición con una consecuencia concreta.","Puedo usar conectores de contraste con precisión básica.","Puedo adaptar el tono al interlocutor.","Puedo proponer una alternativa que haga avanzar la conversación."]
+},
+b2:{
+route:"🚀 B2 — Avanzado",
+intro:"Trabaja el desacuerdo como una decisión de estrategia comunicativa: grado de oposición, matiz, registro, riesgo relacional y capacidad para redirigir la conversación.",
+objective:"Al terminar esta semana podrás expresar desacuerdo en contextos profesionales exigentes, calibrar el grado de oposición, anticipar objeciones, reformular posiciones y conducir la conversación hacia una decisión negociable.",
+situation:{text:"En un comité interdepartamental, dirección propone anunciar una fecha de lanzamiento antes de que operaciones confirme capacidad y soporte técnico cierre incidencias críticas. Tú debes cuestionar la decisión sin parecer obstructivo, porque el anuncio tiene valor comercial pero puede generar compromisos que el equipo todavía no puede garantizar.",facts:[["Quién habla","Tú, responsable con información operativa relevante"],["Con quién","Dirección, comercial, operaciones y soporte"],["Objetivo","Cuestionar el anuncio prematuro y preservar margen de decisión"],["Dificultad","Existe presión comercial, jerarquía y objetivos legítimos en conflicto"]]},
+vocab:[
+["discrepar de fondo","","Oponerse al núcleo de una propuesta, no solo a un detalle.","No discrepo del objetivo, pero sí de fondo con el compromiso de fecha.","Útil para delimitar el alcance del desacuerdo."],
+["objeción de principio","","Reserva basada en un criterio estructural o regla, no en un detalle circunstancial.","Mi objeción de principio es comprometer una fecha sin validar capacidad.","Registro formal."],
+["margen de maniobra","","Espacio disponible para ajustar una decisión posteriormente.","Si anunciamos hoy, reducimos nuestro margen de maniobra.","Colocación frecuente en estrategia y negociación."],
+["condicionar","","Hacer que una decisión dependa de una condición.","Condicionaría el anuncio a la validación de operaciones.","Permite transformar oposición en criterio."],
+["poner en entredicho","","Hacer dudar de la validez, credibilidad o solidez de algo.","Un incumplimiento pondría en entredicho la credibilidad del lanzamiento.","Más fuerte que «generar dudas»."],
+["salvaguarda","","Medida que reduce un riesgo.","Necesitamos una salvaguarda antes de comunicar una fecha externa.","Registro técnico-profesional."]
+],
+phrases:[
+["Delimitar el desacuerdo",[["Comparto el objetivo comercial, pero discrepo de la premisa de que ya podamos comprometernos con una fecha.","Separa el propósito compartido del supuesto que cuestionas."],["Mi reserva no es sobre el lanzamiento en sí, sino sobre anunciar una fecha antes de validar capacidad.","Evita que tu postura se interprete como oposición total."]]],
+["Introducir una objeción fuerte sin escalar",[["Me parece arriesgado asumir que podremos absorber este compromiso sin validar primero las dependencias críticas.","Cuestiona el supuesto, no a la persona."],["Hay un punto que me cuesta dar por resuelto: todavía no tenemos confirmación operativa suficiente.","Formula la objeción como condición no satisfecha."]]],
+["Reformular el marco",[["Quizá la decisión no sea «anunciar o no anunciar», sino qué podemos comunicar hoy sin cerrar una fecha que todavía no controlamos.","Redefine el problema para abrir alternativas."],["Podríamos separar el mensaje comercial del compromiso operativo.","Introduce una distinción que desbloquea la conversación."]]],
+["Condicionar y negociar",[["Yo condicionaría el anuncio de la fecha a dos validaciones: capacidad y cierre de incidencias críticas.","Convierte el desacuerdo en criterios verificables."],["Si necesitamos comunicar algo hoy, propondría anunciar la ventana de lanzamiento y confirmar la fecha después de la validación.","Ofrece una concesión parcial."]]]
+],
+builder:{labels:["Terreno común","Núcleo del desacuerdo","Redirección"],opts:[
+["Comparto el objetivo comercial;","Entiendo el valor de comunicar pronto;","No cuestiono la necesidad de dar visibilidad al mercado;"],
+["sin embargo, discrepo de comprometernos con una fecha antes de validar capacidad.","pero me cuesta dar por resuelto el riesgo operativo.","aun así, no asumiría que las dependencias críticas están cerradas."],
+["Condicionaría el anuncio a una validación operativa.","Separaría la comunicación comercial del compromiso de fecha.","Propondría comunicar una ventana y fijar la fecha tras la validación."]
+]},
+grammar:[
+["Condicional como distancia estratégica","<b>Yo condicionaría el anuncio… / Propondría… / Evitaría…</b> El condicional no solo expresa cortesía: permite presentar una posición firme con menor imposición interpersonal."],
+["Concesivas para reconocer sin ceder","<b>Aunque el anuncio tenga valor comercial, todavía no podemos garantizar la fecha.</b> La concesiva reconoce un argumento válido sin convertirlo en razón suficiente para aceptar la conclusión."],
+["Subjuntivo en condiciones y valoración","<b>Antes de que anunciemos una fecha, necesitamos validar capacidad.</b> / <b>No parece razonable que asumamos ese riesgo.</b> El modo verbal ayuda a marcar condición pendiente, valoración o escenario no consolidado."]
+],
+register:{who:"el director general, delante del comité",options:[
+["Eso es un error. No podemos prometer una fecha que no controlamos.","Puede ser defendible en una crisis, pero eleva innecesariamente la confrontación y atribuye el juicio a la decisión completa."],
+["Comparto el objetivo de dar una señal clara al mercado. Mi reserva es comprometer una fecha antes de validar capacidad y dependencias críticas. Condicionaría el anuncio a esas dos confirmaciones.","Mejor: delimita el desacuerdo, mantiene el terreno común y convierte la objeción en condiciones verificables."],
+["Quizá podríamos pensarlo un poco más.","Demasiado débil para el nivel de riesgo: no deja claro qué cuestionas ni qué condición necesitas."]
+],best:1},
+example:"Comparto el objetivo de dar visibilidad al mercado y entiendo el valor de anunciar pronto. Mi reserva no es sobre el lanzamiento, sino sobre comprometernos con una fecha antes de validar capacidad y cerrar incidencias críticas. Si hoy fijamos una fecha, reducimos nuestro margen de maniobra y convertimos una previsión en una promesa externa. Yo separaría ambas decisiones: comunicaría ahora una ventana de lanzamiento y condicionaría la fecha definitiva a esas dos validaciones.",
+quiz:[
+{q:"¿Qué opción cuestiona el supuesto sin personalizar el desacuerdo?",opts:["Estás asumiendo algo que no es cierto.","Me cuesta dar por resuelto que tengamos capacidad suficiente sin la validación de operaciones.","Tu análisis es demasiado optimista."],best:1,fb:"La formulación centra la objeción en una premisa pendiente, no en la competencia del interlocutor."},
+{q:"¿Cuál expresa mejor una concesión real sin aceptar la conclusión?",opts:["Aunque el anuncio tenga valor comercial, todavía no podemos garantizar la fecha.","El anuncio tiene valor comercial, además podemos garantizar la fecha.","Como el anuncio tiene valor, debemos aceptar."],best:0,fb:"«Aunque» reconoce el valor del argumento, pero mantiene una conclusión diferente."},
+{q:"En este contexto, ¿qué respuestas pueden ser profesionales? Puede haber más de una opción válida.",opts:["Condicionaría la fecha a la validación de capacidad.","Propondría comunicar una ventana y fijar la fecha después de la validación.","Aceptaría la fecha para evitar el desacuerdo."],best:0,also:[1],fb:"Las dos primeras pueden funcionar: una fija una condición verificable y la otra preserva margen comunicando una ventana. La elección depende del contexto y del grado de compromiso que convenga asumir."}
+],
+practice:{text:"En una negociación interna, ventas quiere ofrecer a un cliente una personalización sin coste para cerrar el contrato. Tú sabes que implicaría trabajo adicional no presupuestado y podría crear un precedente para otros clientes.",req:["Reconoce el objetivo comercial sin conceder automáticamente.","Delimita exactamente con qué discrepas.","Explica al menos un riesgo operativo o estratégico.","Propón una alternativa o condición de aceptación.","Mantén un tono adecuado ante interlocutores con poder de decisión."],supports:["Comparto el objetivo de…","Mi reserva no es…, sino…","Me cuesta dar por resuelto que…","Condicionaría… a…","Si necesitamos…, propondría…"]},
+model:"Comparto el objetivo de cerrar el contrato y entiendo por qué la personalización puede ayudar. Mi reserva no es sobre hacer una concesión comercial, sino sobre ofrecer trabajo adicional sin definir su coste ni el precedente que crea. Si lo presentamos como incluido por defecto, será difícil sostener un criterio distinto con otros clientes. Yo condicionaría la concesión a un alcance muy concreto y la registraría como excepción comercial. Si necesitamos dar más valor ahora, también podríamos ofrecer una fase piloto limitada en lugar de asumir toda la personalización.",
+checks:["Puedo delimitar con precisión el objeto de mi desacuerdo.","Puedo reconocer argumentos válidos sin ceder mi posición.","Puedo calibrar el grado de firmeza según riesgo, jerarquía y contexto.","Puedo reformular el problema para abrir alternativas.","Puedo justificar y negociar una salida sin convertir el desacuerdo en confrontación."]
+}
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+let level=null, current=0, visited=new Set(), completed=new Set();
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function audioControls(text){
+ if(level!=="a2") return "";
+ const safe=esc(text);
+ return `<div class="audio"><button type="button" aria-label="Escuchar a velocidad normal: ${safe}" onclick='speak(${JSON.stringify(text)},1)'>🔊 Escuchar / Listen</button><button type="button" aria-label="Escuchar lentamente: ${safe}" onclick='speak(${JSON.stringify(text)},0.72)'>🐢 Lento / Slow</button></div>`;
+}
+function speak(text,rate=1){
+ if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){alert("La síntesis de voz no está disponible en este navegador.");return}
+ window.speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text); u.lang="es-CO";u.rate=rate;
+ const voices=window.speechSynthesis.getVoices().filter(v=>/^es/i.test(v.lang));
+ const pref=voices.find(v=>/es-(CO|MX|US|AR|CL|PE)/i.test(v.lang))||voices[0];
+ if(pref)u.voice=pref;window.speechSynthesis.speak(u);
+}
+function cardV(v){
+ const [t,en,exp,ej,extra]=v;
+ return `<div class="card"><button class="card-head" type="button">${esc(t)} <span>＋</span></button><div class="card-body">${level==="a2"&&en?`<p><b>English:</b> ${esc(en)}</p>`:""}<p>${esc(exp)}</p><p><b>Ejemplo:</b> ${esc(ej)}</p><p class="micro">${esc(extra||"")}</p>${audioControls(t)}${audioControls(ej)}</div></div>`;
+}
+function phrasesHtml(groups){
+ return groups.map(g=>`<div class="group"><div class="group-label">${esc(g[0])}</div>${g[1].map(p=>`<div class="phrase"><div class="phrase-main"><div><div class="phrase-text">${esc(p[0])}</div>${audioControls(p[0])}</div><button class="small when-btn" type="button">Ver cuándo usarla</button></div><div class="when">${esc(p[1])}</div></div>`).join("")}</div>`).join("");
+}
+function builderHtml(d){
+ return `<div class="builder"><p class="micro">${level==="a2"?"Elige un bloque de cada columna. Después cambia una parte para adaptarlo a tu situación. / Choose one block from each column, then adapt it.":"Combina las piezas y después reformula el resultado para que suene natural en tu contexto."}</p><div class="builder-grid">${d.labels.map((l,i)=>`<label>${esc(l)}<select class="build-select" data-i="${i}">${d.opts[i].map(o=>`<option>${esc(o)}</option>`).join("")}</select></label>`).join("")}</div><div id="buildResult" class="result"></div><div id="buildAudio"></div></div>`;
+}
+function grammarHtml(arr){return arr.map((g,i)=>`<div class="accordion"><button type="button">${esc(g[0])}<span>＋</span></button><div class="acc-panel">${g[1]}${level==="a2"?audioControls(g[1].replace(/<[^>]+>/g,"")):""}</div></div>`).join("")}
+function quizHtml(arr){return arr.map((q,i)=>`<div class="quiz" data-q="${i}"><h3>${esc(q.q)}</h3><div class="options">${q.opts.map((o,j)=>`<button class="option" type="button" data-choice="${j}">${esc(o)}</button>`).join("")}</div><div class="feedback"></div></div>`).join("")}
+function controls(i){return `<div class="controls"><button class="navbtn prev" type="button" ${i===0?"disabled":""}>← Anterior</button><button class="navbtn next" type="button" ${i===11?"disabled":""}>Siguiente →</button></div>`}
+function section(i,title,body){return `<section class="section ${i===current?"active":""}" data-section="${i}"><div class="title-row"><div class="num">${i+1}</div><h2>${title}</h2></div>${body}${controls(i)}</section>`}
+
+function render(){
+ const d=data[level]; document.getElementById("route").textContent="Tu ruta: "+d.route;document.getElementById("heroIntro").textContent=d.intro;
+ document.getElementById("nav").innerHTML=meta.sections.map((s,i)=>`<button class="chip ${i===current?"active":""}" data-go="${i}">${i+1}. ${s}</button>`).join("");
+ let h="";
+ h+=section(0,meta.sections[0],`<p class="lead">${esc(d.objective)}</p><div class="callout">Al final del módulo comprobarás si ya puedes hacerlo.</div>`);
+ h+=section(1,meta.sections[1],`<p class="lead">${esc(d.situation.text)}</p><div class="info-grid">${d.situation.facts.map(x=>`<div class="info"><strong>${esc(x[0])}</strong><br>${esc(x[1])}</div>`).join("")}</div>`);
+ h+=section(2,meta.sections[2],`<p class="sub">Pulsa cada tarjeta para revelar significado, ejemplo y nota de uso.</p><div class="cards">${d.vocab.map(cardV).join("")}</div>${level==="a2"?`<div class="quiz"><h3>Recuperación rápida / Quick recall</h3><p>¿Cuál expresión significa <b>to disagree</b>?</p><div class="options"><button class="option recall" data-ok="0">estar de acuerdo</button><button class="option recall" data-ok="1">no estar de acuerdo</button><button class="option recall" data-ok="0">alternativa</button></div><div class="feedback"></div></div>`:""}`);
+ h+=section(3,meta.sections[3],`<p class="sub">${level==="a2"?"Escucha, reconoce la función y practica las frases clave. / Listen, identify the function and practice.":"Observa cómo cambia el efecto según la función comunicativa."}</p>${phrasesHtml(d.phrases)}`);
+ h+=section(4,meta.sections[4],builderHtml(d));
+ h+=section(5,meta.sections[5],`<p class="sub">Solo aparece la gramática que necesitas para ejecutar esta habilidad profesional.</p>${grammarHtml(d.grammar)}`);
+ h+=section(6,meta.sections[6],`<p>Estás hablando con <b>${esc(d.register.who)}</b>. Elige la formulación más adecuada.</p><div id="regOptions" class="options">${d.register.options.map((o,i)=>`<div class="register-row"><button class="option reg" type="button" data-r="${i}">${esc(o[0])}</button>${level==="a2"?audioControls(o[0]):""}</div>`).join("")}</div><div id="regFeedback" class="feedback" aria-live="polite"></div>`);
+ const ex=d.example;
+ const parts=ex.split(/(?<=[.!?])\s+/);
+ h+=section(7,meta.sections[7],`<div class="example">${parts.map((p,i)=>`<button class="annotated" type="button" data-ann="${i}">${esc(p)}</button> `).join("")}${audioControls(ex)}<div id="ann" class="annotation"></div></div><p class="micro">Pulsa una parte del ejemplo para ver qué función cumple.</p>`);
+ h+=section(8,meta.sections[8],`<p class="sub">Responde, revisa el feedback y vuelve a intentar si lo necesitas.</p>${quizHtml(d.quiz)}`);
+ h+=section(9,meta.sections[9],`<p class="lead">${esc(d.practice.text)}</p><div class="requirements"><b>Tu respuesta debe:</b><ul>${d.practice.req.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div><p><b>Estructuras de apoyo:</b></p><div class="audio">${d.practice.supports.map(x=>`<button class="small support" type="button" data-text="${esc(x)}">${esc(x)}</button>`).join("")}</div><label for="practiceText">Tu respuesta${level==="a2"?" / Your response":""}</label><textarea id="practiceText" placeholder="${level==="a2"?"Escribe 3–4 frases. / Write 3–4 sentences.":level==="b1"?"Escribe una respuesta de 5–7 frases.":"Redacta una intervención completa y estratégica."}"></textarea><button id="practiceDoneBtn" class="btn primary" type="button">He preparado mi respuesta${level==="a2"?" / I prepared my response":""}</button><div id="practiceDoneFeedback" class="feedback" aria-live="polite"></div>`);
+ h+=section(10,meta.sections[10],`<button id="modelBtn" class="btn primary" type="button">Ver una posible respuesta</button><div id="model" class="model"><p><b>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</b></p><p>${esc(d.model)}</p>${audioControls(d.model)}${level!=="a2"?`<p class="micro">Compárala con la tuya: observa qué parte reconoce la posición contraria, dónde aparece el desacuerdo, cómo se justifica y qué recurso se utiliza para proponer una salida.</p>`:""}</div>`);
+ h+=section(11,meta.sections[11],`<p>Antes de terminar, comprueba:</p><div class="checklist">${d.checks.map((x,i)=>`<label class="check"><input type="checkbox" class="checkin"><span>${esc(x)}</span></label>`).join("")}</div><div class="checktrack"><div id="checkbar" class="checkbar"></div></div><p id="checktext" class="micro">0 de ${d.checks.length} completados</p><div id="ready" class="ready"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.${level==="a2"?" / During the next seven days, you will find challenges related to this skill. You do not need to memorize everything. Repetition and adaptation are part of the training.":""}</p><!-- Inserta aquí la URL real del reto diario cuando esté disponible --><a class="btn red" href="#">🔥 Ir al reto de hoy</a></div>`);
+ document.getElementById("lesson").innerHTML=h; bind(); updateProgress(); updateBuilder();
+}
+function annText(i){
+ const notes={
+  a2:["Reconoce primero la idea de la otra persona.","Expresa el desacuerdo y da una razón concreta.","Propone una alternativa para que la conversación avance."],
+  b1:["Reconoce el objetivo compartido antes de discrepar.","Introduce una reserva clara sin rechazar toda la propuesta.","Justifica la posición mediante una consecuencia concreta.","Propone una alternativa viable y orientada a la decisión."],
+  b2:["Establece terreno común y reconoce el valor del objetivo contrario.","Delimita exactamente el objeto del desacuerdo.","Explica la consecuencia estratégica de aceptar la propuesta tal como está.","Reformula el marco y condiciona la decisión a criterios verificables."]
+ };
+ const A=notes[level]||[]; return A[Math.min(i,Math.max(0,A.length-1))]||"Observa qué función cumple esta parte dentro de la intervención.";
+}
+function updateBuilder(){
+ const sels=[...document.querySelectorAll(".build-select")];if(!sels.length)return;
+ const txt=sels.map(s=>s.value).join(" ");document.getElementById("buildResult").textContent=txt;
+ const ba=document.getElementById("buildAudio"); if(ba) ba.innerHTML=audioControls(txt);
+}
+function markCompleted(id){ completed.add(id); updateProgress(); }
+function updateProgress(){
+ visited.add(current);
+ const sectionActions=[...visited].map(i=>`section-${i}`);
+ sectionActions.forEach(id=>completed.add(id));
+ const total=level==="a2"?29:28;
+ const p=Math.min(100,Math.round(completed.size/total*100));
+ document.getElementById("bar").style.width=p+"%";
+ document.getElementById("pct").textContent=p+"%";
+}
+function go(i){current=Math.max(0,Math.min(11,i));render();window.scrollTo({top:0,behavior:"smooth"})}
+function bind(){
+ document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>go(+b.dataset.go));
+ document.querySelectorAll(".prev").forEach(b=>b.onclick=()=>go(current-1));document.querySelectorAll(".next").forEach(b=>b.onclick=()=>go(current+1));
+ document.querySelectorAll(".card-head").forEach(b=>b.onclick=()=>{b.parentElement.classList.toggle("open");if(b.parentElement.classList.contains("open")) markCompleted("vocabulario");});
+ document.querySelectorAll(".when-btn").forEach(b=>b.onclick=()=>{b.closest(".phrase").querySelector(".when").classList.toggle("show");markCompleted("frases");});
+ document.querySelectorAll(".accordion>button").forEach(b=>b.onclick=()=>{b.parentElement.classList.toggle("open");if(b.parentElement.classList.contains("open")) markCompleted("gramatica");});
+ document.querySelectorAll(".build-select").forEach(s=>s.onchange=()=>{updateBuilder();markCompleted("constructor");});
+ document.querySelectorAll(".reg").forEach(b=>b.onclick=()=>{
+   const d=data[level],i=+b.dataset.r;document.querySelectorAll(".reg").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+   const f=document.getElementById("regFeedback");f.textContent=d.register.options[i][1];f.className="feedback show "+(i===d.register.best?"good":"warn");markCompleted("registro");
+ });
+ document.querySelectorAll(".annotated").forEach(b=>b.onclick=()=>{const a=document.getElementById("ann");a.textContent=annText(+b.dataset.ann);a.classList.add("show");markCompleted("ejemplo")});
+ document.querySelectorAll(".quiz .option[data-choice]").forEach(b=>b.onclick=()=>{
+   const card=b.closest(".quiz"),q=data[level].quiz[+card.dataset.q],choice=+b.dataset.choice;card.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+   const ok=choice===q.best||(Array.isArray(q.also)&&q.also.includes(choice));
+   const f=card.querySelector(".feedback");f.textContent=(ok?"Esta formulación funciona bien. ":"Revisa el efecto de esta formulación. ")+q.fb;f.className="feedback show "+(ok?"good":"warn");if(ok)markCompleted(`quiz-${card.dataset.q}`);
+ });
+ document.querySelectorAll(".recall").forEach(b=>b.onclick=()=>{const f=b.closest(".quiz").querySelector(".feedback");f.textContent=b.dataset.ok==="1"?"Sí: «no estar de acuerdo» = to disagree.":"Intenta otra vez. Busca la expresión para indicar una opinión diferente.";f.className="feedback show "+(b.dataset.ok==="1"?"good":"warn");if(b.dataset.ok==="1")markCompleted("recall")});
+ document.querySelectorAll(".support").forEach(b=>{if(level==="a2")b.onclick=()=>speak(b.dataset.text,1)});
+ const mb=document.getElementById("modelBtn");if(mb)mb.onclick=()=>{const m=document.getElementById("model");m.classList.toggle("show");if(m.classList.contains("show"))markCompleted("modelo");};
+ const pdb=document.getElementById("practiceDoneBtn");if(pdb)pdb.onclick=()=>{const t=document.getElementById("practiceText").value.trim(),f=document.getElementById("practiceDoneFeedback");if(!t){f.textContent=level==="a2"?"Escribe primero tu respuesta. / Write your response first.":"Escribe primero tu respuesta.";f.className="feedback show warn";return}f.textContent=level==="a2"?"Respuesta preparada. Ahora compárala con el modelo. / Response prepared. Now compare it with the model.":"Respuesta preparada. Ahora compárala con el modelo.";f.className="feedback show good";markCompleted("practica");};
+ const checks=[...document.querySelectorAll(".checkin")];checks.forEach((c,i)=>c.onchange=()=>{if(c.checked)completed.add(`check-${i}`);else completed.delete(`check-${i}`);const n=checks.filter(x=>x.checked).length,p=Math.round(n/checks.length*100);document.getElementById("checkbar").style.width=p+"%";document.getElementById("checktext").textContent=`${n} de ${checks.length} completados`;document.getElementById("ready").classList.toggle("show",n===checks.length);updateProgress();});
+}
+document.querySelectorAll(".level-btn").forEach(b=>b.onclick=()=>{level=b.dataset.level;current=0;visited=new Set();completed=new Set();document.getElementById("gate").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render()});
+document.getElementById("change").onclick=()=>{window.speechSynthesis?.cancel?.();document.getElementById("app").classList.add("hidden");document.getElementById("gate").classList.remove("hidden");window.scrollTo(0,0)};
+</script>
+</body>
+</html>

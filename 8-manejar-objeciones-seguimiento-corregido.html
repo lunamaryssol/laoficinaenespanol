@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Manejar objeciones y dar seguimiento comercial | La Oficina en Español</title>
+<style>
+:root{
+  --azul:#003893;--amarillo:#FCD116;--rojo:#CE1126;--blanco:#FFFFFF;--negro:#000000;
+  --texto:#172033;--muted:#5b6578;--borde:#d9e1ef;--fondo:#f4f7fb;--panel:#ffffff;
+  --ok:#126b45;--ok-bg:#e9f7f0;--warn:#7a5200;--warn-bg:#fff6d9;--danger-bg:#fff0f2;
+  --sombra:0 14px 35px rgba(0,56,147,.10);--radio:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:linear-gradient(180deg,#edf3ff 0,#f7f9fc 28%,#f4f7fb 100%);color:var(--texto);line-height:1.55}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--azul)}
+.hidden{display:none!important}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* Selector inicial */
+#levelScreen{min-height:100vh;display:grid;place-items:center;padding:28px 18px;background:
+radial-gradient(circle at 10% 10%,rgba(252,209,22,.28),transparent 30%),
+radial-gradient(circle at 90% 85%,rgba(0,56,147,.16),transparent 36%),#f7f9fc}
+.level-shell{width:min(980px,100%)}
+.brand-lockup{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--azul);font-weight:800}
+.brand-mark{width:48px;height:48px;border-radius:14px;background:var(--azul);display:grid;place-items:center;color:var(--amarillo);font-size:26px;box-shadow:var(--sombra)}
+.level-panel{background:rgba(255,255,255,.96);border:1px solid var(--borde);border-radius:28px;box-shadow:var(--sombra);padding:clamp(24px,4vw,44px)}
+.level-panel h1{font-family:"Archivo Black",Arial Black,sans-serif;color:var(--azul);font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 10px}
+.level-panel .intro{color:var(--muted);max-width:760px;margin:0 0 24px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.level-btn{border:2px solid var(--borde);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:210px;transition:.2s transform,.2s border-color,.2s box-shadow;display:flex;flex-direction:column;gap:8px;color:var(--texto)}
+.level-btn:hover,.level-btn:focus-visible{transform:translateY(-2px);border-color:var(--azul);box-shadow:0 10px 25px rgba(0,56,147,.13);outline:none}
+.level-btn .emoji{font-size:34px}.level-btn strong{font-size:20px;color:var(--azul)}.level-btn span:last-child{color:var(--muted)}
+
+/* App */
+#app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde)}
+.topbar-inner{max-width:1180px;margin:auto;padding:10px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.mini-brand{font-weight:900;color:var(--azul);white-space:nowrap}.route{font-size:14px;color:var(--texto)}
+.change-level{border:1px solid var(--borde);background:#fff;border-radius:999px;padding:8px 12px;color:var(--azul);font-weight:700}
+.progress-wrap{max-width:1180px;margin:auto;padding:0 18px 10px;display:flex;gap:12px;align-items:center}
+.progress-track{height:9px;background:#e6ebf4;border-radius:999px;overflow:hidden;flex:1}.progress-bar{height:100%;width:0;background:var(--azul);transition:width .25s ease}.progress-label{font-size:12px;font-weight:800;color:var(--azul);min-width:44px;text-align:right}
+
+.hero{background:var(--azul);color:#fff;padding:34px 18px 30px;border-bottom:8px solid var(--amarillo)}
+.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--amarillo)}
+.hero h1{font-family:"Archivo Black",Arial Black,sans-serif;font-size:clamp(30px,5vw,54px);line-height:1.05;margin:8px 0 10px;max-width:950px}.hero p{margin:0;max-width:780px;color:#dce8ff}
+
+.layout{max-width:1180px;margin:24px auto 50px;padding:0 18px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;align-items:start}
+.sidebar{position:sticky;top:94px;background:#fff;border:1px solid var(--borde);border-radius:18px;padding:14px;box-shadow:0 8px 24px rgba(0,56,147,.06)}
+.sidebar h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:4px 8px 10px}.section-nav{display:grid;gap:4px}.nav-btn{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;color:#475269;font-size:13px}.nav-btn:hover,.nav-btn:focus-visible{background:#eef4ff;color:var(--azul);outline:none}.nav-btn.active{background:#e8f0ff;color:var(--azul);font-weight:800}
+
+.section{display:none;background:#fff;border:1px solid var(--borde);border-radius:var(--radio);box-shadow:0 8px 30px rgba(0,56,147,.06);padding:clamp(20px,3vw,34px);min-height:470px}.section.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-kicker{color:var(--azul);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.section h2{font-family:"Archivo Black",Arial Black,sans-serif;color:var(--azul);font-size:clamp(25px,4vw,36px);line-height:1.15;margin:5px 0 14px}.section h3{color:var(--azul);margin:22px 0 10px}.lead{font-size:18px}.muted{color:var(--muted)}
+.section-footer{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--borde)}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:800}.btn-primary{background:var(--azul);color:#fff}.btn-secondary{background:#edf3ff;color:var(--azul)}.btn-yellow{background:var(--amarillo);color:#1b1b1b}.btn:focus-visible,.audio-btn:focus-visible,.card-btn:focus-visible,.choice:focus-visible{outline:3px solid rgba(0,56,147,.28);outline-offset:2px}
+
+.info-box{border-left:5px solid var(--amarillo);background:#fff9da;padding:16px 18px;border-radius:12px;margin:18px 0}.situation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.mini{background:#f6f8fc;border:1px solid var(--borde);border-radius:12px;padding:14px}.mini strong{display:block;color:var(--azul);margin-bottom:4px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.vocab-card,.phrase-card{border:1px solid var(--borde);border-radius:15px;overflow:hidden;background:#fff}.card-btn{width:100%;border:0;background:#f8faff;padding:16px;text-align:left;font-weight:850;color:var(--azul);display:flex;justify-content:space-between;align-items:center;gap:10px}.card-detail{display:none;padding:16px;border-top:1px solid var(--borde)}.card-detail.open{display:block}.example{background:#f2f6fd;border-radius:10px;padding:11px 12px;margin-top:10px}.english{color:#555f71;font-style:italic}.pron{display:inline-block;background:#eef4ff;color:var(--azul);padding:3px 8px;border-radius:999px;font-weight:800;font-size:13px;margin:6px 0}
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.audio-btn{border:1px solid #c7d5ee;background:#fff;color:var(--azul);border-radius:999px;padding:7px 10px;font-size:13px;font-weight:800}.audio-status{font-size:12px;color:var(--muted);margin-top:8px}
+
+.function-group{border-top:1px solid var(--borde);padding-top:18px;margin-top:18px}.function-group:first-of-type{border-top:0;padding-top:0}.function-label{display:inline-block;background:#e8f0ff;color:var(--azul);border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-bottom:10px}
+.builder{background:#f8faff;border:1px solid var(--borde);border-radius:16px;padding:18px}.builder-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.field label{font-size:13px;font-weight:800;color:var(--muted);display:block;margin-bottom:5px}.field select,.field input,.practice textarea{width:100%;border:1px solid #bdc9dc;border-radius:10px;padding:11px;background:#fff;color:var(--texto)}.built-output{border:2px solid var(--azul);background:#fff;border-radius:12px;padding:14px;font-weight:800;color:var(--azul);margin-top:13px}
+
+.grammar-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.flow-step{background:#f5f8fd;border:1px solid var(--borde);padding:12px;border-radius:12px}.flow-step strong{color:var(--azul);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}.reveal{border:1px solid var(--borde);border-radius:12px;margin-top:10px;overflow:hidden}.reveal button{width:100%;border:0;background:#f8faff;padding:12px;text-align:left;color:var(--azul);font-weight:850}.reveal-content{display:none;padding:14px}.reveal-content.open{display:block}
+
+.scenario{background:#f8faff;border:1px solid var(--borde);border-radius:15px;padding:18px}.choices{display:grid;gap:9px;margin-top:14px}.choice{border:1px solid #bdc9dc;background:#fff;border-radius:12px;padding:12px;text-align:left;color:var(--texto)}.choice:hover{border-color:var(--azul)}.choice.selected{border-color:var(--azul);background:#edf3ff}.feedback{margin-top:12px;padding:12px;border-radius:10px}.feedback.good{background:var(--ok-bg);color:var(--ok)}.feedback.warn{background:var(--warn-bg);color:var(--warn)}.feedback.neutral{background:#edf3ff;color:#284c87}
+
+.dialogue{border:1px solid var(--borde);border-radius:16px;overflow:hidden}.turn{padding:14px 16px;border-bottom:1px solid var(--borde)}.turn:last-child{border-bottom:0}.speaker{font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:900;color:var(--muted)}.seller{background:#f4f8ff}.client{background:#fff}.hotspot{border:0;border-bottom:2px dotted var(--azul);background:transparent;color:inherit;padding:0;font-weight:800}.annotation{display:none;background:#fff9da;border-left:4px solid var(--amarillo);padding:10px 12px;margin-top:8px;border-radius:8px}.annotation.open{display:block}
+
+.quiz-list{display:grid;gap:16px}.quiz{border:1px solid var(--borde);border-radius:15px;padding:16px}.quiz h3{margin:0 0 8px;font-size:17px}.quiz .choices{margin-top:10px}.retry{margin-top:10px;border:0;background:#edf3ff;color:var(--azul);font-weight:800;border-radius:9px;padding:8px 10px}.token-bank,.answer-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.token{border:1px solid #bdc9dc;background:#fff;border-radius:999px;padding:8px 11px}.token.used{opacity:.35}.answer-line{min-height:44px;border:1px dashed #9aa9c1;border-radius:10px;padding:8px}.answer-token{background:#e8f0ff;color:var(--azul);border-radius:999px;padding:7px 10px}
+
+.practice{background:#f8faff;border:1px solid var(--borde);border-radius:16px;padding:18px}.requirements{margin:10px 0 16px;padding-left:20px}.support-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{background:#fff;border:1px solid #bdc9dc;border-radius:999px;padding:7px 10px;font-size:13px}.char-count{text-align:right;color:var(--muted);font-size:12px;margin-top:4px}.model{display:none;margin-top:14px;border-left:5px solid var(--azul);background:#edf3ff;padding:16px;border-radius:12px}.model.open{display:block}
+
+.checklist{display:grid;gap:10px}.check-item{display:flex;gap:11px;align-items:flex-start;background:#f8faff;border:1px solid var(--borde);border-radius:12px;padding:13px}.check-item input{width:20px;height:20px;margin-top:2px}.check-track{height:8px;background:#e6ebf4;border-radius:999px;overflow:hidden;margin-top:14px}.check-bar{height:100%;width:0;background:var(--azul);transition:width .2s ease}.check-progress{margin-top:7px;font-weight:800;color:var(--azul)}
+.ready{display:none;margin-top:18px;background:linear-gradient(135deg,var(--azul),#0d54b5);color:#fff;border-radius:18px;padding:22px}.ready.open{display:block}.ready h3{color:#fff;margin-top:0}.ready p{color:#dce8ff}.challenge-link{display:inline-block;text-decoration:none;background:var(--amarillo);color:#111;font-weight:900;border-radius:12px;padding:12px 16px;margin-top:6px}
+
+@media(max-width:900px){.level-grid{grid-template-columns:1fr}.level-btn{min-height:auto}.layout{grid-template-columns:1fr}.sidebar{position:static;overflow:auto}.section-nav{display:flex;overflow:auto;padding-bottom:3px}.nav-btn{white-space:nowrap;border:1px solid var(--borde)}.topbar-inner{grid-template-columns:1fr auto}.route{grid-column:1/-1;grid-row:2}.mini-brand{font-size:14px}.cards{grid-template-columns:1fr}.grammar-flow{grid-template-columns:1fr 1fr}.situation-grid{grid-template-columns:1fr}.builder-row{grid-template-columns:1fr}}
+@media(max-width:560px){#levelScreen{padding:14px}.level-panel{padding:20px}.topbar-inner{gap:8px}.hero{padding-top:24px}.layout{padding:0 12px}.section{padding:18px}.grammar-flow{grid-template-columns:1fr}.section-footer{flex-direction:column-reverse}.section-footer .btn{width:100%}.audio-btn{flex:1}.hero h1{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section id="levelScreen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="brand-lockup"><span class="brand-mark">💼</span><span>La Oficina en Español</span></div>
+    <div class="level-panel">
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p class="intro">Selecciona tu ruta para adaptar el apoyo, la dificultad y la práctica. Todos trabajan la misma habilidad profesional.</p>
+      <div class="level-grid">
+        <button type="button" class="level-btn" data-level="a2"><span class="emoji">🌱</span><strong>A2 — Principiante</strong><span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+        <button type="button" class="level-btn" data-level="b1"><span class="emoji">💼</span><strong>B1 — Intermedio</strong><span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+        <button type="button" class="level-btn" data-level="b2"><span class="emoji">🚀</span><strong>B2 — Avanzado</strong><span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="mini-brand">La Oficina en Español</div>
+      <div id="routeLabel" class="route" aria-live="polite"></div>
+      <button id="changeLevel" class="change-level" type="button">Cambiar nivel</button>
+    </div>
+    <div class="progress-wrap" aria-label="Progreso del módulo">
+      <div class="progress-track"><div id="progressBar" class="progress-bar" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+      <div id="progressLabel" class="progress-label">0%</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Habilidad profesional de la semana</div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSubtitle"></p>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Navegación del módulo">
+      <h2>Secciones</h2>
+      <nav id="sectionNav" class="section-nav"></nav>
+    </aside>
+    <main id="mainContent"></main>
+  </div>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  habilidad: "Manejar objeciones y dar seguimiento comercial",
+  subtitulo: "Responde sin discutir, aclara la preocupación real y deja acordado un siguiente paso concreto.",
+  a2: {
+    ruta: "🌱 A2 — Principiante",
+    objetivo: "Al terminar esta semana podrás responder una objeción comercial sencilla, hacer una pregunta para entender el problema, proponer una opción y confirmar cuándo volverás a contactar al cliente.",
+    situacion: {
+      quien: "Eres representante de ventas.",
+      conQuien: "Hablas con un cliente potencial.",
+      contexto: "Están en una videollamada después de presentar una propuesta.",
+      meta: "Quieres responder a una objeción sobre el precio y acordar un siguiente paso.",
+      dificultad: "El cliente dice: “El precio es un poco alto. Necesito pensarlo.” No debes presionarlo ni terminar la conversación sin seguimiento."
+    },
+    vocabulario: [
+      {term:"la objeción", en:"objection", desc:"Una duda o razón por la que el cliente todavía no acepta la propuesta.", pron:"ob-je-CIÓN", example:"Entiendo su objeción sobre el precio.", extra:"Colocación útil: responder a una objeción."},
+      {term:"el presupuesto", en:"budget", desc:"El dinero disponible para una compra o proyecto.", pron:"pre-su-PUES-to", example:"¿El problema principal es el presupuesto?", extra:"Pregunta útil para confirmar la razón real."},
+      {term:"el plazo", en:"time frame / deadline", desc:"El tiempo acordado para hacer o entregar algo.", pron:"PLA-zo", example:"Podemos revisar el plazo de implementación.", extra:"Colocaciones: ampliar el plazo, revisar el plazo."},
+      {term:"la opción", en:"option", desc:"Una posibilidad que puedes ofrecer al cliente.", pron:"op-CIÓN", example:"Puedo ofrecerle otra opción.", extra:"También: una opción más sencilla / flexible."},
+      {term:"dar seguimiento", en:"to follow up", desc:"Volver a contactar al cliente después de la conversación.", pron:"se-gui-MIEN-to", example:"Voy a darle seguimiento el jueves.", extra:"En ventas también puedes decir: volver a contactarlo."},
+      {term:"quedar pendiente", en:"to await / wait for a response", desc:"Indica que esperas una respuesta o un próximo paso.", pron:"pen-DIEN-te", example:"Quedo pendiente de su respuesta.", extra:"Es una fórmula útil en correos y mensajes profesionales."}
+    ],
+    recall: {prompt:"¿Qué expresión significa “to follow up”?", options:["dar seguimiento","cerrar la venta","cambiar el precio"], correct:0, feedback:"“Dar seguimiento” significa volver a contactar para continuar la conversación o confirmar un siguiente paso."},
+    frases: [
+      {func:"Reconocer la objeción", text:"Entiendo su preocupación.", use:"Úsala primero para mostrar que escuchaste al cliente. No significa que estés de acuerdo; significa que reconoces su punto."},
+      {func:"Aclarar", text:"¿El problema principal es el precio?", use:"Úsala para confirmar si esa es la objeción real antes de ofrecer una solución."},
+      {func:"Explorar", text:"¿Qué necesitaría para poder avanzar?", use:"Pregunta qué condición o información ayudaría al cliente a seguir adelante."},
+      {func:"Proponer", text:"Si le parece, puedo enviarle una opción más sencilla.", use:"“Si le parece” suaviza la propuesta y “puedo + infinitivo” ofrece una acción concreta."},
+      {func:"Acordar seguimiento", text:"Le escribo el jueves para saber qué piensa.", use:"Indica un momento concreto para retomar la conversación."},
+      {func:"Cerrar sin presión", text:"Perfecto. Quedo pendiente y hablamos el jueves.", use:"Cierra con claridad sin intentar forzar una decisión inmediata."}
+    ],
+    builder: {
+      intro:"Construye una respuesta breve en cuatro pasos.",
+      fields:[
+        {label:"1. Reconoce", options:["Entiendo su preocupación.","Entiendo que necesita pensarlo."]},
+        {label:"2. Aclara", options:["¿El problema principal es el precio?","¿Necesita más información sobre la propuesta?"]},
+        {label:"3. Propón", options:["Si le parece, puedo enviarle otra opción.","Si le parece, podemos revisar el plazo."]},
+        {label:"4. Seguimiento", options:["Le escribo el jueves para saber qué piensa.","Puedo contactarlo de nuevo el viernes."]}
+      ]
+    },
+    gramatica: {
+      situacion:"El cliente todavía no ha decidido y quieres ofrecer ayuda sin presionarlo.",
+      intencion:"Proponer una acción de forma profesional y abierta.",
+      estructura:"Si le parece, puedo/podemos + infinitivo.",
+      estructuraAudio:"Si le parece, puedo enviarle otra opción. Si le parece, podemos revisar el plazo.",
+      ejemplo:"Si le parece, podemos revisar el plazo.",
+      explicacion:"“Si le parece” presenta la propuesta como una opción. Después usa “puedo” cuando tú harás la acción y “podemos” cuando la acción será conjunta.",
+      porQue:"En una objeción comercial conviene ofrecer una salida sin convertirla en una orden. La estructura deja espacio para que el cliente acepte, rechace o pida otra alternativa."
+    },
+    registro: {
+      contexto:"El cliente dice que el precio es alto. Es un cliente nuevo y la relación es profesional.",
+      options:[
+        {text:"No, el precio está bien. Es una buena oferta.", quality:"warn", feedback:"La frase contradice directamente al cliente y puede sonar defensiva. Primero conviene reconocer la preocupación y aclarar qué necesita."},
+        {text:"Entiendo su preocupación. ¿El problema principal es el presupuesto?", quality:"good", feedback:"Funciona bien: reconoce la objeción y hace una pregunta clara antes de proponer una solución."},
+        {text:"Bueno, entonces piénselo y me avisa.", quality:"warn", feedback:"No es agresiva, pero deja el seguimiento completamente abierto. En ventas conviene acordar un siguiente paso concreto."}
+      ]
+    },
+    ejemplo: {
+      turns:[
+        {speaker:"Cliente", type:"client", text:"Me interesa la propuesta, pero el precio es un poco alto. Necesito pensarlo."},
+        {speaker:"Tú", type:"seller", text:"Entiendo su preocupación. ¿El problema principal es el presupuesto?", note:"Primero reconoces la objeción y después confirmas la causa."},
+        {speaker:"Cliente", type:"client", text:"Sí. Este mes tenemos un presupuesto limitado."},
+        {speaker:"Tú", type:"seller", text:"Si le parece, puedo enviarle una opción más sencilla con menos servicios.", note:"Ofreces una alternativa concreta con “Si le parece, puedo…”."},
+        {speaker:"Cliente", type:"client", text:"Sí, envíemela y la reviso."},
+        {speaker:"Tú", type:"seller", text:"Perfecto. Se la envío hoy y le escribo el jueves para saber qué piensa.", note:"Cierras con dos acciones claras: envío hoy + seguimiento el jueves."}
+      ],
+      audioFull:"Entiendo su preocupación. ¿El problema principal es el presupuesto? Si le parece, puedo enviarle una opción más sencilla con menos servicios. Perfecto. Se la envío hoy y le escribo el jueves para saber qué piensa.",
+      audioBlocks:["Entiendo su preocupación.","¿El problema principal es el presupuesto?","Si le parece, puedo enviarle una opción más sencilla con menos servicios.","Perfecto. Se la envío hoy y le escribo el jueves para saber qué piensa."]
+    },
+    quiz:[
+      {type:"choice", q:"El cliente dice: “Es demasiado caro”. ¿Cuál es el mejor primer paso?", options:["Bajar el precio inmediatamente.","Reconocer la preocupación y hacer una pregunta.","Explicar por qué el cliente está equivocado."], correct:1, explanation:"Primero necesitas entender la objeción. Bajar el precio sin preguntar puede responder a un problema que no es el verdadero."},
+      {type:"choice", q:"Completa: “Si le parece, _____ revisar el plazo.”", options:["podemos","tenemos","somos"], correct:0, explanation:"“Si le parece, podemos + infinitivo” sirve para proponer una acción conjunta."},
+      {type:"build", q:"Ordena la frase para acordar seguimiento.", tokens:["el jueves","Le","qué piensa.","escribo","para saber"], answer:"Le escribo el jueves para saber qué piensa.", explanation:"La frase incluye acción + momento + propósito del seguimiento."},
+      {type:"choice", q:"¿Qué cierre deja un siguiente paso más claro?", options:["Quedo pendiente.","Hablamos luego.","Le escribo el viernes y revisamos la opción."], correct:2, explanation:"Un seguimiento útil incluye una acción y un momento concreto."}
+    ],
+    practica:{
+      contexto:"Un cliente te dice: “Me gusta el servicio, pero ahora mismo el precio es alto para nosotros. Necesito pensarlo.”",
+      interlocutor:"Cliente potencial con quien ya tuviste una primera reunión.",
+      objetivo:"Responder sin presionar y acordar un seguimiento.",
+      requisitos:["Reconoce la preocupación.","Haz una pregunta para entender la objeción.","Propón una opción o siguiente paso.","Indica cuándo volverás a contactar al cliente."],
+      supports:["Entiendo su preocupación.","¿El problema principal es…?","Si le parece, puedo…","Le escribo el… para…"],
+      placeholder:"Escribe 3–4 frases."
+    },
+    modelo:"Entiendo su preocupación. ¿El problema principal es el presupuesto? Si le parece, puedo enviarle una opción más sencilla. Se la envío hoy y le escribo el jueves para saber qué piensa.",
+    modeloBlocks:["Entiendo su preocupación.","¿El problema principal es el presupuesto?","Si le parece, puedo enviarle una opción más sencilla.","Se la envío hoy y le escribo el jueves para saber qué piensa."],
+    checklist:["Puedo reconocer una objeción con una frase profesional.","Puedo hacer una pregunta sencilla para aclarar la preocupación.","Puedo proponer una opción con “Si le parece, puedo/podemos…”.","Puedo indicar un momento concreto para dar seguimiento.","Puedo construir una respuesta breve sin copiar el modelo."]
+  },
+  b1: {
+    ruta:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás gestionar una objeción comercial habitual, distinguir la preocupación principal, responder con una propuesta relevante y cerrar la conversación con un siguiente paso y seguimiento definidos.",
+    situacion:{
+      quien:"Eres responsable comercial de una solución de software.",
+      conQuien:"Hablas con la responsable de operaciones de una empresa cliente.",
+      contexto:"Acabas de presentar una propuesta y la clienta cuestiona tanto el precio como el tiempo de implementación.",
+      meta:"Necesitas descubrir cuál de las dos objeciones pesa más, responder con precisión y mantener el avance de la oportunidad.",
+      dificultad:"Si respondes a todo de inmediato, puedes sobreexplicar. Si solo dices “te escribo después”, la conversación queda sin dirección."
+    },
+    vocabulario:[
+      {term:"la preocupación",desc:"Aspecto que genera duda o riesgo para el cliente.",example:"Quisiera entender mejor cuál es su principal preocupación.",extra:"Colocaciones: abordar una preocupación, resolver una preocupación."},
+      {term:"la prioridad",desc:"Aspecto que tiene mayor importancia en la decisión.",example:"¿Qué pesa más ahora mismo: el presupuesto o el plazo?",extra:"Útil para jerarquizar varias objeciones."},
+      {term:"el alcance",desc:"Lo que está incluido y lo que queda fuera de una propuesta o proyecto.",example:"Podemos ajustar el alcance de la primera fase.",extra:"Colocaciones: definir, reducir, ampliar, ajustar el alcance."},
+      {term:"la alternativa",desc:"Opción diferente que mantiene el objetivo principal.",example:"Puedo plantearle una alternativa con implementación por fases.",extra:"Alternativa viable / más gradual / de menor alcance."},
+      {term:"concretar",desc:"Convertir una idea general en un acuerdo o acción específica.",example:"Antes de cerrar, me gustaría concretar el siguiente paso.",extra:"Registro profesional neutro."},
+      {term:"retomar",desc:"Continuar una conversación después de una pausa.",example:"¿Le parece si retomamos la conversación el viernes?",extra:"Retomar una propuesta, una negociación, un tema."}
+    ],
+    frases:[
+      {func:"Reconocer sin conceder",text:"Entiendo la preocupación por el costo y el plazo de implementación.",use:"Reconoce el punto sin afirmar todavía que el precio o el plazo deban cambiar."},
+      {func:"Priorizar la objeción",text:"Para responderle bien, ¿qué pesa más en la decisión: el presupuesto o el tiempo de implementación?",use:"Evita responder dos problemas a la vez y descubre la prioridad real."},
+      {func:"Profundizar",text:"¿Qué tendría que cambiar para que la propuesta encajara mejor con sus necesidades?",use:"Transforma una objeción general en criterios concretos de decisión."},
+      {func:"Responder con alternativa",text:"Podríamos mantener el objetivo y reducir el alcance de la primera fase.",use:"Ofrece una opción sin devaluar toda la propuesta."},
+      {func:"Comprobar",text:"¿Esa alternativa respondería a la preocupación que me comenta?",use:"Verifica si tu respuesta realmente resuelve la objeción."},
+      {func:"Cerrar seguimiento",text:"Le envío la versión ajustada mañana y, si le parece, retomamos la conversación el viernes.",use:"Define entregable, plazo y momento de seguimiento."}
+    ],
+    builder:{
+      intro:"Organiza tu intervención: reconoce → prioriza → responde → concreta.",
+      fields:[
+        {label:"Reconoce",options:["Entiendo la preocupación por el costo y el plazo de implementación.","Veo que hay dos puntos que debemos revisar antes de avanzar."]},
+        {label:"Prioriza",options:["¿Qué pesa más en la decisión: el presupuesto o el plazo?","¿Cuál de estos dos puntos sería necesario resolver primero?"]},
+        {label:"Responde",options:["Podríamos ajustar el alcance de la primera fase.","Otra posibilidad sería implementar el proyecto por etapas."]},
+        {label:"Concreta",options:["Le envío una versión ajustada mañana y retomamos la conversación el viernes.","Le preparo dos escenarios y los revisamos el jueves."]}
+      ]
+    },
+    gramatica:{
+      situacion:"Quieres proponer una alternativa sin imponerla ni sonar inseguro.",
+      intencion:"Presentar posibilidades y dejar margen de decisión al cliente.",
+      estructura:"Podríamos / Otra posibilidad sería + infinitivo o sustantivo.",
+      ejemplo:"Podríamos reducir el alcance inicial y mantener la fecha de lanzamiento.",
+      explicacion:"El condicional “podríamos” y “sería” introduce una propuesta con menor imposición que el presente directo. Sirve para explorar opciones durante una objeción.",
+      porQue:"La elección verbal afecta el tono. “Reducimos el alcance” puede sonar como una decisión ya tomada; “podríamos reducirlo” lo presenta como una alternativa que todavía se negocia."
+    },
+    registro:{
+      contexto:"Una clienta que ya conoce tu empresa expresa dudas sobre el costo. Quieres mantener un tono profesional, colaborativo y seguro.",
+      options:[
+        {text:"No se preocupe, seguro que podemos hacerle un descuento.",quality:"warn",feedback:"Intenta tranquilizar, pero ofrece una concesión antes de entender la objeción y transmite poca disciplina comercial."},
+        {text:"Entiendo la preocupación. Para ver qué margen tenemos, ¿qué aspecto del costo les resulta más difícil de justificar internamente?",quality:"good",feedback:"Reconoce la objeción y pide información relevante antes de mover la propuesta."},
+        {text:"Ese es nuestro precio y refleja el valor del servicio.",quality:"warn",feedback:"Puede ser cierto, pero como primera respuesta cierra la exploración. Conviene identificar primero qué hay detrás de la objeción."}
+      ]
+    },
+    ejemplo:{
+      turns:[
+        {speaker:"Clienta",type:"client",text:"La propuesta nos interesa, pero el presupuesto es mayor de lo previsto y seis semanas de implementación nos parece mucho."},
+        {speaker:"Tú",type:"seller",text:"Entiendo los dos puntos. Para responderle bien, ¿qué pesa más en la decisión: el presupuesto o el plazo?",note:"No intentas resolver todo: priorizas la objeción."},
+        {speaker:"Clienta",type:"client",text:"El presupuesto. Podemos manejar seis semanas, pero el costo tendría que bajar."},
+        {speaker:"Tú",type:"seller",text:"En ese caso, podríamos mantener el objetivo principal y reducir el alcance de la primera fase. ¿Esa alternativa les ayudaría a ajustar la inversión al presupuesto?",note:"Respondes a la prioridad y después compruebas si la alternativa sirve."},
+        {speaker:"Clienta",type:"client",text:"Sí, podría funcionar. Necesitaría ver los dos escenarios."},
+        {speaker:"Tú",type:"seller",text:"Perfecto. Le envío mañana la propuesta original y una versión por fases. ¿Le parece si retomamos la conversación el viernes a las diez?",note:"Concretas qué envías y cuándo se retoma la conversación."}
+      ]
+    },
+    quiz:[
+      {type:"choice",q:"El cliente presenta dos objeciones a la vez. ¿Qué respuesta organiza mejor la conversación?",options:["Responder inmediatamente a las dos con todos los argumentos disponibles.","Preguntar cuál de las dos pesa más en la decisión.","Ofrecer un descuento para eliminar una de ellas."],correct:1,explanation:"Priorizar ayuda a responder a la objeción decisiva y evita sobrecargar la conversación."},
+      {type:"choice",q:"¿Qué opción presenta una alternativa con un tono más negociador?",options:["Reducimos el alcance.","Podríamos reducir el alcance de la primera fase.","Hay que reducir el alcance."],correct:1,explanation:"El condicional presenta una posibilidad sin convertirla en decisión o imposición."},
+      {type:"build",q:"Ordena una frase de seguimiento clara.",tokens:["el viernes.","mañana","las dos opciones","Le envío","y las revisamos"],answer:"Le envío las dos opciones mañana y las revisamos el viernes.",explanation:"El mensaje concreta entregable y momento de revisión."},
+      {type:"choice",q:"Después de proponer una alternativa, ¿qué pregunta ayuda más?",options:["¿Entonces cerramos?","¿Esa alternativa respondería a la preocupación que me comenta?","¿Ve que nuestra propuesta sí es buena?"],correct:1,explanation:"La pregunta comprueba si la alternativa resuelve la objeción sin presionar por el cierre."}
+    ],
+    practica:{
+      contexto:"Una empresa valora tu propuesta de consultoría. La responsable financiera dice que el precio está por encima de lo previsto y el director de operaciones teme que el proyecto distraiga demasiado al equipo.",
+      interlocutor:"Dos decisores con preocupaciones distintas.",
+      objetivo:"Organizar la conversación y mantener la oportunidad activa.",
+      requisitos:["Reconoce ambas preocupaciones sin conceder de inmediato.","Haz una pregunta que te permita priorizar o concretar la objeción principal.","Organiza la respuesta con al menos un conector y mantén un registro profesional adecuado a ambos decisores.","Propón una alternativa pertinente.","Comprueba si la alternativa responde a la preocupación.","Cierra con un siguiente paso y una fecha concreta."],
+      supports:["Para responderles bien, me gustaría entender…","¿Qué pesa más en la decisión…?","Podríamos…","¿Esa alternativa…?","Le envío… y lo retomamos…"],
+      placeholder:"Escribe una intervención de 5–7 frases."
+    },
+    modelo:"Entiendo la preocupación por el presupuesto y también por la carga para el equipo. Para responderles bien, ¿cuál de los dos puntos condiciona más la decisión ahora mismo? Si el principal límite es la disponibilidad del equipo, podríamos dividir el proyecto en dos fases y concentrar la primera en las áreas prioritarias. ¿Esa estructura reduciría la carga que les preocupa? Si les parece, mañana les envío dos escenarios y los revisamos juntos el viernes.",
+    checklist:["Puedo reconocer una objeción sin discutir ni conceder automáticamente.","Puedo hacer preguntas para descubrir qué preocupación pesa más.","Puedo proponer alternativas usando un tono colaborativo y preciso.","Puedo comprobar si mi respuesta realmente resuelve la objeción.","Puedo cerrar con un siguiente paso, responsable y momento de seguimiento."]
+  },
+  b2: {
+    ruta:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás diagnosticar objeciones explícitas e implícitas, responder sin erosionar el valor de la propuesta, adaptar el registro a distintos decisores y diseñar un seguimiento que haga avanzar una oportunidad comercial compleja.",
+    situacion:{
+      quien:"Lideras una venta consultiva de un servicio de transformación operativa.",
+      conQuien:"Participan una directora financiera y un director de operaciones.",
+      contexto:"La propuesta ha superado varias reuniones. En la conversación final aparecen dudas sobre retorno, riesgo de implementación y prioridad interna.",
+      meta:"Necesitas identificar si el problema real es presupuesto, riesgo o falta de urgencia; responder sin entrar en defensa de la propuesta y acordar un siguiente paso verificable.",
+      dificultad:"La objeción explícita puede ser “el precio”, pero una concesión económica no resolverá una percepción insuficiente de valor o un riesgo político interno."
+    },
+    vocabulario:[
+      {term:"la objeción de fondo",desc:"Razón subyacente que realmente frena la decisión, aunque no sea la primera que se verbaliza.",example:"Antes de hablar de precio, conviene identificar la objeción de fondo.",extra:"Matiz: no toda objeción declarada coincide con el bloqueo decisivo."},
+      {term:"el costo de oportunidad",desc:"Valor de lo que se deja de ganar o conseguir al elegir una alternativa o posponer una decisión.",example:"También deberíamos considerar el costo de oportunidad de retrasar seis meses el proyecto.",extra:"Úsalo solo si puedes vincularlo a información concreta, no como presión genérica."},
+      {term:"el margen de maniobra",desc:"Espacio real para modificar condiciones, alcance, calendario o estructura.",example:"Tenemos margen de maniobra en la secuencia de implementación, no en el estándar de servicio.",extra:"Permite separar qué es negociable y qué no."},
+      {term:"reencuadrar",desc:"Presentar la misma cuestión desde un criterio diferente que ayude a evaluar la decisión.",example:"Podemos reencuadrar la conversación alrededor del riesgo que quieren reducir, no solo del costo inicial.",extra:"No significa esquivar la objeción; exige responderla con otro marco relevante."},
+      {term:"validar un supuesto",desc:"Comprobar si una interpretación que estamos haciendo es correcta.",example:"Quisiera validar un supuesto: ¿el freno principal es la inversión o la incertidumbre sobre la adopción interna?",extra:"Útil cuando la objeción es ambigua."},
+      {term:"desbloquear",desc:"Eliminar o reducir el obstáculo que impide avanzar hacia una decisión.",example:"¿Qué información necesitarían para desbloquear la decisión?",extra:"Registro profesional frecuente en proyectos y ventas B2."}
+    ],
+    frases:[
+      {func:"Separar objeción y posición",text:"Entiendo que la inversión genera reservas. Antes de hablar de condiciones, quisiera entender qué riesgo concreto están intentando evitar.",use:"Evita asumir que la solución es económica y desplaza la conversación hacia el criterio de decisión."},
+      {func:"Validar la hipótesis",text:"Quisiera validar un supuesto: si pudiéramos reducir el riesgo de implementación, ¿la inversión seguiría siendo el principal obstáculo?",use:"Sirve para comprobar si la objeción declarada es realmente decisiva."},
+      {func:"Reencuadrar",text:"Podemos mirar la inversión junto con el costo de mantener el proceso actual durante otros seis meses.",use:"Reencuadra sin negar el costo. Debe apoyarse en datos o consecuencias plausibles."},
+      {func:"Delimitar concesiones",text:"Tenemos margen de maniobra en el alcance y en la secuencia, pero preferiría no reducir elementos que comprometan el resultado esperado.",use:"Distingue flexibilidad de una concesión que deteriora la propuesta."},
+      {func:"Condicionar una alternativa",text:"Si lo que más les preocupa fuera la carga interna, podríamos plantear una primera fase con menor dependencia de su equipo.",use:"El imperfecto de subjuntivo y el condicional crean distancia hipotética útil para explorar escenarios."},
+      {func:"Diseñar seguimiento",text:"Propongo que dejemos dos decisiones preparadas: ustedes validan internamente el escenario prioritario y yo les envío el impacto de cada alternativa. Lo retomamos el martes con esos dos puntos resueltos.",use:"El seguimiento reparte responsabilidades y define qué debe ocurrir antes de la próxima conversación."}
+    ],
+    builder:{
+      mode:"free",
+      intro:"Construye tu intervención desde la intención comunicativa. No elijas una frase prefabricada: formula cada parte según los decisores y la información disponible.",
+      fields:[
+        {label:"1. Diagnostica",cue:"Formula una pregunta o hipótesis para descubrir si pesa más la inversión, la implementación o la prioridad interna.",placeholder:"Escribe tu formulación diagnóstica…"},
+        {label:"2. Reencuadra",cue:"Presenta un criterio verificable que permita evaluar la objeción desde otro ángulo sin negar el costo.",placeholder:"Escribe tu reencuadre…"},
+        {label:"3. Protege valor",cue:"Delimita qué puedes adaptar y qué no recomendarías cambiar porque comprometería el resultado.",placeholder:"Escribe cómo protegerías el valor…"},
+        {label:"4. Avanza",cue:"Define responsabilidades, información necesaria y propósito de la próxima conversación.",placeholder:"Escribe el siguiente paso…"}
+      ]
+    },
+    gramatica:{
+      situacion:"Sospechas que la objeción expresada no es la única causa del bloqueo y quieres explorar un escenario sin presentarlo como hecho.",
+      intencion:"Plantear una hipótesis profesional con distancia y abrir una alternativa.",
+      estructura:"Si + imperfecto de subjuntivo, condicional: “Si lo que más les preocupara fuera X, podríamos Y”.",
+      ejemplo:"Si la principal preocupación fuera la carga interna, podríamos reducir la dependencia de su equipo en la primera fase.",
+      explicacion:"La combinación crea un escenario hipotético y evita afirmar que ya conoces la causa. Resulta útil cuando estás probando una interpretación de la objeción.",
+      porQue:"En conversaciones complejas, el matiz gramatical protege la relación: diferencia entre diagnosticar (“si fuera…”) y atribuir una motivación al cliente (“el problema es…”)."
+    },
+    registro:{
+      contexto:"La directora financiera cuestiona el retorno. Sabes que el proyecto tiene valor, pero aún no dispones de un cálculo aprobado por el cliente.",
+      options:[
+        {text:"El retorno está claro; el proyecto se paga solo en pocos meses.",quality:"warn",feedback:"Es demasiado categórica si no existe una base compartida. Puede deteriorar la credibilidad y convertir la conversación en una disputa de cifras."},
+        {text:"Podemos revisar el retorno con sus datos y separar qué beneficios son verificables de qué supuestos todavía debemos validar.",quality:"good",feedback:"Mantiene seguridad sin sobreafirmar. Introduce un criterio conjunto de evidencia y convierte la objeción en una tarea concreta."},
+        {text:"Entiendo. Entonces quizá este no sea el momento adecuado para ustedes.",quality:"neutral",feedback:"Puede ser una salida legítima si la prioridad realmente no existe, pero es prematura si todavía no has diagnosticado qué bloquea la decisión."}
+      ]
+    },
+    ejemplo:{
+      turns:[
+        {speaker:"Directora financiera",type:"client",text:"La propuesta sigue pareciéndome cara y no tengo claro que podamos defender el retorno este trimestre."},
+        {speaker:"Tú",type:"seller",text:"Entiendo la reserva. Antes de hablar de condiciones, quisiera validar algo: si pudiéramos reducir el riesgo de implementación y medir el impacto desde la primera fase, ¿la inversión seguiría siendo el principal obstáculo?",note:"No discutes el precio; verificas si la objeción de fondo es inversión o riesgo."},
+        {speaker:"Director de operaciones",type:"client",text:"Para mí el mayor riesgo es la carga que recaería sobre mi equipo."},
+        {speaker:"Tú",type:"seller",text:"Eso cambia el foco. Si la principal preocupación fuera la carga interna, podríamos rediseñar la primera fase para depender menos de su equipo, aunque eso limite el alcance inicial.",note:"Reencuadras y explicitas el intercambio: menos carga implica menor alcance inicial."},
+        {speaker:"Directora financiera",type:"client",text:"Si hacemos eso, necesito ver cómo cambia el retorno."},
+        {speaker:"Tú",type:"seller",text:"De acuerdo. Les propongo lo siguiente: yo preparo dos escenarios con impacto, recursos internos y retorno estimado; ustedes validan qué nivel de dedicación es realmente viable. Lo revisamos el martes y decidimos con la misma información sobre la mesa.",note:"El seguimiento no es “te escribo”: distribuye tareas, define información y fija el propósito de la próxima reunión."}
+      ]
+    },
+    quiz:[
+      {type:"judgment",q:"El cliente dice “es demasiado caro”, pero también menciona miedo a una implementación compleja. ¿Qué intervención tiene mejor calidad diagnóstica?",options:[
+        {text:"¿Qué descuento necesitarían para avanzar?",quality:"warn",feedback:"Es eficiente solo si sabes que el precio es la objeción de fondo. Aquí convierte una hipótesis en conclusión."},
+        {text:"Si redujéramos la complejidad de implementación, ¿la inversión seguiría siendo el principal obstáculo?",quality:"good",feedback:"Prueba la relación entre dos objeciones y ayuda a identificar cuál bloquea realmente la decisión."},
+        {text:"Nuestro precio refleja el valor del proyecto.",quality:"neutral",feedback:"Defiende la posición, pero no produce nueva información. Puede ser útil después, no como primer movimiento diagnóstico."}
+      ]},
+      {type:"choice",q:"¿Qué frase delimita mejor una concesión sin deteriorar el valor?",options:["Podemos bajar lo que haga falta.","Tenemos margen en la secuencia, pero no recomendaría recortar los elementos que sostienen el resultado.","El precio no es negociable."],correct:1,explanation:"Separa lo negociable de lo que comprometería el resultado y explica el criterio."},
+      {type:"build",q:"Ordena un seguimiento con responsabilidades compartidas.",tokens:["lo revisamos el martes.","la capacidad interna;","Yo preparo","dos escenarios","y ustedes validan"],answer:"Yo preparo dos escenarios y ustedes validan la capacidad interna; lo revisamos el martes.",explanation:"Un seguimiento estratégico aclara quién hace qué y para qué sirve la siguiente conversación."},
+      {type:"judgment",q:"Quieres reencuadrar el precio mediante costo de oportunidad. ¿Cuál formulación es más rigurosa?",options:[
+        {text:"Si no deciden ahora, perderán mucho dinero.",quality:"warn",feedback:"Introduce presión y una consecuencia no demostrada."},
+        {text:"Podemos comparar la inversión con el costo que ya han cuantificado de mantener el proceso actual seis meses más.",quality:"good",feedback:"Reencuadra con una base verificable y no niega la inversión."},
+        {text:"El costo de no hacer nada siempre es mayor.",quality:"warn",feedback:"Es una generalización. El costo de oportunidad debe sostenerse con datos o supuestos explícitos."}
+      ]}
+    ],
+    practica:{
+      contexto:"Llevas dos meses trabajando una oportunidad. Finanzas dice que la inversión es alta; Operaciones teme sobrecargar al equipo; la dirección general no ha confirmado que el proyecto sea prioritario este trimestre. Te piden “una mejor propuesta” antes de seguir.",
+      interlocutor:"Tres decisores con criterios diferentes.",
+      objetivo:"Evitar una concesión prematura, identificar el bloqueo decisivo y diseñar un seguimiento que produzca información útil.",
+      requisitos:["Reconoce las reservas sin defenderte de inmediato.","Formula una pregunta o hipótesis que permita descubrir la objeción de fondo.","Reencuadra al menos un aspecto sin exagerar consecuencias.","Delimita qué puedes adaptar y qué comprometería el resultado.","Propón un seguimiento con responsabilidades para ambas partes.","Mantén un registro profesional y seguro, sin presión artificial."],
+      supports:["Antes de hablar de condiciones, quisiera validar…","Si la principal preocupación fuera…","Podemos evaluar… junto con…","Tenemos margen en…, pero…","Propongo que… y lo retomamos…"],
+      placeholder:"Redacta una respuesta de 8–10 frases o un mensaje comercial equivalente."
+    },
+    modelo:"Entiendo las reservas sobre inversión, carga interna y prioridad. Antes de preparar una versión distinta, quisiera validar cuál de esos tres factores está bloqueando realmente la decisión. Si el principal problema fuera la capacidad del equipo, podríamos rediseñar la primera fase para reducir su participación, aunque eso limitaría el alcance inicial. Si la duda principal es el retorno, prefiero revisarlo con sus datos y separar beneficios verificables de supuestos. Tenemos margen de maniobra en la secuencia y en el alcance, pero no recomendaría recortar elementos que trasladen el riesgo a una fase posterior. Propongo que yo prepare dos escenarios con impacto, recursos y retorno estimado, y que ustedes validen internamente qué prioridad y capacidad son reales este trimestre. Lo retomamos el martes con esos dos puntos resueltos y decidimos si tiene sentido ajustar la propuesta o posponerla.",
+    checklist:["Puedo distinguir una objeción declarada de una posible objeción de fondo.","Puedo usar preguntas e hipótesis sin atribuir al cliente motivaciones no confirmadas.","Puedo reencuadrar una objeción con criterios verificables y sin presión artificial.","Puedo delimitar concesiones y proteger el valor de la propuesta.","Puedo adaptar el registro a varios decisores y tensiones.","Puedo diseñar un seguimiento con responsables, información necesaria y propósito de la próxima conversación."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["🎯","TU OBJETIVO ESTA SEMANA"],["🏢","LA SITUACIÓN"],["🗣️","VOCABULARIO CLAVE"],["💬","FRASES QUE PUEDES USAR"],
+  ["🧩","CONSTRUYE TU MENSAJE"],["📚","GRAMÁTICA QUE NECESITAS"],["🎭","ELIGE EL REGISTRO"],["💼","MIRA CÓMO SE HACE"],
+  ["✍️","COMPRUEBA LO QUE APRENDISTE"],["🏢","AHORA TE TOCA A TI"],["💡","VER MODELO"],["✅","CHECKLIST FINAL"]
+];
+
+let currentLevel = null;
+let currentSection = 0;
+let completed = new Set();
+let progressTargets = new Set();
+let voices = [];
+let activeAudioButton = null;
+
+function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
+function keyText(s){return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,70)}
+
+function addTarget(id){progressTargets.add(id)}
+function complete(id){if(progressTargets.has(id)){completed.add(id);updateProgress()}}
+function updateProgress(){
+  const total=Math.max(progressTargets.size,1); const pct=Math.min(100,Math.round(completed.size/total*100));
+  const bar=document.getElementById("progressBar"); bar.style.width=pct+"%"; bar.setAttribute("aria-valuenow",String(pct)); bar.setAttribute("aria-valuetext",`${pct}% completado`); document.getElementById("progressLabel").textContent=pct+"%";
+}
+
+function loadVoices(){if("speechSynthesis" in window) voices=window.speechSynthesis.getVoices()||[]}
+if("speechSynthesis" in window){loadVoices();window.speechSynthesis.onvoiceschanged=loadVoices}
+function spanishVoice(){
+  const prefer=[/es[-_](CO|MX|US|419)/i,/es[-_][A-Z]{2}/i,/^es/i];
+  for(const p of prefer){const v=voices.find(v=>p.test(v.lang||""));if(v)return v} return null;
+}
+function speakSpanish(text,slow=false,button=null){
+  if(!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance==="undefined"){showAudioStatus(button,"Audio no disponible en este navegador / Audio unavailable.");return}
+  if(activeAudioButton && activeAudioButton!==button)showAudioStatus(activeAudioButton,"");
+  window.speechSynthesis.cancel();
+  activeAudioButton=button;
+  const u=new SpeechSynthesisUtterance(text); u.lang="es-CO"; u.rate=slow?.72:.92; u.pitch=1;
+  const v=spanishVoice(); if(v)u.voice=v;
+  u.onstart=()=>showAudioStatus(button,slow?"Reproduciendo lento… / Playing slowly…":"Reproduciendo… / Playing…");
+  u.onend=()=>{showAudioStatus(button,"");if(activeAudioButton===button)activeAudioButton=null};
+  u.onerror=(event)=>{if(event.error!=="interrupted"&&event.error!=="canceled")showAudioStatus(button,"No fue posible reproducir el audio.");else showAudioStatus(button,"");if(activeAudioButton===button)activeAudioButton=null};
+  window.speechSynthesis.speak(u);
+}
+function showAudioStatus(button,msg){if(!button)return; const row=button.closest(".audio-wrap"); if(!row)return; const status=row.querySelector(".audio-status"); if(status)status.textContent=msg}
+function audioControls(text){
+  if(currentLevel!=="a2")return ""; const safe=encodeURIComponent(text);
+  return `<div class="audio-wrap"><div class="audio-row"><button type="button" class="audio-btn" data-speak="${safe}" data-rate="normal" aria-label="Escuchar: ${esc(text)}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="${safe}" data-rate="slow" aria-label="Escuchar lentamente: ${esc(text)}">🐢 Lento / Slow</button></div><div class="audio-status" aria-live="polite"></div></div>`;
+}
+
+function setupProgressTargets(data){
+  completed=new Set();progressTargets=new Set();
+  for(let i=0;i<12;i++)addTarget(`section-${i}`);
+  data.vocabulario.forEach((_,i)=>addTarget(`vocab-${i}`));
+  data.frases.forEach((_,i)=>addTarget(`phrase-${i}`));
+  addTarget("builder");addTarget("grammar");addTarget("register");
+  data.ejemplo.turns.forEach((t,i)=>{if(t.note)addTarget(`example-note-${i}`)});
+  data.quiz.forEach((_,i)=>addTarget(`quiz-${i}`));
+  addTarget("practice");addTarget("model");
+  data.checklist.forEach((_,i)=>addTarget(`check-${i}`)); updateProgress();
+}
+
+function renderModule(){
+  const data=contenido[currentLevel]; setupProgressTargets(data);
+  document.getElementById("routeLabel").textContent=`Tu ruta: ${data.ruta}`;
+  document.getElementById("heroTitle").textContent=contenido.habilidad;
+  document.getElementById("heroSubtitle").textContent=contenido.subtitulo;
+  renderNav(); renderSections(data); showSection(0);
+}
+function renderNav(){
+  document.getElementById("sectionNav").innerHTML=sectionMeta.map((m,i)=>`<button type="button" class="nav-btn" data-section="${i}">${i+1}. ${m[0]} ${m[1].toLowerCase()}</button>`).join("");
+}
+function sectionShell(i,body){const m=sectionMeta[i];return `<section class="section" id="section-${i}" data-index="${i}" tabindex="-1"><div class="section-kicker">Sección ${i+1} de 12</div><h2>${m[0]} ${m[1]}</h2>${body}${navFooter(i)}</section>`}
+function navFooter(i){
+  const prev = i>0 ? `<button type="button" class="btn btn-secondary prev" data-to="${i-1}">← Anterior</button>` : `<span></span>`;
+  const next = i<11 ? `<button type="button" class="btn btn-primary next" data-to="${i+1}">Siguiente →</button>` : `<a class="btn btn-secondary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a>`;
+  return `<div class="section-footer">${prev}${next}</div>`;
+}
+
+function renderSections(d){
+  const parts=[];
+  parts.push(sectionShell(0,`<p class="lead">${esc(d.objetivo)}</p><div class="info-box"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div><p class="muted">Durante esta semana practicarás la misma habilidad en situaciones diferentes: aprender → practicar → repetir → adaptar → consolidar.</p>`));
+  parts.push(sectionShell(1,`<p class="lead">Esta es la escena profesional que guiará tu práctica.</p><div class="situation-grid"><div class="mini"><strong>Quién habla</strong>${esc(d.situacion.quien)}</div><div class="mini"><strong>Con quién</strong>${esc(d.situacion.conQuien)}</div><div class="mini"><strong>Contexto</strong>${esc(d.situacion.contexto)}</div><div class="mini"><strong>Qué quieres conseguir</strong>${esc(d.situacion.meta)}</div></div><div class="info-box"><strong>Dificultad:</strong> ${esc(d.situacion.dificultad)}</div>`));
+  parts.push(sectionShell(2,renderVocabulary(d)));
+  parts.push(sectionShell(3,renderPhrases(d)));
+  parts.push(sectionShell(4,renderBuilder(d)));
+  parts.push(sectionShell(5,renderGrammar(d)));
+  parts.push(sectionShell(6,renderRegister(d)));
+  parts.push(sectionShell(7,renderExample(d)));
+  parts.push(sectionShell(8,renderQuiz(d)));
+  parts.push(sectionShell(9,renderPractice(d)));
+  parts.push(sectionShell(10,renderModel(d)));
+  parts.push(sectionShell(11,renderChecklist(d)));
+  document.getElementById("mainContent").innerHTML=parts.join("");
+}
+
+function renderVocabulary(d){
+  const cards=d.vocabulario.map((v,i)=>`<article class="vocab-card"><button type="button" class="card-btn reveal-card" data-progress="vocab-${i}" aria-expanded="false"><span>${esc(v.term)}</span><span>+</span></button><div class="card-detail">${currentLevel==="a2"?`<div class="english">${esc(v.en)}</div><div class="pron">${esc(v.pron)}</div>`:""}<p>${esc(v.desc)}</p>${audioControls(v.term)}<div class="example"><strong>Ejemplo:</strong> ${esc(v.example)}${audioControls(v.example)}</div><p class="muted">${esc(v.extra)}</p></div></article>`).join("");
+  const recall=currentLevel==="a2"?`<div class="scenario" style="margin-top:18px"><strong>Recuperación rápida / Quick recall</strong><p>${esc(d.recall.prompt)}</p><div class="choices">${d.recall.options.map((o,i)=>`<div><button type="button" class="choice recall-choice" data-index="${i}" style="width:100%">${esc(o)}</button>${audioControls(o)}</div>`).join("")}</div><div id="recallFeedback" aria-live="polite"></div></div>`:"";
+  return `<p>Abre cada tarjeta y recupera solo el vocabulario que necesitas para manejar esta situación.</p><div class="cards">${cards}</div>${recall}`;
+}
+function renderPhrases(d){
+  const groups=d.frases.map((p,i)=>`<div class="function-group"><span class="function-label">${esc(p.func)}</span><div class="phrase-card"><div class="card-btn" style="cursor:default"><span>${esc(p.text)}</span></div><div style="padding:0 16px 14px">${audioControls(p.text)}<button type="button" class="btn btn-secondary phrase-use" data-i="${i}" data-progress="phrase-${i}" style="margin-top:10px">Ver cuándo usarla</button><div class="annotation" id="phrase-note-${i}">${esc(p.use)}</div></div></div></div>`).join("");
+  return `<p>${currentLevel==="a2"?"Escucha, repite y observa para qué sirve cada expresión.":"No memorices una lista: relaciona cada expresión con la función que cumple dentro de la objeción."}</p>${groups}`;
+}
+function renderBuilder(d){
+  if(d.builder.mode==="free"){
+    const fields=d.builder.fields.map((f,i)=>`<div class="field"><label for="build-free-${i}">${esc(f.label)}</label><p class="muted">${esc(f.cue)}</p><input id="build-free-${i}" class="build-free" type="text" placeholder="${esc(f.placeholder)}"></div>`).join("");
+    return `<p>${esc(d.builder.intro)}</p><div class="builder"><div class="builder-row">${fields}</div><button class="btn btn-primary" type="button" id="buildBtn">Construir intervención</button><div id="builtOutput" class="built-output" aria-live="polite">Formula las cuatro partes y construye tu intervención.</div><div id="builtAudio"></div></div>`;
+  }
+  const fields=d.builder.fields.map((f,i)=>`<div class="field"><label for="build-${i}">${esc(f.label)}</label><select id="build-${i}" class="build-select">${f.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select>${currentLevel==="a2"?`<div class="audio-wrap"><div class="audio-row"><button type="button" class="audio-btn build-audio" data-select="build-${i}" data-rate="normal" aria-label="Escuchar la opción seleccionada en ${esc(f.label)}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn build-audio" data-select="build-${i}" data-rate="slow" aria-label="Escuchar lentamente la opción seleccionada en ${esc(f.label)}">🐢 Lento / Slow</button></div><div class="audio-status" aria-live="polite"></div></div>`:""}</div>`).join("");
+  return `<p>${esc(d.builder.intro)}</p><div class="builder"><div class="builder-row">${fields}</div><button class="btn btn-primary" type="button" id="buildBtn">Construir mensaje</button><div id="builtOutput" class="built-output" aria-live="polite">Selecciona tus opciones y construye el mensaje.</div><div id="builtAudio"></div></div>`;
+}
+function renderGrammar(d){
+  return `<p>La gramática aparece aquí porque cambia cómo haces la propuesta, no como una lección separada.</p><div class="grammar-flow"><div class="flow-step"><strong>Situación</strong>${esc(d.gramatica.situacion)}</div><div class="flow-step"><strong>Intención</strong>${esc(d.gramatica.intencion)}</div><div class="flow-step"><strong>Estructura</strong>${esc(d.gramatica.estructura)}${audioControls(d.gramatica.estructuraAudio||d.gramatica.estructura)}</div><div class="flow-step"><strong>Ejemplo</strong>${esc(d.gramatica.ejemplo)}${audioControls(d.gramatica.ejemplo)}</div></div><div class="reveal"><button class="grammar-reveal" type="button">Ver explicación</button><div class="reveal-content"><p>${esc(d.gramatica.explicacion)}</p></div></div><div class="reveal"><button class="grammar-reveal" type="button">¿Por qué se usa así?</button><div class="reveal-content"><p>${esc(d.gramatica.porQue)}</p></div></div>`;
+}
+function renderRegister(d){
+  return `<div class="scenario"><strong>Interlocutor y contexto</strong><p>${esc(d.registro.contexto)}</p><p>Elige la formulación que usarías. Después compara el efecto.</p><div class="choices">${d.registro.options.map((o,i)=>`<div><button type="button" class="choice register-choice" data-i="${i}" style="width:100%">${esc(o.text)}</button>${audioControls(o.text)}</div>`).join("")}</div><div id="registerFeedback" aria-live="polite"></div></div>`;
+}
+function renderExample(d){
+  const turns=d.ejemplo.turns.map((t,i)=>`<div class="turn ${t.type}"><div class="speaker">${esc(t.speaker)}</div><div>${t.note?`<button type="button" class="hotspot" data-note="${i}" data-progress="example-note-${i}">${esc(t.text)}</button>`:esc(t.text)}</div>${currentLevel==="a2"?audioControls(t.text):""}${t.note?`<div class="annotation" id="example-note-${i}">${esc(t.note)}</div>`:""}</div>`).join("");
+  return `<p>Observa cómo la conversación avanza de la objeción hacia un siguiente paso.</p>${currentLevel==="a2"?`<div class="info-box"><strong>Escucha el modelo completo:</strong>${audioControls(d.ejemplo.audioFull)}${Array.isArray(d.ejemplo.audioBlocks)?`<div style="margin-top:12px"><strong>Escucha por bloques:</strong>${d.ejemplo.audioBlocks.map(b=>`<div class="example">${esc(b)}${audioControls(b)}</div>`).join("")}</div>`:""}</div>`:""}<div class="dialogue">${turns}</div><p class="muted">Pulsa las intervenciones destacadas para descubrir qué función cumplen.</p>`;
+}
+function renderQuiz(d){return `<p>Comprueba si puedes recuperar y elegir el lenguaje antes de la producción abierta.</p><div class="quiz-list">${d.quiz.map((q,i)=>renderQuizItem(q,i)).join("")}</div>`}
+function renderQuizItem(q,i){
+  if(q.type==="build") return `<div class="quiz" data-q="${i}"><h3>${i+1}. ${esc(q.q)}</h3><div class="token-bank">${q.tokens.map((t,j)=>`<button type="button" class="token" data-token="${j}">${esc(t)}</button>`).join("")}</div><div class="answer-line" aria-label="Tu frase"></div><button type="button" class="btn btn-secondary check-build" style="margin-top:10px">Comprobar</button><button type="button" class="retry reset-build hidden">Reintentar</button><div class="quiz-feedback" aria-live="polite"></div></div>`;
+  if(q.type==="judgment") return `<div class="quiz" data-q="${i}"><h3>${i+1}. ${esc(q.q)}</h3><div class="choices">${q.options.map((o,j)=>`<button type="button" class="choice judgment-choice" data-j="${j}">${esc(o.text)}</button>`).join("")}</div><div class="quiz-feedback" aria-live="polite"></div></div>`;
+  return `<div class="quiz" data-q="${i}"><h3>${i+1}. ${esc(q.q)}</h3><div class="choices">${q.options.map((o,j)=>`<div><button type="button" class="choice quiz-choice" data-j="${j}" style="width:100%">${esc(o)}</button>${currentLevel==="a2"?audioControls(o):""}</div>`).join("")}</div><button type="button" class="retry retry-choice hidden">Reintentar</button><div class="quiz-feedback" aria-live="polite"></div></div>`;
+}
+function renderPractice(d){
+  return `<div class="practice"><strong>Situación</strong><p>${esc(d.practica.contexto)}</p><div class="mini"><strong>Interlocutor</strong>${esc(d.practica.interlocutor)}</div><div class="mini" style="margin-top:8px"><strong>Objetivo</strong>${esc(d.practica.objetivo)}</div><h3>Incluye:</h3><ul class="requirements">${d.practica.requisitos.map(r=>`<li>${esc(r)}</li>`).join("")}</ul><h3>${currentLevel==="a2"?"Estructuras que puedes usar / Useful structures":"Recursos opcionales"}</h3><div class="support-chips">${d.practica.supports.map(s=>`<div class="chip">${esc(s)}${audioControls(s)}</div>`).join("")}</div><label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" rows="8" placeholder="${esc(d.practica.placeholder)}"></textarea><div class="char-count"><span id="charCount">0</span> caracteres</div><div id="practiceHint" class="muted" aria-live="polite">La respuesta es abierta. No se evalúa automáticamente como correcta o incorrecta.</div></div>`;
+}
+function renderModel(d){
+  return `<p>Primero compara tu propia respuesta con los requisitos de la sección anterior.</p><button id="showModel" class="btn btn-yellow" type="button">Ver una posible respuesta</button><div id="modelBox" class="model"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(d.modelo)}</p>${audioControls(d.modelo)}${currentLevel==="a2"?`<div style="margin-top:12px"><strong>Escucha por bloques:</strong>${(d.modeloBlocks||[]).map(b=>`<div class="example">${esc(b)}${audioControls(b)}</div>`).join("")}</div>`:""}${currentLevel!=="a2"?`<p class="muted">Compárala con la tuya: observa qué información prioriza, cómo mantiene el tono y cómo concreta el siguiente paso.</p>`:""}</div>`;
+}
+function renderChecklist(d){
+  return `<p>Marca solo lo que ya puedes hacer con razonable seguridad.</p><div class="checklist">${d.checklist.map((c,i)=>`<label class="check-item"><input type="checkbox" class="final-check" data-i="${i}"><span>${esc(c)}</span></label>`).join("")}</div><div class="check-track" aria-hidden="true"><div id="checkBar" class="check-bar"></div></div><div id="checkProgress" class="check-progress">0 de ${d.checklist.length} completados</div><div id="readyBox" class="ready"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. --><a class="challenge-link" href="#">🔥 Ir al reto de hoy</a></div>`;
+}
+
+function selectLevel(level){
+  currentLevel=level; currentSection=0; window.speechSynthesis?.cancel();
+  document.getElementById("levelScreen").classList.add("hidden");document.getElementById("app").classList.remove("hidden");
+  renderModule();window.scrollTo({top:0,behavior:"auto"});
+}
+function showLevelScreen(){window.speechSynthesis?.cancel();document.getElementById("app").classList.add("hidden");document.getElementById("levelScreen").classList.remove("hidden");document.querySelector(".level-btn")?.focus()}
+function showSection(i){
+  currentSection=i;document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",Number(s.dataset.index)===i));
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",Number(b.dataset.section)===i));
+  complete(`section-${i}`);const target=document.getElementById(`section-${i}`);target?.focus({preventScroll:true});
+  const top=document.querySelector(".hero").getBoundingClientRect().bottom+window.scrollY;window.scrollTo({top:Math.max(0,top-80),behavior:"smooth"});
+}
+
+// Eventos generales
+for(const b of document.querySelectorAll(".level-btn"))b.addEventListener("click",()=>selectLevel(b.dataset.level));
+document.getElementById("changeLevel").addEventListener("click",showLevelScreen);
+
+document.addEventListener("click",e=>{
+  const buildAudio=e.target.closest(".build-audio"); if(buildAudio){const sel=document.getElementById(buildAudio.dataset.select);if(sel)speakSpanish(sel.value,buildAudio.dataset.rate==="slow",buildAudio);return}
+  const speak=e.target.closest("[data-speak]"); if(speak){speakSpanish(decodeURIComponent(speak.dataset.speak),speak.dataset.rate==="slow",speak);return}
+  const nav=e.target.closest("[data-section]"); if(nav){showSection(Number(nav.dataset.section));return}
+  const step=e.target.closest(".next,.prev"); if(step){showSection(Number(step.dataset.to));return}
+  const rc=e.target.closest(".reveal-card"); if(rc){const detail=rc.nextElementSibling;const open=detail.classList.toggle("open");rc.setAttribute("aria-expanded",open);rc.lastElementChild.textContent=open?"−":"+";complete(rc.dataset.progress);return}
+  const ph=e.target.closest(".phrase-use"); if(ph){document.getElementById(`phrase-note-${ph.dataset.i}`).classList.toggle("open");complete(ph.dataset.progress);return}
+  const gr=e.target.closest(".grammar-reveal"); if(gr){gr.nextElementSibling.classList.toggle("open");complete("grammar");return}
+  const hs=e.target.closest(".hotspot"); if(hs){document.getElementById(`example-note-${hs.dataset.note}`).classList.toggle("open");complete(hs.dataset.progress);return}
+});
+
+document.addEventListener("click",e=>{
+  if(e.target.id==="buildBtn"){
+    const free=[...document.querySelectorAll(".build-free")];
+    if(free.length){
+      const values=free.map(x=>x.value.trim());
+      if(values.some(x=>!x)){document.getElementById("builtOutput").textContent="Completa las cuatro intenciones antes de construir la intervención.";return}
+      const text=values.join(" ");document.getElementById("builtOutput").textContent=text;complete("builder");
+    }else{
+      const text=[...document.querySelectorAll(".build-select")].map(s=>s.value).join(" ");document.getElementById("builtOutput").textContent=text;document.getElementById("builtAudio").innerHTML=audioControls(text);complete("builder");
+    }
+  }
+  if(e.target.closest(".register-choice")){
+    const btn=e.target.closest(".register-choice"), opt=contenido[currentLevel].registro.options[Number(btn.dataset.i)];document.querySelectorAll(".register-choice").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+    document.getElementById("registerFeedback").innerHTML=`<div class="feedback ${opt.quality}">${esc(opt.feedback)}</div>`;complete("register");
+  }
+  if(e.target.closest(".recall-choice")){
+    const btn=e.target.closest(".recall-choice"),i=Number(btn.dataset.index),r=contenido.a2.recall;document.querySelectorAll(".recall-choice").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+    document.getElementById("recallFeedback").innerHTML=`<div class="feedback ${i===r.correct?"good":"warn"}">${i===r.correct?"Sí. ":"Revisa la tarjeta y vuelve a intentarlo. "}${esc(r.feedback)}</div>`;
+  }
+  const qbtn=e.target.closest(".quiz-choice"); if(qbtn) handleChoiceQuiz(qbtn);
+  const jbtn=e.target.closest(".judgment-choice"); if(jbtn) handleJudgmentQuiz(jbtn);
+  const token=e.target.closest(".token"); if(token) handleToken(token);
+  const cb=e.target.closest(".check-build"); if(cb) checkBuild(cb.closest(".quiz"));
+  const rb=e.target.closest(".reset-build"); if(rb) resetBuild(rb.closest(".quiz"));
+  const retry=e.target.closest(".retry-choice"); if(retry) resetChoice(retry.closest(".quiz"));
+  if(e.target.id==="showModel"){document.getElementById("modelBox").classList.add("open");e.target.classList.add("hidden");complete("model")}
+});
+
+function handleChoiceQuiz(btn){
+  const box=btn.closest(".quiz"), qi=Number(box.dataset.q), q=contenido[currentLevel].quiz[qi],j=Number(btn.dataset.j);box.querySelectorAll(".quiz-choice").forEach(x=>x.disabled=true);btn.classList.add("selected");
+  const ok=j===q.correct;box.querySelector(".quiz-feedback").innerHTML=`<div class="feedback ${ok?"good":"warn"}">${ok?"Funciona. ":"Todavía no. "}${esc(q.explanation)}</div>`;box.querySelector(".retry-choice").classList.toggle("hidden",ok);if(ok)complete(`quiz-${qi}`)
+}
+function resetChoice(box){box.querySelectorAll(".quiz-choice").forEach(x=>{x.disabled=false;x.classList.remove("selected")});box.querySelector(".quiz-feedback").innerHTML="";box.querySelector(".retry-choice").classList.add("hidden")}
+function handleJudgmentQuiz(btn){
+  const box=btn.closest(".quiz"),qi=Number(box.dataset.q),q=contenido[currentLevel].quiz[qi],j=Number(btn.dataset.j),o=q.options[j];box.querySelectorAll(".judgment-choice").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+  box.querySelector(".quiz-feedback").innerHTML=`<div class="feedback ${o.quality}">${esc(o.feedback)}</div>`;complete(`quiz-${qi}`)
+}
+function handleToken(btn){
+  if(btn.classList.contains("used"))return;const box=btn.closest(".quiz"),line=box.querySelector(".answer-line"),span=document.createElement("button");span.type="button";span.className="answer-token";span.textContent=btn.textContent;span.dataset.source=btn.dataset.token;line.appendChild(span);btn.classList.add("used");
+  span.addEventListener("click",()=>{btn.classList.remove("used");span.remove()});
+}
+function checkBuild(box){
+  const qi=Number(box.dataset.q),q=contenido[currentLevel].quiz[qi],text=[...box.querySelectorAll(".answer-token")].map(x=>x.textContent).join(" ").replace(/\s+([.;,])/g,"$1");const ok=text===q.answer;
+  box.querySelector(".quiz-feedback").innerHTML=`<div class="feedback ${ok?"good":"warn"}">${ok?"Bien organizado. ":"Revisa el orden. "}${esc(q.explanation)}${ok&&currentLevel==="a2"?audioControls(q.answer):""}</div>`;box.querySelector(".reset-build").classList.toggle("hidden",ok);if(ok)complete(`quiz-${qi}`)
+}
+function resetBuild(box){box.querySelectorAll(".token").forEach(x=>x.classList.remove("used"));box.querySelector(".answer-line").innerHTML="";box.querySelector(".quiz-feedback").innerHTML="";box.querySelector(".reset-build").classList.add("hidden")}
+
+document.addEventListener("input",e=>{
+  if(e.target.id==="practiceText"){
+    const n=e.target.value.trim().length;document.getElementById("charCount").textContent=e.target.value.length;const min={a2:40,b1:120,b2:220}[currentLevel]||40;if(n>=min){complete("practice");document.getElementById("practiceHint").textContent="Ya tienes suficiente desarrollo para comparar tu respuesta con el modelo cuando quieras."}else{completed.delete("practice");updateProgress();document.getElementById("practiceHint").textContent=`Continúa desarrollando tu respuesta. Orientación mínima para esta ruta: ${min} caracteres.`}
+  }
+});
+document.addEventListener("change",e=>{
+  if(e.target.classList.contains("final-check")){
+    const checks=[...document.querySelectorAll(".final-check")],done=checks.filter(c=>c.checked).length;checks.forEach(c=>{const id=`check-${c.dataset.i}`;if(c.checked)complete(id);else completed.delete(id)});updateProgress();
+    const cpct=Math.round(done/checks.length*100);document.getElementById("checkBar").style.width=cpct+"%";document.getElementById("checkProgress").textContent=`${done} de ${checks.length} completados (${cpct}%)`;document.getElementById("readyBox").classList.toggle("open",done===checks.length)
+  }
+});
+
+// Evita que el enlace de reto con href="#" lleve al inicio mientras no exista URL real.
+document.addEventListener("click",e=>{const a=e.target.closest(".challenge-link");if(a&&a.getAttribute("href")==="#")e.preventDefault()});
+</script>
+</body>
+</html>
