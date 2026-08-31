@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Módulo interactivo de Business Spanish: dar retroalimentación y manejar problemas en situaciones profesionales.">
+<title>Dar retroalimentación y manejar problemas | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;
+  --ink:#172033;--muted:#5b6575;--soft:#f4f7fb;--line:#dce4ef;--ok:#17643a;--ok-bg:#edf8f1;
+  --warn:#805400;--warn-bg:#fff8df;--shadow:0 14px 34px rgba(0,56,147,.10);--radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;background:var(--soft);color:var(--ink);line-height:1.6}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.hidden{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#003893 0%,#00265f 100%)}
+.level-shell{width:min(1040px,100%);background:var(--white);border-radius:28px;padding:clamp(24px,4vw,42px);box-shadow:0 24px 70px rgba(0,0,0,.26)}
+.brand-row{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--blue);letter-spacing:.01em}
+.brand-mark{display:flex;width:58px;height:9px;border-radius:99px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
+.brand-mark span:nth-child(1){flex:2;background:var(--yellow)}.brand-mark span:nth-child(2){flex:1;background:var(--blue)}.brand-mark span:nth-child(3){flex:1;background:var(--red)}
+h1,h2,h3{font-family:"Archivo Black","Arial Black",Arial,sans-serif;line-height:1.12;margin:0 0 14px}
+h1{font-size:clamp(2rem,5vw,3.7rem);color:var(--blue)}
+h2{font-size:clamp(1.45rem,3vw,2.25rem);color:var(--blue)}
+h3{font-size:1.08rem}
+.lead{font-size:1.07rem;color:var(--muted);max-width:820px;margin:0}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.level-btn{appearance:none;border:2px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;min-height:210px;transition:.18s;display:flex;flex-direction:column;gap:9px}
+.level-btn:hover,.level-btn:focus-visible{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow);outline:none}
+.level-btn strong{font-size:1.25rem;color:var(--blue)}
+.level-btn span{color:var(--muted);font-size:.96rem}
+.module{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topinner{width:min(1160px,100%);margin:auto;padding:10px 18px;display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center}
+.route{font-weight:800;color:var(--blue);white-space:nowrap;font-size:.92rem}
+.progress-wrap{height:10px;background:#e8edf5;border-radius:99px;overflow:hidden}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#315fba);transition:width .25s ease}
+.pct{font-variant-numeric:tabular-nums;font-weight:800;color:var(--blue);font-size:.88rem;min-width:42px;text-align:right}
+.ghost{border:1px solid #b9c6d8;background:white;color:var(--blue);border-radius:999px;padding:9px 14px;font-weight:800}
+.ghost:hover,.ghost:focus-visible{outline:3px solid rgba(0,56,147,.14);border-color:var(--blue)}
+main{width:min(1160px,100%);margin:auto;padding:28px 18px 54px}
+.hero{background:linear-gradient(135deg,#fff 0%,#eef4ff 100%);border:1px solid #d9e4f5;border-left:6px solid var(--yellow);border-radius:26px;padding:clamp(24px,4vw,40px);box-shadow:var(--shadow)}
+.pill{display:inline-block;background:var(--yellow);color:#182033;font-weight:900;border-radius:999px;padding:6px 11px;margin-bottom:14px;font-size:.83rem;text-transform:uppercase;letter-spacing:.04em}
+.hero p{max-width:850px;color:var(--muted);font-size:1.06rem;margin-bottom:0}
+.section-nav{margin:20px 0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.nav-step{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:12px;padding:10px 8px;font-weight:850;min-height:44px}
+.nav-step.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav-step.seen:not(.active){border-color:#9bb2d6;background:#f4f8ff}
+.lesson-section{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,36px);box-shadow:0 8px 24px rgba(23,32,51,.05)}
+.section-kicker{color:var(--muted);font-size:.92rem;margin-top:-4px}
+.panel{background:#f8fbff;border:1px solid #dbe7f6;border-radius:16px;padding:18px;margin:16px 0}
+.panel-yellow{background:#fff9dc;border-color:#f2dc74}
+.panel-red{background:#fff5f6;border-color:#f0c8ce}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.reveal-card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+.reveal-head{width:100%;border:0;background:#fff;padding:18px;text-align:left;display:flex;justify-content:space-between;gap:16px;align-items:center;color:var(--blue);font-weight:900}
+.reveal-head:hover,.reveal-head:focus-visible{background:#f8fbff;outline:none}
+.reveal-body{padding:0 18px 18px;color:var(--ink);border-top:1px solid var(--line)}
+.reveal-body p:last-child{margin-bottom:0}
+.meta{font-size:.9rem;color:var(--muted)}
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.audio-btn{border:1px solid #b8c8dd;background:#fff;color:var(--blue);border-radius:999px;padding:7px 11px;font-weight:800;font-size:.87rem}
+.audio-btn:hover,.audio-btn:focus-visible{border-color:var(--blue);outline:2px solid rgba(0,56,147,.11)}
+.term{font-weight:900;color:var(--blue);font-size:1.05rem}
+.stress{display:inline-block;margin-left:7px;background:#eef4ff;color:#214a83;border-radius:8px;padding:2px 6px;font-size:.82rem}
+.group{margin:22px 0}
+.group-title{font-size:.95rem;color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:9px}
+.phrase{border:1px solid var(--line);border-radius:14px;padding:15px;margin:10px 0;background:#fff}
+.phrase-main{font-size:1.03rem;font-weight:800}
+.en{color:#677384;font-size:.92rem}
+.blocks{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.block{background:#eef4ff;border:1px solid #ccdbee;border-radius:9px;padding:6px 9px;color:#173f77;font-weight:700}
+.block-audio{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:#eef4ff;border:1px solid #ccdbee;border-radius:11px;padding:7px 9px;color:#173f77;font-weight:700}.block-audio .audio-row{margin:0}.audio-row.compact{gap:5px}.audio-row.compact .audio-btn{padding:6px 8px;font-size:.76rem}.saved-answer{margin:14px 0;padding:14px;border-left:4px solid var(--blue);background:#f3f7ff;border-radius:10px;white-space:pre-wrap}
+.mini-btn{border:1px solid #c6d2e2;background:#fff;color:var(--blue);border-radius:10px;padding:7px 10px;font-weight:800;margin-top:8px}
+.builder{display:grid;gap:12px;margin-top:18px}
+.builder-row{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:center}
+.builder-row label{font-weight:850;color:var(--blue)}
+select,input[type="text"],textarea{width:100%;border:1px solid #b9c8da;border-radius:12px;background:white;color:var(--ink);padding:12px 13px}
+select:focus,input:focus,textarea:focus{outline:3px solid rgba(0,56,147,.13);border-color:var(--blue)}
+.builder-output{margin-top:14px;padding:16px;border-left:4px solid var(--yellow);background:#fffbed;border-radius:12px;font-weight:800;min-height:58px}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover,.btn-primary:focus-visible{background:#002e79;outline:3px solid rgba(0,56,147,.15)}
+.btn-secondary{background:var(--yellow);color:#1d2430}.btn-secondary:hover,.btn-secondary:focus-visible{filter:brightness(.97);outline:3px solid rgba(252,209,22,.22)}
+.btn-outline{background:#fff;border:1px solid #b8c8dd;color:var(--blue)}
+.grammar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grammar-card{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff}
+.flow{font-weight:800;color:#2b3d57;background:#f5f8fc;border-radius:10px;padding:9px 11px;margin:9px 0}
+.options{display:grid;gap:10px;margin:14px 0}
+.option-btn{border:1px solid #becbdd;background:#fff;border-radius:13px;padding:13px 14px;text-align:left;color:var(--ink)}
+.option-btn:hover,.option-btn:focus-visible{border-color:var(--blue);outline:2px solid rgba(0,56,147,.10)}
+.option-btn.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.12)}
+.feedback{border-radius:12px;padding:13px 14px;margin-top:12px;display:none}
+.feedback.show{display:block}.feedback.good{background:var(--ok-bg);color:#124b2e;border:1px solid #b7dfc7}.feedback.note{background:var(--warn-bg);color:#624700;border:1px solid #ecd892}
+.example-line{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:#fff}
+.example-line:hover{border-color:var(--blue)}
+.example-main{width:100%;border:0;background:transparent;padding:0;text-align:left;color:var(--ink);cursor:pointer}
+.example-main:focus-visible{outline:3px solid rgba(0,56,147,.13);border-radius:8px}
+.function-note{display:none;margin-top:8px;color:#40526b;font-size:.92rem}.function-note.show{display:block}
+.exercise{border:1px solid var(--line);border-radius:16px;padding:18px;margin:15px 0;background:#fff}
+.exercise h3{color:var(--blue)}
+.exercise-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.order-zone{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;min-height:48px}
+.order-token{border:1px solid #b9c7d8;background:#f8fbff;color:#173f77;border-radius:10px;padding:8px 10px;font-weight:800}
+.order-token.used{opacity:.45}
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ul.clean{padding-left:20px;margin:9px 0}.requirements li{margin-bottom:5px}
+.support-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid #c3d1e3;background:#f7faff;border-radius:999px;padding:7px 10px;margin:4px 4px 4px 0;font-weight:750;font-size:.9rem}
+textarea{min-height:190px;resize:vertical}
+.model{margin-top:14px;padding:18px;border:1px solid #c9d7e8;border-radius:15px;background:#f8fbff}
+.checklist{display:grid;gap:10px;margin-top:16px}
+.check-item{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff}
+.check-item input{margin-top:4px;width:20px;height:20px;accent-color:var(--blue)}
+.check-progress{margin:16px 0 8px;height:12px;border-radius:99px;background:#e8edf5;overflow:hidden}.check-progress>div{height:100%;width:0;background:var(--blue);transition:width .25s}
+.ready{margin-top:18px;background:linear-gradient(135deg,#eef5ff,#fff8d9);border:1px solid #d3e0ef;border-radius:20px;padding:22px}
+.section-controls{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.footer{width:min(1160px,100%);margin:0 auto 30px;padding:0 18px;color:var(--muted);font-size:.9rem;text-align:center}
+.status-line{margin-top:10px;color:var(--muted);font-size:.9rem}
+@media (max-width:900px){
+  .level-grid{grid-template-columns:1fr}.level-btn{min-height:auto}.topinner{grid-template-columns:1fr auto}.route{grid-column:1}.ghost{grid-column:2;grid-row:1}.progress-wrap{grid-column:1}.pct{grid-column:2;grid-row:2}.section-nav{grid-template-columns:repeat(4,1fr)}
+  .cards,.grammar-grid,.practice-grid{grid-template-columns:1fr}.builder-row{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .screen{padding:14px}.level-shell{padding:22px 18px;border-radius:20px}main{padding:18px 12px 40px}.topinner{padding:9px 12px}.route{font-size:.8rem}.ghost{padding:8px 10px;font-size:.8rem}.section-nav{grid-template-columns:repeat(3,1fr)}.lesson-section{padding:20px 16px}.section-controls{flex-direction:column}.section-controls .btn{width:100%}.audio-btn{font-size:.82rem}.hero{border-radius:20px;padding:22px 18px}
+}
+</style>
+</head>
+<body>
+<section id="levelScreen" class="screen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="brand-row"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>La Oficina en Español</div>
+    <div style="height:20px"></div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Selecciona tu ruta para adaptar el apoyo, la dificultad, el registro y la práctica profesional de este módulo.</p>
+    <div class="level-grid">
+      <button class="level-btn" type="button" data-level="a2">
+        <strong>🌱 A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-btn" type="button" data-level="b1">
+        <strong>💼 B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-btn" type="button" data-level="b2">
+        <strong>🚀 B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="module" class="module hidden">
+  <header class="topbar">
+    <div class="topinner">
+      <div id="routeLabel" class="route">Tu ruta:</div>
+      <div class="progress-wrap" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress" class="progress"></div></div>
+      <div id="pct" class="pct">0%</div>
+      <button id="changeLevel" type="button" class="ghost">Cambiar nivel</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <span class="pill">Habilidad profesional de la semana</span>
+      <h1 id="heroTitle">Dar retroalimentación y manejar problemas</h1>
+      <p id="heroIntro"></p>
+      <div id="globalAudioStatus" class="status-line" aria-live="polite"></div>
+    </section>
+    <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    <div id="content"></div>
+  </main>
+  <footer class="footer">La Oficina en Español · <a href="https://laoficinaenespanol.com">Aprende y practica el español que necesitas para trabajar</a></footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const habilidadProfesional = "Dar retroalimentación y manejar problemas";
+
+const contenido = {
+  a2: {
+    etiqueta: "🌱 A2 — Principiante",
+    intro: "Vas a aprender a señalar un problema de forma neutral, explicar qué necesitas y pedir una corrección o un siguiente paso con lenguaje sencillo y profesional. / You will learn to point out a problem neutrally, explain what you need, and ask for a correction or next step in simple professional Spanish.",
+    objetivo: "Al terminar esta semana podrás explicar un problema de trabajo de forma breve, pedir una corrección y confirmar un plazo sin atacar a la persona. / By the end of the week, you will be able to explain a work problem briefly, ask for a correction, and confirm a deadline without attacking the person.",
+    situacion: {
+      quien: "Eres responsable de revisar un informe antes de una reunión. / You are responsible for reviewing a report before a meeting.",
+      conQuien: "Hablas con un compañero que preparó el documento. / You are speaking with the coworker who prepared it.",
+      contexto: "Falta una cifra importante y una fecha no es correcta. / An important figure is missing and one date is incorrect.",
+      objetivo: "Necesitas que revise el informe y envíe una versión corregida antes de las 3:00 p. m. / You need them to review the report and send a corrected version before 3:00 p.m.",
+      dificultad: "Quieres ser claro sin decir que la persona trabaja mal. / You want to be clear without saying the person does poor work."
+    },
+    vocabulario: [
+      {t:"el problema",en:"the problem",stress:"pro-BLE-ma",def:"Una situación que necesita solución. / A situation that needs a solution.",ex:"Hay un problema con el informe.",extra:"Colocación útil: problema con + sustantivo."},
+      {t:"falta",en:"is missing",stress:"FAL-ta",def:"Indica que algo necesario no está. / It shows that something necessary is missing.",ex:"Falta la cifra de ventas de julio.",extra:"Úsalo para describir lo que falta sin culpar a una persona."},
+      {t:"el error",en:"the error / mistake",stress:"e-RROR",def:"Información o dato que no es correcto. / Information or data that is not correct.",ex:"Hay un error en la fecha.",extra:"Puedes hablar del error, no de la persona."},
+      {t:"revisar",en:"to review / check",stress:"re-vi-SAR",def:"Mirar algo otra vez para comprobarlo. / To check something again.",ex:"¿Puedes revisar esta parte, por favor?",extra:"Muy útil para pedir una acción concreta."},
+      {t:"corregir",en:"to correct / fix",stress:"co-rre-GIR",def:"Cambiar algo que tiene un error. / To fix something that is wrong.",ex:"Necesitamos corregir la fecha.",extra:"Estructura: corregir + sustantivo."},
+      {t:"el plazo",en:"the deadline / time limit",stress:"PLA-zo",def:"El tiempo acordado para terminar una tarea. / The agreed time to finish a task.",ex:"El plazo es hoy a las tres.",extra:"También puedes decir: antes de las tres."}
+    ],
+    vocabQuiz: {prompt:"The report is missing an important number. Which Spanish word helps you say that something is missing?",options:["falta","plazo","revisar"],correct:0,feedback:"“Falta” sirve para indicar de forma neutral que una información necesaria no está."},
+    frases: [
+      {grupo:"Señalar el problema",es:"Hay un problema con el informe.",en:"There is a problem with the report.",blocks:["Hay un problema","con el informe"],uso:"Úsala para abrir la conversación y centrarte en el documento, no en la persona."},
+      {grupo:"Señalar el problema",es:"Falta la cifra de ventas de julio.",en:"The July sales figure is missing.",blocks:["Falta","la cifra de ventas","de julio"],uso:"Úsala cuando falta información concreta."},
+      {grupo:"Describir un error",es:"La fecha no es correcta.",en:"The date is not correct.",blocks:["La fecha","no es correcta"],uso:"Es una forma simple y neutral de indicar un dato incorrecto."},
+      {grupo:"Pedir una acción",es:"¿Puedes revisar esta parte, por favor?",en:"Can you review this part, please?",blocks:["¿Puedes revisar","esta parte","por favor?"],uso:"Pide una acción de forma directa pero cortés."},
+      {grupo:"Pedir una acción",es:"Necesitamos una versión corregida antes de las tres.",en:"We need a corrected version before three.",blocks:["Necesitamos","una versión corregida","antes de las tres"],uso:"Aclara qué necesitas y el plazo."},
+      {grupo:"Cerrar y apoyar",es:"Si necesitas información, avísame.",en:"If you need information, let me know.",blocks:["Si necesitas información","avísame"],uso:"Mantiene la conversación orientada a resolver el problema."},
+      {grupo:"Cerrar y apoyar",es:"Gracias por revisarlo.",en:"Thank you for reviewing it.",blocks:["Gracias","por revisarlo"],uso:"Cierra con una acción concreta y un tono profesional."}
+    ],
+    builder: {
+      instruction:"Construye un mensaje breve. Cambia una parte en cada selector y observa cómo se combina. / Build a short message. Change one part in each selector and see how it combines.",
+      fields:[
+        {label:"1. Problema",options:["Hay un problema con el informe.","Falta la cifra de ventas de julio.","La fecha no es correcta."]},
+        {label:"2. Acción",options:["¿Puedes revisar esta parte, por favor?","¿Puedes corregir la fecha, por favor?","Necesitamos revisar el informe."]},
+        {label:"3. Plazo",options:["Necesitamos la versión corregida antes de las tres.","Necesitamos la corrección hoy.","El plazo es hoy a las cuatro."]}
+      ]
+    },
+    gramatica:[
+      {title:"Describir sin culpar",flow:"Situación → falta información → usar “falta” o “hay un error” → describir el documento",explain:"En lugar de decir “Tú olvidaste la cifra”, puedes centrarte en el trabajo: “Falta la cifra de ventas”. Esto reduce la acusación y mantiene claro el problema.",example:"Falta la cifra de ventas de julio."},
+      {title:"Pedir con poder + infinitivo",flow:"Necesitas una acción → pedir con cortesía → ¿Puedes + infinitivo...?",explain:"“¿Puedes revisar...?” es una forma frecuente y sencilla de pedir una acción. Añadir “por favor” ayuda a mantener un tono profesional.",example:"¿Puedes revisar esta parte, por favor?"},
+      {title:"Marcar el plazo",flow:"Necesitas una fecha clara → antes de + hora / hoy → confirmar cuándo",explain:"Usa “antes de” para indicar el límite de tiempo de forma clara.",example:"Necesitamos la versión corregida antes de las tres."}
+    ],
+    registro:{
+      context:"Hablas con un compañero que necesita corregir una parte del informe antes de una reunión. / You are speaking with a coworker who needs to correct part of the report before a meeting.",
+      options:[
+        {text:"Esto está mal. Corrígelo ya.",quality:"note",feedback:"Esta opción es clara, pero puede sonar acusatoria y demasiado brusca para una corrección rutinaria."},
+        {text:"¿Puedes revisar esta parte, por favor? Necesitamos la versión corregida antes de las tres.",quality:"good",feedback:"Esta formulación funciona mejor: identifica la acción y el plazo sin atacar a la persona."},
+        {text:"Quizás, cuando puedas, podrías mirar algo del informe.",quality:"note",feedback:"Es cortés, pero demasiado vaga. No queda claro qué debe revisar ni cuándo lo necesitas."}
+      ]
+    },
+    ejemplo:{
+      intro:"Tu compañero te pregunta qué debe corregir. Pulsa cada parte para ver su función. / Your coworker asks what needs to be corrected. Tap each part to see its function.",
+      full:"Hola, Ana. Hay un problema con el informe: falta la cifra de ventas de julio. Necesitamos la versión corregida antes de las tres para la reunión. ¿Puedes revisar esa parte, por favor? Si necesitas información, avísame. Gracias.",
+      lines:[
+        {text:"Hola, Ana. Hay un problema con el informe: falta la cifra de ventas de julio.",function:"Señala el problema y describe el dato que falta."},
+        {text:"Necesitamos la versión corregida antes de las tres para la reunión.",function:"Explica qué necesitas y el plazo."},
+        {text:"¿Puedes revisar esa parte, por favor?",function:"Pide una acción concreta con cortesía."},
+        {text:"Si necesitas información, avísame. Gracias.",function:"Ofrece apoyo y cierra la conversación."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Enfócate en el trabajo",prompt:"Tu compañero olvidó una cifra. ¿Qué opción señala el problema sin atacar a la persona?",options:["Siempre olvidas datos importantes.","Falta la cifra de ventas de julio.","Tu informe está mal."],correct:[1],feedbackGood:"La frase describe exactamente lo que falta y mantiene el foco en el documento.",feedbackOther:"Busca una opción que describa el problema concreto sin evaluar a la persona."},
+      {type:"mc",title:"2. Pide una acción",prompt:"Necesitas que revise una sección. Elige la petición más útil.",options:["¿Puedes revisar esta parte, por favor?","Hazlo otra vez.","No me sirve."],correct:[0],feedbackGood:"La petición indica la acción concreta y mantiene un tono profesional.",feedbackOther:"La mejor opción debe decir qué acción necesitas, no solo mostrar insatisfacción."},
+      {type:"order",title:"3. Construye el mensaje",prompt:"Ordena los bloques para crear una petición clara.",tokens:["¿Puedes revisar","esta parte","por favor?"],answer:["¿Puedes revisar","esta parte","por favor?"],feedbackGood:"La estructura completa es una petición clara y cortés.",feedbackOther:"Primero va la petición con el verbo, después el objeto y al final la cortesía."},
+      {type:"mc",title:"4. Confirma el plazo",prompt:"¿Qué frase deja claro cuándo necesitas la corrección?",options:["Cuando puedas.","Necesitamos la versión corregida antes de las tres.","Míralo luego."],correct:[1],feedbackGood:"El plazo queda explícito y facilita el siguiente paso.",feedbackOther:"Busca la opción que indique un momento concreto."}
+    ],
+    practica:{
+      situacion:"Estás revisando una hoja de cálculo antes de enviarla a un cliente. El total final no coincide con las cifras de las filas.",
+      interlocutor:"Un compañero que preparó el archivo.",
+      objetivo:"Explicar el problema, pedir que revise el total y confirmar que necesitas la versión corregida antes de las 4:00 p. m.",
+      requisitos:["Menciona el problema de forma neutral.","Pide una acción concreta.","Incluye el plazo.","Cierra con una frase profesional."],
+      apoyos:["Hay un problema con...","El total no es correcto.","¿Puedes revisar... por favor?","Necesitamos la versión corregida antes de...","Si necesitas información, avísame.","Gracias por revisarlo."],
+      minChars:90,
+      placeholder:"Escribe 4–5 frases breves. / Write 4–5 short sentences."
+    },
+    modelo:"Hola, Marcos. Hay un problema con la hoja de cálculo: el total final no es correcto. ¿Puedes revisar las cifras y corregir el total, por favor? Necesitamos la versión corregida antes de las cuatro para enviarla al cliente. Si necesitas información, avísame. Gracias por revisarlo.",
+    modeloBloques:["Hay un problema con la hoja de cálculo: el total final no es correcto.","¿Puedes revisar las cifras y corregir el total, por favor?","Necesitamos la versión corregida antes de las cuatro para enviarla al cliente.","Si necesitas información, avísame. Gracias por revisarlo."],
+    checklist:[
+      "Puedo describir un problema sin atacar a la persona. / I can describe a problem without attacking the person.",
+      "Puedo usar frases como “falta”, “hay un problema” y “no es correcto”. / I can use phrases such as “falta”, “hay un problema”, and “no es correcto”.",
+      "Puedo pedir una acción con “¿Puedes + infinitivo...?”. / I can ask for an action with “¿Puedes + infinitivo...?”.",
+      "Puedo indicar un plazo con “antes de...”. / I can state a deadline with “antes de...”.",
+      "Puedo producir un mensaje breve para corregir un problema de trabajo. / I can produce a short message to correct a work problem."
+    ]
+  },
+
+  b1: {
+    etiqueta:"💼 B1 — Intermedio",
+    intro:"Trabajarás cómo dar retroalimentación sobre un problema concreto, explicar su impacto, pedir la perspectiva de la otra persona y acordar un siguiente paso sin perder claridad.",
+    objetivo:"Al terminar esta semana podrás dar retroalimentación sobre un problema recurrente, explicar su impacto, pedir una corrección y acordar una medida concreta para evitar que vuelva a ocurrir.",
+    situacion:{
+      quien:"Coordinas un proyecto y revisas las entregas antes de enviarlas al cliente.",
+      conQuien:"Hablas con una compañera que ha preparado dos versiones recientes del mismo informe.",
+      contexto:"En ambas versiones faltaron datos que el cliente necesitaba y el equipo tuvo que rehacer parte del trabajo.",
+      objetivo:"Dar retroalimentación clara, comprender qué está pasando y acordar una forma de revisar la próxima entrega.",
+      dificultad:"Necesitas señalar un patrón sin convertir la conversación en una acusación personal."
+    },
+    vocabulario:[
+      {t:"detectar",def:"Identificar un problema, error o patrón después de revisar información.",ex:"Hemos detectado varios datos incompletos en las últimas entregas.",extra:"Colocaciones: detectar un error, detectar un patrón, detectar una incidencia."},
+      {t:"la incidencia",def:"Problema o situación que altera un proceso y necesita atención.",ex:"La incidencia retrasó el envío al cliente.",extra:"Más neutral que “fallo” cuando quieres describir un hecho operativo."},
+      {t:"el impacto",def:"Consecuencia que un problema produce en el trabajo.",ex:"El impacto principal ha sido el retraso de la revisión final.",extra:"Colocaciones: tener impacto en, reducir el impacto, evaluar el impacto."},
+      {t:"ajustar",def:"Modificar una parte de un proceso, documento o forma de trabajar para mejorarla.",ex:"Necesitamos ajustar la revisión antes de enviar el informe.",extra:"Alternativas: modificar, revisar, adaptar."},
+      {t:"la causa",def:"Razón que explica por qué ocurre un problema.",ex:"Quiero entender cuál puede ser la causa de estos errores.",extra:"Útil para pasar de la corrección puntual a la prevención."},
+      {t:"el siguiente paso",def:"Acción concreta que se realizará después de la conversación.",ex:"Como siguiente paso, revisaremos juntos la plantilla.",extra:"Una retroalimentación útil debe terminar con una acción verificable."}
+    ],
+    frases:[
+      {grupo:"Abrir la conversación",es:"Quería comentar contigo un punto de las últimas entregas.",uso:"Introduce el tema sin dramatizarlo y prepara a la otra persona para recibir retroalimentación."},
+      {grupo:"Describir hechos",es:"En las dos últimas versiones faltaron algunos datos que necesitaba el cliente.",uso:"Describe hechos observables y evita etiquetas personales como “descuidada” o “poco rigurosa”."},
+      {grupo:"Explicar impacto",es:"Esto nos obligó a repetir parte de la revisión y retrasó el envío final.",uso:"Conecta el problema con una consecuencia concreta para el equipo o el cliente."},
+      {grupo:"Pedir perspectiva",es:"¿Hay algo en el proceso que esté dificultando completar esa información?",uso:"Abre espacio para comprender la causa antes de imponer una solución."},
+      {grupo:"Pedir cambio",es:"¿Podrías revisar estos tres campos antes de enviar la próxima versión?",uso:"El condicional “podrías” hace la petición menos brusca sin perder precisión."},
+      {grupo:"Prevenir recurrencia",es:"Para evitar que vuelva a ocurrir, propongo usar una lista breve de comprobación.",uso:"Pasa del error puntual a una medida preventiva."},
+      {grupo:"Cerrar",es:"Entonces, quedamos en revisar la plantilla hoy y usarla en la próxima entrega.",uso:"Resume el acuerdo y deja un siguiente paso concreto."}
+    ],
+    builder:{
+      instruction:"Combina una apertura, un hecho y un siguiente paso. Después escribe una versión propia de 2–3 frases.",
+      fields:[
+        {label:"Apertura",options:["Quería comentar contigo un punto de las últimas entregas.","Me gustaría revisar contigo un problema que se ha repetido.","Hay un aspecto del proceso que necesitamos ajustar."]},
+        {label:"Hecho",options:["En las dos últimas versiones faltaron datos del cliente.","La última entrega llegó sin dos campos obligatorios.","Hemos tenido que corregir la misma sección en dos ocasiones."]},
+        {label:"Siguiente paso",options:["Propongo revisar la plantilla antes de la próxima entrega.","¿Podrías comprobar esos campos antes de enviarla?","Quedemos en hacer una revisión de cinco minutos antes del envío."]}
+      ]
+    },
+    gramatica:[
+      {title:"Hechos antes que etiquetas",flow:"Situación → describir lo observable → pretérito/perfecto + dato concreto → explicar impacto",explain:"“En las dos últimas versiones faltaron datos” es verificable. “Eres descuidada” evalúa a la persona y dificulta que la conversación se centre en resolver el problema.",example:"En las dos últimas versiones faltaron datos que necesitaba el cliente."},
+      {title:"Condicional para pedir cambios",flow:"Necesitas una corrección → mantener colaboración → ¿Podrías + infinitivo...?",explain:"El condicional permite formular una petición profesional con menor imposición. No elimina la necesidad de ser concreto sobre la acción y el plazo.",example:"¿Podrías revisar estos campos antes de enviar la próxima versión?"},
+      {title:"Para evitar que + subjuntivo",flow:"Quieres prevenir una repetición → expresar finalidad → para evitar que + subjuntivo",explain:"Cuando el objetivo es impedir que una situación vuelva a ocurrir, “para evitar que” introduce una finalidad y exige subjuntivo.",example:"Para evitar que vuelva a ocurrir, propongo usar una lista de comprobación."}
+    ],
+    registro:{
+      context:"Un proveedor habitual ha enviado por segunda vez una ficha incompleta. Necesitas corregir el problema sin deteriorar la relación.",
+      options:[
+        {text:"Otra vez enviaron la ficha incompleta. Necesito que lo solucionen ya.",quality:"note",feedback:"Expresa la urgencia, pero “otra vez” y “ya” pueden aumentar la tensión sin aportar un siguiente paso concreto."},
+        {text:"Hemos detectado que esta segunda ficha también llega sin los datos de trazabilidad. ¿Podrían completarlos hoy y confirmarnos el envío antes de las cinco?",quality:"good",feedback:"Describe el hecho, identifica la información que falta y formula una petición con plazo sin diluir la responsabilidad."},
+        {text:"Parece que quizá falta alguna información. Cuando tengan un momento, ¿podrían revisarlo?",quality:"note",feedback:"El tono es amable, pero demasiado impreciso para un problema repetido y con impacto operativo."}
+      ]
+    },
+    ejemplo:{
+      intro:"Observa cómo el mensaje avanza de hechos a impacto, perspectiva y acuerdo.",
+      full:"Quería comentar contigo un punto de las últimas entregas. En las dos últimas versiones faltaron algunos datos que necesitaba el cliente y esto nos obligó a repetir parte de la revisión. ¿Hay algo en el proceso que esté dificultando completar esa información? Para evitar que vuelva a ocurrir, propongo revisar juntos la plantilla y marcar los campos obligatorios. Entonces, quedamos en usar esa versión en la próxima entrega.",
+      lines:[
+        {text:"Quería comentar contigo un punto de las últimas entregas.",function:"Abre la conversación sin dramatizar ni evitar el tema."},
+        {text:"En las dos últimas versiones faltaron algunos datos que necesitaba el cliente y esto nos obligó a repetir parte de la revisión.",function:"Describe hechos y explica el impacto."},
+        {text:"¿Hay algo en el proceso que esté dificultando completar esa información?",function:"Solicita la perspectiva de la otra persona y ayuda a identificar la causa."},
+        {text:"Para evitar que vuelva a ocurrir, propongo revisar juntos la plantilla y marcar los campos obligatorios.",function:"Propone una medida preventiva concreta."},
+        {text:"Entonces, quedamos en usar esa versión en la próxima entrega.",function:"Cierra con un acuerdo verificable."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Describe el hecho",prompt:"¿Qué formulación mantiene mejor el foco en un comportamiento observable?",options:["No eres suficientemente cuidadoso con los informes.","En las dos últimas entregas faltaron los datos de contacto del cliente.","Siempre dejas cosas por fuera."],correct:[1],feedbackGood:"La frase describe un patrón verificable sin convertirlo en una etiqueta personal.",feedbackOther:"Busca una formulación que una tercera persona pudiera comprobar en el documento o en el proceso."},
+      {type:"mc",title:"2. Explica el impacto",prompt:"El problema obligó al equipo a rehacer una revisión. ¿Qué continuación aporta más información útil?",options:["Y eso no puede seguir así.","Esto nos obligó a repetir parte de la revisión y retrasó el envío.","Me molestó bastante."],correct:[1],feedbackGood:"La consecuencia es concreta y explica por qué el problema necesita atención.",feedbackOther:"Prioriza una consecuencia operativa o para el cliente, no solo una valoración personal."},
+      {type:"order",title:"3. Organiza la retroalimentación",prompt:"Ordena las funciones para que la conversación avance con lógica.",tokens:["Describir el hecho","Explicar el impacto","Pedir perspectiva","Acordar un siguiente paso"],answer:["Describir el hecho","Explicar el impacto","Pedir perspectiva","Acordar un siguiente paso"],feedbackGood:"La secuencia permite hablar del problema, entenderlo y terminar en una acción concreta.",feedbackOther:"Empieza por lo observable, explica por qué importa, escucha la otra perspectiva y termina con un acuerdo."},
+      {type:"mc",title:"4. Prevén la repetición",prompt:"Elige la opción que convierte la retroalimentación en una medida preventiva.",options:["Para evitar que vuelva a ocurrir, propongo añadir una revisión breve antes del envío.","Espero que la próxima vez salga mejor.","Ten más cuidado."],correct:[0],feedbackGood:"La frase identifica una medida concreta y usa la finalidad para prevenir la recurrencia.",feedbackOther:"Busca una opción que describa qué se hará de manera diferente, no solo un deseo general."}
+    ],
+    practica:{
+      situacion:"Un proveedor ha enviado por segunda vez una ficha técnica sin el número de lote. El equipo de recepción no puede cerrar el registro y el pedido queda detenido.",
+      interlocutor:"La persona de contacto del proveedor, con quien tienes una relación de trabajo habitual.",
+      objetivo:"Dar retroalimentación sobre la repetición, explicar el impacto, pedir su perspectiva y acordar una medida para los próximos envíos.",
+      requisitos:["Describe el hecho sin generalizaciones personales.","Explica al menos una consecuencia.","Formula una pregunta para comprender la causa.","Propón o solicita un cambio concreto.","Cierra con un siguiente paso o plazo."],
+      apoyos:["Hemos detectado que...","Esto está provocando que...","¿Hay algo que esté dificultando...?","¿Podrían revisar...?","Para evitar que vuelva a ocurrir...","Entonces, quedamos en..."],
+      minChars:220,
+      placeholder:"Escribe una intervención de 6–8 frases."
+    },
+    modelo:"Quería comentar contigo una incidencia que se ha repetido en los dos últimos envíos. En ambas fichas faltó el número de lote y, como consecuencia, el equipo de recepción no pudo cerrar el registro y el pedido quedó detenido. ¿Hay algo en el proceso de tu equipo que esté dificultando incluir ese dato antes del envío? Para evitar que vuelva a ocurrir, propongo marcar el número de lote como campo obligatorio en la plantilla. ¿Podrías revisar la ficha actual y enviarnos la versión completa hoy antes de las cinco? Entonces, quedamos pendientes de esa corrección y utilizamos la plantilla actualizada a partir del próximo pedido.",
+    checklist:[
+      "Puedo describir un problema mediante hechos observables y evitar etiquetas personales.",
+      "Puedo explicar el impacto del problema en el equipo, el cliente o el proceso.",
+      "Puedo pedir la perspectiva de la otra persona antes de cerrar una conclusión.",
+      "Puedo formular una petición o medida preventiva con precisión y un registro profesional.",
+      "Puedo cerrar la retroalimentación con un acuerdo, responsable o siguiente paso claro."
+    ]
+  },
+
+  b2: {
+    etiqueta:"🚀 B2 — Avanzado",
+    intro:"Trabajarás la retroalimentación como una conversación de gestión: distinguir hechos de interpretaciones, manejar resistencia, sostener la responsabilidad y negociar medidas concretas sin perder precisión ni relación profesional.",
+    objetivo:"Al terminar esta semana podrás abordar un problema recurrente y sensible, sostener una conversación de retroalimentación ante resistencia, distinguir responsabilidad de culpa y acordar medidas verificables adaptando el tono al interlocutor.",
+    situacion:{
+      quien:"Lideras una cuenta estratégica y coordinas a un profesional con buen rendimiento general.",
+      conQuien:"Hablas con esa persona después de una nueva corrección solicitada por el cliente.",
+      contexto:"En tres entregas recientes se tomaron decisiones sin validar cambios de alcance, lo que generó retrabajo y mensajes contradictorios al cliente.",
+      objetivo:"Abordar el patrón, escuchar su explicación, clarificar expectativas y acordar un mecanismo de validación.",
+      dificultad:"La persona se siente cuestionada y responde que las instrucciones del proyecto han sido ambiguas y que otros miembros del equipo también cometieron errores."
+    },
+    vocabulario:[
+      {t:"la recurrencia",def:"Reaparición de un problema o patrón en más de una ocasión.",ex:"La recurrencia del problema indica que no basta con corregir cada caso por separado.",extra:"Útil para diferenciar un incidente aislado de un patrón que requiere ajuste de proceso."},
+      {t:"la desalineación",def:"Falta de coincidencia entre expectativas, decisiones, información o criterios.",ex:"La desalineación entre el equipo y el cliente está generando retrabajo.",extra:"Conviene especificar entre qué partes existe la desalineación."},
+      {t:"atribuir",def:"Relacionar una causa o responsabilidad con una persona, decisión o circunstancia.",ex:"No quiero atribuir el problema a una sola persona sin revisar el proceso.",extra:"Atribuir responsabilidad no equivale necesariamente a culpar."},
+      {t:"asumir responsabilidad",def:"Reconocer la parte propia de una decisión, resultado o acción y responder por ella.",ex:"Necesitamos que cada responsable valide los cambios antes de comunicarlos al cliente.",extra:"Se puede combinar con reconocimiento del contexto: “Aunque las instrucciones hayan cambiado, necesitamos...”"},
+      {t:"el impacto acumulado",def:"Efecto total producido por varias incidencias sucesivas.",ex:"El impacto acumulado ya está afectando los plazos y la confianza del cliente.",extra:"Ayuda a explicar por qué un patrón aparentemente pequeño merece una intervención."},
+      {t:"la trazabilidad",def:"Posibilidad de reconstruir qué decisión se tomó, quién la validó y con qué información.",ex:"Necesitamos más trazabilidad en los cambios de alcance.",extra:"Útil cuando el problema depende de decisiones, aprobaciones o versiones."},
+      {t:"una medida verificable",def:"Acción cuyo cumplimiento puede comprobarse después de la conversación.",ex:"Registrar cada cambio y su aprobación es una medida verificable.",extra:"Evita cierres vagos como “tener más cuidado”."}
+    ],
+    frases:[
+      {grupo:"Enmarcar el patrón",es:"Quiero abordar un patrón que está teniendo un impacto acumulado en la cuenta.",uso:"Sitúa la conversación en la recurrencia y evita reducirla al último incidente."},
+      {grupo:"Separar hecho e interpretación",es:"En las tres últimas entregas se comunicaron cambios al cliente antes de que quedaran validados internamente.",uso:"Formula un hecho verificable antes de explicar tu interpretación o preocupación."},
+      {grupo:"Explicar la preocupación",es:"Mi preocupación no es un error puntual, sino que el proceso actual deja demasiado margen para mensajes contradictorios.",uso:"Distingue el incidente de la consecuencia estructural que quieres corregir."},
+      {grupo:"Reconocer contexto sin diluir responsabilidad",es:"Entiendo que las instrucciones del proyecto han cambiado varias veces; al mismo tiempo, necesitamos validar cualquier cambio antes de presentarlo como definitivo.",uso:"Reconoce una condición real y mantiene una expectativa clara."},
+      {grupo:"Explorar la perspectiva",es:"¿Cómo estás viendo tú la secuencia de decisiones y en qué punto crees que se está produciendo la desalineación?",uso:"Invita a explicar el proceso, no solo a defenderse del resultado."},
+      {grupo:"Responder a resistencia",es:"Puede que haya errores compartidos, y precisamente por eso necesitamos clarificar qué validación corresponde a cada rol.",uso:"No entra en una discusión sobre culpa; transforma la objeción en una necesidad de proceso."},
+      {grupo:"Negociar una medida",es:"Propongo que ningún cambio de alcance salga al cliente sin una confirmación escrita del responsable correspondiente.",uso:"Convierte la conversación en una regla verificable y con criterio de cumplimiento."},
+      {grupo:"Cerrar con responsabilidad",es:"Acordemos quién valida, dónde queda registrado y desde qué entrega aplicamos el nuevo mecanismo.",uso:"Define responsable, trazabilidad y momento de aplicación."}
+    ],
+    builder:{
+      instruction:"Elige una intención para cada fase y redacta mentalmente cómo la expresarías según el interlocutor. La combinación es una guía, no un guion fijo.",
+      fields:[
+        {label:"Enmarcar",options:["Abordar un patrón recurrente","Distinguir un incidente de un problema de proceso","Señalar una desalineación con impacto en el cliente"]},
+        {label:"Gestionar resistencia",options:["Reconocer el contexto sin diluir responsabilidad","Reformular una objeción como problema compartido de proceso","Pedir evidencia antes de aceptar una atribución de causa"]},
+        {label:"Cerrar",options:["Acordar una medida verificable","Definir responsable, registro y plazo","Establecer un criterio de escalamiento si el problema se repite"]}
+      ]
+    },
+    gramatica:[
+      {title:"Concesión para reconocer contexto",flow:"Existe una dificultad real → reconocerla → aunque + subjuntivo/indicativo según cómo la presentes → mantener la expectativa",explain:"La concesión permite reconocer una circunstancia sin convertirla automáticamente en exención de responsabilidad. La elección modal cambia el matiz: “aunque las instrucciones cambiaron” presenta el hecho concreto; “aunque haya cambios” generaliza una posibilidad o circunstancia no limitada a un caso.",example:"Aunque haya cambios de última hora, necesitamos validar cualquier modificación antes de comunicarla."},
+      {title:"Modalidad para calibrar firmeza",flow:"Necesitas un cambio → elegir grado de obligación → convendría / deberíamos / necesitamos / no puede salir → ajustar firmeza al riesgo",explain:"La modalidad permite graduar la fuerza de la intervención. En un problema recurrente con impacto externo, “convendría revisar” puede resultar insuficiente; “necesitamos establecer” marca una expectativa más clara sin recurrir a un tono agresivo.",example:"Necesitamos establecer un punto de validación antes de cualquier comunicación externa."},
+      {title:"Impersonalidad: útil, pero no siempre",flow:"Quieres despersonalizar → se detectó / se comunicaron cambios → evaluar si oculta responsabilidad → nombrar el rol cuando sea necesario",explain:"Las formas impersonales ayudan a hablar de procesos, pero pueden borrar quién debe actuar. En una retroalimentación compleja conviene alternarlas con referencias claras a roles y responsabilidades.",example:"Se comunicaron cambios sin validar; a partir de ahora, el responsable de cuenta deberá confirmar cada modificación."}
+    ],
+    registro:{
+      context:"Una directora sénior te dice: “No creo que este problema sea mío; el equipo cambió la información tres veces”. Necesitas responder sin escalar innecesariamente la tensión.",
+      options:[
+        {text:"Entiendo tu punto, pero no podemos seguir buscando responsables. Lo importante es que no vuelva a pasar.",quality:"note",feedback:"Reduce la confrontación, pero “no podemos seguir buscando responsables” puede confundir responsabilidad con culpa y dejar sin definir qué rol debe validar la información."},
+        {text:"Entiendo que la información cambió varias veces. Al mismo tiempo, tu rol es el último punto de validación antes de que el cambio llegue al cliente. Revisemos qué información necesitas para poder asumir esa validación con seguridad.",quality:"good",feedback:"Reconoce el contexto, mantiene una expectativa de rol y abre una vía concreta para corregir el proceso."},
+        {text:"Aunque el equipo se haya equivocado, tú eras responsable y debiste detectarlo.",quality:"note",feedback:"Puede ser defendible en términos de responsabilidad, pero formula la intervención como reproche retrospectivo y aumenta la probabilidad de una discusión defensiva. Falta convertir el problema en un mecanismo futuro."}
+      ]
+    },
+    ejemplo:{
+      intro:"Analiza cómo se sostiene la responsabilidad sin reducir la conversación a culpa o cortesía.",
+      full:"Quiero abordar un patrón que está teniendo un impacto acumulado en la cuenta. En las tres últimas entregas se comunicaron cambios al cliente antes de que quedaran validados internamente, y eso ha generado retrabajo y mensajes contradictorios. Entiendo que las instrucciones del proyecto han cambiado varias veces; al mismo tiempo, necesitamos un punto claro de validación antes de cualquier comunicación externa. ¿Cómo estás viendo tú la secuencia de decisiones y en qué punto crees que se pierde esa validación? Puede que haya errores compartidos, y precisamente por eso propongo que ningún cambio de alcance salga al cliente sin confirmación escrita del responsable correspondiente. Acordemos quién valida, dónde queda registrado y desde qué entrega aplicamos el mecanismo.",
+      lines:[
+        {text:"Quiero abordar un patrón que está teniendo un impacto acumulado en la cuenta.",function:"Enmarca la conversación como patrón y no como incidente aislado."},
+        {text:"En las tres últimas entregas se comunicaron cambios al cliente antes de que quedaran validados internamente, y eso ha generado retrabajo y mensajes contradictorios.",function:"Aporta evidencia observable y efecto acumulado."},
+        {text:"Entiendo que las instrucciones del proyecto han cambiado varias veces; al mismo tiempo, necesitamos un punto claro de validación antes de cualquier comunicación externa.",function:"Reconoce contexto y mantiene la expectativa de proceso."},
+        {text:"¿Cómo estás viendo tú la secuencia de decisiones y en qué punto crees que se pierde esa validación?",function:"Invita a analizar el proceso y reduce una defensa centrada solo en el resultado."},
+        {text:"Puede que haya errores compartidos, y precisamente por eso propongo que ningún cambio de alcance salga al cliente sin confirmación escrita del responsable correspondiente.",function:"Reformula la objeción y la convierte en una medida verificable."},
+        {text:"Acordemos quién valida, dónde queda registrado y desde qué entrega aplicamos el mecanismo.",function:"Cierra con responsabilidad, trazabilidad y momento de aplicación."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Diferencia patrón e incidente",prompt:"¿Qué formulación justifica mejor una conversación de retroalimentación sobre recurrencia?",options:["El último error fue bastante serio.","Mi preocupación no es un error puntual, sino que en tres entregas se repitió la misma falta de validación.","Tenemos que ser más cuidadosos a partir de ahora."],correct:[1],feedbackGood:"La frase aporta recurrencia, criterio y foco en el proceso. Explica por qué el asunto requiere algo más que una corrección puntual.",feedbackOther:"Busca una formulación que identifique el patrón y no dependa solo de una valoración del último incidente."},
+      {type:"mc",title:"2. Reconoce sin diluir",prompt:"El interlocutor señala que las instrucciones cambiaron varias veces. ¿Qué respuesta mantiene mejor equilibrio entre contexto y responsabilidad?",options:["Sí, con tantos cambios era inevitable que ocurriera.","Entiendo que hubo varios cambios; al mismo tiempo, necesitamos confirmar cuál es la versión validada antes de comunicarla al cliente.","Los cambios no son excusa."],correct:[1],feedbackGood:"Reconoce la dificultad real y mantiene la expectativa operativa sin entrar en una disputa sobre excusas.",feedbackOther:"La respuesta más sólida debe reconocer el contexto y, a la vez, definir qué expectativa sigue vigente."},
+      {type:"mc",title:"3. Ajusta la modalidad",prompt:"Hay riesgo de repetir un error con impacto contractual. ¿Qué formulación tiene una firmeza más adecuada?",options:["Quizá convendría pensar en alguna revisión adicional.","Necesitamos establecer una validación obligatoria antes de cualquier envío contractual.","Sería bonito revisar mejor los documentos."],correct:[1],feedbackGood:"La obligación está calibrada al riesgo y especifica dónde debe cambiar el proceso.",feedbackOther:"Cuando el riesgo es alto y el problema recurrente, una sugerencia débil puede no reflejar la gravedad ni la expectativa."},
+      {type:"mc",title:"4. Responde a la objeción",prompt:"La otra persona dice: “Otros también cometieron errores”. ¿Qué respuesta permite avanzar mejor?",options:["Entonces hablaremos con todos por separado.","Puede que haya errores compartidos; precisamente por eso necesitamos clarificar qué validación corresponde a cada rol.","Eso no cambia que este sea tu error."],correct:[1],feedbackGood:"La respuesta acepta la posibilidad de responsabilidad compartida y la transforma en una necesidad de definición de roles.",feedbackOther:"La mejor respuesta no evita la responsabilidad, pero tampoco convierte la conversación en una disputa sobre quién tiene más culpa."}
+    ],
+    practica:{
+      situacion:"Una responsable de cuenta comunicó al cliente una nueva fecha de entrega antes de validar la capacidad del equipo. Es la tercera vez que ocurre una desalineación similar. El cliente ya ha expresado dudas sobre la fiabilidad de los compromisos.",
+      interlocutor:"La responsable de cuenta, profesional sénior y con buenos resultados comerciales.",
+      objetivo:"Dar retroalimentación sobre el patrón, responder a su objeción de que el equipo técnico cambia sus estimaciones constantemente y acordar un mecanismo de validación antes de nuevos compromisos.",
+      requisitos:["Distingue el patrón del incidente puntual.","Expón hechos e impacto sin atribuciones personales no verificadas.","Reconoce una parte válida de la objeción sin diluir la responsabilidad del rol.","Formula una expectativa con un grado de firmeza coherente con el riesgo.","Propón una medida verificable con responsable o trazabilidad.","Cierra invitando a confirmar o ajustar el acuerdo."],
+      apoyos:["Quiero abordar un patrón que...","Mi preocupación no es..., sino...","Entiendo que...; al mismo tiempo...","Puede que..., y precisamente por eso...","Necesitamos establecer...","Acordemos quién..., dónde... y desde cuándo..."],
+      minChars:360,
+      placeholder:"Redacta una intervención de 8–10 frases. Incluye cómo responderías a la objeción."
+    },
+    modelo:"Quiero abordar un patrón que está teniendo un impacto acumulado en la cuenta. En tres ocasiones recientes se confirmó una fecha al cliente antes de validar la capacidad real del equipo y, en los tres casos, tuvimos que modificar el compromiso después. Mi preocupación no es un error puntual, sino la pérdida de fiabilidad que puede generar esta secuencia. Entiendo que el equipo técnico ha cambiado estimaciones y que eso dificulta tu conversación con el cliente; al mismo tiempo, tu rol es el último punto de validación del compromiso externo. Puede que haya una desalineación compartida y precisamente por eso necesitamos cambiar el mecanismo, no solo pedir más cuidado. Propongo que cualquier fecha nueva quede registrada como provisional hasta que el responsable técnico la confirme por escrito. Después de esa validación, tú puedes comunicarla como compromiso definitivo. Si te parece, acordemos hoy dónde se registra esa aprobación y a partir de qué compromiso empezamos a aplicarlo.",
+    checklist:[
+      "Puedo distinguir hechos, interpretación y patrón antes de formular una conclusión.",
+      "Puedo reconocer contexto o responsabilidad compartida sin diluir la expectativa del rol.",
+      "Puedo ajustar modalidad, concesión e impersonalidad según el grado de firmeza que requiere la situación.",
+      "Puedo responder a una objeción sin convertir la conversación en una disputa sobre culpa.",
+      "Puedo cerrar con una medida verificable, responsable, trazabilidad y criterio de seguimiento."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionTitles = [
+  "🎯 Objetivo","🏢 Situación","🗣️ Vocabulario","💬 Frases","🧩 Construye","📚 Gramática",
+  "🎭 Registro","💼 Ejemplo","✍️ Comprueba","🏢 Tu turno","💡 Modelo","✅ Checklist"
+];
+
+let currentLevel = null;
+let currentSection = 0;
+let progressDone = new Set();
+let progressTargets = new Set();
+let selectedVoice = null;
+let currentOrder = {};
+let uiState = {
+  practiceText:"", modelVisible:false, checklist:new Set(),
+  builderValues:[], builderOutput:"", builderBuilt:false,
+  registerIndex:null, vocabQuizIndex:null, exerciseChoices:{}
+};
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[ch]));
+
+function loadVoices(){
+  if(!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  selectedVoice = voices.find(v => /^es-CO$/i.test(v.lang))
+    || voices.find(v => /^(es-(419|US|MX|AR|CL|PE|EC|VE|UY|PY|BO|CR|GT|HN|NI|PA|DO|PR|SV))$/i.test(v.lang))
+    || voices.find(v => /^es/i.test(v.lang))
+    || null;
+}
+if("speechSynthesis" in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function setAudioStatus(message){
+  const live = $("#globalAudioStatus") || $("#audioStatus");
+  if(live) live.textContent = message || "";
+}
+
+function speakSpanish(text, slow=false, progressId=null){
+  if(!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined"){
+    setAudioStatus("El audio no está disponible en este navegador. / Audio is not available in this browser.");
+    return;
+  }
+  if(currentLevel === "a2") markProgress("audio-used");
+  if(progressId) markProgress(progressId);
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = selectedVoice?.lang || "es-CO";
+  if(selectedVoice) utterance.voice = selectedVoice;
+  utterance.rate = slow ? 0.72 : 0.95;
+  utterance.pitch = 1;
+  utterance.onstart = () => setAudioStatus(slow ? "Reproduciendo lentamente… / Playing slowly…" : "Reproduciendo… / Playing…");
+  utterance.onend = () => setAudioStatus("");
+  utterance.onerror = event => {
+    if(event?.error !== "canceled" && event?.error !== "interrupted"){
+      setAudioStatus("No fue posible reproducir este audio. Puedes continuar con el módulo. / Audio could not be played. You can continue with the module.");
+    } else setAudioStatus("");
+  };
+  window.speechSynthesis.speak(utterance);
+}
+
+function audioControls(text, id){
+  if(currentLevel !== "a2") return "";
+  const safeText = escapeHtml(text);
+  return `<div class="audio-row">
+    <button type="button" class="audio-btn speak" data-text="${safeText}" data-rate="normal" data-progress="${escapeHtml(id)}" aria-label="Escuchar: ${safeText}">🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn speak" data-text="${safeText}" data-rate="slow" data-progress="${escapeHtml(id)}" aria-label="Escuchar lentamente: ${safeText}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function compactAudioControls(text, id){
+  if(currentLevel !== "a2") return "";
+  const safeText = escapeHtml(text);
+  return `<div class="audio-row compact">
+    <button type="button" class="audio-btn speak" data-text="${safeText}" data-rate="normal" data-progress="${escapeHtml(id)}" aria-label="Escuchar bloque: ${safeText}">🔊 Escuchar</button>
+    <button type="button" class="audio-btn speak" data-text="${safeText}" data-rate="slow" data-progress="${escapeHtml(id)}" aria-label="Escuchar bloque lentamente: ${safeText}">🐢 Lento</button>
+  </div>`;
+}
+
+function registerTargets(){
+  const c = contenido[currentLevel];
+  const targets = [];
+  for(let i=0;i<12;i++) targets.push(`section-${i}`);
+  c.vocabulario.forEach((_,i)=>targets.push(`vocab-${i}`));
+  if(currentLevel === "a2" && c.vocabQuiz) targets.push("vocab-quiz", "audio-used");
+  c.frases.forEach((_,i)=>targets.push(`usage-${i}`));
+  targets.push("builder");
+  c.gramatica.forEach((_,i)=>targets.push(`grammar-${i}`));
+  targets.push("register-choice");
+  c.ejemplo.lines.forEach((_,i)=>targets.push(`example-line-${i}`));
+  c.ejercicios.forEach((_,i)=>targets.push(`exercise-${i}`));
+  targets.push("practice-done", "model-view");
+  c.checklist.forEach((_,i)=>targets.push(`check-${i}`));
+  progressTargets = new Set(targets);
+  updateProgress();
+}
+
+function markProgress(id){
+  if(!id || !progressTargets.has(id)) return;
+  progressDone.add(id);
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = progressTargets.size || 1;
+  const done = [...progressDone].filter(id => progressTargets.has(id)).length;
+  const pct = Math.min(100, Math.round(done / total * 100));
+  $("#progress").style.width = pct + "%";
+  $("#pct").textContent = pct + "%";
+  const wrap = $(".progress-wrap");
+  wrap?.setAttribute("aria-valuenow", String(pct));
+}
+
+function selectLevel(level){
+  if(!contenido[level]) return;
+  currentLevel = level;
+  currentSection = 0;
+  progressDone = new Set();
+  currentOrder = {};
+  uiState = {practiceText:"", modelVisible:false, checklist:new Set(), builderValues:[], builderOutput:"", builderBuilt:false, registerIndex:null, vocabQuizIndex:null, exerciseChoices:{}};
+  registerTargets();
+  $("#levelScreen").classList.add("hidden");
+  $("#module").classList.remove("hidden");
+  $("#routeLabel").textContent = "Tu ruta: " + contenido[level].etiqueta;
+  $("#heroTitle").textContent = habilidadProfesional;
+  $("#heroIntro").textContent = contenido[level].intro;
+  renderModule();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function changeLevel(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  $("#module").classList.add("hidden");
+  $("#levelScreen").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function renderModule(){
+  const c = contenido[currentLevel];
+  $("#sectionNav").innerHTML = sectionTitles.map((title,i)=>`<button type="button" class="nav-step ${i===currentSection?"active":""}" data-section="${i}" aria-label="Ir a la sección ${i+1}: ${escapeHtml(title)}">${i+1}</button>`).join("");
+  $("#content").innerHTML = renderSection(c,currentSection);
+  markProgress(`section-${currentSection}`);
+  $$(".nav-step").forEach((b,i)=>{if(progressDone.has(`section-${i}`)) b.classList.add("seen")});
+  bindSectionEvents();
+}
+
+function baseSection(title, subtitle, body, index){
+  return `<section class="lesson-section" aria-labelledby="sectionHeading">
+    <h2 id="sectionHeading">${title}</h2>
+    ${subtitle?`<p class="section-kicker">${subtitle}</p>`:""}
+    <div data-progress-target="section-${index}"></div>
+    ${body}
+    <div class="section-controls">
+      <button type="button" class="btn btn-outline prev-section" ${index===0?"disabled":""}>Anterior</button>
+      <button type="button" class="btn btn-primary next-section" ${index===11?"disabled":""}>Siguiente</button>
+    </div>
+  </section>`;
+}
+
+function renderSection(c,index){
+  switch(index){
+    case 0: return renderObjective(c,index);
+    case 1: return renderSituation(c,index);
+    case 2: return renderVocabulary(c,index);
+    case 3: return renderPhrases(c,index);
+    case 4: return renderBuilder(c,index);
+    case 5: return renderGrammar(c,index);
+    case 6: return renderRegister(c,index);
+    case 7: return renderExample(c,index);
+    case 8: return renderExercises(c,index);
+    case 9: return renderPractice(c,index);
+    case 10:return renderModel(c,index);
+    case 11:return renderChecklist(c,index);
+    default:return "";
+  }
+}
+
+function renderObjective(c,index){
+  const body = `<div class="panel panel-yellow"><strong>${escapeHtml(c.objetivo)}</strong></div>
+  <p>Al final del módulo comprobarás si ya puedes hacerlo.</p>`;
+  return baseSection("1. 🎯 TU OBJETIVO ESTA SEMANA","Una acción profesional observable, no una lista de reglas.",body,index);
+}
+
+function renderSituation(c,index){
+  const s=c.situacion;
+  const labels = currentLevel==="a2"
+    ? [["Quién habla / Who","quien"],["Con quién / With whom","conQuien"],["Contexto / Context","contexto"],["Qué quieres conseguir / Goal","objetivo"],["Dificultad / Challenge","dificultad"]]
+    : [["Quién habla","quien"],["Con quién","conQuien"],["Contexto","contexto"],["Qué quieres conseguir","objetivo"],["Dificultad","dificultad"]];
+  const body = `<div class="cards">${labels.map(([label,key])=>`<div class="panel"><h3>${label}</h3><p>${escapeHtml(s[key])}</p>${audioControls(s[key].split(" / ")[0],`sit-${key}`)}${currentLevel==="a2"?`<div data-progress-target="sit-${key}"></div>`:""}</div>`).join("")}</div>`;
+  return baseSection("2. 🏢 LA SITUACIÓN","Antes de elegir palabras, entiende qué está ocurriendo y qué necesitas conseguir.",body,index);
+}
+
+function renderVocabulary(c,index){
+  const cards = c.vocabulario.map((v,i)=>`<article class="reveal-card">
+    <button type="button" class="reveal-head vocab-reveal" data-target="vocab-${i}" data-progress="vocab-${i}" aria-expanded="false">
+      <span><span class="term">${escapeHtml(v.t)}</span>${v.stress?`<span class="stress">${escapeHtml(v.stress)}</span>`:""}${v.en?`<span class="en"> · ${escapeHtml(v.en)}</span>`:""}</span><span aria-hidden="true">+</span>
+    </button>
+    <div id="vocab-${i}" class="reveal-body hidden">
+      <p>${escapeHtml(v.def)}</p>
+      <p><strong>Ejemplo:</strong> ${escapeHtml(v.ex)}</p>
+      <p class="meta">${escapeHtml(v.extra)}</p>
+      ${audioControls(v.t,`audio-vocab-word-${i}`)}
+      ${audioControls(v.ex,`audio-vocab-ex-${i}`)}
+    </div>
+    <div data-progress-target="vocab-${i}"></div>
+    ${currentLevel==="a2"?`<div data-progress-target="audio-vocab-word-${i}"></div><div data-progress-target="audio-vocab-ex-${i}"></div>`:""}
+  </article>`).join("");
+  let quiz="";
+  if(currentLevel==="a2" && c.vocabQuiz){
+    const qi=uiState.vocabQuizIndex; const qHas=Number.isInteger(qi); const qOk=qHas&&qi===c.vocabQuiz.correct;
+    quiz=`<div class="exercise"><h3>Recupera una palabra / Recall a word</h3><p>${escapeHtml(c.vocabQuiz.prompt)}</p><div class="options">${c.vocabQuiz.options.map((o,i)=>`<button type="button" class="option-btn vocab-quiz ${qi===i?"selected":""}" data-index="${i}" aria-pressed="${qi===i}">${escapeHtml(o)}</button>`).join("")}</div><div id="vocabQuizFeedback" class="feedback ${qHas?`show ${qOk?"good":"note"}`:""}">${qHas?escapeHtml(qOk?c.vocabQuiz.feedback:"Inténtalo otra vez. Piensa en la palabra que indica que una información necesaria no está."):""}</div><div data-progress-target="vocab-quiz"></div></div>`;
+  }
+  return baseSection("3. 🗣️ VOCABULARIO CLAVE","Abre las tarjetas y recupera solo el vocabulario que necesitas para actuar en esta situación.",`<div class="cards">${cards}</div>${quiz}<div id="audioStatus" class="status-line" aria-live="polite"></div>`,index);
+}
+
+function renderPhrases(c,index){
+  const groups = [...new Set(c.frases.map(f=>f.grupo))];
+  const body = groups.map((g,gi)=>`<div class="group"><div class="group-title">${escapeHtml(g)}</div>${c.frases.filter(f=>f.grupo===g).map((f,i)=>{
+    const globalIndex=c.frases.indexOf(f);
+    return `<div class="phrase"><div class="phrase-main">${escapeHtml(f.es)}</div>${f.en?`<div class="en">${escapeHtml(f.en)}</div>`:""}${f.blocks?`<div class="blocks">${f.blocks.map((b,bi)=>currentLevel==="a2"?`<div class="block-audio"><span>${escapeHtml(b)}</span>${compactAudioControls(b,`audio-phrase-block-${globalIndex}-${bi}`)}</div>`:`<span class="block">${escapeHtml(b)}</span>`).join("")}</div>`:""}${audioControls(f.es,`audio-phrase-${globalIndex}`)}<button type="button" class="mini-btn usage-toggle" data-target="usage-${globalIndex}" data-progress="usage-${globalIndex}">Ver cuándo usarla</button><div id="usage-${globalIndex}" class="meta hidden" style="margin-top:9px">${escapeHtml(f.uso)}</div><div data-progress-target="usage-${globalIndex}"></div>${currentLevel==="a2"?`<div data-progress-target="audio-phrase-${globalIndex}"></div>`:""}</div>`;
+  }).join("")}</div>`).join("");
+  return baseSection("4. 💬 FRASES QUE PUEDES USAR","Elige expresiones por función. No necesitas memorizar todas.",body,index);
+}
+
+function renderBuilder(c,index){
+  const values = c.builder.fields.map((f,i)=>uiState.builderValues[i] ?? f.options[0]);
+  const fields = c.builder.fields.map((f,i)=>`<div class="builder-row"><label for="builder-${i}">${escapeHtml(f.label)}</label><select id="builder-${i}" class="builder-select">${f.options.map(o=>`<option value="${escapeHtml(o)}" ${o===values[i]?"selected":""}>${escapeHtml(o)}</option>`).join("")}</select></div>`).join("");
+  const first = values.join(" ");
+  const shown = uiState.builderBuilt ? uiState.builderOutput : first;
+  const body = `<p>${escapeHtml(c.builder.instruction)}</p><div class="builder">${fields}<button type="button" id="buildBtn" class="btn btn-secondary">Construir mensaje</button></div><div id="builderOutput" class="builder-output" aria-live="polite">${escapeHtml(shown)}</div>${audioControls(shown,"builder-audio")}<div data-progress-target="builder"></div>${currentLevel==="a2"?`<div data-progress-target="builder-audio"></div>`:""}<p class="meta">${currentLevel==="b2"?"La guía organiza la intención. Tu formulación final debe adaptarse al interlocutor y al riesgo de la situación.":"Cambia las opciones y observa cómo varía el mensaje."}</p>`;
+  return baseSection("5. 🧩 CONSTRUYE TU MENSAJE","Practica la estructura antes de producir una respuesta más libre.",body,index);
+}
+
+function renderGrammar(c,index){
+  const cards=c.gramatica.map((g,i)=>`<article class="grammar-card"><h3>${escapeHtml(g.title)}</h3><div class="flow">${escapeHtml(g.flow)}</div><button type="button" class="mini-btn grammar-toggle" data-target="grammar-${i}" data-progress="grammar-${i}">Ver explicación</button><div id="grammar-${i}" class="hidden"><p>${escapeHtml(g.explain)}</p><p><strong>Ejemplo:</strong> ${escapeHtml(g.example)}</p>${audioControls(g.example,`audio-grammar-${i}`)}</div><div data-progress-target="grammar-${i}"></div>${currentLevel==="a2"?`<div data-progress-target="audio-grammar-${i}"></div>`:""}</article>`).join("");
+  return baseSection("6. 📚 GRAMÁTICA QUE NECESITAS","Solo la gramática que cambia cómo ejecutas esta habilidad profesional.",`<div class="grammar-grid">${cards}</div>`,index);
+}
+
+function renderRegister(c,index){
+  const chosen=uiState.registerIndex;
+  const options=c.registro.options.map((o,i)=>`<div><button type="button" class="option-btn register-option ${chosen===i?"selected":""}" data-index="${i}" aria-pressed="${chosen===i}">${escapeHtml(o.text)}</button>${audioControls(o.text,`audio-register-${i}`)}</div>`).join("");
+  const prev=chosen!==null?c.registro.options[chosen]:null;
+  const body=`<div class="panel"><strong>Situación:</strong> ${escapeHtml(c.registro.context)}</div><p>Elige la formulación que funcione mejor para este interlocutor y este problema.</p><div class="options">${options}</div><div id="registerFeedback" class="feedback ${prev?`show ${prev.quality}`:""}" aria-live="polite">${prev?escapeHtml(prev.feedback):""}</div><div data-progress-target="register-choice"></div>${currentLevel==="a2"?c.registro.options.map((_,i)=>`<div data-progress-target="audio-register-${i}"></div>`).join(""):""}`;
+  return baseSection("7. 🎭 ELIGE EL REGISTRO","Una frase puede ser gramatical y aun así producir un efecto poco útil.",body,index);
+}
+
+function renderExample(c,index){
+  const lines=c.ejemplo.lines.map((l,i)=>`<div class="example-line"><button type="button" class="example-main example-toggle" data-target="example-note-${i}" data-progress="example-line-${i}"><strong>${escapeHtml(l.text)}</strong><span id="example-note-${i}" class="function-note">${escapeHtml(l.function)}</span></button>${currentLevel==="a2"?audioControls(l.text,`audio-example-line-${i}`):""}</div><div data-progress-target="example-line-${i}"></div>`).join("");
+  const body=`<p>${escapeHtml(c.ejemplo.intro)}</p><div class="panel panel-yellow"><strong>${escapeHtml(c.ejemplo.full)}</strong>${audioControls(c.ejemplo.full,"audio-example-full")}</div><div>${lines}</div>`;
+  return baseSection("8. 💼 MIRA CÓMO SE HACE","Analiza la función de cada parte del mensaje, no solo las palabras.",body,index);
+}
+
+function renderExercises(c,index){
+  const body=c.ejercicios.map((e,i)=>renderExercise(e,i)).join("");
+  return baseSection("9. ✍️ COMPRUEBA LO QUE APRENDISTE","No es un examen. Usa la retroalimentación para preparar tu propia respuesta.",body,index);
+}
+
+function renderExercise(e,i){
+  if(e.type==="mc"){
+    const chosen=uiState.exerciseChoices[i];
+    const hasChoice=Number.isInteger(chosen);
+    const ok=hasChoice && e.correct.includes(chosen);
+    return `<article class="exercise" data-exercise="${i}"><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.prompt)}</p><div class="options">${e.options.map((o,oi)=>`<div><button type="button" class="option-btn exercise-option ${chosen===oi?"selected":""}" data-ex="${i}" data-index="${oi}" aria-pressed="${chosen===oi}">${escapeHtml(o)}</button>${currentLevel==="a2"?audioControls(o,`audio-ex-${i}-${oi}`):""}</div>`).join("")}</div><div id="exercise-feedback-${i}" class="feedback ${hasChoice?`show ${ok?"good":"note"}`:""}" aria-live="polite">${hasChoice?escapeHtml(ok?e.feedbackGood:e.feedbackOther):""}</div><div data-progress-target="exercise-${i}"></div>${currentLevel==="a2"?e.options.map((_,oi)=>`<div data-progress-target="audio-ex-${i}-${oi}"></div>`).join(""):""}</article>`;
+  }
+  if(e.type==="order"){
+    const shuffled=[...e.tokens].reverse();
+    const current=currentOrder[i]||[];
+    return `<article class="exercise" data-exercise="${i}"><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.prompt)}</p><div class="order-zone source-zone" data-ex="${i}">${shuffled.map(t=>`<button type="button" class="order-token ${current.includes(t)?"used":""}" data-ex="${i}" data-token="${escapeHtml(t)}">${escapeHtml(t)}</button>`).join("")}</div><p class="meta">Pulsa los bloques en el orden correcto.</p><div id="order-answer-${i}" class="order-zone panel">${current.map(t=>`<span class="order-token">${escapeHtml(t)}</span>`).join("")}</div>${currentLevel==="a2"?`<div id="order-audio-${i}">${current.length?audioControls(current.join(" "),`audio-order-${i}`):""}</div>`:""}<div class="exercise-actions"><button type="button" class="btn btn-primary check-order" data-ex="${i}">Comprobar</button><button type="button" class="btn btn-outline reset-order" data-ex="${i}">Volver a intentar</button></div><div id="exercise-feedback-${i}" class="feedback" aria-live="polite"></div><div data-progress-target="exercise-${i}"></div></article>`;
+  }
+  return "";
+}
+
+function renderPractice(c,index){
+  const p=c.practica;
+  const supports=p.apoyos.map((a,i)=>`<span class="support-chip">${escapeHtml(a)}</span>${currentLevel==="a2"?audioControls(a,`audio-support-${i}`):""}${currentLevel==="a2"?`<span data-progress-target="audio-support-${i}"></span>`:""}`).join("");
+  const body=`<div class="practice-grid"><div class="panel"><h3>Situación</h3><p>${escapeHtml(p.situacion)}</p><h3>Interlocutor</h3><p>${escapeHtml(p.interlocutor)}</p><h3>Objetivo</h3><p>${escapeHtml(p.objetivo)}</p></div><div class="panel"><h3>Tu respuesta debe incluir</h3><ul class="clean requirements">${p.requisitos.map(r=>`<li>${escapeHtml(r)}</li>`).join("")}</ul></div></div><div class="panel panel-yellow"><h3>${currentLevel==="a2"?"Estructuras de apoyo / Support structures":"Recursos que puedes reutilizar"}</h3>${supports}</div><label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" placeholder="${escapeHtml(p.placeholder)}">${escapeHtml(uiState.practiceText)}</textarea><div class="exercise-actions"><button type="button" id="practiceDone" class="btn btn-primary">He escrito mi respuesta</button></div><div id="practiceFeedback" class="feedback" aria-live="polite"></div><div data-progress-target="practice-done"></div>`;
+  return baseSection("10. 🏢 AHORA TE TOCA A TI","Produce tu propia respuesta antes de mirar el modelo.",body,index);
+}
+
+function renderModel(c,index){
+  const answer=uiState.practiceText.trim();
+  const comparison=answer?`<div class="saved-answer"><strong>Tu respuesta:</strong>\n${escapeHtml(answer)}</div>`:`<div class="panel"><strong>Aún no hay una respuesta guardada.</strong> Puedes volver a la sección 10 y escribirla antes de abrir el modelo.</div>`;
+  const blocks=currentLevel==="a2" && Array.isArray(c.modeloBloques)?`<div class="model-blocks"><h3>Escucha por bloques / Listen in chunks</h3>${c.modeloBloques.map((b,i)=>`<div class="block-audio"><span>${escapeHtml(b)}</span>${compactAudioControls(b,`audio-model-block-${i}`)}</div>`).join("")}</div>`:"";
+  const body=`<p>Primero compara tu propia respuesta con los requisitos. Después abre el modelo.</p>${comparison}<button type="button" id="showModel" class="btn btn-secondary" ${uiState.modelVisible?"disabled":""}>Ver una posible respuesta</button><div id="modelBox" class="model ${uiState.modelVisible?"":"hidden"}"><p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p><p>${escapeHtml(c.modelo)}</p>${audioControls(c.modelo,"audio-model")}${blocks}</div><div data-progress-target="model-view"></div>${currentLevel==="a2"?`<div data-progress-target="audio-model"></div>`:""}`;
+  return baseSection("11. 💡 VER MODELO","El modelo sirve para comparar decisiones, no para copiar una única respuesta.",body,index);
+}
+
+function renderChecklist(c,index){
+  const done=uiState.checklist.size;
+  const pct=Math.round(done/c.checklist.length*100);
+  const checks=c.checklist.map((item,i)=>`<label class="check-item"><input type="checkbox" class="final-check" data-index="${i}" ${uiState.checklist.has(i)?"checked":""}><span>${escapeHtml(item)}</span></label><div data-progress-target="check-${i}"></div>`).join("");
+  const body=`<p>Antes de terminar, comprueba:</p><div class="checklist">${checks}</div><div class="check-progress" aria-label="Progreso del checklist"><div id="checkBar" style="width:${pct}%"></div></div><p id="checkCount" class="meta">${done} de ${c.checklist.length} completados</p><div id="readyBox" class="ready ${done===c.checklist.length?"":"hidden"}"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Inserta aquí posteriormente la URL real del reto del día si corresponde. --><a class="btn btn-primary" href="#">🔥 Ir al reto de hoy</a></div>`;
+  return baseSection("12. ✅ CHECKLIST FINAL","Marca solo lo que ya puedes hacer con razonable seguridad.",body,index);
+}
+
+function bindSectionEvents(){
+  $$(".nav-step").forEach(btn=>btn.addEventListener("click",()=>goSection(Number(btn.dataset.section))));
+  $(".prev-section")?.addEventListener("click",()=>goSection(currentSection-1));
+  $(".next-section")?.addEventListener("click",()=>goSection(currentSection+1));
+  $$(".speak").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();speakSpanish(btn.dataset.text,btn.dataset.rate==="slow",btn.dataset.progress)}));
+  $$(".vocab-reveal,.usage-toggle,.grammar-toggle").forEach(btn=>btn.addEventListener("click",()=>toggleReveal(btn)));
+  $$(".example-toggle").forEach(btn=>btn.addEventListener("click",e=>{
+    if(e.target.closest(".speak")) return;
+    const note=$("#"+btn.dataset.target);note.classList.toggle("show");markProgress(btn.dataset.progress);
+  }));
+  $("#buildBtn")?.addEventListener("click",buildMessage);
+  $$(".register-option").forEach(btn=>btn.addEventListener("click",()=>handleRegister(btn)));
+  $$(".vocab-quiz").forEach(btn=>btn.addEventListener("click",()=>handleVocabQuiz(btn)));
+  $$(".exercise-option").forEach(btn=>btn.addEventListener("click",()=>handleExerciseOption(btn)));
+  $$(".order-token").forEach(btn=>btn.addEventListener("click",()=>addOrderToken(btn)));
+  $$(".check-order").forEach(btn=>btn.addEventListener("click",()=>checkOrder(Number(btn.dataset.ex))));
+  $$(".reset-order").forEach(btn=>btn.addEventListener("click",()=>resetOrder(Number(btn.dataset.ex))));
+  $("#practiceText")?.addEventListener("input",e=>{uiState.practiceText=e.target.value;});
+  $("#practiceDone")?.addEventListener("click",handlePracticeDone);
+  $("#showModel")?.addEventListener("click",showModel);
+  $$(".final-check").forEach(ch=>ch.addEventListener("change",updateChecklist));
+}
+
+function goSection(index){
+  if(index<0||index>11) return;
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  setAudioStatus("");
+  currentSection=index;
+  renderModule();
+  const top=$("#sectionNav").getBoundingClientRect().top+window.scrollY-80;
+  window.scrollTo({top,behavior:"smooth"});
+}
+
+function toggleReveal(btn){
+  const el=$("#"+btn.dataset.target);
+  const willShow=el.classList.contains("hidden");
+  el.classList.toggle("hidden");
+  btn.setAttribute("aria-expanded",String(willShow));
+  markProgress(btn.dataset.progress);
+}
+
+function buildMessage(){
+  const vals=$$(".builder-select").map(s=>s.value);
+  let text="";
+  if(currentLevel==="b2") text = vals.join(" → ") + ". Ahora formula tú el mensaje con el grado de firmeza que requiere la situación.";
+  else text=vals.join(" ");
+  $("#builderOutput").textContent=text;
+  uiState.builderValues=vals;
+  uiState.builderOutput=text;
+  uiState.builderBuilt=true;
+  markProgress("builder");
+  if(currentLevel==="a2"){
+    const old=$$("#builderOutput + .audio-row .speak");
+    old.forEach(btn=>btn.dataset.text=text);
+  }
+}
+
+function handleRegister(btn){
+  const c=contenido[currentLevel].registro;
+  $$(".register-option").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+  btn.classList.add("selected");btn.setAttribute("aria-pressed","true");
+  uiState.registerIndex=Number(btn.dataset.index);
+  const data=c.options[uiState.registerIndex];
+  const fb=$("#registerFeedback");
+  fb.className="feedback show "+data.quality;
+  fb.textContent=data.feedback;
+  markProgress("register-choice");
+}
+
+function handleVocabQuiz(btn){
+  const q=contenido.a2.vocabQuiz;
+  $$(".vocab-quiz").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});btn.classList.add("selected");btn.setAttribute("aria-pressed","true");
+  uiState.vocabQuizIndex=Number(btn.dataset.index);
+  const fb=$("#vocabQuizFeedback");
+  const ok=uiState.vocabQuizIndex===q.correct;
+  fb.className="feedback show "+(ok?"good":"note");
+  fb.textContent=ok?q.feedback:"Inténtalo otra vez. Piensa en la palabra que indica que una información necesaria no está.";
+  if(ok) markProgress("vocab-quiz");
+}
+
+function handleExerciseOption(btn){
+  const exIndex=Number(btn.dataset.ex), optIndex=Number(btn.dataset.index);
+  const e=contenido[currentLevel].ejercicios[exIndex];
+  const ok=e.correct.includes(optIndex);
+  $$(`.exercise-option[data-ex="${exIndex}"]`).forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});btn.classList.add("selected");btn.setAttribute("aria-pressed","true");
+  uiState.exerciseChoices[exIndex]=optIndex;
+  const fb=$("#exercise-feedback-"+exIndex);fb.className="feedback show "+(ok?"good":"note");fb.textContent=ok?e.feedbackGood:e.feedbackOther;
+  if(ok) markProgress(`exercise-${exIndex}`);
+}
+
+function addOrderToken(btn){
+  const ex=Number(btn.dataset.ex);
+  currentOrder[ex]=currentOrder[ex]||[];
+  if(btn.classList.contains("used")) return;
+  currentOrder[ex].push(btn.dataset.token);btn.classList.add("used");
+  const zone=$("#order-answer-"+ex);zone.innerHTML=currentOrder[ex].map(t=>`<span class="order-token">${escapeHtml(t)}</span>`).join("");
+  if(currentLevel==="a2" && currentOrder[ex].length){
+    $("#order-audio-"+ex).innerHTML=audioControls(currentOrder[ex].join(" "),`audio-order-${ex}`);
+    $$("#order-audio-"+ex+" .speak").forEach(b=>b.addEventListener("click",()=>speakSpanish(b.dataset.text,b.dataset.rate==="slow",b.dataset.progress)));
+  }
+}
+
+function checkOrder(ex){
+  const e=contenido[currentLevel].ejercicios[ex];
+  const current=currentOrder[ex]||[];
+  const ok=JSON.stringify(current)===JSON.stringify(e.answer);
+  const fb=$("#exercise-feedback-"+ex);fb.className="feedback show "+(ok?"good":"note");fb.textContent=ok?e.feedbackGood:e.feedbackOther;
+  if(ok) markProgress(`exercise-${ex}`);
+}
+
+function resetOrder(ex){
+  currentOrder[ex]=[];
+  $$(`.order-token[data-ex="${ex}"]`).forEach(b=>b.classList.remove("used"));
+  $("#order-answer-"+ex).innerHTML="";
+  const fb=$("#exercise-feedback-"+ex);fb.className="feedback";fb.textContent="";
+  if($("#order-audio-"+ex)) $("#order-audio-"+ex).innerHTML="";
+}
+
+function handlePracticeDone(){
+  const p=contenido[currentLevel].practica;
+  const text=$("#practiceText").value.trim();
+  uiState.practiceText=$("#practiceText").value;
+  const fb=$("#practiceFeedback");
+  if(text.length<p.minChars){
+    fb.className="feedback show note";
+    fb.textContent=currentLevel==="a2"?"Tu respuesta todavía es muy breve. Intenta incluir el problema, la acción, el plazo y un cierre. / Your response is still very short. Include the problem, action, deadline, and closing.":"Tu respuesta todavía es muy breve para cubrir los requisitos. Revisa la situación y añade los elementos que faltan.";
+    return;
+  }
+  fb.className="feedback show good";
+  fb.textContent=currentLevel==="a2"?"Ya tienes una respuesta propia. Ahora puedes compararla con el modelo en la siguiente sección. / You now have your own response. Compare it with the model in the next section.":"Ya tienes una respuesta propia. No se evalúa automáticamente: compárala con los requisitos y después con el modelo.";
+  markProgress("practice-done");
+}
+
+function showModel(){
+  uiState.modelVisible=true;
+  $("#modelBox").classList.remove("hidden");
+  $("#showModel").setAttribute("disabled","disabled");
+  markProgress("model-view");
+}
+
+function updateChecklist(){
+  const checks=$$(".final-check");
+  checks.forEach((c,i)=>{
+    if(c.checked){uiState.checklist.add(i);markProgress(`check-${i}`);}
+    else {uiState.checklist.delete(i);progressDone.delete(`check-${i}`);}
+  });
+  updateProgress();
+  const done=uiState.checklist.size;
+  const pct=Math.round(done/checks.length*100);
+  $("#checkBar").style.width=pct+"%";
+  $("#checkCount").textContent=`${done} de ${checks.length} completados`;
+  $("#readyBox").classList.toggle("hidden",done!==checks.length);
+}
+
+
+$$('.level-btn').forEach(btn=>btn.addEventListener('click',()=>selectLevel(btn.dataset.level)));
+$("#changeLevel").addEventListener("click",changeLevel);
+</script>
+</body>
+</html>
