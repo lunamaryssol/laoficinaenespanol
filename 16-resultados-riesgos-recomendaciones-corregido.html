@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Módulo interactivo de Business Spanish: presentar resultados, riesgos y recomendaciones.">
+  <title>Presentar resultados, riesgos y recomendaciones | La Oficina en Español</title>
+  <style>
+    :root{
+      --blue:#003893; --blue-dark:#00275f; --blue-soft:#edf4ff;
+      --yellow:#FCD116; --red:#CE1126; --white:#fff; --black:#000;
+      --ink:#172033; --muted:#5f6b7a; --line:#dbe3ee; --panel:#f7f9fc;
+      --ok:#146c43; --warn:#8a5b00; --shadow:0 12px 34px rgba(0,56,147,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:#f4f7fb;line-height:1.55}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+    .hidden{display:none!important}
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--yellow);color:#111;padding:.75rem 1rem;z-index:999}
+    .skip-link:focus{left:.75rem;top:.75rem}
+
+    /* Level gate */
+    #levelGate{min-height:100vh;display:grid;place-items:center;padding:28px;background:linear-gradient(145deg,#eef4ff 0%,#fff 48%,#fff9dd 100%)}
+    .gate-card{width:min(980px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+    .gate-head{background:var(--blue);color:#fff;padding:30px 32px;position:relative}
+    .gate-head:after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:linear-gradient(90deg,var(--yellow) 0 55%,var(--red) 55% 68%,#fff 68%)}
+    .brand-kicker{font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+    .gate-head h1{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:.35rem 0 .55rem}
+    .gate-head p{max-width:720px;margin:0;opacity:.92}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px}
+    .level-card{border:2px solid var(--line);background:#fff;border-radius:18px;text-align:left;padding:20px;min-height:240px;transition:.18s ease;display:flex;flex-direction:column;gap:10px}
+    .level-card:hover,.level-card:focus-visible{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,56,147,.10);outline:none}
+    .level-card .emoji{font-size:2rem}.level-card strong{font-size:1.15rem;color:var(--blue-dark)}
+    .level-card span:last-child{color:var(--muted)}
+
+    /* App shell */
+    #app{min-height:100vh}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+    .topbar-inner{max-width:1180px;margin:auto;padding:10px 18px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    .route-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .brand{font-weight:900;color:var(--blue);white-space:nowrap}.route-badge{background:var(--blue-soft);border:1px solid #cfe0ff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:.9rem}
+    .change-level{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 11px;color:var(--blue);font-weight:800}
+    .progress-wrap{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .progress-track{height:9px;background:#e7edf5;border-radius:999px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#1959b7);transition:width .25s ease}
+    .progress-text{font-size:.82rem;font-weight:800;color:var(--muted);min-width:42px;text-align:right}
+
+    .hero{background:var(--blue);color:#fff;padding:42px 20px 52px}
+    .hero-inner{max-width:1100px;margin:auto}
+    .hero .eyebrow{color:#fff2a3;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem}
+    .hero h2{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(2rem,4.5vw,4.1rem);line-height:1.04;margin:.5rem 0 1rem;max-width:1000px}
+    .hero p{font-size:1.08rem;max-width:850px;margin:0;color:#e7efff}
+
+    .layout{max-width:1180px;margin:-24px auto 0;padding:0 18px 60px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;align-items:start}
+    .side-nav{position:sticky;top:102px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+    .side-nav strong{display:block;color:var(--blue);margin:4px 6px 10px}
+    .side-nav button{width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:9px 10px;color:#344054;font-size:.9rem}
+    .side-nav button:hover,.side-nav button:focus-visible{background:var(--blue-soft);outline:none;color:var(--blue)}
+    .side-nav button.active{background:var(--blue);color:#fff;font-weight:800}
+
+    .module{display:flex;flex-direction:column;gap:14px}
+    .section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 20px rgba(16,24,40,.05);overflow:hidden;scroll-margin-top:110px}
+    .section-head{width:100%;border:0;background:#fff;text-align:left;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;color:var(--ink)}
+    .section-head:hover,.section-head:focus-visible{background:#fbfdff;outline:none}
+    .section-title{display:block;margin:0;font-size:1.12rem;font-weight:800;color:var(--blue-dark)}
+    .chev{font-weight:900;color:var(--blue);transition:transform .2s ease}.section.open .chev{transform:rotate(180deg)}
+    .section-body{display:none;padding:0 22px 24px}.section.open .section-body{display:block}
+    .lead{font-size:1.04rem}.note{background:var(--blue-soft);border-left:4px solid var(--blue);padding:12px 14px;border-radius:0 12px 12px 0}
+    .tip{background:#fff9dc;border-left:4px solid var(--yellow);padding:12px 14px;border-radius:0 12px 12px 0}
+    .warning{background:#fff2f4;border-left:4px solid var(--red);padding:12px 14px;border-radius:0 12px 12px 0}
+    .muted{color:var(--muted)}
+
+    .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .flip-card{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
+    .flip-card button.reveal{width:100%;border:0;background:#f9fbff;padding:16px;text-align:left;font-weight:900;color:var(--blue-dark);display:flex;justify-content:space-between;gap:12px}
+    .flip-card .details{display:none;padding:0 16px 16px}.flip-card.open .details{display:block}.flip-card.open button.reveal{background:var(--blue-soft)}
+    .term-en{display:inline-block;font-size:.8rem;background:#eef2f6;padding:2px 7px;border-radius:999px;color:#4b5563;margin-left:5px}
+
+    .audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+    .audio-btn{border:1px solid #b9c8df;background:#fff;color:var(--blue);border-radius:10px;padding:7px 10px;font-size:.86rem;font-weight:800}
+    .audio-btn:hover,.audio-btn:focus-visible{border-color:var(--blue);background:var(--blue-soft);outline:none}
+    .stress{font-weight:900;color:var(--red);letter-spacing:.02em}
+
+    .phrase-group{margin-bottom:18px}.phrase-group h4{margin:0 0 9px;color:var(--blue)}
+    .phrase{border:1px solid var(--line);border-radius:13px;padding:13px 14px;margin:8px 0;background:#fff}
+    .phrase-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.phrase-text{font-weight:850}
+    .why-btn{border:0;background:transparent;color:var(--blue);font-weight:800;padding:2px}.phrase-info{display:none;margin-top:8px;color:var(--muted)}.phrase.open .phrase-info{display:block}
+
+    .builder{border:1px solid #cfe0ff;background:#f7faff;border-radius:16px;padding:16px}
+    .builder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    label{font-weight:800;font-size:.9rem;color:#344054}
+    select,input[type=text],textarea{width:100%;border:1px solid #b9c5d3;border-radius:10px;padding:10px 11px;background:#fff;color:var(--ink)}
+    textarea{min-height:150px;resize:vertical}
+    select:focus,input:focus,textarea:focus{outline:3px solid rgba(0,56,147,.14);border-color:var(--blue)}
+    .result-box{margin-top:12px;background:#fff;border:1px dashed var(--blue);border-radius:12px;padding:14px;min-height:55px}
+    .primary,.secondary{border-radius:11px;padding:10px 14px;font-weight:900;border:1px solid transparent}
+    .primary{background:var(--blue);color:#fff}.primary:hover,.primary:focus-visible{background:var(--blue-dark);outline:none}.secondary{background:#fff;color:var(--blue);border-color:#bdcaDC}.secondary:hover,.secondary:focus-visible{background:var(--blue-soft);outline:none}
+
+    .grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grammar-card{border:1px solid var(--line);border-radius:14px;padding:15px}.grammar-card h4{margin:.1rem 0 .5rem;color:var(--blue)}
+    .formula{display:block;background:#f2f5f9;border-radius:10px;padding:9px 10px;font-weight:850;margin:8px 0}
+
+    .choices{display:grid;gap:10px;margin-top:12px}.choice{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.choice input{margin-top:4px}.choice-content{flex:1;min-width:0}.choice:has(input:checked){border-color:var(--blue);background:var(--blue-soft)}
+    .feedback{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f2f5f9;display:none}.feedback.show{display:block}.feedback.good{background:#ecf8f1;color:#0d5b36}.feedback.caution{background:#fff8df;color:#6f4b00}
+
+    .model-box{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fbfcfe}.model-line{padding:9px 10px;border-radius:10px;margin:5px 0}.model-toggle{width:100%;border:0;background:transparent;text-align:left;padding:0;color:inherit}.model-toggle:hover,.model-toggle:focus-visible{outline:3px solid rgba(0,56,147,.14);border-radius:8px;background:var(--blue-soft)}.function-tag{display:none;font-size:.82rem;color:var(--blue);font-weight:800;margin-top:3px}.model-toggle.active .function-tag{display:block}
+
+    .quiz-item{border:1px solid var(--line);border-radius:15px;padding:15px;margin:12px 0}.quiz-item h4{margin:0 0 10px}.quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.fill-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;margin-top:10px}.fill-row label{grid-column:1/-1}.fill-row input{min-width:0}@media(max-width:560px){.fill-row{grid-template-columns:1fr}.fill-row label{grid-column:auto}}
+    .option-btn{border:1px solid #bac7d8;background:#fff;border-radius:10px;padding:9px 11px;text-align:left}.option-btn:hover,.option-btn:focus-visible{border-color:var(--blue);background:var(--blue-soft);outline:none}.option-btn.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.10)}
+
+    .requirements{padding-left:20px}.requirements li{margin:.35rem 0}.model-answer{display:none;margin-top:12px;border-left:4px solid var(--blue);padding:13px 14px;background:var(--blue-soft);border-radius:0 12px 12px 0}.model-answer.show{display:block}
+    .counter{text-align:right;font-size:.82rem;color:var(--muted);margin-top:5px}
+
+    .checklist{display:grid;gap:9px}.check{display:flex;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;align-items:flex-start}.check input{margin-top:4px;transform:scale(1.15)}
+    .check-progress{margin-top:14px;height:12px;background:#e7edf5;border-radius:999px;overflow:hidden}.check-progress>div{height:100%;width:0;background:var(--blue);transition:.2s}
+    .ready-box{display:none;margin-top:18px;background:linear-gradient(135deg,var(--blue),#1253ab);color:#fff;border-radius:17px;padding:20px}.ready-box.show{display:block}.challenge-link{display:inline-block;margin-top:10px;background:var(--yellow);color:#111;text-decoration:none;border-radius:11px;padding:11px 15px;font-weight:950}
+    .footer{max-width:1180px;margin:0 auto;padding:0 18px 40px;color:var(--muted);font-size:.86rem;text-align:center}
+    .footer a{color:var(--blue);font-weight:800}
+
+    @media(max-width:900px){
+      .level-grid{grid-template-columns:1fr}.level-card{min-height:auto}
+      .layout{grid-template-columns:1fr;margin-top:-18px}.side-nav{position:static;display:flex;overflow:auto;gap:6px}.side-nav strong{display:none}.side-nav button{min-width:max-content;width:auto;white-space:nowrap}
+      .card-grid,.grammar-grid{grid-template-columns:1fr}.builder-grid{grid-template-columns:1fr}
+      .hero{padding-top:32px}.topbar-inner{grid-template-columns:1fr auto}.brand{display:none}
+    }
+    @media(max-width:560px){
+      .gate-head,.level-grid{padding:22px 18px}.topbar-inner{padding:9px 12px}.hero{padding:28px 15px 42px}.layout{padding:0 12px 48px}.section-head{padding:17px}.section-body{padding:0 17px 20px}.phrase-top{display:block}.why-btn{margin-top:7px}.route-badge{font-size:.8rem}.change-level{font-size:.8rem}.audio-btn{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#moduleContent">Saltar al contenido</a>
+
+<section id="levelGate" aria-labelledby="levelTitle">
+  <div class="gate-card">
+    <header class="gate-head">
+      <div class="brand-kicker">La Oficina en Español · Español para trabajar</div>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p>Elige tu ruta. Todos trabajan la misma habilidad profesional; cambia el apoyo, la profundidad y la dificultad.</p>
+    </header>
+    <div class="level-grid">
+      <button class="level-card" data-level="a2" aria-label="Elegir A2 Principiante">
+        <span class="emoji">🌱</span><strong>A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-card" data-level="b1" aria-label="Elegir B1 Intermedio">
+        <span class="emoji">💼</span><strong>B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-card" data-level="b2" aria-label="Elegir B2 Avanzado">
+        <span class="emoji">🚀</span><strong>B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="route-line"><span class="brand">La Oficina en Español</span><span id="routeBadge" class="route-badge"></span></div>
+      <button id="changeLevel" class="change-level">Cambiar nivel</button>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <span id="progressText" class="progress-text">0%</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Habilidad profesional de la semana</div>
+      <h2>Presentar resultados, riesgos y recomendaciones</h2>
+      <p id="heroSub"></p>
+    </div>
+  </section>
+
+  <main class="layout" id="moduleContent">
+    <nav class="side-nav" id="sideNav" aria-label="Secciones del módulo"><strong>Contenido</strong></nav>
+    <div class="module" id="module"></div>
+  </main>
+
+  <footer class="footer">Recurso de <a href="https://laoficinaenespanol.com">La Oficina en Español</a> · Aprende y practica el español que necesitas para trabajar.</footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const habilidad = "Presentar resultados, riesgos y recomendaciones";
+const contenido = {
+  a2: {
+    label:"🌱 A2 — Principiante",
+    hero:"Aprende a explicar un resultado, señalar un riesgo sencillo y proponer una recomendación clara en una actualización de trabajo.",
+    objetivo:"Al terminar esta semana podrás presentar un resultado básico, explicar un riesgo relacionado con ese resultado y recomendar un siguiente paso usando un mensaje breve y organizado.",
+    situacion:{
+      texto:"Eres responsable de una pequeña actualización de proyecto. Hablas con tu supervisor y dos compañeros en una reunión breve. El proyecto avanzó, pero todavía hay un retraso de un proveedor. Necesitas explicar qué se consiguió, qué puede afectar el siguiente paso y qué recomiendas hacer.",
+      dificultad:"La dificultad es no mezclar toda la información. Vas a practicar una secuencia sencilla: resultado → riesgo → recomendación.",
+      en:"You are giving a short project update. You need to say what was achieved, what could cause a problem, and what you recommend doing next."
+    },
+    vocab:[
+      {term:"resultado",en:"result / outcome",meaning:"Lo que se consiguió después de una acción o trabajo.",example:"El resultado principal es que terminamos la primera fase.",extra:"Colocaciones útiles: resultado principal, buenos resultados.",stress:"re-sul-TA-do"},
+      {term:"avance",en:"progress",meaning:"Progreso realizado en un proyecto o tarea.",example:"Tenemos un avance del 80 %.",extra:"Úsalo para hablar de cuánto ha progresado algo.",stress:"a-VAN-ce"},
+      {term:"riesgo",en:"risk",meaning:"Algo que puede causar un problema en el futuro.",example:"El principal riesgo es un posible retraso del proveedor.",extra:"Colocación útil: principal riesgo.",stress:"RIES-go"},
+      {term:"retraso",en:"delay",meaning:"Situación en la que algo ocurre después de la fecha esperada.",example:"Hay un retraso de dos días en la entrega.",extra:"Puedes decir: tener un retraso / haber un retraso.",stress:"re-TRA-so"},
+      {term:"recomendar",en:"to recommend",meaning:"Decir qué acción consideras conveniente.",example:"Recomiendo confirmar la fecha hoy.",extra:"Estructura útil: recomiendo + infinitivo.",stress:"re-co-men-DAR"},
+      {term:"siguiente paso",en:"next step",meaning:"La acción que debe hacerse después.",example:"El siguiente paso es contactar al proveedor.",extra:"Ayuda a terminar tu intervención con una acción concreta.",stress:"si-GUIEN-te PA-so"}
+    ],
+    phrases:[
+      {group:"Presentar el resultado",items:[
+        {text:"El resultado principal es que terminamos la primera fase.",info:"Úsala para decir primero la conclusión más importante."},
+        {text:"Hasta ahora, hemos completado el 80 % del proyecto.",info:"Úsala cuando quieres indicar progreso hasta el momento."}
+      ]},
+      {group:"Señalar el riesgo",items:[
+        {text:"El principal riesgo es un posible retraso del proveedor.",info:"Presenta el riesgo de forma directa sin afirmar que el problema ya ocurrió."},
+        {text:"Esto puede afectar la fecha de entrega.",info:"Explica una posible consecuencia del riesgo."}
+      ]},
+      {group:"Dar una recomendación",items:[
+        {text:"Recomiendo confirmar la fecha con el proveedor hoy.",info:"Recomiendo + infinitivo te permite proponer una acción concreta."},
+        {text:"El siguiente paso es revisar el plan mañana.",info:"Úsala para cerrar con una acción clara."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una actualización breve. Elige una opción de cada bloque y escucha el mensaje completo.",
+      fields:[
+        {label:"Resultado",options:["El resultado principal es que terminamos la primera fase.","Hasta ahora, hemos completado el 80 % del proyecto."]},
+        {label:"Riesgo",options:["El principal riesgo es un posible retraso del proveedor.","El principal riesgo es que faltan algunos datos."]},
+        {label:"Consecuencia",options:["Esto puede afectar la fecha de entrega.","Esto puede afectar la decisión final."]},
+        {label:"Recomendación",options:["Recomiendo confirmar la información hoy.","Recomiendo revisar el plan con el equipo."]}
+      ]
+    },
+    grammar:[
+      {title:"Un resultado ya conseguido",situation:"Quieres decir qué ha ocurrido hasta ahora.",intent:"Presentar un avance reciente relacionado con el presente.",formula:"hemos + participio",example:"Hemos completado el 80 % del proyecto.",why:"El pretérito perfecto conecta una acción terminada con la situación actual."},
+      {title:"Un riesgo posible",situation:"El problema todavía no es seguro.",intent:"Explicar una consecuencia posible.",formula:"puede + infinitivo",example:"Esto puede afectar la fecha de entrega.",why:"Puede + infinitivo expresa posibilidad de forma simple y profesional."},
+      {title:"Una recomendación directa",situation:"Quieres proponer qué hacer ahora.",intent:"Recomendar una acción.",formula:"Recomiendo + infinitivo",example:"Recomiendo confirmar la fecha hoy.",why:"Después de recomiendo puedes usar un infinitivo cuando propones una acción general."}
+    ],
+    register:{
+      context:"Tu supervisor te pregunta qué hacer con un posible retraso. ¿Qué opción funciona mejor en una actualización profesional?",
+      options:[
+        {text:"Hay un problema. Habla con ellos.",quality:"caution",feedback:"La idea se entiende, pero suena brusca y poco específica. No explica qué acción concreta esperas."},
+        {text:"Recomiendo confirmar hoy la nueva fecha con el proveedor.",quality:"good",feedback:"Esta formulación es clara, profesional y concreta: incluye la acción y el momento."},
+        {text:"Quizás podemos hacer alguna cosa con el proveedor.",quality:"caution",feedback:"Es cortés, pero demasiado vaga para una recomendación de trabajo."}
+      ]
+    },
+    model:{
+      intro:"Haz clic en cada parte para ver qué función cumple.",
+      lines:[
+        {text:"Hasta ahora, hemos completado el 80 % del proyecto.",fn:"Resultado / avance"},
+        {text:"El principal riesgo es un posible retraso del proveedor.",fn:"Riesgo"},
+        {text:"Esto puede afectar la fecha de entrega.",fn:"Consecuencia"},
+        {text:"Recomiendo confirmar hoy la nueva fecha y revisar el plan mañana.",fn:"Recomendación + siguiente paso"}
+      ]
+    },
+    quiz:[
+      {q:"Quieres presentar un avance reciente. ¿Qué frase es más útil?",options:["Hemos completado el 70 % del trabajo.","Completamos cosas.","Vamos problema."],best:0,feedback:["Sí. Presenta un resultado concreto y conectado con la situación actual.","Es comprensible, pero demasiado general para presentar un resultado.","La frase no comunica un resultado con claridad."]},
+      {q:"El retraso todavía no es seguro. ¿Qué opción expresa posibilidad?",options:["El retraso puede afectar la entrega.","El retraso afecta la entrega, seguro.","El retraso afectó siempre."],best:0,feedback:["Sí. Puede + infinitivo presenta una consecuencia posible.","Esta frase presenta la consecuencia como segura; no corresponde al contexto.","El tiempo y el adverbio no corresponden a la situación."],audio:true},
+      {q:"¿Qué recomendación es más concreta?",options:["Recomiendo confirmar la fecha hoy.","Recomiendo algo.","Tal vez cosas después."],best:0,feedback:["Sí. Incluye acción y momento.","Le falta la acción concreta.","Es demasiado vaga para orientar el siguiente paso."],audio:true},
+      {q:"Ordena mentalmente una actualización clara.",options:["resultado → riesgo → recomendación","recomendación → saludo → resultado","riesgo → riesgo → riesgo"],best:0,feedback:["Correcto. Esta secuencia ayuda a que la otra persona entienda qué pasó, qué puede ocurrir y qué propones.","Puede funcionar en otros contextos, pero no es la estructura que estás practicando para esta actualización.","Repetir riesgos sin resultado ni acción no permite avanzar." ]},
+      {type:"fill",q:"Completa la frase con una palabra del módulo: El principal ___ es un posible retraso del proveedor.",accepted:["riesgo"],good:"Sí. ‘Riesgo’ nombra algo que puede causar un problema en el futuro.",bad:"Revisa el vocabulario clave. Necesitas una palabra que nombre una posible dificultad futura."}
+    ],
+    practice:{
+      situation:"En una reunión de seguimiento con tu supervisor debes informar sobre una campaña. Ya completaron 45 de 50 materiales. Faltan cinco aprobaciones y eso puede retrasar la publicación un día.",
+      requirements:["Di el resultado o avance.","Menciona el riesgo.","Explica una posible consecuencia con puede + infinitivo.","Da una recomendación concreta.","Escribe 3–4 frases."],
+      supports:["Hasta ahora, hemos completado…","El principal riesgo es…","Esto puede afectar…","Recomiendo…","El siguiente paso es…"],
+      model:"Hasta ahora, hemos completado 45 de los 50 materiales. El principal riesgo es que faltan cinco aprobaciones. Esto puede retrasar la publicación un día. Recomiendo pedir las aprobaciones hoy y revisar el estado mañana por la mañana."
+    },
+    checklist:["Puedo presentar un resultado o avance con una frase clara.","Puedo identificar un riesgo y explicar una consecuencia posible.","Puedo usar recomiendo + infinitivo para proponer una acción.","Puedo organizar mi mensaje: resultado → riesgo → recomendación.","Puedo producir una actualización breve con mis propias palabras."]
+  },
+
+  b1: {
+    label:"💼 B1 — Intermedio",
+    hero:"Organiza una actualización profesional que conecte datos, riesgos y una recomendación accionable sin perder claridad.",
+    objetivo:"Al terminar esta semana podrás presentar resultados relevantes, explicar un riesgo con su posible impacto y formular una recomendación justificada, adaptando el nivel de detalle al interlocutor.",
+    situacion:{
+      texto:"Eres responsable de presentar el estado de un proyecto ante tu gerente y representantes de otras áreas. El proyecto cumplió la mayor parte de los objetivos del mes, pero existe un riesgo de retraso por una dependencia externa. Debes resumir los resultados, explicar el impacto posible y proponer una acción sin dramatizar el riesgo.",
+      dificultad:"No basta con enumerar datos: necesitas priorizar la información, relacionar causa y consecuencia y cerrar con una recomendación que permita tomar una decisión."
+    },
+    vocab:[
+      {term:"cumplimiento",meaning:"Grado en que se alcanzó un objetivo o requisito.",example:"El cumplimiento del objetivo llegó al 92 %.",extra:"Colocaciones: nivel de cumplimiento, cumplimiento del objetivo."},
+      {term:"desviación",meaning:"Diferencia respecto del plan, presupuesto o resultado esperado.",example:"Tenemos una desviación de tres días respecto del cronograma.",extra:"Puede ser temporal, presupuestaria o de alcance."},
+      {term:"impacto",meaning:"Efecto o consecuencia que una situación puede producir.",example:"El impacto principal sería mover la fecha de lanzamiento.",extra:"Verbos frecuentes: tener, generar, reducir, evaluar el impacto."},
+      {term:"dependencia",meaning:"Elemento externo o interno del que depende una actividad.",example:"La aprobación legal es una dependencia crítica.",extra:"Útil para explicar por qué un riesgo no depende solo de tu equipo."},
+      {term:"mitigar",meaning:"Reducir la probabilidad o el impacto de un riesgo.",example:"Podemos mitigar el riesgo adelantando la revisión técnica.",extra:"Registro profesional frecuente: mitigar un riesgo."},
+      {term:"priorizar",meaning:"Dar mayor importancia o atención a algo.",example:"Recomiendo priorizar las tareas que bloquean el lanzamiento.",extra:"Ayuda a formular recomendaciones orientadas a acción."}
+    ],
+    phrases:[
+      {group:"Resumir resultados",items:[
+        {text:"En términos generales, alcanzamos el 92 % del objetivo previsto.",info:"Sirve para dar una visión global antes de entrar en detalles."},
+        {text:"El principal avance fue completar la fase técnica dentro del plazo.",info:"Prioriza un resultado especialmente relevante."}
+      ]},
+      {group:"Explicar riesgo e impacto",items:[
+        {text:"El punto de riesgo está en la aprobación del proveedor, que todavía está pendiente.",info:"Localiza el origen del riesgo sin presentarlo como un problema ya materializado."},
+        {text:"Si la aprobación se retrasa, podríamos desplazar la entrega entre dos y tres días.",info:"Conecta condición y consecuencia de manera prudente."}
+      ]},
+      {group:"Recomendar y justificar",items:[
+        {text:"Por eso, recomiendo priorizar la validación hoy para reducir el margen de retraso.",info:"Conecta la recomendación con la razón usando por eso / para."},
+        {text:"Mi recomendación sería mantener la fecha y revisar el riesgo de nuevo mañana.",info:"Sería introduce una recomendación menos categórica y útil cuando la decisión es compartida."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una actualización organizada. Después, cambia una opción y observa cómo cambia el énfasis.",
+      fields:[
+        {label:"Apertura de resultado",options:["En términos generales, alcanzamos el 92 % del objetivo previsto.","El principal avance fue completar la fase técnica dentro del plazo."]},
+        {label:"Riesgo",options:["El punto de riesgo está en una aprobación externa que sigue pendiente.","La principal desviación está en dos tareas que dependen de otro equipo."]},
+        {label:"Impacto",options:["Si no se resuelve hoy, podríamos desplazar la entrega dos días.","Esto podría afectar el inicio de la siguiente fase."]},
+        {label:"Recomendación",options:["Por eso, recomiendo priorizar la validación hoy.","Mi recomendación sería mantener la fecha y revisar el riesgo mañana."]}
+      ]
+    },
+    grammar:[
+      {title:"Condición + consecuencia",situation:"Quieres explicar un riesgo que todavía no se ha materializado.",intent:"Relacionar una condición posible con su impacto.",formula:"Si + presente, condicional / poder en condicional",example:"Si la aprobación se retrasa, podríamos mover la entrega dos días.",why:"La combinación presenta un escenario posible sin afirmar que ocurrirá."},
+      {title:"Recomendación con diferente fuerza",situation:"Necesitas proponer una acción, pero el grado de autoridad cambia.",intent:"Ajustar cuán directa suena la recomendación.",formula:"Recomiendo + infinitivo / Mi recomendación sería + infinitivo",example:"Recomiendo priorizar la revisión. / Mi recomendación sería mantener la fecha.",why:"La segunda opción añade distancia y puede funcionar mejor cuando la decisión es compartida."},
+      {title:"Conectores de lógica",situation:"Quieres evitar una lista de frases desconectadas.",intent:"Relacionar dato, riesgo y acción.",formula:"sin embargo / por eso / por lo tanto / aun así",example:"El objetivo está casi cumplido; sin embargo, queda una dependencia crítica. Por eso, recomiendo revisarla hoy.",why:"Los conectores hacen visible la relación entre las partes del mensaje."}
+    ],
+    register:{
+      context:"Presentas el riesgo ante un cliente que espera una fecha de entrega. ¿Qué formulación equilibra transparencia y prudencia?",
+      options:[
+        {text:"Tenemos un problema grave y probablemente no lleguemos.",quality:"caution",feedback:"La frase puede generar alarma antes de explicar la magnitud real del riesgo. Conviene cuantificar y separar riesgo de hecho confirmado."},
+        {text:"La fecha se mantiene, aunque existe un riesgo de dos días asociado a una aprobación pendiente. Estamos priorizando esa validación hoy.",quality:"good",feedback:"Informa el estado actual, delimita el riesgo y muestra la acción de mitigación sin ocultar información."},
+        {text:"No hay problema; todo debería salir bien.",quality:"caution",feedback:"Minimiza un riesgo real y no ayuda al cliente a entender qué se está gestionando."}
+      ]
+    },
+    model:{
+      intro:"Haz clic en las partes para identificar cómo se organiza la intervención.",
+      lines:[
+        {text:"En términos generales, alcanzamos el 92 % del objetivo previsto y completamos la fase técnica dentro del plazo.",fn:"Resumen de resultados"},
+        {text:"Sin embargo, la aprobación final del proveedor sigue pendiente.",fn:"Transición + riesgo"},
+        {text:"Si se retrasa más de 24 horas, podríamos desplazar la entrega entre dos y tres días.",fn:"Escenario + impacto"},
+        {text:"Por eso, recomiendo priorizar esa validación hoy y mantener una revisión de estado mañana a primera hora.",fn:"Recomendación justificada"}
+      ]
+    },
+    quiz:[
+      {q:"¿Qué frase prioriza mejor el resultado principal?",options:["Hicimos muchas cosas este mes.","En términos generales, alcanzamos el 92 % del objetivo previsto.","Hay varios datos que podría contar."],best:1,feedback:["Es demasiado general y no permite evaluar el resultado.","Sí. Resume el resultado con un dato interpretable.","Retrasa la información importante y no presenta el resultado."]},
+      {q:"¿Qué opción presenta un riesgo sin convertirlo en certeza?",options:["La entrega se va a retrasar dos días.","Si la aprobación se retrasa, podríamos mover la entrega dos días.","La aprobación siempre causa retrasos."],best:1,feedback:["Afirma un resultado que todavía no está confirmado.","Sí. Diferencia claramente el escenario posible de un hecho.","Generaliza y no describe el riesgo concreto."]},
+      {q:"¿Qué recomendación está mejor justificada?",options:["Recomiendo priorizar la validación hoy para reducir el margen de retraso.","Yo haría algo con eso.","Hay que hacerlo ya porque sí."],best:0,feedback:["Sí. Incluye acción, momento y propósito.","No especifica una acción ni una razón.","Suena categórica y no explica el criterio de la decisión."]},
+      {q:"Tu gerente pregunta: “¿Mantendrías la fecha?”. ¿Qué respuesta organiza mejor la reacción?",options:["Sí.","Mantendría la fecha por ahora, porque el riesgo sigue acotado; aun así, revisaría la aprobación mañana antes de confirmar el siguiente hito.","No sé, depende."],best:1,feedback:["La respuesta es posible, pero no aporta criterio ni manejo del riesgo.","Sí. Responde, justifica y añade una condición de seguimiento.","Expresa incertidumbre sin organizar una recomendación útil."]},
+      {type:"fill",q:"Completa con un conector que relacione el riesgo con la acción: La aprobación sigue pendiente. ___, recomiendo priorizar la validación hoy.",accepted:["por eso","por lo tanto"],good:"Funciona. El conector hace explícita la relación entre el riesgo y la recomendación.",bad:"Busca un conector de consecuencia. Dos opciones naturales aquí son ‘por eso’ y ‘por lo tanto’."}
+    ],
+    practice:{
+      situation:"Debes actualizar a tu gerente sobre una campaña. El 88 % de las piezas está aprobado y el rendimiento inicial supera en 12 % la referencia del trimestre. Falta la aprobación de dos piezas legales; si no llega hoy, la publicación completa podría moverse 48 horas.",
+      requirements:["Resume los dos resultados más relevantes.","Explica el riesgo sin presentarlo como certeza.","Indica el impacto posible.","Formula una recomendación y justifícala.","Usa al menos dos conectores y escribe 5–7 frases."],
+      supports:["En términos generales…","Sin embargo…","Si…, podríamos…","Por eso…","Mi recomendación sería…"],
+      model:"En términos generales, el avance es positivo: tenemos aprobado el 88 % de las piezas y el rendimiento inicial supera en 12 % la referencia del trimestre. Sin embargo, siguen pendientes dos aprobaciones legales. Si no llegan hoy, podríamos desplazar la publicación completa unas 48 horas. Por eso, recomiendo priorizar esas dos validaciones y mantener lista la publicación del resto de piezas. Así reducimos el impacto del retraso sin cambiar todavía la fecha general."
+    },
+    checklist:["Puedo priorizar los resultados relevantes en lugar de enumerar datos.","Puedo diferenciar un riesgo posible de un problema ya confirmado.","Puedo explicar impacto usando condición y consecuencia.","Puedo formular y justificar una recomendación con un registro adecuado.","Puedo responder una pregunta de seguimiento manteniendo la estructura del mensaje."]
+  },
+
+  b2: {
+    label:"🚀 B2 — Avanzado",
+    hero:"Presenta resultados con criterio, calibra la exposición al riesgo y recomienda una decisión defendible ante interlocutores con intereses distintos.",
+    objetivo:"Al terminar esta semana podrás sintetizar resultados, jerarquizar riesgos según impacto y probabilidad, y formular una recomendación defendible, ajustando el grado de certeza, el registro y el nivel de detalle al interlocutor.",
+    situacion:{
+      texto:"Presentas el cierre mensual de una iniciativa ante dirección, finanzas y operaciones. Los indicadores principales mejoraron, pero existe una dependencia crítica que podría comprometer el siguiente hito si se materializa. Dirección quiere una recomendación clara; finanzas quiere entender exposición y coste; operaciones teme que una solución rápida traslade el problema a otra fase.",
+      dificultad:"Necesitas sintetizar sin simplificar de más, distinguir evidencia de hipótesis, calibrar el lenguaje de riesgo y recomendar una decisión cuyos costes y límites puedas defender ante preguntas incómodas."
+    },
+    vocab:[
+      {term:"exposición",meaning:"Grado en que un proyecto u organización puede verse afectado por un riesgo.",example:"La exposición financiera es limitada, pero la exposición operativa aumenta si el hito se mueve.",extra:"Matiz: no equivale a impacto; combina vulnerabilidad y posible consecuencia."},
+      {term:"materializarse",meaning:"Convertirse un riesgo o escenario posible en un hecho real.",example:"Si el riesgo se materializa, perderíamos la ventana de implementación.",extra:"Útil para diferenciar riesgo de incidencia confirmada."},
+      {term:"supuesto",meaning:"Condición o premisa que se considera válida para planificar o decidir.",example:"La previsión depende del supuesto de que el proveedor entregue el viernes.",extra:"Conviene explicitar supuestos cuando una recomendación depende de ellos."},
+      {term:"margen",meaning:"Espacio disponible antes de superar un límite de tiempo, coste o tolerancia.",example:"Todavía tenemos un margen de tres días antes de afectar al cliente.",extra:"Colocaciones: margen de maniobra, margen de seguridad, margen presupuestario."},
+      {term:"contrapartida",meaning:"Coste, desventaja o consecuencia que acompaña a una opción.",example:"La contrapartida de acelerar la entrega sería aumentar el coste operativo.",extra:"Permite evitar recomendaciones presentadas como si no tuvieran coste."},
+      {term:"robustez",meaning:"Capacidad de una decisión o plan para seguir funcionando ante cambios o incertidumbre.",example:"La opción B ofrece mayor robustez si cambia el volumen de demanda.",extra:"Registro analítico; útil al comparar alternativas."}
+    ],
+    phrases:[
+      {group:"Sintetizar con criterio",items:[
+        {text:"El dato relevante no es solo el crecimiento del 14 %, sino que se mantuvo sin aumentar el coste unitario.",info:"Reinterpreta el dato y explicita por qué es relevante para la decisión."},
+        {text:"En conjunto, los indicadores mejoran, aunque el resultado todavía depende de un supuesto operativo que conviene hacer explícito.",info:"Combina síntesis positiva con una reserva analítica."}
+      ]},
+      {group:"Calibrar el riesgo",items:[
+        {text:"No estamos ante una incidencia, sino ante una exposición que aumenta si la dependencia sigue abierta después del viernes.",info:"Distingue con precisión entre hecho actual y escenario de riesgo."},
+        {text:"La probabilidad es moderada, pero el impacto sería alto porque afectaría al único margen disponible antes del lanzamiento.",info:"Jerarquiza riesgo mediante probabilidad e impacto."}
+      ]},
+      {group:"Recomendar con límites",items:[
+        {text:"Mi recomendación es mantener el hito, condicionado a cerrar la dependencia antes del viernes y activar el plan alternativo si no ocurre.",info:"Formula una recomendación condicionada, con umbral de decisión."},
+        {text:"Optaría por la alternativa B: sacrifica algo de velocidad, pero reduce la exposición y ofrece más margen de maniobra.",info:"Expone una contrapartida en lugar de presentar la opción como perfecta."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una versión ejecutiva y observa cómo cambian certeza, riesgo y fuerza de la recomendación.",
+      fields:[
+        {label:"Lectura del resultado",options:["El dato relevante no es solo el crecimiento del 14 %, sino que se mantuvo sin aumentar el coste unitario.","En conjunto, los indicadores mejoran y confirman una tendencia favorable, aunque todavía con una muestra limitada."]},
+        {label:"Calibración del riesgo",options:["No estamos ante una incidencia, sino ante una exposición que aumenta si la dependencia sigue abierta después del viernes.","La probabilidad es moderada, pero el impacto sería alto porque consumiría el margen disponible antes del lanzamiento."]},
+        {label:"Recomendación",options:["Mi recomendación es mantener el hito, condicionado a cerrar la dependencia antes del viernes.","Optaría por la alternativa B porque reduce exposición, aunque implique una pérdida moderada de velocidad."]},
+        {label:"Criterio de seguimiento",options:["Si el supuesto deja de cumplirse, activaría el plan alternativo sin esperar al siguiente comité.","Revisaría la decisión en 48 horas con un umbral explícito de coste y plazo."]}
+      ]
+    },
+    grammar:[
+      {title:"Modalidad y grado de certeza",situation:"Tienes evidencia, pero no una certeza absoluta.",intent:"Calibrar afirmaciones para no sobredimensionar ni minimizar.",formula:"podría / sería / apunta a / sugiere / todo indica que",example:"Los datos sugieren una mejora sostenida, aunque todavía no permiten atribuirla por completo al cambio de proceso.",why:"La selección modal comunica cuánto respaldo tiene una afirmación y protege la credibilidad del análisis."},
+      {title:"Condicionales con umbral",situation:"Tu recomendación depende de que se mantenga una condición.",intent:"Definir cuándo sostener o cambiar una decisión.",formula:"mantener X, siempre que… / si X dejara de…, activaría…",example:"Mantendría el hito siempre que la dependencia se cierre antes del viernes; si no fuera así, activaría el plan alternativo.",why:"El imperfecto de subjuntivo + condicional permite formular escenarios hipotéticos y reglas de decisión con precisión."},
+      {title:"Concesión para reconocer contrapartidas",situation:"La opción recomendada tiene una desventaja real.",intent:"Reconocerla sin debilitar innecesariamente la recomendación.",formula:"aunque + indicativo / aun cuando + subjuntivo / si bien + indicativo",example:"Optaría por la alternativa B, aunque implique un coste inicial mayor, porque reduce la exposición total.",why:"La concesión muestra criterio: reconoce el coste y explica por qué la recomendación sigue siendo preferible."}
+    ],
+    register:{
+      context:"Dirección pregunta: “¿Entonces podemos considerar el riesgo controlado?”. El riesgo no está materializado, pero depende de una entrega externa. ¿Qué respuesta es más precisa?",
+      options:[
+        {text:"Sí, está controlado.",quality:"caution",feedback:"Cierra demasiado pronto la incertidumbre. Si la dependencia sigue abierta, afirmar que está controlado puede sobrestimar el grado de control real."},
+        {text:"Lo consideraría acotado, no cerrado. La exposición sigue siendo moderada mientras la entrega externa llegue antes del viernes; si no, cambia el escenario.",quality:"good",feedback:"Distingue entre riesgo acotado y riesgo cerrado, explicita el supuesto y fija el punto en el que cambia la evaluación."},
+        {text:"No podemos saber nada hasta el viernes.",quality:"caution",feedback:"Es excesivamente defensiva. Sí existe información útil para estimar el riesgo y definir un umbral de decisión."}
+      ]
+    },
+    model:{
+      intro:"Haz clic en cada bloque para identificar la decisión lingüística que sostiene el análisis.",
+      lines:[
+        {text:"El resultado relevante es un crecimiento del 14 % sin aumento del coste unitario, lo que mejora el margen frente al trimestre anterior.",fn:"Resultado interpretado, no mera cifra"},
+        {text:"El punto que limita esta lectura es una dependencia externa todavía abierta: no es una incidencia, pero aumenta nuestra exposición a partir del viernes.",fn:"Reserva + calibración del riesgo"},
+        {text:"La probabilidad es moderada; el impacto, en cambio, sería alto porque consumiría el único margen disponible antes del lanzamiento.",fn:"Jerarquización por probabilidad e impacto"},
+        {text:"Mi recomendación es mantener el hito, siempre que cerremos la dependencia antes del viernes. Si no ocurre, activaría la alternativa B: tiene una contrapartida de coste, pero ofrece mayor robustez operativa.",fn:"Recomendación condicionada + contrapartida + plan alternativo"}
+      ]
+    },
+    quiz:[
+      {q:"¿Qué frase distingue mejor evidencia de interpretación?",options:["El crecimiento del 14 % demuestra que la estrategia funciona.","El crecimiento del 14 % es consistente con una mejora, aunque por sí solo no demuestra causalidad.","Crecimos 14 %, así que ya está resuelto."],best:1,feedback:["Convierte correlación en causalidad sin evidencia suficiente.","Sí. Mantiene una lectura útil sin atribuir una certeza que los datos no sostienen.","Sobregeneraliza un dato puntual y cierra el análisis demasiado pronto."]},
+      {q:"¿Qué formulación calibra mejor un riesgo de probabilidad moderada e impacto alto?",options:["Es un riesgo enorme.","La probabilidad es moderada, pero el impacto sería alto si consume el margen antes del lanzamiento.","No parece importante porque aún no ocurrió."],best:1,feedback:["Intensifica sin explicar criterios de evaluación.","Sí. Separa probabilidad e impacto y explica el mecanismo de la consecuencia.","Confunde ausencia de materialización con falta de relevancia." ]},
+      {q:"¿Qué recomendación explicita mejor una regla de decisión?",options:["Mantendría el hito siempre que la dependencia se cierre antes del viernes; si no, activaría el plan alternativo.","Yo mantendría el hito y ya veremos.","La mejor opción es claramente mantenerlo."],best:0,feedback:["Sí. Define condición, umbral y acción alternativa.","No fija criterio de seguimiento ni umbral de cambio.","Afirma superioridad sin reconocer supuestos ni contrapartidas." ]},
+      {q:"Finanzas cuestiona el coste de tu opción. ¿Qué respuesta protege mejor la recomendación?",options:["El coste no debería ser un problema.","Es cierto que aumenta el coste inicial; la razón para aceptarlo es que reduce una exposición operativa cuyo impacto potencial es mayor. Si el coste supera el umbral acordado, revisaría la decisión.","Porque operaciones lo prefiere."],best:1,feedback:["Minimiza una objeción legítima y no ofrece criterio.","Sí. Reconoce la contrapartida, compara impactos y mantiene una condición de revisión.","Traslada la justificación a una preferencia ajena y no defiende la decisión." ]},
+      {type:"fill",q:"Completa la estructura que introduce una condición para sostener la decisión: Mantendría el hito ___ la dependencia se cierre antes del viernes.",accepted:["siempre que"],good:"Sí. ‘Siempre que’ introduce la condición que debe cumplirse para mantener la recomendación.",bad:"Necesitas una expresión condicional que haga explícito el requisito. La opción trabajada en el módulo es ‘siempre que’."}
+    ],
+    practice:{
+      situation:"Presentas ante dirección el cierre de un piloto. La productividad subió 11 % y los errores bajaron 18 %. Sin embargo, el resultado depende de horas extra que no serían sostenibles a escala. Existe una alternativa de automatización que reduce esa dependencia, pero aumenta el coste inicial 7 % y retrasa la expansión dos semanas.",
+      requirements:["Interpreta los resultados: no te limites a repetir las cifras.","Distingue la limitación actual del riesgo futuro.","Calibra probabilidad, impacto o exposición sin dramatizar.","Elige una recomendación y reconoce al menos una contrapartida.","Define una condición o umbral para mantener o revisar tu decisión.","Escribe 7–10 frases con registro ejecutivo."],
+      supports:["El dato relevante es…","Esta lectura está limitada por…","No estamos ante…, sino ante…","Mi recomendación es…, siempre que…","La contrapartida es…","Si ese supuesto dejara de cumplirse…"],
+      model:"Los resultados del piloto son positivos: la productividad aumentó un 11 % y los errores bajaron un 18 %. Sin embargo, la mejora no es completamente escalable porque depende de horas extra, de modo que el resultado actual sobrestima el rendimiento sostenible. El riesgo no está en el piloto, sino en trasladar ese modelo a una operación mayor sin corregir esa dependencia. Mi recomendación sería invertir en la automatización antes de escalar. La contrapartida es un aumento inicial del 7 % en coste y dos semanas adicionales de implementación, pero reduce la exposición operativa y hace más robusto el resultado. Mantendría esta recomendación siempre que el retorno esperado absorba ese 7 % dentro del horizonte acordado; si esa condición no se cumple, revisaría el alcance de la automatización antes de aprobar la expansión completa."
+    },
+    checklist:["Puedo distinguir datos, interpretación y supuestos dentro de una presentación de resultados.","Puedo calibrar un riesgo según probabilidad, impacto y exposición.","Puedo usar modalidad y condicionales para expresar grados de certeza y reglas de decisión.","Puedo recomendar una opción reconociendo contrapartidas reales.","Puedo defender o revisar mi recomendación ante una objeción sin perder precisión ni registro."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sections = [
+  ["objetivo","1. 🎯 TU OBJETIVO ESTA SEMANA"],
+  ["situacion","2. 🏢 LA SITUACIÓN"],
+  ["vocab","3. 🗣️ VOCABULARIO CLAVE"],
+  ["phrases","4. 💬 FRASES QUE PUEDES USAR"],
+  ["builder","5. 🧩 CONSTRUYE TU MENSAJE"],
+  ["grammar","6. 📚 GRAMÁTICA QUE NECESITAS"],
+  ["register","7. 🎭 ELIGE EL REGISTRO"],
+  ["model","8. 💼 MIRA CÓMO SE HACE"],
+  ["quiz","9. ✍️ COMPRUEBA LO QUE APRENDISTE"],
+  ["practice","10. 🏢 AHORA TE TOCA A TI"],
+  ["answer","11. 💡 VER MODELO"],
+  ["checklist","12. ✅ CHECKLIST FINAL"]
+];
+
+let currentLevel = null;
+let actionsDone = new Set();
+let actionCatalog = new Set();
+let selectedRegister = null;
+let quizSelections = {};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+
+function selectSpanishVoice(){
+  if(!('speechSynthesis' in window)) return null;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = ["es-CO","es-US","es-MX","es-419"];
+  for(const lang of preferred){ const v=voices.find(x=>x.lang && x.lang.toLowerCase()===lang.toLowerCase()); if(v) return v; }
+  return voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('es')) || null;
+}
+function speakSpanish(text, slow=false, actionId=null){
+  if(actionId) markAction(actionId);
+  if(!('speechSynthesis' in window)){
+    alert('La reproducción por voz no está disponible en este navegador. El resto del módulo sigue funcionando normalmente.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'es-CO'; utter.rate = slow ? 0.72 : 0.96; utter.pitch = 1;
+  const voice = selectSpanishVoice(); if(voice) utter.voice = voice;
+  window.speechSynthesis.speak(utter);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = selectSpanishVoice; }
+
+function audioControls(text,id){
+  if(currentLevel!=="a2") return "";
+  const safe=esc(text);
+  return `<span class="audio-row"><button class="audio-btn" data-speak="${safe}" data-rate="normal" data-action="audio-${id}" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button><button class="audio-btn" data-speak="${safe}" data-rate="slow" data-action="audio-${id}" aria-label="Escuchar lentamente: ${safe}">🐢 Lento / Slow</button></span>`;
+}
+
+function setupCatalog(c){
+  actionCatalog = new Set(); actionsDone = new Set(); quizSelections={}; selectedRegister=null;
+  sections.forEach(([id])=>actionCatalog.add(`section-${id}`));
+  c.vocab.forEach((_,i)=>actionCatalog.add(`vocab-${i}`));
+  c.phrases.forEach((g,gi)=>g.items.forEach((_,i)=>actionCatalog.add(`phrase-${gi}-${i}`)));
+  actionCatalog.add('builder-used'); actionCatalog.add('register-done');
+  c.quiz.forEach((_,i)=>actionCatalog.add(`quiz-${i}`));
+  actionCatalog.add('practice-written'); actionCatalog.add('model-opened');
+  c.checklist.forEach((_,i)=>actionCatalog.add(`check-${i}`));
+  if(currentLevel==='a2'){
+    actionCatalog.add('audio-vocab'); actionCatalog.add('audio-phrase'); actionCatalog.add('audio-model');
+  }
+  updateProgress();
+}
+function markAction(id){
+  let mapped=id;
+  if(id.startsWith('audio-vocab')) mapped='audio-vocab';
+  if(id.startsWith('audio-phrase')) mapped='audio-phrase';
+  if(id.startsWith('audio-model')) mapped='audio-model';
+  if(actionCatalog.has(mapped)){actionsDone.add(mapped); updateProgress();}
+}
+function updateProgress(){
+  const total=actionCatalog.size || 1, done=actionsDone.size;
+  const pct=Math.min(100,Math.round(done/total*100));
+  $('#progressBar').style.width=pct+'%'; $('#progressText').textContent=pct+'%';
+}
+
+function sectionWrap(id,title,html,open=false){
+  return `<section class="section ${open?'open':''}" id="sec-${id}"><button class="section-head" aria-expanded="${open}" aria-controls="body-${id}" data-section="${id}"><span class="section-title">${title}</span><span class="chev" aria-hidden="true">⌄</span></button><div class="section-body" id="body-${id}">${html}</div></section>`;
+}
+
+function renderModule(){
+  const c=contenido[currentLevel];
+  $('#routeBadge').textContent='Tu ruta: '+c.label;
+  $('#heroSub').textContent=c.hero;
+  setupCatalog(c);
+  renderNav();
+  const html = [
+    renderObjective(c),renderSituation(c),renderVocab(c),renderPhrases(c),renderBuilder(c),renderGrammar(c),renderRegister(c),renderModel(c),renderQuiz(c),renderPractice(c),renderAnswer(c),renderChecklist(c)
+  ].join('');
+  $('#module').innerHTML=html;
+  bindInteractions();
+  markAction('section-objetivo');
+}
+
+function renderNav(){
+  $('#sideNav').innerHTML='<strong>Contenido</strong>'+sections.map(([id,title])=>`<button data-go="${id}">${title.replace(/^\d+\.\s*/,"")}</button>`).join('');
+}
+
+function renderObjective(c){
+  return sectionWrap('objetivo',sections[0][1],`<p class="lead"><strong>${esc(c.objetivo)}</strong></p><div class="note">Al final del módulo comprobarás si ya puedes hacerlo.</div>`,true);
+}
+function renderSituation(c){
+  return sectionWrap('situacion',sections[1][1],`<p>${esc(c.situacion.texto)}</p><div class="tip"><strong>Dificultad:</strong> ${esc(c.situacion.dificultad)}</div>${c.situacion.en?`<p class="muted"><strong>English support:</strong> ${esc(c.situacion.en)}</p>`:''}`);
+}
+function renderVocab(c){
+  const cards=c.vocab.map((v,i)=>`<article class="flip-card"><button class="reveal" data-vocab="${i}" aria-expanded="false" aria-controls="vocab-details-${i}"><span>${esc(v.term)}</span><span aria-hidden="true">+</span></button><div class="details" id="vocab-details-${i}">${v.en?`<p><span class="term-en">English: ${esc(v.en)}</span></p>`:''}<p>${esc(v.meaning)}</p><p><strong>Ejemplo:</strong> ${esc(v.example)}</p><p class="muted">${esc(v.extra)}</p>${v.stress?`<p>Pronunciación: <span class="stress">${esc(v.stress)}</span></p>`:''}${audioControls(v.term,'vocab-'+i)}${audioControls(v.example,'vocab-example-'+i)}</div></article>`).join('');
+  const recovery=currentLevel==='a2'?`<div class="tip" style="margin-top:14px"><strong>Recupera antes de revelar:</strong> mira la palabra en español, intenta recordar el significado en inglés y después abre la tarjeta. Escucha el ejemplo una vez a velocidad normal y otra vez solo si lo necesitas.</div>`:'';
+  return sectionWrap('vocab',sections[2][1],`<p>Abre las tarjetas y recupera el lenguaje que necesitarás durante la semana.</p><div class="card-grid">${cards}</div>${recovery}`);
+}
+function renderPhrases(c){
+  const groups=c.phrases.map((g,gi)=>`<div class="phrase-group"><h4>${esc(g.group)}</h4>${g.items.map((p,i)=>`<div class="phrase"><div class="phrase-top"><div class="phrase-text">${esc(p.text)}${audioControls(p.text,'phrase-'+gi+'-'+i)}</div><button class="why-btn" data-phrase="${gi}-${i}" aria-expanded="false" aria-controls="phrase-info-${gi}-${i}">Ver cuándo usarla</button></div><div class="phrase-info" id="phrase-info-${gi}-${i}">${esc(p.info)}</div></div>`).join('')}</div>`).join('');
+  return sectionWrap('phrases',sections[3][1],groups);
+}
+function renderBuilder(c){
+  const fields=c.builder.fields.map((f,i)=>`<div><label for="builder-${i}">${esc(f.label)}</label><select id="builder-${i}" data-builder-select="${i}">${f.options.map(o=>`<option>${esc(o)}</option>`).join('')}</select>${currentLevel==='a2'?`<div class="audio-row"><button class="audio-btn" data-builder-audio="${i}" data-rate="normal" aria-label="Escuchar el bloque ${esc(f.label)}">🔊 Escuchar / Listen</button><button class="audio-btn" data-builder-audio="${i}" data-rate="slow" aria-label="Escuchar lentamente el bloque ${esc(f.label)}">🐢 Lento / Slow</button></div>`:''}</div>`).join('');
+  return sectionWrap('builder',sections[4][1],`<p>${esc(c.builder.intro)}</p><div class="builder"><div class="builder-grid">${fields}</div><div class="quiz-actions"><button class="primary" id="buildMessage">Construir mensaje</button>${currentLevel==='a2'?'<button class="secondary" data-listen-built="normal">🔊 Escuchar mensaje / Listen</button><button class="secondary" data-listen-built="slow">🐢 Mensaje lento / Slow</button>':''}</div><div class="result-box" id="builtResult" aria-live="polite">Tu mensaje aparecerá aquí.</div></div>`);
+}
+function renderGrammar(c){
+  return sectionWrap('grammar',sections[5][1],`<p>Solo la gramática que necesitas para tomar decisiones lingüísticas en esta habilidad.</p><div class="grammar-grid">${c.grammar.map((g,i)=>`<article class="grammar-card"><h4>${esc(g.title)}</h4><p><strong>Situación:</strong> ${esc(g.situation)}</p><p><strong>Intención:</strong> ${esc(g.intent)}</p><span class="formula">${esc(g.formula)}</span><p><strong>Ejemplo:</strong> ${esc(g.example)}</p>${audioControls(g.example,'grammar-'+i)}<details><summary>¿Por qué se usa así?</summary><p>${esc(g.why)}</p></details></article>`).join('')}</div>`);
+}
+function renderRegister(c){
+  const opts=c.register.options.map((o,i)=>`<label class="choice"><input type="radio" name="register" value="${i}"><span class="choice-content"><span>${esc(o.text)}</span>${audioControls(o.text,'register-'+i)}</span></label>`).join('');
+  return sectionWrap('register',sections[6][1],`<p><strong>${esc(c.register.context)}</strong></p><div class="choices">${opts}</div><div id="registerFeedback" class="feedback" aria-live="polite"></div>`);
+}
+function renderModel(c){
+  return sectionWrap('model',sections[7][1],`<p>${esc(c.model.intro)}</p><div class="model-box">${c.model.lines.map((l,i)=>`<div class="model-line"><button class="model-toggle" data-model-line="${i}" aria-expanded="false" aria-controls="model-fn-${i}"><span>${esc(l.text)}</span><span class="function-tag" id="model-fn-${i}">Función: ${esc(l.fn)}</span></button>${audioControls(l.text,'model-'+i)}</div>`).join('')}${currentLevel==='a2'?audioControls(c.model.lines.map(x=>x.text).join(' '),'model-full'):''}</div>`);
+}
+function renderQuiz(c){
+  const items=c.quiz.map((q,qi)=>{
+    if(q.type==='fill'){
+      return `<article class="quiz-item"><h4>${qi+1}. ${esc(q.q)}</h4><div class="fill-row"><label for="quiz-fill-${qi}">Escribe la expresión que falta</label><input id="quiz-fill-${qi}" type="text" data-quiz-fill="${qi}" autocomplete="off"><button class="primary" data-quiz-check="${qi}">Comprobar</button></div><div class="feedback" id="quiz-feedback-${qi}" aria-live="polite"></div></article>`;
+    }
+    return `<article class="quiz-item"><h4>${qi+1}. ${esc(q.q)}</h4><div class="quiz-actions">${q.options.map((o,oi)=>`<button class="option-btn" data-quiz="${qi}" data-option="${oi}">${esc(o)}</button>`).join('')}</div>${currentLevel==='a2'&&q.audio?audioControls(q.options.join('. '),'quiz-'+qi):''}<div class="feedback" id="quiz-feedback-${qi}" aria-live="polite"></div></article>`;
+  }).join('');
+  return sectionWrap('quiz',sections[8][1],`<p>Resuelve actividades breves de selección y recuperación. Después lee el feedback y vuelve a intentarlo si quieres comparar.</p>${items}`);
+}
+function renderPractice(c){
+  return sectionWrap('practice',sections[9][1],`<p><strong>Situación:</strong> ${esc(c.practice.situation)}</p><p><strong>Tu objetivo:</strong></p><ul class="requirements">${c.practice.requirements.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="tip"><strong>Recursos que puedes reutilizar:</strong><ul>${c.practice.supports.map((s,i)=>`<li>${esc(s)}${audioControls(s,'support-'+i)}</li>`).join('')}</ul></div><label for="practiceText" style="display:block;margin-top:14px">Tu respuesta</label><textarea id="practiceText" placeholder="Escribe aquí tu actualización profesional..."></textarea><div class="counter" id="charCounter">0 caracteres</div>`);
+}
+function renderAnswer(c){
+  return sectionWrap('answer',sections[10][1],`<p>Primero escribe tu propia versión. Después úsala para comparar decisiones lingüísticas.</p><button class="secondary" id="showModel">Ver una posible respuesta</button><div class="model-answer" id="modelAnswer"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(c.practice.model)}</p>${audioControls(c.practice.model,'model-answer')}</div>`);
+}
+function renderChecklist(c){
+  return sectionWrap('checklist',sections[11][1],`<p>Antes de terminar, comprueba:</p><div class="checklist">${c.checklist.map((x,i)=>`<label class="check"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join('')}</div><div class="check-progress"><div id="checkBar"></div></div><p id="checkText" class="muted">0 de ${c.checklist.length} capacidades marcadas.</p><div class="ready-box" id="readyBox"><h3 style="margin-top:0;color:#fff">🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. --><a class="challenge-link" href="#">🔥 Ir al reto de hoy</a></div>`);
+}
+
+function bindInteractions(){
+  $$('.section-head').forEach(btn=>btn.addEventListener('click',()=>{
+    const sec=btn.closest('.section'); sec.classList.toggle('open');
+    const open=sec.classList.contains('open'); btn.setAttribute('aria-expanded',open);
+    if(open){markAction('section-'+btn.dataset.section); setActiveNav(btn.dataset.section);}
+  }));
+  $$('#sideNav [data-go]').forEach(btn=>btn.addEventListener('click',()=>{
+    const id=btn.dataset.go, sec=$('#sec-'+id); if(!sec.classList.contains('open')) sec.querySelector('.section-head').click();
+    sec.scrollIntoView({behavior:'smooth',block:'start'}); setActiveNav(id);
+  }));
+  $$('.reveal[data-vocab]').forEach(btn=>btn.addEventListener('click',()=>{
+    const card=btn.closest('.flip-card'); card.classList.toggle('open'); btn.setAttribute('aria-expanded',card.classList.contains('open')); markAction('vocab-'+btn.dataset.vocab);
+  }));
+  $$('.why-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    const ph=btn.closest('.phrase'); ph.classList.toggle('open'); btn.setAttribute('aria-expanded',ph.classList.contains('open')); markAction('phrase-'+btn.dataset.phrase);
+  }));
+  $$('.audio-btn[data-speak]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();speakSpanish(btn.dataset.speak,btn.dataset.rate==='slow',btn.dataset.action);}));
+  $$('[data-builder-audio]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();const select=$(`#builder-${btn.dataset.builderAudio}`);if(select) speakSpanish(select.value,btn.dataset.rate==='slow','builder-used');}));
+  $$('.model-toggle').forEach(btn=>btn.addEventListener('click',()=>{btn.classList.toggle('active');btn.setAttribute('aria-expanded',btn.classList.contains('active'));markAction('section-model');}));
+
+  $('#buildMessage').addEventListener('click',()=>{buildMessage();markAction('builder-used');});
+  $$('[data-listen-built]').forEach(btn=>btn.addEventListener('click',()=>{const t=$('#builtResult').textContent;if(t&&!t.includes('aparecerá')) speakSpanish(t,btn.dataset.listenBuilt==='slow','builder-used');}));
+
+  $$('input[name=register]').forEach(r=>r.addEventListener('change',()=>{
+    selectedRegister=Number(r.value); const o=contenido[currentLevel].register.options[selectedRegister]; const fb=$('#registerFeedback');
+    fb.textContent=o.feedback; fb.className='feedback show '+o.quality; markAction('register-done');
+  }));
+
+  $$('.option-btn[data-quiz]').forEach(btn=>btn.addEventListener('click',()=>{
+    const qi=Number(btn.dataset.quiz), oi=Number(btn.dataset.option), q=contenido[currentLevel].quiz[qi]; quizSelections[qi]=oi;
+    $$(`.option-btn[data-quiz="${qi}"]`).forEach(x=>x.classList.remove('selected')); btn.classList.add('selected');
+    const fb=$('#quiz-feedback-'+qi); fb.textContent=q.feedback[oi]; fb.className='feedback show '+(oi===q.best?'good':'caution'); markAction('quiz-'+qi);
+  }));
+  $$('[data-quiz-check]').forEach(btn=>btn.addEventListener('click',()=>{
+    const qi=Number(btn.dataset.quizCheck), q=contenido[currentLevel].quiz[qi], input=$(`#quiz-fill-${qi}`), fb=$('#quiz-feedback-'+qi);
+    const normalize=t=>String(t).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?]+$/,'');
+    const answer=normalize(input.value), ok=(q.accepted||[]).some(x=>normalize(x)===answer);
+    fb.textContent=ok?q.good:q.bad; fb.className='feedback show '+(ok?'good':'caution');
+    if(input.value.trim()) markAction('quiz-'+qi);
+  }));
+
+  $('#practiceText').addEventListener('input',e=>{
+    $('#charCounter').textContent=e.target.value.length+' caracteres'; if(e.target.value.trim().length>=25) markAction('practice-written');
+  });
+  $('#showModel').addEventListener('click',()=>{const el=$('#modelAnswer');el.classList.toggle('show');markAction('model-opened');});
+  $$('[data-check]').forEach(ch=>ch.addEventListener('change',()=>updateChecklist()));
+}
+
+function buildMessage(){
+  const parts=$$('[data-builder-select]').map(s=>s.value.trim());
+  $('#builtResult').textContent=parts.join(' ');
+}
+function updateChecklist(){
+  const boxes=$$('[data-check]'); let checked=0;
+  boxes.forEach((b,i)=>{if(b.checked){checked++;markAction('check-'+i);}else{actionsDone.delete('check-'+i);}});
+  const pct=Math.round(checked/boxes.length*100); $('#checkBar').style.width=pct+'%'; $('#checkText').textContent=`${checked} de ${boxes.length} capacidades marcadas.`;
+  $('#readyBox').classList.toggle('show',checked===boxes.length); updateProgress();
+}
+function setActiveNav(id){ $$('#sideNav button').forEach(b=>b.classList.toggle('active',b.dataset.go===id)); }
+
+function startLevel(level){
+  currentLevel=level; window.speechSynthesis?.cancel();
+  $('#levelGate').classList.add('hidden'); $('#app').classList.remove('hidden'); renderModule(); window.scrollTo(0,0);
+}
+function resetLevel(){
+  window.speechSynthesis?.cancel(); currentLevel=null; $('#app').classList.add('hidden'); $('#levelGate').classList.remove('hidden'); window.scrollTo(0,0);
+}
+$$('[data-level]').forEach(b=>b.addEventListener('click',()=>startLevel(b.dataset.level)));
+$('#changeLevel').addEventListener('click',resetLevel);
+</script>
+</body>
+</html>

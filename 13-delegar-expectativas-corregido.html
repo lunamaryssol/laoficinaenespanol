@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Delegar y establecer expectativas claras | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;
+  --ink:#17233a;--muted:#5f6b7a;--soft:#f4f7fb;--line:#dbe3ef;--green:#147a55;
+  --radius:18px;--shadow:0 14px 36px rgba(0,56,147,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f7f9fc 0,#fff 38%);line-height:1.55}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.shell{width:min(1120px,calc(100% - 28px));margin:0 auto}
+.brandbar{height:8px;background:linear-gradient(90deg,var(--yellow) 0 33%,var(--blue) 33% 86%,var(--red) 86%)}
+.level-screen{min-height:calc(100vh - 8px);display:grid;place-items:center;padding:34px 0 54px}
+.level-card{width:min(980px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,4vw,46px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem}
+.logo-title{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(1.2rem,2.4vw,1.8rem);color:var(--blue);margin:6px 0 18px}
+h1,h2,h3{line-height:1.15;margin-top:0}
+.level-card h1{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(2rem,5vw,3.4rem);margin:10px 0 12px;color:#0b285b}
+.lead{font-size:1.05rem;color:var(--muted);max-width:760px;margin:0 0 28px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.level-btn{text-align:left;background:#fff;border:2px solid var(--line);border-radius:20px;padding:22px;min-height:215px;transition:.2s transform,.2s border-color,.2s box-shadow}
+.level-btn:hover,.level-btn:focus-visible{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 10px 28px rgba(0,56,147,.12);outline:3px solid rgba(252,209,22,.5);outline-offset:2px}
+.level-btn strong{display:block;color:var(--blue);font-size:1.18rem;margin-bottom:10px}.level-btn span{color:var(--muted);font-size:.95rem}
+.app{padding-bottom:70px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:70px}
+.route{font-weight:800;color:var(--blue)}
+.ghost-btn,.small-btn,.audio-btn,.nav-btn,.primary-btn,.choice-btn,.pill-btn{border:0;border-radius:12px;font-weight:800}
+.ghost-btn{background:#eef3fb;color:var(--blue);padding:10px 14px}
+.progress-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.progress-row{display:flex;align-items:center;gap:12px;padding:12px 0}.progress-track{height:10px;flex:1;background:#e8edf5;border-radius:999px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#1f65d6);transition:width .3s ease}.progress-text{font-weight:800;color:var(--blue);min-width:52px;text-align:right}
+.hero{padding:42px 0 24px}.hero-card{background:linear-gradient(135deg,#042f79,#003893 70%);color:#fff;border-radius:26px;padding:clamp(26px,4vw,46px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(252,209,22,.15);right:-70px;top:-70px}.hero-card .eyebrow{color:var(--yellow)}.hero-card h1{font-family:"Arial Black",Arial,sans-serif;font-size:clamp(2rem,4.4vw,3.35rem);max-width:850px;margin:10px 0 12px}.hero-card p{max-width:780px;color:#e9effb;margin:0}.tagline{display:inline-flex;margin-top:20px;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:700}
+.section-nav{display:flex;gap:8px;overflow-x:auto;padding:8px 0 18px;scrollbar-width:thin}.pill-btn{white-space:nowrap;padding:9px 12px;background:#eef3fb;color:#36506f}.pill-btn:hover,.pill-btn:focus-visible{background:var(--blue);color:#fff;outline:2px solid var(--yellow);outline-offset:2px}
+.section{scroll-margin-top:130px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,3vw,30px);margin:0 0 18px;box-shadow:0 8px 24px rgba(20,45,84,.055)}
+.section h2{font-family:"Arial Black",Arial,sans-serif;color:#0b285b;font-size:clamp(1.35rem,2.6vw,2rem);margin-bottom:10px}.section-intro{color:var(--muted);margin-top:0}.callout{border-left:5px solid var(--yellow);background:#fffbea;padding:14px 16px;border-radius:10px;margin:14px 0}.situation-grid,.grammar-grid,.example-grid,.exercise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.info-card,.grammar-card,.example-card,.exercise-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcfe}.label{font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--blue);margin-bottom:5px}.value{font-weight:650}
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flip{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}.flip button.term{width:100%;border:0;background:#f8faff;text-align:left;padding:16px;font-weight:900;color:#123b7c;min-height:62px}.flip button.term:hover,.flip button.term:focus-visible{background:#edf4ff;outline:2px solid var(--yellow);outline-offset:-2px}.flip-body{padding:0 16px 16px}.muted{color:var(--muted)}.extra{font-size:.92rem;color:#415269}.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.audio-btn{padding:8px 10px;background:#eef3fb;color:#123b7c}.audio-btn:hover,.audio-btn:focus-visible{background:#dce9fb;outline:2px solid var(--yellow);outline-offset:2px}.audio-status{font-size:.88rem;color:var(--muted);margin-top:8px}
+.recall{margin-top:18px;border-top:1px dashed var(--line);padding-top:16px}.choices{display:grid;gap:9px;margin-top:10px}.choice-btn{text-align:left;padding:12px 14px;background:#f4f7fb;color:var(--ink);border:1px solid var(--line)}.choice-btn:hover,.choice-btn:focus-visible{border-color:var(--blue);outline:2px solid rgba(252,209,22,.6)}.feedback{margin-top:10px;border-radius:10px;padding:11px 13px;background:#eef3fb}.feedback.good{border-left:4px solid var(--green)}.feedback.note{border-left:4px solid var(--blue)}
+.function-group{margin-top:18px}.function-title{font-weight:900;color:var(--blue);margin-bottom:8px}.phrase-card{border:1px solid var(--line);border-radius:13px;padding:14px;margin:9px 0;background:#fff}.phrase-text{font-size:1.02rem;font-weight:750}.small-btn{padding:8px 11px;background:#f1f4f9;color:#304766;margin-top:8px}.small-btn:hover,.small-btn:focus-visible{background:#e3ebf8;outline:2px solid var(--yellow)}
+.builder-panel{border:1px solid #cfd9e9;background:#f7f9fd;border-radius:16px;padding:18px}.builder-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field label{display:block;font-weight:850;color:#173e79;margin-bottom:6px}.field select,.field input,.practice textarea{width:100%;border:1px solid #bac7d9;border-radius:10px;padding:11px 12px;background:#fff;color:var(--ink)}.builder-output{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--yellow);border-radius:12px;padding:15px;font-size:1.05rem;font-weight:750}.builder-output.empty{color:var(--muted);font-weight:600}
+.grammar-card button{width:100%;text-align:left;border:0;background:none;padding:0;font-weight:900;color:var(--blue)}.grammar-detail{margin-top:12px}.formula{display:inline-block;background:#eef3fb;color:#123b7c;border-radius:9px;padding:7px 10px;font-weight:850;margin:5px 0}
+.register-box{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fbfcff}.register-context{font-weight:800;margin-bottom:10px}.register-option{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:12px;margin:8px 0}.register-option:hover,.register-option:focus-visible{border-color:var(--blue);outline:2px solid var(--yellow);outline-offset:1px}
+.example-card{background:#f8faff}.example-text{font-size:1.04rem}.segment{display:inline;border:0;border-bottom:2px dotted var(--blue);background:transparent;color:#123b7c;font-weight:750;padding:0 2px;cursor:pointer}.segment:hover,.segment:focus-visible{background:#fff4b5;outline:none}.segment-note{margin-top:12px;background:#fff;padding:11px;border-radius:10px;border:1px solid var(--line)}
+.exercise-card h3{margin-bottom:8px}.exercise-card input[type="text"]{width:100%;border:1px solid #bac7d9;border-radius:10px;padding:10px}.retry-btn{margin-top:8px;border:0;background:#eef3fb;color:var(--blue);font-weight:800;padding:8px 10px;border-radius:9px}
+.practice{background:linear-gradient(180deg,#fbfcff,#fff)}.requirements{padding-left:20px}.support-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.support-chip{background:#eef3fb;border:1px solid #d3deef;color:#123b7c;border-radius:999px;padding:8px 10px;font-weight:750}.practice textarea{min-height:170px;resize:vertical}.practice-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.9rem;margin-top:6px}
+.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:#fff;padding:12px 16px;text-decoration:none}.primary-btn:hover,.primary-btn:focus-visible{background:#002d75;outline:3px solid var(--yellow);outline-offset:2px}.model-box{margin-top:14px;background:#f7f9fd;border:1px solid var(--line);border-left:5px solid var(--yellow);border-radius:12px;padding:16px}
+.checklist{display:grid;gap:10px}.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}.check-progress{margin:14px 0 0;font-weight:850;color:var(--blue)}
+.ready{background:linear-gradient(135deg,#fdf9df,#fff);border:2px solid #f4da4e;border-radius:18px;padding:22px;margin-top:18px}.ready h3{font-size:1.5rem;color:#173e79;margin-bottom:8px}.footer{padding:34px 0 20px;color:#667388;text-align:center;font-size:.9rem}.footer a{color:var(--blue);font-weight:800}
+@media(max-width:850px){.level-grid,.vocab-grid{grid-template-columns:1fr}.situation-grid,.grammar-grid,.example-grid,.exercise-grid,.builder-fields{grid-template-columns:1fr}.level-btn{min-height:auto}.topbar-inner{align-items:flex-start;padding:10px 0;flex-direction:column}.progress-row{padding-top:10px}.hero{padding-top:26px}.section{padding:20px}.route{font-size:.94rem}}
+@media(max-width:520px){.shell{width:min(100% - 18px,1120px)}.level-card{border-radius:20px;padding:20px}.hero-card{border-radius:18px}.level-card h1{font-size:2rem}.section h2{font-size:1.42rem}.audio-btn,.small-btn,.ghost-btn{min-height:42px}.practice-meta{flex-direction:column}.section-nav{padding-bottom:12px}}
+</style>
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"></div>
+
+<main id="levelScreen" class="level-screen">
+  <div class="shell">
+    <section class="level-card" aria-labelledby="levelTitle">
+      <div class="eyebrow">La Oficina en Español · Business Spanish</div>
+      <div class="logo-title">Aprende y practica el español que necesitas para trabajar.</div>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p class="lead">Selecciona una ruta para adaptar el apoyo, la dificultad y la práctica de esta semana.</p>
+      <div class="level-grid">
+        <button class="level-btn" data-level="a2"><strong>🌱 A2 — Principiante</strong><span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+        <button class="level-btn" data-level="b1"><strong>💼 B1 — Intermedio</strong><span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+        <button class="level-btn" data-level="b2"><strong>🚀 B2 — Avanzado</strong><span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="app" class="app hidden">
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div id="routeLabel" class="route">Tu ruta:</div>
+      <button id="changeLevel" class="ghost-btn" type="button">Cambiar nivel</button>
+    </div>
+    <div class="progress-wrap">
+      <div class="shell progress-row">
+        <div id="progressTrack" class="progress-track" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressFill" class="progress-fill"></div></div>
+        <div id="progressText" class="progress-text">0%</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Habilidad profesional de la semana</div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+        <div class="tagline">Pilar 4 · Liderazgo, gestión y comunicación organizacional</div>
+      </div>
+    </section>
+    <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    <div id="module"></div>
+    <footer class="footer">La Oficina en Español · <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">laoficinaenespanol.com</a></footer>
+  </div>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const habilidad = "Delegar y establecer expectativas claras";
+const subtitulo = "Asigna una tarea de forma que la otra persona entienda qué debe hacer, qué resultado esperas, cuándo lo necesitas y cuándo debe avisarte si aparece un problema.";
+
+const contenido = {
+  a2: {
+    meta:{label:"🌱 A2 — Principiante"},
+    objetivo:"Al terminar esta semana podrás delegar una tarea sencilla, indicar el resultado que necesitas, dar un plazo y pedir que la persona te avise si tiene un problema.",
+    situacion:{
+      quien:"Tú eres responsable de una pequeña tarea de equipo.",
+      conQuien:"Hablas con un compañero o una persona de tu equipo.",
+      contexto:"Necesitas pedirle que prepare y envíe un informe antes de una reunión.",
+      conseguir:"Que la tarea, el plazo y el siguiente paso queden claros.",
+      dificultad:"No quieres sonar brusco, pero tampoco quieres dejar una instrucción ambigua."
+    },
+    vocab:[
+      {term:"tarea",meaning:"task",explain:"Trabajo concreto que una persona debe hacer.",example:"Esta tarea es preparar el informe.",extra:"Pronunciación: TA-rea."},
+      {term:"plazo",meaning:"deadline / time limit",explain:"Fecha o tiempo máximo para terminar algo.",example:"El plazo es el jueves a las tres.",extra:"Pronunciación: PLA-zo."},
+      {term:"prioridad",meaning:"priority",explain:"Lo que necesita atención antes que otras tareas.",example:"Esta tarea tiene prioridad hoy.",extra:"Pronunciación: prio-ri-DAD."},
+      {term:"resultado",meaning:"result / output",explain:"Lo que esperas recibir al final.",example:"Necesito el resultado en una hoja de cálculo.",extra:"Pronunciación: resul-TA-do."},
+      {term:"revisar",meaning:"to review / check",explain:"Mirar algo para comprobar que está correcto.",example:"Por favor, revisa los datos antes de enviarlos.",extra:"Pronunciación: revi-SAR."},
+      {term:"avisar",meaning:"to let someone know",explain:"Informar a otra persona cuando ocurre algo.",example:"Si tienes un problema, avísame hoy.",extra:"Pronunciación: avi-SAR."}
+    ],
+    recall:{prompt:"¿Qué palabra significa “deadline / time limit”?",options:["resultado","plazo","tarea"],correct:1,good:"«Plazo» indica el tiempo o la fecha límite para completar una tarea.",other:"Busca la palabra que indica hasta cuándo puede hacerse algo."},
+    frases:[
+      {group:"Asignar la tarea",items:[
+        {text:"Por favor, prepara el informe de ventas.",use:"Una instrucción clara y sencilla para indicar la acción."},
+        {text:"Necesito que prepares el informe de ventas.",use:"Expresa una necesidad de trabajo de forma profesional. Esta estructura usa presente de subjuntivo: «prepares»."}
+      ]},
+      {group:"Aclarar el resultado",items:[
+        {text:"Incluye las ventas de esta semana y los tres clientes principales.",use:"Dice qué información debe aparecer en el resultado."},
+        {text:"Revisa los datos antes de enviarlos.",use:"Añade un criterio de calidad sencillo."}
+      ]},
+      {group:"Dar el plazo",items:[
+        {text:"Necesito el informe para el jueves a las tres.",use:"«Para + momento» indica cuándo necesitas tener el resultado."},
+        {text:"Envíamelo antes de la reunión del jueves.",use:"«Antes de» fija un límite relacionado con otro evento."}
+      ]},
+      {group:"Pedir aviso",items:[
+        {text:"Si tienes un problema, avísame hoy.",use:"Aclara cuándo debe informarte si aparece un bloqueo."},
+        {text:"Si necesitas ayuda, dímelo antes del miércoles.",use:"Da una vía clara para pedir apoyo sin esperar hasta el final."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una delegación breve. Selecciona una opción en cada parte.",
+      fields:[
+        {label:"Acción",options:["Por favor, prepara el informe de ventas","Por favor, actualiza la presentación del proyecto","Por favor, revisa la lista de clientes"]},
+        {label:"Resultado",options:["Incluye los datos de esta semana","Incluye los cambios más importantes","Confirma que los datos estén completos"]},
+        {label:"Plazo",options:["Necesito el resultado para el jueves a las tres","Necesito el resultado antes de la reunión de mañana","Necesito el resultado hoy antes de las cinco"]},
+        {label:"Si hay un problema",options:["Si tienes un problema, avísame hoy","Si necesitas ayuda, dímelo antes del mediodía","Si algo no está claro, pregúntame antes de empezar"]}
+      ],
+      join:". "
+    },
+    grammar:[
+      {title:"Cuando necesitas pedir una acción",situation:"Delegas una tarea.",intention:"Pedir una acción de forma profesional.",formula:"Necesito que + presente de subjuntivo",example:"Necesito que prepares el informe para el jueves.",why:"Después de «necesito que», la acción la realiza otra persona. Por eso usamos «prepares», no «preparar»."},
+      {title:"Cuando quieres marcar el plazo",situation:"Necesitas el resultado en un momento concreto.",intention:"Indicar hasta cuándo debe estar listo.",formula:"para + día/hora · antes de + evento",example:"Necesito el informe para el jueves a las tres.",why:"«Para» señala el momento en que necesitas tener el resultado. «Antes de» indica que debe estar listo previamente."},
+      {title:"Cuando quieres prevenir un bloqueo",situation:"La persona puede encontrar un problema.",intention:"Pedir que te informe a tiempo.",formula:"Si + presente, imperativo",example:"Si tienes un problema, avísame hoy.",why:"Esta estructura conecta una condición posible con una acción clara."}
+    ],
+    registro:{context:"Hablas con un compañero con quien trabajas todos los días. Necesitas el informe mañana y quieres mantener un tono profesional y directo.",options:[
+      {text:"Haz el informe ya.",feedback:"La instrucción es clara, pero puede sonar brusca porque no aporta contexto ni cortesía."},
+      {text:"Por favor, prepara el informe para mañana a las diez y avísame hoy si necesitas algún dato.",feedback:"Esta formulación funciona bien: indica acción, plazo y qué hacer si aparece una dificultad.",best:true},
+      {text:"Si puedes, tal vez podrías mirar el informe algún día.",feedback:"Suena demasiado imprecisa para una tarea con un plazo real. No queda claro qué se espera ni cuándo."}
+    ]},
+    examples:[
+      {text:"Por favor, prepara el informe de ventas. Incluye los datos de esta semana y revisa los totales. Necesito el informe para el jueves a las tres. Si tienes un problema con los datos, avísame hoy.",segments:[
+        {part:"Por favor, prepara el informe de ventas.",note:"Acción: deja clara la tarea."},
+        {part:"Incluye los datos de esta semana y revisa los totales.",note:"Resultado: explica qué debe contener y qué debe comprobar."},
+        {part:"Necesito el informe para el jueves a las tres.",note:"Plazo: indica cuándo necesitas el resultado."},
+        {part:"Si tienes un problema con los datos, avísame hoy.",note:"Escalación: dice qué hacer si aparece un bloqueo."}
+      ]}
+    ],
+    ejercicios:[
+      {type:"mc",title:"1. Aclara el plazo",prompt:"¿Qué frase deja más claro cuándo necesitas el resultado?",options:["Hazlo pronto.","Necesito el informe para el jueves a las tres.","Cuando puedas, me lo mandas."],correct:[1],good:"El plazo es concreto: jueves a las tres.",other:"Busca una frase con un momento específico."},
+      {type:"mc",title:"2. Añade una expectativa",prompt:"Necesitas que la persona compruebe los números antes de enviar. ¿Qué añades?",options:["Revisa los datos antes de enviarlos.","Los datos existen.","Mándamelo."],correct:[0],good:"La frase añade un criterio de calidad antes de completar la tarea.",other:"Busca una instrucción que indique qué comprobar antes de enviar."},
+      {type:"mc",title:"3. Previene un bloqueo",prompt:"¿Qué frase indica qué debe hacer la persona si aparece un problema?",options:["Es una prioridad.","Si tienes un problema, avísame hoy.","La reunión es el jueves."],correct:[1],good:"La condición y la acción quedan claras.",other:"Busca una estructura con «si» que indique cómo reaccionar ante una dificultad."}
+    ],
+    practica:{
+      situation:"Delegas a un compañero la preparación de una presentación para una reunión con un cliente.",interlocutor:"Un compañero de tu equipo.",goal:"Pedir la tarea de forma clara y profesional.",requirements:["Di qué debe preparar.","Indica qué debe incluir o revisar.","Da un plazo concreto.","Di qué debe hacer si necesita ayuda."],
+      supports:["Por favor, prepara…","Incluye…","Revisa… antes de…","Necesito… para…","Si necesitas ayuda, avísame…"],
+      placeholder:"Escribe 3–5 frases. Ejemplo de inicio: Por favor, prepara…",
+      model:"Por favor, prepara la presentación para el cliente. Incluye los resultados de este mes y revisa las cifras antes de enviarla. Necesito la presentación para el miércoles a las cuatro. Si necesitas algún dato, avísame mañana por la mañana."
+    },
+    checklist:["Puedo decir claramente qué tarea debe hacer la otra persona.","Puedo indicar qué resultado necesito.","Puedo dar un plazo concreto.","Puedo pedir que me avisen si aparece un problema.","Puedo construir una delegación breve con estas cuatro partes."]
+  },
+
+  b1: {
+    meta:{label:"💼 B1 — Intermedio"},
+    objetivo:"Al terminar esta semana podrás delegar una tarea, definir un resultado esperado y un plazo, explicar prioridades y acordar cómo hacer seguimiento sin convertir la delegación en una lista ambigua de instrucciones.",
+    situacion:{
+      quien:"Coordinas una parte de un proyecto.",
+      conQuien:"Hablas con una persona del equipo que tiene autonomía para ejecutar la tarea.",
+      contexto:"Debes delegar la preparación de una propuesta para un cliente antes de una reunión interna.",
+      conseguir:"Alinear tarea, entregable, prioridad, plazo y punto de seguimiento.",
+      dificultad:"Necesitas ser claro sin controlar cada paso y debes dejar espacio para preguntas o ajustes." 
+    },
+    vocab:[
+      {term:"entregable",meaning:"Resultado concreto que debe producirse al finalizar una tarea.",example:"El entregable será una propuesta de cinco diapositivas.",extra:"Colocaciones: definir el entregable · revisar el entregable · entregar una versión preliminar."},
+      {term:"criterio",meaning:"Condición que permite valorar si un resultado cumple lo esperado.",example:"El criterio principal es que la propuesta incluya costos y plazos.",extra:"Útil para evitar instrucciones vagas como «hazlo bien»."},
+      {term:"prioridad",meaning:"Grado de importancia o urgencia relativo frente a otras tareas.",example:"Esta propuesta tiene prioridad sobre la actualización del archivo interno.",extra:"Puede expresarse como prioridad alta, secundaria o no urgente."},
+      {term:"margen de decisión",meaning:"Espacio de autonomía que tiene una persona para decidir cómo ejecutar una tarea.",example:"Tienes margen para reorganizar las diapositivas si mejora la claridad.",extra:"Delegar mejor implica aclarar qué puede decidir la otra persona sin pedir permiso."},
+      {term:"punto de seguimiento",meaning:"Momento acordado para revisar el avance antes de la entrega final.",example:"Hagamos un punto de seguimiento el miércoles por la mañana.",extra:"También: revisión intermedia, punto de control o seguimiento breve."},
+      {term:"escalar",meaning:"Elevar un problema a otra persona o nivel cuando no puede resolverse dentro del margen acordado.",example:"Si el cliente cambia el alcance, escálamelo antes de modificar la propuesta.",extra:"Frecuente en gestión de proyectos y equipos."}
+    ],
+    recall:{prompt:"¿Qué término nombra el espacio de autonomía que alguien tiene para decidir cómo ejecutar una tarea?",options:["plazo","margen de decisión","entregable"],correct:1,good:"«Margen de decisión» define qué puede resolver la persona sin pedir autorización en cada paso.",other:"Busca el término relacionado con autonomía, no con fecha ni resultado."},
+    frases:[
+      {group:"Asignar y contextualizar",items:[
+        {text:"Quiero que te encargues de preparar la primera versión de la propuesta.",use:"Asigna responsabilidad sin sonar como una orden aislada."},
+        {text:"Necesitamos tener una propuesta lista para revisar con el equipo antes de enviarla al cliente.",use:"Explica para qué sirve la tarea y conecta el trabajo con un resultado posterior."}
+      ]},
+      {group:"Definir el resultado",items:[
+        {text:"La versión debería incluir alcance, costos estimados y próximos pasos.",use:"Define el contenido mínimo esperado."},
+        {text:"Lo importante es que podamos entender la recomendación principal en menos de cinco minutos.",use:"Introduce un criterio de calidad, no solo una lista de contenidos."}
+      ]},
+      {group:"Aclarar prioridad y autonomía",items:[
+        {text:"Esta tarea tiene prioridad sobre la actualización del archivo interno.",use:"Ayuda a resolver conflictos entre tareas."},
+        {text:"Puedes ajustar la estructura como consideres, pero no cambies las cifras sin confirmarlas conmigo.",use:"Diferencia lo que puede decidir de lo que necesita validación."}
+      ]},
+      {group:"Seguimiento y escalación",items:[
+        {text:"Envíame un borrador el miércoles y lo revisamos antes de la versión final.",use:"Crea un punto de seguimiento concreto."},
+        {text:"Si ves que el plazo está en riesgo, dímelo cuanto antes para reajustar prioridades.",use:"Pide aviso temprano y orientado a resolver, no a buscar culpables."}
+      ]}
+    ],
+    builder:{
+      intro:"Combina los elementos mínimos de una delegación clara y después adapta el resultado con tus propias palabras.",
+      fields:[
+        {label:"Responsabilidad",options:["Quiero que te encargues de preparar la primera versión de la propuesta","Necesito que coordines la actualización del informe mensual","Quiero que lideres la preparación de la reunión con el proveedor"]},
+        {label:"Criterio",options:["Incluye alcance, costos y próximos pasos","Asegúrate de que los datos estén validados y las conclusiones sean claras","Necesitamos que el equipo pueda identificar decisiones y responsables"]},
+        {label:"Autonomía",options:["Puedes decidir la estructura, pero valida conmigo cualquier cambio de cifras","Tienes margen para reorganizar el trabajo, siempre que mantengamos el plazo acordado","Puedes resolver ajustes menores; cualquier cambio de alcance, consúltamelo"]},
+        {label:"Seguimiento",options:["Envíame un borrador el miércoles y lo revisamos ese mismo día","Hagamos una revisión intermedia mañana por la tarde","Si el plazo está en riesgo, avísame cuanto antes para reajustar prioridades"]}
+      ],
+      join:". "
+    },
+    grammar:[
+      {title:"Delegar responsabilidad con «querer/necesitar que»",situation:"Asignas una acción a otra persona.",intention:"Expresar con claridad quién debe hacer qué.",formula:"quiero/necesito que + presente de subjuntivo",example:"Quiero que te encargues de preparar la primera versión.",why:"El subjuntivo aparece porque la acción recae sobre otro sujeto. «Quiero preparar» cambia el sujeto: significaría que tú vas a hacerlo."},
+      {title:"Delimitar autonomía sin microgestión",situation:"Quieres dar libertad, pero algunos cambios requieren validación.",intention:"Separar decisiones autónomas de decisiones que deben consultarse.",formula:"puedes + infinitivo, pero + imperativo/subjuntivo",example:"Puedes ajustar la estructura, pero no cambies las cifras sin confirmarlas conmigo.",why:"La primera parte concede margen; la segunda introduce un límite operativo concreto."},
+      {title:"Anticipar problemas",situation:"El plazo puede estar en riesgo.",intention:"Pedir aviso temprano para poder reaccionar.",formula:"si + presente, imperativo / presente",example:"Si ves que el plazo está en riesgo, dímelo cuanto antes.",why:"La condición describe un escenario posible y la segunda parte establece la respuesta esperada."}
+    ],
+    registro:{context:"Delegas una tarea a una compañera con experiencia. Necesitas claridad, pero quieres evitar un tono de control excesivo.",options:[
+      {text:"Haz exactamente esto y no cambies nada sin preguntarme.",feedback:"Puede ser apropiado en tareas muy reguladas, pero en este contexto reduce innecesariamente la autonomía de una persona con experiencia."},
+      {text:"Quiero que te encargues de la primera versión. Puedes decidir la estructura; si necesitas cambiar alcance o cifras, confírmamelo antes.",feedback:"Equilibra responsabilidad, autonomía y límites. Deja claro qué puede decidir y qué requiere validación.",best:true},
+      {text:"Tú verás cómo hacerlo; solo necesito algo bueno para el viernes.",feedback:"Da autonomía, pero no define qué significa «bueno», cuál es el entregable ni qué decisiones requieren coordinación."}
+    ]},
+    examples:[
+      {text:"Quiero que te encargues de preparar la primera versión de la propuesta para el cliente. Necesitamos que incluya alcance, costos y próximos pasos, y que la recomendación principal quede clara. Tienes margen para reorganizar la estructura, pero cualquier cambio de cifras debe validarse conmigo. Envíame un borrador el miércoles por la mañana y lo revisamos ese día. Si ves que el plazo está en riesgo, avísame cuanto antes para reajustar prioridades.",segments:[
+        {part:"Quiero que te encargues de preparar la primera versión de la propuesta para el cliente.",note:"Responsabilidad: quién hace qué."},
+        {part:"Necesitamos que incluya alcance, costos y próximos pasos, y que la recomendación principal quede clara.",note:"Entregable + criterio: qué debe contener y qué calidad se espera."},
+        {part:"Tienes margen para reorganizar la estructura, pero cualquier cambio de cifras debe validarse conmigo.",note:"Autonomía + límite: evita tanto la ambigüedad como la microgestión."},
+        {part:"Envíame un borrador el miércoles por la mañana y lo revisamos ese día.",note:"Seguimiento: crea un punto de revisión antes del final."},
+        {part:"Si ves que el plazo está en riesgo, avísame cuanto antes para reajustar prioridades.",note:"Escalación: define cuándo debe avisar y para qué."}
+      ]}
+    ],
+    ejercicios:[
+      {type:"mc",title:"1. Sustituye una expectativa vaga",prompt:"¿Qué opción transforma mejor «hazlo bien» en una expectativa verificable?",options:["Hazlo con cuidado.","Asegúrate de que la propuesta incluya costos, plazos y una recomendación final.","Quiero que quede bonito."],correct:[1],good:"La expectativa se puede comprobar porque define elementos concretos del resultado.",other:"Busca una formulación que permita verificar el resultado sin depender de una valoración subjetiva."},
+      {type:"mc",title:"2. Delega sin microgestionar",prompt:"La persona tiene experiencia. ¿Qué formulación equilibra mejor autonomía y control?",options:["Pregúntame antes de cambiar cualquier palabra.","Puedes reorganizar la estructura, pero valida conmigo cualquier cambio de cifras.","Haz lo que quieras y luego vemos."],correct:[1],good:"La frase concede autonomía en la forma y mantiene control sobre una decisión sensible.",other:"Busca una opción que diferencie entre lo que puede decidir y lo que requiere validación."},
+      {type:"mc",title:"3. Gestiona el riesgo del plazo",prompt:"¿Qué frase ayuda a detectar un retraso antes de que sea demasiado tarde?",options:["Si el viernes no está, hablamos.","Si ves que el plazo está en riesgo, avísame cuanto antes.","Espero que no haya problemas."],correct:[1],good:"Pide una señal temprana y permite ajustar antes del vencimiento.",other:"La opción más útil debe definir qué hacer antes de que el plazo ya se haya incumplido."},
+      {type:"mc",title:"4. Reacciona ante una dificultad",prompt:"La otra persona te dice: «No creo que pueda tenerlo listo el viernes». ¿Qué respuesta ayuda más a mantener la delegación y resolver el problema?",options:["Entonces haz lo que puedas.","¿Qué parte está bloqueada y qué alternativa ves? Si el plazo está en riesgo, ajustemos hoy prioridades o alcance.","Necesito que esté listo de todas formas."],correct:[1],good:"La respuesta pide información, mantiene la responsabilidad y abre una decisión concreta sobre prioridades o alcance.",other:"Busca una respuesta que permita reaccionar al problema sin abandonar la expectativa ni limitarse a repetir la orden."}
+    ],
+    practica:{
+      situation:"Delegas a una persona con experiencia la actualización de un informe que se presentará a dirección.",interlocutor:"Una persona de tu equipo con autonomía técnica.",goal:"Dejar claras responsabilidad, resultado, prioridad, margen de decisión y seguimiento.",requirements:["Asigna la responsabilidad y explica para qué se necesita.","Define al menos dos criterios del entregable.","Aclara qué puede decidir sin consultarte y qué debe validar.","Fija un plazo o revisión intermedia.","Indica cuándo debe avisarte si aparece un riesgo."],
+      supports:["Quiero que te encargues de…","Necesitamos que…","Lo importante es que…","Puedes…, pero…","Envíame un borrador…","Si ves que…, avísame…"],
+      placeholder:"Escribe una delegación de 5–7 frases. Organiza la información para que la otra persona pueda actuar sin tener que adivinar tus expectativas.",
+      model:"Quiero que te encargues de actualizar el informe para la reunión de dirección. Necesitamos que incluya los resultados del mes, los principales riesgos y una recomendación para el siguiente periodo. Puedes reorganizar la presentación si mejora la lectura, pero cualquier cambio en las cifras o en la recomendación final quiero revisarlo antes. Esta tarea tiene prioridad sobre la actualización del archivo interno. Envíame un borrador el jueves a mediodía y lo revisamos esa misma tarde. Si ves que falta información o que el plazo está en riesgo, avísame cuanto antes para decidir qué ajustamos."
+    },
+    checklist:["Puedo asignar una responsabilidad y explicar para qué se necesita.","Puedo convertir expectativas vagas en criterios concretos.","Puedo diferenciar autonomía y límites de decisión.","Puedo fijar un punto de seguimiento sin microgestionar.","Puedo pedir una escalación temprana cuando existe riesgo."]
+  },
+
+  b2: {
+    meta:{label:"🚀 B2 — Avanzado"},
+    objetivo:"Al terminar esta semana podrás delegar resultados —no solo tareas—, calibrar autonomía y control, explicitar criterios de éxito, anticipar dependencias y acordar mecanismos de seguimiento y escalación según el riesgo de la situación.",
+    situacion:{
+      quien:"Lideras un proyecto transversal con varias áreas involucradas.",
+      conQuien:"Delegas a una responsable con experiencia que coordinará parte del trabajo con terceros.",
+      contexto:"Debes transferirle la preparación de una recomendación ejecutiva antes de una decisión de dirección.",
+      conseguir:"Alinear resultado, criterios de éxito, restricciones, autoridad de decisión, dependencias, revisión y escalación.",
+      dificultad:"Si controlas demasiado, reduces autonomía; si dejas demasiados supuestos implícitos, aumentas el riesgo de retrabajo o decisiones incoherentes." 
+    },
+    vocab:[
+      {term:"criterio de éxito",meaning:"Condición explícita utilizada para valorar si el resultado cumple el propósito esperado.",example:"Uno de los criterios de éxito es que la recomendación sea viable con el presupuesto aprobado.",extra:"Más preciso que «que quede bien» o «que sea completo»."},
+      {term:"restricción",meaning:"Límite que condiciona la ejecución y que no puede ignorarse sin una decisión adicional.",example:"La principal restricción es que no podemos ampliar el plazo contractual.",extra:"Diferencia útil: una preferencia admite negociación; una restricción limita el espacio de decisión."},
+      {term:"dependencia",meaning:"Elemento externo del que depende el avance o el resultado de una tarea.",example:"La validación legal es una dependencia crítica antes de enviar la propuesta.",extra:"Conviene identificar responsable, fecha y efecto de cada dependencia relevante."},
+      {term:"umbral de escalación",meaning:"Punto a partir del cual una incidencia debe elevarse o consultarse porque supera la autonomía acordada.",example:"Escálamelo si el impacto presupuestario supera el 5 %.",extra:"Permite evitar tanto la escalación constante como el silencio ante un riesgo material."},
+      {term:"trazabilidad",meaning:"Capacidad de reconstruir decisiones, cambios y responsables a partir de un registro claro.",example:"Necesitamos trazabilidad de cualquier cambio en los supuestos financieros.",extra:"Especialmente relevante en proyectos regulados, contratos o decisiones de alto impacto."},
+      {term:"alinear expectativas",meaning:"Construir una comprensión compartida sobre resultado, límites, prioridades, responsabilidades y forma de coordinación.",example:"Antes de empezar, quiero alinear expectativas sobre qué puedes decidir directamente y qué necesitamos revisar juntos.",extra:"No significa garantizar que no habrá cambios; significa reducir supuestos ocultos."}
+    ],
+    recall:{prompt:"¿Qué concepto define el punto a partir del cual una incidencia debe elevarse porque supera la autonomía acordada?",options:["dependencia","umbral de escalación","criterio de éxito"],correct:1,good:"El «umbral de escalación» marca cuándo un asunto deja de estar dentro del margen autónomo de decisión.",other:"Busca el concepto que determina cuándo una decisión o problema debe elevarse."},
+    frases:[
+      {group:"Delegar el resultado",items:[
+        {text:"Quiero que lideres la preparación de una recomendación que nos permita decidir entre las dos alternativas antes del comité del viernes.",use:"Delega una finalidad y un resultado, no solo una actividad."},
+        {text:"El resultado que necesito es una recomendación defendible, con supuestos explícitos y una propuesta de siguiente paso.",use:"Define el entregable por su función decisional y sus criterios, no por formato únicamente."}
+      ]},
+      {group:"Calibrar autonomía",items:[
+        {text:"Tienes autonomía para decidir el enfoque y coordinar con las áreas implicadas; necesito que validemos antes cualquier cambio de alcance o cualquier compromiso externo.",use:"Transfiere autoridad operativa y conserva control sobre decisiones materiales."},
+        {text:"No necesito aprobar cada paso, pero sí quiero visibilidad sobre decisiones que cambien costo, plazo o riesgo.",use:"Evita microgestión y define qué información debe escalar."}
+      ]},
+      {group:"Definir criterios y restricciones",items:[
+        {text:"Consideraremos que la recomendación está lista si compara impacto, costo, riesgo y viabilidad de implementación.",use:"Convierte una expectativa abstracta en criterios observables."},
+        {text:"La restricción no negociable es mantener la fecha contractual; el alcance sí puede replantearse si es necesario.",use:"Distingue límites absolutos de variables negociables."}
+      ]},
+      {group:"Seguimiento y escalación",items:[
+        {text:"Hagamos una revisión de supuestos el miércoles, no para aprobar el documento, sino para detectar decisiones que puedan desviarnos.",use:"Aclara la función del seguimiento y evita que se perciba como aprobación paso a paso."},
+        {text:"Escálamelo si una decisión afecta el compromiso con el cliente, supera el presupuesto acordado o pone en riesgo la fecha.",use:"Define umbrales materiales de escalación."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye el encuadre de una delegación de alto nivel. Después revisa si has definido resultado, autoridad, límites y escalación sin sobredeterminar la ejecución.",
+      fields:[
+        {label:"Resultado",options:["Lidera una recomendación que permita elegir entre dos alternativas antes del comité","Coordina una propuesta que permita cerrar una posición común entre Operaciones y Finanzas","Prepara una recomendación ejecutiva con una decisión y siguiente paso claramente defendibles"]},
+        {label:"Autonomía",options:["Tienes autonomía sobre el enfoque y la coordinación; valida conmigo cualquier cambio de alcance externo","No necesito aprobar cada paso; necesito visibilidad si una decisión cambia costo, plazo o riesgo","Puedes decidir la secuencia de trabajo y negociar ajustes internos dentro del presupuesto aprobado"]},
+        {label:"Restricción",options:["La fecha contractual es no negociable; el alcance puede ajustarse","No podemos asumir compromisos con el cliente sin validación previa","Los supuestos financieros deben conservar trazabilidad y fuente"]},
+        {label:"Escalación",options:["Escálamelo si el impacto presupuestario supera el 5 % o compromete la fecha","Avísame antes de cerrar cualquier decisión que cambie la posición acordada con el cliente","Si una dependencia crítica no queda resuelta el miércoles, revisamos alcance y prioridades"]}
+      ],
+      join:". "
+    },
+    grammar:[
+      {title:"Reducir imposición cuando delegas criterio",situation:"Delegas a una persona con experiencia y quieres orientar sin dictar cada paso.",intention:"Expresar expectativa con espacio para juicio profesional.",formula:"quiero/necesito que + subjuntivo · me gustaría que + subjuntivo · lo importante es que + subjuntivo",example:"Lo importante es que la recomendación deje explícitos los supuestos y permita tomar una decisión.",why:"La modalidad cambia el grado de imposición. «Necesito que» puede ser adecuada para requisitos firmes; «me gustaría que» suaviza; «lo importante es que» desplaza el foco del control a un criterio de resultado."},
+      {title:"Distinguir condición, límite y excepción",situation:"Hay variables negociables y otras que no lo son.",intention:"Delimitar el espacio de decisión sin crear ambigüedad.",formula:"siempre que + subjuntivo · salvo que + subjuntivo · mientras + indicativo/subjuntivo",example:"Puedes redefinir el alcance siempre que mantengamos la fecha contractual y no aumente el costo total.",why:"Estas estructuras permiten conceder autonomía condicionada. La elección de modo verbal depende de si presentas la condición como marco asumido o escenario condicionado."},
+      {title:"Graduar la escalación",situation:"No quieres que te consulten todo, pero sí decisiones materiales.",intention:"Definir cuándo intervenir.",formula:"si + indicativo / en caso de que + subjuntivo / siempre que + subjuntivo",example:"En caso de que una decisión altere el compromiso con el cliente, necesito que la escalemos antes de comunicarla.",why:"«En caso de que» introduce un escenario eventual con mayor distancia que un «si» directo; resulta útil en criterios formales de escalación."}
+    ],
+    registro:{context:"Delegas una recomendación sensible a una responsable con experiencia. El proyecto está bajo presión y un error podría afectar un compromiso con el cliente.",options:[
+      {text:"Confío en tu criterio; haz lo que consideres y solo avísame si algo sale mal.",feedback:"Transmite confianza, pero deja sin definir qué decisiones son materiales ni cuándo debe escalarse un riesgo. Puede ser demasiado abierta para el impacto de la situación."},
+      {text:"Quiero que lideres la recomendación con autonomía sobre el enfoque. No necesito aprobar cada paso; sí necesito que escalemos antes cualquier decisión que cambie alcance, costo o compromiso con el cliente.",feedback:"Alinea autonomía y control con criterios materiales. La supervisión se vincula al riesgo, no a cada acción.",best:true},
+      {text:"Para evitar riesgos, prefiero revisar y aprobar cada decisión antes de que avances.",feedback:"Puede ser justificable en un entorno altamente regulado, pero en este contexto contradice la delegación real de responsabilidad y puede convertir el seguimiento en microgestión."}
+    ]},
+    examples:[
+      {text:"Quiero que lideres la preparación de la recomendación para el comité del viernes. El resultado que necesito no es solo una presentación: necesitamos una posición defendible que compare impacto, costo, riesgo y viabilidad de las dos alternativas. Tienes autonomía para decidir el enfoque y coordinar con las áreas implicadas. No necesito aprobar cada paso, pero debemos validar antes cualquier decisión que cambie el alcance, el presupuesto o los compromisos con el cliente. La fecha contractual es una restricción no negociable; el alcance sí puede replantearse si encontramos una dependencia crítica. Hagamos una revisión de supuestos el miércoles para detectar desviaciones, y escálamelo antes si ves que una dependencia puede comprometer la fecha o la posición acordada.",segments:[
+        {part:"Quiero que lideres la preparación de la recomendación para el comité del viernes.",note:"Delegación de responsabilidad y propósito."},
+        {part:"El resultado que necesito no es solo una presentación: necesitamos una posición defendible que compare impacto, costo, riesgo y viabilidad de las dos alternativas.",note:"Criterios de éxito vinculados a la decisión que debe habilitar el entregable."},
+        {part:"Tienes autonomía para decidir el enfoque y coordinar con las áreas implicadas.",note:"Transferencia explícita de autoridad operativa."},
+        {part:"No necesito aprobar cada paso, pero debemos validar antes cualquier decisión que cambie el alcance, el presupuesto o los compromisos con el cliente.",note:"Umbral de control: distingue ejecución autónoma de decisiones materiales."},
+        {part:"La fecha contractual es una restricción no negociable; el alcance sí puede replantearse si encontramos una dependencia crítica.",note:"Jerarquía entre restricción y variable negociable."},
+        {part:"Hagamos una revisión de supuestos el miércoles para detectar desviaciones, y escálamelo antes si ves que una dependencia puede comprometer la fecha o la posición acordada.",note:"Seguimiento con propósito + escalación temprana."}
+      ]}
+    ],
+    ejercicios:[
+      {type:"mc",title:"1. Delega resultado, no actividad",prompt:"¿Qué formulación comunica mejor una responsabilidad de nivel B2?",options:["Haz una presentación de diez diapositivas para el viernes.","Lidera una recomendación que nos permita decidir entre las dos alternativas antes del comité, dejando explícitos impacto, riesgo y supuestos.","Prepara algo completo y profesional para dirección."],correct:[1],good:"La delegación conecta el trabajo con una decisión y define criterios observables sin prescribir todo el formato.",other:"Busca una opción que defina propósito y criterios, no solo actividad o una expectativa vaga."},
+      {type:"mc",title:"2. Define un umbral de escalación",prompt:"¿Qué opción reduce consultas innecesarias y, a la vez, protege decisiones materiales?",options:["Pregúntame antes de cualquier cambio.","No hace falta que me consultes nada.","Decide los ajustes operativos; si el cambio afecta alcance, costo o compromiso con el cliente, escálamelo antes de comunicarlo."],correct:[2],good:"El criterio de escalación se vincula al impacto de la decisión, no a cada paso operativo.",other:"La formulación más sólida debe conceder autonomía y definir cuándo la decisión deja de ser solo operativa."},
+      {type:"mc",title:"3. Ajusta modalidad y registro",prompt:"La persona tiene mucha experiencia y quieres orientar un criterio, no imponer un método. ¿Qué formulación es más adecuada?",options:["Quiero que sigas exactamente este proceso.","Lo importante es que la recomendación deje claros los supuestos y permita comparar riesgo y viabilidad; el enfoque puedes decidirlo tú.","Hazlo como quieras, pero que salga bien."],correct:[1],good:"La expectativa se concentra en el resultado y deja el enfoque dentro del criterio profesional de la otra persona.",other:"Busca una frase que especifique el estándar sin dictar innecesariamente el método."},
+      {type:"mc",title:"4. Dos respuestas pueden funcionar",prompt:"La responsable pregunta: «¿Quieres que te consulte cada ajuste?». Dos respuestas pueden ser adecuadas porque fijan autonomía con umbrales distintos. Elige una que conserve una delegación real.",options:["No por cada ajuste. Consúltame solo si afecta el alcance, el costo o un compromiso con el cliente.","Puedes decidir los ajustes operativos dentro del presupuesto; si aparece una dependencia crítica, avísame antes de comprometer una nueva fecha.","Sí. Prefiero aprobar cualquier cambio antes de que avances."],correct:[0,1],good:"Las dos primeras pueden funcionar. La primera define el umbral por impacto; la segunda combina autonomía operativa con una condición de escalación. La elección depende del riesgo que quieras controlar.",other:"Esta opción convierte la delegación en aprobación paso a paso. Busca una formulación que conserve autonomía y defina solo qué decisiones deben escalarse."}
+    ],
+    practica:{
+      situation:"Delegas a una responsable con experiencia la preparación de una recomendación que influirá en una decisión de dirección. Hay presión de tiempo y una dependencia externa todavía no resuelta.",interlocutor:"Responsable con experiencia de otra área que coordinará a varias personas.",goal:"Delegar el resultado con autonomía suficiente y controles proporcionales al riesgo.",requirements:["Define el resultado y los criterios de éxito sin limitarte a describir un formato.","Explicita qué decisiones puede tomar de forma autónoma.","Separa al menos una restricción no negociable de una variable que sí puede ajustar.","Define un punto de seguimiento y su propósito.","Establece uno o dos umbrales de escalación.","Mantén un tono que reconozca la experiencia del interlocutor."],
+      supports:["El resultado que necesito es…","Lo importante es que…","Tienes autonomía para…","No necesito aprobar…, pero…","La restricción no negociable es…","Hagamos una revisión… para…","Escálamelo si…"],
+      placeholder:"Escribe una delegación de 7–10 frases. Evita tanto la microgestión como las expectativas implícitas. Justifica tus límites mediante el riesgo o la decisión que debe protegerse.",
+      model:"Quiero que lideres la preparación de la recomendación para la decisión de dirección del viernes. El resultado que necesito es una posición defendible que compare impacto, costo, riesgo y viabilidad, y que deje claros los supuestos que todavía dependen del proveedor. Tienes autonomía para decidir el enfoque, coordinar con las áreas implicadas y ajustar la secuencia de trabajo. No necesito aprobar cada paso; sí necesito que validemos antes cualquier cambio que altere el presupuesto aprobado, el alcance comprometido o la posición que ya comunicamos al cliente. La fecha del comité es no negociable, pero puedes reducir el alcance del análisis secundario si la dependencia externa no se resuelve a tiempo. Hagamos una revisión de supuestos el miércoles por la tarde para identificar decisiones que puedan desviarnos, no para aprobar el documento. Si la dependencia externa pone en riesgo la recomendación principal o exige cambiar un compromiso, escálamelo en cuanto lo detectes para decidir juntos cómo responder."
+    },
+    checklist:["Puedo delegar un resultado y no limitarme a asignar actividades.","Puedo formular criterios de éxito observables y relevantes para la decisión.","Puedo calibrar autonomía y control según el riesgo.","Puedo distinguir restricciones, variables negociables y dependencias.","Puedo definir seguimiento y umbrales de escalación sin microgestionar."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const state = {level:null, done:new Set(), exerciseDone:new Set(), vocabOpened:new Set(), phrasesOpened:new Set(), grammarOpened:new Set(), segmentOpened:new Set(), checklist:new Set(), builderUsed:false, modelSeen:false, practiceTouched:false, recallDone:false, registerDone:false};
+const sectionDefs=[
+  ["s1","🎯 Objetivo"],["s2","🏢 Situación"],["s3","🗣️ Vocabulario"],["s4","💬 Frases"],["s5","🧩 Construye"],["s6","📚 Gramática"],["s7","🎭 Registro"],["s8","💼 Ejemplo"],["s9","✍️ Comprueba"],["s10","🏢 Te toca"],["s11","💡 Modelo"],["s12","✅ Checklist"]
+];
+
+const esc=s=>String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+
+function resetState(level){
+  state.level=level; state.done=new Set(); state.exerciseDone=new Set(); state.vocabOpened=new Set(); state.phrasesOpened=new Set(); state.grammarOpened=new Set(); state.segmentOpened=new Set(); state.checklist=new Set(); state.builderUsed=false; state.modelSeen=false; state.practiceTouched=false; state.recallDone=false; state.registerDone=false;
+}
+
+function mark(action){state.done.add(action); updateProgress();}
+function totalActions(data){const segments=data.examples.reduce((n,e)=>n+e.segments.length,0);return 12 + data.vocab.length + data.frases.reduce((n,g)=>n+g.items.length,0) + data.grammar.length + data.ejercicios.length + data.checklist.length + segments + 5;}
+function completedActions(){
+  return state.done.size + state.vocabOpened.size + state.phrasesOpened.size + state.grammarOpened.size + state.exerciseDone.size + state.checklist.size + state.segmentOpened.size + (state.builderUsed?1:0)+(state.modelSeen?1:0)+(state.practiceTouched?1:0)+(state.recallDone?1:0)+(state.registerDone?1:0);
+}
+function updateProgress(){
+  if(!state.level)return; const d=contenido[state.level]; const pct=Math.min(100,Math.round(completedActions()/totalActions(d)*100));
+  document.getElementById("progressFill").style.width=pct+"%"; document.getElementById("progressText").textContent=pct+"%"; document.getElementById("progressTrack").setAttribute("aria-valuenow",String(pct));
+}
+
+function selectLevel(level){
+  resetState(level);
+  document.getElementById("levelScreen").classList.add("hidden"); document.getElementById("app").classList.remove("hidden");
+  document.getElementById("routeLabel").textContent="Tu ruta: "+contenido[level].meta.label;
+  document.getElementById("heroTitle").textContent=habilidad;
+  document.getElementById("heroSubtitle").textContent=subtitulo;
+  renderNav(); renderModule(); updateProgress(); window.scrollTo({top:0,behavior:"smooth"});
+}
+function changeLevel(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  document.getElementById("app").classList.add("hidden"); document.getElementById("levelScreen").classList.remove("hidden"); window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderNav(){
+  document.getElementById("sectionNav").innerHTML=sectionDefs.map(([id,label])=>`<button class="pill-btn" type="button" data-target="${id}">${label}</button>`).join("");
+}
+
+function section(id,title,body){return `<section id="${id}" class="section" data-section="${id}"><h2>${title}</h2>${body}</section>`;}
+function renderModule(){
+  const d=contenido[state.level], isA2=state.level==="a2";
+  const objective=section("s1","1. 🎯 TU OBJETIVO ESTA SEMANA",`<p class="section-intro">${esc(d.objetivo)}</p><div class="callout"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>`);
+  const s=d.situacion;
+  const situation=section("s2","2. 🏢 LA SITUACIÓN",`<p class="section-intro">Esta semana vas a practicar una delegación que permita actuar sin adivinar expectativas.</p><div class="situation-grid">${[
+    ["Quién habla",s.quien],["Con quién",s.conQuien],["Contexto",s.contexto],["Qué quieres conseguir",s.conseguir],["Dificultad",s.dificultad]
+  ].map(x=>`<div class="info-card"><div class="label">${esc(x[0])}</div><div class="value">${esc(x[1])}</div></div>`).join("")}</div>`);
+
+  const vocabCards=d.vocab.map((v,i)=>`<div class="flip"><button class="term" type="button" data-vocab="${i}" aria-expanded="false">${esc(v.term)}</button><div id="vocabBody${i}" class="flip-body hidden"><div><strong>${isA2?"English: ":"Significado: "}</strong>${esc(v.meaning)}</div>${v.explain?`<p class="muted">${esc(v.explain)}</p>`:""}<p><strong>Ejemplo:</strong> ${esc(v.example)}</p><p class="extra">${esc(v.extra||"")}</p>${isA2?audioControls(v.term+". "+v.example,"vocabulario "+v.term):""}</div></div>`).join("");
+  const recall=`<div class="recall"><h3>${isA2?"Recuerda / Recall":"Recupera el concepto"}</h3><p>${esc(d.recall.prompt)}</p><div class="choices">${d.recall.options.map((o,i)=>`<button class="choice-btn" type="button" data-recall="${i}">${esc(o)}</button>${isA2?audioControls(o,"opción de recuperación "+o):""}`).join("")}</div><div id="recallFeedback" class="feedback hidden" role="status" aria-live="polite"></div></div>`;
+  const vocab=section("s3","3. 🗣️ VOCABULARIO CLAVE",`<p class="section-intro">Abre cada tarjeta para recuperar significado, uso y ejemplo.</p><div class="vocab-grid">${vocabCards}</div>${recall}`);
+
+  const phrases=d.frases.map((g,gi)=>`<div class="function-group"><div class="function-title">${esc(g.group)}</div>${g.items.map((p,pi)=>`<div class="phrase-card"><div class="phrase-text">${esc(p.text)}</div>${isA2?audioControls(p.text,"frase "+p.text):""}<button class="small-btn" type="button" data-phrase="${gi}-${pi}">Ver cuándo usarla</button><div id="phrase-${gi}-${pi}" class="muted hidden" style="margin-top:8px">${esc(p.use)}</div></div>`).join("")}</div>`).join("");
+  const phrasesSection=section("s4","4. 💬 FRASES QUE PUEDES USAR",`<p class="section-intro">No memorices una lista completa: identifica qué función cumple cada formulación.</p>${phrases}`);
+
+  const builderFields=d.builder.fields.map((f,i)=>`<div class="field"><label for="builder${i}">${esc(f.label)}</label><select id="builder${i}" data-builder="${i}"><option value="">Selecciona una opción</option>${f.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select>${isA2?`<div id="builderChoiceAudio${i}" class="builder-choice-audio"></div>`:""}</div>`).join("");
+  const builder=section("s5","5. 🧩 CONSTRUYE TU MENSAJE",`<p class="section-intro">${esc(d.builder.intro)}</p><div class="builder-panel"><div class="builder-fields">${builderFields}</div><div id="builderOutput" class="builder-output empty">Tu mensaje aparecerá aquí cuando selecciones las partes.</div><div id="builderAudio"></div></div>`);
+
+  const grammarCards=d.grammar.map((g,i)=>`<div class="grammar-card"><button type="button" data-grammar="${i}" aria-expanded="false">${esc(g.title)} ▾</button><div id="grammar-${i}" class="grammar-detail hidden"><div class="label">Situación</div><p>${esc(g.situation)}</p><div class="label">Intención</div><p>${esc(g.intention)}</p><div class="formula">${esc(g.formula)}</div><p><strong>Ejemplo:</strong> ${esc(g.example)}</p><p class="muted">${esc(g.why)}</p>${isA2?audioControls(g.example,"ejemplo de gramática"):""}</div></div>`).join("");
+  const grammar=section("s6","6. 📚 GRAMÁTICA QUE NECESITAS",`<p class="section-intro">Situación → intención → estructura → ejemplo. Solo la gramática que ayuda a delegar con claridad.</p><div class="grammar-grid">${grammarCards}</div>`);
+
+  const register=section("s7","7. 🎭 ELIGE EL REGISTRO",`<div class="register-box"><div class="register-context">${esc(d.registro.context)}</div>${d.registro.options.map((o,i)=>`<button class="register-option" type="button" data-register="${i}">${esc(o.text)}</button>${isA2?audioControls(o.text,"opción de registro"):""}`).join("")}<div id="registerFeedback" class="feedback hidden" role="status" aria-live="polite"></div></div>`);
+
+  const examples=d.examples.map((e,ei)=>`<div class="example-card"><div class="example-text">${e.segments.map((sg,si)=>`<button class="segment" type="button" data-segment="${ei}-${si}">${esc(sg.part)}</button> `).join("")}</div>${isA2?audioControls(e.text,"ejemplo profesional completo"):""}<div id="segmentNote-${ei}" class="segment-note hidden"></div></div>`).join("");
+  const exampleSection=section("s8","8. 💼 MIRA CÓMO SE HACE",`<p class="section-intro">Pulsa una parte del ejemplo para descubrir qué función cumple.</p><div class="example-grid">${examples}</div>`);
+
+  const exercises=d.ejercicios.map((e,i)=>`<div class="exercise-card" data-exercise-card="${i}"><h3>${esc(e.title)}</h3><p>${esc(e.prompt)}</p><div class="choices">${e.options.map((o,oi)=>`<button class="choice-btn" type="button" data-exercise="${i}" data-option="${oi}">${esc(o)}</button>${isA2?audioControls(o,"opción de ejercicio"):""}`).join("")}</div><div id="exerciseFeedback${i}" class="feedback hidden" role="status" aria-live="polite"></div><button class="retry-btn hidden" id="retry${i}" type="button" data-retry="${i}">Volver a intentar</button></div>`).join("");
+  const exercisesSection=section("s9","9. ✍️ COMPRUEBA LO QUE APRENDISTE",`<p class="section-intro">Usa estas actividades para preparar el lenguaje, no como examen.</p><div class="exercise-grid">${exercises}</div>`);
+
+  const practice=d.practica;
+  const practiceSection=section("s10","10. 🏢 AHORA TE TOCA A TI",`<div class="practice"><div class="label">Situación</div><p>${esc(practice.situation)}</p><div class="label">Interlocutor</div><p>${esc(practice.interlocutor)}</p><div class="label">Objetivo</div><p>${esc(practice.goal)}</p><div class="label">Incluye</div><ul class="requirements">${practice.requirements.map(r=>`<li>${esc(r)}</li>`).join("")}</ul><div class="label">Estructuras de apoyo</div><div class="support-chips">${practice.supports.map(x=>`<span class="support-chip">${esc(x)}</span>`).join("")}</div>${isA2?audioControls(practice.supports.join(". "),"estructuras de apoyo"):""}<label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" placeholder="${esc(practice.placeholder)}"></textarea><div class="practice-meta"><span id="charCount">0 caracteres</span><span>La respuesta abierta no se califica automáticamente.</span></div></div>`);
+
+  const modelSection=section("s11","11. 💡 VER MODELO",`<p class="section-intro">Primero escribe tu respuesta. Después compárala con una alternativa posible.</p><button id="showModel" class="primary-btn" type="button">Ver una posible respuesta</button><div id="modelBox" class="model-box hidden"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(practice.model)}</p>${isA2?audioControls(practice.model,"respuesta modelo"):""}</div>`);
+
+  const checklistItems=d.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join("");
+  const checklistSection=section("s12","12. ✅ CHECKLIST FINAL",`<p class="section-intro">Antes de terminar, comprueba qué puedes hacer ya.</p><div class="checklist">${checklistItems}</div><div id="checkProgress" class="check-progress" role="status" aria-live="polite">0 de ${d.checklist.length} comprobados</div><div id="readyBox" class="ready hidden"><h3>🎯 Ya estás listo para practicar</h3><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. --><a class="primary-btn" href="#" id="challengeLink">🔥 Ir al reto de hoy</a></div>`);
+
+  document.getElementById("module").innerHTML=[objective,situation,vocab,phrasesSection,builder,grammar,register,exampleSection,exercisesSection,practiceSection,modelSection,checklistSection].join("");
+  bindInteractions();
+}
+
+function audioControls(text,label){
+  const encoded=encodeURIComponent(text);
+  return `<div class="audio-row"><button class="audio-btn" type="button" data-audio="${encoded}" data-rate="1" aria-label="Escuchar ${esc(label)}">🔊 Escuchar / Listen</button><button class="audio-btn" type="button" data-audio="${encoded}" data-rate="0.78" aria-label="Escuchar lento ${esc(label)}">🐢 Lento / Slow</button></div>`;
+}
+
+let spanishVoice=null;
+function chooseVoice(){
+  if(!("speechSynthesis" in window))return null;
+  const voices=window.speechSynthesis.getVoices();
+  const es=voices.filter(v=>/^es([-_]|$)/i.test(v.lang));
+  spanishVoice=es.find(v=>/CO|Colombia/i.test(v.lang+" "+v.name)) || es.find(v=>/419|Lat|MX|US|AR|CL|PE/i.test(v.lang+" "+v.name)) || es[0] || null;
+  return spanishVoice;
+}
+if("speechSynthesis" in window){chooseVoice();window.speechSynthesis.onvoiceschanged=chooseVoice;}
+function speak(text,rate){
+  if(!("speechSynthesis" in window)){alert("La síntesis de voz no está disponible en este navegador. El resto del módulo puede utilizarse normalmente.");return;}
+  window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="es-CO"; u.rate=Number(rate)||1; const v=chooseVoice(); if(v)u.voice=v; window.speechSynthesis.speak(u);
+}
+
+function bindInteractions(){
+  const d=contenido[state.level];
+  document.querySelectorAll("[data-section]").forEach(sec=>{
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){mark("section:"+sec.dataset.section);obs.disconnect();}}),{threshold:.3});obs.observe(sec);
+  });
+  document.querySelectorAll("[data-target]").forEach(b=>b.addEventListener("click",()=>document.getElementById(b.dataset.target).scrollIntoView({behavior:"smooth",block:"start"})));
+  document.querySelectorAll("[data-vocab]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.vocab), body=document.getElementById("vocabBody"+i);body.classList.toggle("hidden");b.setAttribute("aria-expanded",String(!body.classList.contains("hidden")));state.vocabOpened.add(i);updateProgress();}));
+  document.querySelectorAll("[data-recall]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.recall), f=document.getElementById("recallFeedback");f.className="feedback "+(i===d.recall.correct?"good":"note");f.textContent=i===d.recall.correct?d.recall.good:d.recall.other;f.classList.remove("hidden");state.recallDone=true;updateProgress();}));
+  document.querySelectorAll("[data-phrase]").forEach(b=>b.addEventListener("click",()=>{const key=b.dataset.phrase, el=document.getElementById("phrase-"+key);el.classList.toggle("hidden");state.phrasesOpened.add(key);updateProgress();}));
+  document.querySelectorAll("[data-builder]").forEach(s=>s.addEventListener("change",renderBuilder));
+  document.querySelectorAll("[data-grammar]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.grammar), el=document.getElementById("grammar-"+i);el.classList.toggle("hidden");b.setAttribute("aria-expanded",String(!el.classList.contains("hidden")));state.grammarOpened.add(i);updateProgress();}));
+  document.querySelectorAll("[data-register]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.register),o=d.registro.options[i],f=document.getElementById("registerFeedback");f.className="feedback "+(o.best?"good":"note");f.textContent=o.feedback;f.classList.remove("hidden");state.registerDone=true;updateProgress();}));
+  document.querySelectorAll("[data-segment]").forEach(b=>b.addEventListener("click",()=>{const [ei,si]=b.dataset.segment.split("-").map(Number),sg=d.examples[ei].segments[si],box=document.getElementById("segmentNote-"+ei);box.textContent=sg.note;box.classList.remove("hidden");state.segmentOpened.add(b.dataset.segment);updateProgress();}));
+  document.querySelectorAll("[data-exercise]").forEach(b=>b.addEventListener("click",()=>answerExercise(Number(b.dataset.exercise),Number(b.dataset.option))));
+  document.querySelectorAll("[data-retry]").forEach(b=>b.addEventListener("click",()=>retryExercise(Number(b.dataset.retry))));
+  const ta=document.getElementById("practiceText");ta.addEventListener("input",()=>{document.getElementById("charCount").textContent=ta.value.length+" caracteres";if(ta.value.trim().length>=25){state.practiceTouched=true;updateProgress();}});
+  document.getElementById("showModel").addEventListener("click",()=>{document.getElementById("modelBox").classList.remove("hidden");state.modelSeen=true;updateProgress();});
+  document.querySelectorAll("[data-check]").forEach(cb=>cb.addEventListener("change",()=>{const i=Number(cb.dataset.check);if(cb.checked)state.checklist.add(i);else state.checklist.delete(i);renderChecklist();updateProgress();}));
+  document.querySelectorAll("[data-audio]").forEach(b=>b.addEventListener("click",()=>{speak(decodeURIComponent(b.dataset.audio),b.dataset.rate);mark("audio:first");}));
+  document.getElementById("challengeLink").addEventListener("click",e=>{if(e.currentTarget.getAttribute("href")==="#")e.preventDefault();});
+}
+function renderBuilder(){
+  const d=contenido[state.level];const vals=d.builder.fields.map((_,i)=>document.getElementById("builder"+i).value).filter(Boolean);const out=document.getElementById("builderOutput");
+  if(state.level==="a2"){
+    d.builder.fields.forEach((f,i)=>{
+      const slot=document.getElementById("builderChoiceAudio"+i);
+      if(!slot)return;
+      const selected=document.getElementById("builder"+i).value;
+      slot.innerHTML=selected?audioControls(selected,"bloque seleccionado: "+f.label):"";
+    });
+  }
+  if(!vals.length){out.textContent="Tu mensaje aparecerá aquí cuando selecciones las partes.";out.classList.add("empty");document.getElementById("builderAudio").innerHTML="";bindDynamicBuilderAudio();return;}
+  const text=vals.join(d.builder.join)+".";out.textContent=text;out.classList.remove("empty");state.builderUsed=true;updateProgress();
+  if(state.level==="a2")document.getElementById("builderAudio").innerHTML=audioControls(text,"mensaje construido");
+  bindDynamicBuilderAudio();
+}
+function bindDynamicBuilderAudio(){
+  document.querySelectorAll(".builder-choice-audio [data-audio], #builderAudio [data-audio]").forEach(b=>b.addEventListener("click",()=>{speak(decodeURIComponent(b.dataset.audio),b.dataset.rate);mark("audio:first");}));
+}
+function answerExercise(i,opt){
+  const e=contenido[state.level].ejercicios[i],ok=e.correct.includes(opt),f=document.getElementById("exerciseFeedback"+i);f.className="feedback "+(ok?"good":"note");f.textContent=ok?e.good:e.other;f.classList.remove("hidden");document.getElementById("retry"+i).classList.remove("hidden");state.exerciseDone.add(i);updateProgress();
+}
+function retryExercise(i){const f=document.getElementById("exerciseFeedback"+i);f.classList.add("hidden");document.getElementById("retry"+i).classList.add("hidden");}
+function renderChecklist(){
+  const d=contenido[state.level],n=state.checklist.size;document.getElementById("checkProgress").textContent=`${n} de ${d.checklist.length} comprobados`;document.getElementById("readyBox").classList.toggle("hidden",n!==d.checklist.length);
+}
+
+document.querySelectorAll("[data-level]").forEach(b=>b.addEventListener("click",()=>selectLevel(b.dataset.level)));
+document.getElementById("changeLevel").addEventListener("click",changeLevel);
+</script>
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Módulo interactivo de Business Spanish para comunicar decisiones, prioridades y cambios en el trabajo.">
+<meta name="color-scheme" content="light">
+<title>Comunicar decisiones, prioridades y cambios | La Oficina en Español</title>
+<style>
+:root{
+  --azul:#003893;--amarillo:#FCD116;--rojo:#CE1126;--blanco:#fff;
+  --texto:#172033;--muted:#5d6778;--borde:#d8e1ef;--fondo:#f4f7fb;
+  --panel:#fff;--soft:#eef4ff;--ok:#16683f;--okbg:#eaf7f0;--warn:#765000;--warnbg:#fff6d7;
+  --sombra:0 14px 38px rgba(0,56,147,.10);--radio:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#edf3ff 0,#f7f9fc 28%,#f4f7fb 100%);color:var(--texto);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--azul)}
+.hidden{display:none!important}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* Selector */
+#levelGate{min-height:100vh;display:grid;place-items:center;padding:28px 18px;background:
+radial-gradient(circle at 10% 10%,rgba(252,209,22,.28),transparent 30%),
+radial-gradient(circle at 90% 85%,rgba(0,56,147,.16),transparent 36%),#f7f9fc}
+.gate-shell{width:min(1000px,100%)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--azul);font-weight:900;margin-bottom:18px}
+.brand-mark{width:48px;height:48px;border-radius:15px;background:var(--azul);color:var(--amarillo);display:grid;place-items:center;font-size:24px;box-shadow:var(--sombra)}
+.gate-panel{background:rgba(255,255,255,.98);border:1px solid var(--borde);border-radius:28px;box-shadow:var(--sombra);padding:clamp(24px,4vw,44px)}
+.gate-panel h1{color:var(--azul);font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 12px;font-weight:900}
+.gate-panel>p{color:var(--muted);max-width:780px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.level-choice{border:2px solid var(--borde);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:215px;display:flex;flex-direction:column;gap:8px;color:var(--texto);transition:.2s}
+.level-choice:hover,.level-choice:focus-visible{transform:translateY(-2px);border-color:var(--azul);box-shadow:0 10px 25px rgba(0,56,147,.13);outline:none}
+.level-choice .emoji{font-size:34px}.level-choice strong{font-size:20px;color:var(--azul)}.level-choice span:last-child{color:var(--muted)}
+
+/* App */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde)}
+.topbar-inner{max-width:1180px;margin:auto;padding:10px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.mini-brand{font-weight:900;color:var(--azul);white-space:nowrap}
+.route-chip{font-size:14px;font-weight:800;color:var(--texto);text-align:center}
+.change-level{border:1px solid var(--borde);background:#fff;color:var(--azul);font-weight:800;border-radius:999px;padding:8px 12px}
+.progress-wrap{max-width:1180px;margin:auto;padding:0 18px 10px;display:flex;gap:12px;align-items:center}
+.progress-track{height:9px;background:#e4eaf4;border-radius:999px;overflow:hidden;flex:1}
+.progress-bar{height:100%;width:0;background:var(--azul);transition:width .25s}
+.progress-label{font-size:12px;font-weight:900;color:var(--azul);min-width:42px;text-align:right}
+
+.hero{background:var(--azul);color:#fff;border-bottom:8px solid var(--amarillo);padding:34px 18px 30px}
+.hero-inner{max-width:1180px;margin:auto}
+.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;color:var(--amarillo)}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:8px 0 10px;max-width:960px;font-weight:900}
+.hero p{margin:0;max-width:820px;color:#dce8ff;font-size:18px}
+
+.layout{max-width:1180px;margin:24px auto 50px;padding:0 18px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;align-items:start}
+.sidebar{position:sticky;top:96px;background:#fff;border:1px solid var(--borde);border-radius:18px;padding:14px;box-shadow:0 8px 24px rgba(0,56,147,.06)}
+.sidebar h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:4px 8px 10px}
+.section-nav{display:grid;gap:4px}
+.nav-btn{border:0;background:transparent;text-align:left;padding:9px 10px;border-radius:10px;color:#475269;font-size:13px}
+.nav-btn:hover,.nav-btn:focus-visible{background:#eef4ff;color:var(--azul);outline:none}
+.nav-btn.active{background:#e8f0ff;color:var(--azul);font-weight:900}
+
+.section{display:none;background:#fff;border:1px solid var(--borde);border-radius:var(--radio);box-shadow:0 8px 30px rgba(0,56,147,.06);padding:clamp(20px,3vw,34px);min-height:470px}
+.section.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-kicker{color:var(--azul);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.section h2{color:var(--azul);font-size:clamp(25px,4vw,36px);line-height:1.15;margin:5px 0 14px}
+.section h3{color:var(--azul);margin:20px 0 8px}
+.lead{font-size:18px}.muted{color:var(--muted)}
+.info-box{border-left:5px solid var(--amarillo);background:#fff9da;padding:16px 18px;border-radius:12px;margin:18px 0}
+.situation-grid,.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mini,.card,.grammar-card,.quiz-card{background:#f8faff;border:1px solid var(--borde);border-radius:14px;padding:15px}
+.mini strong{display:block;color:var(--azul);margin-bottom:3px}
+
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vocab-card,.phrase-card{border:1px solid var(--borde);border-radius:15px;overflow:hidden;background:#fff}
+.card-head{width:100%;border:0;background:#f8faff;padding:16px;text-align:left;font-weight:900;color:var(--azul);display:flex;justify-content:space-between;gap:10px}
+.card-detail{display:none;padding:16px;border-top:1px solid var(--borde)}.card-detail.open{display:block}
+.example{background:#f1f5fd;border-radius:10px;padding:11px 12px;margin-top:10px}
+.english{color:#555f71;font-style:italic}
+.pron{display:inline-block;background:#eef4ff;color:var(--azul);padding:3px 8px;border-radius:999px;font-weight:900;font-size:13px;margin:6px 0}
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.audio-btn{border:1px solid #c7d5ee;background:#fff;color:var(--azul);border-radius:999px;padding:7px 10px;font-size:13px;font-weight:900}
+
+.function-label{display:inline-block;background:#e8f0ff;color:var(--azul);border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-bottom:9px}
+.chunk-row{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.chunk{background:#fff8d9;border:1px solid #ead98d;border-radius:10px;padding:7px 9px}
+
+.builder{background:#f8faff;border:1px solid var(--borde);border-radius:16px;padding:18px}
+.builder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field label{font-size:13px;font-weight:900;color:var(--muted);display:block;margin-bottom:5px}
+.field select,.field input,.practice textarea{width:100%;border:1px solid #bdc9dc;border-radius:10px;padding:11px;background:#fff;color:var(--texto)}
+.result-box{border:2px solid var(--azul);background:#fff;border-radius:12px;padding:14px;font-weight:800;color:var(--azul);margin-top:14px;min-height:54px}
+code{background:#eef3fa;padding:2px 6px;border-radius:6px}
+.toggle{border:1px solid var(--borde);background:#fff;color:var(--azul);font-weight:900;border-radius:10px;padding:8px 10px}
+.toggle-panel{display:none;margin-top:10px}.toggle-panel.open{display:block}
+
+.choice-list{display:grid;gap:10px;margin-top:12px}
+.choice{border:1px solid var(--borde);background:#fff;border-radius:13px;padding:13px;text-align:left;color:var(--texto)}
+.choice:hover,.choice:focus-visible{border-color:var(--azul);outline:none}
+.feedback{display:none;margin-top:12px;padding:13px 15px;border-radius:12px;background:#f3f6fb;border-left:4px solid var(--azul)}.feedback.show{display:block}
+.feedback.good{background:var(--okbg);border-left-color:var(--ok)}
+.feedback.warn{background:var(--warnbg);border-left-color:#b18416}
+
+.model-line{border:1px solid var(--borde);border-radius:13px;padding:13px 14px;margin:9px 0;background:#fff}
+.model-line button{border:0;background:transparent;text-align:left;padding:0;color:var(--texto);font-weight:800;width:100%}
+.function-note{display:none;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px dashed var(--borde)}.function-note.open{display:block}
+
+.quiz{display:grid;gap:16px}
+.quiz-options{display:grid;gap:8px;margin-top:10px}
+.quiz-option{border:1px solid var(--borde);background:#fff;border-radius:12px;padding:11px;text-align:left}
+.quiz-option.selected{border-color:var(--azul);box-shadow:inset 0 0 0 1px var(--azul)}
+.quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:900}.btn-primary{background:var(--azul);color:#fff}.btn-secondary{background:#edf3ff;color:var(--azul)}
+.btn-yellow{background:var(--amarillo);color:#111}
+.btn:focus-visible,.audio-btn:focus-visible,.card-head:focus-visible,.choice:focus-visible,.quiz-option:focus-visible{outline:3px solid rgba(0,56,147,.28);outline-offset:2px}
+
+.practice textarea{min-height:190px;resize:vertical}
+.supports{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.support{background:#eef4ff;border:1px solid #ccdbf6;border-radius:999px;padding:6px 9px;font-size:13px}
+.model-answer{display:none;margin-top:14px;padding:16px;border-radius:14px;background:#f5f8fd;border:1px solid var(--borde)}.model-answer.open{display:block}
+.checklist{display:grid;gap:10px}
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--borde);border-radius:12px;background:#fff}
+.check-item input{margin-top:4px;transform:scale(1.2)}
+.final-box{margin-top:18px;padding:16px;border-radius:14px;background:#eef4ff;border:1px solid #cddcf5}
+.section-footer{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--borde)}
+footer{max-width:1180px;margin:0 auto 36px;padding:0 18px;color:var(--muted);text-align:center;font-size:13px}
+.audio-status{position:fixed;right:16px;bottom:16px;z-index:40;background:#172033;color:#fff;padding:10px 12px;border-radius:10px;font-size:13px;box-shadow:var(--sombra)}
+
+@media(max-width:860px){
+  .level-grid{grid-template-columns:1fr}
+  .level-choice{min-height:auto}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .section-nav{display:flex;overflow:auto;padding-bottom:4px}.nav-btn{white-space:nowrap}
+  .topbar-inner{grid-template-columns:1fr auto}.route-chip{grid-column:1/-1;text-align:left}
+}
+@media(max-width:650px){
+  .cards,.grid-2,.situation-grid,.builder-grid{grid-template-columns:1fr}
+  .section-footer{flex-direction:column}.section-footer .btn{width:100%}
+  .mini-brand{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<section id="levelGate">
+  <div class="gate-shell">
+    <div class="brand"><div class="brand-mark" aria-hidden="true">LO</div><span>La Oficina en Español</span></div>
+    <div class="gate-panel">
+      <h1>¿Cuál es tu nivel de español?</h1>
+      <p>Selecciona tu ruta. Todos trabajan la misma habilidad profesional; cambia el apoyo, la complejidad y la autonomía.</p>
+      <div class="level-grid">
+        <button class="level-choice" data-level="a2" type="button">
+          <span class="emoji" aria-hidden="true">🌱</span>
+          <strong>A2 — Principiante</strong>
+          <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+        </button>
+        <button class="level-choice" data-level="b1" type="button">
+          <span class="emoji" aria-hidden="true">💼</span>
+          <strong>B1 — Intermedio</strong>
+          <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+        </button>
+        <button class="level-choice" data-level="b2" type="button">
+          <span class="emoji" aria-hidden="true">🚀</span>
+          <strong>B2 — Avanzado</strong>
+          <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="mini-brand">La Oficina en Español</div>
+      <div id="routeChip" class="route-chip" aria-live="polite"></div>
+      <button id="changeLevel" class="change-level" type="button">Cambiar nivel</button>
+    </div>
+    <div class="progress-wrap" aria-label="Progreso del módulo">
+      <div class="progress-track" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressBar" class="progress-bar"></div></div>
+      <div id="progressLabel" class="progress-label">0%</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Habilidad profesional de la semana</div>
+      <h1>Comunicar decisiones, prioridades y cambios</h1>
+      <p id="heroLead"></p>
+    </div>
+  </section>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h2>Tu recorrido</h2>
+      <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    </aside>
+    <div id="sectionHost"></div>
+  </main>
+
+  <footer>
+    Este material forma parte de <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">La Oficina en Español</a> · Español para trabajar.
+  </footer>
+</div>
+
+<div id="audioStatus" class="audio-status hidden" role="status" aria-live="polite"></div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const habilidad = "Comunicar decisiones, prioridades y cambios";
+
+const contenido = {
+  a2:{
+    ruta:"🌱 A2 — Principiante",
+    hero:"Aprende a comunicar una decisión sencilla, explicar qué cambia, indicar qué es prioritario y decir qué debe hacer el equipo después.",
+    objetivo:"Al terminar esta semana podrás comunicar una decisión de trabajo con lenguaje sencillo, explicar un cambio importante, indicar una prioridad y dejar claro el siguiente paso.",
+    situacion:{
+      quien:"Tú coordinas una tarea sencilla.",
+      con:"Tu equipo de trabajo.",
+      contexto:"Una reunión breve después de recibir una nueva instrucción de la empresa.",
+      objetivo:"Explicar que la fecha de una entrega cambia, decir qué tarea es ahora más importante y confirmar qué debe hacer cada persona.",
+      dificultad:"El equipo ya tenía otro plan. Necesitas comunicar el cambio con claridad sin dar demasiada información."
+    },
+    vocab:[
+      {term:"la decisión",en:"decision",meaning:"Algo que se decide después de elegir entre opciones.",example:"La decisión es cambiar la fecha de entrega.",extra:"Pronunciación: de-ci-SIÓN."},
+      {term:"la prioridad",en:"priority",meaning:"Lo más importante o urgente en este momento.",example:"La prioridad ahora es terminar el informe.",extra:"Pronunciación: prio-ri-DAD."},
+      {term:"el cambio",en:"change",meaning:"Una modificación en un plan, fecha, tarea o proceso.",example:"Hay un cambio en el calendario.",extra:"Pronunciación: CAM-bio."},
+      {term:"a partir de ahora",en:"from now on",meaning:"Desde este momento en adelante.",example:"A partir de ahora, usamos el nuevo formulario.",extra:"Útil para comunicar una nueva forma de trabajar."},
+      {term:"queda para",en:"is rescheduled for / is set for",meaning:"Expresión para indicar una nueva fecha o momento.",example:"La reunión queda para el jueves.",extra:"Muy útil para cambios de fecha."},
+      {term:"primero",en:"first",meaning:"Indica qué debe hacerse antes que otras tareas.",example:"Primero terminamos el pedido urgente.",extra:"Ayuda a marcar prioridad sin una explicación larga."}
+    ],
+    frases:[
+      {grupo:"Comunicar la decisión",texto:"Hemos decidido cambiar la fecha de entrega.",uso:"Úsala cuando la decisión ya está tomada y quieres comunicarla claramente.",chunks:["Hemos decidido","cambiar","la fecha de entrega"]},
+      {grupo:"Explicar el cambio",texto:"La entrega queda para el viernes.",uso:"Úsala para indicar la nueva fecha de una tarea o reunión.",chunks:["La entrega","queda para","el viernes"]},
+      {grupo:"Marcar la prioridad",texto:"La prioridad ahora es terminar el informe.",uso:"Úsala para decir qué tarea debe recibir atención primero.",chunks:["La prioridad ahora","es terminar","el informe"]},
+      {grupo:"Indicar una acción",texto:"Primero revisamos los datos y después enviamos el informe.",uso:"Úsala para ordenar dos acciones de manera sencilla.",chunks:["Primero revisamos","los datos","y después enviamos","el informe"]},
+      {grupo:"Comunicar una nueva regla",texto:"A partir de ahora, usamos el nuevo formulario.",uso:"Úsala cuando una forma de trabajar cambia desde este momento.",chunks:["A partir de ahora","usamos","el nuevo formulario"]},
+      {grupo:"Comprobar comprensión",texto:"¿Está claro qué cambia y qué hacemos primero?",uso:"Úsala para comprobar que el equipo entendió el cambio y la prioridad.",chunks:["¿Está claro","qué cambia","y qué hacemos primero?"]}
+    ],
+    construye:{
+      modo:"select",
+      intro:"Construye un mensaje breve de cuatro partes. Cambia las opciones y observa cómo se organiza.",
+      campos:[
+        {label:"1. Comunica la decisión",options:["Hemos decidido cambiar la fecha de entrega.","Hemos decidido usar el nuevo formulario."]},
+        {label:"2. Explica qué cambia",options:["La entrega queda para el viernes.","A partir de ahora, usamos el nuevo formulario."]},
+        {label:"3. Marca la prioridad",options:["La prioridad ahora es terminar el informe.","Primero necesitamos revisar los datos."]},
+        {label:"4. Cierra con una acción",options:["Después enviamos la versión final al cliente.","¿Está claro qué cambia y qué hacemos primero?"]}
+      ]
+    },
+    gramatica:[
+      {titulo:"Comunicar una decisión ya tomada",situacion:"La empresa ya eligió una opción.",intencion:"Decir qué se decidió sin presentar la decisión como una idea todavía abierta.",estructura:"hemos decidido + infinitivo",ejemplo:"Hemos decidido cambiar la fecha de entrega.",porque:"«Hemos decidido» presenta la decisión como tomada. Después usamos un infinitivo para nombrar la acción."},
+      {titulo:"Indicar una prioridad",situacion:"Hay varias tareas, pero una debe hacerse primero.",intencion:"Decir cuál es la tarea principal.",estructura:"la prioridad ahora es + infinitivo / sustantivo",ejemplo:"La prioridad ahora es terminar el informe.",porque:"Esta estructura permite nombrar directamente la acción más importante."},
+      {titulo:"Ordenar acciones",situacion:"El equipo debe hacer dos cosas en un orden concreto.",intencion:"Indicar qué ocurre antes y después.",estructura:"primero + presente / después + presente",ejemplo:"Primero revisamos los datos y después enviamos el informe.",porque:"«Primero» y «después» hacen visible el orden de trabajo sin necesidad de una explicación larga."}
+    ],
+    registro:{
+      contexto:"Hablas con tu equipo en una reunión. La fecha de entrega cambia porque apareció una tarea urgente.",
+      opciones:[
+        {texto:"Bueno, cambiamos todo porque hay algo más importante.",tipo:"warn",feedback:"Se entiende, pero «cambiamos todo» es demasiado amplio y no deja claro qué cambia ni qué debe hacer el equipo."},
+        {texto:"Hemos decidido mover la entrega al viernes. La prioridad ahora es terminar el pedido urgente y después volvemos al informe.",tipo:"good",feedback:"Funciona mejor porque comunica la decisión, la nueva fecha y el orden de prioridades."},
+        {texto:"Olviden el plan anterior y hagan esto primero.",tipo:"warn",feedback:"Es demasiado brusca y tampoco explica cuál es la decisión ni el contexto mínimo necesario."}
+      ]
+    },
+    modelo:{
+      intro:"Este es un mensaje completo y breve. Pulsa cada parte para ver su función.",
+      lineas:[
+        {texto:"Hemos decidido mover la entrega al viernes.",funcion:"Comunica una decisión ya tomada y especifica el cambio principal."},
+        {texto:"La prioridad ahora es terminar el pedido urgente.",funcion:"Hace visible qué debe recibir atención primero."},
+        {texto:"Primero revisamos los datos del pedido y después volvemos al informe.",funcion:"Ordena las acciones para que el equipo sepa qué hacer."},
+        {texto:"¿Está claro qué cambia y qué hacemos primero?",funcion:"Comprueba comprensión antes de cerrar."}
+      ]
+    },
+    ejercicios:[
+      {pregunta:"¿Qué frase comunica una decisión ya tomada?",options:["Podemos cambiar la fecha.","Hemos decidido cambiar la fecha.","Tal vez cambiamos la fecha."],correct:1,feedback:"«Hemos decidido + infinitivo» presenta la decisión como tomada."},
+      {pregunta:"El equipo tiene tres tareas. ¿Qué frase marca claramente una prioridad?",options:["Tenemos muchas cosas.","La prioridad ahora es terminar el informe.","El informe es una tarea."],correct:1,feedback:"La segunda opción indica directamente qué debe hacerse primero."},
+      {pregunta:"¿Qué opción ordena mejor dos acciones?",options:["Revisamos los datos y también el informe.","Primero revisamos los datos y después enviamos el informe.","Después primero revisamos los datos."],correct:1,feedback:"«Primero… después…» hace visible el orden de las acciones."}
+    ],
+    practica:{
+      contexto:"Tu equipo tenía que enviar un informe el miércoles. La empresa recibe un pedido urgente y decide mover el informe al viernes. Hoy el equipo debe terminar primero el pedido urgente.",
+      objetivo:"Escribe 4–5 frases para comunicar la decisión, explicar el cambio, marcar la prioridad y decir qué hará el equipo después.",
+      requisitos:["Usa una frase para comunicar la decisión.","Indica la nueva fecha.","Marca una prioridad.","Incluye un orden de acciones o un siguiente paso."],
+      supports:["Hemos decidido…","La entrega queda para…","La prioridad ahora es…","Primero… y después…","A partir de ahora…"]
+    },
+    modelAnswer:"Hemos decidido mover la entrega del informe al viernes. La prioridad ahora es terminar el pedido urgente. Primero revisamos los datos del pedido y después preparamos el envío. Cuando terminemos, volvemos al informe. ¿Está claro qué cambia y qué hacemos primero?",
+    checklist:["Puedo comunicar una decisión con una frase clara.","Puedo explicar qué cambia en una fecha, tarea o forma de trabajar.","Puedo decir cuál es la prioridad.","Puedo ordenar acciones con «primero» y «después».","Puedo comprobar que la otra persona entendió el cambio."]
+  },
+
+  b1:{
+    ruta:"💼 B1 — Intermedio",
+    hero:"Practica cómo comunicar una decisión con contexto suficiente, explicar el motivo, reorganizar prioridades y convertir un cambio en acciones concretas.",
+    objetivo:"Al terminar esta semana podrás comunicar decisiones y cambios habituales de trabajo, explicar brevemente por qué se producen, redefinir prioridades y dejar claros responsables, plazos o siguientes pasos.",
+    situacion:{
+      quien:"Tú eres responsable de coordinar un proyecto.",
+      con:"Tu equipo y dos colaboradores de otras áreas.",
+      contexto:"Una reunión después de que dirección haya cambiado la fecha de lanzamiento.",
+      objetivo:"Explicar la decisión, evitar interpretaciones distintas, reorganizar las prioridades de la semana y confirmar el nuevo plan.",
+      dificultad:"Parte del equipo ya había organizado su trabajo con el calendario anterior y necesita saber qué tareas se mantienen, cuáles se aplazan y qué debe hacerse primero."
+    },
+    vocab:[
+      {term:"redefinir prioridades",meaning:"Cambiar el orden de importancia de tareas u objetivos.",example:"Tenemos que redefinir prioridades para proteger la nueva fecha de lanzamiento.",extra:"Alternativas: reajustar prioridades, reorganizar prioridades."},
+      {term:"aplazar",meaning:"Mover una actividad a un momento posterior.",example:"Vamos a aplazar la revisión interna hasta el jueves.",extra:"Más específico que «cambiar» cuando algo se mueve hacia más tarde."},
+      {term:"adelantar",meaning:"Mover una actividad a un momento anterior.",example:"Necesitamos adelantar la validación del cliente.",extra:"Contrasta con «aplazar»."},
+      {term:"mantener",meaning:"Conservar una decisión, fecha o condición sin cambios.",example:"Mantenemos la reunión del martes.",extra:"Útil para separar lo que cambia de lo que permanece igual."},
+      {term:"impacto",meaning:"Efecto que una decisión o cambio produce sobre otras tareas, personas o resultados.",example:"El cambio tiene impacto en el calendario de pruebas.",extra:"Conviene especificar dónde está el impacto."},
+      {term:"quedar en segundo plano",meaning:"Perder prioridad temporalmente frente a otra tarea.",example:"La documentación queda en segundo plano hasta cerrar las pruebas.",extra:"Registro profesional, pero menos directo que «no es prioridad»."}
+    ],
+    frases:[
+      {grupo:"Comunicar la decisión",texto:"La decisión es mover el lanzamiento una semana para completar las pruebas.",uso:"Presenta la decisión como cerrada y añade la razón principal sin extenderte demasiado."},
+      {grupo:"Separar lo que cambia de lo que no",texto:"Cambia la fecha de lanzamiento, pero mantenemos el alcance aprobado.",uso:"Ayuda a evitar que el equipo interprete el cambio como una revisión completa del proyecto."},
+      {grupo:"Reordenar prioridades",texto:"Durante los próximos tres días, la prioridad será cerrar las pruebas críticas.",uso:"Acota la prioridad en el tiempo y la conecta con una acción concreta."},
+      {grupo:"Aplazar una tarea",texto:"La documentación final puede quedar en segundo plano hasta el jueves.",uso:"Reduce prioridad sin cancelar la tarea."},
+      {grupo:"Explicar impacto",texto:"Este ajuste afecta al calendario de marketing, pero no cambia la entrega técnica.",uso:"Delimita el efecto de una decisión para evitar generalizaciones."},
+      {grupo:"Cerrar con responsables",texto:"Ana actualiza el calendario hoy y Marcos confirma mañana el nuevo plan con marketing.",uso:"Convierte el cambio en acciones asignadas."}
+    ],
+    construye:{
+      modo:"free",
+      intro:"Formula un mensaje con cuatro funciones. No copies una respuesta completa: organiza tu propia intervención.",
+      prompts:[
+        {label:"1. Decisión",hint:"¿Qué se decidió exactamente? Evita presentarlo como posibilidad."},
+        {label:"2. Alcance del cambio",hint:"¿Qué cambia y qué se mantiene?"},
+        {label:"3. Prioridad",hint:"¿Qué debe hacerse primero y durante cuánto tiempo?"},
+        {label:"4. Ejecución",hint:"¿Quién hace qué y cuándo se revisa?"}
+      ],
+      ejemplo:"Referencia: La decisión es mover el lanzamiento una semana. El alcance se mantiene, pero durante los próximos tres días priorizamos las pruebas críticas. La documentación final puede esperar hasta el jueves. Ana actualizará el calendario hoy y revisamos el estado mañana."
+    },
+    gramatica:[
+      {titulo:"Contrastar cambio y continuidad",situacion:"Una parte del plan cambia y otra se mantiene.",intencion:"Evitar que el interlocutor extienda el cambio a elementos que no se modifican.",estructura:"cambia X, pero mantenemos Y / aunque cambia X, Y se mantiene",ejemplo:"Cambia la fecha de lanzamiento, pero mantenemos el alcance aprobado.",porque:"El contraste organiza la información y reduce interpretaciones demasiado amplias."},
+      {titulo:"Explicar causa sin sobrejustificar",situacion:"Necesitas dar una razón suficiente para que el cambio tenga sentido.",intencion:"Vincular la decisión con un motivo claro.",estructura:"la decisión es + infinitivo + para + infinitivo",ejemplo:"La decisión es mover el lanzamiento una semana para completar las pruebas.",porque:"«Para + infinitivo» expresa finalidad y ayuda a explicar el propósito del cambio de forma directa."},
+      {titulo:"Delimitar temporalmente una prioridad",situacion:"Una tarea se vuelve prioritaria solo durante un periodo.",intencion:"Evitar que el equipo interprete la prioridad como permanente.",estructura:"durante + periodo, la prioridad será + infinitivo",ejemplo:"Durante los próximos tres días, la prioridad será cerrar las pruebas críticas.",porque:"El complemento temporal define hasta cuándo debe prevalecer esa prioridad."}
+    ],
+    registro:{
+      contexto:"Comunicas a un equipo interno que se retrasa una entrega importante. El cliente todavía no ha sido informado.",
+      opciones:[
+        {texto:"Nos retrasamos otra vez. De momento, enfoquémonos en terminar como sea.",tipo:"warn",feedback:"Transmite urgencia, pero «como sea» reduce precisión y puede sugerir que los criterios de calidad dejan de importar."},
+        {texto:"La entrega se mueve al viernes. Hasta entonces, priorizamos las pruebas críticas y mantenemos el alcance actual. Hoy definimos el impacto antes de comunicarlo al cliente.",tipo:"good",feedback:"Delimita decisión, prioridad, continuidad e siguiente paso. El tono es directo sin generar alarma innecesaria."},
+        {texto:"Por decisión de dirección, todo cambia desde hoy.",tipo:"warn",feedback:"Atribuye la decisión, pero «todo cambia» es impreciso y puede aumentar la incertidumbre."}
+      ]
+    },
+    modelo:{
+      intro:"Observa cómo el mensaje diferencia decisión, impacto, prioridad y ejecución.",
+      lineas:[
+        {texto:"La decisión es mover el lanzamiento una semana para completar las pruebas que siguen abiertas.",funcion:"Comunica la decisión y su finalidad principal."},
+        {texto:"Cambia la fecha, pero mantenemos el alcance aprobado y la reunión con el cliente del martes.",funcion:"Distingue qué se modifica y qué permanece estable."},
+        {texto:"Durante los próximos tres días, la prioridad será cerrar las pruebas críticas; la documentación final puede esperar hasta el jueves.",funcion:"Reordena prioridades y reduce ambigüedad sobre tareas secundarias."},
+        {texto:"Ana actualiza hoy el calendario y Marcos valida con marketing el impacto del cambio antes de las cuatro.",funcion:"Asigna acciones y plazo."},
+        {texto:"Mañana revisamos el avance y, si aparece un nuevo bloqueo, ajustamos el plan antes de hablar con el cliente.",funcion:"Define seguimiento y condición para una nueva revisión."}
+      ]
+    },
+    ejercicios:[
+      {pregunta:"¿Qué opción delimita mejor el alcance de un cambio?",options:["Todo cambia a partir de ahora.","Cambia la fecha, pero mantenemos el alcance aprobado.","Tenemos un cambio importante."],correct:1,feedback:"La segunda opción separa explícitamente lo que cambia de lo que se mantiene."},
+      {pregunta:"Quieres marcar una prioridad temporal. ¿Qué formulación es más precisa?",options:["Ahora esto es lo más importante.","Durante los próximos dos días, la prioridad será cerrar las pruebas críticas.","Las pruebas son importantes."],correct:1,feedback:"La segunda opción añade acción concreta y duración."},
+      {pregunta:"¿Qué cierre transforma mejor la decisión en ejecución?",options:["Ya veremos cómo nos organizamos.","Ana actualiza hoy el calendario y mañana revisamos el avance.","Intentemos adaptarnos cuanto antes."],correct:1,feedback:"Incluye responsable, acción y momento de revisión."}
+    ],
+    practica:{
+      contexto:"Dirección decide adelantar una presentación al cliente del viernes al miércoles. Para llegar, el equipo debe posponer una tarea interna y cerrar primero una versión mínima de la propuesta. Dos personas ya tenían trabajo asignado según el plan anterior.",
+      objetivo:"Escribe 6–8 frases para comunicar la decisión, explicar qué cambia y qué se mantiene, justificar brevemente la nueva prioridad y convertir el cambio en acciones concretas.",
+      requisitos:["Presenta la decisión como tomada.","Distingue al menos un elemento que cambia y uno que se mantiene.","Explica la prioridad y su horizonte temporal.","Incluye responsables o siguientes pasos.","Evita generalizaciones como «todo cambia»."],
+      supports:["La decisión es…","Cambia…, pero mantenemos…","Durante…, la prioridad será…","Esto afecta a…, pero no cambia…","X se encarga de…","Revisamos…"]
+    },
+    modelAnswer:"La decisión es adelantar la presentación al miércoles para responder a la solicitud del cliente. Cambia la fecha de presentación, pero mantenemos el alcance acordado de la propuesta. Durante los próximos dos días, la prioridad será cerrar una versión mínima que podamos presentar con seguridad. La revisión interna completa queda en segundo plano hasta el jueves. Sara se encargará hoy de consolidar la propuesta y Daniel validará mañana los datos comerciales. Este ajuste afecta al calendario interno, pero no cambia los compromisos técnicos ya confirmados. Mañana a las cuatro revisamos el avance y confirmamos si necesitamos redistribuir alguna tarea.",
+    checklist:["Puedo comunicar una decisión sin presentarla como una posibilidad abierta.","Puedo distinguir qué cambia y qué se mantiene.","Puedo explicar una razón breve y relevante.","Puedo redefinir prioridades de forma temporal y concreta.","Puedo convertir un cambio en responsables, plazos o siguientes pasos."]
+  },
+
+  b2:{
+    ruta:"🚀 B2 — Avanzado",
+    hero:"Entrena cómo comunicar decisiones sensibles o complejas, gestionar prioridades en conflicto y explicar cambios sin generar ambigüedad, defensividad ni compromisos que no existen.",
+    objetivo:"Al terminar esta semana podrás comunicar decisiones complejas, delimitar su alcance, justificar prioridades con criterios explícitos, anticipar impactos y adaptar el registro cuando un cambio afecte a interlocutores con intereses diferentes.",
+    situacion:{
+      quien:"Tú lideras un área que depende de varias funciones.",
+      con:"Responsables de Operaciones, Comercial y Finanzas.",
+      contexto:"Una reunión de coordinación después de una decisión de dirección que reduce recursos y obliga a modificar el plan trimestral.",
+      objetivo:"Comunicar qué se mantiene, qué se pospone, qué criterio define las nuevas prioridades y qué decisiones todavía no están cerradas.",
+      dificultad:"Las áreas tienen objetivos distintos y existe riesgo de que una prioridad temporal sea interpretada como abandono de otros compromisos."
+    },
+    vocab:[
+      {term:"criterio de priorización",meaning:"Regla o conjunto de factores utilizados para decidir qué recibe atención antes.",example:"El criterio de priorización será impacto en el cliente y riesgo operativo.",extra:"Más preciso que decir simplemente «esto es más importante»."},
+      {term:"recalibrar",meaning:"Ajustar un plan, expectativa o prioridad a nueva información o restricciones.",example:"Necesitamos recalibrar el plan trimestral con la capacidad real disponible.",extra:"Registro profesional; útil cuando el plan no se abandona, sino que se reajusta."},
+      {term:"compromiso vigente",meaning:"Obligación o acuerdo que sigue siendo válido después del cambio.",example:"Los compromisos vigentes con clientes estratégicos se mantienen.",extra:"Ayuda a separar continuidad de cambios internos."},
+      {term:"trade-off",meaning:"Compensación entre objetivos incompatibles o recursos limitados.",example:"El principal trade-off está entre velocidad de lanzamiento y profundidad de la implementación.",extra:"Puede sustituirse por «compensación» o «renuncia necesaria» según el interlocutor."},
+      {term:"impacto de segundo orden",meaning:"Consecuencia indirecta que aparece después del efecto inmediato.",example:"Reducir alcance puede tener un impacto de segundo orden en soporte y retención.",extra:"Útil para evitar decisiones que optimizan solo el efecto inmediato."},
+      {term:"decisión condicionada",meaning:"Decisión cuya aplicación definitiva depende de que se cumpla una condición.",example:"La ampliación del proyecto queda como decisión condicionada a la validación financiera.",extra:"No debe comunicarse como una aprobación definitiva."}
+    ],
+    frases:[
+      {grupo:"Enmarcar la decisión",texto:"La decisión que tomamos es concentrar capacidad en los compromisos con mayor impacto en el cliente durante las próximas seis semanas.",uso:"Expone la decisión y el horizonte temporal; evita que una prioridad temporal parezca permanente."},
+      {grupo:"Explicitar el criterio",texto:"El criterio de priorización será impacto en el cliente, riesgo operativo y coste de retraso.",uso:"Hace visible por qué unas iniciativas avanzan y otras no."},
+      {grupo:"Delimitar el alcance",texto:"Esto modifica la secuencia del trimestre, no los compromisos vigentes que ya están confirmados.",uso:"Reduce interpretaciones amplias y protege compromisos existentes."},
+      {grupo:"Comunicar un aplazamiento sin cancelación",texto:"La iniciativa queda pospuesta, no descartada; la reevaluaremos cuando recuperemos capacidad.",uso:"Diferencia pérdida temporal de prioridad de cancelación definitiva."},
+      {grupo:"Reconocer un trade-off",texto:"Estamos priorizando velocidad y continuidad operativa, con el coste de reducir temporalmente el alcance de mejora.",uso:"Nombra la renuncia asociada a la decisión en lugar de presentar solo beneficios."},
+      {grupo:"Mantener una decisión abierta",texto:"La ampliación sigue condicionada a la validación financiera; todavía no la comunicaría como aprobada.",uso:"Evita convertir una decisión condicionada en un compromiso prematuro."}
+    ],
+    construye:{
+      modo:"free",
+      intro:"Formula una comunicación ejecutiva breve. Cada bloque cumple una función distinta y puede requerir un registro diferente.",
+      prompts:[
+        {label:"1. Decisión y horizonte",hint:"¿Qué se decidió y durante cuánto tiempo aplica?"},
+        {label:"2. Criterio",hint:"¿Con qué criterios se han ordenado las prioridades?"},
+        {label:"3. Alcance e impactos",hint:"¿Qué cambia, qué sigue vigente y qué trade-off se acepta?"},
+        {label:"4. Condiciones y revisión",hint:"¿Qué sigue abierto, bajo qué condición y cuándo se revisará?"}
+      ],
+      ejemplo:"Referencia: Concentramos capacidad en los compromisos con mayor impacto en el cliente durante seis semanas. El criterio será impacto, riesgo operativo y coste de retraso. Esto cambia la secuencia del trimestre, no los compromisos ya confirmados. Dos iniciativas quedan pospuestas y se reevaluarán cuando recuperemos capacidad. La ampliación del proyecto sigue condicionada a la validación financiera."
+    },
+    gramatica:[
+      {titulo:"Distinguir decisión firme de decisión condicionada",situacion:"Algunas partes del plan están aprobadas y otras dependen de una validación.",intencion:"Evitar que un interlocutor confunda hipótesis, condiciones y compromisos.",estructura:"X queda aprobado / X sigue condicionado a + sustantivo / si + presente, futuro o presente",ejemplo:"La fase uno queda aprobada; la ampliación sigue condicionada a la validación financiera.",porque:"La elección verbal hace visible el grado de compromiso. «Queda aprobado» cierra; «sigue condicionado» mantiene la dependencia."},
+      {titulo:"Marcar concesión y límite",situacion:"Una decisión produce una mejora en un objetivo y un coste en otro.",intencion:"Reconocer el trade-off sin debilitar la decisión.",estructura:"priorizamos X, aunque / a costa de / con el coste de Y",ejemplo:"Priorizamos continuidad operativa, con el coste de reducir temporalmente el alcance.",porque:"Estas estructuras permiten reconocer la consecuencia sin presentar la decisión como incoherente."},
+      {titulo:"Atenuar una conclusión no definitiva",situacion:"Todavía existe incertidumbre y no quieres presentar una interpretación como hecho.",intencion:"Mantener precisión y distancia epistémica.",estructura:"por ahora / en principio / a falta de + sustantivo / no lo comunicaría como…",ejemplo:"A falta de la validación financiera, no lo comunicaría todavía como una ampliación aprobada.",porque:"Los marcadores limitan el grado de certeza y protegen frente a sobreinterpretaciones."}
+    ],
+    registro:{
+      contexto:"Debes comunicar a varios responsables que dos iniciativas pierden prioridad por seis semanas. Una de ellas tiene un patrocinador interno fuerte.",
+      opciones:[
+        {texto:"Dirección ha decidido que esas dos iniciativas ya no son importantes.",tipo:"warn",feedback:"Confunde pérdida temporal de prioridad con falta de importancia y puede generar resistencia innecesaria."},
+        {texto:"Durante las próximas seis semanas, concentramos capacidad en los compromisos con mayor impacto en el cliente y riesgo operativo. Las dos iniciativas quedan pospuestas, no descartadas, y volverán a evaluación cuando recuperemos capacidad.",tipo:"good",feedback:"Delimita horizonte, criterio y estatus de las iniciativas. Reduce el riesgo de interpretar la decisión como cancelación."},
+        {texto:"Con los recursos actuales no tenemos otra opción que parar esos proyectos.",tipo:"warn",feedback:"«No tenemos otra opción» presenta la decisión como inevitable y elimina espacio para explicar el criterio o los trade-offs que realmente se aceptaron."}
+      ]
+    },
+    modelo:{
+      intro:"Pulsa cada parte. El mensaje separa hechos, criterios, trade-offs y decisiones todavía condicionadas.",
+      lineas:[
+        {texto:"La decisión es concentrar capacidad durante las próximas seis semanas en los compromisos con mayor impacto en el cliente y mayor riesgo operativo.",funcion:"Define decisión, horizonte y dos criterios de priorización."},
+        {texto:"Esto recalibra la secuencia del trimestre, pero no modifica los compromisos vigentes que ya están confirmados con clientes.",funcion:"Delimita el alcance y protege compromisos existentes."},
+        {texto:"Las iniciativas Atlas y Delta quedan pospuestas, no descartadas; volverán a evaluación cuando recuperemos capacidad.",funcion:"Comunica pérdida temporal de prioridad sin convertirla en cancelación."},
+        {texto:"El trade-off es claro: ganamos continuidad y foco a corto plazo, a costa de retrasar parte de la mejora interna.",funcion:"Reconoce explícitamente el coste de la decisión."},
+        {texto:"La ampliación de Atlas sigue condicionada a la validación financiera, así que todavía no la comunicaría como aprobada.",funcion:"Distingue una decisión condicionada de un compromiso firme."},
+        {texto:"Revisaremos capacidad, impacto y riesgos en cuatro semanas para decidir si mantenemos esta secuencia o la recalibramos.",funcion:"Define criterios y momento de revisión."}
+      ]
+    },
+    ejercicios:[
+      {pregunta:"¿Qué formulación distingue mejor pérdida de prioridad de cancelación?",options:["El proyecto deja de ser importante.","El proyecto queda pospuesto, no descartado, y se reevaluará en cuatro semanas.","El proyecto se detiene y ya veremos."],correct:1,feedback:"La segunda opción delimita estatus y momento de reevaluación."},
+      {pregunta:"¿Cuál comunica mejor una decisión condicionada?",options:["La ampliación está aprobada si Finanzas responde bien.","La ampliación sigue condicionada a la validación financiera.","Seguramente ampliaremos el proyecto."],correct:1,feedback:"«Sigue condicionada a…» expresa con precisión que todavía falta una condición para el cierre."},
+      {pregunta:"Ante responsables internos, ¿qué formulación reconoce mejor el trade-off sin dramatizar?",options:["Esta decisión solo tiene ventajas.","Priorizamos continuidad operativa, con el coste de retrasar parte de la mejora interna.","No podemos hacer todo, así que algunas cosas tendrán que esperar."],correct:1,feedback:"La segunda opción es la más precisa para este contexto porque explicita ganancia y coste. La tercera también podría funcionar en un intercambio más informal, pero pierde precisión sobre qué se prioriza y qué se sacrifica."}
+    ],
+    practica:{
+      contexto:"Tu empresa reduce temporalmente un 20 % la capacidad disponible para el trimestre. Dirección decide proteger compromisos con clientes estratégicos y posponer dos iniciativas internas. Una de esas iniciativas puede reactivarse si Finanzas aprueba presupuesto adicional. Comercial teme que el cambio afecte un lanzamiento; Operaciones teme sobrecarga del equipo.",
+      objetivo:"Redacta una comunicación de 8–10 frases para varios responsables. Debe distinguir decisión firme, prioridad, impacto, trade-offs y elementos todavía condicionados.",
+      requisitos:["Define el horizonte temporal de la decisión.","Explicita al menos dos criterios de priorización.","Distingue qué cambia y qué compromiso sigue vigente.","Reconoce al menos un trade-off o impacto de segundo orden.","No presentes como aprobada la iniciativa condicionada a Finanzas.","Define cuándo y con qué criterios se revisará la decisión."],
+      supports:["La decisión es…","El criterio de priorización será…","Esto modifica…, no…","Queda pospuesto, no descartado…","El trade-off es…","Sigue condicionado a…","A falta de…","Revisaremos…"]
+    },
+    modelAnswer:"La decisión es concentrar capacidad durante las próximas seis semanas en los compromisos con mayor impacto en el cliente y mayor riesgo operativo. El criterio de priorización será impacto, riesgo y coste de retraso, no únicamente la visibilidad de cada iniciativa. Esto modifica la secuencia del trimestre, pero no los compromisos vigentes ya confirmados con clientes estratégicos. Las iniciativas Atlas y Delta quedan pospuestas, no descartadas, y volverán a evaluación cuando recuperemos capacidad. En Comercial, el lanzamiento se mantiene, aunque tendremos que reducir temporalmente parte del alcance no crítico para proteger la fecha. En Operaciones, el principal riesgo es trasladar demasiada carga al mismo equipo, así que limitaremos trabajo nuevo fuera de las prioridades definidas. El trade-off es aceptar menos mejora interna a corto plazo para proteger continuidad y compromisos externos. La ampliación de Atlas sigue condicionada a la validación financiera; a falta de esa aprobación, no la comunicaría como parte del plan confirmado. Revisaremos capacidad, impacto en el clientes y carga operativa en cuatro semanas para decidir si mantenemos esta secuencia o la recalibramos.",
+    checklist:["Puedo comunicar una decisión compleja distinguiendo certeza, condición e hipótesis.","Puedo hacer explícitos los criterios que justifican una prioridad.","Puedo delimitar qué cambia y qué compromisos permanecen vigentes.","Puedo reconocer trade-offs e impactos sin dramatizar ni minimizar.","Puedo adaptar el registro y definir condiciones claras de revisión."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["objetivo","1. 🎯 Tu objetivo esta semana"],
+  ["situacion","2. 🏢 La situación"],
+  ["vocab","3. 🗣️ Vocabulario clave"],
+  ["frases","4. 💬 Frases que puedes usar"],
+  ["construye","5. 🧩 Construye tu mensaje"],
+  ["gramatica","6. 📚 Gramática que necesitas"],
+  ["registro","7. 🎭 Elige el registro"],
+  ["modelo","8. 💼 Mira cómo se hace"],
+  ["ejercicios","9. ✍️ Comprueba lo que aprendiste"],
+  ["practica","10. 🏢 Ahora te toca a ti"],
+  ["respuesta","11. 💡 Ver modelo"],
+  ["checklist","12. ✅ Checklist final"]
+];
+
+const state={level:null,section:0,visited:new Set(),actions:new Set()};
+const levelGate=document.getElementById("levelGate");
+const app=document.getElementById("app");
+const routeChip=document.getElementById("routeChip");
+const heroLead=document.getElementById("heroLead");
+const sectionNav=document.getElementById("sectionNav");
+const sectionHost=document.getElementById("sectionHost");
+const progressBar=document.getElementById("progressBar");
+const progressLabel=document.getElementById("progressLabel");
+const audioStatus=document.getElementById("audioStatus");
+
+document.querySelectorAll(".level-choice").forEach(btn=>btn.addEventListener("click",()=>selectLevel(btn.dataset.level)));
+document.getElementById("changeLevel").addEventListener("click",resetLevel);
+
+function selectLevel(level){
+  state.level=level;state.section=0;state.visited=new Set([0]);state.actions=new Set();
+  levelGate.classList.add("hidden");app.classList.remove("hidden");
+  routeChip.textContent="Tu ruta: "+contenido[level].ruta;
+  heroLead.textContent=contenido[level].hero;
+  renderNav();renderSections();showSection(0);updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function resetLevel(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  app.classList.add("hidden");levelGate.classList.remove("hidden");
+  state.level=null;state.section=0;state.visited.clear();state.actions.clear();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function current(){return contenido[state.level]}
+function isA2(){return state.level==="a2"}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+function audioControls(text,label){
+  if(!isA2()) return "";
+  const safe=esc(text);
+  const js=esc(text).replace(/`/g,"&#96;");
+  return `<div class="audio-row">
+    <button type="button" class="audio-btn" data-speak="${safe}" data-rate="1" aria-label="Escuchar ${esc(label)}">🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn" data-speak="${safe}" data-rate=".72" aria-label="Escuchar lentamente ${esc(label)}">🐢 Lento / Slow</button>
+  </div>`;
+}
+function speak(text,rate=1){
+  if(!("speechSynthesis" in window)){
+    audioStatus.textContent="El audio no está disponible en este navegador.";
+    audioStatus.classList.remove("hidden");setTimeout(()=>audioStatus.classList.add("hidden"),2200);return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const voices=window.speechSynthesis.getVoices();
+  const preferred=[
+    v=>/es-CO/i.test(v.lang),
+    v=>/es-(MX|US|AR|CL|PE|VE|EC|UY|CR|PA|DO|GT|HN|NI|SV|BO|PY)/i.test(v.lang),
+    v=>/^es/i.test(v.lang)
+  ];
+  let voice=null;
+  for(const test of preferred){voice=voices.find(test);if(voice)break}
+  if(voice)u.voice=voice;
+  u.lang=voice?.lang||"es-CO";u.rate=Number(rate)||1;u.pitch=1;
+  u.onstart=()=>{audioStatus.textContent=rate<1?"Reproduciendo lentamente…":"Reproduciendo…";audioStatus.classList.remove("hidden")};
+  u.onend=()=>audioStatus.classList.add("hidden");
+  u.onerror=()=>audioStatus.classList.add("hidden");
+  window.speechSynthesis.speak(u);
+}
+
+function renderNav(){
+  sectionNav.innerHTML=sectionMeta.map((s,i)=>`<button type="button" class="nav-btn ${i===0?"active":""}" data-section="${i}">${s[1]}</button>`).join("");
+}
+function renderSections(){
+  const d=current();
+  sectionHost.innerHTML=[
+    section("01 · Acción profesional","🎯 TU OBJETIVO ESTA SEMANA",`<p class="lead">${esc(d.objetivo)}</p><div class="info-box">Al final del módulo comprobarás si ya puedes hacerlo.</div>`,0),
+    section("02 · Contexto real","🏢 LA SITUACIÓN",`<div class="situation-grid">
+      <div class="mini"><strong>Quién habla</strong>${esc(d.situacion.quien)}</div>
+      <div class="mini"><strong>Con quién</strong>${esc(d.situacion.con)}</div>
+      <div class="mini"><strong>Contexto</strong>${esc(d.situacion.contexto)}</div>
+      <div class="mini"><strong>Qué quieres conseguir</strong>${esc(d.situacion.objetivo)}</div>
+    </div><div class="info-box"><strong>Dificultad:</strong> ${esc(d.situacion.dificultad)}</div>`,1),
+    section("03 · Lenguaje útil","🗣️ VOCABULARIO CLAVE",renderVocab(d),2),
+    section("04 · Funciones comunicativas","💬 FRASES QUE PUEDES USAR",renderPhrases(d),3),
+    section("05 · Producción guiada","🧩 CONSTRUYE TU MENSAJE",renderBuilder(d),4),
+    section("06 · Herramienta lingüística","📚 GRAMÁTICA QUE NECESITAS",renderGrammar(d),5),
+    section("07 · Decisión de registro","🎭 ELIGE EL REGISTRO",renderRegister(d),6),
+    section("08 · Ejecución completa","💼 MIRA CÓMO SE HACE",renderModel(d),7),
+    section("09 · Recuperación","✍️ COMPRUEBA LO QUE APRENDISTE",renderExercises(d),8),
+    section("10 · Aplicación","🏢 AHORA TE TOCA A TI",renderPractice(d),9),
+    section("11 · Referencia","💡 VER MODELO",renderAnswer(d),10),
+    section("12 · Cierre","✅ CHECKLIST FINAL",renderChecklist(d),11)
+  ].join("");
+  bindInteractions();
+}
+function section(kicker,title,body,index){
+  return `<section class="section ${index===0?"active":""}" data-index="${index}">
+    <div class="section-kicker">${kicker}</div><h2>${title}</h2>${body}
+    <div class="section-footer">
+      <button type="button" class="btn btn-secondary prev-btn" ${index===0?"disabled":""}>← Anterior</button>
+      <button type="button" class="btn btn-primary next-btn" ${index===sectionMeta.length-1?"disabled":""}>${index===sectionMeta.length-1?"Módulo completado":"Siguiente →"}</button>
+    </div>
+  </section>`;
+}
+function renderVocab(d){
+  return `<p class="muted">Pulsa cada tarjeta para revelar su significado, ejemplo y nota de uso.</p>
+  <div class="cards">${d.vocab.map((v,i)=>`<article class="vocab-card">
+    <button type="button" class="card-head" aria-expanded="false"><span>${esc(v.term)}</span><span>＋</span></button>
+    <div class="card-detail">
+      ${v.en?`<p class="english"><strong>English:</strong> ${esc(v.en)}</p>`:""}
+      <p>${esc(v.meaning)}</p>
+      ${v.extra?`<p class="muted">${esc(v.extra)}</p>`:""}
+      <div class="example"><strong>Ejemplo:</strong> ${esc(v.example)}</div>
+      ${audioControls(v.term,"vocabulario "+v.term)}
+      ${audioControls(v.example,"ejemplo "+v.term)}
+    </div></article>`).join("")}</div>
+  ${isA2()?`<div class="info-box"><strong>Recupera una palabra:</strong> antes de abrir cada tarjeta, intenta recordar su significado. Luego escucha la palabra y su ejemplo.</div>
+  <div class="quiz-card" id="vocabRecall">
+    <strong>Recuperación rápida / Quick recall</strong>
+    <p class="muted">¿Qué expresión en español significa <em>priority</em>?</p>
+    <div class="quiz-options">
+      <button type="button" class="quiz-option vocab-recall-option" data-ok="false">el cambio</button>
+      <button type="button" class="quiz-option vocab-recall-option" data-ok="true">la prioridad</button>
+      <button type="button" class="quiz-option vocab-recall-option" data-ok="false">la decisión</button>
+    </div>
+    ${audioControls("la prioridad","respuesta de recuperación")}
+    <div id="vocabRecallFeedback" class="feedback" aria-live="polite"></div>
+  </div>`:""}`;
+}
+function renderPhrases(d){
+  return `<p class="muted">${isA2()?"Escucha las frases y usa los bloques para practicar antes de producir tu propio mensaje.":"No memorices todas: identifica la función y las diferencias de uso."}</p>
+  <div class="cards">${d.frases.map((p,i)=>`<article class="phrase-card">
+    <button type="button" class="card-head" aria-expanded="false"><span>${esc(p.texto)}</span><span>＋</span></button>
+    <div class="card-detail">
+      <span class="function-label">${esc(p.grupo)}</span>
+      <p>${esc(p.uso)}</p>
+      ${p.chunks?`<div class="chunk-row">${p.chunks.map(c=>`<span class="chunk">${esc(c)}</span>`).join("")}</div>`:""}
+      ${p.chunks?p.chunks.map(c=>audioControls(c,"bloque "+c)).join(""):""}
+      ${audioControls(p.texto,"frase "+(i+1))}
+    </div></article>`).join("")}</div>`;
+}
+function renderBuilder(d){
+  if(d.construye.modo==="select"){
+    const initial=d.construye.campos.map(c=>c.options[0]).join(" ");
+    return `<p>${esc(d.construye.intro)}</p><div class="builder">
+      <div class="builder-grid">${d.construye.campos.map((c,i)=>`<div class="field"><label for="build-${i}">${esc(c.label)}</label><select id="build-${i}" data-build>${c.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select></div>`).join("")}</div>
+      <div id="builderResult" class="result-box">${esc(initial)}</div>
+      ${audioControls(initial,"mensaje construido")}
+    </div>`;
+  }
+  return `<p>${esc(d.construye.intro)}</p><div class="builder"><div class="builder-grid">
+    ${d.construye.prompts.map((p,i)=>`<div class="field"><label for="free-${i}">${esc(p.label)}</label><p class="muted">${esc(p.hint)}</p><input id="free-${i}" type="text" data-free-build placeholder="Escribe tu formulación…"></div>`).join("")}
+  </div><div class="info-box"><strong>Referencia, no plantilla:</strong> ${esc(d.construye.ejemplo)}</div></div>`;
+}
+function renderGrammar(d){
+  return `<p class="muted">Solo aparece la gramática necesaria para ejecutar esta habilidad profesional.</p>
+  <div class="grid-2">${d.gramatica.map((g,i)=>`<article class="grammar-card">
+    <h3>${esc(g.titulo)}</h3>
+    <p><strong>Situación:</strong> ${esc(g.situacion)}</p>
+    <p><strong>Intención:</strong> ${esc(g.intencion)}</p>
+    <p><strong>Estructura:</strong> <code>${esc(g.estructura)}</code></p>
+    <p><strong>Ejemplo:</strong> ${esc(g.ejemplo)}</p>
+    ${audioControls(g.ejemplo,"ejemplo gramatical")}
+    <button type="button" class="toggle">¿Por qué se usa así?</button>
+    <div class="toggle-panel">${esc(g.porque)}</div>
+  </article>`).join("")}</div>`;
+}
+function renderRegister(d){
+  return `<div class="info-box">${esc(d.registro.contexto)}</div><p><strong>¿Qué opción funciona mejor en este contexto?</strong></p>
+  <div class="choice-list">${d.registro.opciones.map((o,i)=>`<div>
+    <button type="button" class="choice" data-register="${i}">${esc(o.texto)}</button>
+    ${audioControls(o.texto,"opción de registro")}
+  </div>`).join("")}</div><div id="registerFeedback" class="feedback" aria-live="polite"></div>`;
+}
+function renderModel(d){
+  const full=d.modelo.lineas.map(x=>x.texto).join(" ");
+  return `<p>${esc(d.modelo.intro)}</p>${d.modelo.lineas.map((l,i)=>`<div class="model-line">
+    <button type="button" data-model="${i}" aria-expanded="false">${esc(l.texto)}</button>
+    <div class="function-note" id="model-${i}">${esc(l.funcion)}</div>
+    ${audioControls(l.texto,"parte del ejemplo")}
+  </div>`).join("")}
+  ${audioControls(full,"ejemplo profesional completo")}`;
+}
+function renderExercises(d){
+  return `<p class="muted">No es un examen. Usa estas actividades para comprobar si puedes reconocer y organizar el lenguaje antes de producirlo.</p>
+  <div class="quiz">${d.ejercicios.map((q,i)=>`<article class="quiz-card" data-quiz="${i}">
+    <strong>${esc(q.pregunta)}</strong>
+    <div class="quiz-options">${q.options.map((o,j)=>`<button type="button" class="quiz-option" data-q="${i}" data-opt="${j}">${esc(o)}</button>${isA2()?audioControls(o,"opción de ejercicio"):""}`).join("")}</div>
+    <div class="quiz-actions"><button type="button" class="btn btn-secondary retry-quiz" data-q="${i}">Volver a intentar</button></div>
+    <div class="feedback quiz-feedback" id="quiz-feedback-${i}" aria-live="polite"></div>
+  </article>`).join("")}</div>`;
+}
+function renderPractice(d){
+  return `<div class="practice"><div class="info-box"><strong>Situación:</strong> ${esc(d.practica.contexto)}</div>
+    <p><strong>Tu objetivo:</strong> ${esc(d.practica.objetivo)}</p>
+    <ul>${d.practica.requisitos.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>
+    ${d.practica.supports.length?`<div class="supports">${d.practica.supports.map((s,i)=>`<span class="support">${esc(s)}</span>${isA2()?audioControls(s,"estructura de apoyo "+(i+1)):""}`).join("")}</div>`:""}
+    <label for="practiceText"><strong>Escribe tu respuesta</strong></label>
+    <textarea id="practiceText" placeholder="Escribe aquí tu respuesta profesional…"></textarea>
+    ${isA2()?`<p class="muted">Cuando termines, puedes escuchar tu texto para practicar pronunciación.</p>
+    <div class="audio-row"><button type="button" class="audio-btn" data-speak-target="practiceText" data-rate="1">🔊 Escuchar mi respuesta</button><button type="button" class="audio-btn" data-speak-target="practiceText" data-rate=".72">🐢 Lento / Slow</button></div>`:""}
+  </div>`;
+}
+function renderAnswer(d){
+  return `<p class="muted">Intenta primero tu propia respuesta. Después compara organización, precisión y tono.</p>
+  <button id="showAnswer" type="button" class="btn btn-yellow">Ver una posible respuesta</button>
+  <div id="modelAnswer" class="model-answer">
+    <p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p>
+    <p>${esc(d.modelAnswer)}</p>${audioControls(d.modelAnswer,"respuesta modelo")}
+  </div>`;
+}
+function renderChecklist(d){
+  return `<p>Marca únicamente lo que ya puedes hacer sin depender de copiar el modelo.</p><div class="checklist">
+    ${d.checklist.map((c,i)=>`<label class="check-item"><input type="checkbox" data-check="${i}"><span>${esc(c)}</span></label>`).join("")}
+  </div>
+  <div id="finalStatus" class="final-box">Completa el checklist para ver tu resultado.</div>
+  <div id="readyPanel" class="final-box hidden">
+    <h3>🎯 Ya estás listo para practicar</h3>
+    <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+    <!-- Sustituir href cuando exista la URL específica del reto de hoy -->
+    <a class="btn btn-primary" href="#" onclick="return false;">🔥 Ir al reto de hoy</a>
+  </div>`;
+}
+
+function bindInteractions(){
+  document.querySelectorAll(".card-head").forEach((btn,idx)=>btn.addEventListener("click",()=>{
+    const detail=btn.nextElementSibling;const open=detail.classList.toggle("open");
+    btn.setAttribute("aria-expanded",String(open));btn.lastElementChild.textContent=open?"−":"＋";
+    if(open){state.actions.add("vocab-card-"+idx);updateProgress();}
+  }));
+  document.querySelectorAll(".toggle").forEach(btn=>btn.addEventListener("click",()=>btn.nextElementSibling.classList.toggle("open")));
+  document.querySelectorAll(".vocab-recall-option").forEach(btn=>btn.addEventListener("click",()=>{
+    document.querySelectorAll(".vocab-recall-option").forEach(x=>x.classList.remove("selected"));
+    btn.classList.add("selected");
+    const fb=document.getElementById("vocabRecallFeedback");
+    fb.className="feedback show "+(btn.dataset.ok==="true"?"good":"warn");
+    fb.textContent=btn.dataset.ok==="true"
+      ?"Correcto: «la prioridad» significa «priority». Intenta decir la palabra antes de escucharla."
+      :"Esa palabra no significa «priority». Revisa las tarjetas e inténtalo otra vez.";
+    if(btn.dataset.ok==="true"){state.actions.add("vocab-recall");updateProgress();}
+  }));
+  document.querySelectorAll("[data-speak]").forEach(btn=>btn.addEventListener("click",()=>speak(btn.dataset.speak,btn.dataset.rate)));
+  document.querySelectorAll("[data-speak-target]").forEach(btn=>btn.addEventListener("click",()=>{
+    const el=document.getElementById(btn.dataset.speakTarget);speak(el.value||el.textContent,btn.dataset.rate);
+  }));
+  document.querySelectorAll("[data-build]").forEach(sel=>sel.addEventListener("change",()=>{
+    const text=[...document.querySelectorAll("[data-build]")].map(x=>x.value).join(" ");
+    const out=document.getElementById("builderResult");out.textContent=text;
+    const audio=out.parentElement.querySelectorAll("[data-speak]");
+    audio.forEach(b=>b.dataset.speak=text);
+    state.actions.add("builder");updateProgress();
+  }));
+  document.querySelectorAll("[data-free-build]").forEach(inp=>inp.addEventListener("input",()=>{
+    const total=[...document.querySelectorAll("[data-free-build]")].reduce((n,x)=>n+x.value.trim().length,0);
+    if(total>=20){state.actions.add("builder");updateProgress();}
+  }));
+  document.querySelectorAll("[data-register]").forEach(btn=>btn.addEventListener("click",()=>{
+    const o=current().registro.opciones[Number(btn.dataset.register)];
+    const f=document.getElementById("registerFeedback");f.textContent=o.feedback;f.className="feedback show "+(o.tipo==="good"?"good":"warn");
+    state.actions.add("register");updateProgress();
+  }));
+  document.querySelectorAll("[data-model]").forEach(btn=>btn.addEventListener("click",()=>{
+    const panel=document.getElementById("model-"+btn.dataset.model);const open=panel.classList.toggle("open");btn.setAttribute("aria-expanded",String(open));
+  }));
+  document.querySelectorAll(".quiz-option").forEach(btn=>btn.addEventListener("click",()=>{
+    const qi=Number(btn.dataset.q), oi=Number(btn.dataset.opt), q=current().ejercicios[qi];
+    document.querySelectorAll(`[data-q="${qi}"].quiz-option`).forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+    const fb=document.getElementById("quiz-feedback-"+qi);fb.classList.add("show");
+    if(oi===q.correct){fb.classList.add("good");fb.classList.remove("warn");fb.textContent="Esta opción funciona mejor. "+q.feedback}
+    else{fb.classList.add("warn");fb.classList.remove("good");fb.textContent="Revisa la intención de la frase. "+q.feedback}
+    state.actions.add("quiz-"+qi);updateProgress();
+  }));
+  document.querySelectorAll(".retry-quiz").forEach(btn=>btn.addEventListener("click",()=>{
+    const qi=btn.dataset.q;document.querySelectorAll(`[data-q="${qi}"].quiz-option`).forEach(x=>x.classList.remove("selected"));
+    const fb=document.getElementById("quiz-feedback-"+qi);fb.className="feedback quiz-feedback";fb.textContent="";
+  }));
+  const practice=document.getElementById("practiceText");
+  if(practice)practice.addEventListener("input",()=>{
+    if(practice.value.trim().length>=40){state.actions.add("practice");updateProgress();}
+  });
+  const show=document.getElementById("showAnswer"); if(show)show.addEventListener("click",()=>{
+    const m=document.getElementById("modelAnswer");m.classList.toggle("open");
+    show.textContent=m.classList.contains("open")?"Ocultar respuesta":"Ver una posible respuesta";
+    if(m.classList.contains("open")){state.actions.add("model-answer");updateProgress();}
+  });
+  document.querySelectorAll("[data-check]").forEach(c=>c.addEventListener("change",updateChecklist));
+  document.querySelectorAll(".prev-btn").forEach(btn=>btn.addEventListener("click",()=>showSection(Math.max(0,state.section-1))));
+  document.querySelectorAll(".next-btn").forEach(btn=>btn.addEventListener("click",()=>showSection(Math.min(sectionMeta.length-1,state.section+1))));
+  document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>showSection(Number(btn.dataset.section))));
+}
+function showSection(index){
+  state.section=index;state.visited.add(index);
+  document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",Number(s.dataset.index)===index));
+  document.querySelectorAll(".nav-btn").forEach((b,i)=>b.classList.toggle("active",i===index));
+  updateProgress();
+  const top=document.querySelector(".hero").offsetHeight + document.querySelector(".topbar").offsetHeight;
+  window.scrollTo({top:document.querySelector(".hero").offsetTop+document.querySelector(".hero").offsetHeight-20,behavior:"smooth"});
+}
+function updateProgress(){
+  if(!state.level){progressBar.style.width="0%";progressLabel.textContent="0%";return;}
+  const d=current();
+  const sectionTargets=sectionMeta.length;
+  const actionTargets=
+    1 + // builder
+    1 + // register
+    d.ejercicios.length +
+    1 + // practice
+    1 + // model answer
+    d.checklist.length +
+    (isA2()?1:0); // vocabulary recovery
+  const completedActions=[...state.actions].filter(id=>
+    id==="builder" || id==="register" || id==="practice" || id==="model-answer" ||
+    id==="vocab-recall" || id.startsWith("quiz-") || id.startsWith("check-")
+  ).length;
+  const done=Math.min(sectionTargets+actionTargets,state.visited.size+completedActions);
+  const total=sectionTargets+actionTargets;
+  const pct=Math.round((done/total)*100);
+  progressBar.style.width=pct+"%";progressLabel.textContent=pct+"%";
+  const wrap=progressBar.parentElement;
+  wrap?.setAttribute("aria-valuenow",String(pct));
+  wrap?.setAttribute("aria-valuetext",pct+"% completado");
+}
+function updateChecklist(){
+  const boxes=[...document.querySelectorAll("[data-check]")];
+  boxes.forEach((b,i)=>{
+    if(b.checked) state.actions.add("check-"+i);
+    else state.actions.delete("check-"+i);
+  });
+  const done=boxes.filter(b=>b.checked).length;
+  const f=document.getElementById("finalStatus");
+  const ready=document.getElementById("readyPanel");
+  if(done===boxes.length){
+    f.textContent="Checklist completo.";
+    ready?.classList.remove("hidden");
+  } else {
+    ready?.classList.add("hidden");
+    if(done>=Math.ceil(boxes.length/2)) f.textContent=`Tienes ${done} de ${boxes.length} puntos. Revisa los elementos que todavía no puedes hacer sin apoyo.`;
+    else f.textContent=`Tienes ${done} de ${boxes.length} puntos. Conviene volver a vocabulario, frases, gramática y modelo antes de cerrar el módulo.`;
+  }
+  updateProgress();
+}
+</script>
+</body>
+</html>

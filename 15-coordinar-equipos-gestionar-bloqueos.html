@@ -1,0 +1,1497 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Coordinar equipos y gestionar bloqueos | La Oficina en Español</title>
+  <meta name="description" content="Módulo interactivo de Business Spanish para coordinar equipos, comunicar avances y gestionar bloqueos en español.">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#002760;
+      --blue-soft:#eaf1ff;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#14213d;
+      --muted:#5f6b7a;
+      --line:#dbe3ef;
+      --success:#176b3a;
+      --success-bg:#eaf7ef;
+      --warn:#8a5b00;
+      --warn-bg:#fff7d6;
+      --surface:#f7f9fc;
+      --shadow:0 16px 40px rgba(0,56,147,.10);
+      --radius:18px;
+      --title-font:"Arial Black","Arial Narrow",Arial,sans-serif;
+      --body-font:Montserrat,Arial,Helvetica,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--body-font);
+      color:var(--ink);
+      background:var(--surface);
+      line-height:1.6;
+    }
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--blue)}
+    [hidden]{display:none!important}
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;
+      background:var(--yellow);color:var(--black);
+      padding:.75rem 1rem;border-radius:8px;z-index:1000
+    }
+    .skip-link:focus{left:1rem;top:1rem}
+    #lessonContent:focus{outline:none}
+    .level-screen{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 90% 10%,rgba(252,209,22,.22),transparent 28%),
+        linear-gradient(145deg,var(--blue-dark),var(--blue));
+      padding:32px 18px;
+      display:grid;
+      place-items:center;
+    }
+    .level-shell{width:min(1080px,100%);}
+    .brandline{
+      display:flex;align-items:center;gap:12px;
+      color:var(--white);margin-bottom:24px;font-weight:800
+    }
+    .brandmark{
+      width:46px;height:46px;border-radius:14px;
+      display:grid;place-items:center;background:var(--yellow);
+      color:var(--blue);font-family:var(--title-font);font-size:1.25rem
+    }
+    .selector-card{
+      background:var(--white);
+      border-radius:28px;
+      box-shadow:0 30px 80px rgba(0,0,0,.20);
+      padding:clamp(24px,4vw,48px);
+    }
+    .eyebrow{
+      color:var(--blue);font-size:.8rem;font-weight:900;
+      letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px
+    }
+    h1,h2,h3{font-family:var(--title-font);line-height:1.12;margin-top:0}
+    .selector-card h1{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:12px;color:var(--blue)}
+    .selector-intro{margin:0 0 26px;color:var(--muted);max-width:750px}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .level-card{
+      appearance:none;text-align:left;border:2px solid var(--line);
+      background:var(--white);border-radius:20px;padding:22px;
+      min-height:220px;color:var(--ink);
+      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .level-card:hover,.level-card:focus-visible{
+      transform:translateY(-3px);border-color:var(--blue);
+      box-shadow:0 12px 30px rgba(0,56,147,.12);outline:none
+    }
+    .level-card strong{display:block;font-size:1.1rem;color:var(--blue);margin:10px 0 8px}
+    .level-icon{font-size:2rem}
+    .level-card p{margin:0;color:var(--muted);font-size:.94rem}
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px)
+    }
+    .topbar-inner{
+      width:min(1180px,100%);margin:auto;padding:10px 18px;
+      display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center
+    }
+    .mini-brand{
+      font-weight:900;color:var(--blue);white-space:nowrap;text-decoration:none
+    }
+    .route-pill{
+      justify-self:center;background:var(--blue-soft);color:var(--blue);
+      border-radius:999px;padding:7px 12px;font-weight:800;font-size:.85rem
+    }
+    .ghost-btn{
+      border:1px solid var(--line);background:var(--white);color:var(--blue);
+      border-radius:10px;padding:8px 12px;font-weight:800
+    }
+    .ghost-btn:hover,.ghost-btn:focus-visible{border-color:var(--blue);outline:3px solid rgba(0,56,147,.12)}
+    .progress-wrap{background:var(--white);border-bottom:1px solid var(--line)}
+    .progress-inner{
+      width:min(1180px,100%);margin:auto;padding:9px 18px 11px;
+      display:flex;align-items:center;gap:12px
+    }
+    .progress-track{height:9px;background:#e7edf6;border-radius:999px;overflow:hidden;flex:1}
+    .progress-bar{height:100%;width:0;background:var(--yellow);transition:width .25s ease}
+    .progress-text{font-size:.82rem;font-weight:900;color:var(--blue);min-width:42px;text-align:right}
+    .page-shell{width:min(1180px,100%);margin:auto;padding:24px 18px 64px}
+    .hero{
+      background:linear-gradient(135deg,var(--blue-dark),var(--blue));
+      color:var(--white);border-radius:26px;padding:clamp(26px,5vw,48px);
+      position:relative;overflow:hidden;box-shadow:var(--shadow)
+    }
+    .hero::after{
+      content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+      background:var(--yellow);opacity:.14;right:-60px;top:-55px
+    }
+    .hero .eyebrow{color:var(--yellow)}
+    .hero h1{font-size:clamp(2rem,5vw,3.6rem);max-width:850px;margin-bottom:14px}
+    .hero p{max-width:760px;margin:0;color:#eaf2ff}
+    .section-nav{
+      display:flex;gap:8px;overflow-x:auto;padding:18px 2px 8px;
+      scrollbar-width:thin
+    }
+    .section-tab{
+      border:1px solid var(--line);background:var(--white);color:var(--muted);
+      border-radius:999px;padding:9px 12px;font-size:.83rem;font-weight:800;white-space:nowrap
+    }
+    .section-tab.active{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .section-tab.visited:not(.active){border-color:#9bb3d5;color:var(--blue)}
+    .section-panel{
+      margin-top:16px;background:var(--white);border:1px solid var(--line);
+      border-radius:24px;box-shadow:0 10px 30px rgba(20,33,61,.06);
+      padding:clamp(22px,4vw,38px)
+    }
+    .section-kicker{font-size:.78rem;font-weight:900;color:var(--red);text-transform:uppercase;letter-spacing:.08em}
+    .section-panel h2{font-size:clamp(1.5rem,3.5vw,2.4rem);color:var(--blue);margin:6px 0 16px}
+    .lead{font-size:1.04rem;color:var(--ink)}
+    .hint{
+      border-left:5px solid var(--yellow);background:#fffbea;
+      padding:14px 16px;border-radius:12px;margin:18px 0
+    }
+    .scenario-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+    .info-card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fbfcfe}
+    .info-card strong{color:var(--blue)}
+    .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .flip-card{
+      width:100%;border:1px solid var(--line);border-radius:17px;background:#fbfcfe;
+      padding:0;text-align:left;overflow:hidden;color:var(--ink)
+    }
+    .flip-head{
+      width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;
+      padding:16px;border:0;background:transparent;text-align:left;color:var(--ink)
+    }
+    .flip-head:hover,.flip-head:focus-visible{background:var(--blue-soft);outline:none}
+    .flip-term{font-weight:900;color:var(--blue)}
+    .flip-tag{font-size:.74rem;background:var(--blue-soft);color:var(--blue);padding:4px 8px;border-radius:999px}
+    .flip-body{padding:0 16px 16px;border-top:1px solid var(--line);background:var(--white)}
+    .flip-body p{margin:11px 0 0}
+    .stress{font-weight:900;letter-spacing:.03em;color:var(--red)}
+    .audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .audio-btn,.small-btn,.primary-btn,.secondary-btn,.choice-btn,.block-btn{
+      border-radius:11px;border:1px solid var(--line);font-weight:800
+    }
+    .audio-btn,.small-btn{background:var(--white);color:var(--blue);padding:8px 10px;font-size:.83rem}
+    .audio-btn,.small-btn,.primary-btn,.secondary-btn,.choice-btn,.block-btn,.ghost-btn,.section-tab{min-height:44px}
+    .audio-btn:hover,.audio-btn:focus-visible,.small-btn:hover,.small-btn:focus-visible{
+      border-color:var(--blue);outline:3px solid rgba(0,56,147,.10)
+    }
+    .recovery-box,.activity-box,.practice-box{
+      margin-top:22px;border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--surface)
+    }
+    .recovery-box h3,.activity-box h3,.practice-box h3{font-family:var(--body-font);font-size:1.05rem;color:var(--blue)}
+    .phrase-group{margin-bottom:24px}
+    .phrase-group h3{font-family:var(--body-font);font-size:1rem;color:var(--ink);margin-bottom:10px}
+    .phrase-item{border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0}
+    .phrase-main{font-weight:850;color:var(--blue)}
+    .phrase-note{margin-top:10px;color:var(--muted);padding-top:10px;border-top:1px dashed var(--line)}
+    .meaning-blocks{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:11px 0}
+    .meaning-block{background:var(--blue-soft);color:var(--blue);padding:6px 9px;border-radius:9px;font-weight:800}
+    .arrow{color:var(--muted)}
+    .builder-preview{
+      margin:16px 0;padding:18px;border-radius:16px;background:var(--blue);
+      color:var(--white);font-size:1.05rem;font-weight:750
+    }
+    .builder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    label{font-weight:800;color:var(--ink);display:block;margin-bottom:6px}
+    select,input[type="text"],textarea{
+      width:100%;border:1px solid #aebbd0;border-radius:12px;padding:12px 13px;background:var(--white);color:var(--ink)
+    }
+    select:focus,input[type="text"]:focus,textarea:focus{
+      outline:3px solid rgba(0,56,147,.14);border-color:var(--blue)
+    }
+    textarea{min-height:170px;resize:vertical}
+    .primary-btn{background:var(--blue);color:var(--white);border-color:var(--blue);padding:11px 16px}
+    .primary-btn:hover,.primary-btn:focus-visible{background:var(--blue-dark);outline:3px solid rgba(0,56,147,.15)}
+    .secondary-btn{background:var(--yellow);color:var(--black);border-color:#e3bc11;padding:11px 16px}
+    .secondary-btn:hover,.secondary-btn:focus-visible{filter:brightness(.97);outline:3px solid rgba(252,209,22,.28)}
+    .grammar-card{border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+    .grammar-flow{font-weight:800;color:var(--blue);margin-bottom:8px}
+    .choice-list{display:grid;gap:10px;margin-top:14px}
+    .choice-btn{text-align:left;background:var(--white);color:var(--ink);padding:13px 14px}
+    .choice-btn:hover,.choice-btn:focus-visible{border-color:var(--blue);outline:3px solid rgba(0,56,147,.10)}
+    .choice-btn.selected{border-color:var(--blue);background:var(--blue-soft)}
+    .feedback{
+      margin-top:12px;border-radius:12px;padding:12px 14px;font-size:.94rem
+    }
+    .feedback.good{background:var(--success-bg);color:var(--success);border:1px solid #b9e1c8}
+    .feedback.note{background:var(--warn-bg);color:var(--warn);border:1px solid #eadb93}
+    .example-box{background:#f8fbff;border:1px solid #cdddf4;border-radius:18px;padding:18px}
+    .example-segment{
+      display:inline;border:0;background:transparent;color:var(--ink);padding:2px 4px;
+      border-radius:5px;text-decoration:underline;text-decoration-style:dotted;
+      text-decoration-color:#7898c6;text-underline-offset:4px
+    }
+    .example-segment:hover,.example-segment:focus-visible{background:var(--blue-soft);outline:none}
+    .segment-note{margin-top:14px;color:var(--blue);font-weight:700}
+    .quiz-card{border:1px solid var(--line);border-radius:17px;padding:17px;margin:14px 0}
+    .quiz-card h3{font-family:var(--body-font);font-size:1rem;margin-bottom:7px;color:var(--ink)}
+    .quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .order-bank{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .block-btn{padding:9px 11px;background:var(--white);color:var(--blue)}
+    .order-answer{min-height:50px;border:1px dashed #9aaac2;border-radius:12px;padding:10px;background:var(--white)}
+    .requirements{padding-left:20px}
+    .support-chip{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--blue-soft);color:var(--blue);
+      padding:7px 10px;border-radius:999px;margin:4px 5px 4px 0;font-size:.84rem;font-weight:800
+    }
+    .model-box{margin-top:14px;background:#f7fbf8;border:1px solid #cbe2d2;border-radius:16px;padding:18px}
+    .checklist{display:grid;gap:10px;margin-top:14px}
+    .check-item{
+      display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--line);
+      border-radius:13px;background:#fbfcfe
+    }
+    .check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+    .check-progress{margin-top:16px;font-weight:900;color:var(--blue)}
+    .check-progress-track{height:8px;background:#e7edf6;border-radius:999px;overflow:hidden;margin-top:8px}
+    .check-progress-bar{height:100%;width:0;background:var(--yellow);transition:width .25s ease}
+    .ready-box{
+      margin-top:22px;padding:24px;border-radius:20px;background:var(--blue);color:var(--white)
+    }
+    .ready-box h3{font-size:1.45rem;margin-bottom:8px}
+    .ready-box p{color:#edf3ff}
+    .ready-box .secondary-btn{text-decoration:none;display:inline-block}
+    .nav-actions{
+      display:flex;justify-content:space-between;gap:12px;margin-top:18px
+    }
+    .footer{
+      margin-top:34px;text-align:center;color:var(--muted);font-size:.85rem
+    }
+    .footer a{font-weight:800}
+    .sr-only{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0,0,0,0);white-space:nowrap;border:0
+    }
+    .toast{
+      position:fixed;right:18px;bottom:18px;z-index:50;
+      background:var(--ink);color:var(--white);padding:11px 14px;border-radius:12px;
+      max-width:320px;box-shadow:var(--shadow)
+    }
+    @media(max-width:820px){
+      .level-grid,.card-grid,.builder-grid,.scenario-grid{grid-template-columns:1fr}
+      .topbar-inner{grid-template-columns:1fr auto;gap:8px}
+      .mini-brand{grid-column:1}
+      .route-pill{grid-column:1/3;grid-row:2;justify-self:start}
+      .ghost-btn{grid-column:2;grid-row:1}
+      .section-panel{border-radius:18px}
+    }
+    @media(max-width:520px){
+      .level-screen{padding:18px 12px}
+      .selector-card{border-radius:20px;padding:22px 16px}
+      .level-card{min-height:auto}
+      .page-shell{padding:18px 12px 52px}
+      .topbar-inner,.progress-inner{padding-left:12px;padding-right:12px}
+      .hero{border-radius:20px;padding:24px 18px}
+      .nav-actions{flex-direction:column}
+      .nav-actions button{width:100%}
+      .section-panel{padding:20px 15px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+<a id="skipLink" class="skip-link" href="#lessonContent" hidden>Ir al contenido</a>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="brandline"><span class="brandmark">LO</span><span>La Oficina en Español</span></div>
+    <div class="selector-card">
+      <p class="eyebrow">Español para trabajar</p>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p class="selector-intro">Elige una ruta para adaptar el apoyo, los ejemplos y la dificultad. Trabajarás la misma habilidad profesional en cualquiera de los tres niveles.</p>
+      <div class="level-grid">
+        <button class="level-card" data-level="a2" type="button">
+          <span class="level-icon" aria-hidden="true">🌱</span>
+          <strong>A2 — Principiante</strong>
+          <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+        </button>
+        <button class="level-card" data-level="b1" type="button">
+          <span class="level-icon" aria-hidden="true">💼</span>
+          <strong>B1 — Intermedio</strong>
+          <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+        </button>
+        <button class="level-card" data-level="b2" type="button">
+          <span class="level-icon" aria-hidden="true">🚀</span>
+          <strong>B2 — Avanzado</strong>
+          <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="module" hidden>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="mini-brand" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a>
+      <div id="routePill" class="route-pill">Tu ruta:</div>
+      <button id="changeLevel" class="ghost-btn" type="button">Cambiar nivel</button>
+    </div>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-inner">
+      <span class="sr-only" id="progressLabel">Progreso del módulo</span>
+      <div class="progress-track" role="progressbar" aria-labelledby="progressLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <span id="progressText" class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <main id="lessonContent" class="page-shell" tabindex="-1">
+    <section class="hero">
+      <p class="eyebrow">Habilidad profesional de la semana</p>
+      <h1 id="heroTitle">Coordinar equipos y gestionar bloqueos</h1>
+      <p id="heroIntro"></p>
+    </section>
+
+    <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    <div id="sectionsHost"></div>
+
+    <div class="nav-actions">
+      <button id="prevSection" class="ghost-btn" type="button">← Anterior</button>
+      <button id="nextSection" class="primary-btn" type="button">Siguiente →</button>
+    </div>
+
+    <footer class="footer">
+      <p>La Oficina en Español · <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com</a></p>
+    </footer>
+  </main>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+'use strict';
+
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const semana = {
+  habilidad: "Coordinar equipos y gestionar bloqueos",
+  contexto: "Pilar 4 — Liderazgo, gestión y comunicación organizacional",
+  intro: {
+    a2: "Aprende a decir qué está pasando, identificar un bloqueo y dejar claro qué necesita el equipo para continuar.",
+    b1: "Practica cómo coordinar avances, explicar dependencias, proponer un siguiente paso y confirmar quién hace qué.",
+    b2: "Entrena cómo coordinar dependencias, priorizar bajo presión, escalar bloqueos sin culpar y cerrar con decisiones operativas claras."
+  },
+  // Inserta aquí la URL real del reto del día cuando esté definida.
+  urlReto: "#"
+};
+
+const contenido = {
+  a2: {
+    ruta: "🌱 A2 — Principiante",
+    objetivo: "Al terminar esta semana podrás informar cómo avanza una tarea, explicar un bloqueo sencillo, pedir lo que necesitas y confirmar quién hará el siguiente paso y cuándo.",
+    situacion: {
+      quien: "Tú coordinas un equipo pequeño que prepara una entrega para un cliente.",
+      conQuien: "Hablas con dos compañeros y, cuando hace falta, con tu jefe.",
+      contexto: "La entrega debe salir el viernes. Una parte está lista, pero otra no puede continuar porque falta acceso a unos datos.",
+      objetivo: "Saber qué está listo, explicar qué impide avanzar y acordar una acción concreta.",
+      dificultad: "Necesitas ser claro sin usar frases largas ni culpar a otra persona."
+    },
+    vocabulario: [
+      {termino:"avance", stress:"a-VAN-ce", significado:"progress", explicacion:"Lo que ya se ha completado o ha mejorado.", ejemplo:"Tenemos un buen avance en el informe.", extra:"Combinación útil: informar sobre el avance."},
+      {termino:"pendiente", stress:"pen-DIEN-te", significado:"pending / still to do", explicacion:"Algo que todavía falta hacer.", ejemplo:"La revisión está pendiente.", extra:"También: queda pendiente + sustantivo."},
+      {termino:"bloqueo", stress:"blo-QUE-o", significado:"blocker", explicacion:"Un problema que impide continuar una tarea.", ejemplo:"Tenemos un bloqueo con el acceso a los datos.", extra:"Combinación útil: tener un bloqueo."},
+      {termino:"responsable", stress:"res-pon-SA-ble", significado:"person responsible / owner", explicacion:"La persona que debe realizar una tarea.", ejemplo:"Ana es la responsable de enviar el archivo.", extra:"Pregunta útil: ¿Quién es responsable de esto?"},
+      {termino:"plazo", stress:"PLA-zo", significado:"deadline / time limit", explicacion:"La fecha o el tiempo disponible para terminar algo.", ejemplo:"El plazo es el viernes.", extra:"Combinación útil: cumplir el plazo."},
+      {termino:"prioridad", stress:"prio-ri-DAD", significado:"priority", explicacion:"Lo que necesita atención primero.", ejemplo:"Hoy la prioridad es conseguir el acceso.", extra:"Combinación útil: nuestra prioridad es + infinitivo."},
+      {termino:"depender de", stress:"de-pen-DER de", significado:"to depend on", explicacion:"Indica que una tarea necesita otra cosa para continuar.", ejemplo:"El informe depende de los datos de ventas.", extra:"Estructura: depender de + sustantivo."},
+      {termino:"resolver", stress:"re-sol-VER", significado:"to solve / resolve", explicacion:"Encontrar una solución a un problema.", ejemplo:"Necesitamos resolver este bloqueo hoy.", extra:"Combinación útil: resolver un problema / bloqueo."}
+    ],
+    recuperacion: {
+      pregunta:"Which Spanish word means “blocker” in a work context?",
+      opciones:["avance","bloqueo","plazo"],
+      correcta:1,
+      feedback:["“Avance” significa progress.","Sí. “Bloqueo” es el obstáculo que impide continuar.","“Plazo” es deadline o tiempo límite."]
+    },
+    frases: [
+      {grupo:"Informar el estado", items:[
+        {texto:"Ya terminamos la primera parte.", cuando:"Úsala para indicar qué está completo.", bloques:["Ya terminamos","la primera parte"]},
+        {texto:"Todavía está pendiente la revisión.", cuando:"Úsala para decir qué falta.", bloques:["Todavía está pendiente","la revisión"]},
+        {texto:"Estamos preparando la entrega.", cuando:"Úsala para describir una tarea en progreso.", bloques:["Estamos preparando","la entrega"]}
+      ]},
+      {grupo:"Explicar un bloqueo", items:[
+        {texto:"Tenemos un bloqueo con el acceso a los datos.", cuando:"Nombra el problema de forma neutral.", bloques:["Tenemos un bloqueo","con el acceso","a los datos"]},
+        {texto:"No podemos continuar porque falta la aprobación.", cuando:"Explica qué impide avanzar y la causa.", bloques:["No podemos continuar","porque falta","la aprobación"]},
+        {texto:"Esta tarea depende del archivo de Finanzas.", cuando:"Aclara una dependencia entre tareas.", bloques:["Esta tarea","depende del archivo","de Finanzas"]}
+      ]},
+      {grupo:"Pedir una acción", items:[
+        {texto:"Necesitamos recibir el archivo hoy.", cuando:"Indica qué necesita el equipo para continuar.", bloques:["Necesitamos recibir","el archivo","hoy"]},
+        {texto:"¿Puedes enviarlo antes de las tres?", cuando:"Pide una acción con un plazo concreto.", bloques:["¿Puedes enviarlo","antes de las tres?"]},
+        {texto:"Después de recibir el acceso, podemos terminar.", cuando:"Explica qué ocurrirá después de resolver el bloqueo.", bloques:["Después de recibir","el acceso","podemos terminar"]}
+      ]},
+      {grupo:"Confirmar el siguiente paso", items:[
+        {texto:"Entonces, Ana envía el archivo y yo termino el informe.", cuando:"Confirma responsables y acciones.", bloques:["Entonces, Ana envía","el archivo","y yo termino","el informe"]},
+        {texto:"Revisamos el avance mañana a las diez.", cuando:"Cierra con un momento de seguimiento.", bloques:["Revisamos el avance","mañana","a las diez"]}
+      ]}
+    ],
+    constructor: {
+      modo:"guiado",
+      instrucciones:"Construye una actualización breve. Elige una opción en cada parte y escucha el resultado si lo necesitas.",
+      campos:[
+        {label:"1. Estado", opciones:["Ya terminamos la primera parte.","La presentación está casi lista.","Todavía está pendiente la revisión."]},
+        {label:"2. Bloqueo", opciones:["Tenemos un bloqueo con el acceso a los datos.","No podemos continuar porque falta la aprobación.","Esta tarea depende del archivo de Finanzas."]},
+        {label:"3. Siguiente paso", opciones:["Necesitamos recibir el archivo hoy.","Ana envía el documento y yo termino la revisión.","Revisamos el avance mañana a las diez."]}
+      ]
+    },
+    gramatica: [
+      {flujo:"Situación: dices qué está pasando ahora → intención: informar el estado → estructura: estar + gerundio", explicacion:"Usa estar + gerundio para una acción que está en proceso.", ejemplo:"Estamos preparando la entrega."},
+      {flujo:"Situación: necesitas que el equipo haga algo → intención: indicar una necesidad → estructura: necesitar + infinitivo", explicacion:"Después de “necesitamos”, usa el infinitivo.", ejemplo:"Necesitamos recibir el archivo hoy."},
+      {flujo:"Situación: una tarea necesita otra cosa → intención: explicar dependencia → estructura: depender de + sustantivo", explicacion:"Usa “depender de” para mostrar qué necesita una tarea para avanzar.", ejemplo:"El informe depende de los datos de ventas."},
+      {flujo:"Situación: explicas una causa → intención: mostrar por qué no avanzas → estructura: porque + causa", explicacion:"“Porque” introduce la razón.", ejemplo:"No podemos continuar porque falta la aprobación."}
+    ],
+    registro: {
+      escenario:"Hablas con tu jefe. El informe no puede terminarse porque todavía no tienes acceso al sistema.",
+      pregunta:"¿Qué opción funciona mejor?",
+      opciones:[
+        {texto:"Oye, no puedo hacer nada sin acceso.", tipo:"note", feedback:"La idea se entiende, pero suena informal y no propone una acción concreta."},
+        {texto:"Todavía no puedo terminar el informe porque no tengo acceso. ¿Puedes ayudarme a conseguirlo hoy?", tipo:"good", feedback:"Esta opción explica el bloqueo, evita culpar y pide una acción concreta."},
+        {texto:"Necesito acceso ya.", tipo:"note", feedback:"Es muy directa y deja fuera el contexto. Tu interlocutor no sabe qué tarea está bloqueada."}
+      ]
+    },
+    ejemplo: {
+      texto:"Ya terminamos la primera parte del informe. Todavía está pendiente la revisión porque no tenemos acceso a los datos finales. Necesitamos recibir el acceso hoy. Ana solicita el acceso y yo termino la revisión. Revisamos el avance mañana a las diez.",
+      segmentos:[
+        {texto:"Ya terminamos la primera parte del informe.", funcion:"Estado: indicas qué ya está completo."},
+        {texto:"Todavía está pendiente la revisión porque no tenemos acceso a los datos finales.", funcion:"Bloqueo: explicas qué falta y por qué."},
+        {texto:"Necesitamos recibir el acceso hoy.", funcion:"Necesidad: dices qué hace falta para continuar."},
+        {texto:"Ana solicita el acceso y yo termino la revisión.", funcion:"Responsables: aclaras quién hace cada acción."},
+        {texto:"Revisamos el avance mañana a las diez.", funcion:"Seguimiento: confirmas cuándo volverán a revisar."}
+      ]
+    },
+    ejercicios: [
+      {tipo:"choice", titulo:"1. Identifica el bloqueo", pregunta:"El equipo está esperando la aprobación del cliente. ¿Qué frase comunica mejor la situación?", opciones:[
+        "Todo está mal con el cliente.",
+        "Tenemos un bloqueo: falta la aprobación del cliente.",
+        "El cliente tiene la culpa."
+      ], correctas:[1], feedback:[
+        "Es demasiado general y no explica qué impide avanzar.",
+        "Esta formulación nombra el bloqueo con claridad y sin culpar.",
+        "Culpar no ayuda a coordinar el siguiente paso."
+      ]},
+      {tipo:"fill", titulo:"2. Completa la estructura", pregunta:"Para terminar el informe, necesitamos ___ los datos finales.", respuesta:"recibir", ayuda:"Escribe un infinitivo.", explicacion:"Después de “necesitamos” usamos el infinitivo: “necesitamos recibir”."},
+      {tipo:"order", titulo:"3. Ordena el mensaje", pregunta:"Construye una frase clara para explicar una dependencia.", bloques:["El informe","depende","de los datos","de ventas."], solucion:["El informe","depende","de los datos","de ventas."], explicacion:"La estructura es: sujeto + depender de + elemento necesario."},
+      {tipo:"choice", titulo:"4. Confirma el siguiente paso", pregunta:"¿Qué cierre deja más claro cómo continuará el equipo?", opciones:[
+        "Bueno, vemos después.",
+        "Ana envía el archivo hoy y revisamos el avance mañana a las diez.",
+        "Espero que todo funcione."
+      ], correctas:[1], feedback:[
+        "No define responsable ni momento de seguimiento.",
+        "Esta opción deja clara la acción, la responsable y el seguimiento.",
+        "Expresa una expectativa, pero no coordina una acción."
+      ]}
+    ],
+    practica: {
+      situacion:"Coordinas una entrega para un cliente. La presentación está casi lista, pero falta un archivo de Finanzas y sin ese archivo no puedes terminar. El plazo es mañana.",
+      interlocutor:"Tu equipo y tu jefe.",
+      objetivo:"Dar una actualización breve y conseguir una acción concreta para resolver el bloqueo.",
+      requisitos:[
+        "Di qué ya está listo o en proceso.",
+        "Explica qué está bloqueado y por qué.",
+        "Di qué necesitan recibir o hacer.",
+        "Confirma un responsable y un momento de seguimiento."
+      ],
+      apoyos:["Ya terminamos…","Todavía está pendiente…","Tenemos un bloqueo con…","Necesitamos…","Esta tarea depende de…","Entonces, ___ hace…","Revisamos el avance…"],
+      placeholder:"Escribe 4–5 frases. Puedes usar las estructuras de apoyo."
+    },
+    modelo:"La presentación está casi lista. Todavía está pendiente la parte final porque necesitamos el archivo de Finanzas. Tenemos un bloqueo con ese archivo y el plazo es mañana. Carlos envía el archivo hoy antes de las cuatro y yo termino la presentación. Revisamos el avance a las cinco.",
+    checklist:[
+      "Puedo decir qué está listo y qué sigue pendiente.",
+      "Puedo explicar un bloqueo sencillo sin culpar a otra persona.",
+      "Puedo pedir lo que el equipo necesita para continuar.",
+      "Puedo confirmar un responsable y un plazo.",
+      "Puedo construir una actualización breve para mi equipo."
+    ]
+  },
+
+  b1: {
+    ruta:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás coordinar el avance de varias tareas, explicar dependencias y bloqueos, proponer alternativas, asignar responsables y cerrar una actualización con un siguiente paso verificable.",
+    situacion:{
+      quien:"Coordinas un proyecto con personas de Operaciones, Ventas y Finanzas.",
+      conQuien:"Hablas con el equipo en una reunión breve de seguimiento.",
+      contexto:"La entrega final es el viernes. Ventas ya entregó su información, pero Finanzas todavía no ha validado unos datos y Operaciones necesita esa validación para cerrar el documento.",
+      objetivo:"Alinear el estado del trabajo, resolver la dependencia y evitar que el retraso afecte la fecha final.",
+      dificultad:"Necesitas explicar el impacto sin dramatizar, proponer una alternativa y confirmar responsables."
+    },
+    vocabulario:[
+      {termino:"dependencia", significado:"Relación entre tareas cuando una necesita que otra termine primero.", ejemplo:"La principal dependencia es la validación de Finanzas.", extra:"Colocaciones: gestionar una dependencia · dependencia entre equipos."},
+      {termino:"bloqueo", significado:"Obstáculo que impide continuar una tarea o decisión.", ejemplo:"El principal bloqueo sigue siendo el acceso al sistema.", extra:"Alternativas: obstáculo, impedimento; “bloqueo” es muy útil en coordinación de proyectos."},
+      {termino:"desbloquear", significado:"Resolver lo que impide avanzar.", ejemplo:"Necesitamos desbloquear la validación antes del mediodía.", extra:"Uso frecuente: desbloquear una tarea / proceso / decisión."},
+      {termino:"pendiente", significado:"Asunto que aún no se ha completado.", ejemplo:"Quedan dos puntos pendientes antes de enviar la propuesta.", extra:"También: dejar algo pendiente, tener algo pendiente."},
+      {termino:"priorizar", significado:"Decidir qué debe atenderse primero.", ejemplo:"Propongo priorizar la validación para proteger la fecha de entrega.", extra:"Más formal: dar prioridad a."},
+      {termino:"impacto", significado:"Consecuencia que un problema o decisión puede tener.", ejemplo:"Si se retrasa la validación, tendrá impacto en la entrega final.", extra:"Colocaciones: evaluar el impacto · reducir el impacto."},
+      {termino:"escalar", significado:"Llevar un problema a un nivel superior de decisión cuando el equipo no puede resolverlo solo.", ejemplo:"Si no tenemos respuesta a las tres, tendremos que escalar el bloqueo.", extra:"Úsalo cuando realmente se necesita intervención de otra persona."},
+      {termino:"reasignar", significado:"Cambiar una tarea o recurso a otra persona o equipo.", ejemplo:"Podemos reasignar la revisión para recuperar tiempo.", extra:"Colocación: reasignar una tarea / recurso / responsabilidad."}
+    ],
+    frases:[
+      {grupo:"Alinear el estado",items:[
+        {texto:"Hasta ahora, Ventas ya completó su parte y Finanzas sigue con la validación.",cuando:"Resume avances y pendientes sin entrar todavía en detalles."},
+        {texto:"El punto que sigue pendiente es la validación de los datos.",cuando:"Centra la conversación en el asunto que necesita atención."}
+      ]},
+      {grupo:"Explicar dependencia e impacto",items:[
+        {texto:"Operaciones depende de esa validación para cerrar el documento.",cuando:"Muestra la relación entre tareas."},
+        {texto:"Si no la recibimos hoy, la entrega final puede retrasarse.",cuando:"Explica una consecuencia sin presentarla como segura si todavía es un riesgo."},
+        {texto:"Este bloqueo afecta directamente a la revisión final.",cuando:"Aclara el impacto operativo."}
+      ]},
+      {grupo:"Proponer una salida",items:[
+        {texto:"Mientras esperamos la validación, podemos adelantar la revisión del resto del documento.",cuando:"Propone trabajo paralelo para reducir el impacto."},
+        {texto:"Propongo priorizar esta validación y revisar el avance a las dos.",cuando:"Formula una prioridad y un punto de control."},
+        {texto:"Si no tenemos respuesta a las tres, podemos escalar el bloqueo.",cuando:"Define una condición y una alternativa."}
+      ]},
+      {grupo:"Cerrar con responsables",items:[
+        {texto:"Marta confirma los datos; Diego actualiza el documento; yo reviso el estado a las dos.",cuando:"Asigna acciones concretas por persona."},
+        {texto:"Antes de cerrar, confirmemos responsable, plazo y siguiente revisión.",cuando:"Evita terminar la conversación con tareas ambiguas."}
+      ]}
+    ],
+    constructor:{
+      modo:"abierto",
+      instrucciones:"Usa las estructuras que ya viste como apoyo, pero formula tu propia versión. En B1 la meta es organizar la intervención con más autonomía.",
+      tareas:[
+        {prompt:"1. Resume el estado y explica la dependencia en 1–2 frases. Puedes apoyarte en: “Hasta ahora…”, “El punto pendiente es…” o “___ depende de…”.",modelo:"Hasta ahora, Ventas ya completó su parte. Operaciones depende de la validación de Finanzas para cerrar el documento."},
+        {prompt:"2. Explica el impacto y propone una acción paralela. Puedes apoyarte en: “Si no…”, “Mientras…, podemos…” o “Propongo…”.",modelo:"Si no recibimos la validación hoy, la entrega puede retrasarse. Mientras esperamos, podemos adelantar la revisión del resto del documento."},
+        {prompt:"3. Cierra con responsable, plazo y criterio de escalamiento. Puedes apoyarte en: “___ confirma…”, “Revisamos…” o “Si seguimos bloqueados…”.",modelo:"Marta confirma los datos antes de las dos; yo reviso el estado a las dos y media. Si seguimos bloqueados, escalamos el punto."}
+      ]
+    },
+    gramatica:[
+      {flujo:"Situación: un problema puede afectar el plan → intención: explicar una consecuencia posible → estructura: si + presente, poder + infinitivo",explicacion:"Usa una condición para mostrar el vínculo entre el bloqueo y su impacto.",ejemplo:"Si no recibimos la validación hoy, la entrega puede retrasarse."},
+      {flujo:"Situación: una tarea puede avanzar mientras otra está bloqueada → intención: coordinar trabajo paralelo → estructura: mientras + presente",explicacion:"“Mientras” permite organizar acciones simultáneas.",ejemplo:"Mientras esperamos la validación, podemos adelantar la revisión."},
+      {flujo:"Situación: quieres proponer sin imponer → intención: sugerir una acción → estructura: podemos / podríamos + infinitivo; propongo + infinitivo",explicacion:"“Podríamos” suaviza la propuesta; “propongo” es más directo y útil cuando coordinas una decisión.",ejemplo:"Podríamos reasignar la revisión para recuperar tiempo."},
+      {flujo:"Situación: una acción ocurrirá después de otra → intención: marcar secuencia → estructura: en cuanto + subjuntivo para una acción futura",explicacion:"Cuando la acción todavía no ha ocurrido, “en cuanto” suele ir con subjuntivo.",ejemplo:"En cuanto recibamos la validación, podemos cerrar el documento."}
+    ],
+    registro:{
+      escenario:"Tienes que informar a un cliente importante de que una dependencia interna puede retrasar una entrega, pero todavía estás trabajando para proteger la fecha.",
+      pregunta:"¿Qué formulación mantiene mejor un tono profesional?",
+      opciones:[
+        {texto:"Finanzas no ha hecho su parte y por eso estamos retrasados.",tipo:"note",feedback:"Atribuye la responsabilidad de forma directa y puede sonar defensivo. Conviene explicar el estado y la acción que estás tomando."},
+        {texto:"Estamos pendientes de una validación interna que afecta la revisión final. Ya estamos priorizando ese punto y te confirmo el estado a las tres.",tipo:"good",feedback:"Explica el bloqueo, muestra gestión activa y fija un momento concreto de actualización."},
+        {texto:"Puede que haya retraso. Te aviso.",tipo:"note",feedback:"Es demasiado imprecisa: no explica qué está ocurriendo ni cuándo recibirá el cliente una actualización."}
+      ]
+    },
+    ejemplo:{
+      texto:"Hasta ahora, Ventas ya completó su parte y Finanzas sigue con la validación. Operaciones depende de ese dato para cerrar el documento. Si no lo recibimos hoy, corremos el riesgo de mover la entrega final. Mientras esperamos, podemos adelantar la revisión de las secciones que ya están listas. Marta confirma la validación antes de las dos; Diego actualiza el documento y yo reviso el estado a las dos y media. Si seguimos bloqueados, lo escalamos en ese momento.",
+      segmentos:[
+        {texto:"Hasta ahora, Ventas ya completó su parte y Finanzas sigue con la validación.",funcion:"Alineas al equipo con una fotografía clara del estado."},
+        {texto:"Operaciones depende de ese dato para cerrar el documento.",funcion:"Explicas la dependencia entre equipos."},
+        {texto:"Si no lo recibimos hoy, corremos el riesgo de mover la entrega final.",funcion:"Defines el impacto como riesgo, no como hecho consumado."},
+        {texto:"Mientras esperamos, podemos adelantar la revisión de las secciones que ya están listas.",funcion:"Propones una acción paralela para reducir el impacto."},
+        {texto:"Marta confirma la validación antes de las dos; Diego actualiza el documento y yo reviso el estado a las dos y media.",funcion:"Asignas responsables y plazos concretos."},
+        {texto:"Si seguimos bloqueados, lo escalamos en ese momento.",funcion:"Defines por anticipado el criterio de escalamiento."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"choice",titulo:"1. Actualización útil",pregunta:"¿Qué opción ayuda más a coordinar?",opciones:[
+        "Seguimos esperando a Finanzas.",
+        "Seguimos pendientes de la validación de Finanzas; Operaciones depende de ella para cerrar el documento y revisaremos el estado a las dos.",
+        "Todo depende de otro equipo."
+      ],correctas:[1],feedback:[
+        "Indica el estado, pero deja fuera la dependencia y el siguiente punto de control.",
+        "La frase conecta estado, dependencia y seguimiento.",
+        "Es demasiado general para tomar una decisión."
+      ]},
+      {tipo:"fill",titulo:"2. Secuencia futura",pregunta:"En cuanto ___ la validación, podemos cerrar el documento.",respuesta:"recibamos",ayuda:"Usa el verbo recibir.",explicacion:"La validación todavía no ha llegado; por eso usamos “en cuanto recibamos”."},
+      {tipo:"order",titulo:"3. Organiza la intervención",pregunta:"Ordena los bloques para pasar del problema a la acción.",bloques:["Operaciones depende de la validación de Finanzas.","Mientras esperamos, adelantamos la revisión.","Si no llega a las tres, escalamos el bloqueo."],solucion:["Operaciones depende de la validación de Finanzas.","Mientras esperamos, adelantamos la revisión.","Si no llega a las tres, escalamos el bloqueo."],explicacion:"La secuencia funciona porque primero identifica el bloqueo, después reduce el impacto y finalmente define un criterio de escalamiento."},
+      {tipo:"choice",titulo:"4. Prioridad",pregunta:"Necesitas acelerar una tarea sin sonar acusatorio. ¿Qué opción elegirías?",opciones:[
+        "Necesito que esto se haga ya.",
+        "Propongo priorizar esta validación porque bloquea el cierre del documento.",
+        "¿Por qué todavía no han terminado?"
+      ],correctas:[1],feedback:[
+        "La urgencia es clara, pero falta contexto y puede sonar impositiva.",
+        "La prioridad se justifica mediante el impacto operativo.",
+        "La pregunta puede poner al interlocutor a la defensiva antes de resolver el problema."
+      ]},
+      {tipo:"short",titulo:"5. Justifica una prioridad",pregunta:"El plazo es mañana y solo puedes acelerar un punto. En 2–3 frases, explica qué priorizarías y por qué.",minChars:45,explicacion:"Una respuesta útil deja claro qué priorizas, qué impacto quieres proteger y qué acción concreta propones."}
+    ],
+    practica:{
+      situacion:"Coordinas una entrega con Ventas, Finanzas y Operaciones. Ventas ya terminó. Finanzas debe validar unas cifras y Operaciones no puede cerrar el documento sin esa validación. La fecha final es viernes y quedan 24 horas para protegerla.",
+      interlocutor:"Tu equipo en una reunión de seguimiento.",
+      objetivo:"Alinear el estado, explicar el impacto, proponer una alternativa y cerrar con responsables y un criterio de escalamiento.",
+      requisitos:[
+        "Resume qué está listo y qué sigue pendiente.",
+        "Explica la dependencia y el impacto potencial.",
+        "Propón al menos una acción paralela o alternativa.",
+        "Asigna responsables y un plazo.",
+        "Define cuándo volverán a revisar o cuándo escalarán."
+      ],
+      apoyos:["Hasta ahora…","El punto pendiente es…","___ depende de…","Si no…, la entrega puede…","Mientras…, podemos…","Propongo priorizar…","En cuanto…","Si seguimos bloqueados…"],
+      placeholder:"Escribe 5–7 frases. Organiza el mensaje para que el equipo pueda actuar después de escucharte."
+    },
+    modelo:"Hasta ahora, Ventas ya completó su parte y el único punto crítico es la validación de Finanzas. Operaciones depende de esa validación para cerrar el documento y, si no la recibimos hoy, corremos el riesgo de afectar la entrega del viernes. Mientras esperamos, Operaciones puede adelantar la revisión de las secciones ya cerradas. Laura confirma la validación antes de las dos y Andrés prepara la versión final. Yo reviso el estado a las dos y media. Si a esa hora seguimos bloqueados, escalamos el punto para decidir si necesitamos apoyo adicional.",
+    checklist:[
+      "Puedo resumir el estado del equipo sin perderme en detalles.",
+      "Puedo explicar una dependencia y su impacto potencial.",
+      "Puedo proponer una alternativa mientras se resuelve el bloqueo.",
+      "Puedo asignar responsables, plazos y un punto de seguimiento.",
+      "Puedo adaptar el tono para coordinar sin culpar."
+    ]
+  },
+
+  b2: {
+    ruta:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás coordinar dependencias entre equipos, hacer visible el impacto de un bloqueo, negociar prioridades y recursos, definir criterios de escalamiento y cerrar con responsables, plazos y contingencias.",
+    situacion:{
+      quien:"Lideras la coordinación de un lanzamiento que depende de Producto, Legal, Ventas y Operaciones.",
+      conQuien:"Hablas con responsables de varias áreas y con una dirección que exige mantener la fecha comprometida.",
+      contexto:"Ventas ya comunicó una fecha al cliente. Legal detectó un punto que necesita revisión adicional y Producto afirma que no tiene capacidad para introducir cambios esta semana.",
+      objetivo:"Evitar que los equipos trabajen con prioridades incompatibles, acordar una salida realista y hacer visible qué decisión necesita intervención superior.",
+      dificultad:"Hay presión por mantener la fecha, intereses distintos y riesgo de que el lenguaje se convierta en una búsqueda de culpables."
+    },
+    vocabulario:[
+      {termino:"interdependencia",significado:"Relación recíproca entre tareas o equipos que condiciona el avance.",ejemplo:"La interdependencia entre Legal y Producto está concentrando el riesgo en la última fase.",extra:"Más preciso que “dependencia” cuando los equipos se afectan mutuamente."},
+      {termino:"cuello de botella",significado:"Punto del proceso que limita el ritmo del conjunto.",ejemplo:"La revisión jurídica se ha convertido en el principal cuello de botella.",extra:"Registro profesional frecuente; evita usarlo si el problema es solo puntual y no limita realmente el flujo."},
+      {termino:"margen",significado:"Tiempo, capacidad o flexibilidad disponible antes de afectar un compromiso.",ejemplo:"Ya no tenemos margen para absorber otro día de retraso.",extra:"Colocaciones: margen de maniobra · margen de tiempo."},
+      {termino:"contingencia",significado:"Plan previsto para responder si ocurre un riesgo.",ejemplo:"Necesitamos activar una contingencia si Legal no libera la versión hoy.",extra:"Colocación: plan de contingencia."},
+      {termino:"desbloquear",significado:"Eliminar una condición que impide avanzar.",ejemplo:"La decisión de alcance puede desbloquear el trabajo de Producto.",extra:"Conviene indicar qué decisión concreta desbloquea qué tarea."},
+      {termino:"reasignar",significado:"Mover recursos, tareas o responsabilidades para proteger una prioridad.",ejemplo:"Podríamos reasignar capacidad durante 24 horas para cerrar el cambio crítico.",extra:"Útil cuando se habla de capacidad real, no como solución automática."},
+      {termino:"escalar",significado:"Elevar una decisión o bloqueo al nivel que tiene autoridad para resolverlo.",ejemplo:"Escalemos únicamente la decisión de alcance, no todo el problema.",extra:"Un buen escalamiento delimita decisión, impacto, opciones y plazo."},
+      {termino:"disyuntiva entre objetivos",significado:"Elección entre objetivos que compiten por el mismo tiempo, capacidad o recursos.",ejemplo:"Tenemos que explicitar la compensación entre mantener el alcance y proteger la fecha.",extra:"Puedes nombrar directamente qué se sacrifica y qué se protege para hacer visible la decisión."}
+    ],
+    frases:[
+      {grupo:"Hacer visible el sistema, no solo el síntoma",items:[
+        {texto:"El bloqueo inmediato es la revisión adicional pendiente de Legal, pero el impacto se concentra en Producto porque ya no tiene margen para absorber cambios.",cuando:"Distingue el punto donde aparece el bloqueo de dónde produce consecuencias."},
+        {texto:"Tenemos una interdependencia que conviene resolver como una decisión de alcance, no como cuatro tareas aisladas.",cuando:"Reencuadra un problema transversal para facilitar una decisión conjunta."}
+      ]},
+      {grupo:"Priorizar y negociar capacidad",items:[
+        {texto:"Si mantenemos la fecha, necesitamos reducir el alcance o reasignar capacidad durante las próximas 24 horas.",cuando:"Explicita la disyuntiva entre objetivos."},
+        {texto:"Propongo proteger la entrega crítica y mover lo no esencial a una segunda versión.",cuando:"Formula una prioridad con criterio operativo."},
+        {texto:"¿Qué tendría que dejar de hacer Producto para asumir este cambio sin comprometer otro entregable?",cuando:"Hace visible el costo de oportunidad de una reasignación."}
+      ]},
+      {grupo:"Escalar con criterio",items:[
+        {texto:"Si a las cuatro no tenemos una decisión de Legal, escalo únicamente la elección entre estas dos alternativas.",cuando:"Evita escalar un problema difuso; define exactamente la decisión necesaria."},
+        {texto:"Necesitamos una decisión hoy para que el equipo pueda ejecutar mañana sin reabrir el alcance.",cuando:"Conecta el plazo de decisión con la capacidad de ejecución."}
+      ]},
+      {grupo:"Cerrar la coordinación",items:[
+        {texto:"Quedan tres acuerdos: alcance acordado, responsable de la validación y criterio de contingencia.",cuando:"Resume decisiones clave sin repetir toda la conversación."},
+        {texto:"Si cambia cualquiera de estos supuestos, volvemos a abrir la decisión; si se mantienen, ejecutamos este plan.",cuando:"Aclara en qué condiciones el acuerdo sigue vigente."}
+      ]}
+    ],
+    constructor:{
+      modo:"abierto",
+      instrucciones:"Formula una intervención para cada intención. No hay una única respuesta correcta. Después compara con una posible formulación.",
+      tareas:[
+        {prompt:"1. Expón el bloqueo sin culpar: Legal necesita una revisión adicional y Producto ya está sin margen.",modelo:"La revisión adicional de Legal está bloqueando el cierre y, por el margen disponible, el impacto operativo recae ahora en Producto."},
+        {prompt:"2. Explicita la disyuntiva: la fecha se mantiene, pero no puedes mantener todo el alcance.",modelo:"Si protegemos la fecha comprometida, necesitamos acordar qué parte del alcance pasa a una segunda versión."},
+        {prompt:"3. Define un escalamiento concreto si no hay decisión a las cuatro.",modelo:"Si a las cuatro seguimos sin decisión, escalo la elección entre reducir alcance o reasignar capacidad, con el impacto de cada opción."}
+      ]
+    },
+    gramatica:[
+      {flujo:"Situación: una decisión futura necesita una condición → intención: delimitar contingencia → estructura: si + presente / imperfecto de subjuntivo + condicional",explicacion:"Elige la estructura según la probabilidad y distancia que quieras expresar.",ejemplo:"Si mantenemos la fecha, necesitamos reducir el alcance. / Si tuviéramos más margen, podríamos mantener el alcance completo."},
+      {flujo:"Situación: una acción depende de que otra ocurra → intención: expresar finalidad o dependencia → estructura: para que + subjuntivo",explicacion:"“Para que” introduce el resultado que quieres hacer posible.",ejemplo:"Necesitamos una decisión hoy para que Producto pueda ejecutar mañana."},
+      {flujo:"Situación: defines una excepción al plan → intención: limitar condiciones → estructura: a menos que + subjuntivo",explicacion:"Úsala para hacer explícito qué hecho obligaría a cambiar el acuerdo.",ejemplo:"Mantenemos este plan, a menos que Legal identifique un riesgo crítico nuevo."},
+      {flujo:"Situación: una acción futura empieza cuando se cumpla otra → intención: coordinar secuencia → estructura: en cuanto + subjuntivo",explicacion:"La acción todavía no ha ocurrido y condiciona el siguiente paso.",ejemplo:"En cuanto Legal confirme el texto, Producto publica la versión final."}
+    ],
+    registro:{
+      escenario:"En una reunión con dirección, Producto acusa a Legal de frenar el lanzamiento. Necesitas intervenir para recuperar una conversación orientada a decisiones.",
+      pregunta:"¿Qué intervención gestiona mejor la tensión y lleva al grupo a una decisión?",
+      opciones:[
+        {texto:"Legal nos ha bloqueado otra vez y Producto ya no puede hacer nada.",tipo:"note",feedback:"Refuerza la atribución de culpa y presenta al equipo como sin opciones. La conversación seguirá centrada en responsables, no en decisiones."},
+        {texto:"La revisión adicional de Legal cambia el margen disponible para Producto. Necesitamos decidir ahora entre reducir el alcance o reasignar capacidad; puedo resumir el impacto de cada opción.",tipo:"good",feedback:"Separa el hecho del juicio, hace visible el impacto y lleva la conversación hacia una decisión concreta."},
+        {texto:"Tenemos que colaborar mejor y sacar esto adelante.",tipo:"note",feedback:"El tono es conciliador, pero la formulación es demasiado abstracta para resolver el bloqueo operativo."}
+      ]
+    },
+    ejemplo:{
+      texto:"El bloqueo inmediato es la revisión adicional de Legal, pero el riesgo operativo está en que Producto ya no tiene margen para absorber cambios sin mover otro entregable. Si mantenemos la fecha comprometida, necesitamos decidir entre reducir alcance o reasignar capacidad durante 24 horas. Mi propuesta es proteger la funcionalidad crítica y mover el elemento secundario a una segunda versión. Legal confirma antes de las cuatro si esa reducción resuelve el riesgo; Producto estima el cambio en paralelo y Operaciones prepara la contingencia. Si a las cuatro no tenemos decisión, escalo únicamente la elección de alcance con el impacto de ambas opciones. Si estos supuestos se mantienen, ejecutamos el plan sin reabrir la discusión mañana.",
+      segmentos:[
+        {texto:"El bloqueo inmediato es la revisión adicional de Legal, pero el riesgo operativo está en que Producto ya no tiene margen para absorber cambios sin mover otro entregable.",funcion:"Distingues origen del bloqueo e impacto sistémico."},
+        {texto:"Si mantenemos la fecha comprometida, necesitamos decidir entre reducir alcance o reasignar capacidad durante 24 horas.",funcion:"Explicitas la compensación y acotas las opciones."},
+        {texto:"Mi propuesta es proteger la funcionalidad crítica y mover el elemento secundario a una segunda versión.",funcion:"Tomas posición y haces una recomendación operativa."},
+        {texto:"Legal confirma antes de las cuatro si esa reducción resuelve el riesgo; Producto estima el cambio en paralelo y Operaciones prepara la contingencia.",funcion:"Coordinas trabajo paralelo con responsables y plazo."},
+        {texto:"Si a las cuatro no tenemos decisión, escalo únicamente la elección de alcance con el impacto de ambas opciones.",funcion:"Defines un escalamiento específico, condicionado y útil."},
+        {texto:"Si estos supuestos se mantienen, ejecutamos el plan sin reabrir la discusión mañana.",funcion:"Proteges la ejecución aclarando cuándo el acuerdo sigue vigente."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"choice",titulo:"1. Reencuadra el bloqueo",pregunta:"Producto dice: “Legal nos está frenando”. ¿Qué respuesta ayuda más a coordinar?",opciones:[
+        "Sí, Legal debería responder más rápido.",
+        "La revisión de Legal cambia nuestro margen. Centrémonos en qué decisión de alcance necesitamos tomar hoy.",
+        "No importa quién tenga la culpa; sigamos."
+      ],correctas:[1],feedback:[
+        "Confirma la acusación y mantiene el foco en la culpa.",
+        "Reconoce el hecho operativo y dirige la conversación hacia una decisión.",
+        "Intenta reducir tensión, pero invalida información útil y no propone un siguiente paso."
+      ]},
+      {tipo:"fill",titulo:"2. Delimita una excepción",pregunta:"Mantenemos este plan, a menos que Legal ___ un riesgo crítico nuevo.",respuesta:"identifique",ayuda:"Usa el verbo identificar.",explicacion:"Después de “a menos que” usamos subjuntivo: “a menos que identifique”."},
+      {tipo:"order",titulo:"3. Escalamiento útil",pregunta:"Ordena la lógica de un escalamiento bien construido.",bloques:["Decisión requerida: reducir el alcance o reasignar capacidad.","Impacto: cada hora reduce el margen de Producto.","Plazo: necesitamos resolverlo antes de las cuatro."],solucion:["Impacto: cada hora reduce el margen de Producto.","Decisión requerida: reducir el alcance o reasignar capacidad.","Plazo: necesitamos resolverlo antes de las cuatro."],explicacion:"El escalamiento gana claridad cuando presenta impacto, decisión requerida y plazo."},
+      {tipo:"choice",titulo:"4. Varias opciones pueden funcionar",pregunta:"La fecha es fija y Producto no tiene capacidad. ¿Qué formulación puede ser profesional?",opciones:[
+        "Si la fecha se mantiene, necesitamos reducir el alcance.",
+        "Podríamos proteger lo crítico y mover lo secundario a una segunda versión.",
+        "Producto tiene que encontrar la manera."
+      ],correctas:[0,1],feedback:[
+        "Funciona: hace explícita la consecuencia de mantener la fecha. Es relativamente directa.",
+        "También funciona: convierte la restricción en una propuesta concreta y colaborativa.",
+        "Traslada el problema a un equipo sin hacer visible la disyuntiva ni ofrecer una decisión."
+      ]}
+    ],
+    practica:{
+      situacion:"Coordinas un lanzamiento entre Legal, Producto, Ventas y Operaciones. Ventas ya prometió la fecha al cliente. Legal necesita una revisión adicional. Producto afirma que cualquier cambio nuevo desplazará otro entregable. Dirección quiere mantener la fecha y pide una solución hoy.",
+      interlocutor:"Responsables de área y dirección.",
+      objetivo:"Reconducir la conversación desde la atribución de culpa hacia una decisión operativa ejecutable.",
+      requisitos:[
+        "Distingue el bloqueo inmediato de su impacto en el sistema.",
+        "Haz explícita al menos una disyuntiva entre fecha, alcance y capacidad.",
+        "Propón una opción y justifica por qué la priorizarías.",
+        "Coordina trabajo paralelo mientras llega la decisión.",
+        "Define responsable, plazo y criterio de escalamiento.",
+        "Aclara qué supuesto haría necesario reabrir el plan."
+      ],
+      apoyos:["El bloqueo inmediato está en…, pero el impacto…","Si mantenemos…, necesitamos…","Propongo proteger…","Mientras…, ___ puede…","Para que…, necesitamos…","Si a las ___ no…, escalo…","Mantenemos este plan, a menos que…"],
+      placeholder:"Escribe 7–9 frases. Prioriza claridad operativa, matiz y capacidad de decisión."
+    },
+    modelo:"El bloqueo inmediato es la revisión adicional de Legal, pero el impacto real está en la capacidad de Producto, que ya no tiene margen para absorber otro cambio sin mover un entregable. Si mantenemos la fecha prometida, necesitamos decidir qué parte del alcance protegemos con la capacidad disponible. Propongo proteger la funcionalidad crítica y trasladar el elemento secundario a una segunda versión porque reduce el cambio necesario y conserva el compromiso principal con el cliente. Mientras Legal valida esa opción, Producto puede estimar el esfuerzo y Operaciones preparar la contingencia. Legal confirma antes de las cuatro; yo consolido el impacto de las dos alternativas. Si a esa hora no tenemos decisión, escalo únicamente la elección de alcance. Mantenemos este plan a menos que Legal identifique un riesgo crítico que invalide la versión reducida.",
+    checklist:[
+      "Puedo distinguir el origen de un bloqueo de su impacto operativo.",
+      "Puedo hacer explícitas las disyuntivas entre alcance, fecha y capacidad.",
+      "Puedo proponer una prioridad y justificarla sin convertir la coordinación en una disputa.",
+      "Puedo definir contingencias y criterios concretos de escalamiento.",
+      "Puedo adaptar el registro y cerrar con un plan ejecutable bajo presión."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["🎯","Tu objetivo esta semana"],
+  ["🏢","La situación"],
+  ["🗣️","Vocabulario clave"],
+  ["💬","Frases que puedes usar"],
+  ["🧩","Construye tu mensaje"],
+  ["📚","Gramática que necesitas"],
+  ["🎭","Elige el registro"],
+  ["💼","Mira cómo se hace"],
+  ["✍️","Comprueba lo que aprendiste"],
+  ["🏢","Ahora te toca a ti"],
+  ["💡","Ver modelo"],
+  ["✅","Checklist final"]
+];
+
+let nivelActual = null;
+let sectionIndex = 0;
+let progressDone = new Set();
+let progressRequired = new Set();
+let sectionVisited = new Set();
+let orderState = {};
+let spanishVoice = null;
+
+const skipLink = document.getElementById("skipLink");
+const levelScreen = document.getElementById("levelScreen");
+const moduleEl = document.getElementById("module");
+const routePill = document.getElementById("routePill");
+const heroIntro = document.getElementById("heroIntro");
+const heroTitle = document.getElementById("heroTitle");
+const sectionNav = document.getElementById("sectionNav");
+const sectionsHost = document.getElementById("sectionsHost");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const progressTrack = document.querySelector(".progress-track");
+const prevSection = document.getElementById("prevSection");
+const nextSection = document.getElementById("nextSection");
+const changeLevel = document.getElementById("changeLevel");
+const toast = document.getElementById("toast");
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[char]));
+}
+
+function showToast(message){
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(()=>{ toast.hidden = true; }, 2800);
+}
+
+function loadSpanishVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  const candidates = voices.filter(v => /^es(-|_)/i.test(v.lang));
+  const score = v => {
+    const lang = v.lang.toLowerCase();
+    const name = v.name.toLowerCase();
+    if(lang.includes("co") || name.includes("colomb")) return 5;
+    if(lang.includes("419") || lang.includes("mx") || lang.includes("us") || lang.includes("ar") || lang.includes("cl")) return 4;
+    if(lang.startsWith("es")) return 3;
+    return 0;
+  };
+  spanishVoice = candidates.sort((a,b)=>score(b)-score(a))[0] || null;
+}
+if("speechSynthesis" in window){
+  loadSpanishVoice();
+  window.speechSynthesis.onvoiceschanged = loadSpanishVoice;
+}
+
+function speakSpanish(text, slow=false){
+  if(!("speechSynthesis" in window)){
+    showToast("La pronunciación por voz no está disponible en este navegador.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = spanishVoice?.lang || "es-419";
+  if(spanishVoice) utterance.voice = spanishVoice;
+  utterance.rate = slow ? 0.72 : 0.96;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+  markDone("audio-used");
+}
+
+function audioControls(text){
+  if(nivelActual !== "a2") return "";
+  const safe = escapeHTML(text);
+  return `<div class="audio-row">
+    <button type="button" class="audio-btn js-speak" data-text="${safe}" data-slow="false" aria-label="Escuchar en español: ${safe}">🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn js-speak" data-text="${safe}" data-slow="true" aria-label="Escuchar lentamente en español: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function buildRequiredActions(){
+  progressRequired = new Set();
+  for(let i=1;i<=12;i++) progressRequired.add(`visit-${i}`);
+  ["vocab-reviewed","phrases-reviewed","builder-complete","grammar-reviewed","register-complete","example-reviewed","practice-written","model-viewed"].forEach(k=>progressRequired.add(k));
+  if(nivelActual==="a2") ["audio-used","recovery-complete"].forEach(k=>progressRequired.add(k));
+  contenido[nivelActual].ejercicios.forEach((_,i)=>progressRequired.add(`quiz-${i}`));
+  contenido[nivelActual].checklist.forEach((_,i)=>progressRequired.add(`check-${i}`));
+}
+
+function markDone(key, update=true){
+  if(progressRequired.has(key)) progressDone.add(key);
+  if(update) updateProgress();
+}
+
+function updateProgress(){
+  const total = progressRequired.size || 1;
+  const completed = [...progressDone].filter(k=>progressRequired.has(k)).length;
+  const pct = Math.min(100, Math.round((completed/total)*100));
+  progressBar.style.width = pct + "%";
+  progressText.textContent = pct + "%";
+  progressTrack.setAttribute("aria-valuenow", String(pct));
+}
+
+function selectLevel(level){
+  nivelActual = level;
+  sectionIndex = 0;
+  progressDone = new Set();
+  sectionVisited = new Set();
+  orderState = {};
+  buildRequiredActions();
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+
+  levelScreen.hidden = true;
+  moduleEl.hidden = false;
+  skipLink.hidden = false;
+  routePill.textContent = "Tu ruta: " + contenido[level].ruta;
+  heroTitle.textContent = semana.habilidad;
+  heroIntro.textContent = semana.intro[level];
+
+  renderNav();
+  renderAllSections();
+  showSection(0);
+  document.getElementById("lessonContent").focus();
+}
+
+function renderNav(){
+  sectionNav.innerHTML = sectionMeta.map((item,i)=>
+    `<button type="button" class="section-tab" data-section="${i}" aria-label="Ir a la sección ${i+1}: ${escapeHTML(item[1])}">
+      ${i+1}. ${item[0]} ${escapeHTML(item[1])}
+    </button>`
+  ).join("");
+}
+
+function sectionShell(index, body){
+  const [icon,title] = sectionMeta[index];
+  return `<section class="section-panel" data-panel="${index}" aria-labelledby="sectionTitle${index}" ${index===0?"":"hidden"}>
+    <div class="section-kicker">Sección ${index+1} de 12</div>
+    <h2 id="sectionTitle${index}">${icon} ${escapeHTML(title)}</h2>
+    ${body}
+  </section>`;
+}
+
+function renderObjective(c){
+  return sectionShell(0,`
+    <p class="lead">${escapeHTML(c.objetivo)}</p>
+    <div class="hint"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>
+    <p>Durante la semana volverás a utilizar estas herramientas en situaciones diferentes para ganar rapidez y capacidad de adaptación.</p>
+  `);
+}
+
+function renderSituation(c){
+  const s = c.situacion;
+  return sectionShell(1,`
+    <p class="lead">Imagina esta escena profesional antes de estudiar las expresiones.</p>
+    <div class="scenario-grid">
+      <div class="info-card"><strong>Tu rol</strong><br>${escapeHTML(s.quien)}</div>
+      <div class="info-card"><strong>Con quién</strong><br>${escapeHTML(s.conQuien)}</div>
+      <div class="info-card"><strong>Contexto</strong><br>${escapeHTML(s.contexto)}</div>
+      <div class="info-card"><strong>Qué quieres conseguir</strong><br>${escapeHTML(s.objetivo)}</div>
+    </div>
+    <div class="hint"><strong>Dificultad:</strong> ${escapeHTML(s.dificultad)}</div>
+  `);
+}
+
+function renderVocabulary(c){
+  const cards = c.vocabulario.map((v,i)=>{
+    const translation = nivelActual==="a2" ? `<p><strong>English:</strong> ${escapeHTML(v.significado)}</p><p>${escapeHTML(v.explicacion)}</p>` : `<p>${escapeHTML(v.significado)}</p>`;
+    const stress = nivelActual==="a2" && v.stress ? `<p><strong>Pronunciación:</strong> <span class="stress">${escapeHTML(v.stress)}</span></p>` : "";
+    return `<div class="flip-card">
+      <button type="button" class="flip-head js-vocab" data-vocab="${i}" aria-expanded="false">
+        <span class="flip-term">${escapeHTML(v.termino)}</span><span class="flip-tag">Ver</span>
+      </button>
+      <div class="flip-body" hidden>
+        ${translation}
+        ${stress}
+        <p><strong>Ejemplo:</strong> ${escapeHTML(v.ejemplo)}</p>
+        <p><strong>Uso:</strong> ${escapeHTML(v.extra)}</p>
+        ${audioControls(v.termino)}
+        ${audioControls(v.ejemplo)}
+      </div>
+    </div>`;
+  }).join("");
+
+  let recovery = "";
+  if(nivelActual==="a2" && c.recuperacion){
+    recovery = `<div class="recovery-box">
+      <h3>Recupera una palabra / Quick recall</h3>
+      <p>${escapeHTML(c.recuperacion.pregunta)}</p>
+      <div class="choice-list">
+        ${c.recuperacion.opciones.map((o,i)=>`<button type="button" class="choice-btn js-recovery" data-option="${i}" aria-pressed="false">${escapeHTML(o)}</button>`).join("")}
+      </div>
+      <div id="recoveryFeedback" class="feedback" role="status" aria-live="polite" hidden></div>
+    </div>`;
+  }
+
+  return sectionShell(2,`
+    <p class="lead">${nivelActual==="a2" ? "Toca una tarjeta. Primero intenta recordar el significado y después comprueba." : "Abre cada tarjeta para revisar significado, colocaciones y matices de uso."}</p>
+    <div class="card-grid">${cards}</div>
+    ${recovery}
+  `);
+}
+
+function renderPhrases(c){
+  const html = c.frases.map((group,gi)=>`
+    <div class="phrase-group">
+      <h3>${escapeHTML(group.grupo)}</h3>
+      ${group.items.map((item,ii)=>{
+        const blocks = nivelActual==="a2" && item.bloques ? `<div class="meaning-blocks">${item.bloques.map((b,bi)=>`${bi?'<span class="arrow">→</span>':''}<span class="meaning-block">${escapeHTML(b)}</span>`).join("")}</div>`:"";
+        return `<div class="phrase-item">
+          <div class="phrase-main">${escapeHTML(item.texto)}</div>
+          ${blocks}
+          ${audioControls(item.texto)}
+          <button type="button" class="small-btn js-phrase-note" data-phrase="${gi}-${ii}" aria-expanded="false">Ver cuándo usarla</button>
+          <div class="phrase-note" hidden>${escapeHTML(item.cuando)}</div>
+        </div>`;
+      }).join("")}
+    </div>
+  `).join("");
+  return sectionShell(3,`<p class="lead">Elige expresiones según la función que necesitas cumplir dentro de la coordinación.</p>${html}`);
+}
+
+function renderBuilder(c){
+  const b = c.constructor;
+  if(b.modo==="guiado"){
+    const fields = b.campos.map((f,i)=>`
+      <div>
+        <label for="builder${i}">${escapeHTML(f.label)}</label>
+        <select id="builder${i}" class="js-builder-select">
+          ${f.opciones.map(o=>`<option value="${escapeHTML(o)}">${escapeHTML(o)}</option>`).join("")}
+        </select>
+      </div>`).join("");
+    return sectionShell(4,`
+      <p class="lead">${escapeHTML(b.instrucciones)}</p>
+      <div class="builder-grid">${fields}</div>
+      <div id="builderPreview" class="builder-preview" aria-live="polite"></div>
+      <div id="builderAudio"></div>
+      <button type="button" id="builderDone" class="primary-btn">He construido mi mensaje</button>
+    `);
+  }
+  const tasks = b.tareas.map((t,i)=>`
+    <div class="activity-box">
+      <label for="openBuilder${i}">${escapeHTML(t.prompt)}</label>
+      <input id="openBuilder${i}" class="js-open-builder" type="text" placeholder="Formula tu versión">
+      <button type="button" class="small-btn js-show-builder-model" data-open-model="${i}">Comparar con una posible formulación</button>
+      <div class="feedback note js-builder-model" data-model-box="${i}" hidden>${escapeHTML(t.modelo)}</div>
+    </div>
+  `).join("");
+  return sectionShell(4,`
+    <p class="lead">${escapeHTML(b.instrucciones)}</p>
+    ${tasks}
+    <button type="button" id="builderDone" class="primary-btn">He formulado mis tres intervenciones</button>
+  `);
+}
+
+function renderGrammar(c){
+  return sectionShell(5,`
+    <p class="lead">La gramática aparece aquí porque ayuda a coordinar mejor una acción concreta.</p>
+    ${c.gramatica.map((g,i)=>`
+      <div class="grammar-card">
+        <div class="grammar-flow">${escapeHTML(g.flujo)}</div>
+        <button type="button" class="small-btn js-grammar" data-grammar="${i}" aria-expanded="false">Ver explicación</button>
+        <div class="phrase-note" hidden>
+          <p>${escapeHTML(g.explicacion)}</p>
+          <p><strong>Ejemplo:</strong> ${escapeHTML(g.ejemplo)}</p>
+          ${audioControls(g.ejemplo)}
+        </div>
+      </div>
+    `).join("")}
+  `);
+}
+
+function renderRegister(c){
+  const r = c.registro;
+  return sectionShell(6,`
+    <p class="lead">${escapeHTML(r.escenario)}</p>
+    <div class="activity-box">
+      <h3>${escapeHTML(r.pregunta)}</h3>
+      <div class="choice-list">
+        ${r.opciones.map((o,i)=>`
+          <div>
+            <button type="button" class="choice-btn js-register" data-register="${i}" aria-pressed="false">${escapeHTML(o.texto)}</button>
+            ${audioControls(o.texto)}
+          </div>
+        `).join("")}
+      </div>
+      <div id="registerFeedback" class="feedback" role="status" aria-live="polite" hidden></div>
+    </div>
+  `);
+}
+
+function renderExample(c){
+  return sectionShell(7,`
+    <p class="lead">Lee la intervención completa. Después pulsa una parte para ver qué función cumple.</p>
+    <div class="example-box">
+      <p>${c.ejemplo.segmentos.map((s,i)=>`<button type="button" class="example-segment js-example-segment" data-segment="${i}">${escapeHTML(s.texto)}</button>`).join(" ")}</p>
+      ${audioControls(c.ejemplo.texto)}
+      <div id="segmentNote" class="segment-note" aria-live="polite">Selecciona una parte del ejemplo.</div>
+    </div>
+  `);
+}
+
+function renderQuiz(c){
+  const cards = c.ejercicios.map((q,i)=>{
+    let interaction = "";
+    if(q.tipo==="choice"){
+      interaction = `<div class="choice-list">
+        ${q.opciones.map((o,j)=>`<button type="button" class="choice-btn js-quiz-choice" data-quiz="${i}" data-choice="${j}" aria-pressed="false">${escapeHTML(o)}</button>${nivelActual==="a2"?audioControls(o):""}`).join("")}
+      </div>`;
+    } else if(q.tipo==="fill"){
+      interaction = `<div>
+        <label for="quizFill${i}" class="sr-only">Respuesta</label>
+        <input id="quizFill${i}" type="text" class="js-quiz-fill" data-quiz="${i}" placeholder="${escapeHTML(q.ayuda||"Escribe tu respuesta")}">
+        <div class="quiz-actions">
+          <button type="button" class="primary-btn js-check-fill" data-quiz="${i}">Comprobar</button>
+          ${nivelActual==="a2"?audioControls(q.pregunta):""}
+        </div>
+      </div>`;
+    } else if(q.tipo==="order"){
+      interaction = `<div>
+        <div class="order-bank" id="orderBank${i}">
+          ${shuffle([...q.bloques]).map((b,j)=>`<button type="button" class="block-btn js-order-block" data-quiz="${i}" data-value="${escapeHTML(b)}">${escapeHTML(b)}</button>`).join("")}
+        </div>
+        <div class="order-answer" id="orderAnswer${i}" aria-label="Orden seleccionado"></div>
+        <div class="quiz-actions">
+          <button type="button" class="primary-btn js-check-order" data-quiz="${i}">Comprobar orden</button>
+          <button type="button" class="ghost-btn js-reset-order" data-quiz="${i}">Reintentar</button>
+        </div>
+      </div>`;
+    } else if(q.tipo==="short"){
+      interaction = `<div>
+        <label for="quizShort${i}">Escribe tu respuesta</label>
+        <textarea id="quizShort${i}" class="js-quiz-short" data-quiz="${i}" placeholder="Escribe 2–3 frases"></textarea>
+        <div class="quiz-actions">
+          <button type="button" class="primary-btn js-check-short" data-quiz="${i}">Revisar mi respuesta</button>
+        </div>
+      </div>`;
+    }
+    return `<div class="quiz-card">
+      <h3>${escapeHTML(q.titulo)}</h3>
+      <p>${escapeHTML(q.pregunta)}</p>
+      ${interaction}
+      <div class="feedback js-quiz-feedback" data-feedback="${i}" role="status" aria-live="polite" hidden></div>
+    </div>`;
+  }).join("");
+  return sectionShell(8,`<p class="lead">Comprueba si puedes recuperar y aplicar las herramientas. Puedes volver a intentarlo.</p>${cards}`);
+}
+
+function renderPractice(c){
+  const p = c.practica;
+  return sectionShell(9,`
+    <p class="lead">${escapeHTML(p.situacion)}</p>
+    <div class="scenario-grid">
+      <div class="info-card"><strong>Interlocutor</strong><br>${escapeHTML(p.interlocutor)}</div>
+      <div class="info-card"><strong>Objetivo</strong><br>${escapeHTML(p.objetivo)}</div>
+    </div>
+    <div class="practice-box">
+      <h3>Tu respuesta debe incluir</h3>
+      <ul class="requirements">${p.requisitos.map(r=>`<li>${escapeHTML(r)}</li>`).join("")}</ul>
+      <div>
+        ${p.apoyos.map(a=>`<span class="support-chip">${escapeHTML(a)}</span>${nivelActual==="a2"?audioControls(a):""}`).join("")}
+      </div>
+      <label for="finalPractice">Escribe tu respuesta</label>
+      <textarea id="finalPractice" placeholder="${escapeHTML(p.placeholder)}"></textarea>
+      <p id="practiceStatus" class="feedback note" hidden>Tu respuesta quedó preparada para compararla con el modelo. Aquí no se califica automáticamente.</p>
+    </div>
+  `);
+}
+
+function renderModel(c){
+  const blocks = nivelActual==="a2"
+    ? c.modelo.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map(x=>x.trim()).filter(Boolean) || []
+    : [];
+  const blockAudio = blocks.length ? `<div class="activity-box"><h3>Escucha por partes / Listen in parts</h3>${blocks.map(b=>`<div class="phrase-item"><div class="phrase-main">${escapeHTML(b)}</div>${audioControls(b)}</div>`).join("")}</div>` : "";
+  return sectionShell(10,`
+    <p class="lead">Primero escribe tu propia respuesta en la sección anterior. Después utiliza el modelo para comparar decisiones lingüísticas.</p>
+    <button type="button" id="showModel" class="secondary-btn">Ver una posible respuesta</button>
+    <div id="modelBox" class="model-box" hidden>
+      <p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p>
+      <p>${escapeHTML(c.modelo)}</p>
+      ${audioControls(c.modelo)}
+      ${blockAudio}
+    </div>
+  `);
+}
+
+function renderChecklist(c){
+  return sectionShell(11,`
+    <p class="lead">Antes de terminar, comprueba qué puedes hacer ahora.</p>
+    <div class="checklist">
+      ${c.checklist.map((item,i)=>`
+        <label class="check-item">
+          <input type="checkbox" class="js-check" data-check="${i}">
+          <span>${escapeHTML(item)}</span>
+        </label>
+      `).join("")}
+    </div>
+    <div id="checkProgress" class="check-progress">0 de ${c.checklist.length} comprobados</div>
+    <div id="checkProgressTrack" class="check-progress-track" role="progressbar" aria-label="Progreso del checklist" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div id="checkProgressBar" class="check-progress-bar"></div>
+    </div>
+    <div id="readyBox" class="ready-box" hidden>
+      <h3>🎯 Ya estás listo para practicar</h3>
+      <p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p>
+      <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Sustituir # por la URL real del reto del día cuando esté disponible. -->
+      <a class="secondary-btn" href="${escapeHTML(semana.urlReto)}">🔥 Ir al reto de hoy</a>
+    </div>
+  `);
+}
+
+function renderAllSections(){
+  const c = contenido[nivelActual];
+  sectionsHost.innerHTML = [
+    renderObjective(c),
+    renderSituation(c),
+    renderVocabulary(c),
+    renderPhrases(c),
+    renderBuilder(c),
+    renderGrammar(c),
+    renderRegister(c),
+    renderExample(c),
+    renderQuiz(c),
+    renderPractice(c),
+    renderModel(c),
+    renderChecklist(c)
+  ].join("");
+  updateBuilderPreview();
+  bindDynamicEvents();
+}
+
+function showSection(index){
+  sectionIndex = Math.max(0,Math.min(sectionMeta.length-1,index));
+  document.querySelectorAll("[data-panel]").forEach((panel,i)=>{ panel.hidden = i!==sectionIndex; });
+  document.querySelectorAll(".section-tab").forEach((tab,i)=>{
+    tab.classList.toggle("active",i===sectionIndex);
+    tab.classList.toggle("visited",sectionVisited.has(i));
+    tab.setAttribute("aria-current",i===sectionIndex?"step":"false");
+  });
+  sectionVisited.add(sectionIndex);
+  markDone(`visit-${sectionIndex+1}`);
+  document.querySelectorAll(".section-tab").forEach((tab,i)=>tab.classList.toggle("visited",sectionVisited.has(i)));
+  prevSection.disabled = sectionIndex===0;
+  nextSection.hidden = sectionIndex===sectionMeta.length-1;
+  const panel = document.querySelector(`[data-panel="${sectionIndex}"]`);
+  if(panel) panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function updateBuilderPreview(){
+  if(!nivelActual) return;
+  const b = contenido[nivelActual].constructor;
+  if(b.modo!=="guiado") return;
+  const selects = [...document.querySelectorAll(".js-builder-select")];
+  const text = selects.map(s=>s.value).join(" ");
+  const preview = document.getElementById("builderPreview");
+  const audio = document.getElementById("builderAudio");
+  if(preview) preview.textContent = text;
+  if(audio) audio.innerHTML = audioControls(text);
+  bindAudioButtons(audio);
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function normalize(value){
+  return value.trim().toLocaleLowerCase("es").replace(/[.!?¿¡,;:]+$/g,"").replace(/\s+/g," ");
+}
+
+function bindAudioButtons(scope=document){
+  if(!scope) return;
+  scope.querySelectorAll?.(".js-speak").forEach(btn=>{
+    if(btn.dataset.bound==="1") return;
+    btn.dataset.bound="1";
+    btn.addEventListener("click",e=>{
+      e.stopPropagation();
+      speakSpanish(btn.dataset.text,btn.dataset.slow==="true");
+    });
+  });
+}
+
+function bindDynamicEvents(){
+  bindAudioButtons(document);
+
+  document.querySelectorAll(".js-vocab").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const card=btn.closest(".flip-card");
+      const body=card.querySelector(".flip-body");
+      const open=body.hidden;
+      body.hidden=!open;
+      btn.setAttribute("aria-expanded",String(open));
+      btn.querySelector(".flip-tag").textContent=open?"Ocultar":"Ver";
+      if(open) markDone("vocab-reviewed");
+    });
+  });
+
+  document.querySelectorAll(".js-recovery").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const r=contenido[nivelActual].recuperacion;
+      const idx=Number(btn.dataset.option);
+      document.querySelectorAll(".js-recovery").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+      btn.classList.add("selected");
+      btn.setAttribute("aria-pressed","true");
+      const fb=document.getElementById("recoveryFeedback");
+      fb.hidden=false;fb.textContent=r.feedback[idx];
+      fb.className="feedback "+(idx===r.correcta?"good":"note");
+      markDone("recovery-complete");
+    });
+  });
+
+  document.querySelectorAll(".js-phrase-note").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const note=btn.parentElement.querySelector(".phrase-note");
+      const opening=note.hidden;
+      note.hidden=!opening;
+      btn.setAttribute("aria-expanded",String(opening));
+      if(opening) markDone("phrases-reviewed");
+    });
+  });
+
+  document.querySelectorAll(".js-builder-select").forEach(s=>s.addEventListener("change",updateBuilderPreview));
+  document.querySelectorAll(".js-show-builder-model").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelector(`[data-model-box="${btn.dataset.openModel}"]`).hidden=false;
+    });
+  });
+  document.getElementById("builderDone")?.addEventListener("click",()=>{
+    if(contenido[nivelActual].constructor.modo==="abierto"){
+      const vals=[...document.querySelectorAll(".js-open-builder")].map(i=>i.value.trim());
+      if(vals.some(v=>v.length<8)){ showToast("Formula primero una versión breve para cada intención."); return; }
+    }
+    markDone("builder-complete");
+    showToast("Mensaje construido. Ahora compáralo con el contexto y el interlocutor.");
+  });
+
+  document.querySelectorAll(".js-grammar").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const note=btn.parentElement.querySelector(".phrase-note");
+      const opening=note.hidden;
+      note.hidden=!opening;
+      btn.setAttribute("aria-expanded",String(opening));
+      if(opening) markDone("grammar-reviewed");
+    });
+  });
+
+  document.querySelectorAll(".js-register").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const idx=Number(btn.dataset.register);
+      const opt=contenido[nivelActual].registro.opciones[idx];
+      document.querySelectorAll(".js-register").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+      btn.classList.add("selected");
+      btn.setAttribute("aria-pressed","true");
+      const fb=document.getElementById("registerFeedback");
+      fb.hidden=false;fb.textContent=opt.feedback;fb.className="feedback "+opt.tipo;
+      markDone("register-complete");
+    });
+  });
+
+  document.querySelectorAll(".js-example-segment").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item=contenido[nivelActual].ejemplo.segmentos[Number(btn.dataset.segment)];
+      document.getElementById("segmentNote").textContent=item.funcion;
+      markDone("example-reviewed");
+    });
+  });
+
+  document.querySelectorAll(".js-quiz-choice").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz), ci=Number(btn.dataset.choice);
+      const q=contenido[nivelActual].ejercicios[qi];
+      document.querySelectorAll(`.js-quiz-choice[data-quiz="${qi}"]`).forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false");});
+      btn.classList.add("selected");
+      btn.setAttribute("aria-pressed","true");
+      const fb=document.querySelector(`[data-feedback="${qi}"]`);
+      const good=q.correctas.includes(ci);
+      fb.hidden=false;fb.textContent=q.feedback[ci];fb.className="feedback "+(good?"good":"note");
+      if(good) markDone(`quiz-${qi}`);
+    });
+  });
+
+  document.querySelectorAll(".js-check-fill").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz);
+      const q=contenido[nivelActual].ejercicios[qi];
+      const input=document.querySelector(`.js-quiz-fill[data-quiz="${qi}"]`);
+      const fb=document.querySelector(`[data-feedback="${qi}"]`);
+      const good=normalize(input.value)===normalize(q.respuesta);
+      fb.hidden=false;
+      fb.textContent=good?q.explicacion:`Todavía no. ${q.ayuda||"Revisa la estructura y vuelve a intentarlo."}`;
+      fb.className="feedback "+(good?"good":"note");
+      if(good) markDone(`quiz-${qi}`);
+    });
+  });
+
+  document.querySelectorAll(".js-check-short").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz);
+      const q=contenido[nivelActual].ejercicios[qi];
+      const input=document.querySelector(`.js-quiz-short[data-quiz="${qi}"]`);
+      const fb=document.querySelector(`[data-feedback="${qi}"]`);
+      const enough=input.value.trim().length >= (q.minChars || 30);
+      fb.hidden=false;
+      fb.textContent=enough ? q.explicacion : "Desarrolla un poco más la idea: indica qué priorizas y por qué esa decisión protege el trabajo del equipo.";
+      fb.className="feedback "+(enough?"good":"note");
+      if(enough) markDone(`quiz-${qi}`);
+    });
+  });
+
+  document.querySelectorAll(".js-order-block").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz);
+      orderState[qi]=orderState[qi]||[];
+      orderState[qi].push(btn.dataset.value);
+      const answer=document.getElementById(`orderAnswer${qi}`);
+      answer.textContent=orderState[qi].join(" ");
+      btn.disabled=true;
+    });
+  });
+
+  document.querySelectorAll(".js-check-order").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz);
+      const q=contenido[nivelActual].ejercicios[qi];
+      const actual=orderState[qi]||[];
+      const good=actual.length===q.solucion.length && actual.every((x,j)=>x===q.solucion[j]);
+      const fb=document.querySelector(`[data-feedback="${qi}"]`);
+      fb.hidden=false;
+      fb.textContent=good?q.explicacion:"El orden todavía no construye la secuencia más clara. Reintenta y piensa qué información necesita aparecer primero.";
+      fb.className="feedback "+(good?"good":"note");
+      if(good) markDone(`quiz-${qi}`);
+    });
+  });
+
+  document.querySelectorAll(".js-reset-order").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qi=Number(btn.dataset.quiz);
+      orderState[qi]=[];
+      document.getElementById(`orderAnswer${qi}`).textContent="";
+      document.querySelectorAll(`.js-order-block[data-quiz="${qi}"]`).forEach(b=>b.disabled=false);
+      const fb=document.querySelector(`[data-feedback="${qi}"]`);
+      fb.hidden=true;
+    });
+  });
+
+  document.getElementById("finalPractice")?.addEventListener("input",e=>{
+    const value=e.target.value.trim();
+    const status=document.getElementById("practiceStatus");
+    if(value.length>=40){
+      markDone("practice-written");
+      status.hidden=false;
+    } else {
+      status.hidden=true;
+    }
+  });
+
+  document.getElementById("showModel")?.addEventListener("click",()=>{
+    document.getElementById("modelBox").hidden=false;
+    markDone("model-viewed");
+  });
+
+  document.querySelectorAll(".js-check").forEach(box=>{
+    box.addEventListener("change",()=>{
+      const i=Number(box.dataset.check);
+      if(box.checked) progressDone.add(`check-${i}`); else progressDone.delete(`check-${i}`);
+      updateProgress();
+      updateChecklist();
+    });
+  });
+
+  updateChecklist();
+}
+
+function updateChecklist(){
+  const boxes=[...document.querySelectorAll(".js-check")];
+  if(!boxes.length) return;
+  const checked=boxes.filter(b=>b.checked).length;
+  const counter=document.getElementById("checkProgress");
+  counter.textContent=`${checked} de ${boxes.length} comprobados`;
+  const pct=Math.round((checked/boxes.length)*100);
+  const checkBar=document.getElementById("checkProgressBar");
+  const checkTrack=document.getElementById("checkProgressTrack");
+  if(checkBar) checkBar.style.width=pct+"%";
+  if(checkTrack) checkTrack.setAttribute("aria-valuenow",String(pct));
+  const ready=document.getElementById("readyBox");
+  ready.hidden=checked!==boxes.length;
+  if(checked===boxes.length) setTimeout(()=>ready.scrollIntoView({behavior:"smooth",block:"center"}),120);
+}
+
+document.querySelectorAll(".level-card").forEach(btn=>btn.addEventListener("click",()=>selectLevel(btn.dataset.level)));
+
+changeLevel.addEventListener("click",()=>{
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  moduleEl.hidden=true;
+  levelScreen.hidden=false;
+  skipLink.hidden=true;
+  nivelActual=null;
+  document.querySelector(".level-card")?.focus();
+});
+
+sectionNav.addEventListener("click",e=>{
+  const btn=e.target.closest(".section-tab");
+  if(btn) showSection(Number(btn.dataset.section));
+});
+prevSection.addEventListener("click",()=>showSection(sectionIndex-1));
+nextSection.addEventListener("click",()=>showSection(sectionIndex+1));
+
+document.addEventListener("keydown",e=>{
+  if(moduleEl.hidden) return;
+  if(e.altKey && e.key==="ArrowRight") showSection(sectionIndex+1);
+  if(e.altKey && e.key==="ArrowLeft") showSection(sectionIndex-1);
+});
+</script>
+</body>
+</html>
