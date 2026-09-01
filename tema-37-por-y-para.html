@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 37 · Por y para | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish sobre por y para aplicado a situaciones profesionales.">
+<style>
+:root{
+  --blue:#003893; --yellow:#FCD116; --red:#CE1126; --white:#FFFFFF; --black:#000000;
+  --ink:#172033; --muted:#5f6879; --bg:#f5f7fb; --card:#ffffff; --line:#dfe5ef;
+  --green:#116b45; --shadow:0 12px 30px rgba(0,56,147,.10); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+.level-screen{
+  min-height:100vh;display:grid;place-items:center;padding:28px;
+  background:radial-gradient(circle at top right,rgba(252,209,22,.30),transparent 34%),
+             linear-gradient(145deg,#00296d,#003893 58%,#0a4cb7)
+}
+.level-card{width:min(920px,100%);background:#fff;border-radius:28px;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.22)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;color:var(--blue);letter-spacing:.2px}
+.brand-mark{display:inline-flex;gap:4px;align-items:center}
+.brand-mark i{display:block;width:8px;height:8px;border-radius:50%}
+.brand-mark i:nth-child(1){background:var(--yellow)}
+.brand-mark i:nth-child(2){background:var(--blue)}
+.brand-mark i:nth-child(3){background:var(--red)}
+.level-card h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:24px 0 8px}
+.level-card>p{color:var(--muted);max-width:720px;margin:0 0 24px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.level-btn{border:2px solid var(--line);border-radius:18px;background:#fff;padding:22px;text-align:left;min-height:200px;transition:.18s}
+.level-btn:hover,.level-btn:focus-visible{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.level-btn strong{display:block;font-size:1.25rem;color:var(--blue);margin-bottom:10px}
+.level-btn span{color:var(--muted);font-size:.96rem}
+
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1120px;margin:auto;padding:10px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.route-pill{font-weight:800;color:var(--blue);background:#edf3ff;padding:8px 12px;border-radius:999px}
+.change-level{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 11px;border-radius:10px}
+.progress-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;min-width:285px}
+.progress-track{height:9px;flex:1;background:#e8ecf3;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2f6bd0);transition:width .25s}
+
+.hero{background:linear-gradient(135deg,var(--blue),#0c4db2);color:#fff;padding:48px 18px 34px}
+.hero-card{max-width:1120px;margin:auto}
+.kicker{display:inline-block;font-size:.82rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#061c46;background:var(--yellow);padding:7px 10px;border-radius:8px}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;margin:16px 0 10px}
+.hero p{max-width:880px;font-size:1.08rem;color:#eaf1ff}
+
+.section-nav{max-width:1120px;margin:18px auto 0;padding:0 18px;display:flex;gap:8px;overflow:auto;scrollbar-width:thin}
+.section-nav a{white-space:nowrap;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--ink);font-size:.9rem}
+.section-nav a:hover,.section-nav a:focus-visible{border-color:var(--blue);color:var(--blue)}
+
+main{max-width:1120px;margin:auto;padding:14px 18px 60px}
+.section{scroll-margin-top:96px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:18px 0;box-shadow:0 4px 18px rgba(14,32,73,.04)}
+.section h2{margin:0 0 12px;font-size:1.45rem;color:var(--blue)}
+.section h3{margin:20px 0 10px;font-size:1.05rem}
+.note{background:#fff9dc;border-left:4px solid var(--yellow);padding:12px 14px;border-radius:10px}
+.small{font-size:.9rem;color:var(--muted)}
+.tag{display:inline-block;background:#edf3ff;color:var(--blue);border-radius:999px;padding:4px 8px;font-size:.82rem;font-weight:800;margin:2px 5px 2px 0}
+
+.context-grid,.cards,.phrase-grid,.grammar-grid,.example-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.context-item{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.context-item strong{display:block;color:var(--blue)}
+
+.flip{border:1px solid var(--line);border-radius:16px;background:#fff;padding:0;overflow:hidden}
+.flip-head{width:100%;border:0;background:#f8faff;text-align:left;padding:16px;font-weight:800;color:var(--blue)}
+.flip-body{display:none;padding:16px;border-top:1px solid var(--line)}
+.flip.open .flip-body{display:block}
+
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.audio-btn{border:1px solid #bfd0ee;background:#eef4ff;color:#153e7d;border-radius:10px;padding:7px 10px;font-size:.9rem}
+.audio-status{font-size:.85rem;color:var(--muted);margin-top:6px}
+
+.phrase-card,.grammar-card,.example-card{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fff}
+.phrase{font-weight:800}
+.reveal{margin-top:9px;border:0;background:#eef4ff;color:var(--blue);border-radius:9px;padding:7px 9px}
+.reveal-text{display:none;margin-top:9px;color:var(--muted)}
+.reveal-text.show{display:block}
+
+.builder{display:grid;gap:12px;background:#f8faff;border:1px solid var(--line);border-radius:15px;padding:16px}
+.builder-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{font-weight:700}
+select,input[type=text],textarea{width:100%;border:1px solid #bfc9d9;border-radius:10px;padding:11px;background:#fff;color:var(--ink)}
+textarea{min-height:150px;resize:vertical}
+.output{background:#fff;border:2px dashed #9db4db;border-radius:12px;padding:14px;min-height:56px}
+.action-btn{border:0;border-radius:10px;padding:10px 13px;font-weight:800;background:var(--blue);color:#fff}
+.secondary{background:#edf3ff;color:var(--blue);border:1px solid #c5d4ee}
+
+.option-list{display:grid;gap:10px}
+.option-btn{border:1px solid var(--line);background:#fff;text-align:left;padding:12px;border-radius:12px}
+.option-btn.selected{border-color:var(--blue);background:#eef4ff}
+.feedback{margin-top:10px;padding:11px 12px;border-radius:10px;background:#f2f6fb;color:#33415c}
+.feedback.good{background:#eaf7f0;color:#0d5b3a}
+
+.exercise{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.exercise legend{font-weight:800;padding:0 5px}
+.exercise-options{display:grid;gap:8px;margin-top:10px}
+.exercise-options label{font-weight:500;border:1px solid var(--line);border-radius:10px;padding:9px;display:flex;gap:8px;align-items:flex-start}
+.exercise-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+.practice-box{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.requirements{padding-left:20px}
+.supports{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.support-chip{background:#eef4ff;color:#163c7b;border:1px solid #c9d7ed;border-radius:999px;padding:7px 10px}
+
+.model{display:none;margin-top:14px;border-left:4px solid var(--blue);background:#f4f7fd;padding:14px;border-radius:10px}
+.model.show{display:block}
+
+.checklist{display:grid;gap:10px}
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:11px}
+.check-item input{margin-top:4px;transform:scale(1.25)}
+.check-progress{height:12px;background:#e8ecf3;border-radius:999px;overflow:hidden;margin:14px 0}
+.check-progress>div{height:100%;width:0;background:var(--blue);transition:.2s}
+.finish{display:none;text-align:center;background:linear-gradient(135deg,#edf3ff,#fff7c9);border:1px solid #cddaf1;border-radius:16px;padding:22px;margin-top:16px}
+.finish.show{display:block}
+.challenge{display:inline-block;margin-top:10px;text-decoration:none;background:var(--red);color:#fff;font-weight:900;padding:11px 16px;border-radius:10px}
+
+@media(max-width:760px){
+  .level-grid,.context-grid,.cards,.phrase-grid,.grammar-grid,.example-grid,.builder-row{grid-template-columns:1fr}
+  .level-card{padding:24px 18px}.level-btn{min-height:auto}
+  .progress-wrap{width:100%;min-width:0;margin-left:0}
+  .section{padding:18px}
+  .topbar-inner{align-items:stretch}
+}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-card">
+    <div class="brand">La Oficina en Español
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p>Selecciona tu ruta para adaptar el apoyo, los ejemplos y la dificultad del módulo.</p>
+    <div class="level-grid">
+      <button class="level-btn" data-level="a2">
+        <strong>🌱 A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-btn" data-level="b1">
+        <strong>💼 B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-btn" data-level="b2">
+        <strong>🚀 B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div id="routePill" class="route-pill"></div>
+      <button id="changeLevel" class="change-level">Cambiar nivel</button>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <span class="small">Progreso</span>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <strong id="progressText">0%</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <span class="kicker">Herramientas lingüísticas · Tema 37</span>
+      <h1 id="heroTitle"></h1>
+      <p id="heroIntro"></p>
+    </div>
+  </section>
+
+  <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+  <main id="lesson"></main>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  meta: {
+    habilidad: "Explicar motivos, objetivos, destinatarios y plazos con «por» y «para»",
+    intro: "Practica cómo elegir «por» y «para» para explicar por qué haces algo, para qué lo haces, quién recibe algo y cuándo debe estar listo dentro de situaciones profesionales.",
+    secciones: [
+      "🎯 Tu objetivo esta semana",
+      "🏢 La situación",
+      "🗣️ Vocabulario clave",
+      "💬 Frases que puedes usar",
+      "🧩 Construye tu mensaje",
+      "📚 Gramática que necesitas",
+      "🎭 Elige el registro",
+      "💼 Mira cómo se hace",
+      "✍️ Comprueba lo que aprendiste",
+      "🏢 Ahora te toca a ti",
+      "💡 Ver modelo",
+      "✅ Checklist final"
+    ]
+  },
+
+  a2: {
+    ruta:"🌱 A2 — Principiante",
+    objetivo:"Al terminar esta semana podrás explicar un motivo con «por», un objetivo o destinatario con «para» y un plazo con «para» en mensajes sencillos de trabajo.",
+    situacion:{
+      resumen:"Trabajas en un equipo de proyectos. Debes explicar por qué cambió una fecha, para qué necesitas un documento, para quién preparas un informe y para cuándo lo necesitas.",
+      quien:"Tú, como miembro del equipo.",
+      conQuien:"Tu jefa, un compañero y un proveedor.",
+      contexto:"Reuniones breves, chat y correo de trabajo.",
+      objetivo:"Dar razones y objetivos de forma clara.",
+      dificultad:"En inglés muchas veces aparece “for”, pero en español debes elegir entre «por» y «para»."
+    },
+    vocab:[
+      {term:"el motivo",en:"the reason",ex:"El cambio fue por un problema técnico.",extra:"Motivo = razón. Pronunciación: mo-TI-vo."},
+      {term:"el objetivo",en:"the goal / purpose",ex:"Necesito estos datos para preparar el informe.",extra:"Objetivo = lo que quieres conseguir. Pronunciación: ob-je-TI-vo."},
+      {term:"el plazo",en:"the deadline / time limit",ex:"Necesito la propuesta para el viernes.",extra:"«Para + fecha» puede indicar límite de tiempo. Pronunciación: PLA-zo."},
+      {term:"el destinatario",en:"the recipient",ex:"Este informe es para la directora.",extra:"Persona que recibe un documento, mensaje o producto."}
+    ],
+    frases:[
+      {grupo:"Explicar un motivo",text:"La reunión se aplazó por un problema técnico.",uso:"Usa «por» para indicar la causa o razón de una situación."},
+      {grupo:"Explicar un objetivo",text:"Necesito los datos para preparar el informe.",uso:"Usa «para + infinitivo» para indicar la finalidad de una acción."},
+      {grupo:"Indicar destinatario",text:"Este documento es para el cliente.",uso:"Usa «para» para decir quién recibe algo."},
+      {grupo:"Indicar plazo",text:"Necesito la versión final para el viernes.",uso:"Usa «para + fecha» para indicar una fecha límite."}
+    ],
+    builder:{
+      prompt:"Construye un mensaje breve de trabajo.",
+      firstLabel:"Elige la intención",
+      first:[
+        {v:"motivo",t:"Explicar un motivo"},
+        {v:"objetivo",t:"Explicar un objetivo"},
+        {v:"destinatario",t:"Indicar un destinatario"},
+        {v:"plazo",t:"Indicar un plazo"}
+      ],
+      secondLabel:"Elige la información",
+      second:{
+        motivo:["un problema técnico","un cambio del cliente","una reunión urgente"],
+        objetivo:["preparar la presentación","revisar el presupuesto","confirmar la entrega"],
+        destinatario:["el cliente","mi jefa","el equipo de ventas"],
+        plazo:["el viernes","mañana a las 3","finales de mes"]
+      },
+      templates:{
+        motivo:"El cambio fue por {x}.",
+        objetivo:"Necesito esta información para {x}.",
+        destinatario:"Este documento es para {x}.",
+        plazo:"Necesito la versión final para {x}."
+      }
+    },
+    gramatica:[
+      {title:"POR = causa o motivo",body:"Situación: algo ocurrió. Intención: explicar la razón. Estructura: «por + sustantivo». Ejemplo: «La entrega se retrasó por un problema técnico»."},
+      {title:"PARA = objetivo",body:"Situación: haces una acción con un propósito. Intención: explicar para qué. Estructura: «para + infinitivo». Ejemplo: «Llamo para confirmar la fecha»."},
+      {title:"PARA = destinatario",body:"Situación: algo va dirigido a una persona. Estructura: «para + persona». Ejemplo: «Este informe es para Marta»."},
+      {title:"PARA = fecha límite",body:"Situación: necesitas algo antes de una fecha. Estructura: «para + fecha». Ejemplo: «Lo necesito para el lunes»."}
+    ],
+    registro:{
+      contexto:"Escribes a un cliente importante para pedir un documento que necesitas antes del viernes.",
+      opciones:[
+        {text:"Mándame el documento para el viernes.",fb:"Se entiende, pero puede sonar demasiado directo con un cliente importante."},
+        {text:"¿Podría enviarme el documento para el viernes, por favor?",fb:"Esta formulación mantiene un tono profesional y deja claro el plazo.",good:true},
+        {text:"Quiero el documento por el viernes.",fb:"Aquí «por» no expresa bien la fecha límite. Para un plazo, usa «para el viernes»."}
+      ]
+    },
+    ejemplo:{
+      title:"Actualización breve de proyecto",
+      text:"La entrega se retrasó por un problema con el proveedor. Necesitamos la nueva cotización para actualizar el presupuesto. El documento es para la directora financiera y lo necesitamos para el jueves.",
+      partes:[
+        ["por un problema con el proveedor","causa"],
+        ["para actualizar el presupuesto","objetivo"],
+        ["para la directora financiera","destinatario"],
+        ["para el jueves","plazo"]
+      ]
+    },
+    ejercicios:[
+      {q:"Elige la opción correcta: «La reunión se canceló ___ un problema técnico».",opts:["por","para"],correct:0,why:"«Por» expresa la causa del problema."},
+      {q:"Elige la opción correcta: «Necesito estas cifras ___ preparar la presentación».",opts:["por","para"],correct:1,why:"«Para + infinitivo» expresa finalidad."},
+      {q:"Elige la opción correcta: «El informe debe estar listo ___ el lunes».",opts:["por","para"],correct:1,why:"«Para + fecha» indica fecha límite."}
+    ],
+    practica:{
+      situacion:"Tu proveedor pregunta por qué necesitas una nueva cotización.",
+      interlocutor:"Proveedor",
+      objetivo:"Explica un motivo, un objetivo y un plazo.",
+      requisitos:["usa «por» para una causa","usa «para + infinitivo» para un objetivo","incluye «para + fecha» para un plazo"],
+      apoyo:["Lo necesitamos por...","Necesitamos la cotización para...","La necesitamos para..."]
+    },
+    modelo:"Necesitamos una nueva cotización por el cambio de cantidades. La necesitamos para actualizar el presupuesto y presentarlo al cliente. ¿Podría enviarla para el miércoles, por favor?",
+    checklist:[
+      "Puedo usar «por» para explicar una causa.",
+      "Puedo usar «para + infinitivo» para explicar un objetivo.",
+      "Puedo usar «para» para indicar un destinatario.",
+      "Puedo usar «para + fecha» para indicar un plazo.",
+      "Puedo escribir un mensaje breve de trabajo usando «por» y «para»."
+    ]
+  },
+
+  b1: {
+    ruta:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás justificar decisiones, explicar finalidades, indicar destinatarios y establecer plazos usando «por» y «para» con mayor precisión en situaciones profesionales habituales.",
+    situacion:{
+      resumen:"Coordinas un proyecto con un cliente y dos proveedores. Durante la semana debes justificar un retraso, explicar para qué solicitas información, indicar quién recibirá una propuesta y negociar una fecha de entrega.",
+      quien:"Tú, como coordinador del proyecto.",
+      conQuien:"Cliente, proveedores y equipo interno.",
+      contexto:"Reunión de seguimiento y mensajes de trabajo.",
+      objetivo:"Explicar causas y finalidades sin ambigüedad.",
+      dificultad:"Distinguir causa, finalidad, destinatario y plazo, y elegir un registro adecuado."
+    },
+    vocab:[
+      {term:"a raíz de",ex:"Revisamos el cronograma a raíz de un cambio solicitado por el cliente.",extra:"Alternativa más formal para introducir una causa."},
+      {term:"con el fin de",ex:"Solicitamos los datos con el fin de validar el presupuesto.",extra:"Alternativa formal a «para + infinitivo»."},
+      {term:"fecha límite",ex:"La fecha límite para enviar la propuesta es el jueves.",extra:"Útil para explicitar plazos."},
+      {term:"destinado a",ex:"El resumen está destinado a la dirección regional.",extra:"Alternativa formal para expresar destinatario o finalidad."}
+    ],
+    frases:[
+      {grupo:"Justificar una decisión",text:"Hemos ajustado el cronograma por los cambios solicitados por el cliente.",uso:"«Por» introduce la causa que explica una decisión o situación."},
+      {grupo:"Explicar finalidad",text:"Necesitamos confirmar estas cifras para cerrar el presupuesto.",uso:"«Para + infinitivo» presenta la finalidad de la acción."},
+      {grupo:"Indicar destinatario",text:"Esta versión es para el equipo jurídico.",uso:"«Para» identifica a quién va dirigido algo."},
+      {grupo:"Establecer un plazo",text:"Necesitaríamos la confirmación para el jueves.",uso:"«Para + fecha» presenta un límite temporal; el condicional suaviza la petición."}
+    ],
+    builder:{
+      prompt:"Organiza una explicación de proyecto combinando causa y finalidad.",
+      firstLabel:"Causa",
+      first:[
+        {v:"cliente",t:"cambios del cliente"},
+        {v:"proveedor",t:"retraso del proveedor"},
+        {v:"datos",t:"falta de datos"}
+      ],
+      secondLabel:"Finalidad",
+      second:{
+        cliente:["actualizar el alcance","recalcular el presupuesto","confirmar el cronograma"],
+        proveedor:["reorganizar la entrega","informar al cliente","reducir el impacto"],
+        datos:["validar la propuesta","tomar una decisión","cerrar el informe"]
+      },
+      templates:{
+        cliente:"Hemos revisado el plan por los cambios del cliente para {x}.",
+        proveedor:"Estamos ajustando el calendario por el retraso del proveedor para {x}.",
+        datos:"Hemos solicitado información adicional por la falta de datos para {x}."
+      }
+    },
+    gramatica:[
+      {title:"Causa frente a finalidad",body:"«Por» responde normalmente a «¿por qué?»; «para» responde a «¿para qué?». Ejemplo: «Aplazamos la reunión por falta de datos para revisar la propuesta con cifras completas»."},
+      {title:"Por + sustantivo / para + infinitivo",body:"Una combinación frecuente en el trabajo es «por + causa» y «para + acción». Ejemplo: «Repetimos la prueba por un error para confirmar el resultado»."},
+      {title:"Destinatario y plazo",body:"«Para» también señala receptor y fecha límite: «La propuesta es para el cliente y debe estar lista para el viernes»."},
+      {title:"Registro",body:"En peticiones, «Necesito X para el viernes» es directo. «Necesitaríamos X para el viernes» o «¿Podrías enviarlo para el viernes?» puede sonar más colaborativo según la relación."}
+    ],
+    registro:{
+      contexto:"Pides a un proveedor externo una corrección antes del cierre mensual.",
+      opciones:[
+        {text:"Corrige esto para mañana.",fb:"Es claro, pero puede resultar brusco si no existe una relación muy directa."},
+        {text:"Necesitaríamos la versión corregida para mañana, si es posible.",fb:"Mantiene el plazo y reduce la imposición. Funciona bien con un proveedor.",good:true},
+        {text:"Necesitamos la versión corregida por mañana.",fb:"«Por mañana» no expresa aquí la fecha límite de manera natural. Usa «para mañana»."}
+      ]
+    },
+    ejemplo:{
+      title:"Seguimiento con proveedor",
+      text:"Hemos actualizado el pedido por el cambio de cantidades solicitado por el cliente. Necesitamos la nueva cotización para revisar el margen antes de confirmar la compra. La versión final es para el equipo financiero y la necesitaríamos para el jueves.",
+      partes:[
+        ["por el cambio de cantidades","causa"],
+        ["para revisar el margen","finalidad"],
+        ["para el equipo financiero","destinatario"],
+        ["para el jueves","plazo"]
+      ]
+    },
+    ejercicios:[
+      {q:"¿Qué opción expresa mejor la causa? «Reprogramamos la visita ___ la indisponibilidad del técnico».",opts:["por","para"],correct:0,why:"La indisponibilidad es la razón de la reprogramación."},
+      {q:"¿Qué opción expresa la finalidad? «Compartimos el borrador ___ recibir comentarios antes de la reunión».",opts:["por","para"],correct:1,why:"La acción se realiza con el objetivo de recibir comentarios."},
+      {q:"¿Cuál es más adecuada para un cliente?",opts:["Lo necesito para el lunes.","Necesitaríamos su confirmación para el lunes, si es posible.","Lo quiero por el lunes."],correct:1,why:"La segunda opción combina claridad de plazo y un registro más colaborativo."}
+    ],
+    practica:{
+      situacion:"Un cliente pregunta por qué cambió la fecha de lanzamiento y qué necesitas de su equipo.",
+      interlocutor:"Cliente",
+      objetivo:"Explica la causa, la finalidad de una solicitud y un plazo.",
+      requisitos:["incluye una causa con «por»","explica una finalidad con «para»","indica un plazo claro","mantén un tono profesional y colaborativo"],
+      apoyo:["El cambio se debe a... / Hemos cambiado la fecha por...","Necesitamos... para...","Nos ayudaría recibirlo para..."]
+    },
+    modelo:"Hemos movido la fecha de lanzamiento por un retraso en la validación técnica. Necesitamos la confirmación de su equipo para cerrar la configuración final. Si es posible, nos ayudaría recibirla para el miércoles para mantener el nuevo cronograma.",
+    checklist:[
+      "Distingo con claridad causa y finalidad.",
+      "Puedo combinar «por» y «para» en una misma explicación.",
+      "Puedo indicar destinatario y plazo sin ambigüedad.",
+      "Adapto una petición al interlocutor y al grado de formalidad.",
+      "Puedo justificar una decisión profesional usando «por» y «para» con autonomía."
+    ]
+  },
+
+  b2: {
+    ruta:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás elegir entre «por» y «para» con precisión para justificar decisiones, delimitar propósitos, atribuir causas, definir destinatarios y negociar plazos en contextos profesionales complejos.",
+    situacion:{
+      resumen:"Lideras una negociación entre tu empresa, un cliente estratégico y un proveedor. Debes explicar qué decisiones se tomaron por ciertas restricciones, para qué se solicita información adicional y para cuándo puede comprometerse cada parte.",
+      quien:"Tú, como responsable de la negociación.",
+      conQuien:"Cliente estratégico, proveedor y dirección interna.",
+      contexto:"Reunión de negociación con presión de tiempo.",
+      objetivo:"Evitar ambigüedades al justificar decisiones y compromisos.",
+      dificultad:"Algunas formulaciones son gramaticales, pero cambian el foco entre causa, finalidad, agente, atribución o perspectiva."
+    },
+    vocab:[
+      {term:"por motivos de",ex:"El acceso se ha restringido por motivos de seguridad.",extra:"Formaliza la causa y evita personalizarla."},
+      {term:"a efectos de",ex:"Necesitamos una versión firmada a efectos de auditoría.",extra:"Registro formal; equivale a «para los fines de» en ciertos contextos."},
+      {term:"de cara a",ex:"Estamos revisando el contrato de cara a la renovación anual.",extra:"Expresa orientación hacia un objetivo o momento futuro; no sustituye siempre a «para»."},
+      {term:"por parte de",ex:"Falta la validación por parte del área jurídica.",extra:"Atribuye una acción o responsabilidad a un agente; no expresa finalidad."}
+    ],
+    frases:[
+      {grupo:"Despersonalizar una causa",text:"La decisión se tomó por motivos de cumplimiento normativo.",uso:"«Por motivos de» presenta una causa institucional y reduce la atribución personal."},
+      {grupo:"Delimitar finalidad",text:"Solicitamos esta documentación para verificar la trazabilidad del proceso.",uso:"«Para + infinitivo» presenta el objetivo operativo de la solicitud."},
+      {grupo:"Atribuir una acción",text:"La validación debe realizarse por parte del equipo jurídico.",uso:"«Por parte de» identifica al agente responsable; puede sonar burocrático si se abusa de la expresión."},
+      {grupo:"Negociar un plazo",text:"Podríamos comprometernos a tener la versión final para el día 15.",uso:"«Para + fecha» delimita el compromiso temporal; el condicional introduce margen negociador."}
+    ],
+    builder:{
+      prompt:"Formula una explicación de negociación que combine causa y finalidad sin sonar defensiva.",
+      firstLabel:"Restricción",
+      first:[
+        {v:"legal",t:"revisión legal pendiente"},
+        {v:"capacidad",t:"capacidad limitada del proveedor"},
+        {v:"alcance",t:"cambio de alcance"}
+      ],
+      secondLabel:"Objetivo estratégico",
+      second:{
+        legal:["evitar riesgos de cumplimiento","cerrar el contrato con garantías","alinear a las partes"],
+        capacidad:["proteger la fecha crítica","reducir el impacto operativo","asegurar la calidad"],
+        alcance:["recalibrar el presupuesto","redefinir entregables","mantener la viabilidad del proyecto"]
+      },
+      templates:{
+        legal:"Hemos mantenido la aprobación en pausa por la revisión legal pendiente para {x}.",
+        capacidad:"Estamos redistribuyendo las entregas por la capacidad limitada del proveedor para {x}.",
+        alcance:"Hemos reabierto la planificación por el cambio de alcance para {x}."
+      }
+    },
+    gramatica:[
+      {title:"Causa, finalidad y agente",body:"«Por» puede introducir causa («por una restricción»), agente en pasiva («fue aprobado por dirección») o atribución mediante «por parte de». «Para» introduce finalidad, destinatario, orientación o límite temporal. El valor depende de la relación semántica, no de una traducción fija de “for”."},
+      {title:"Foco discursivo",body:"«Lo hicimos por el cliente» puede interpretarse como motivación o beneficio; «lo hicimos para el cliente» enfoca con más claridad al destinatario o beneficiario. En contextos delicados conviene explicitar la relación."},
+      {title:"Plazo y aproximación",body:"«Para el viernes» suele fijar un límite u objetivo temporal. «Por el viernes» aparece en algunas variedades con otros valores, pero es menos recomendable si necesitas un compromiso inequívoco."},
+      {title:"Registro institucional",body:"Formas como «por motivos de», «a efectos de» o «de cara a» permiten modular tono y precisión, pero pueden sonar burocráticas si una formulación simple comunica mejor."}
+    ],
+    registro:{
+      contexto:"Debes explicar a un cliente estratégico que no aceptarás una entrega parcial sin validación jurídica.",
+      opciones:[
+        {text:"No podemos aceptarla por Legal.",fb:"Es demasiado elíptica y puede sonar como si se culpara al área jurídica."},
+        {text:"No podemos aceptarla por motivos de cumplimiento: necesitamos la validación jurídica para formalizar la recepción.",fb:"Distingue con precisión la causa y la finalidad, y evita una atribución acusatoria.",good:true},
+        {text:"No podemos aceptarla para cumplimiento.",fb:"«Para cumplimiento» no expresa correctamente la causa de la negativa y resulta poco natural."}
+      ]
+    },
+    ejemplo:{
+      title:"Negociación de entrega",
+      text:"Hemos mantenido el hito en revisión por motivos de cumplimiento y por la falta de una validación externa. Necesitamos esa confirmación para formalizar la aceptación sin trasladar un riesgo innecesario al proyecto. La documentación es para el comité de control y podríamos comprometernos a cerrar la revisión para el día 15, siempre que recibamos la validación antes del 12.",
+      partes:[
+        ["por motivos de cumplimiento","causa institucional"],
+        ["por la falta de una validación externa","causa concreta"],
+        ["para formalizar la aceptación","finalidad"],
+        ["para el comité de control","destinatario"],
+        ["para el día 15","compromiso temporal"]
+      ]
+    },
+    ejercicios:[
+      {q:"¿Qué formulación reduce mejor la atribución personal de una causa?",opts:["Se retrasó por Marta.","Se retrasó por motivos de validación.","Se retrasó para validar."],correct:1,why:"La segunda presenta una causa institucional sin personalizar innecesariamente."},
+      {q:"En «La revisión fue realizada por el equipo jurídico para confirmar la conformidad», ¿qué función tiene cada preposición?",opts:["«por» = finalidad; «para» = agente","«por» = agente; «para» = finalidad","ambas expresan causa"],correct:1,why:"«Por» introduce el agente de la pasiva y «para» la finalidad."},
+      {q:"Para un compromiso contractual, ¿qué opción es menos ambigua?",opts:["La entrega será por el 15.","La entrega quedará lista para el 15.","La entrega es por el cliente."],correct:1,why:"«Para el 15» fija con claridad el objetivo temporal."}
+    ],
+    practica:{
+      situacion:"Un cliente estratégico exige una entrega parcial hoy. Tu empresa no puede aceptarla porque falta una validación obligatoria, pero quieres ofrecer un compromiso alternativo.",
+      interlocutor:"Director de operaciones del cliente",
+      objetivo:"Justifica la restricción, explica la finalidad del requisito y propone un plazo alternativo.",
+      requisitos:["distingue causa y finalidad con precisión","evita culpar a un área o persona","formula un compromiso temporal claro","mantén un tono firme pero colaborativo","incluye una alternativa operativa"],
+      apoyo:["por motivos de...","para poder...","para el día...","si recibimos..., podríamos..."]
+    },
+    modelo:"No podemos formalizar la recepción parcial hoy por motivos de cumplimiento, ya que todavía falta la validación obligatoria. Necesitamos esa aprobación para aceptar la entrega sin trasladar el riesgo al cierre del proyecto. Si recibimos la documentación antes de mañana a mediodía, podríamos comprometernos a completar la revisión para el día 15 y, mientras tanto, avanzar con la preparación interna.",
+    checklist:[
+      "Distingo causa, finalidad, agente, destinatario y plazo.",
+      "Evito traducciones mecánicas de “for” cuando generan ambigüedad.",
+      "Puedo modular el grado de responsabilidad que atribuye una formulación.",
+      "Uso «por» y «para» con precisión en negociación y comunicación institucional.",
+      "Puedo justificar y reformular una decisión bajo presión sin perder claridad ni tono."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+const levelScreen = $('#levelScreen');
+const app = $('#app');
+const lesson = $('#lesson');
+const routePill = $('#routePill');
+const progressBar = $('#progressBar');
+const progressText = $('#progressText');
+const sectionNav = $('#sectionNav');
+
+let currentLevel = null;
+let completed = new Set();
+let totalProgressActions = 1;
+let spanishVoice = null;
+let observer = null;
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[ch]));
+}
+
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  const rank = voice => {
+    const lang = (voice.lang || '').toLowerCase();
+    const name = (voice.name || '').toLowerCase();
+    if(lang.startsWith('es-co')) return 100;
+    if(lang.startsWith('es-419') || lang.startsWith('es-mx') || lang.startsWith('es-us')) return 90;
+    if(lang.startsWith('es-')) return 75;
+    if(lang === 'es') return 65;
+    if(name.includes('spanish') || name.includes('español')) return 50;
+    return 0;
+  };
+  spanishVoice = voices.filter(v => rank(v) > 0).sort((a,b) => rank(b)-rank(a))[0] || null;
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speakSpanish(text, rate=1){
+  const status = $('#audioStatus');
+  if(!('speechSynthesis' in window)){
+    if(status) status.textContent = 'La síntesis de voz no está disponible en este navegador.';
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = spanishVoice?.lang || 'es-CO';
+  utterance.rate = Number(rate) || 1;
+  if(spanishVoice) utterance.voice = spanishVoice;
+  utterance.onstart = () => { if(status) status.textContent = 'Reproduciendo audio…'; };
+  utterance.onend = () => { if(status) status.textContent = ''; };
+  utterance.onerror = () => { if(status) status.textContent = 'No fue posible reproducir el audio.'; };
+  window.speechSynthesis.speak(utterance);
+}
+
+function audioControls(text, key){
+  if(currentLevel !== 'a2') return '';
+  const safeText = escapeHTML(text);
+  const safeKey = escapeHTML(key);
+  return `<div class="audio-row">
+    <button class="audio-btn" data-speak="${safeText}" data-rate="1" data-progress-key="${safeKey}"
+      aria-label="Escuchar: ${safeText}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" data-speak="${safeText}" data-rate="0.76" data-progress-key="${safeKey}"
+      aria-label="Escuchar lento: ${safeText}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function markProgress(key){
+  if(!completed.has(key)){
+    completed.add(key);
+    updateProgress();
+  }
+}
+function updateProgress(){
+  const pct = Math.min(100, Math.round((completed.size / totalProgressActions) * 100));
+  progressBar.style.width = pct + '%';
+  progressText.textContent = pct + '%';
+}
+
+function section(id, title, body){
+  return `<section id="${id}" class="section tracked-section"><h2>${title}</h2>${body}</section>`;
+}
+
+function selectLevel(level){
+  currentLevel = level;
+  completed = new Set();
+  const data = contenido[level];
+  routePill.textContent = 'Tu ruta: ' + data.ruta;
+  $('#heroTitle').textContent = contenido.meta.habilidad;
+  $('#heroIntro').textContent = contenido.meta.intro;
+  levelScreen.classList.add('hidden');
+  app.classList.remove('hidden');
+  renderLesson(data);
+  window.scrollTo(0,0);
+}
+
+function renderLesson(data){
+  if(observer) observer.disconnect();
+
+  const vocabHTML = data.vocab.map((v,i) => `
+    <article class="flip">
+      <button class="flip-head" aria-expanded="false" data-flip data-progress-key="vocab-${i}">
+        ${escapeHTML(v.term)}
+      </button>
+      <div class="flip-body">
+        ${v.en ? `<p><strong>English:</strong> ${escapeHTML(v.en)}</p>` : ''}
+        <p><strong>Ejemplo:</strong> ${escapeHTML(v.ex)}</p>
+        <p class="small">${escapeHTML(v.extra)}</p>
+        ${audioControls(v.term,`audio-vocab-${i}-term`)}
+        ${audioControls(v.ex,`audio-vocab-${i}-example`)}
+      </div>
+    </article>`).join('');
+
+  const phrasesHTML = data.frases.map((p,i) => `
+    <article class="phrase-card">
+      <span class="tag">${escapeHTML(p.grupo)}</span>
+      <p class="phrase">${escapeHTML(p.text)}</p>
+      ${audioControls(p.text,`audio-phrase-${i}`)}
+      <button class="reveal" data-reveal data-progress-key="phrase-${i}">Ver cuándo usarla</button>
+      <div class="reveal-text">${escapeHTML(p.uso)}</div>
+    </article>`).join('');
+
+  const grammarHTML = data.gramatica.map((g,i) => `
+    <article class="grammar-card">
+      <h3>${escapeHTML(g.title)}</h3>
+      <p>${escapeHTML(g.body)}</p>
+      ${currentLevel==='a2' ? audioControls(extractExample(g.body),`audio-grammar-${i}`) : ''}
+    </article>`).join('');
+
+  const secondDefaultKey = data.builder.first[0].v;
+  const secondOptions = data.builder.second[secondDefaultKey].map(v => `<option>${escapeHTML(v)}</option>`).join('');
+
+  const registerHTML = data.registro.opciones.map((o,i) => `
+    <div>
+      <button class="option-btn" data-register="${i}">${escapeHTML(o.text)}</button>
+      ${audioControls(o.text,`audio-register-${i}`)}
+    </div>`).join('');
+
+  const exampleParts = data.ejemplo.partes.map((part,i) =>
+    `<button class="reveal" data-example-part="${i}">${escapeHTML(part[0])}</button>`
+  ).join(' ');
+
+  const exercisesHTML = data.ejercicios.map((ex,i) => `
+    <fieldset class="exercise" data-exercise="${i}">
+      <legend>${escapeHTML(ex.q)}</legend>
+      ${currentLevel==='a2' ? audioControls(ex.q,`audio-exercise-q-${i}`) : ''}
+      <div class="exercise-options">
+        ${ex.opts.map((opt,j)=>`
+          <label>
+            <input type="radio" name="ex-${i}" value="${j}">
+            <span>${escapeHTML(opt)}</span>
+          </label>`).join('')}
+      </div>
+      <div class="exercise-actions">
+        <button class="action-btn" data-check-ex="${i}">Comprobar</button>
+        <button class="action-btn secondary" data-reset-ex="${i}">Intentar de nuevo</button>
+      </div>
+      <div class="feedback" id="feedback-${i}" aria-live="polite">Elige una opción y comprueba tu respuesta.</div>
+    </fieldset>`).join('');
+
+  const supports = data.practica.apoyo.map((s,i) =>
+    `<div class="support-chip">${escapeHTML(s)}${currentLevel==='a2' ? audioControls(s,`audio-support-${i}`) : ''}</div>`
+  ).join('');
+
+  const checklistHTML = data.checklist.map((item,i) => `
+    <label class="check-item">
+      <input type="checkbox" data-check="${i}">
+      <span>${escapeHTML(item)}</span>
+    </label>`).join('');
+
+  totalProgressActions =
+    12 +                              // visitar las 12 secciones
+    data.vocab.length +               // abrir vocabulario
+    data.frases.length +              // revelar usos
+    1 +                               // constructor
+    1 +                               // registro
+    data.ejercicios.length +          // ejercicios
+    1 +                               // escribir práctica
+    1 +                               // ver modelo
+    data.checklist.length +           // checklist
+    (currentLevel==='a2' ? 8 : 0);    // acciones auditivas distintas, tope controlado
+
+  lesson.innerHTML =
+    section('s1','1. 🎯 TU OBJETIVO ESTA SEMANA',`
+      <p>${escapeHTML(data.objetivo)}</p>
+      <div class="note">Al final del módulo comprobarás si ya puedes hacerlo.</div>
+      ${currentLevel==='a2' ? audioControls(data.objetivo,'audio-objective') : ''}
+      <div id="audioStatus" class="audio-status" aria-live="polite"></div>
+    `) +
+    section('s2','2. 🏢 LA SITUACIÓN',`
+      <p>${escapeHTML(data.situacion.resumen)}</p>
+      <div class="context-grid">
+        <div class="context-item"><strong>Quién habla</strong>${escapeHTML(data.situacion.quien)}</div>
+        <div class="context-item"><strong>Con quién</strong>${escapeHTML(data.situacion.conQuien)}</div>
+        <div class="context-item"><strong>Contexto</strong>${escapeHTML(data.situacion.contexto)}</div>
+        <div class="context-item"><strong>Qué quiere conseguir</strong>${escapeHTML(data.situacion.objetivo)}</div>
+      </div>
+      <p class="note"><strong>Dificultad:</strong> ${escapeHTML(data.situacion.dificultad)}</p>
+    `) +
+    section('s3','3. 🗣️ VOCABULARIO CLAVE',`
+      <p>Abre las tarjetas para recuperar el significado y ver el uso profesional.</p>
+      <div class="cards">${vocabHTML}</div>
+    `) +
+    section('s4','4. 💬 FRASES QUE PUEDES USAR',`
+      <p>Observa cómo cambia la función de «por» y «para» según lo que quieres comunicar.</p>
+      <div class="phrase-grid">${phrasesHTML}</div>
+    `) +
+    section('s5','5. 🧩 CONSTRUYE TU MENSAJE',`
+      <p>${escapeHTML(data.builder.prompt)}</p>
+      <div class="builder">
+        <div class="builder-row">
+          <div>
+            <label for="builderFirst">${escapeHTML(data.builder.firstLabel)}</label>
+            <select id="builderFirst">
+              ${data.builder.first.map(x=>`<option value="${escapeHTML(x.v)}">${escapeHTML(x.t)}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label for="builderSecond">${escapeHTML(data.builder.secondLabel)}</label>
+            <select id="builderSecond">${secondOptions}</select>
+          </div>
+        </div>
+        <button id="buildMessage" class="action-btn">Construir mensaje</button>
+        <div id="builderOutput" class="output" aria-live="polite">Tu mensaje aparecerá aquí.</div>
+        <div id="builderAudio"></div>
+      </div>
+    `) +
+    section('s6','6. 📚 GRAMÁTICA QUE NECESITAS',`
+      <p class="note"><strong>Idea central:</strong> no traduzcas «for» palabra por palabra. Decide qué relación quieres expresar.</p>
+      <div class="grammar-grid">${grammarHTML}</div>
+    `) +
+    section('s7','7. 🎭 ELIGE EL REGISTRO',`
+      <p><strong>Situación:</strong> ${escapeHTML(data.registro.contexto)}</p>
+      <div class="option-list">${registerHTML}</div>
+      <div id="registerFeedback" class="feedback" aria-live="polite">Selecciona una opción para ver el análisis.</div>
+    `) +
+    section('s8','8. 💼 MIRA CÓMO SE HACE',`
+      <article class="example-card">
+        <h3>${escapeHTML(data.ejemplo.title)}</h3>
+        <p>${escapeHTML(data.ejemplo.text)}</p>
+        ${audioControls(data.ejemplo.text,'audio-model-example')}
+        <p><strong>Descubre la función de cada bloque:</strong></p>
+        <div>${exampleParts}</div>
+        <div id="examplePartFeedback" class="feedback">Pulsa un bloque para ver qué función cumple.</div>
+      </article>
+    `) +
+    section('s9','9. ✍️ COMPRUEBA LO QUE APRENDISTE',`
+      <p>Estos ejercicios sirven para comprobar y ajustar. Puedes volver a intentarlos.</p>
+      ${exercisesHTML}
+    `) +
+    section('s10','10. 🏢 AHORA TE TOCA A TI',`
+      <div class="practice-box">
+        <p><strong>Situación:</strong> ${escapeHTML(data.practica.situacion)}</p>
+        <p><strong>Interlocutor:</strong> ${escapeHTML(data.practica.interlocutor)}</p>
+        <p><strong>Objetivo:</strong> ${escapeHTML(data.practica.objetivo)}</p>
+        <strong>Incluye:</strong>
+        <ul class="requirements">${data.practica.requisitos.map(r=>`<li>${escapeHTML(r)}</li>`).join('')}</ul>
+        <strong>Recursos que puedes reutilizar:</strong>
+        <div class="supports">${supports}</div>
+        <label for="practiceText">Escribe tu respuesta</label>
+        <textarea id="practiceText" placeholder="Escribe aquí tu respuesta profesional."></textarea>
+        <button id="savePractice" class="action-btn">Marcar práctica como realizada</button>
+        <div id="practiceFeedback" class="feedback" aria-live="polite">No se evalúa automáticamente como correcta o incorrecta.</div>
+      </div>
+    `) +
+    section('s11','11. 💡 VER MODELO',`
+      <p>Compara tu respuesta únicamente después de intentar la práctica.</p>
+      <button id="showModel" class="action-btn">Ver una posible respuesta</button>
+      <div id="modelBox" class="model">
+        <strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong>
+        <p>${escapeHTML(data.modelo)}</p>
+        ${audioControls(data.modelo,'audio-final-model')}
+      </div>
+    `) +
+    section('s12','12. ✅ CHECKLIST FINAL',`
+      <p>Antes de terminar, comprueba qué puedes hacer ahora.</p>
+      <div class="checklist">${checklistHTML}</div>
+      <div class="check-progress" aria-label="Progreso del checklist"><div id="checkProgressBar"></div></div>
+      <p id="checkProgressText" class="small">0 de ${data.checklist.length} completados</p>
+      <div id="finishBox" class="finish">
+        <h3>🎯 Ya estás listo para practicar</h3>
+        <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+        <!-- Sustituir # por la URL real del reto diario cuando esté disponible. -->
+        <a class="challenge" href="#">🔥 Ir al reto de hoy</a>
+      </div>
+    `);
+
+  sectionNav.innerHTML = contenido.meta.secciones
+    .map((name,i)=>`<a href="#s${i+1}">${escapeHTML(name)}</a>`).join('');
+
+  updateProgress();
+  bindInteractions(data);
+  setupSectionObserver();
+}
+
+function extractExample(text){
+  const match = text.match(/«([^»]+)»/g);
+  if(!match || !match.length) return text;
+  return match[match.length-1].replace(/[«»]/g,'');
+}
+
+function fillBuilderSecond(data){
+  const first = $('#builderFirst').value;
+  $('#builderSecond').innerHTML = data.builder.second[first]
+    .map(v=>`<option>${escapeHTML(v)}</option>`).join('');
+}
+
+function bindInteractions(data){
+  $$('[data-flip]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=btn.closest('.flip');
+      const open=card.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      if(open) markProgress(btn.dataset.progressKey);
+    });
+  });
+
+  $$('[data-reveal]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btn.nextElementSibling.classList.toggle('show');
+      markProgress(btn.dataset.progressKey);
+    });
+  });
+
+  $('#builderFirst').addEventListener('change',()=>fillBuilderSecond(data));
+  $('#buildMessage').addEventListener('click',()=>{
+    const first=$('#builderFirst').value;
+    const second=$('#builderSecond').value;
+    const template=data.builder.templates[first];
+    const result=template.replace('{x}',second);
+    $('#builderOutput').textContent=result;
+    $('#builderAudio').innerHTML=audioControls(result,'audio-builder-result');
+    bindAudioButtons($('#builderAudio'));
+    markProgress('builder');
+  });
+
+  $$('[data-register]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      $$('[data-register]').forEach(x=>x.classList.remove('selected'));
+      btn.classList.add('selected');
+      const option=data.registro.opciones[Number(btn.dataset.register)];
+      const fb=$('#registerFeedback');
+      fb.textContent=option.fb;
+      fb.classList.toggle('good',Boolean(option.good));
+      markProgress('register');
+    });
+  });
+
+  $$('[data-example-part]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const part=data.ejemplo.partes[Number(btn.dataset.examplePart)];
+      $('#examplePartFeedback').textContent=`«${part[0]}» → ${part[1]}.`;
+    });
+  });
+
+  $$('[data-check-ex]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.checkEx);
+      const picked=$(`input[name="ex-${i}"]:checked`);
+      const fb=$(`#feedback-${i}`);
+      if(!picked){
+        fb.textContent='Selecciona una opción antes de comprobar.';
+        fb.classList.remove('good');
+        return;
+      }
+      const chosen=Number(picked.value);
+      const ex=data.ejercicios[i];
+      if(chosen===ex.correct){
+        fb.textContent='Funciona. '+ex.why;
+        fb.classList.add('good');
+        markProgress(`exercise-${i}`);
+      }else{
+        fb.textContent='Revisa la relación que quieres expresar. '+ex.why;
+        fb.classList.remove('good');
+      }
+    });
+  });
+
+  $$('[data-reset-ex]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.resetEx);
+      $$(`input[name="ex-${i}"]`).forEach(r=>r.checked=false);
+      const fb=$(`#feedback-${i}`);
+      fb.textContent='Elige una opción y comprueba tu respuesta.';
+      fb.classList.remove('good');
+    });
+  });
+
+  $('#savePractice').addEventListener('click',()=>{
+    const text=$('#practiceText').value.trim();
+    const fb=$('#practiceFeedback');
+    if(text.length<12){
+      fb.textContent='Escribe una respuesta un poco más completa antes de marcar la práctica.';
+      fb.classList.remove('good');
+      return;
+    }
+    fb.textContent='Práctica registrada en este módulo. Ahora compárala con una posible respuesta.';
+    fb.classList.add('good');
+    markProgress('practice');
+  });
+
+  $('#showModel').addEventListener('click',()=>{
+    $('#modelBox').classList.add('show');
+    markProgress('model');
+  });
+
+  $$('[data-check]').forEach(box=>{
+    box.addEventListener('change',()=>{
+      const checked=$$('[data-check]:checked').length;
+      const total=data.checklist.length;
+      $('#checkProgressBar').style.width=Math.round(checked/total*100)+'%';
+      $('#checkProgressText').textContent=`${checked} de ${total} completados`;
+      if(box.checked) markProgress(`check-${box.dataset.check}`);
+      $('#finishBox').classList.toggle('show',checked===total);
+    });
+  });
+
+  bindAudioButtons(document);
+}
+
+function bindAudioButtons(root){
+  $$('[data-speak]',root).forEach(btn=>{
+    const activate=()=>{
+      speakSpanish(btn.dataset.speak,btn.dataset.rate);
+      if(currentLevel==='a2'){
+        const audioKeys=[...completed].filter(x=>x.startsWith('audio-'));
+        if(audioKeys.length<8) markProgress(btn.dataset.progressKey);
+      }
+    };
+    if(btn.tagName==='BUTTON'){
+      btn.addEventListener('click',activate);
+    }else{
+      btn.addEventListener('click',e=>{e.stopPropagation();activate();});
+      btn.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();activate();}
+      });
+    }
+  });
+}
+
+function setupSectionObserver(){
+  observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) markProgress(`section-${entry.target.id}`);
+    });
+  },{threshold:0.35});
+  $$('.tracked-section').forEach(sec=>observer.observe(sec));
+}
+
+$$('.level-btn').forEach(btn=>btn.addEventListener('click',()=>selectLevel(btn.dataset.level)));
+$('#changeLevel').addEventListener('click',()=>{
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  if(observer) observer.disconnect();
+  app.classList.add('hidden');
+  levelScreen.classList.remove('hidden');
+  currentLevel=null;
+  window.scrollTo(0,0);
+});
+</script>
+</body>
+</html>

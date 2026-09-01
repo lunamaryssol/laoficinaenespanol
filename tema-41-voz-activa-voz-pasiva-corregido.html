@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tema 41: voz activa y voz pasiva aplicada al español para trabajar. La Oficina en Español.">
+<title>Tema 41 - Voz activa y voz pasiva | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;
+  --ink:#172033;--muted:#5f6c7d;--line:#dbe3ef;--soft:#f5f7fb;--pale:#eef4ff;
+  --ok:#176b45;--warn:#8a5a00;--shadow:0 12px 34px rgba(0,56,147,.10);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--soft);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Selección de nivel */
+.level-screen{min-height:100vh;display:grid;place-items:center;padding:28px;background:linear-gradient(135deg,rgba(0,56,147,.99),rgba(0,56,147,.84))}
+.level-panel{width:min(1080px,100%);background:#fff;border-radius:26px;padding:34px;box-shadow:0 22px 65px rgba(0,0,0,.22)}
+.brand{font-weight:900;letter-spacing:.02em;color:var(--blue);margin-bottom:8px}
+.level-panel h1{font-size:clamp(2rem,5vw,3.7rem);line-height:1.05;margin:.15em 0 .25em}
+.level-panel .lead{color:var(--muted);max-width:760px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.level-choice{border:2px solid var(--line);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:220px;transition:.2s}
+.level-choice:hover,.level-choice:focus-visible{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow);outline:none}
+.level-choice strong{display:block;font-size:1.2rem;margin:10px 0 8px;color:var(--ink)}
+.level-choice span:last-child{display:block;color:var(--muted)}
+.emoji{font-size:2rem}
+
+/* Cabecera y progreso */
+.topbar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1180px;margin:auto;display:flex;gap:12px;align-items:center;padding:12px 20px}
+.mini-brand{font-weight:900;color:var(--blue);margin-right:auto}
+.route-chip{background:var(--pale);border:1px solid #cbdcff;padding:7px 11px;border-radius:999px;font-size:.92rem;font-weight:800}
+.change-level{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;color:var(--blue);font-weight:800}
+.change-level:hover,.change-level:focus-visible{border-color:var(--blue);outline:2px solid #c7d8f7}
+.progress-wrap{max-width:1180px;margin:auto;padding:0 20px 10px;display:flex;align-items:center;gap:10px}
+.progress-track{height:8px;background:#e9edf4;border-radius:999px;overflow:hidden;flex:1}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#356fca);transition:width .25s}
+.progress-label{font-size:.85rem;color:var(--muted);min-width:42px;text-align:right}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--blue),#174fa5);color:#fff}
+.hero-inner{max-width:1180px;margin:auto;padding:52px 20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:900;color:var(--yellow)}
+.hero h1{font-size:clamp(2.1rem,5vw,4.3rem);line-height:1.03;margin:.2em 0}
+.hero p{max-width:850px;font-size:1.08rem;color:#eef4ff}
+
+/* Layout y navegación */
+.layout{max-width:1180px;margin:28px auto;display:grid;grid-template-columns:250px 1fr;gap:22px;padding:0 20px}
+.sidebar{position:sticky;top:116px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.sidebar h2{font-size:1rem;margin:0 0 10px}
+.section-nav{display:grid;gap:6px}
+.nav-btn{border:0;background:transparent;text-align:left;padding:9px;border-radius:10px;color:var(--muted)}
+.nav-btn.active,.nav-btn:hover,.nav-btn:focus-visible{background:var(--pale);color:var(--blue);outline:none}
+.section{display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 6px 22px rgba(12,28,54,.04)}
+.section.active{display:block}
+.kicker{color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+.section h2{font-size:clamp(1.55rem,3vw,2.2rem);margin:.25em 0 .45em}
+.section-intro{color:var(--muted)}
+.section-actions{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* Componentes */
+.info-grid,.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.info-card,.mini-card,.vocab-card,.phrase-card,.grammar-card,.example-card,.quiz-card,.practice-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+.info-card strong,.mini-card strong{display:block;color:var(--blue)}
+.stack{display:grid;gap:12px}
+.small{font-size:.9rem;color:var(--muted)}
+.note{padding:13px 15px;border-left:4px solid var(--yellow);background:#fffbea;border-radius:10px;margin:14px 0}
+.professional-note{padding:14px;border:1px solid #cbdcff;background:#f5f8ff;border-radius:12px}
+
+/* Vocabulario */
+.vocab-toggle,.phrase-toggle,.grammar-toggle,.example-part{width:100%;border:0;background:transparent;text-align:left;padding:0}
+.vocab-toggle:focus-visible,.phrase-toggle:focus-visible,.grammar-toggle:focus-visible,.example-part:focus-visible{outline:2px solid #a9c4f5;outline-offset:4px;border-radius:8px}
+.vocab-word{font-weight:900;font-size:1.14rem;color:var(--blue)}
+.reveal{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.pronounce{font-weight:900;letter-spacing:.03em}
+
+/* Audio */
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.audio-btn{border:1px solid #b9c9e8;background:#f7faff;color:var(--blue);padding:7px 10px;border-radius:10px;font-size:.9rem;font-weight:800}
+.audio-btn:hover,.audio-btn:focus-visible{background:#edf4ff;outline:2px solid #b8cff7}
+.audio-status{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;padding:10px 12px;border-radius:10px;z-index:50;font-size:.88rem;max-width:min(420px,calc(100% - 32px))}
+
+/* Frases, estructuras y gramática */
+.phrase-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.phrase-text{font-weight:900;color:var(--blue)}
+.tag{display:inline-block;background:#eef3ff;color:var(--blue);border:1px solid #cfddff;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:800}
+.structure{background:#f8fbff;border-left:4px solid var(--blue);padding:14px;border-radius:10px}
+.structure code{font-family:inherit;font-weight:900;color:var(--blue);white-space:normal}
+.builder{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcfe}
+.builder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+label{font-weight:800;display:block;margin-bottom:5px}
+select,input,textarea{width:100%;border:1px solid #bfc8d7;border-radius:10px;padding:10px;background:#fff;color:var(--ink)}
+textarea{min-height:160px;resize:vertical}
+.result{margin-top:12px;background:var(--pale);border:1px solid #cfdcff;padding:13px;border-radius:12px;font-weight:800}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.compare-card{padding:14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+.compare-card strong{color:var(--blue)}
+
+/* Registro */
+.choice-list{display:grid;gap:9px}
+.choice{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;text-align:left}
+.choice:hover,.choice:focus-visible{border-color:var(--blue);outline:none}
+.choice.selected{border-color:var(--blue);background:var(--pale)}
+.feedback{margin-top:10px;padding:12px;border-radius:10px;background:#f7f8fa;border-left:4px solid var(--blue)}
+
+/* Ejemplo */
+.example-full{background:#f8fbff;border-radius:12px;padding:14px;margin-bottom:12px;font-weight:700}
+.example-parts{display:grid;gap:8px}
+.example-part{border:1px solid var(--line);border-radius:10px;padding:11px!important;background:#fff!important}
+.example-part.open{border-color:var(--blue);background:var(--pale)!important}
+.function{display:none;margin-top:8px;color:var(--muted)}
+.example-part.open .function{display:block}
+
+/* Quiz */
+.quiz-options{display:grid;gap:8px;margin-top:10px}
+.quiz-options button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px;text-align:left}
+.quiz-options button:hover,.quiz-options button:focus-visible{border-color:var(--blue);outline:none}
+.quiz-options button.chosen{background:var(--pale);border-color:var(--blue)}
+.order-pool,.order-answer{display:flex;flex-wrap:wrap;gap:8px;min-height:48px;padding:10px;border:1px dashed #b9c5d8;border-radius:10px;margin-top:10px}
+.token{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px}
+.retry{margin-top:10px}
+
+/* Botones */
+.action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.primary,.secondary,.yellow{padding:11px 16px;border-radius:10px;font-weight:900}
+.primary{border:0;background:var(--blue);color:#fff}
+.secondary{border:1px solid var(--blue);background:#fff;color:var(--blue)}
+.yellow{background:var(--yellow);color:#111;border:0;text-decoration:none;display:inline-block}
+.primary:hover,.primary:focus-visible,.secondary:hover,.secondary:focus-visible,.yellow:hover,.yellow:focus-visible{outline:3px solid #b9cdf1;outline-offset:2px}
+
+/* Práctica, modelo y checklist */
+.requirements{margin:0;padding-left:20px}
+.support-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.support-chip{border:1px solid #cbd9ef;background:#f8fbff;border-radius:999px;padding:7px 10px}
+.model{margin-top:14px;background:#fffceb;border:1px solid #f0dc76;padding:16px;border-radius:12px}
+.checklist{display:grid;gap:10px}
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:12px}
+.check-item input{width:20px;height:20px;margin-top:2px}
+.check-progress{margin:14px 0;padding:12px;border-radius:10px;background:#f7f8fa}
+.ready{margin-top:18px;background:#eef8f3;border:1px solid #b9dfcd;padding:18px;border-radius:14px}
+.ready h3{margin-top:0;color:var(--ok)}
+footer{max-width:1180px;margin:0 auto 30px;padding:0 20px;color:var(--muted);font-size:.9rem}
+
+@media(max-width:900px){
+ .level-grid{grid-template-columns:1fr}.level-choice{min-height:auto}
+ .layout{grid-template-columns:1fr}.sidebar{position:static;overflow:auto}
+ .section-nav{grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto}
+ .info-grid,.card-grid,.compare-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ .level-panel{padding:22px}.topbar-inner{flex-wrap:wrap}.mini-brand{width:100%}.route-chip{margin-right:auto}
+ .hero-inner{padding:36px 18px}.layout{padding:0 12px}.section{padding:20px}
+ .builder-grid{grid-template-columns:1fr}.section-actions{flex-direction:column}.section-actions button{width:100%}
+ .audio-row{flex-direction:column}.audio-btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-panel">
+    <div class="brand">La Oficina en Español · Español para trabajar</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Selecciona tu ruta para adaptar el apoyo, la dificultad y las actividades. Los tres niveles trabajarán el mismo tema.</p>
+    <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+      <button class="level-choice" data-level="a2" type="button">
+        <span class="emoji" aria-hidden="true">🌱</span>
+        <strong>A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-choice" data-level="b1" type="button">
+        <span class="emoji" aria-hidden="true">💼</span>
+        <strong>B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-choice" data-level="b2" type="button">
+        <span class="emoji" aria-hidden="true">🚀</span>
+        <strong>B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="mini-brand">La Oficina en Español</div>
+    <div id="routeChip" class="route-chip" aria-live="polite"></div>
+    <button id="changeLevel" class="change-level" type="button">Cambiar nivel</button>
+  </div>
+  <div class="progress-wrap">
+    <div id="progressTrack" class="progress-track" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0% completado">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+    <div id="progressLabel" class="progress-label">0%</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Tema 41 · Voz activa y voz pasiva</div>
+    <h1>Elegir qué destacar en un mensaje profesional</h1>
+    <p id="heroLead"></p>
+  </div>
+</section>
+
+<main class="layout">
+  <aside class="sidebar">
+    <h2>Tu recorrido</h2>
+    <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+  </aside>
+  <div id="sectionHost"></div>
+</main>
+
+<footer>
+  Este material forma parte de <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">La Oficina en Español</a> · Español para trabajar.
+</footer>
+</div>
+
+<div id="audioStatus" class="audio-status hidden" role="status" aria-live="polite"></div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const habilidad = "Elegir y usar la voz activa o la voz pasiva para comunicar acciones, responsables y resultados en el trabajo";
+
+const contenido = {
+  a2:{
+    ruta:"🌱 A2 — Principiante",
+    hero:"Aprende a decir quién hace una acción y a cambiar el foco cuando necesitas destacar un documento, una tarea o un resultado.",
+    objetivo:"Al terminar esta semana podrás informar con claridad sobre acciones, responsables y resultados, eligiendo cuándo conviene mencionar primero a la persona que actúa y cuándo conviene destacar el documento o resultado.",
+    situacion:{
+      quien:"Tú preparas una actualización breve.",
+      con:"Tu supervisora y dos compañeros.",
+      contexto:"Una reunión sobre una propuesta para un cliente.",
+      objetivo:"Explicar quién revisó la propuesta y qué documentos ya fueron aprobados.",
+      dificultad:"A veces necesitas destacar a la persona responsable y otras veces el resultado o el documento es más importante."
+    },
+    vocab:[
+      {w:"responsable",en:"person responsible",exp:"Persona que hace o dirige una acción.",ex:"Laura es responsable de revisar el contrato.",extra:"Pronunciación: res-pon-SA-ble"},
+      {w:"acción",en:"action",exp:"Algo que una persona o equipo hace.",ex:"El equipo completó la acción ayer.",extra:"Pronunciación: ac-CIÓN"},
+      {w:"resultado",en:"result",exp:"Lo que obtenemos después de una acción.",ex:"El resultado fue aprobado por el cliente.",extra:"Pronunciación: re-sul-TA-do"},
+      {w:"aprobar",en:"to approve",exp:"Aceptar oficialmente una propuesta, documento o decisión.",ex:"La directora aprobó el presupuesto.",extra:"Pronunciación: a-pro-BAR"},
+      {w:"revisar",en:"to review / check",exp:"Comprobar información antes de continuar.",ex:"El equipo revisó el informe.",extra:"Pronunciación: re-VI-sar"},
+      {w:"enviar",en:"to send",exp:"Hacer llegar un documento, archivo o mensaje.",ex:"La propuesta fue enviada al cliente.",extra:"Pronunciación: en-VI-ar"}
+    ],
+    recall:{prompt:"Which Spanish verb means ‘to approve’?",options:["aprobar","enviar","revisar"],correct:0,good:"«Aprobar» significa aceptar oficialmente una propuesta, documento o decisión.",other:"Busca el verbo relacionado con aceptar oficialmente algo."},
+    frases:[
+      {group:"Destacar quién hace la acción",items:[
+        {f:"El equipo revisó el informe.",uso:"Voz activa. El foco inicial está en «el equipo», que realiza la acción."},
+        {f:"La directora aprobó el presupuesto.",uso:"Voz activa. Es útil cuando importa dejar claro quién tomó la decisión."}
+      ]},
+      {group:"Destacar el documento o el resultado",items:[
+        {f:"El informe fue revisado por el equipo.",uso:"Voz pasiva. El foco inicial está en «el informe»."},
+        {f:"El presupuesto fue aprobado por la directora.",uso:"Voz pasiva. El documento aparece primero; el responsable puede añadirse con «por»."},
+        {f:"La propuesta fue enviada ayer.",uso:"Voz pasiva sin mencionar quién la envió porque el resultado es lo importante."}
+      ]}
+    ],
+    estructuras:[
+      {s:"ACTIVA: persona/equipo + verbo + objeto",e:"El equipo + revisó + el informe."},
+      {s:"PASIVA: objeto + ser + participio + por + persona/equipo",e:"El informe + fue + revisado + por el equipo."},
+      {s:"PASIVA SIN AGENTE: objeto + ser + participio",e:"La propuesta + fue + enviada."}
+    ],
+    builder:{
+      intro:"Elige una acción y observa cómo cambia el foco. Primero aparece la voz activa y después la pasiva.",
+      fields:[
+        {label:"Responsable",key:"agent",options:["el equipo","la directora","Carlos"]},
+        {label:"Acción",key:"action",options:["revisó|revisado|el informe","aprobó|aprobado|el presupuesto","envió|enviada|la propuesta"]}
+      ]
+    },
+    gramatica:[
+      {t:"Voz activa",situation:"Quieres decir claramente quién hizo algo.",intention:"Poner al responsable en primer plano.",structure:"responsable + verbo + objeto",e:"El equipo revisó el informe."},
+      {t:"Voz pasiva con ser",situation:"Quieres empezar por el documento, proceso o resultado.",intention:"Cambiar el foco hacia lo que recibe la acción.",structure:"objeto + ser + participio (+ por + responsable)",e:"El informe fue revisado por el equipo."},
+      {t:"Concordancia del participio",situation:"Usas una pasiva con «ser».",intention:"Hacer que el participio concuerde con el nuevo sujeto.",structure:"informe → revisado · propuesta → revisada · documentos → revisados",e:"Las propuestas fueron revisadas ayer."},
+      {t:"Una decisión de comunicación",situation:"Las dos formas pueden ser correctas.",intention:"Elegir qué información necesita ver primero tu interlocutor.",structure:"activa = responsable primero · pasiva = resultado/objeto primero",e:"Ana aprobó el cambio. / El cambio fue aprobado por Ana."}
+    ],
+    registro:{
+      contexto:"Tu supervisora pregunta quién aprobó una modificación importante.",
+      opciones:[
+        {t:"La modificación fue aprobada.",fb:"La frase informa del resultado, pero omite justo la información que tu supervisora está pidiendo: quién tomó la decisión."},
+        {t:"Marta aprobó la modificación.",fb:"Esta opción funciona mejor porque responde directamente quién realizó la acción."},
+        {t:"La modificación fue aprobada por Marta.",fb:"También puede funcionar. Mantiene el foco en la modificación, pero identifica a Marta. Es algo más formal que la activa."}
+      ],best:1
+    },
+    ejemplo:{
+      full:"Marta revisó la propuesta esta mañana. Después, la propuesta fue aprobada por la directora. El contrato fue enviado al cliente a las once.",
+      lines:[
+        {text:"Marta revisó la propuesta esta mañana.",function:"Activa: deja claro quién realizó la revisión."},
+        {text:"Después, la propuesta fue aprobada por la directora.",function:"Pasiva: pone primero la propuesta y después identifica a la responsable."},
+        {text:"El contrato fue enviado al cliente a las once.",function:"Pasiva sin agente: destaca el resultado; no es necesario decir quién hizo el envío."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Reconoce la voz",prompt:"¿Cuál frase está en voz activa?",options:["El contrato fue firmado por la gerente.","La gerente firmó el contrato.","El contrato fue firmado ayer."],good:[1],feedback:["Esta es pasiva: el contrato aparece primero y recibe la acción.","Correcto. «La gerente» realiza la acción y aparece como sujeto.","Esta es pasiva sin agente: no se menciona quién firmó."]},
+      {type:"mc",title:"2. Cambia el foco",prompt:"Quieres destacar el informe, no a la persona. ¿Qué opción funciona?",options:["Ana revisó el informe.","El informe fue revisado por Ana.","Ana y el informe revisaron."],good:[1],feedback:["Es correcta, pero pone primero a Ana.","Funciona: el informe aparece primero y recibe la acción.","No expresa la relación correcta entre responsable y objeto."]},
+      {type:"order",title:"3. Construye una pasiva",prompt:"Ordena los bloques para formar una frase correcta.",tokens:["El presupuesto","fue aprobado","por la directora"],answer:["El presupuesto","fue aprobado","por la directora"],feedbackGood:"La estructura es: objeto/sujeto paciente + ser + participio + por + responsable.",feedbackOther:"Empieza por lo que recibe la acción; después usa «fue aprobado» y al final el responsable."},
+      {type:"input",title:"4. Completa la concordancia",prompt:"Completa: «Las propuestas fueron ___ por el equipo». ",answers:["revisadas"],feedbackGood:"Correcto. «Propuestas» es femenino plural, por eso usamos «revisadas».",feedbackOther:"El participio debe concordar con «las propuestas»: femenino plural."}
+    ],
+    practica:{
+      situacion:"Debes dar una actualización breve sobre tres documentos de un proyecto.",
+      interlocutor:"Tu supervisora.",
+      objetivo:"Escribe 3–4 frases. Usa una activa para identificar claramente a un responsable y al menos una pasiva para destacar un documento o resultado.",
+      requisitos:["Di quién revisó el informe.","Indica que la propuesta fue aprobada.","Indica que el contrato fue enviado al cliente.","Usa al menos una frase activa y una pasiva."],
+      apoyo:["El equipo revisó…","La propuesta fue aprobada…","El contrato fue enviado…","por la directora","ayer","esta mañana"]
+    },
+    modelo:"El equipo revisó el informe esta mañana. La propuesta fue aprobada por la directora después de la reunión. El contrato fue enviado al cliente a las dos.",
+    checks:[
+      "Puedo reconocer una frase activa y una frase pasiva.",
+      "Puedo decir claramente quién realiza una acción.",
+      "Puedo formar una pasiva sencilla con ser + participio.",
+      "Puedo hacer concordar el participio con el sujeto.",
+      "Puedo elegir si quiero destacar al responsable o al resultado."
+    ]
+  },
+  b1:{
+    ruta:"💼 B1 — Intermedio",
+    hero:"Usa la activa para dar claridad sobre responsables y la pasiva para cambiar el foco hacia procesos, documentos o resultados cuando el contexto lo justifique.",
+    objetivo:"Al terminar esta semana podrás redactar actualizaciones profesionales en las que responsabilidades, procesos y resultados queden claros, eligiendo la voz que mejor organiza la información para tu interlocutor.",
+    situacion:{
+      quien:"Tú coordinas un proyecto.",
+      con:"Tu equipo y un cliente.",
+      contexto:"Preparas una actualización escrita después de una revisión de entregables.",
+      objetivo:"Explicar qué se completó, quién tomó decisiones y qué elementos siguen pendientes.",
+      dificultad:"Si utilizas demasiadas pasivas, puedes ocultar responsabilidades; si utilizas solo activas, puedes dar protagonismo innecesario a personas cuando el proceso o resultado es lo importante."
+    },
+    vocab:[
+      {w:"agente",exp:"Persona o entidad que realiza la acción en una construcción pasiva.",ex:"En «El contrato fue revisado por Legal», «Legal» es el agente.",extra:"Puede omitirse cuando no es relevante o ya se conoce."},
+      {w:"foco informativo",exp:"Información que se coloca en primer plano dentro del mensaje.",ex:"La pasiva cambia el foco informativo hacia el documento revisado.",extra:"No es solo una cuestión gramatical: afecta cómo se interpreta el mensaje."},
+      {w:"trazabilidad",exp:"Posibilidad de identificar qué ocurrió, cuándo y quién intervino.",ex:"La actualización debe mantener trazabilidad de las decisiones.",extra:"Frecuente en proyectos, calidad, operaciones y auditoría."},
+      {w:"responsabilidad",exp:"Obligación o papel asociado a una acción o decisión.",ex:"La voz activa ayuda a dejar clara la responsabilidad.",extra:"Colocaciones: asumir, asignar, aclarar, delimitar responsabilidad."},
+      {w:"resultado",exp:"Estado o producto obtenido después de una acción.",ex:"El informe destaca el resultado de la revisión.",extra:"Puede ser el foco principal de una pasiva."},
+      {w:"omitir",exp:"No mencionar una información.",ex:"Puedes omitir el agente si no aporta información útil.",extra:"Omitir no debe confundirse con ocultar deliberadamente una responsabilidad relevante."}
+    ],
+    frases:[
+      {group:"Cuando importa el responsable",items:[
+        {f:"Finanzas validó las cifras antes del cierre.",uso:"Activa: útil para trazabilidad y asignación clara de responsabilidad."},
+        {f:"El equipo de producto propuso el cambio y Dirección lo aprobó.",uso:"Activa: mantiene una secuencia clara de actores y decisiones."}
+      ]},
+      {group:"Cuando importa el proceso o resultado",items:[
+        {f:"Las cifras fueron validadas antes del cierre.",uso:"Pasiva: el foco está en el estado de las cifras, no en quién hizo la validación."},
+        {f:"La propuesta fue aprobada por Dirección el viernes.",uso:"Pasiva con agente: destaca la propuesta y conserva la información sobre quién decidió."},
+        {f:"Los documentos fueron enviados dentro del plazo acordado.",uso:"Pasiva sin agente: adecuada si el responsable ya se conoce o no añade valor."}
+      ]}
+    ],
+    estructuras:[
+      {s:"ACTIVA: agente + verbo + objeto",e:"Finanzas validó las cifras."},
+      {s:"PASIVA: sujeto paciente + ser conjugado + participio (+ por + agente)",e:"Las cifras fueron validadas por Finanzas."},
+      {s:"AGENTE OPCIONAL",e:"Los documentos fueron enviados dentro del plazo."},
+      {s:"ELECCIÓN DE FOCO",e:"¿Quién hizo qué? → activa · ¿Qué ocurrió con X? → pasiva"}
+    ],
+    builder:{
+      intro:"Elige el objetivo del mensaje. La herramienta te propone una formulación y te obliga a pensar qué información debe aparecer primero.",
+      fields:[
+        {label:"Situación",key:"scenario",options:["Finanzas|validó|validadas|las cifras","Dirección|aprobó|aprobada|la propuesta","el equipo de operaciones|cerró|cerrada|la incidencia"]},
+        {label:"Qué quieres destacar",key:"focus",options:["responsable","resultado","resultado + responsable"]}
+      ]
+    },
+    gramatica:[
+      {t:"Formación de la pasiva con ser",situation:"Quieres presentar como sujeto lo que recibe la acción.",intention:"Reorganizar el foco sin cambiar el hecho principal.",structure:"ser en el tiempo necesario + participio concordado",e:"El equipo revisa el contrato → El contrato es revisado por el equipo. / El equipo revisó el contrato → El contrato fue revisado por el equipo."},
+      {t:"Concordancia",situation:"El sujeto paciente cambia en género o número.",intention:"Mantener una estructura gramatical correcta.",structure:"aprobado / aprobada / aprobados / aprobadas",e:"Las condiciones fueron aprobadas por ambas partes."},
+      {t:"Omisión del agente",situation:"El responsable no es relevante, ya se conoce o no aporta valor.",intention:"Concentrar el mensaje en el proceso o resultado.",structure:"sujeto paciente + ser + participio",e:"La solicitud fue procesada esta mañana."},
+      {t:"Naturalidad en español",situation:"Una pasiva es posible gramaticalmente, pero el mensaje puede sonar más pesado.",intention:"Evitar trasladar automáticamente patrones del inglés.",structure:"comparar activa y pasiva antes de elegir",e:"Más directo: «El equipo actualizó el archivo». Más formal: «El archivo fue actualizado por el equipo»."}
+    ],
+    registro:{
+      contexto:"Redactas una nota interna sobre un error que debe corregirse y necesitas que quede claro quién hará la corrección.",
+      opciones:[
+        {t:"El error será corregido mañana.",fb:"Informa del resultado previsto, pero no asigna responsabilidad. Puede ser insuficiente si el objetivo es coordinar el trabajo."},
+        {t:"El equipo de soporte corregirá el error mañana.",fb:"Funciona mejor para coordinación: identifica responsable, acción y plazo."},
+        {t:"El error será corregido mañana por el equipo de soporte.",fb:"También es correcta y conserva al responsable, aunque resulta algo más formal y menos directa que la activa."}
+      ],best:1
+    },
+    ejemplo:{
+      full:"Finanzas validó las cifras el jueves. La versión final fue aprobada por Dirección el viernes y los documentos fueron enviados al cliente esa misma tarde. Soporte corregirá hoy la única incidencia pendiente.",
+      lines:[
+        {text:"Finanzas validó las cifras el jueves.",function:"Activa: mantiene trazabilidad sobre quién realizó la validación."},
+        {text:"La versión final fue aprobada por Dirección el viernes.",function:"Pasiva con agente: destaca la versión final, pero conserva la autoridad que aprobó."},
+        {text:"Los documentos fueron enviados al cliente esa misma tarde.",function:"Pasiva sin agente: el estado del proceso es más relevante que quién pulsó ‘enviar’."},
+        {text:"Soporte corregirá hoy la única incidencia pendiente.",function:"Activa: asigna con claridad la siguiente acción y el responsable."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Elige según el objetivo",prompt:"Necesitas asignar responsabilidad para una tarea pendiente. ¿Qué frase es más útil?",options:["La incidencia será revisada mañana.","Calidad revisará la incidencia mañana.","La incidencia fue revisada."],good:[1],feedback:["No identifica quién realizará la acción.","La activa asigna con claridad responsable y plazo.","Habla de una acción ya terminada y tampoco responde quién se encargará mañana."]},
+      {type:"mc",title:"2. Destaca el resultado",prompt:"El responsable ya es conocido y quieres informar del estado de una solicitud. ¿Qué opción centra mejor el resultado?",options:["El equipo administrativo procesó la solicitud esta mañana.","La solicitud fue procesada esta mañana.","Administración, solicitud, esta mañana."],good:[1],feedback:["Es correcta, pero mantiene al agente como foco principal.","Funciona: el estado de la solicitud ocupa el primer plano.","No constituye una oración completa." ]},
+      {type:"order",title:"3. Forma una pasiva",prompt:"Ordena la frase.",tokens:["Las condiciones","fueron aprobadas","por ambas partes"],answer:["Las condiciones","fueron aprobadas","por ambas partes"],feedbackGood:"La concordancia es correcta: «condiciones» → «aprobadas».",feedbackOther:"Primero coloca el sujeto paciente, después «fueron aprobadas» y al final el agente."},
+      {type:"input",title:"4. Transforma",prompt:"Transforma a pasiva: «Dirección aprobó la propuesta». Escribe la frase completa.",answers:["La propuesta fue aprobada por Dirección.","La propuesta fue aprobada por dirección."],feedbackGood:"Correcto. El foco cambia a «la propuesta» y el participio concuerda en femenino singular.",feedbackOther:"Usa: «La propuesta + fue + aprobada + por Dirección»."}
+    ],
+    practica:{
+      situacion:"Preparas un resumen de estado para una reunión de proyecto. Hay tareas terminadas y una acción pendiente.",
+      interlocutor:"Tu jefe de proyecto y el equipo.",
+      objetivo:"Redacta 5–6 frases combinando activa y pasiva según el foco.",
+      requisitos:["Usa activa cuando necesites identificar a un responsable.","Usa al menos dos pasivas para destacar resultados o entregables.","Incluye una pasiva con agente y otra sin agente.","Termina con una acción pendiente y un responsable claro.","Evita usar la pasiva solo por sonar más formal."]
+    },
+    modelo:"Finanzas validó las cifras el jueves. La propuesta fue revisada por Legal y la versión final fue aprobada el viernes. Los documentos fueron enviados al cliente dentro del plazo acordado. Hoy, Soporte corregirá la incidencia pendiente y me enviará una confirmación antes de las cuatro.",
+    checks:[
+      "Puedo formar pasivas con ser en diferentes tiempos.",
+      "Puedo hacer concordar el participio con el sujeto paciente.",
+      "Puedo decidir cuándo mencionar u omitir el agente.",
+      "Puedo usar la activa para mantener clara la responsabilidad.",
+      "Puedo elegir la voz según el foco informativo y la naturalidad del mensaje."
+    ]
+  },
+  b2:{
+    ruta:"🚀 B2 — Avanzado",
+    hero:"Gestiona la voz como una decisión de información, responsabilidad y registro: qué actor aparece, qué resultado se pone en primer plano y qué efecto produce omitir al agente.",
+    objetivo:"Al terminar esta semana podrás elegir estratégicamente entre activa y pasiva, controlar la visibilidad del agente, evaluar naturalidad y registro, y detectar cuándo una pasiva aporta foco legítimo o diluye una responsabilidad que debería quedar explícita.",
+    situacion:{
+      quien:"Tú redactas una actualización para dirección y otra para un cliente.",
+      con:"Directivos, responsables de área y un interlocutor externo.",
+      contexto:"Se ha producido un retraso en un proyecto crítico y varias decisiones deben quedar documentadas.",
+      objetivo:"Comunicar hechos, responsables, medidas correctivas y resultados sin crear ambigüedad ni atribuir culpas innecesarias.",
+      dificultad:"La pasiva puede ser útil para centrar procesos y resultados, pero también puede borrar al agente. La elección afecta responsabilidad, tono, diplomacia y trazabilidad."
+    },
+    vocab:[
+      {w:"agencia",exp:"Grado en que el mensaje hace visible quién actúa o decide.",ex:"La voz activa mantiene alta la agencia del responsable.",extra:"En comunicación profesional, la visibilidad del actor puede ser decisiva para la rendición de cuentas."},
+      {w:"desagentivación",exp:"Reducción u omisión de la referencia explícita a quien realiza una acción.",ex:"«Se cometieron errores» y ciertas pasivas pueden producir desagentivación.",extra:"Aquí trabajamos específicamente la pasiva con «ser»; el pasivo con «se» se estudia por separado."},
+      {w:"trazabilidad",exp:"Capacidad de reconstruir actores, decisiones y secuencia de un proceso.",ex:"Una redacción demasiado impersonal puede reducir la trazabilidad.",extra:"Clave en auditoría, operaciones, calidad, proyectos y cumplimiento."},
+      {w:"rendición de cuentas",exp:"Obligación de explicar decisiones, acciones y resultados.",ex:"La activa suele favorecer la rendición de cuentas cuando el responsable es relevante.",extra:"No equivale a culpar; implica identificar roles y decisiones."},
+      {w:"poner en primer plano",exp:"Dar mayor prominencia a una información dentro del mensaje.",ex:"La pasiva pone en primer plano el entregable y desplaza al agente.",extra:"También puede hablarse de foco o prominencia informativa."},
+      {w:"diluir responsabilidad",exp:"Hacer menos visible quién realizó o decidió una acción.",ex:"«La decisión fue tomada» puede diluir responsabilidad si importa saber quién decidió.",extra:"No toda omisión es problemática; depende de la finalidad comunicativa."}
+    ],
+    frases:[
+      {group:"Trazabilidad y responsabilidad",items:[
+        {f:"Operaciones autorizó el cambio después de revisar el riesgo.",uso:"Activa: hace visible al actor y vincula la decisión con una justificación."},
+        {f:"Legal rechazó la cláusula y Compras propuso una alternativa.",uso:"Activa: útil cuando varias áreas intervienen y es importante reconstruir quién hizo qué."}
+      ]},
+      {group:"Foco en proceso o resultado",items:[
+        {f:"La actualización fue desplegada después de completar las pruebas de regresión.",uso:"Pasiva sin agente: el proceso técnico es el foco; el ejecutor puede ser secundario."},
+        {f:"La excepción fue autorizada por Cumplimiento y quedó documentada en el expediente.",uso:"Pasiva con agente: mantiene en primer plano la excepción sin perder la autoridad responsable."}
+      ]},
+      {group:"Cuando la elección cambia el efecto",items:[
+        {f:"Se produjeron retrasos / El proyecto fue retrasado / El proveedor retrasó el proyecto.",uso:"No son equivalentes pragmáticamente. La última formula una atribución directa; la pasiva puede centrar el proyecto y mantener o eliminar al agente."},
+        {f:"La decisión fue tomada el martes.",uso:"Puede ser funcional si el autor ya es conocido, pero problemática si la audiencia necesita saber quién tomó la decisión."}
+      ]}
+    ],
+    estructuras:[
+      {s:"ACTIVA PARA AGENCIA",e:"[actor relevante] + [acción/decisión] + [objeto/resultado]"},
+      {s:"PASIVA PARA FOCO EN PACIENTE",e:"[elemento afectado] + ser + participio + (por + agente)"},
+      {s:"PASIVA CON AGENTE PARA EQUILIBRIO",e:"La excepción fue autorizada por Cumplimiento."},
+      {s:"CONTROL DE OMISIÓN",e:"Omitir agente solo si no reduce información necesaria para entender responsabilidad o próximos pasos."}
+    ],
+    builder:{
+      intro:"Selecciona un hecho y el objetivo discursivo. Compara cómo cambia la distribución de información y la visibilidad del responsable.",
+      fields:[
+        {label:"Hecho",key:"scenario",options:["Operaciones|autorizó|autorizado|el cambio","Cumplimiento|aprobó|aprobada|la excepción","el proveedor|retrasó|retrasada|la entrega"]},
+        {label:"Objetivo discursivo",key:"focus",options:["máxima trazabilidad","foco en resultado con agente","foco en resultado sin agente"]}
+      ]
+    },
+    gramatica:[
+      {t:"Pasiva perifrástica y estructura informativa",situation:"La sintaxis permite dos formulaciones correctas.",intention:"Controlar qué elemento ocupa la posición temática inicial.",structure:"activa: agente como sujeto · pasiva: paciente como sujeto",e:"El comité aprobó la excepción. / La excepción fue aprobada por el comité."},
+      {t:"Agente explícito u omitido",situation:"La pasiva permite conservar o eliminar el complemento agente.",intention:"Regular visibilidad del actor según relevancia, conocimiento compartido y responsabilidad.",structure:"fue aprobado por X / fue aprobado",e:"El cambio fue autorizado por Operaciones. / El cambio fue autorizado el martes."},
+      {t:"Concordancia y cadena verbal",situation:"La pasiva aparece en tiempos y perífrasis diversas.",intention:"Mantener precisión morfosintáctica sin perder naturalidad.",structure:"ser conjugado + participio concordado",e:"Las medidas habían sido aprobadas. / La actualización será revisada mañana."},
+      {t:"Frecuencia y naturalidad",situation:"La pasiva con «ser» es plenamente gramatical, pero suele ser menos frecuente que la activa y otras alternativas en español.",intention:"Evitar calcos de inglés y densidad burocrática innecesaria.",structure:"evaluar activa, pasiva y reformulación según género textual",e:"Informe formal: «La solicitud fue rechazada». Conversación operativa: «Legal rechazó la solicitud»."},
+      {t:"Ética informativa y responsabilidad",situation:"Un agente omitido puede ser relevante para decisiones, auditoría o gestión del riesgo.",intention:"No utilizar la estructura para esconder información que la audiencia necesita.",structure:"si el actor cambia la interpretación → identificarlo",e:"«La aprobación fue retirada» informa del hecho; «Dirección retiró la aprobación» identifica la decisión y su origen."}
+    ],
+    registro:{
+      contexto:"Un informe para dirección explica por qué una entrega crítica se retrasó. Existe evidencia de que el proveedor incumplió un plazo contractual.",
+      opciones:[
+        {t:"La entrega fue retrasada.",fb:"La pasiva centra la entrega, pero omite un agente materialmente relevante. En un informe de causas puede reducir trazabilidad."},
+        {t:"El proveedor retrasó la entrega al incumplir el plazo contractual.",fb:"Es la opción más transparente si la evidencia está confirmada y la atribución del retraso es relevante para la decisión."},
+        {t:"La entrega fue retrasada por el proveedor tras el incumplimiento del plazo contractual.",fb:"También mantiene la atribución, pero pone en primer plano la entrega. Puede encajar en un informe centrado en el impacto antes que en el actor."}
+      ],best:1
+    },
+    ejemplo:{
+      full:"Operaciones autorizó el cambio después de revisar el impacto. La excepción fue aprobada por Cumplimiento y quedó registrada en el expediente. La actualización fue desplegada a las 18:00, una vez completadas las pruebas. El proveedor retrasó la última entrega dos horas y deberá presentar un plan correctivo mañana.",
+      lines:[
+        {text:"Operaciones autorizó el cambio después de revisar el impacto.",function:"Activa: hace visible una decisión y su responsable; favorece trazabilidad."},
+        {text:"La excepción fue aprobada por Cumplimiento y quedó registrada en el expediente.",function:"Pasiva con agente: pone en primer plano la excepción y conserva quién tenía autoridad para aprobarla."},
+        {text:"La actualización fue desplegada a las 18:00, una vez completadas las pruebas.",function:"Pasiva sin agente: el estado del despliegue es central y el ejecutor no cambia la interpretación."},
+        {text:"El proveedor retrasó la última entrega dos horas y deberá presentar un plan correctivo mañana.",function:"Activa: la atribución es relevante porque determina una obligación posterior."}
+      ]
+    },
+    ejercicios:[
+      {type:"mc",title:"1. Rendición de cuentas",prompt:"En un acta necesitas documentar quién autorizó una excepción. ¿Qué formulación conserva mejor la trazabilidad?",options:["La excepción fue autorizada.","Cumplimiento autorizó la excepción.","Hubo una autorización de la excepción."],good:[1],feedback:["Puede ser insuficiente: omite la autoridad responsable.","La activa identifica de forma directa quién tomó la decisión.","La nominalización añade densidad y tampoco identifica al actor." ]},
+      {type:"mc",title:"2. Foco legítimo en resultado",prompt:"En un panel operativo solo importa confirmar que una copia de seguridad ya está completa; el sistema ejecuta automáticamente el proceso. ¿Qué opción es más eficiente?",options:["La copia de seguridad fue completada a las 02:00.","El sistema automatizado completó la copia de seguridad a las 02:00.","Alguien completó la copia de seguridad a las 02:00."],good:[0,1],feedback:["Funciona: el estado del proceso es el dato principal y el agente no es necesario.","También funciona si la identidad del sistema aporta valor técnico; es más específica que la primera.","Introduce un agente impreciso que no aporta información útil." ]},
+      {type:"order",title:"3. Mantén el agente",prompt:"Ordena una pasiva que conserve la autoridad responsable.",tokens:["La excepción","fue aprobada","por Cumplimiento"],answer:["La excepción","fue aprobada","por Cumplimiento"],feedbackGood:"La pasiva pone en primer plano la excepción y conserva el agente institucional.",feedbackOther:"El sujeto paciente va primero; después la cadena pasiva y al final el complemento agente."},
+      {type:"input",title:"4. Reformula para máxima trazabilidad",prompt:"Reformula en activa: «La aprobación fue retirada por Dirección». Escribe una versión directa.",answers:["Dirección retiró la aprobación."],feedbackGood:"La activa hace de Dirección el sujeto y convierte la responsabilidad en información inicial.",feedbackOther:"Una formulación directa es: «Dirección retiró la aprobación»."}
+    ],
+    practica:{
+      situacion:"Debes redactar un párrafo para dirección sobre un retraso, una aprobación y una medida correctiva. Después debes adaptar una frase para un cliente externo.",
+      interlocutor:"Primero dirección; después un cliente.",
+      objetivo:"Gestiona foco, responsabilidad y registro sin usar la pasiva de forma automática.",
+      requisitos:["Incluye al menos una activa para una decisión con responsable relevante.","Incluye una pasiva con agente cuando el resultado deba aparecer primero.","Incluye una pasiva sin agente solo si puedes justificar que el actor no cambia la interpretación.","Evita una formulación que diluya responsabilidad en el retraso.","Añade una frase final explicando por qué elegiste activa o pasiva en uno de los casos."]
+    },
+    modelo:"Dirección aprobó el plan correctivo después de revisar el impacto contractual. La excepción fue autorizada por Cumplimiento y quedó documentada en el expediente. La actualización fue desplegada a las 18:00 tras completar las pruebas; en este punto, el equipo ejecutor no cambia la interpretación del estado informado. El proveedor retrasó la entrega dos horas al incumplir el plazo acordado. Para el cliente escribiría: «La versión corregida fue enviada a las 18:15 y el servicio ya está restablecido». En esa frase uso la pasiva porque el cliente necesita primero el resultado y el estado del servicio, no la identidad de la persona que realizó el envío.",
+    checks:[
+      "Puedo elegir la voz según foco, audiencia y propósito, no solo por corrección gramatical.",
+      "Puedo controlar cuándo el agente debe aparecer y cuándo puede omitirse.",
+      "Puedo detectar formulaciones que diluyen responsabilidad relevante.",
+      "Puedo mantener concordancia y tiempos verbales en pasivas complejas.",
+      "Puedo justificar una elección entre activa y pasiva por naturalidad, trazabilidad, tono o registro."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sections = [
+  ["objetivo","🎯 1. Tu objetivo esta semana"],
+  ["situacion","🏢 2. La situación"],
+  ["vocabulario","🗣️ 3. Vocabulario clave"],
+  ["frases","💬 4. Frases que puedes usar"],
+  ["construye","🧩 5. Construye tu mensaje"],
+  ["gramatica","📚 6. Gramática que necesitas"],
+  ["registro","🎭 7. Elige el registro"],
+  ["ejemplo","💼 8. Mira cómo se hace"],
+  ["comprueba","✍️ 9. Comprueba lo que aprendiste"],
+  ["practica","🏢 10. Ahora te toca a ti"],
+  ["modelo","💡 11. Ver modelo"],
+  ["checklist","✅ 12. Checklist final"]
+];
+
+let selectedLevel = null;
+let currentStep = 0;
+let completedActions = new Set();
+let orderedState = {};
+let speechVoice = null;
+
+const levelScreen = document.getElementById("levelScreen");
+const app = document.getElementById("app");
+const routeChip = document.getElementById("routeChip");
+const heroLead = document.getElementById("heroLead");
+const sectionNav = document.getElementById("sectionNav");
+const sectionHost = document.getElementById("sectionHost");
+const progressBar = document.getElementById("progressBar");
+const progressLabel = document.getElementById("progressLabel");
+const progressTrack = document.getElementById("progressTrack");
+const audioStatus = document.getElementById("audioStatus");
+
+function escapeHtml(value){
+  return String(value).replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;","\"":"&quot;"}[ch]));
+}
+
+function normalizeAnswer(value){
+  return String(value).trim().toLocaleLowerCase("es").replace(/[¡!¿?]/g,"").replace(/\s+/g," ");
+}
+
+function getSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if(!voices.length) return null;
+  const preferred = ["es-CO","es-US","es-MX","es-419","es-ES"];
+  for(const code of preferred){
+    const found = voices.find(v => (v.lang || "").toLowerCase() === code.toLowerCase());
+    if(found) return found;
+  }
+  return voices.find(v => (v.lang || "").toLowerCase().startsWith("es")) || null;
+}
+
+function refreshVoices(){ speechVoice = getSpanishVoice(); }
+if("speechSynthesis" in window){
+  refreshVoices();
+  window.speechSynthesis.addEventListener?.("voiceschanged",refreshVoices);
+  window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+
+function speakSpanish(text, slow=false, actionKey=""){
+  if(selectedLevel !== "a2") return;
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    showAudioStatus("La pronunciación por voz no está disponible en este navegador. El resto del módulo funciona normalmente.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = speechVoice?.lang || "es-CO";
+  if(speechVoice) utterance.voice = speechVoice;
+  utterance.rate = slow ? 0.72 : 0.96;
+  utterance.pitch = 1;
+  utterance.onstart = () => showAudioStatus(slow ? "Reproduciendo lentamente…" : "Reproduciendo…");
+  utterance.onend = () => hideAudioStatus();
+  utterance.onerror = () => showAudioStatus("No fue posible reproducir esta frase. Puedes continuar con el módulo.");
+  window.speechSynthesis.speak(utterance);
+  // La escucha no altera el progreso: así el módulo puede completarse aunque Speech Synthesis no esté disponible.
+}
+
+function showAudioStatus(message){
+  audioStatus.textContent = message;
+  audioStatus.classList.remove("hidden");
+}
+function hideAudioStatus(){
+  setTimeout(()=>audioStatus.classList.add("hidden"),500);
+}
+
+function audioControls(text,key){
+  if(selectedLevel !== "a2") return "";
+  const safe = escapeHtml(text);
+  return `<div class="audio-row">
+    <button class="audio-btn" type="button" data-audio="${safe}" data-slow="0" data-audio-key="${escapeHtml(key)}" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" type="button" data-audio="${safe}" data-slow="1" data-audio-key="${escapeHtml(key)}" aria-label="Escuchar lentamente: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function selectLevel(level){
+  selectedLevel = level;
+  currentStep = 0;
+  completedActions = new Set();
+  orderedState = {};
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  levelScreen.classList.add("hidden");
+  app.classList.remove("hidden");
+  routeChip.textContent = `Tu ruta: ${contenido[level].ruta}`;
+  heroLead.textContent = contenido[level].hero;
+  renderModule();
+  markAction("level:selected");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function changeLevel(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  app.classList.add("hidden");
+  levelScreen.classList.remove("hidden");
+  hideAudioStatus();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function actionTargets(){
+  const d = contenido[selectedLevel];
+  const phraseCount = d.frases.reduce((n,g)=>n+g.items.length,0);
+  return 1 + sections.length + d.vocab.length + phraseCount + d.gramatica.length + d.ejercicios.length + d.checks.length
+    + (d.recall ? 1 : 0) + 1 + 1 + d.ejemplo.lines.length + 1 + 1 + 1;
+}
+
+function markAction(key){
+  completedActions.add(key);
+  updateProgress();
+}
+
+function updateProgress(){
+  if(!selectedLevel) return;
+  const total = actionTargets();
+  const pct = Math.min(100,Math.round((completedActions.size/total)*100));
+  progressBar.style.width = `${pct}%`;
+  progressLabel.textContent = `${pct}%`;
+  progressTrack.setAttribute("aria-valuenow",String(pct));
+  progressTrack.setAttribute("aria-valuetext",`${pct}% completado`);
+}
+
+function renderModule(){
+  renderNav();
+  sectionHost.innerHTML = sections.map(([id,title],idx)=>renderSection(id,title,idx)).join("");
+  attachEvents();
+  showStep(0);
+  updateProgress();
+}
+
+function renderNav(){
+  sectionNav.innerHTML = sections.map(([id,title],idx)=>`<button class="nav-btn" type="button" data-step="${idx}">${title}</button>`).join("");
+}
+
+function sectionShell(id,title,index,body){
+  return `<section id="sec-${id}" class="section" data-section-index="${index}" aria-labelledby="title-${id}">
+    <div class="kicker">${escapeHtml(title)}</div>
+    <h2 id="title-${id}">${escapeHtml(title.replace(/^.*?\d+\.\s*/,""))}</h2>
+    ${body}
+    <div class="section-actions">
+      <button class="secondary prev-step" type="button" ${index===0?"disabled":""}>Anterior</button>
+      <button class="primary next-step" type="button" ${index===sections.length-1?"disabled":""}>Siguiente</button>
+    </div>
+  </section>`;
+}
+
+function renderSection(id,title,index){
+  const d = contenido[selectedLevel];
+  let body = "";
+  if(id === "objetivo"){
+    body = `<p class="section-intro">${escapeHtml(d.objetivo)}</p><div class="note"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>`;
+  }
+  if(id === "situacion"){
+    body = `<div class="info-grid">
+      <div class="info-card"><strong>Quién habla</strong>${escapeHtml(d.situacion.quien)}</div>
+      <div class="info-card"><strong>Con quién</strong>${escapeHtml(d.situacion.con)}</div>
+      <div class="info-card"><strong>Contexto</strong>${escapeHtml(d.situacion.contexto)}</div>
+      <div class="info-card"><strong>Qué quiere conseguir</strong>${escapeHtml(d.situacion.objetivo)}</div>
+    </div><div class="note"><strong>Dificultad:</strong> ${escapeHtml(d.situacion.dificultad)}</div>`;
+  }
+  if(id === "vocabulario"){
+    const cards = d.vocab.map((v,i)=>`<article class="vocab-card">
+      <button class="vocab-toggle" type="button" aria-expanded="false" data-reveal-key="vocab:${i}">
+        <span class="vocab-word">${escapeHtml(v.w)}</span>${selectedLevel==="a2"?`<span class="small"> · ${escapeHtml(v.en)}</span>`:""}
+        <span class="small">Pulsa para ver significado y ejemplo.</span>
+      </button>
+      <div class="reveal hidden">
+        <p>${escapeHtml(v.exp)}</p><p><strong>Ejemplo:</strong> ${escapeHtml(v.ex)}</p><p class="small">${escapeHtml(v.extra)}</p>
+        ${audioControls(v.w,`vocab-word-${i}`)}${audioControls(v.ex,`vocab-example-${i}`)}
+      </div>
+    </article>`).join("");
+    const recall = d.recall ? `<div class="quiz-card" style="margin-top:14px"><strong>Recupera una palabra</strong><p>${escapeHtml(d.recall.prompt)}</p><div class="quiz-options">${d.recall.options.map((o,j)=>`<button type="button" data-recall-index="${j}">${escapeHtml(o)}</button>`).join("")}</div><div id="recallFeedback" class="feedback hidden"></div></div>` : "";
+    body = `<p class="section-intro">Abre las tarjetas y comprueba si puedes recuperar el significado antes de leer la explicación.</p><div class="card-grid">${cards}</div>${recall}`;
+  }
+  if(id === "frases"){
+    body = `<div class="stack">${d.frases.map((g,gi)=>`<div><span class="tag">${escapeHtml(g.group)}</span><div class="stack" style="margin-top:8px">${g.items.map((it,ii)=>`<article class="phrase-card"><button class="phrase-toggle" type="button" aria-expanded="false" data-reveal-key="phrase:${gi}:${ii}"><div class="phrase-head"><span class="phrase-text">${escapeHtml(it.f)}</span><span class="small">Ver cuándo usarla</span></div></button><div class="reveal hidden"><p>${escapeHtml(it.uso)}</p>${audioControls(it.f,`phrase-${gi}-${ii}`)}</div></article>`).join("")}</div></div>`).join("")}</div>`;
+  }
+  if(id === "construye"){
+    body = renderBuilder(d);
+  }
+  if(id === "gramatica"){
+    body = `<p class="section-intro">La gramática aparece aquí porque cambia cómo presentas responsables, procesos y resultados.</p><div class="stack">${d.gramatica.map((g,i)=>`<article class="grammar-card"><button class="grammar-toggle" type="button" aria-expanded="false" data-reveal-key="grammar:${i}"><strong>${escapeHtml(g.t)}</strong><span class="small"> · Ver explicación</span></button><div class="reveal hidden"><p><strong>Situación:</strong> ${escapeHtml(g.situation)}</p><p><strong>Intención:</strong> ${escapeHtml(g.intention)}</p><div class="structure"><code>${escapeHtml(g.structure)}</code></div><p><strong>Ejemplo:</strong> ${escapeHtml(g.e)}</p>${audioControls(g.e,`grammar-example-${i}`)}</div></article>`).join("")}</div>`;
+  }
+  if(id === "registro"){
+    body = `<p class="section-intro"><strong>Contexto:</strong> ${escapeHtml(d.registro.contexto)}</p><div class="choice-list">${d.registro.opciones.map((o,i)=>`<div class="mini-card"><button class="choice" type="button" data-register-index="${i}">${escapeHtml(o.t)}</button>${audioControls(o.t,`register-${i}`)}</div>`).join("")}</div><div id="registerFeedback" class="feedback hidden" aria-live="polite"></div>`;
+  }
+  if(id === "ejemplo"){
+    body = `<p class="section-intro">Pulsa cada parte para ver qué función cumple dentro del mensaje.</p><div class="example-full">${escapeHtml(d.ejemplo.full)}${audioControls(d.ejemplo.full,"example-full")}</div><div class="example-parts">${d.ejemplo.lines.map((l,i)=>`<div class="mini-card"><button class="example-part" type="button" aria-expanded="false" data-example-index="${i}"><strong>${escapeHtml(l.text)}</strong><span class="function">${escapeHtml(l.function)}</span></button>${audioControls(l.text,`example-part-${i}`)}</div>`).join("")}</div>`;
+  }
+  if(id === "comprueba"){
+    body = `<p class="section-intro">Prueba, recibe feedback y vuelve a intentarlo si quieres comparar otra opción.</p><div class="stack">${d.ejercicios.map((q,i)=>renderExercise(q,i)).join("")}</div>`;
+  }
+  if(id === "practica"){
+    const support = d.practica.apoyo ? `<div><strong>Estructuras que puedes reutilizar:</strong><div class="support-chips">${d.practica.apoyo.map((s,i)=>`<div class="support-chip">${escapeHtml(s)}${audioControls(s,`support-${i}`)}</div>`).join("")}</div></div>` : "";
+    body = `<div class="practice-card"><p><strong>Situación:</strong> ${escapeHtml(d.practica.situacion)}</p><p><strong>Interlocutor:</strong> ${escapeHtml(d.practica.interlocutor)}</p><p><strong>Objetivo:</strong> ${escapeHtml(d.practica.objetivo)}</p><strong>Incluye:</strong><ul class="requirements">${d.practica.requisitos.map(r=>`<li>${escapeHtml(r)}</li>`).join("")}</ul>${support}<label for="practiceText" style="margin-top:14px">Tu respuesta</label><textarea id="practiceText" placeholder="Escribe aquí tu respuesta profesional."></textarea><p class="small">No se evalúa automáticamente. Usa esta práctica para preparar tu propia versión.</p></div>`;
+  }
+  if(id === "modelo"){
+    body = `<p class="section-intro">Primero compara tu respuesta con los requisitos. Después, si quieres, abre un modelo.</p><button id="showModel" class="yellow" type="button">Ver una posible respuesta</button><div id="modelBox" class="model hidden"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${escapeHtml(d.modelo)}</p>${audioControls(d.modelo,"model-full")}</div>`;
+  }
+  if(id === "checklist"){
+    body = `<p class="section-intro">Antes de terminar, comprueba qué puedes hacer ya.</p><div id="checkProgress" class="check-progress">0 de ${d.checks.length} capacidades marcadas.</div><div class="checklist">${d.checks.map((c,i)=>`<label class="check-item"><input type="checkbox" data-check-index="${i}"><span>${escapeHtml(c)}</span></label>`).join("")}</div><div id="readyBox" class="ready hidden"><h3>🎯 Ya estás listo para practicar</h3><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir # por la URL real del reto de hoy cuando esté disponible --><a class="yellow" href="#" id="challengeLink">🔥 Ir al reto de hoy</a></div>`;
+  }
+  return sectionShell(id,title,index,body);
+}
+
+function renderBuilder(d){
+  const fields = d.builder.fields.map((f,i)=>`<div><label for="builder-${i}">${escapeHtml(f.label)}</label><select id="builder-${i}" data-builder-key="${escapeHtml(f.key)}">${f.options.map(o=>`<option value="${escapeHtml(o)}">${escapeHtml(o.replace(/\|/g," · "))}</option>`).join("")}</select></div>`).join("");
+  const structures = d.estructuras.map((s,i)=>`<div class="structure"><code>${escapeHtml(s.s)}</code><div>${escapeHtml(s.e)}</div>${audioControls(s.e,`structure-${i}`)}</div>`).join("");
+  return `<p class="section-intro">${escapeHtml(d.builder.intro)}</p><div class="stack">${structures}</div><div class="builder" style="margin-top:16px"><div class="builder-grid">${fields}</div><button id="buildBtn" class="primary" type="button" style="margin-top:12px">Construir y comparar</button><div id="builderResult" class="result" aria-live="polite">Selecciona opciones y pulsa “Construir y comparar”.</div></div>`;
+}
+
+function renderExercise(q,i){
+  if(q.type === "mc"){
+    return `<article class="quiz-card"><strong>${escapeHtml(q.title)}</strong><p>${escapeHtml(q.prompt)}</p>${selectedLevel==="a2"?audioControls(q.prompt,`quiz-prompt-${i}`):""}<div class="quiz-options">${q.options.map((o,j)=>`<div class="mini-card"><button type="button" data-quiz="${i}" data-option="${j}">${escapeHtml(o)}</button>${selectedLevel==="a2"?audioControls(o,`quiz-${i}-option-${j}`):""}</div>`).join("")}</div><div id="quizFeedback-${i}" class="feedback hidden" aria-live="polite"></div></article>`;
+  }
+  if(q.type === "input"){
+    return `<article class="quiz-card"><strong>${escapeHtml(q.title)}</strong><p>${escapeHtml(q.prompt)}</p>${selectedLevel==="a2"?audioControls(q.prompt,`quiz-prompt-${i}`):""}<label for="quizInput-${i}">Tu respuesta</label><input id="quizInput-${i}" type="text"><div class="action-row"><button class="primary check-input" type="button" data-quiz="${i}">Comprobar</button><button class="secondary retry-input" type="button" data-quiz="${i}">Volver a intentar</button></div><div id="quizFeedback-${i}" class="feedback hidden" aria-live="polite"></div></article>`;
+  }
+  if(q.type === "order"){
+    return `<article class="quiz-card"><strong>${escapeHtml(q.title)}</strong><p>${escapeHtml(q.prompt)}</p>${selectedLevel==="a2"?audioControls(q.answer.join(" "),`quiz-order-${i}`):""}<div id="orderPool-${i}" class="order-pool">${q.tokens.map((t,j)=>`<button class="token order-token" type="button" data-quiz="${i}" data-token-index="${j}">${escapeHtml(t)}</button>`).join("")}</div><div id="orderAnswer-${i}" class="order-answer" aria-label="Tu orden"></div><div class="action-row"><button class="primary check-order" type="button" data-quiz="${i}">Comprobar</button><button class="secondary reset-order" type="button" data-quiz="${i}">Reiniciar</button></div><div id="quizFeedback-${i}" class="feedback hidden" aria-live="polite"></div></article>`;
+  }
+  return "";
+}
+
+function attachEvents(){
+  document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>showStep(Number(btn.dataset.step))));
+  document.querySelectorAll(".prev-step").forEach(btn=>btn.addEventListener("click",()=>showStep(currentStep-1)));
+  document.querySelectorAll(".next-step").forEach(btn=>btn.addEventListener("click",()=>showStep(currentStep+1)));
+  document.querySelectorAll(".vocab-toggle,.phrase-toggle,.grammar-toggle").forEach(btn=>btn.addEventListener("click",()=>toggleReveal(btn)));
+  document.querySelectorAll(".audio-btn").forEach(btn=>btn.addEventListener("click",e=>{
+    e.stopPropagation();
+    speakSpanish(btn.dataset.audio,btn.dataset.slow==="1",btn.dataset.audioKey || btn.dataset.audio);
+  }));
+  document.querySelectorAll("[data-recall-index]").forEach(btn=>btn.addEventListener("click",()=>handleRecall(Number(btn.dataset.recallIndex),btn)));
+  document.getElementById("buildBtn")?.addEventListener("click",buildMessage);
+  document.querySelectorAll("[data-register-index]").forEach(btn=>btn.addEventListener("click",()=>handleRegister(Number(btn.dataset.registerIndex),btn)));
+  document.querySelectorAll(".example-part").forEach(btn=>btn.addEventListener("click",()=>{
+    btn.classList.toggle("open");
+    const open = btn.classList.contains("open");
+    btn.setAttribute("aria-expanded",String(open));
+    markAction(`example:${btn.dataset.exampleIndex}`);
+  }));
+  document.querySelectorAll("[data-option]").forEach(btn=>btn.addEventListener("click",()=>handleMc(Number(btn.dataset.quiz),Number(btn.dataset.option),btn)));
+  document.querySelectorAll(".check-input").forEach(btn=>btn.addEventListener("click",()=>handleInput(Number(btn.dataset.quiz))));
+  document.querySelectorAll(".retry-input").forEach(btn=>btn.addEventListener("click",()=>resetInput(Number(btn.dataset.quiz))));
+  document.querySelectorAll(".order-token").forEach(btn=>btn.addEventListener("click",()=>moveOrderToken(btn)));
+  document.querySelectorAll(".check-order").forEach(btn=>btn.addEventListener("click",()=>checkOrder(Number(btn.dataset.quiz))));
+  document.querySelectorAll(".reset-order").forEach(btn=>btn.addEventListener("click",()=>resetOrder(Number(btn.dataset.quiz))));
+  document.getElementById("practiceText")?.addEventListener("input",e=>{if(e.target.value.trim().length>=40) markAction("practice:written");});
+  document.getElementById("showModel")?.addEventListener("click",showModel);
+  document.querySelectorAll("[data-check-index]").forEach(box=>box.addEventListener("change",updateChecklist));
+  document.getElementById("challengeLink")?.addEventListener("click",e=>{if(e.currentTarget.getAttribute("href")==="#") e.preventDefault();});
+}
+
+function showStep(index){
+  if(index < 0 || index >= sections.length) return;
+  currentStep = index;
+  document.querySelectorAll(".section").forEach((s,i)=>s.classList.toggle("active",i===index));
+  document.querySelectorAll(".nav-btn").forEach((b,i)=>b.classList.toggle("active",i===index));
+  markAction(`section:${sections[index][0]}`);
+  const section = document.querySelector(`.section[data-section-index="${index}"]`);
+  section?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function toggleReveal(btn){
+  const panel = btn.nextElementSibling;
+  const willOpen = panel.classList.contains("hidden");
+  panel.classList.toggle("hidden");
+  btn.setAttribute("aria-expanded",String(willOpen));
+  if(willOpen) markAction(btn.dataset.revealKey || "reveal");
+}
+
+function handleRecall(index,btn){
+  const r = contenido[selectedLevel].recall;
+  document.querySelectorAll("[data-recall-index]").forEach(b=>b.classList.remove("chosen"));
+  btn.classList.add("chosen");
+  const box = document.getElementById("recallFeedback");
+  box.textContent = index===r.correct ? r.good : r.other;
+  box.classList.remove("hidden");
+  markAction("vocab:recall");
+}
+
+function buildMessage(){
+  const d = contenido[selectedLevel];
+  const values = {};
+  d.builder.fields.forEach((f,i)=> values[f.key] = document.getElementById(`builder-${i}`).value);
+  let html = "";
+  if(selectedLevel === "a2"){
+    const [verb,part,obj] = values.action.split("|");
+    const passiveSubject = obj;
+    const be = obj.startsWith("la ") ? "fue" : "fue";
+    let passivePart = part;
+    if(obj.startsWith("la ") && !part.endsWith("a")) passivePart = part.replace(/o$/,"a");
+    const active = `${capitalize(values.agent)} ${verb} ${obj}.`;
+    const passive = `${capitalize(passiveSubject)} ${be} ${passivePart} por ${values.agent}.`;
+    html = `<div class="compare-grid"><div class="compare-card"><strong>Voz activa</strong><p>${escapeHtml(active)}</p>${audioControls(active,"builder-active")}</div><div class="compare-card"><strong>Voz pasiva</strong><p>${escapeHtml(passive)}</p>${audioControls(passive,"builder-passive")}</div></div>`;
+  } else {
+    const [agent,verb,part,obj] = values.scenario.split("|");
+    const active = `${capitalize(agent)} ${verb} ${obj}.`;
+    let passivePart = agreeParticiple(part,obj);
+    const passiveWith = `${capitalize(obj)} fue ${passivePart} por ${agent}.`;
+    const passiveWithout = `${capitalize(obj)} fue ${passivePart}.`;
+    const focus = values.focus;
+    let recommended = active;
+    let reason = "La activa hace visible al responsable.";
+    if(focus.includes("resultado") || focus.includes("foco")){
+      if(focus.includes("sin agente")){recommended = passiveWithout;reason = "La pasiva coloca el resultado primero y omite al agente.";}
+      else {recommended = passiveWith;reason = "La pasiva coloca el resultado primero, pero conserva al responsable.";}
+    }
+    if(focus.includes("máxima trazabilidad")){recommended=active;reason="La activa maximiza la visibilidad del actor y la trazabilidad.";}
+    html = `<div class="compare-grid"><div class="compare-card"><strong>Activa</strong><p>${escapeHtml(active)}</p></div><div class="compare-card"><strong>Pasiva con agente</strong><p>${escapeHtml(passiveWith)}</p></div><div class="compare-card"><strong>Pasiva sin agente</strong><p>${escapeHtml(passiveWithout)}</p></div><div class="compare-card"><strong>Para tu objetivo</strong><p>${escapeHtml(recommended)}</p><p class="small">${escapeHtml(reason)}</p></div></div>`;
+  }
+  document.getElementById("builderResult").innerHTML = html;
+  document.querySelectorAll("#builderResult .audio-btn").forEach(btn=>btn.addEventListener("click",()=>speakSpanish(btn.dataset.audio,btn.dataset.slow==="1",btn.dataset.audioKey)));
+  markAction("builder:done");
+}
+
+function agreeParticiple(part,obj){
+  const lower = obj.toLowerCase();
+  let result = part;
+  const feminine = /^(la|las)\s/.test(lower);
+  const plural = /^(los|las)\s/.test(lower);
+  if(feminine) result = result.replace(/o(s)?$/,(m,s)=>`a${s||""}`);
+  if(plural && !result.endsWith("s")) result += "s";
+  return result;
+}
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+function handleRegister(index,btn){
+  const d = contenido[selectedLevel].registro;
+  document.querySelectorAll("[data-register-index]").forEach(b=>b.classList.remove("selected"));
+  btn.classList.add("selected");
+  const box = document.getElementById("registerFeedback");
+  box.textContent = d.opciones[index].fb;
+  box.classList.remove("hidden");
+  markAction("register:choice");
+}
+
+function handleMc(qIndex,optIndex,btn){
+  const q = contenido[selectedLevel].ejercicios[qIndex];
+  document.querySelectorAll(`[data-quiz="${qIndex}"][data-option]`).forEach(b=>b.classList.remove("chosen"));
+  btn.classList.add("chosen");
+  const box = document.getElementById(`quizFeedback-${qIndex}`);
+  box.textContent = q.feedback[optIndex];
+  box.classList.remove("hidden");
+  if(q.good.includes(optIndex)) markAction(`quiz:${qIndex}`);
+}
+
+function handleInput(qIndex){
+  const q = contenido[selectedLevel].ejercicios[qIndex];
+  const input = document.getElementById(`quizInput-${qIndex}`);
+  const value = normalizeAnswer(input.value);
+  const good = q.answers.some(a=>normalizeAnswer(a)===value);
+  const box = document.getElementById(`quizFeedback-${qIndex}`);
+  box.textContent = good ? q.feedbackGood : q.feedbackOther;
+  box.classList.remove("hidden");
+  if(good) markAction(`quiz:${qIndex}`);
+}
+function resetInput(qIndex){
+  const input = document.getElementById(`quizInput-${qIndex}`); if(input) input.value="";
+  document.getElementById(`quizFeedback-${qIndex}`)?.classList.add("hidden");
+}
+
+function moveOrderToken(btn){
+  const qIndex = Number(btn.dataset.quiz);
+  const answer = document.getElementById(`orderAnswer-${qIndex}`);
+  const pool = document.getElementById(`orderPool-${qIndex}`);
+  if(btn.parentElement === pool) answer.appendChild(btn); else pool.appendChild(btn);
+}
+function currentOrder(qIndex){
+  return [...document.querySelectorAll(`#orderAnswer-${qIndex} .order-token`)].map(b=>b.textContent.trim());
+}
+function checkOrder(qIndex){
+  const q = contenido[selectedLevel].ejercicios[qIndex];
+  const current = currentOrder(qIndex);
+  const good = JSON.stringify(current)===JSON.stringify(q.answer);
+  const box = document.getElementById(`quizFeedback-${qIndex}`);
+  box.textContent = good ? q.feedbackGood : q.feedbackOther;
+  box.classList.remove("hidden");
+  if(good) markAction(`quiz:${qIndex}`);
+}
+function resetOrder(qIndex){
+  const pool = document.getElementById(`orderPool-${qIndex}`);
+  const tokens = [...document.querySelectorAll(`#orderAnswer-${qIndex} .order-token`)];
+  tokens.sort((a,b)=>Number(a.dataset.tokenIndex)-Number(b.dataset.tokenIndex)).forEach(t=>pool.appendChild(t));
+  document.getElementById(`quizFeedback-${qIndex}`)?.classList.add("hidden");
+}
+
+function showModel(){
+  document.getElementById("modelBox").classList.remove("hidden");
+  document.getElementById("showModel").setAttribute("aria-expanded","true");
+  markAction("model:shown");
+}
+
+function updateChecklist(){
+  const boxes = [...document.querySelectorAll("[data-check-index]")];
+  const checked = boxes.filter(b=>b.checked);
+  boxes.forEach(b=>{if(b.checked) markAction(`check:${b.dataset.checkIndex}`);});
+  document.getElementById("checkProgress").textContent = `${checked.length} de ${boxes.length} capacidades marcadas.`;
+  if(checked.length === boxes.length){
+    document.getElementById("readyBox").classList.remove("hidden");
+    markAction("checklist:complete");
+  }else{
+    document.getElementById("readyBox").classList.add("hidden");
+  }
+}
+
+document.querySelectorAll(".level-choice").forEach(btn=>btn.addEventListener("click",()=>selectLevel(btn.dataset.level)));
+document.getElementById("changeLevel").addEventListener("click",changeLevel);
+</script>
+</body>
+</html>

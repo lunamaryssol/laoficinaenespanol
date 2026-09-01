@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tema 36 · Preposiciones | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish sobre preposiciones para ubicar, conectar y coordinar información profesional.">
+<style>
+:root{--azul:#003893;--amarillo:#FCD116;--rojo:#CE1126;--blanco:#fff;--negro:#000;--tinta:#16243a;--gris:#5f6d82;--fondo:#f4f7fb;--borde:#d9e1ec;--ok:#16784a;--sombra:0 14px 35px rgba(0,56,147,.10);--radio:18px;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--tinta);background:var(--fondo);line-height:1.55}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}a{color:var(--azul)}
+.level-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#eef4ff,#fff 48%,#fff9d9)}
+.level-panel{width:min(1080px,100%);background:#fff;border-radius:26px;padding:34px;box-shadow:var(--sombra);border-top:8px solid var(--azul)}
+.brand{font-weight:900;color:var(--azul);letter-spacing:.02em}.level-panel h1{font-size:clamp(2rem,4vw,3.4rem);margin:.35em 0 .15em;line-height:1.05}.lead{color:var(--gris);max-width:780px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}.level-btn{border:2px solid var(--borde);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:215px;transition:.2s}.level-btn:hover,.level-btn:focus-visible{border-color:var(--azul);transform:translateY(-2px);outline:3px solid rgba(0,56,147,.14)}.level-btn strong{display:block;font-size:1.25rem;margin-bottom:10px}.level-btn span{color:var(--gris)}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);border-bottom:1px solid var(--borde);backdrop-filter:blur(10px)}.topbar-inner{width:min(var(--max),calc(100% - 32px));margin:auto;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:12px 0}.route{font-weight:900;color:var(--azul)}.progress-track{height:10px;background:#e7edf6;border-radius:999px;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#2f69c9);transition:width .25s}.progress-label{font-size:.84rem;font-weight:800;color:var(--gris);margin-top:4px}.change-btn,.btn{border:0;border-radius:11px;padding:10px 14px;font-weight:800}.change-btn{background:#edf3fc;color:var(--azul)}.btn{background:var(--azul);color:#fff}.btn.secondary{background:#eef3fb;color:var(--azul)}.btn.yellow{background:var(--amarillo);color:#111}.btn.red{background:var(--rojo);color:#fff}.btn:focus-visible,.change-btn:focus-visible,.audio-btn:focus-visible,.card-toggle:focus-visible{outline:3px solid rgba(252,209,22,.8);outline-offset:2px}
+.hero{background:linear-gradient(135deg,#002d78,#064ca9);color:#fff;padding:48px 0}.hero-inner{width:min(var(--max),calc(100% - 32px));margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.09em;font-size:.78rem;font-weight:900;color:var(--amarillo)}.hero h1{font-size:clamp(2rem,4vw,3.6rem);line-height:1.08;margin:.25em 0}.hero p{max-width:850px;color:#e6efff;font-size:1.05rem}
+.layout{width:min(var(--max),calc(100% - 32px));margin:28px auto 50px;display:grid;grid-template-columns:250px 1fr;gap:22px}.sidebar{position:sticky;top:88px;align-self:start;background:#fff;border:1px solid var(--borde);border-radius:16px;padding:10px;box-shadow:0 6px 20px rgba(0,0,0,.04);max-height:calc(100vh - 110px);overflow:auto}.nav-btn{width:100%;border:0;background:transparent;text-align:left;padding:10px;border-radius:10px;color:var(--gris);font-weight:750}.nav-btn.active{background:#eaf1fd;color:var(--azul)}
+.section{display:none;background:#fff;border:1px solid var(--borde);border-radius:var(--radio);padding:26px;box-shadow:0 7px 24px rgba(15,38,80,.05)}.section.active{display:block}.section h2{margin-top:0;color:var(--azul);font-size:1.6rem}.section h3{color:#19365f}.note{background:#fff9d7;border-left:5px solid var(--amarillo);padding:13px 15px;border-radius:10px}.info{background:#edf4ff;border-left:5px solid var(--azul);padding:13px 15px;border-radius:10px}.warn{background:#fff1f1;border-left:5px solid var(--rojo);padding:13px 15px;border-radius:10px}.small{font-size:.9rem;color:var(--gris)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid var(--borde);border-radius:14px;background:#fbfcff;overflow:hidden}.card-toggle{width:100%;border:0;background:transparent;padding:16px;text-align:left;font-weight:900;color:var(--azul);display:flex;justify-content:space-between;gap:10px}.card-body{display:none;padding:0 16px 16px}.card.open .card-body{display:block}.tag{display:inline-block;background:#eaf1fd;color:var(--azul);font-size:.78rem;font-weight:850;padding:4px 8px;border-radius:999px;margin-right:6px}
+.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin:9px 0}.audio-btn{border:1px solid #c8d6eb;background:#fff;color:var(--azul);border-radius:9px;padding:8px 10px;font-weight:800}.audio-btn:hover{background:#eef4ff}.audio-status{position:fixed;right:15px;bottom:15px;background:#111;color:#fff;padding:9px 12px;border-radius:10px;z-index:50;font-size:.85rem}
+.phrase-group{margin:18px 0}.phrase{border:1px solid var(--borde);border-radius:13px;padding:14px;margin:10px 0;background:#fff}.phrase-main{font-weight:850;font-size:1.03rem}.use-note{display:none;margin-top:9px;color:var(--gris)}.phrase.open .use-note{display:block}.mini-btn{border:0;background:#eef3fb;color:var(--azul);border-radius:8px;padding:7px 9px;font-weight:800;margin-top:8px}
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:14px}.builder-box{background:#f7f9fd;border:1px solid var(--borde);padding:16px;border-radius:13px}.builder-box label{font-weight:850;display:block;margin-bottom:6px}.builder-box select,.builder-box input,.practice textarea{width:100%;border:1px solid #bfcbe0;border-radius:10px;padding:11px;background:#fff}.builder-output{grid-column:1/-1;background:#092b63;color:#fff;padding:18px;border-radius:13px;font-size:1.08rem}.builder-output strong{color:var(--amarillo)}
+.grammar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grammar-card{border:1px solid var(--borde);border-radius:13px;padding:15px}.grammar-card .flow{font-weight:850;color:var(--azul)}
+.activity{border:1px solid var(--borde);border-radius:14px;padding:16px;margin:14px 0;background:#fbfcff}.options{display:grid;gap:9px;margin-top:10px}.option{border:1px solid #c9d4e6;background:#fff;border-radius:10px;padding:11px;text-align:left}.option.selected{border-color:var(--azul);background:#edf4ff}.feedback{display:none;margin-top:10px;padding:11px;border-radius:9px}.feedback.show{display:block}.feedback.good{background:#eaf8f0;color:#155c3c}.feedback.neutral{background:#fff8d9;color:#624e00}.feedback.bad{background:#fff0f0;color:#7a2020}
+.model-box{display:none;border:1px dashed #aabbd3;border-radius:13px;padding:16px;margin-top:12px;background:#fbfdff}.model-box.show{display:block}.annotated{background:#0a2d66;color:#fff;padding:18px;border-radius:14px}.annotated button{border:0;border-bottom:1px dashed var(--amarillo);background:transparent;color:#fff;padding:0;font:inherit;font-weight:850}.annotation-note{margin-top:12px;background:rgba(255,255,255,.11);padding:11px;border-radius:9px;color:#edf4ff}
+.practice textarea{min-height:170px;resize:vertical;margin-top:10px}.requirements{padding-left:20px}.checklist{display:grid;gap:10px}.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:11px;padding:12px}.check-item input{width:20px;height:20px;margin-top:3px;accent-color:var(--azul)}.check-track{height:9px;background:#e7edf5;border-radius:999px;overflow:hidden;margin-top:14px}.check-bar{height:100%;width:0;background:var(--ok);transition:width .2s}.ready{display:none;background:#eaf8f0;border:1px solid #bfe2cf;border-radius:14px;padding:18px;margin-top:16px}.ready.show{display:block}.challenge{display:inline-block;text-decoration:none;background:var(--rojo);color:#fff;font-weight:900;border-radius:10px;padding:11px 15px;margin-top:8px}
+.section-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px;padding-top:16px;border-top:1px solid var(--borde)}footer{width:min(var(--max),calc(100% - 32px));margin:0 auto 35px;color:var(--gris);font-size:.88rem;text-align:center}
+@media(max-width:900px){.level-grid,.cards,.grammar-grid,.builder{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;max-height:none}.nav-btn{white-space:nowrap;width:auto;flex:0 0 auto}.topbar-inner{grid-template-columns:1fr auto}.progress-wrap{grid-column:1/-1;grid-row:2}.builder-output{grid-column:1}}
+@media(max-width:600px){.level-panel{padding:22px}.topbar-inner{gap:9px}.hero{padding:34px 0}.layout{width:min(100% - 18px,var(--max))}.section{padding:19px}.section-actions{position:sticky;bottom:6px;background:rgba(255,255,255,.96);padding:8px;border:1px solid var(--borde);border-radius:11px;z-index:20}.section-actions .btn{flex:1}.audio-btn{flex:1}.level-btn{min-height:auto}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-panel">
+    <div class="brand">La Oficina en Español · Herramientas lingüísticas</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Elige tu ruta. Todos trabajan el mismo tema —preposiciones para ubicar, conectar y coordinar información profesional—, pero cambia el apoyo, la complejidad y la precisión esperada.</p>
+    <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+      <button class="level-btn" type="button" data-level="a2"><strong>🌱 A2 — Principiante</strong><span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span></button>
+      <button class="level-btn" type="button" data-level="b1"><strong>💼 B1 — Intermedio</strong><span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span></button>
+      <button class="level-btn" type="button" data-level="b2"><strong>🚀 B2 — Avanzado</strong><span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span></button>
+    </div>
+  </div>
+</section>
+
+<div id="module" class="hidden">
+  <div class="topbar"><div class="topbar-inner">
+    <div id="routeBadge" class="route">Tu ruta:</div>
+    <div class="progress-wrap" aria-label="Progreso del módulo"><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><div id="progressLabel" class="progress-label">0 % completado</div></div>
+    <button id="changeLevel" class="change-btn" type="button">Cambiar nivel</button>
+  </div></div>
+  <div id="audioStatus" class="audio-status hidden" role="status" aria-live="polite"></div>
+  <header class="hero"><div class="hero-inner"><div class="eyebrow">Tema 36 · Preposiciones</div><h1>Ubica, conecta y coordina información profesional con preposiciones</h1><p id="heroText"></p></div></header>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar" aria-label="Secciones del módulo"></aside>
+    <main id="sections"></main>
+  </div>
+  <footer>La Oficina en Español · <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">laoficinaenespanol.com</a></footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  meta:{tema:36,titulo:"Preposiciones",habilidad:"Ubicar, conectar y coordinar información profesional con preposiciones",retoUrl:"#"},
+  a2:{
+    route:"Tu ruta: 🌱 A2 — Principiante",
+    hero:"Vas a practicar preposiciones muy frecuentes para decir dónde ocurre algo, hacia dónde va un documento, con quién trabajas y de qué trata una reunión o un informe.",
+    objetivo:"Al terminar esta semana podrás dar información básica sobre lugares, destinatarios, origen, compañía y tema usando preposiciones frecuentes en situaciones de trabajo.",
+    situacion:"Trabajas en un equipo que coordina un proyecto. Necesitas decir dónde está una reunión, enviar un archivo a una persona, explicar de quién recibiste información, indicar con quién trabajas y decir sobre qué trata un informe. El reto es elegir una preposición sencilla pero correcta sin traducir palabra por palabra del inglés.",
+    vocab:[
+      {term:"en",stress:"EN",en:"in / at / on",desc:"Ubica una actividad o una cosa en un lugar o contexto.",ex:"La reunión es en la sala 3.",extra:"Muy frecuente con lugares y contextos: en la oficina, en línea, en el informe."},
+      {term:"a",stress:"A",en:"to",desc:"Marca destino o dirección.",ex:"Envío el informe a Marta.",extra:"Úsala para indicar a quién o hacia dónde llega algo."},
+      {term:"de",stress:"DE",en:"from / of",desc:"Indica origen, pertenencia o relación.",ex:"Recibí un mensaje de mi jefe.",extra:"También aparece en: el equipo de ventas, el informe de resultados."},
+      {term:"con",stress:"CON",en:"with",desc:"Indica compañía, colaboración o instrumento.",ex:"Tengo una reunión con el cliente.",extra:"En este módulo la usaremos sobre todo para decir con quién trabajas o te reúnes."},
+      {term:"sobre",stress:"SO-bre",en:"about / on",desc:"Introduce el tema de una conversación, reunión o documento.",ex:"Hablamos sobre el nuevo proyecto.",extra:"Muy útil con reunión, informe, conversación y pregunta."},
+      {term:"entre",stress:"EN-tre",en:"between / among",desc:"Relaciona dos o más personas, equipos u opciones.",ex:"Hay un acuerdo entre ventas y finanzas.",extra:"Úsala cuando algo conecta o compara dos partes."},
+      {term:"desde",stress:"DES-de",en:"from / since",desc:"Marca un punto de inicio en espacio o tiempo.",ex:"Trabajo desde casa los viernes.",extra:"También: desde las 9:00, desde Medellín."},
+      {term:"hasta",stress:"HAS-ta",en:"until / up to",desc:"Marca un límite final en espacio o tiempo.",ex:"La reunión es hasta las 11:00.",extra:"Se combina con desde: desde las 9:00 hasta las 11:00."}
+    ],
+    phrases:[
+      {group:"Ubicar",text:"La reunión es en la sala 3.",use:"Para indicar dónde ocurre una reunión o actividad."},
+      {group:"Enviar y recibir",text:"Envío el documento a Laura.",use:"Para indicar el destinatario de un documento o mensaje."},
+      {group:"Enviar y recibir",text:"Recibí la información de Carlos.",use:"Para indicar el origen de una información."},
+      {group:"Coordinar",text:"Trabajo con el equipo de ventas.",use:"Para indicar colaboración o compañía."},
+      {group:"Hablar del tema",text:"La reunión es sobre el presupuesto.",use:"Para introducir el tema principal."},
+      {group:"Relacionar",text:"Hay un acuerdo entre los dos equipos.",use:"Para relacionar dos partes."},
+      {group:"Tiempo",text:"La sesión es desde las 9:00 hasta las 10:00.",use:"Para marcar inicio y final de un periodo."}
+    ],
+    builder:{labels:["Lugar o contexto","Acción","Complemento"],parts:[
+      ["en la oficina","en la reunión","en el informe"],
+      ["hablo con","envío el archivo a","recibo información de"],
+      ["mi equipo","la cliente","finanzas"]
+    ],hint:"Combina los bloques y luego ajusta la frase para que tenga sentido."},
+    grammar:[
+      {flow:"Lugar → en → ubicación",ex:"La presentación es en la sala principal.",why:"Usamos en para ubicar una actividad o cosa."},
+      {flow:"Destino → a → persona/lugar",ex:"Mando la propuesta a la clienta.",why:"Usamos a para indicar hacia quién o hacia dónde va algo."},
+      {flow:"Origen/relación → de → persona/área",ex:"Es un mensaje de Recursos Humanos.",why:"Usamos de para indicar origen o relación."},
+      {flow:"Compañía → con → persona/equipo",ex:"Tengo una llamada con el proveedor.",why:"Usamos con para indicar con quién ocurre una actividad."},
+      {flow:"Tema → sobre → asunto",ex:"Tenemos una reunión sobre el presupuesto.",why:"Usamos sobre para introducir el tema."},
+      {flow:"Inicio y final → desde... hasta...",ex:"La capacitación es desde las 2:00 hasta las 4:00.",why:"Estas dos preposiciones marcan los límites de tiempo."}
+    ],
+    register:{prompt:"Un cliente importante te pide el informe. ¿Qué opción es más apropiada?",options:[
+      {t:"Te mando el informe.",type:"neutral",f:"Es correcta y natural, pero puede sonar algo breve si la relación es formal."},
+      {t:"Le envío el informe a su correo esta tarde.",type:"good",f:"Funciona bien: identifica el destino con a y mantiene un tono profesional y claro."},
+      {t:"Informe a ti esta tarde.",type:"bad",f:"La estructura no es natural. Para indicar destinatario, puedes decir: “Le envío el informe a su correo esta tarde”."}
+    ]},
+    example:"Hoy trabajo en la oficina. A las diez tengo una reunión con el equipo de ventas sobre el nuevo proyecto. Antes de la reunión, envío la última versión del informe a Marta y reviso un mensaje de Finanzas. La reunión es desde las diez hasta las once.",
+    annotations:{"en la oficina":"lugar","con el equipo de ventas":"compañía / interlocutor","sobre el nuevo proyecto":"tema","a Marta":"destinatario","de Finanzas":"origen","desde las diez hasta las once":"inicio y final"},
+    quiz:[
+      {q:"La reunión es ___ la sala 2.",options:["a","en","de"],answer:1,explain:"En ubica la reunión en un lugar."},
+      {q:"Envío la propuesta ___ la clienta.",options:["a","con","sobre"],answer:0,explain:"A marca el destinatario."},
+      {q:"Tengo una llamada ___ el proveedor.",options:["de","con","hasta"],answer:1,explain:"Con indica con quién tienes la llamada."},
+      {q:"El informe es ___ los resultados del trimestre.",options:["sobre","a","entre"],answer:0,explain:"Sobre introduce el tema."},
+      {q:"La capacitación es ___ las 2:00 ___ las 4:00.",options:["desde / hasta","de / con","a / sobre"],answer:0,explain:"Desde marca el inicio y hasta el final."}
+    ],
+    practice:{situation:"Tu equipo tendrá una reunión mañana. Escribe un mensaje breve a una compañera.",requirements:["Di dónde es la reunión usando en.","Di con quién es usando con.","Di sobre qué tema es usando sobre.","Indica un horario usando desde... hasta..."],supports:["La reunión es en…","Es con…","La reunión es sobre…","Es desde… hasta…"],model:"Hola, Ana. La reunión es en la sala 4. Es con el equipo de ventas y es sobre el nuevo cliente. La reunión es desde las 9:00 hasta las 10:00."},
+    checklist:["Puedo usar en para indicar dónde ocurre algo.","Puedo usar a y de para indicar destino y origen.","Puedo usar con para decir con quién trabajo o me reúno.","Puedo usar sobre para indicar el tema de una reunión o informe.","Puedo usar desde... hasta... para indicar un periodo."]
+  },
+  b1:{
+    route:"Tu ruta: 💼 B1 — Intermedio",
+    hero:"Vas a afinar el uso de preposiciones frecuentes en mensajes, reuniones y coordinación para evitar ambigüedades y construir frases más naturales.",
+    objetivo:"Al terminar esta semana podrás describir ubicaciones, destinatarios, origen, relaciones, temas y límites temporales con preposiciones adecuadas en comunicaciones profesionales habituales.",
+    situacion:"Coordinas tareas entre ventas, operaciones y un proveedor. Debes explicar dónde se realizará una actividad, a quién se enviará información, de qué área procede un dato, con quién se revisará un problema y sobre qué asunto se tomará una decisión. El reto es elegir la preposición por su función, no por traducción literal.",
+    vocab:[
+      {term:"en",desc:"Ubicación física, virtual o contextual.",ex:"La decisión quedó registrada en el acta.",extra:"Colocaciones: en la oficina, en Teams, en el documento, en la reunión."},
+      {term:"a",desc:"Dirección, destinatario o punto de llegada.",ex:"Remitimos la propuesta al cliente.",extra:"Con artículo: a + el = al."},
+      {term:"de",desc:"Origen, pertenencia, contenido o relación.",ex:"Recibimos una actualización del proveedor.",extra:"Con artículo: de + el = del."},
+      {term:"con",desc:"Compañía, colaboración o medio.",ex:"Revisaré el contrato con Legal.",extra:"También puede señalar instrumento: con la nueva herramienta."},
+      {term:"sobre",desc:"Tema tratado o materia de un documento.",ex:"Necesitamos una decisión sobre el presupuesto.",extra:"Alternativas según contexto: acerca de, respecto a."},
+      {term:"entre",desc:"Relación o distribución entre varias partes.",ex:"El acuerdo entre las áreas redujo duplicidades.",extra:"No se limita a dos elementos."},
+      {term:"desde / hasta",desc:"Límites inicial y final en tiempo o espacio.",ex:"La ventana de mantenimiento será desde las 22:00 hasta las 23:30.",extra:"En mensajes breves también es frecuente “de 22:00 a 23:30”."},
+      {term:"sin",desc:"Ausencia de un elemento o condición.",ex:"No podemos cerrar el pedido sin la aprobación de Compras.",extra:"Útil para explicar dependencias y restricciones."}
+    ],
+    phrases:[
+      {group:"Coordinar",text:"La revisión será en la oficina central y con el equipo de Operaciones.",use:"Combina ubicación e interlocutor sin repetir estructuras."},
+      {group:"Distribuir información",text:"Enviaré la versión final al cliente y una copia al equipo interno.",use:"A + el se contrae en al."},
+      {group:"Indicar origen",text:"La cifra procede del informe de Finanzas.",use:"De + el se contrae en del."},
+      {group:"Definir el tema",text:"Necesitamos una decisión sobre el alcance del proyecto.",use:"Sobre introduce el asunto específico."},
+      {group:"Relacionar áreas",text:"Hay una diferencia de criterio entre Ventas y Operaciones.",use:"Entre permite situar una relación o contraste."},
+      {group:"Marcar límites",text:"La implementación será desde el lunes hasta el jueves.",use:"Desde... hasta... presenta un intervalo completo."}
+    ],
+    builder:{labels:["Función","Núcleo","Complemento"],parts:[
+      ["Ubicación: en","Destino: a","Origen: de","Tema: sobre","Relación: entre"],
+      ["la reunión","el informe","la decisión","el acuerdo"],
+      ["la sede central","el cliente","Finanzas","el presupuesto","Ventas y Operaciones"]
+    ],hint:"Construye una frase y corrige artículos o contracciones cuando corresponda (al, del)."},
+    grammar:[
+      {flow:"en + lugar/contexto",ex:"Lo revisamos en la reunión de mañana.",why:"En sitúa el hecho dentro de un lugar o contexto."},
+      {flow:"a + destinatario",ex:"Enviaremos la propuesta al cliente.",why:"Cuando a va delante de el, se forma al."},
+      {flow:"de + origen/relación",ex:"La actualización viene del proveedor.",why:"Cuando de va delante de el, se forma del."},
+      {flow:"con + participante/medio",ex:"Validaremos el cambio con el equipo técnico.",why:"Con identifica colaboración o instrumento."},
+      {flow:"sobre + tema",ex:"Hay varias preguntas sobre la fecha de lanzamiento.",why:"Sobre delimita el asunto del que se habla."},
+      {flow:"sin + sustantivo/infinitivo",ex:"No podemos avanzar sin confirmar el presupuesto.",why:"Sin expresa ausencia o una condición no cumplida."}
+    ],
+    register:{prompt:"Debes pedir a un proveedor que revise un problema antes de mañana. ¿Qué formulación elegirías?",options:[
+      {t:"Necesito hablar con ustedes sobre el error antes de mañana.",type:"good",f:"Es clara, profesional y usa con para el interlocutor y sobre para el asunto."},
+      {t:"Necesito hablar a ustedes del error.",type:"bad",f:"Con el verbo hablar, para indicar interlocutor, con es la opción natural: “hablar con ustedes”."},
+      {t:"Quiero ver esto con ustedes.",type:"neutral",f:"Puede funcionar en una relación cercana, pero “esto” es impreciso. Nombrar el asunto reduce ambigüedad."}
+    ]},
+    example:"La reunión con el proveedor será en nuestra oficina el martes. Revisaremos una incidencia sobre las entregas y compararemos los datos del proveedor con los registros internos. Después enviaré un resumen al equipo de Compras. La revisión se realizará desde las 9:30 hasta las 10:30 y no cerraremos el caso sin confirmar la causa.",
+    annotations:{"con el proveedor":"interlocutor","en nuestra oficina":"ubicación","sobre las entregas":"tema","del proveedor":"origen / relación","con los registros internos":"comparación / referencia","al equipo de Compras":"destinatario","desde las 9:30 hasta las 10:30":"intervalo","sin confirmar la causa":"condición ausente"},
+    quiz:[
+      {q:"Enviaremos la actualización ___ cliente esta tarde.",options:["al","del","con el"],answer:0,explain:"A + el se contrae en al."},
+      {q:"Los datos proceden ___ informe de Finanzas.",options:["al","del","en el"],answer:1,explain:"De + el se contrae en del."},
+      {q:"Tenemos varias dudas ___ el alcance.",options:["sobre","a","entre"],answer:0,explain:"Sobre introduce el tema."},
+      {q:"Necesito validar el cambio ___ el equipo técnico.",options:["con","a","desde"],answer:0,explain:"Con identifica al participante con quien se valida."},
+      {q:"No podemos aprobarlo ___ revisar el anexo.",options:["sin","entre","de"],answer:0,explain:"Sin + infinitivo expresa una condición que todavía falta."}
+    ],
+    practice:{situation:"Un proveedor ha enviado datos incompletos. Redacta una respuesta de 4–6 frases para coordinar la revisión.",requirements:["Indica el origen de la información.","Explica con quién revisarás el problema.","Define sobre qué punto necesitas aclaración.","Indica a quién enviarás la versión corregida.","Incluye un límite temporal claro."],supports:["Los datos del proveedor…","Lo revisaré con…","Necesito una aclaración sobre…","Enviaré la versión final al…","La revisión será desde… hasta…"],model:"Los datos del archivo del proveedor están incompletos. Lo revisaré con el equipo de Operaciones esta tarde. Necesito una aclaración sobre las cantidades de la última entrega. Después enviaré la versión corregida al responsable de Compras. La revisión será desde las 15:00 hasta las 16:00."},
+    checklist:["Distingo ubicación, destino, origen, interlocutor y tema.","Uso al y del cuando corresponde.","Puedo elegir entre sobre, con, de y a según la función.","Puedo marcar límites con desde... hasta... o expresiones equivalentes.","Puedo redactar un mensaje profesional breve sin traducir literalmente las preposiciones."]
+  },
+  b2:{
+    route:"Tu ruta: 🚀 B2 — Avanzado",
+    hero:"Vas a trabajar precisión preposicional, colocaciones y diferencias de registro para que tus mensajes profesionales sean menos ambiguos y más naturales.",
+    objetivo:"Al terminar esta semana podrás seleccionar preposiciones y locuciones preposicionales con precisión para delimitar relaciones, temas, fuentes, destinatarios, marcos temporales y condiciones en contextos profesionales exigentes.",
+    situacion:"Participas en una coordinación interdepartamental con implicaciones contractuales. Debes atribuir fuentes, delimitar responsabilidades, señalar el ámbito de una decisión, explicar dependencias y distinguir relaciones entre áreas sin crear ambigüedad. Varias formulaciones pueden ser gramaticales, pero no todas producen el mismo grado de precisión o formalidad.",
+    vocab:[
+      {term:"respecto a",desc:"Introduce un asunto retomado o una referencia temática.",ex:"Respecto a la propuesta, necesitamos una validación jurídica.",extra:"Más formal y estructurador que sobre en ciertos correos o reuniones."},
+      {term:"en relación con",desc:"Delimita el asunto con tono profesional y relativamente formal.",ex:"En relación con el contrato, quedan dos puntos pendientes.",extra:"Útil para conectar con un tema previo sin sonar abrupto."},
+      {term:"a partir de",desc:"Marca un punto de inicio temporal, lógico o documental.",ex:"A partir del lunes aplicaremos el nuevo procedimiento.",extra:"No equivale siempre a desde: puede implicar comienzo de vigencia."},
+      {term:"hasta",desc:"Marca límite o alcance máximo.",ex:"La autorización cubre hasta 50.000 euros.",extra:"Puede expresar tiempo, cantidad o alcance."},
+      {term:"entre",desc:"Delimita relaciones, reparto o contraste entre partes.",ex:"La responsabilidad se distribuye entre Operaciones y Compras.",extra:"Puede señalar una relación institucional, no solo una posición física."},
+      {term:"ante",desc:"Sitúa una reacción o decisión frente a una circunstancia.",ex:"Ante el retraso, revisaremos el plan de entregas.",extra:"Útil para presentar el contexto que provoca una respuesta profesional."},
+      {term:"conforme a",desc:"Indica adecuación a una norma, criterio o documento.",ex:"La revisión se hizo conforme al procedimiento aprobado.",extra:"Más formal que según; útil en documentación."},
+      {term:"a cargo de",desc:"Atribuye responsabilidad operativa.",ex:"La validación final queda a cargo de Finanzas.",extra:"Evita ambigüedad sobre quién ejecuta o responde por una tarea."}
+    ],
+    phrases:[
+      {group:"Delimitar tema",text:"En relación con el cambio de alcance, necesitamos validar dos dependencias.",use:"Organiza un mensaje formal retomando un asunto concreto."},
+      {group:"Atribuir fuente",text:"Según el informe de Auditoría, el riesgo se concentra en la fase de implementación.",use:"Según atribuye la información a una fuente; no equivale exactamente a de."},
+      {group:"Definir responsabilidad",text:"La validación técnica queda a cargo de Operaciones.",use:"A cargo de atribuye responsabilidad de forma explícita."},
+      {group:"Marco normativo",text:"La revisión se realizó conforme al procedimiento vigente.",use:"Conforme a vincula una acción con una norma o criterio."},
+      {group:"Vigencia",text:"A partir del 1 de octubre, el nuevo flujo será obligatorio.",use:"A partir de marca el comienzo de vigencia."},
+      {group:"Reacción",text:"Ante cualquier incidencia, avisaremos al responsable del proyecto.",use:"Ante introduce la circunstancia que activa una respuesta."}
+    ],
+    builder:{labels:["Intención","Estructura","Contenido"],parts:[
+      ["Retomar asunto","Atribuir fuente","Definir responsabilidad","Marcar vigencia","Reaccionar ante una circunstancia"],
+      ["en relación con","según","a cargo de","a partir de","ante"],
+      ["el cambio de alcance","Auditoría","Operaciones","el lunes","un retraso crítico"]
+    ],hint:"No todas las combinaciones son semánticamente naturales. Elige una estructura que corresponda a la intención y ajusta la frase."},
+    grammar:[
+      {flow:"tema → sobre / respecto a / en relación con",ex:"Respecto al presupuesto, propongo revisar dos partidas.",why:"La elección modifica el registro y la función discursiva: sobre nombra tema; respecto a y en relación con suelen estructurar o retomar."},
+      {flow:"fuente → de / según / conforme a",ex:"Según el informe, el plazo es viable.",why:"De marca relación u origen; según atribuye contenido; conforme a expresa adecuación a un criterio."},
+      {flow:"responsabilidad → a cargo de",ex:"La respuesta al cliente queda a cargo de Ventas.",why:"Hace explícita la atribución de responsabilidad."},
+      {flow:"inicio → desde / a partir de",ex:"A partir del lunes entra en vigor la nueva política.",why:"A partir de suele destacar inicio de vigencia o cambio; desde puede ser puramente temporal."},
+      {flow:"límite → hasta",ex:"El alcance cubre hasta la fase de pruebas.",why:"Hasta puede delimitar tiempo, cantidad o alcance conceptual."},
+      {flow:"circunstancia → ante + sustantivo",ex:"Ante un retraso crítico, activaremos el plan alternativo.",why:"Ante presenta una situación que provoca o condiciona la respuesta."}
+    ],
+    register:{prompt:"Debes escribir a Dirección sobre un cambio que empieza el lunes y explicar qué ocurrirá si aparece una incidencia. ¿Cuál opción gestiona mejor el matiz?",options:[
+      {t:"Desde el lunes cambia el proceso, pero Legal no ha terminado.",type:"neutral",f:"Es clara, pero el contraste es directo y poco matizado para una comunicación institucional."},
+      {t:"A partir del lunes aplicaremos el nuevo proceso. Ante cualquier incidencia, activaremos el procedimiento de escalamiento.",type:"good",f:"Distingue con precisión el inicio de vigencia y la reacción ante una circunstancia."},
+      {t:"En el lunes aplicaremos el nuevo proceso con cualquier incidencia.",type:"bad",f:"“En el lunes” no es natural para marcar inicio de vigencia y “con cualquier incidencia” no expresa adecuadamente la reacción ante una circunstancia."}
+    ]},
+    example:"En relación con el cambio de alcance, propongo mantener la fecha de lanzamiento. Según el informe de Riesgos, la principal dependencia está en la integración con el proveedor externo. La validación técnica queda a cargo de Operaciones y la contractual, a cargo de Legal. A partir del lunes aplicaremos el nuevo flujo. Ante cualquier incidencia durante la implementación, Operaciones informará a Dirección.",
+    annotations:{"En relación con el cambio de alcance":"marco temático / cohesión","Según el informe de Riesgos":"atribución de fuente","con el proveedor externo":"relación operativa","a cargo de Operaciones":"responsabilidad","A partir del lunes":"inicio de vigencia","Ante cualquier incidencia durante la implementación":"circunstancia / reacción"},
+    quiz:[
+      {q:"¿Qué opción atribuye claramente una afirmación a una fuente documental?",options:["De acuerdo del informe...","Según el informe...","Con el informe..."],answer:1,explain:"Según introduce la fuente de la afirmación."},
+      {q:"¿Qué opción expresa mejor inicio de vigencia?",options:["A partir del lunes entra en vigor.","En el lunes entra en vigor.","Con el lunes entra en vigor."],answer:0,explain:"A partir de es natural para marcar el comienzo de vigencia."},
+      {q:"¿Qué expresión atribuye responsabilidad operativa?",options:["a cargo de","en relación con","hasta"],answer:0,explain:"A cargo de identifica quién asume la responsabilidad."},
+      {q:"En un correo formal, ¿qué opción retoma un asunto previo con tono estructurado?",options:["Sobre eso...","En relación con la propuesta...","Con la propuesta..."],answer:1,explain:"En relación con delimita y retoma el asunto de forma más formal."},
+      {q:"¿Qué preposición introduce una circunstancia que provoca una reacción?",options:["ante","entre","desde"],answer:0,explain:"Ante introduce una circunstancia frente a la cual se produce una reacción."}
+    ],
+    practice:{situation:"Dirección aprobó un cambio operativo, pero queda una dependencia técnica y existe riesgo de retraso. Redacta un mensaje de 6–8 frases para responsables de área.",requirements:["Retoma el asunto con una locución temática adecuada.","Atribuye al menos una afirmación a una fuente.","Define responsables de dos acciones.","Marca el inicio de vigencia.","Explica qué ocurrirá ante una incidencia o retraso."],supports:["En relación con…","Según…","queda a cargo de…","A partir de…","Ante…"],model:"En relación con el cambio operativo aprobado ayer, mantendremos la fecha prevista. Según el informe técnico, la principal dependencia sigue siendo la integración con el proveedor. La validación de esa integración queda a cargo de Operaciones, mientras que la revisión contractual queda a cargo de Legal. A partir del lunes aplicaremos el nuevo procedimiento. Ante cualquier incidencia durante la implementación, Operaciones informará a Dirección y actualizará el plan antes del cierre de la semana."},
+    checklist:["Distingo tema, fuente, responsabilidad, vigencia, límite y circunstancia.","Puedo elegir entre preposiciones simples y locuciones según registro e intención.","Evito traducciones literales que generan combinaciones poco naturales.","Puedo delimitar responsabilidades y relaciones sin ambigüedad.","Puedo justificar por qué una formulación es más precisa o apropiada que otra."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionDefs=[
+  ["objetivo","1. 🎯 Tu objetivo esta semana"],["situacion","2. 🏢 La situación"],["vocab","3. 🗣️ Vocabulario clave"],["phrases","4. 💬 Frases que puedes usar"],["builder","5. 🧩 Construye tu mensaje"],["grammar","6. 📚 Gramática que necesitas"],["register","7. 🎭 Elige el registro"],["example","8. 💼 Mira cómo se hace"],["quiz","9. ✍️ Comprueba lo que aprendiste"],["practice","10. 🏢 Ahora te toca a ti"],["model","11. 💡 Ver modelo"],["checklist","12. ✅ Checklist final"]
+];
+let level=null,current=0;const actions=new Set();
+const levelScreen=document.getElementById('levelScreen'),moduleEl=document.getElementById('module'),sectionsEl=document.getElementById('sections'),sidebar=document.getElementById('sidebar'),routeBadge=document.getElementById('routeBadge'),heroText=document.getElementById('heroText'),progressBar=document.getElementById('progressBar'),progressLabel=document.getElementById('progressLabel'),audioStatus=document.getElementById('audioStatus');
+
+function safe(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function mark(key){actions.add(key);updateProgress()}
+function updateProgress(){const base=sectionDefs.length+5;const pct=Math.min(100,Math.round(actions.size/base*100));progressBar.style.width=pct+'%';progressLabel.textContent=pct+' % completado'}
+
+function chooseSpanishVoice(){if(!('speechSynthesis' in window))return null;const voices=speechSynthesis.getVoices();const es=voices.filter(v=>/^es([-_]|$)/i.test(v.lang));return es.find(v=>/CO|colomb/i.test(v.lang+' '+v.name))||es.find(v=>/MX|US|AR|CL|PE|419/i.test(v.lang))||es[0]||null}
+function speak(text,slow=false){if(level!=='a2')return;if(!('speechSynthesis' in window)){showAudioStatus('Tu navegador no ofrece síntesis de voz. El resto del módulo sigue funcionando.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='es-CO';u.rate=slow?.72:.94;const v=chooseSpanishVoice();if(v)u.voice=v;u.onstart=()=>showAudioStatus(slow?'Reproduciendo lento…':'Reproduciendo…');u.onend=()=>hideAudioStatus();u.onerror=()=>showAudioStatus('No fue posible reproducir este audio.');speechSynthesis.speak(u);mark('audio:'+text)}
+function showAudioStatus(msg){audioStatus.textContent=msg;audioStatus.classList.remove('hidden')}function hideAudioStatus(){setTimeout(()=>audioStatus.classList.add('hidden'),400)}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=()=>chooseSpanishVoice()}
+function audioControls(text){if(level!=='a2')return'';const t=safe(text);return `<div class="audio-row"><button type="button" class="audio-btn" data-speak="${t}" aria-label="Escuchar: ${t}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak-slow="${t}" aria-label="Escuchar lento: ${t}">🐢 Lento / Slow</button></div>`}
+function navButtons(i){return `<div class="section-actions"><button class="btn secondary prev" type="button" ${i===0?'disabled':''}>← Anterior</button><button class="btn next" type="button" ${i===sectionDefs.length-1?'disabled':''}>Siguiente →</button></div>`}
+
+function render(){const d=contenido[level];actions.clear();routeBadge.textContent=d.route;heroText.textContent=d.hero;sidebar.innerHTML='';sectionsEl.innerHTML='';sectionDefs.forEach(([key,label],i)=>{const nb=document.createElement('button');nb.type='button';nb.className='nav-btn'+(i===0?' active':'');nb.textContent=label;nb.dataset.index=i;sidebar.appendChild(nb);const s=document.createElement('section');s.className='section'+(i===0?' active':'');s.dataset.key=key;s.innerHTML=renderSection(key,label,d,i);sectionsEl.appendChild(s)});bindDynamic();mark('level:'+level);showSection(0)}
+function renderSection(key,label,d,i){let body='';
+  if(key==='objetivo')body=`<p>${safe(d.objetivo)}</p><div class="note">Al final del módulo comprobarás si ya puedes hacerlo.</div>`;
+  if(key==='situacion')body=`<p>${safe(d.situacion)}</p><div class="info"><strong>Observa la función.</strong> En este tema no memorizas una lista aislada: eliges la preposición según la relación que necesitas expresar.</div>`;
+  if(key==='vocab')body=`<div class="cards">${d.vocab.map((v,n)=>`<article class="card"><button class="card-toggle" type="button" data-card="v${n}"><span>${safe(v.term)}</span><span>+</span></button><div class="card-body">${level==='a2'?`<p><span class="tag">English</span>${safe(v.en)}</p><p><strong>Pronunciación:</strong> ${safe(v.stress)}</p>`:''}<p>${safe(v.desc)}</p><p><strong>Ejemplo:</strong> ${safe(v.ex)}</p>${audioControls(v.term)}${audioControls(v.ex)}<p class="small">${safe(v.extra)}</p></div></article>`).join('')}</div>${level==='a2'?`<div class="activity"><strong>Recuperación rápida</strong><p>¿Qué palabra significa <em>with</em>?</p><div class="options"><button class="option vocab-recall" data-good="false">de</button><button class="option vocab-recall" data-good="true">con</button><button class="option vocab-recall" data-good="false">sobre</button></div><div class="feedback" id="vocabFeedback"></div></div>`:''}`;
+  if(key==='phrases'){const groups=[...new Set(d.phrases.map(p=>p.group))];body=groups.map(g=>`<div class="phrase-group"><h3>${safe(g)}</h3>${d.phrases.filter(p=>p.group===g).map((p,n)=>`<div class="phrase"><div class="phrase-main">${safe(p.text)}</div>${audioControls(p.text)}<button class="mini-btn phrase-toggle" type="button">Ver cuándo usarla</button><div class="use-note">${safe(p.use)}</div></div>`).join('')}</div>`).join('')}
+  if(key==='builder')body=`<p>${safe(d.builder.hint)}</p><div class="builder">${d.builder.parts.map((arr,n)=>`<div class="builder-box"><label for="build${n}">${safe(d.builder.labels[n])}</label><select id="build${n}" class="build-select">${arr.map(x=>`<option>${safe(x)}</option>`).join('')}</select></div>`).join('')}<div class="builder-output"><strong>Tu combinación:</strong> <span id="builderText"></span><div id="builderAudio"></div></div></div><p class="small">La combinación es un punto de partida. Ajusta artículos, contracciones y orden para producir una frase natural.</p>`;
+  if(key==='grammar')body=`<div class="grammar-grid">${d.grammar.map(g=>`<article class="grammar-card"><div class="flow">${safe(g.flow)}</div><p>${safe(g.why)}</p><p><strong>Ejemplo:</strong> ${safe(g.ex)}</p>${audioControls(g.ex)}</article>`).join('')}</div>${level==='a2'?'<div class="warn"><strong>Importante:</strong> el próximo tema trabaja específicamente <em>por</em> y <em>para</em>. Aquí no necesitas aprender sus diferencias todavía.</div>':''}`;
+  if(key==='register')body=`<p>${safe(d.register.prompt)}</p><div class="options">${d.register.options.map((o,n)=>`<button type="button" class="option register-option" data-n="${n}">${safe(o.t)}</button>`).join('')}</div>${level==='a2'?d.register.options.map(o=>audioControls(o.t)).join(''):''}<div id="registerFeedback" class="feedback"></div>`;
+  if(key==='example')body=`<div class="annotated"><p>${annotateExample(d.example,d.annotations)}</p><div id="annotationNote" class="annotation-note">Pulsa una parte subrayada para ver qué función cumple.</div></div>${audioControls(d.example)}`;
+  if(key==='quiz')body=d.quiz.map((q,qi)=>`<div class="activity" data-quiz="${qi}"><strong>${qi+1}. ${safe(q.q)}</strong>${level==='a2'?audioControls(q.q.replace('___','')):''}<div class="options">${q.options.map((o,oi)=>`<button type="button" class="option quiz-option" data-q="${qi}" data-o="${oi}">${safe(o)}</button>`).join('')}</div><div class="feedback" id="qfb${qi}"></div><button type="button" class="mini-btn retry-quiz" data-q="${qi}">Volver a intentar</button></div>`).join('');
+  if(key==='practice')body=`<div class="practice"><p><strong>Situación:</strong> ${safe(d.practice.situation)}</p><p><strong>Incluye:</strong></p><ul class="requirements">${d.practice.requirements.map(r=>`<li>${safe(r)}</li>`).join('')}</ul><div class="info"><strong>Apoyos que ya practicaste:</strong><ul>${d.practice.supports.map(x=>`<li>${safe(x)} ${level==='a2'?audioControls(x):''}</li>`).join('')}</ul></div><label for="studentText"><strong>Tu respuesta</strong></label><textarea id="studentText" placeholder="Escribe aquí tu respuesta..."></textarea><button type="button" class="btn secondary" id="savePractice">Marcar práctica como realizada</button></div>`;
+  if(key==='model')body=`<p>Primero compara tu propia respuesta con los requisitos. Después, si quieres, abre un modelo.</p><button type="button" class="btn yellow" id="showModel">Ver una posible respuesta</button><div id="modelBox" class="model-box"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${safe(d.practice.model)}</p>${audioControls(d.practice.model)}</div>`;
+  if(key==='checklist')body=`<p>Antes de terminar, comprueba:</p><div class="checklist">${d.checklist.map((x,n)=>`<label class="check-item"><input type="checkbox" class="check" data-n="${n}"><span>${safe(x)}</span></label>`).join('')}</div><div class="check-track"><div id="checkBar" class="check-bar"></div></div><p id="checkLabel" class="small">0 de ${d.checklist.length}</p><div id="readyBox" class="ready"><h3>🎯 Ya estás listo para practicar</h3><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir href="#" por la URL HTTPS real del reto diario cuando esté disponible. --><a class="challenge" href="${contenido.meta.retoUrl}">🔥 Ir al reto de hoy</a></div>`;
+  return `<h2>${label}</h2>${body}${navButtons(i)}`
+}
+function annotateExample(text,annotations){let out=safe(text);Object.entries(annotations).forEach(([part,note],i)=>{out=out.replace(safe(part),`<button type="button" class="annot" data-note="${safe(note)}">${safe(part)}</button>`)});return out}
+
+function bindDynamic(){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>showSection(+b.dataset.index)));
+  document.querySelectorAll('.prev').forEach((b,i)=>b.addEventListener('click',()=>showSection(i-1)));
+  document.querySelectorAll('.next').forEach((b,i)=>b.addEventListener('click',()=>showSection(i+1)));
+  document.querySelectorAll('.card-toggle').forEach(b=>b.addEventListener('click',()=>{b.closest('.card').classList.toggle('open');mark('vocab:'+b.dataset.card)}));
+  document.querySelectorAll('.phrase-toggle').forEach((b,i)=>b.addEventListener('click',()=>{b.closest('.phrase').classList.toggle('open');mark('phrase:'+i)}));
+  document.querySelectorAll('[data-speak]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speak,false)));
+  document.querySelectorAll('[data-speak-slow]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speakSlow,true)));
+  document.querySelectorAll('.vocab-recall').forEach(b=>b.addEventListener('click',()=>{const fb=document.getElementById('vocabFeedback');fb.className='feedback show '+(b.dataset.good==='true'?'good':'neutral');fb.textContent=b.dataset.good==='true'?'Sí. “Con” significa “with” en este uso.':'Inténtalo otra vez. Busca la preposición que indica compañía.';if(b.dataset.good==='true')mark('vocab-recall')}));
+  document.querySelectorAll('.build-select').forEach(s=>s.addEventListener('change',()=>updateBuilder(true)));updateBuilder(false);
+  document.querySelectorAll('.register-option').forEach(b=>b.addEventListener('click',()=>{const o=contenido[level].register.options[+b.dataset.n],fb=document.getElementById('registerFeedback');document.querySelectorAll('.register-option').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');fb.className='feedback show '+o.type;fb.textContent=o.f;mark('register')}));
+  document.querySelectorAll('.annot').forEach(b=>b.addEventListener('click',()=>{document.getElementById('annotationNote').textContent=b.dataset.note;mark('annotation')}));
+  document.querySelectorAll('.quiz-option').forEach(b=>b.addEventListener('click',()=>answerQuiz(b)));
+  document.querySelectorAll('.retry-quiz').forEach(b=>b.addEventListener('click',()=>retryQuiz(+b.dataset.q)));
+  const save=document.getElementById('savePractice');if(save)save.addEventListener('click',()=>{const t=document.getElementById('studentText').value.trim();save.textContent=t?'Práctica registrada ✓':'Escribe primero una respuesta';if(t){mark('practice');save.classList.add('yellow')}});
+  const show=document.getElementById('showModel');if(show)show.addEventListener('click',()=>{document.getElementById('modelBox').classList.toggle('show');mark('model')});
+  document.querySelectorAll('.check').forEach(c=>c.addEventListener('change',updateChecklist));
+}
+function updateBuilder(userAction=false){const sels=[...document.querySelectorAll('.build-select')];if(!sels.length)return;const text=sels.map(s=>s.value).join(' · ');document.getElementById('builderText').textContent=text;document.getElementById('builderAudio').innerHTML=level==='a2'?audioControls(text):'';document.querySelectorAll('#builderAudio [data-speak]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speak,false)));document.querySelectorAll('#builderAudio [data-speak-slow]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.speakSlow,true)));if(userAction)mark('builder')}
+function answerQuiz(b){const qi=+b.dataset.q,oi=+b.dataset.o,q=contenido[level].quiz[qi],fb=document.getElementById('qfb'+qi);document.querySelectorAll(`[data-q="${qi}"].quiz-option`).forEach(x=>x.classList.remove('selected'));b.classList.add('selected');const good=oi===q.answer;fb.className='feedback show '+(good?'good':'neutral');fb.textContent=(good?'Funciona. ':'Revisa la función de la preposición. ')+q.explain;if(good)mark('quiz:'+qi)}
+function retryQuiz(qi){document.querySelectorAll(`[data-q="${qi}"].quiz-option`).forEach(x=>x.classList.remove('selected'));const fb=document.getElementById('qfb'+qi);fb.className='feedback';fb.textContent=''}
+function updateChecklist(){const checks=[...document.querySelectorAll('.check')],n=checks.filter(c=>c.checked).length,p=Math.round(n/checks.length*100);document.getElementById('checkBar').style.width=p+'%';document.getElementById('checkLabel').textContent=`${n} de ${checks.length}`;checks.forEach(c=>{if(c.checked)mark('check:'+c.dataset.n)});document.getElementById('readyBox').classList.toggle('show',n===checks.length);if(n===checks.length)mark('ready')}
+function showSection(i){if(i<0||i>=sectionDefs.length)return;current=i;document.querySelectorAll('.section').forEach((s,n)=>s.classList.toggle('active',n===i));document.querySelectorAll('.nav-btn').forEach((b,n)=>b.classList.toggle('active',n===i));mark('section:'+i);window.scrollTo({top:document.querySelector('.hero').offsetHeight,behavior:'smooth'})}
+
+document.querySelectorAll('.level-btn').forEach(b=>b.addEventListener('click',()=>{level=b.dataset.level;levelScreen.classList.add('hidden');moduleEl.classList.remove('hidden');render();window.scrollTo(0,0)}));
+document.getElementById('changeLevel').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel();moduleEl.classList.add('hidden');levelScreen.classList.remove('hidden');level=null;window.scrollTo(0,0)});
+</script>
+</body>
+</html>
