@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 22 · Verbos pronominales | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish: verbos pronominales aplicados a situaciones profesionales. Rutas A2, B1 y B2.">
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#fff;--black:#000;
+  --ink:#172033;--muted:#5b6472;--bg:#f4f7fb;--line:#dbe3ef;--soft:#edf3fb;
+  --green:#16794a;--orange:#965900;--shadow:0 14px 38px rgba(0,56,147,.10);
+  --radius:18px;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#000;padding:10px;z-index:100}
+.skip:focus{left:10px;top:10px}
+.hidden{display:none!important}
+
+/* LEVEL GATE */
+#levelScreen{min-height:100vh;display:grid;place-items:center;padding:24px;background:
+  radial-gradient(circle at 15% 10%,rgba(252,209,22,.24),transparent 32%),
+  radial-gradient(circle at 88% 86%,rgba(0,56,147,.16),transparent 30%),
+  linear-gradient(145deg,#f8fbff,#eef4fc)}
+.level-box{width:min(1040px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+.brand-strip{height:9px;background:linear-gradient(90deg,var(--yellow) 0 50%,var(--blue) 50% 83%,var(--red) 83%)}
+.level-inner{padding:clamp(26px,5vw,56px)}
+.eyebrow{font-weight:900;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+.level-inner h1{font-size:clamp(2rem,5vw,3.8rem);line-height:1.05;margin:8px 0 14px}
+.level-intro{color:var(--muted);max-width:780px;font-size:1.05rem}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.level-card{appearance:none;border:2px solid var(--line);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:210px;transition:.18s}
+.level-card:hover,.level-card:focus-visible{outline:none;border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,56,147,.10)}
+.level-card strong{display:block;color:var(--blue);font-size:1.17rem;margin-bottom:10px}
+.level-card span{color:var(--muted)}
+
+/* MODULE */
+#module{display:none}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:var(--max);margin:auto;padding:10px 18px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px}
+.brand-mini{font-weight:900;color:var(--blue);white-space:nowrap}
+.route-badge{justify-self:start;border:1px solid #c9d8ef;background:var(--soft);color:var(--blue);border-radius:999px;padding:7px 11px;font-size:.84rem;font-weight:800}
+.change-level{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 11px;color:var(--ink);font-weight:700}
+.progress-line{grid-column:1/-1;height:7px;border-radius:999px;background:#e7edf6;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#356ec4);transition:width .25s}
+.hero{max-width:var(--max);margin:24px auto 0;padding:0 18px}
+.hero-card{background:linear-gradient(135deg,var(--blue),#0d4bab);color:#fff;border-radius:26px;padding:clamp(26px,5vw,48px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card:after{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:rgba(252,209,22,.16);right:-90px;top:-120px}
+.hero-kicker{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem}
+.hero-card h1{font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.05;margin:8px 0 12px;max-width:880px}
+.hero-card p{max-width:850px;margin:0;color:#eaf1ff;font-size:1.05rem}
+
+.layout{max-width:var(--max);margin:22px auto 0;padding:0 18px 50px;display:grid;grid-template-columns:240px 1fr;gap:20px}
+.sidebar{position:sticky;top:92px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:0 8px 20px rgba(0,0,0,.03)}
+.nav-btn{width:100%;border:0;background:transparent;text-align:left;padding:10px;border-radius:10px;color:var(--muted);font-weight:700}
+.nav-btn:hover,.nav-btn:focus-visible,.nav-btn.active{background:var(--soft);color:var(--blue);outline:none}
+.content{min-width:0}
+.section{display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,4vw,34px);box-shadow:0 9px 24px rgba(0,0,0,.035)}
+.section.active{display:block}
+.section h2{color:var(--blue);font-size:clamp(1.45rem,3vw,2.1rem);margin:0 0 12px}
+.section h3{margin:18px 0 8px}
+.lead{font-size:1.03rem;color:var(--muted)}
+.note{background:#fff9d9;border:1px solid #f0dc74;border-left:5px solid var(--yellow);border-radius:12px;padding:13px 14px;margin:14px 0}
+.info{background:var(--soft);border:1px solid #c9d8ef;border-radius:12px;padding:13px 14px}
+.grid-2,.grid-3{display:grid;gap:14px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.meta-card,.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+.meta-card strong{display:block;color:var(--blue);margin-bottom:5px}
+.pill{display:inline-block;border-radius:999px;background:var(--soft);color:var(--blue);padding:5px 9px;font-size:.8rem;font-weight:800}
+.muted{color:var(--muted)}
+.btn{border:0;background:var(--blue);color:#fff;padding:10px 14px;border-radius:10px;font-weight:800}
+.btn:hover,.btn:focus-visible{background:#002f7d;outline:3px solid rgba(0,56,147,.15)}
+.btn-secondary{border:1px solid var(--line);background:#fff;color:var(--blue);padding:9px 12px;border-radius:10px;font-weight:800}
+.btn-yellow{background:var(--yellow);color:#1d2330;border:0;border-radius:10px;padding:10px 14px;font-weight:900}
+.btn-red{background:var(--red);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:900}
+
+/* Audio */
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.audio-btn{border:1px solid #b8c9e3;background:#f7faff;color:var(--blue);border-radius:9px;padding:7px 10px;font-size:.84rem;font-weight:800}
+.audio-btn:hover,.audio-btn:focus-visible{background:#eaf2ff;outline:none}
+.audio-status{position:fixed;right:14px;bottom:14px;background:#172033;color:#fff;border-radius:10px;padding:9px 11px;z-index:50;font-size:.82rem;box-shadow:var(--shadow)}
+
+/* vocab */
+.vocab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.vocab-card{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.vocab-head{width:100%;border:0;background:#f9fbfe;text-align:left;padding:15px 16px;color:var(--blue);font-weight:900;display:flex;justify-content:space-between;gap:12px}
+.vocab-body{display:none;padding:0 16px 16px}
+.vocab-card.open .vocab-body{display:block}
+.vocab-body p{margin:9px 0}
+.pronunciation{font-weight:900;letter-spacing:.03em}
+
+/* phrases */
+.phrase{border:1px solid var(--line);border-radius:13px;padding:14px;margin:10px 0}
+.phrase-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.phrase-text{font-weight:900;color:#1d2a3c}
+.phrase-use{display:none;margin-top:10px;background:#f7f9fc;padding:10px;border-radius:10px;color:var(--muted)}
+.phrase-use.open{display:block}
+
+/* builder */
+.builder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.builder-grid label{font-weight:800;color:var(--blue);font-size:.9rem}
+.builder-grid select{width:100%;margin-top:5px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}
+.result-box{margin-top:14px;border:2px dashed #b9cae5;background:#f7faff;border-radius:14px;padding:16px}
+.result-text{font-size:1.06rem;font-weight:900}
+
+/* grammar */
+.grammar-card{border:1px solid var(--line);border-radius:14px;padding:15px;margin:10px 0}
+.grammar-detail{display:none;margin-top:10px;color:var(--muted)}
+.grammar-detail.open{display:block}
+
+/* register */
+.option-list{display:grid;gap:10px;margin:14px 0}
+.option-btn{border:1px solid var(--line);background:#fff;text-align:left;padding:12px 13px;border-radius:11px}
+.option-btn:hover,.option-btn:focus-visible{border-color:var(--blue);outline:none}
+.option-btn.selected{border-color:var(--blue);background:#eef4ff}
+.feedback{display:none;margin-top:12px;border-radius:12px;padding:13px}
+.feedback.show{display:block}
+.feedback.good{background:#eaf8f0;border:1px solid #a8d8bd;color:#155c39}
+.feedback.caution{background:#fff6e5;border:1px solid #e5c581;color:#704900}
+
+/* example annotation */
+.example-box{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px}
+.annotation{display:inline-block;border-bottom:2px dotted var(--blue);cursor:pointer;padding:1px 2px}
+.annotation:focus{outline:2px solid rgba(0,56,147,.2)}
+.annotation-note{min-height:54px;margin-top:12px;background:#eef4ff;border-radius:11px;padding:11px;color:#314b72}
+
+/* quiz */
+.quiz-item{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.quiz-item legend,.quiz-q{font-weight:900;color:#243247;margin-bottom:10px}
+.quiz-options{display:grid;gap:8px}
+.quiz-choice{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px}
+.quiz-choice input{margin-top:4px}
+.quiz-feedback{display:none;margin-top:10px;padding:10px;border-radius:10px;background:#f4f7fb;color:var(--muted)}
+.quiz-feedback.show{display:block}
+.retry{margin-top:8px}
+
+/* practice */
+.requirements{margin:10px 0;padding-left:20px}
+.support-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.support-chip{background:var(--soft);border:1px solid #cbd9ee;border-radius:999px;padding:7px 10px;font-size:.9rem}
+textarea{width:100%;min-height:170px;border:1px solid var(--line);border-radius:12px;padding:12px;resize:vertical}
+.model{display:none;margin-top:14px;background:#f7f9fc;border:1px solid var(--line);border-radius:14px;padding:15px}
+.model.open{display:block}
+
+/* checklist */
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:11px;margin:8px 0}
+.check-item input{margin-top:4px;transform:scale(1.2)}
+.check-progress{font-weight:900;color:var(--blue)}
+.check-track{height:9px;background:#e7edf6;border-radius:999px;overflow:hidden;margin:10px 0 6px}
+.check-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#356ec4);transition:width .25s}
+.ready{display:none;margin-top:16px;background:linear-gradient(135deg,#003893,#124ca8);color:#fff;border-radius:16px;padding:20px}
+.ready.show{display:block}
+.ready h3{color:var(--yellow);margin-top:0}
+.challenge-link{display:inline-block;margin-top:10px;background:var(--red);color:#fff;text-decoration:none;border-radius:10px;padding:11px 16px;font-weight:900}
+
+/* nav buttons */
+.section-nav{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:20px;margin-top:28px}
+.section-nav button{min-width:130px}
+
+footer{max-width:var(--max);margin:0 auto 36px;padding:0 18px;color:var(--muted);text-align:center;font-size:.86rem}
+
+@media(max-width:900px){
+  .level-grid{grid-template-columns:1fr}
+  .level-card{min-height:auto}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;overflow:auto;display:flex;gap:6px}
+  .nav-btn{min-width:max-content;width:auto}
+  .topbar-inner{grid-template-columns:1fr auto}
+  .route-badge{grid-column:1/-1;grid-row:2;justify-self:start}
+  .brand-mini{display:none}
+  .grid-2,.grid-3,.vocab-grid,.builder-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .level-inner{padding:24px 18px}
+  .topbar-inner{padding:9px 10px;gap:8px}
+  .change-level{font-size:.8rem}
+  .hero{padding:0 10px}
+  .hero-card{padding:28px 18px}
+  .layout{padding:0 10px 38px}
+  .section{padding:20px 16px}
+  .audio-btn{flex:1}
+  .section-nav button{min-width:0;flex:1}
+  .phrase-top{display:block}
+  .phrase-top .btn-secondary{margin-top:8px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#module">Saltar al contenido</a>
+
+<section id="levelScreen" aria-labelledby="levelTitle">
+  <div class="level-box">
+    <div class="brand-strip"></div>
+    <div class="level-inner">
+      <div class="eyebrow">La Oficina en Español · Herramientas lingüísticas</div>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p class="level-intro">Selecciona tu ruta. Los tres niveles trabajan el mismo tema profesional; cambia el apoyo, la profundidad y la dificultad de la práctica.</p>
+      <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+        <button type="button" class="level-card" data-level="a2">
+          <strong>🌱 A2 — Principiante</strong>
+          <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+        </button>
+        <button type="button" class="level-card" data-level="b1">
+          <strong>💼 B1 — Intermedio</strong>
+          <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+        </button>
+        <button type="button" class="level-card" data-level="b2">
+          <strong>🚀 B2 — Avanzado</strong>
+          <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="module">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-mini">La Oficina en Español</div>
+      <div id="routeBadge" class="route-badge"></div>
+      <button id="changeLevel" type="button" class="change-level">Cambiar nivel</button>
+      <div class="progress-line" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressFill" class="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <section class="hero-card">
+      <div class="hero-kicker">Tema 22 · Herramientas lingüísticas</div>
+      <h1 id="heroTitle">Verbos pronominales</h1>
+      <p id="heroSubtitle"></p>
+    </section>
+  </div>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Secciones del módulo" id="sidebar"></nav>
+    <div class="content">
+      <section id="s1" class="section active" data-section="1"><h2>1. 🎯 Tu objetivo esta semana</h2><div id="objective"></div><div class="section-nav"></div></section>
+      <section id="s2" class="section" data-section="2"><h2>2. 🏢 La situación</h2><div id="situation"></div><div class="section-nav"></div></section>
+      <section id="s3" class="section" data-section="3"><h2>3. 🗣️ Vocabulario clave</h2><p class="lead">Abre las tarjetas para revisar significado, uso y ejemplo profesional.</p><div id="vocab"></div><div id="recall"></div><div class="section-nav"></div></section>
+      <section id="s4" class="section" data-section="4"><h2>4. 💬 Frases que puedes usar</h2><div id="phrases"></div><div class="section-nav"></div></section>
+      <section id="s5" class="section" data-section="5"><h2>5. 🧩 Construye tu mensaje</h2><div id="builder"></div><div class="section-nav"></div></section>
+      <section id="s6" class="section" data-section="6"><h2>6. 📚 Gramática que necesitas</h2><div id="grammar"></div><div class="section-nav"></div></section>
+      <section id="s7" class="section" data-section="7"><h2>7. 🎭 Elige el registro</h2><div id="register"></div><div class="section-nav"></div></section>
+      <section id="s8" class="section" data-section="8"><h2>8. 💼 Mira cómo se hace</h2><div id="example"></div><div class="section-nav"></div></section>
+      <section id="s9" class="section" data-section="9"><h2>9. ✍️ Comprueba lo que aprendiste</h2><div id="quiz"></div><div class="section-nav"></div></section>
+      <section id="s10" class="section" data-section="10"><h2>10. 🏢 Ahora te toca a ti</h2><div id="practice"></div><div class="section-nav"></div></section>
+      <section id="s11" class="section" data-section="11"><h2>11. 💡 Ver modelo</h2><div id="model"></div><div class="section-nav"></div></section>
+      <section id="s12" class="section" data-section="12"><h2>12. ✅ Checklist final</h2><div id="checklist"></div><div class="section-nav"></div></section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="https://laoficinaenespanol.com">La Oficina en Español</a> · Aprende y practica el español que necesitas para trabajar.
+</footer>
+<div id="audioStatus" class="audio-status hidden" role="status" aria-live="polite"></div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    label:"🌱 A2 — Principiante",
+    subtitle:"Usa verbos pronominales frecuentes para comunicar cambios, información, acuerdos y responsabilidades en situaciones de trabajo sencillas.",
+    objetivo:"Al terminar esta semana podrás usar verbos pronominales frecuentes para decir que recibiste información, notaste un problema, asumiste una responsabilidad o llegaste a un acuerdo con otra persona.",
+    situacion:{
+      quien:"Tú, miembro de un equipo de proyecto.",
+      conQuien:"Con tu supervisora y dos compañeros.",
+      donde:"Una reunión breve de seguimiento.",
+      objetivo:"Explicar qué información recibiste, qué problema notaste y qué acción vas a asumir.",
+      dificultad:"Necesitas elegir la expresión pronominal correcta y recordar la preposición que forma parte de varias construcciones."
+    },
+    vocabulario:[
+      {term:"darse cuenta de",en:"to realize / notice",ex:"Me di cuenta de que falta un dato en el informe.",extra:"Se usa para expresar que notas o comprendes algo. Aprende la construcción completa: darse cuenta de.",pron:"darse CUEN-ta de"},
+      {term:"enterarse de",en:"to find out about",ex:"Me enteré del cambio esta mañana.",extra:"Indica que recibes una información que antes no conocías.",pron:"en-te-RAR-se de"},
+      {term:"acordarse de",en:"to remember",ex:"Me acordé de enviar el documento al cliente.",extra:"Normalmente lleva de: acordarse de algo / acordarse de hacer algo.",pron:"a-cor-DAR-se de"},
+      {term:"encargarse de",en:"to take care of / be responsible for",ex:"Me encargo de confirmar la fecha con el proveedor.",extra:"Expresa responsabilidad sobre una tarea.",pron:"en-car-GAR-se de"},
+      {term:"ponerse de acuerdo",en:"to agree / reach an agreement",ex:"Nos pusimos de acuerdo sobre el próximo paso.",extra:"Muy útil para hablar de acuerdos entre dos o más personas.",pron:"po-NER-se de a-CUER-do"},
+      {term:"quedarse con",en:"to keep / choose",ex:"Nos quedamos con la segunda propuesta.",extra:"En este contexto significa elegir una opción y mantenerla.",pron:"que-DAR-se con"}
+    ],
+    frases:[
+      {group:"Comunicar una observación",text:"Me di cuenta de que falta una firma.",use:"Úsala cuando detectas algo que antes no habías notado."},
+      {group:"Comunicar información nueva",text:"Me enteré del cambio esta mañana.",use:"Úsala para decir cuándo recibiste una información nueva."},
+      {group:"Asumir una tarea",text:"Me encargo de confirmar la fecha.",use:"Úsala para decir claramente qué tarea será tu responsabilidad."},
+      {group:"Confirmar un acuerdo",text:"Nos pusimos de acuerdo sobre el próximo paso.",use:"Úsala cuando varias personas ya tomaron una decisión común."},
+      {group:"Elegir una opción",text:"Nos quedamos con la segunda propuesta.",use:"Úsala cuando el equipo elige una alternativa entre varias."}
+    ],
+    builder:{
+      intro:"Construye una actualización breve. Elige una opción de cada columna.",
+      parts:[
+        ["Me di cuenta de que","Me enteré de que","Nos pusimos de acuerdo en que"],
+        ["falta un dato en el informe","el proveedor cambió la fecha","la segunda opción es más clara"],
+        ["y me encargo de revisarlo hoy.","y voy a informar al equipo.","y vamos a continuar con esa opción."]
+      ]
+    },
+    gramatica:[
+      {title:"El pronombre forma parte del verbo",formula:"me doy cuenta / te das cuenta / se da cuenta",body:"En un verbo pronominal, me, te, se, nos o se forma parte de la construcción. No significa necesariamente que la acción sea reflexiva.",ex:"Me di cuenta del error. = I noticed the error."},
+      {title:"Aprende también la preposición",formula:"darse cuenta de · acordarse de · encargarse de",body:"Algunos verbos pronominales necesitan una preposición fija. Conviene aprender verbo + pronombre + preposición como una sola unidad.",ex:"Me encargo de llamar al proveedor."},
+      {title:"Con infinitivo hay dos posiciones posibles",formula:"me voy a encargar / voy a encargarme",body:"Con estructuras como ir a + infinitivo, el pronombre puede ir antes del verbo conjugado o unido al infinitivo.",ex:"Me voy a encargar de revisarlo. / Voy a encargarme de revisarlo."}
+    ],
+    register:{
+      prompt:"Un cliente importante te pregunta quién va a revisar un error en la factura. ¿Qué respuesta funciona mejor?",
+      options:[
+        {text:"Yo me encargo de revisarlo hoy y le confirmo el resultado.",kind:"good",fb:"Esta formulación es clara, profesional y asigna una responsabilidad concreta."},
+        {text:"Pues me quedo con eso y luego veo.",kind:"caution",fb:"Puede entenderse, pero resulta vaga para un cliente: no aclara exactamente qué harás ni cuándo."},
+        {text:"Me di cuenta, sí.",kind:"caution",fb:"Expresa una observación, pero no responde quién asumirá la tarea ni cuál será el siguiente paso."}
+      ]
+    },
+    example:{
+      text:"Esta mañana me enteré de que el proveedor cambió la fecha de entrega. Después me di cuenta de que el cambio afecta nuestro calendario. Me encargo de actualizar el plan y, antes de terminar el día, quiero ponerme de acuerdo con el equipo sobre la nueva fecha.",
+      notes:[
+        ["me enteré de","información nueva"],
+        ["me di cuenta de","observación o comprensión"],
+        ["Me encargo de","responsabilidad"],
+        ["ponerme de acuerdo","acuerdo con otras personas"]
+      ]
+    },
+    quiz:[
+      {q:"Quieres decir «I realized there is a problem». ¿Qué opción eliges?",options:["Me di cuenta de que hay un problema.","Me encargué de que hay un problema.","Me quedé con que hay un problema."],answer:0,why:"Darse cuenta de expresa que notas o comprendes algo."},
+      {q:"Completa: «Me encargo ___ llamar al proveedor».",options:["a","de","con"],answer:1,why:"La construcción es encargarse de + sustantivo o infinitivo."},
+      {q:"El equipo eligió la opción B. ¿Qué frase es más natural?",options:["Nos quedamos con la opción B.","Nos enteramos con la opción B.","Nos damos cuenta de la opción B."],answer:0,why:"Quedarse con puede expresar elección entre alternativas."}
+    ],
+    practice:{
+      situation:"En una reunión de seguimiento descubres que un documento tiene un dato incorrecto. Tu supervisora pregunta qué pasó y quién va a corregirlo.",
+      interlocutor:"Tu supervisora y tu equipo.",
+      objective:"Explica qué notaste y asume una acción concreta.",
+      requirements:["Escribe 3–4 frases.","Usa al menos dos verbos pronominales del módulo.","Incluye una observación y una responsabilidad.","Termina con un próximo paso."],
+      supports:["Me di cuenta de que…","Me enteré de que…","Me encargo de…","Nos ponemos de acuerdo en…"],
+      model:"Me di cuenta de que el informe tiene un dato incorrecto. Me enteré del problema esta mañana. Me encargo de revisar la información y corregir el documento. Después podemos ponernos de acuerdo sobre cuándo enviamos la nueva versión."
+    },
+    checklist:[
+      "Puedo reconocer varios verbos pronominales frecuentes.",
+      "Puedo usar darse cuenta de para comunicar una observación.",
+      "Puedo usar enterarse de para hablar de información nueva.",
+      "Puedo usar encargarse de para asumir una responsabilidad.",
+      "Puedo producir una actualización breve con al menos dos verbos pronominales."
+    ]
+  },
+
+  b1: {
+    label:"💼 B1 — Intermedio",
+    subtitle:"Usa verbos pronominales para explicar información nueva, cambios, decisiones y responsabilidades con mayor precisión en conversaciones profesionales.",
+    objetivo:"Al terminar esta semana podrás integrar verbos pronominales en actualizaciones profesionales para explicar qué ocurrió, cómo reaccionaste, qué responsabilidad asumiste y qué acuerdo alcanzaste con otras personas.",
+    situacion:{
+      quien:"Tú, responsable de una parte de un proyecto.",
+      conQuien:"Con tu responsable y representantes de otras áreas.",
+      donde:"Reunión semanal de seguimiento.",
+      objetivo:"Explicar un cambio reciente, su impacto y cómo se repartieron las responsabilidades.",
+      dificultad:"Debes elegir construcciones pronominales naturales, respetar sus preposiciones y evitar usarlas como si todas fueran reflexivas."
+    },
+    vocabulario:[
+      {term:"darse cuenta de",ex:"Nos dimos cuenta de que el plazo original ya no era realista.",extra:"Introduce una observación o comprensión que puede cambiar una decisión."},
+      {term:"enterarse de",ex:"Me enteré del cambio cuando el proveedor actualizó el pedido.",extra:"Se centra en el momento en que llega información nueva."},
+      {term:"comprometerse a",ex:"El proveedor se comprometió a enviar una nueva fecha mañana.",extra:"Expresa un compromiso explícito; suele ir con infinitivo."},
+      {term:"hacerse cargo de",ex:"Operaciones se hizo cargo del seguimiento con logística.",extra:"Más fuerte que encargarse de en ciertos contextos: implica asumir gestión o responsabilidad."},
+      {term:"ponerse de acuerdo en / sobre",ex:"Nos pusimos de acuerdo en revisar el alcance antes de cambiar el presupuesto.",extra:"En + infinitivo/proposición; sobre + tema o asunto."},
+      {term:"quedarse con",ex:"Después de comparar las opciones, nos quedamos con la alternativa de menor riesgo.",extra:"Expresa elección; registro neutro y muy frecuente."}
+    ],
+    frases:[
+      {group:"Introducir un hallazgo",text:"Nos dimos cuenta de que el cambio afecta también al presupuesto.",use:"Útil para señalar una consecuencia detectada durante el análisis."},
+      {group:"Explicar cómo recibiste información",text:"Me enteré del retraso después de hablar con logística.",use:"Marca el momento o la fuente de una información nueva."},
+      {group:"Asignar responsabilidad",text:"Yo me hago cargo de coordinar la revisión con el equipo técnico.",use:"Expresa una responsabilidad clara y relativamente fuerte."},
+      {group:"Registrar un compromiso",text:"El proveedor se comprometió a enviarnos una respuesta antes del jueves.",use:"Adecuada para seguimiento, acuerdos y compromisos."},
+      {group:"Cerrar una decisión",text:"Finalmente nos quedamos con la opción que reduce el riesgo operativo.",use:"Resume una elección después de comparar alternativas."}
+    ],
+    builder:{
+      intro:"Construye una actualización profesional y luego modifica una parte para adaptarla a tu contexto.",
+      parts:[
+        ["Nos dimos cuenta de que","Me enteré de que","El proveedor se comprometió a"],
+        ["el plazo necesita un ajuste","el cliente cambió una condición","enviar una respuesta mañana"],
+        ["así que me hago cargo del seguimiento.","por eso debemos revisar el alcance.","y nos pondremos de acuerdo sobre el siguiente paso."]
+      ]
+    },
+    gramatica:[
+      {title:"Pronominal no significa siempre reflexivo",formula:"irse ≠ ir · quedarse ≠ quedar · darse cuenta de",body:"En muchos verbos pronominales, el pronombre forma parte del significado léxico o crea un significado distinto. No hay una acción que el sujeto «hace sobre sí mismo».",ex:"El cliente se quedó con la propuesta B. Aquí quedarse con significa elegir."},
+      {title:"Preposición fija y colocación",formula:"comprometerse a · darse cuenta de · hacerse cargo de",body:"La preposición es parte de la construcción y afecta la corrección del mensaje. Conviene memorizar la unidad completa, no solo el infinitivo.",ex:"Se comprometió a revisar el contrato."},
+      {title:"Pronombre y perífrasis",formula:"se va a hacer cargo / va a hacerse cargo",body:"Con infinitivo, ambas posiciones son correctas. La elección suele responder a ritmo y naturalidad.",ex:"Marta se va a hacer cargo del cliente. / Marta va a hacerse cargo del cliente."}
+    ],
+    register:{
+      prompt:"En una reunión con dirección quieres comunicar que tu equipo asumirá el seguimiento. ¿Qué opción transmite mejor responsabilidad sin sonar exagerada?",
+      options:[
+        {text:"Nos hacemos cargo del seguimiento y enviaremos una actualización el jueves.",kind:"good",fb:"Define responsabilidad y añade un siguiente paso verificable."},
+        {text:"Bueno, nos encargamos un poco de esto y vemos qué pasa.",kind:"caution",fb:"Suena imprecisa: «un poco» y «vemos qué pasa» debilitan la responsabilidad asumida."},
+        {text:"Nos responsabilizamos absolutamente de todo lo que ocurra.",kind:"caution",fb:"Es excesivamente amplia y puede atribuir responsabilidades que no corresponden al equipo."}
+      ]
+    },
+    example:{
+      text:"Ayer me enteré de que el cliente quiere adelantar la entrega. Al revisar el plan, nos dimos cuenta de que el cambio afecta dos tareas críticas. El equipo técnico se comprometió a confirmar hoy si puede ajustar sus fechas y yo me hago cargo de coordinar la respuesta. Cuando tengamos esa información, nos pondremos de acuerdo sobre la alternativa más realista.",
+      notes:[
+        ["me enteré de","origen de la actualización"],
+        ["nos dimos cuenta de","análisis del impacto"],
+        ["se comprometió a","compromiso explícito"],
+        ["me hago cargo de","responsabilidad asumida"],
+        ["nos pondremos de acuerdo","decisión pendiente compartida"]
+      ]
+    },
+    quiz:[
+      {q:"¿Cuál expresa mejor un compromiso explícito?",options:["El proveedor se comprometió a responder mañana.","El proveedor se dio cuenta de responder mañana.","El proveedor se quedó con responder mañana."],answer:0,why:"Comprometerse a + infinitivo expresa una obligación asumida voluntariamente."},
+      {q:"Recibes un correo que te informa de un cambio y después analizas sus consecuencias. ¿Qué opción describe mejor esa secuencia?",options:["Me enteré del cambio y luego me di cuenta de su impacto.","Me di cuenta del cambio porque todavía no había recibido la información.","Me encargué del cambio y luego me quedé con su impacto."],answer:0,why:"Enterarse se centra en recibir información nueva; darse cuenta, en notar o comprender una consecuencia después de analizarla."},
+      {q:"¿Cuál es la construcción correcta?",options:["hacerse cargo a","hacerse cargo de","hacerse cargo con"],answer:1,why:"La construcción fija es hacerse cargo de."}
+    ],
+    practice:{
+      situation:"Un cliente adelanta una fecha y eso afecta al plan de trabajo. Debes explicar el cambio a tu responsable y proponer cómo organizar el seguimiento.",
+      interlocutor:"Tu responsable.",
+      objective:"Explicar información nueva, impacto, responsabilidad y siguiente paso.",
+      requirements:["Escribe 5–6 frases.","Usa al menos tres verbos pronominales.","Distingue entre información recibida y conclusión propia.","Incluye un compromiso o responsabilidad.","Usa al menos un conector de causa o consecuencia."],
+      supports:["Me enteré de que…","Nos dimos cuenta de que…","Se comprometió a…","Me hago cargo de…","Por eso…","Cuando tengamos…"],
+      model:"Esta mañana me enteré de que el cliente quiere adelantar la fecha de entrega. Al revisar el calendario, nos dimos cuenta de que eso afecta dos tareas críticas. El equipo técnico se comprometió a revisar hoy si puede ajustar sus plazos. Yo me hago cargo de coordinar la respuesta con las otras áreas. Por eso, propongo que nos pongamos de acuerdo mañana sobre una fecha realista antes de responder al cliente."
+    },
+    checklist:[
+      "Puedo diferenciar un verbo pronominal de una construcción reflexiva.",
+      "Puedo usar la preposición correcta en las construcciones principales.",
+      "Puedo explicar información nueva y una conclusión con verbos distintos.",
+      "Puedo expresar compromisos y responsabilidades con claridad.",
+      "Puedo organizar una actualización profesional usando varios verbos pronominales."
+    ]
+  },
+
+  b2: {
+    label:"🚀 B2 — Avanzado",
+    subtitle:"Usa verbos pronominales con precisión léxica y de registro para gestionar responsabilidad, interpretación, compromiso y toma de decisiones en contextos profesionales exigentes.",
+    objetivo:"Al terminar esta semana podrás seleccionar construcciones pronominales precisas para comunicar hallazgos, atribución de responsabilidad, compromisos y decisiones, ajustando el matiz al interlocutor y evitando formulaciones vagas o excesivas.",
+    situacion:{
+      quien:"Tú, responsable de coordinación de un proyecto transversal.",
+      conQuien:"Con dirección, un cliente y responsables de dos áreas.",
+      donde:"Reunión de revisión después de una incidencia.",
+      objetivo:"Explicar qué se descubrió, delimitar responsabilidades y acordar medidas sin asumir más de lo que corresponde.",
+      dificultad:"Debes controlar matiz, agencia, grado de compromiso y registro; varias formulaciones son gramaticalmente posibles, pero no producen el mismo efecto."
+    },
+    vocabulario:[
+      {term:"percatarse de",ex:"Nos percatamos de la inconsistencia antes de enviar la versión final.",extra:"Más formal que darse cuenta de; frecuente en registros escritos o formales."},
+      {term:"desentenderse de",ex:"Ninguna de las áreas puede desentenderse del seguimiento una vez aprobada la medida.",extra:"Matiz claramente negativo: dejar de asumir una responsabilidad o implicación."},
+      {term:"comprometerse a",ex:"La dirección se comprometió a revisar la propuesta antes del cierre.",extra:"Implica una obligación explícitamente asumida; conviene usarlo solo cuando existe un compromiso real."},
+      {term:"atenerse a",ex:"Nos atendremos a los criterios acordados para evaluar las alternativas.",extra:"Registro formal; significa ajustarse o someterse a una regla, criterio o decisión."},
+      {term:"ceñirse a",ex:"El análisis debe ceñirse al alcance aprobado.",extra:"Indica limitarse a unos parámetros; útil en procedimientos, alcance y criterios."},
+      {term:"pronunciarse sobre",ex:"Dirección todavía no se ha pronunciado sobre la propuesta.",extra:"Formal; significa expresar una posición o decisión sobre un asunto."}
+    ],
+    frases:[
+      {group:"Precisar un hallazgo",text:"Nos percatamos de que la incidencia no era aislada, sino consecuencia de un problema de proceso.",use:"Adecuada para un análisis formal donde se quiere subrayar una conclusión derivada de la revisión."},
+      {group:"Delimitar responsabilidad",text:"Nos hacemos cargo de la corrección, pero la validación final corresponde al área jurídica.",use:"Asume una parte concreta sin absorber responsabilidades ajenas."},
+      {group:"Fijar un compromiso",text:"El proveedor se comprometió a presentar un plan de acción antes del viernes.",use:"Registra una obligación concreta y verificable."},
+      {group:"Referirse a un criterio",text:"Para esta decisión nos atendremos a los criterios ya aprobados.",use:"Refuerza que la decisión seguirá una referencia previamente acordada."},
+      {group:"Comunicar falta de decisión",text:"Dirección todavía no se ha pronunciado sobre el cambio de alcance.",use:"Formal y útil cuando una instancia aún no ha expresado su posición."}
+    ],
+    builder:{
+      intro:"Combina tres decisiones lingüísticas y evalúa después si el resultado atribuye correctamente la responsabilidad.",
+      parts:[
+        ["Nos percatamos de que","Dirección todavía no se ha pronunciado sobre","El proveedor se comprometió a"],
+        ["la incidencia afecta más procesos de los previstos","la ampliación del alcance","presentar un plan correctivo esta semana"],
+        ["por lo que nos ceñiremos al procedimiento aprobado.","y evitaremos asumir una decisión que no nos corresponde.","mientras nosotros nos hacemos cargo de la verificación técnica."]
+      ]
+    },
+    gramatica:[
+      {title:"Pronominalidad y cambio de significado",formula:"acordar / acordarse · ir / irse · quedar / quedarse",body:"La presencia del pronombre puede crear una unidad léxica distinta, no solo una variante sintáctica. El significado debe aprenderse en contexto y con sus complementos habituales.",ex:"Acordamos una fecha / Nos acordamos de la fecha."},
+      {title:"La preposición delimita la construcción",formula:"comprometerse a · desentenderse de · pronunciarse sobre",body:"En registro profesional, una preposición incorrecta puede resultar más visible que en conversación informal. La combinación completa funciona como una colocación gramatical.",ex:"La comisión se pronunciará sobre la propuesta."},
+      {title:"Elección pronominal y agencia",formula:"hacerse cargo de / responsabilizarse de / desentenderse de",body:"Estas construcciones no son equivalentes: expresan distintos grados y direcciones de responsabilidad. La elección afecta cómo se distribuye la agencia en el mensaje.",ex:"Nos hacemos cargo de la corrección, pero no de la aprobación final."}
+    ],
+    register:{
+      prompt:"Tras una incidencia, un cliente exige saber quién asume la responsabilidad. ¿Qué formulación es más precisa si tu equipo corregirá el error, pero no controla la aprobación final?",
+      options:[
+        {text:"Nos hacemos cargo de la corrección y del seguimiento técnico; la aprobación final corresponde al área jurídica.",kind:"good",fb:"Delimita con precisión la responsabilidad asumida y evita apropiarse de una decisión externa."},
+        {text:"Nos responsabilizamos de todo el proceso hasta que se resuelva.",kind:"caution",fb:"Puede ser demasiado amplia si tu equipo no controla todas las etapas. El verbo intensifica la atribución de responsabilidad."},
+        {text:"No nos desentendemos del problema.",kind:"caution",fb:"Es defensiva y negativa; no explica qué acción concreta se asumirá ni quién controla la decisión final."}
+      ]
+    },
+    example:{
+      text:"Durante la revisión nos percatamos de que la incidencia tenía un alcance mayor del previsto. Nos hacemos cargo de corregir la parte técnica y de documentar el cambio, pero nos atendremos al procedimiento de aprobación vigente para no asumir una decisión que corresponde a otra área. El proveedor se comprometió a presentar un plan correctivo antes del viernes. Dirección todavía no se ha pronunciado sobre la ampliación del alcance, así que conviene ceñirse por ahora a las medidas ya autorizadas.",
+      notes:[
+        ["nos percatamos de","hallazgo en registro formal"],
+        ["Nos hacemos cargo de","responsabilidad delimitada"],
+        ["nos atendremos a","sujeción a criterio o procedimiento"],
+        ["se comprometió a","obligación explícita"],
+        ["no se ha pronunciado sobre","ausencia de posición formal"],
+        ["ceñirse","restricción consciente del alcance"]
+      ]
+    },
+    quiz:[
+      {q:"¿Qué verbo introduce una posición formal aún pendiente?",options:["pronunciarse sobre","desentenderse de","percatarse de"],answer:0,why:"Pronunciarse sobre significa expresar formalmente una posición o decisión sobre un asunto."},
+      {q:"¿Qué diferencia de matiz es más precisa?",options:["Darse cuenta de y percatarse de son intercambiables en todos los registros.","Percatarse de suele sonar más formal que darse cuenta de.","Percatarse de implica asumir responsabilidad."],answer:1,why:"Ambos pueden expresar un hallazgo, pero percatarse de suele elevar el registro."},
+      {q:"¿Cuál delimita mejor la agencia?",options:["Nos responsabilizamos de todo.","Nos hacemos cargo de la corrección; la aprobación corresponde a dirección.","No nos desentendemos del asunto."],answer:1,why:"La segunda formulación distribuye la responsabilidad de manera explícita y verificable."}
+    ],
+    practice:{
+      situation:"Una incidencia técnica afecta a un cliente. Tu equipo puede corregir el problema, pero la aprobación de un cambio de alcance depende de dirección. Debes informar al cliente sin atribuirte una autoridad que no tienes.",
+      interlocutor:"Cliente y dirección, en la misma reunión.",
+      objective:"Explicar el hallazgo, delimitar responsabilidades, registrar compromisos y manejar una decisión pendiente.",
+      requirements:["Escribe 7–9 frases.","Usa al menos cuatro construcciones pronominales diferentes.","Delimita claramente qué asume tu equipo y qué depende de otra instancia.","Incluye un compromiso verificable.","Ajusta el registro a una reunión profesional de alta exposición.","Evita formulaciones absolutas si no puedes sostenerlas."],
+      supports:["Nos percatamos de que…","Nos hacemos cargo de…","Nos atendremos a…","Se comprometió a…","Dirección todavía no se ha pronunciado sobre…","Por ahora conviene ceñirse a…"],
+      model:"Durante la revisión nos percatamos de que la incidencia afecta una parte adicional del proceso. Nuestro equipo se hace cargo de corregir el componente técnico y de documentar los cambios. Sin embargo, nos atendremos al procedimiento vigente porque la ampliación del alcance requiere aprobación de dirección. El proveedor se comprometió a entregarnos un plan correctivo antes del viernes. Dirección todavía no se ha pronunciado sobre la modificación contractual, por lo que no sería adecuado presentarla como una decisión cerrada. Por ahora conviene ceñirse a las medidas ya autorizadas. Cuando exista una posición formal, nos pondremos de acuerdo con el cliente sobre el calendario actualizado."
+    },
+    checklist:[
+      "Puedo distinguir pronominalidad, reflexividad y cambio léxico de significado.",
+      "Puedo elegir verbos pronominales según el grado de formalidad.",
+      "Puedo controlar las preposiciones exigidas por cada construcción.",
+      "Puedo delimitar responsabilidad y agencia sin formular compromisos excesivos.",
+      "Puedo adaptar una actualización compleja al interlocutor, al riesgo y al registro."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionTitles = [
+  "🎯 Objetivo","🏢 Situación","🗣️ Vocabulario","💬 Frases","🧩 Construye",
+  "📚 Gramática","🎭 Registro","💼 Ejemplo","✍️ Comprueba","🏢 Tu práctica","💡 Modelo","✅ Checklist"
+];
+
+let currentLevel = null;
+let currentSection = 1;
+const progressActions = new Set();
+
+function markAction(key){
+  progressActions.add(key);
+  updateProgress();
+}
+function updateProgress(){
+  // 12 secciones + 8 acciones de interacción = 20 hitos posibles.
+  const sectionMarks = [...progressActions].filter(x=>x.startsWith("section:")).length;
+  const interactionMarks = [...progressActions].filter(x=>!x.startsWith("section:")).length;
+  const weighted = Math.min(12,sectionMarks) + Math.min(8,interactionMarks);
+  const pct = Math.round((weighted/20)*100);
+  document.getElementById("progressFill").style.width = pct+"%";
+  document.querySelector(".progress-line")?.setAttribute("aria-valuenow",String(pct));
+}
+
+function chooseLevel(level){
+  currentLevel = level;
+  progressActions.clear();
+  currentSection = 1;
+  window.speechSynthesis?.cancel();
+  document.getElementById("levelScreen").style.display="none";
+  document.getElementById("module").style.display="block";
+  renderLevel();
+  showSection(1);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function resetLevel(){
+  window.speechSynthesis?.cancel();
+  document.getElementById("module").style.display="none";
+  document.getElementById("levelScreen").style.display="grid";
+  document.getElementById("audioStatus").classList.add("hidden");
+}
+
+document.querySelectorAll(".level-card").forEach(btn=>{
+  btn.addEventListener("click",()=>chooseLevel(btn.dataset.level));
+});
+document.getElementById("changeLevel").addEventListener("click",resetLevel);
+
+function renderLevel(){
+  const d=contenido[currentLevel];
+  document.getElementById("routeBadge").textContent="Tu ruta: "+d.label;
+  document.getElementById("heroTitle").textContent="Verbos pronominales";
+  document.getElementById("heroSubtitle").textContent=d.subtitle;
+  renderSidebar();
+  renderObjective(d);
+  renderSituation(d);
+  renderVocab(d);
+  renderPhrases(d);
+  renderBuilder(d);
+  renderGrammar(d);
+  renderRegister(d);
+  renderExample(d);
+  renderQuiz(d);
+  renderPractice(d);
+  renderModel(d);
+  renderChecklist(d);
+  renderSectionNav();
+}
+
+function renderSidebar(){
+  const side=document.getElementById("sidebar");
+  side.innerHTML=sectionTitles.map((t,i)=>`<button type="button" class="nav-btn ${i===0?'active':''}" data-go="${i+1}">${i+1}. ${t}</button>`).join("");
+  side.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>showSection(Number(b.dataset.go))));
+}
+function renderSectionNav(){
+  document.querySelectorAll(".section").forEach((sec,i)=>{
+    const nav=sec.querySelector(".section-nav");
+    nav.innerHTML=`
+      <button type="button" class="btn-secondary prev" ${i===0?'disabled':''}>← Anterior</button>
+      <button type="button" class="btn next" ${i===11?'disabled':''}>Siguiente →</button>`;
+    nav.querySelector(".prev").addEventListener("click",()=>i>0&&showSection(i));
+    nav.querySelector(".next").addEventListener("click",()=>i<11&&showSection(i+2));
+  });
+}
+function showSection(n){
+  currentSection=n;
+  document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",Number(s.dataset.section)===n));
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",Number(b.dataset.go)===n));
+  markAction("section:"+n);
+  document.querySelector(".layout").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function audioButtons(text){
+  if(currentLevel!=="a2") return "";
+  const safe=escapeAttr(text);
+  return `<div class="audio-row">
+    <button type="button" class="audio-btn" data-speak="${safe}" data-rate="1" aria-label="Escuchar en español: ${safe}">🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn" data-speak="${safe}" data-rate=".72" aria-label="Escuchar lentamente en español: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+function bindAudio(scope=document){
+  scope.querySelectorAll("[data-speak]").forEach(btn=>{
+    btn.addEventListener("click",()=>speakSpanish(btn.dataset.speak,Number(btn.dataset.rate||1)));
+  });
+}
+function escapeAttr(s){
+  return String(s).replaceAll("&","&amp;").replaceAll('"',"&quot;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+function speakSpanish(text,rate=1){
+  const status=document.getElementById("audioStatus");
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    status.textContent="El navegador no ofrece síntesis de voz. El resto del módulo sigue disponible.";
+    status.classList.remove("hidden");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="es-CO"; u.rate=rate; u.pitch=1;
+  const voices=window.speechSynthesis.getVoices();
+  const preferred = voices.find(v=>/es[-_](CO|MX|US|419)/i.test(v.lang))
+    || voices.find(v=>/^es[-_]/i.test(v.lang))
+    || voices.find(v=>/^es/i.test(v.lang));
+  if(preferred) u.voice=preferred;
+  u.onstart=()=>{status.textContent=rate<1?"Reproduciendo lentamente…":"Reproduciendo…";status.classList.remove("hidden");};
+  u.onend=()=>{status.classList.add("hidden");};
+  u.onerror=()=>{status.textContent="No fue posible reproducir esta frase.";status.classList.remove("hidden");};
+  window.speechSynthesis.speak(u);
+  markAction("audio:first");
+}
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+}
+
+function renderObjective(d){
+  const el=document.getElementById("objective");
+  el.innerHTML=`<p class="lead">${d.objetivo}</p><div class="note"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>`;
+}
+function renderSituation(d){
+  const s=d.situacion;
+  document.getElementById("situation").innerHTML=`
+    <div class="grid-2">
+      <div class="meta-card"><strong>Quién habla</strong>${s.quien}</div>
+      <div class="meta-card"><strong>Con quién</strong>${s.conQuien}</div>
+      <div class="meta-card"><strong>Contexto</strong>${s.donde}</div>
+      <div class="meta-card"><strong>Qué quieres conseguir</strong>${s.objetivo}</div>
+    </div>
+    <div class="note"><strong>Dificultad:</strong> ${s.dificultad}</div>`;
+}
+function renderVocab(d){
+  const vocab=document.getElementById("vocab");
+  vocab.className="vocab-grid";
+  vocab.innerHTML=d.vocabulario.map((v,i)=>`
+    <article class="vocab-card">
+      <button type="button" class="vocab-head" aria-expanded="false"><span>${v.term}</span><span>＋</span></button>
+      <div class="vocab-body">
+        ${currentLevel==="a2"?`<p><strong>English:</strong> ${v.en}</p><p class="pronunciation">${v.pron||""}</p>`:""}
+        <p><strong>Ejemplo:</strong> ${v.ex}</p>
+        <p class="muted">${v.extra}</p>
+        ${audioButtons(v.term)}
+        ${audioButtons(v.ex)}
+      </div>
+    </article>`).join("");
+  vocab.querySelectorAll(".vocab-card").forEach((card,i)=>{
+    const h=card.querySelector(".vocab-head");
+    h.addEventListener("click",()=>{
+      const open=card.classList.toggle("open");
+      h.setAttribute("aria-expanded",String(open));
+      h.lastElementChild.textContent=open?"−":"＋";
+      markAction("vocab:"+i);
+    });
+  });
+  bindAudio(vocab);
+  const recall=document.getElementById("recall");
+  if(currentLevel==="a2"){
+    const options=d.vocabulario.slice(0,4);
+    recall.innerHTML=`<div class="info" style="margin-top:16px"><strong>Recuperación rápida</strong><p>¿Qué verbo significa <em>to realize / notice</em>?</p>
+      <div class="option-list">${options.map((v,i)=>`<button type="button" class="option-btn recall-btn" data-correct="${i===0}">${v.term}</button>`).join("")}</div>
+      <div class="feedback" id="recallFeedback"></div></div>`;
+    recall.querySelectorAll(".recall-btn").forEach(b=>b.addEventListener("click",()=>{
+      const f=document.getElementById("recallFeedback");
+      f.className="feedback show "+(b.dataset.correct==="true"?"good":"caution");
+      f.textContent=b.dataset.correct==="true"?"Sí. «Darse cuenta de» significa notar o comprender algo.":"Revisa la tarjeta. La expresión que necesitas es «darse cuenta de».";
+      markAction("recall");
+    }));
+  }else recall.innerHTML="";
+}
+
+function renderPhrases(d){
+  const el=document.getElementById("phrases");
+  el.innerHTML=d.frases.map((p,i)=>`
+    <article class="phrase">
+      <span class="pill">${p.group}</span>
+      <div class="phrase-top">
+        <div>
+          <div class="phrase-text">${p.text}</div>
+          ${audioButtons(p.text)}
+        </div>
+        <button type="button" class="btn-secondary phrase-toggle" data-i="${i}">Ver cuándo usarla</button>
+      </div>
+      <div class="phrase-use" id="phraseUse${i}">${p.use}</div>
+    </article>`).join("");
+  el.querySelectorAll(".phrase-toggle").forEach(b=>b.addEventListener("click",()=>{
+    document.getElementById("phraseUse"+b.dataset.i).classList.toggle("open");
+    markAction("phrase:"+b.dataset.i);
+  }));
+  bindAudio(el);
+}
+
+function renderBuilder(d){
+  const b=d.builder;
+  const el=document.getElementById("builder");
+  el.innerHTML=`<p class="lead">${b.intro}</p>
+  <div class="builder-grid">
+    ${b.parts.map((part,idx)=>`<label>Bloque ${idx+1}<select class="builder-select">${part.map(x=>`<option>${x}</option>`).join("")}</select></label>`).join("")}
+  </div>
+  <div class="result-box"><div class="result-text" id="builderResult"></div><div id="builderAudio"></div></div>
+  <button type="button" class="btn-yellow" id="adaptBuilder" style="margin-top:10px">Crear otra combinación</button>`;
+  const selects=[...el.querySelectorAll(".builder-select")];
+  const update=(countProgress=true)=>{
+    const text=selects.map(s=>s.value).join(" ");
+    document.getElementById("builderResult").textContent=text;
+    document.getElementById("builderAudio").innerHTML=audioButtons(text);
+    bindAudio(document.getElementById("builderAudio"));
+    if(countProgress) markAction("builder");
+  };
+  selects.forEach(s=>s.addEventListener("change",()=>update(true)));
+  document.getElementById("adaptBuilder").addEventListener("click",()=>{
+    selects.forEach(s=>s.selectedIndex=(s.selectedIndex+1)%s.options.length);
+    update(true);
+  });
+  update(false);
+}
+
+function renderGrammar(d){
+  const el=document.getElementById("grammar");
+  el.innerHTML=`<p class="lead">Aquí la gramática aparece solo cuando ayuda a decir algo útil en el trabajo.</p>`+
+  d.gramatica.map((g,i)=>`
+    <article class="grammar-card">
+      <div class="pill">${g.formula}</div>
+      <h3>${g.title}</h3>
+      <button type="button" class="btn-secondary grammar-toggle" data-i="${i}">Ver explicación</button>
+      <div class="grammar-detail" id="grammar${i}">
+        <p>${g.body}</p>
+        <p><strong>Ejemplo profesional:</strong> ${g.ex}</p>
+        ${audioButtons(g.ex)}
+      </div>
+    </article>`).join("");
+  el.querySelectorAll(".grammar-toggle").forEach(b=>b.addEventListener("click",()=>{
+    document.getElementById("grammar"+b.dataset.i).classList.toggle("open");
+    markAction("grammar:"+b.dataset.i);
+  }));
+  bindAudio(el);
+}
+
+function renderRegister(d){
+  const r=d.register;
+  const el=document.getElementById("register");
+  el.innerHTML=`<p class="lead">${r.prompt}</p>
+    <div class="option-list">
+      ${r.options.map((o,i)=>`<div>
+        <button type="button" class="option-btn reg-option" data-i="${i}">${o.text}</button>
+        ${audioButtons(o.text)}
+      </div>`).join("")}
+    </div>
+    <div id="regFeedback" class="feedback"></div>`;
+  el.querySelectorAll(".reg-option").forEach(b=>b.addEventListener("click",()=>{
+    el.querySelectorAll(".reg-option").forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected");
+    const o=r.options[Number(b.dataset.i)];
+    const f=document.getElementById("regFeedback");
+    f.className="feedback show "+o.kind;
+    f.textContent=o.fb;
+    markAction("register");
+  }));
+  bindAudio(el);
+}
+
+function renderExample(d){
+  const e=d.example;
+  let annotated=escapeHtml(e.text);
+  e.notes.forEach((n,i)=>{
+    const needle=escapeHtml(n[0]);
+    annotated=annotated.replace(needle,`<span tabindex="0" role="button" class="annotation" data-note="${escapeAttr(n[1])}">${needle}</span>`);
+  });
+  const el=document.getElementById("example");
+  el.innerHTML=`<div class="example-box"><p>${annotated}</p>${audioButtons(e.text)}
+    <div class="annotation-note" id="annotationNote">Pulsa una expresión subrayada para ver qué función cumple.</div></div>`;
+  el.querySelectorAll(".annotation").forEach(a=>{
+    const act=()=>{document.getElementById("annotationNote").textContent=a.dataset.note;markAction("annotation");};
+    a.addEventListener("click",act);
+    a.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();act();}});
+  });
+  bindAudio(el);
+}
+function escapeHtml(s){
+  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+
+function renderQuiz(d){
+  const el=document.getElementById("quiz");
+  el.innerHTML=d.quiz.map((q,qi)=>`
+    <fieldset class="quiz-item" data-q="${qi}">
+      <legend>${qi+1}. ${q.q}</legend>
+      <div class="quiz-options">
+        ${q.options.map((o,oi)=>`<label class="quiz-choice"><input type="radio" name="q${qi}" value="${oi}"><span>${o}</span>${currentLevel==="a2"?audioButtons(o):""}</label>`).join("")}
+      </div>
+      <button type="button" class="btn check-quiz" data-q="${qi}" style="margin-top:10px">Comprobar</button>
+      <div class="quiz-feedback" id="qf${qi}"></div>
+    </fieldset>`).join("");
+  el.querySelectorAll(".check-quiz").forEach(b=>b.addEventListener("click",()=>{
+    const qi=Number(b.dataset.q), q=d.quiz[qi];
+    const checked=el.querySelector(`input[name="q${qi}"]:checked`);
+    const f=document.getElementById("qf"+qi);
+    if(!checked){f.textContent="Selecciona una opción y vuelve a comprobar.";f.classList.add("show");return;}
+    const ok=Number(checked.value)===q.answer;
+    f.textContent=(ok?"Esta opción funciona. ":"Revisa esta elección. ")+q.why+" Puedes volver a intentarlo.";
+    f.classList.add("show");
+    markAction("quiz:"+qi);
+  }));
+  bindAudio(el);
+}
+
+function renderPractice(d){
+  const p=d.practice;
+  const el=document.getElementById("practice");
+  el.innerHTML=`
+    <div class="info"><strong>Situación</strong><p>${p.situation}</p><strong>Interlocutor</strong><p>${p.interlocutor}</p><strong>Objetivo</strong><p>${p.objective}</p></div>
+    <h3>Tu respuesta debe incluir</h3><ul class="requirements">${p.requirements.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <div class="support-chips">${p.supports.map(x=>`<span class="support-chip">${x}</span>`).join("")}</div>
+    ${currentLevel==="a2"?p.supports.map(x=>audioButtons(x)).join(""):""}
+    <label for="practiceText"><strong>Escribe tu respuesta</strong></label>
+    <textarea id="practiceText" placeholder="Escribe aquí tu respuesta…"></textarea>
+    <p class="muted">No se evalúa automáticamente. El objetivo es que construyas una respuesta propia.</p>`;
+  bindAudio(el);
+  document.getElementById("practiceText").addEventListener("input",()=>{
+    if(document.getElementById("practiceText").value.trim().length>30) markAction("practice");
+  });
+}
+
+function renderModel(d){
+  const p=d.practice;
+  const el=document.getElementById("model");
+  el.innerHTML=`<p class="lead">Compara tu respuesta solo después de haber intentado construir la tuya.</p>
+    <button type="button" id="showModel" class="btn">Ver una posible respuesta</button>
+    <div class="model" id="modelBox">
+      <div class="note"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></div>
+      <p>${p.model}</p>
+      ${audioButtons(p.model)}
+    </div>`;
+  document.getElementById("showModel").addEventListener("click",()=>{
+    document.getElementById("modelBox").classList.toggle("open");
+    markAction("model");
+  });
+  bindAudio(el);
+}
+
+function renderChecklist(d){
+  const el=document.getElementById("checklist");
+  el.innerHTML=`<p class="lead">Antes de terminar, comprueba qué ya puedes hacer.</p>
+    <div id="checkItems">${d.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" data-i="${i}"><span>${x}</span></label>`).join("")}</div>
+    <div class="check-progress">
+      <div class="check-track" role="progressbar" aria-label="Progreso del checklist" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="checkBar" class="check-bar"></div></div>
+      <span id="checkProgress">0 de ${d.checklist.length} completados</span>
+    </div>
+    <div id="readyBox" class="ready">
+      <h3>🎯 Ya estás listo para practicar</h3>
+      <p>Durante los próximos siete días encontrarás retos relacionados con esta herramienta lingüística en situaciones profesionales diferentes.</p>
+      <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Sustituir href="#" por la URL real del reto cuando esté disponible -->
+      <a class="challenge-link" href="#" aria-disabled="true" onclick="event.preventDefault()">🔥 Ir al reto de hoy</a>
+    </div>`;
+  el.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.addEventListener("change",()=>{
+    const checked=el.querySelectorAll('input[type="checkbox"]:checked').length;
+    const pct=Math.round((checked/d.checklist.length)*100);
+    document.getElementById("checkProgress").textContent=`${checked} de ${d.checklist.length} completados`;
+    document.getElementById("checkBar").style.width=pct+"%";
+    const track=el.querySelector('.check-track');
+    if(track) track.setAttribute('aria-valuenow',String(pct));
+    document.getElementById("readyBox").classList.toggle("show",checked===d.checklist.length);
+    if(checked) markAction("checklist:"+checked);
+    if(checked===d.checklist.length) markAction("complete");
+  }));
+}
+</script>
+</body>
+</html>

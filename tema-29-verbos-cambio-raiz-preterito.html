@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tema 29 · Verbos con cambio de raíz en el pretérito | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#fff;--black:#000;
+  --ink:#162033;--muted:#5d6a7f;--bg:#f4f7fb;--line:#dbe3ef;--ok:#0f7a4f;
+  --radius:18px;--shadow:0 10px 30px rgba(0,56,147,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.hidden{display:none!important}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:#fff;padding:10px;z-index:1000}
+.level-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:
+linear-gradient(160deg,#eef4ff 0%,#fff 50%,#fff7cc 100%)}
+.level-card{max-width:980px;width:100%;background:#fff;border-radius:28px;box-shadow:var(--shadow);padding:34px}
+.brand{font-weight:900;color:var(--blue);letter-spacing:.2px}
+.brand small{display:block;color:var(--muted);font-weight:700;margin-top:4px}
+.level-card h1{font-size:clamp(28px,5vw,48px);margin:18px 0 8px;color:var(--blue)}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.level-option{border:2px solid var(--line);background:#fff;border-radius:20px;padding:20px;text-align:left;min-height:190px;transition:.2s}
+.level-option:hover,.level-option:focus-visible{border-color:var(--blue);transform:translateY(-2px);outline:3px solid rgba(0,56,147,.12)}
+.level-option strong{display:block;font-size:22px;color:var(--blue);margin-bottom:8px}
+.level-option p{margin:0;color:var(--muted)}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1100px;margin:auto;padding:10px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+.route{font-weight:800;color:var(--blue)}
+.small-btn{border:1px solid var(--line);background:#fff;color:var(--blue);padding:9px 12px;border-radius:12px;font-weight:800}
+.progress-wrap{flex:1;max-width:420px}
+.progress-line{height:10px;background:#e8eef7;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:var(--blue);transition:.3s}
+.progress-text{font-size:12px;color:var(--muted);text-align:right;margin-top:2px}
+.shell{max-width:1100px;margin:auto;padding:24px 18px 80px}
+.hero{background:linear-gradient(135deg,var(--blue),#0d55c8);color:#fff;padding:30px;border-radius:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(252,209,22,.18);right:-45px;top:-45px}
+.kicker{font-weight:900;color:var(--yellow);text-transform:uppercase;letter-spacing:.8px;font-size:13px}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:10px 0}
+.hero p{max-width:760px;margin:0;color:#eaf1ff}
+.navchips{display:flex;gap:8px;overflow:auto;padding:14px 0 6px;position:sticky;top:62px;z-index:40;background:var(--bg)}
+.navchips button{white-space:nowrap;border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:999px;color:var(--blue);font-weight:800}
+.navchips button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.section{display:none;margin-top:18px}
+.section.active{display:block}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+.panel h2{margin-top:0;color:var(--blue);font-size:26px}
+.callout{border-left:5px solid var(--yellow);background:#fff9d9;padding:14px 16px;border-radius:12px;margin:14px 0}
+.situation{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.fact{background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.fact b{display:block;color:var(--blue);margin-bottom:4px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.flip{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+.flip button.reveal{width:100%;text-align:left;padding:16px;border:0;background:#f9fbff;color:var(--blue);font-weight:900}
+.flip .detail{padding:0 16px 16px}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.audio-btn{border:1px solid #bfd0ec;background:#eef4ff;color:var(--blue);padding:8px 10px;border-radius:10px;font-weight:800}
+.tag{display:inline-block;background:#eef4ff;color:var(--blue);border-radius:999px;padding:3px 8px;font-size:12px;font-weight:800}
+.expr-group{margin:18px 0}
+.expr-group h3{color:var(--blue);margin-bottom:8px}
+.expression{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:#fff}
+.expression .main{font-weight:900}
+.explain{margin-top:8px;color:var(--muted)}
+.builder{display:grid;gap:12px}
+.builder-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.builder select,.builder input,.final-practice textarea{width:100%;padding:12px;border:1px solid #b8c5d8;border-radius:12px;background:#fff}
+.output{padding:16px;border-radius:14px;background:#eef4ff;border:1px solid #c9d9f2;font-weight:900;color:var(--blue)}
+.grammar-card{border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0}
+.grammar-card summary{cursor:pointer;font-weight:900;color:var(--blue)}
+.table-wrap{overflow:auto}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left}
+th{background:#f3f7fd;color:var(--blue)}
+.activity{border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0;background:#fff}
+.choices{display:grid;gap:8px;margin-top:10px}
+.choice{border:1px solid #becae0;background:#fff;padding:11px 12px;border-radius:12px;text-align:left}
+.choice.selected{outline:3px solid rgba(0,56,147,.15);border-color:var(--blue)}
+.feedback{margin-top:10px;padding:11px;border-radius:10px;background:#f4f7fb;color:var(--ink)}
+.feedback.good{background:#eaf8f2;color:#0d6240}
+.feedback.warn{background:#fff5dc;color:#725200}
+.model{background:#f8fbff;border:1px dashed #9db5d9;border-radius:14px;padding:16px;margin-top:12px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:10px;border-bottom:1px solid var(--line)}
+.check-status{margin-top:12px;font-weight:800;color:var(--blue)}
+.checklist input{margin-top:4px;transform:scale(1.2)}
+.final-banner{display:none;margin-top:18px;background:linear-gradient(135deg,#083e9d,#003893);color:#fff;border-radius:18px;padding:20px}
+.final-banner.show{display:block}
+.cta{display:inline-block;text-decoration:none;background:var(--yellow);color:#111;padding:12px 16px;border-radius:12px;font-weight:900;margin-top:10px}
+.section-controls{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.primary{border:0;background:var(--blue);color:#fff;padding:11px 16px;border-radius:12px;font-weight:900}
+.secondary{border:1px solid var(--line);background:#fff;color:var(--blue);padding:11px 16px;border-radius:12px;font-weight:900}
+.micro{font-size:13px;color:var(--muted)}
+.pron{font-weight:900;letter-spacing:.3px}
+@media(max-width:760px){
+  .level-grid,.cards,.situation,.builder-row{grid-template-columns:1fr}
+  .level-card{padding:22px}
+  .topbar-inner{flex-wrap:wrap}
+  .progress-wrap{order:3;max-width:none;width:100%}
+  .navchips{top:103px}
+  .panel{padding:18px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-card">
+    <div class="brand">La Oficina en Español <small>Español para trabajar</small></div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p>Elige una ruta para adaptar el apoyo, la dificultad y las actividades de este módulo.</p>
+    <div class="level-grid">
+      <button class="level-option" data-level="a2">
+        <strong>🌱 A2 — Principiante</strong>
+        <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+      </button>
+      <button class="level-option" data-level="b1">
+        <strong>💼 B1 — Intermedio</strong>
+        <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+      </button>
+      <button class="level-option" data-level="b2">
+        <strong>🚀 B2 — Avanzado</strong>
+        <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div id="routeLabel" class="route"></div>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <div class="progress-line" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100"><div id="progressBar" class="progress-bar" aria-valuenow="0"></div></div>
+        <div id="progressText" class="progress-text">0% completado</div>
+      </div>
+      <button id="changeLevel" class="small-btn">Cambiar nivel</button>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero">
+      <div class="kicker">Tema 29 · Herramientas lingüísticas</div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSubtitle"></p>
+    </section>
+
+    <nav id="navchips" class="navchips" aria-label="Secciones del módulo"></nav>
+    <div id="sections"></div>
+  </main>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    ruta:"🌱 A2 — Principiante",
+    habilidad:"Contar qué pasó en el trabajo con verbos de cambio de raíz",
+    subtitulo:"Practica cómo explicar acciones terminadas: quién pidió algo, quién siguió una instrucción, qué consiguió el equipo y qué prefirió el cliente.",
+    objetivo:"Al terminar esta semana podrás contar acciones pasadas sencillas en el trabajo usando correctamente verbos como pedir, repetir, seguir, conseguir, preferir y sentir.",
+    situacion:{
+      quien:"Tú, como miembro de un equipo.",
+      conQuien:"Tu supervisora.",
+      contexto:"Una reunión breve de seguimiento después de resolver una incidencia con un cliente.",
+      meta:"Explicar qué pasó y qué hizo cada persona.",
+      dificultad:"Algunos verbos cambian la raíz solo en las formas de él/ella/usted y ellos/ellas/ustedes."
+    },
+    vocabulario:[
+      {t:"pedir",en:"to ask for / request",exp:"Solicitar algo.",ej:"El cliente pidió un cambio en la fecha.",extra:"Pretérito clave: pidió / pidieron",pron:"pe-DIR"},
+      {t:"seguir",en:"to follow / continue",exp:"Continuar o cumplir una instrucción.",ej:"El equipo siguió el procedimiento.",extra:"Pretérito clave: siguió / siguieron",pron:"se-GUIR"},
+      {t:"conseguir",en:"to achieve / obtain",exp:"Lograr un resultado.",ej:"La analista consiguió una respuesta del proveedor.",extra:"Pretérito clave: consiguió / consiguieron",pron:"con-se-GUIR"},
+      {t:"repetir",en:"to repeat",exp:"Decir o hacer algo otra vez.",ej:"El cliente repitió la solicitud.",extra:"Pretérito clave: repitió / repitieron",pron:"re-pe-TIR"},
+      {t:"preferir",en:"to prefer",exp:"Elegir una opción sobre otra.",ej:"La clienta prefirió recibir el informe por correo.",extra:"Pretérito clave: prefirió / prefirieron",pron:"pre-fe-RIR"},
+      {t:"sentir",en:"to feel / regret",exp:"Expresar una sensación o una reacción.",ej:"El gerente sintió que faltaba información.",extra:"Pretérito clave: sintió / sintieron",pron:"sen-TIR"}
+    ],
+    frases:[
+      {grupo:"Explicar lo que hizo una persona",items:[
+        {f:"El cliente pidió un cambio.",uso:"Úsala para decir qué solicitó el cliente."},
+        {f:"Mi compañera siguió el procedimiento.",uso:"Úsala para explicar que alguien cumplió una instrucción."},
+        {f:"El equipo consiguió una solución.",uso:"Úsala para informar un resultado terminado."}
+      ]},
+      {grupo:"Explicar una preferencia o reacción",items:[
+        {f:"La clienta prefirió esperar.",uso:"Úsala para contar qué opción eligió una persona."},
+        {f:"El gerente sintió que faltaba información.",uso:"Úsala para explicar una percepción pasada."},
+        {f:"Los clientes repitieron la pregunta.",uso:"Úsala cuando varias personas hicieron algo otra vez."}
+      ]}
+    ],
+    builder:{
+      label1:"Persona",opts1:["El cliente","La supervisora","Mi compañera","El equipo","El proveedor"],
+      label2:"Acción",opts2:["pidió un cambio","siguió el procedimiento","consiguió una solución","prefirió esperar","repitió la solicitud"],
+      ejemplo:"El cliente pidió un cambio."
+    },
+    gramatica:{
+      intro:"En estos verbos, el cambio de raíz aparece en la 3.ª persona del pretérito.",
+      tabla:[
+        ["pedir","pidió","pidieron"],
+        ["seguir","siguió","siguieron"],
+        ["conseguir","consiguió","consiguieron"],
+        ["repetir","repitió","repitieron"],
+        ["preferir","prefirió","prefirieron"],
+        ["sentir","sintió","sintieron"]
+      ],
+      nota:"Para yo, tú, nosotros y vosotros no aparece este cambio: pedí, pediste, pedimos; seguí, seguiste, seguimos."
+    },
+    registro:{
+      contexto:"Tu supervisora pregunta qué ocurrió con una solicitud del cliente.",
+      opciones:[
+        {t:"El cliente pidió cambiar la fecha y seguimos el procedimiento.",fb:"Funciona bien: es clara, profesional y directa.",ok:true},
+        {t:"Pues él como que pidió otra fecha y nosotros hicimos eso.",fb:"Se entiende, pero es imprecisa. En un seguimiento profesional conviene nombrar la acción concreta.",ok:false},
+        {t:"El cliente quiso una fecha distinta.",fb:"Puede funcionar, pero cambia el matiz. «Pidió» comunica una solicitud concreta; «quiso» expresa deseo.",ok:false}
+      ]
+    },
+    ejemplo:{
+      texto:"Ayer el cliente pidió cambiar la fecha de entrega. Mi compañera siguió el procedimiento y consiguió la aprobación del supervisor. Después, el cliente prefirió mantener la nueva fecha.",
+      bloques:["Ayer el cliente pidió cambiar la fecha de entrega.","Mi compañera siguió el procedimiento y consiguió la aprobación del supervisor.","Después, el cliente prefirió mantener la nueva fecha."]
+    },
+    ejercicios:[
+      {q:"Completa: La clienta ___ recibir el informe por correo.",ops:["preferió","prefirió","prefiró"],correct:1,fb:"«Preferir» cambia e → i en la 3.ª persona: prefirió."},
+      {q:"Elige la forma correcta: Los clientes ___ la pregunta.",ops:["repitieron","repetieron","repeteron"],correct:0,fb:"En ellos/ellas/ustedes: repitieron."},
+      {q:"¿Qué frase explica mejor un resultado terminado?",ops:["El equipo consiguió una solución.","El equipo consigue una solución.","El equipo conseguía una solución."],correct:0,fb:"«Consiguió» presenta la acción como terminada."}
+    ],
+    practica:{
+      situacion:"Tu supervisora te pide un resumen breve de una incidencia de ayer.",
+      requisitos:["Di qué pidió el cliente.","Di qué hizo tu equipo.","Di qué resultado consiguió.","Usa al menos dos verbos con cambio de raíz en pretérito."],
+      apoyo:["El cliente pidió...","Mi compañera siguió...","El equipo consiguió...","Después, el cliente prefirió..."],
+      placeholder:"Escribe 3–4 frases..."
+    },
+    modelo:"Ayer el cliente pidió cambiar la fecha. Mi compañera siguió el procedimiento y el equipo consiguió una nueva confirmación. Después, el cliente prefirió mantener la fecha actual.",
+    checklist:[
+      "Reconozco formas como pidió, siguió, consiguió y prefirió.",
+      "Puedo explicar una acción pasada sencilla en el trabajo.",
+      "Puedo distinguir pidió de pidieron.",
+      "Puedo construir un resumen breve de lo que pasó.",
+      "Estoy listo para practicar estas formas durante la semana."
+    ]
+  },
+
+  b1: {
+    ruta:"💼 B1 — Intermedio",
+    habilidad:"Explicar acciones pasadas con verbos de cambio de raíz",
+    subtitulo:"Usa el pretérito para resumir solicitudes, decisiones, seguimientos y resultados con mayor precisión.",
+    objetivo:"Al terminar esta semana podrás resumir lo ocurrido en una situación profesional pasada y elegir correctamente las formas de pretérito de verbos con cambio de raíz.",
+    situacion:{
+      quien:"Tú, responsable de seguimiento de un proyecto.",
+      conQuien:"Tu jefa y dos compañeros.",
+      contexto:"Reunión de revisión después de una demora con un proveedor.",
+      meta:"Explicar qué pidió el cliente, qué siguió el equipo, qué consiguió y qué opción prefirieron las partes.",
+      dificultad:"Necesitas alternar sujetos y mantener precisión sin repetir siempre la misma estructura."
+    },
+    vocabulario:[
+      {t:"pedir",exp:"Solicitar de manera directa.",ej:"El cliente pidió una nueva estimación.",extra:"Colocaciones: pedir una actualización, pedir una confirmación, pedir un cambio."},
+      {t:"seguir",exp:"Mantener una acción o cumplir un procedimiento.",ej:"El equipo siguió el protocolo acordado.",extra:"También: seguir una recomendación, seguir un proceso."},
+      {t:"conseguir",exp:"Alcanzar un resultado concreto.",ej:"Finalmente conseguimos la aprobación.",extra:"Alternativas: lograr, obtener, alcanzar."},
+      {t:"repetir",exp:"Volver a expresar o realizar una acción.",ej:"El proveedor repitió la explicación.",extra:"Útil para preguntas, solicitudes e instrucciones."},
+      {t:"preferir",exp:"Seleccionar una opción entre varias.",ej:"El cliente prefirió posponer la entrega.",extra:"Puede introducir infinitivo o sustantivo."},
+      {t:"sentir",exp:"Expresar percepción, reacción o valoración.",ej:"La responsable sintió que el plazo era demasiado ajustado.",extra:"En registro profesional, puede ser más preciso que «pensó» cuando se habla de una impresión."}
+    ],
+    frases:[
+      {grupo:"Resumir hechos",items:[
+        {f:"El cliente pidió una revisión del presupuesto.",uso:"Presenta una solicitud concreta y terminada."},
+        {f:"El equipo siguió el plan acordado y consiguió reducir el retraso.",uso:"Combina proceso y resultado."},
+        {f:"Los proveedores repitieron la misma observación.",uso:"Permite agrupar una acción realizada por varias personas."}
+      ]},
+      {grupo:"Añadir decisiones y reacción",items:[
+        {f:"Finalmente, el cliente prefirió mantener el alcance original.",uso:"Introduce una decisión final."},
+        {f:"La dirección sintió que necesitábamos más datos.",uso:"Expresa una percepción pasada."},
+        {f:"Aunque pedimos una respuesta rápida, ellos prefirieron revisar el caso primero.",uso:"Contrasta acciones de sujetos distintos."}
+      ]}
+    ],
+    builder:{
+      label1:"Inicio",opts1:["Ayer,","Durante la reunión,","Después de revisar el problema,","Finalmente,"],
+      label2:"Idea",opts2:["el cliente pidió una nueva fecha.","el equipo siguió el plan acordado.","la responsable consiguió la aprobación.","los proveedores prefirieron revisar el caso."],
+      ejemplo:"Después de revisar el problema, el equipo siguió el plan acordado."
+    },
+    gramatica:{
+      intro:"Los verbos en -ir que presentan alternancia vocálica en presente suelen mantener un cambio reducido en la 3.ª persona del pretérito: e→i o o→u.",
+      tabla:[
+        ["pedir","pidió","pidieron"],
+        ["seguir","siguió","siguieron"],
+        ["preferir","prefirió","prefirieron"],
+        ["sentir","sintió","sintieron"],
+        ["dormir","durmió","durmieron"],
+        ["morir","murió","murieron"]
+      ],
+      nota:"El cambio aparece solo en él/ella/usted y ellos/ellas/ustedes. Compara: pedí / pidió; seguimos / siguieron."
+    },
+    registro:{
+      contexto:"Informas a tu jefa de por qué cambió una fecha de entrega.",
+      opciones:[
+        {t:"El cliente pidió aplazar la entrega y el proveedor prefirió confirmar primero la disponibilidad.",fb:"Es precisa y adecuada para un resumen profesional.",ok:true},
+        {t:"El cliente quería otra fecha y el proveedor quiso mirar eso primero.",fb:"Se entiende, pero pierde precisión sobre las acciones concretas que ocurrieron.",ok:false},
+        {t:"Nos pidieron mover la fecha y luego ellos prefirieron revisar capacidad antes de confirmar.",fb:"También funciona. Es algo más conversacional y presupone que el referente de «ellos» está claro.",ok:true}
+      ]
+    },
+    ejemplo:{
+      texto:"Durante la revisión, el cliente pidió adelantar una parte de la entrega. El equipo siguió el procedimiento de cambio y consiguió una estimación actualizada. Sin embargo, los proveedores prefirieron confirmar capacidad antes de comprometerse con la nueva fecha.",
+      bloques:[]
+    },
+    ejercicios:[
+      {q:"Selecciona la opción más precisa: El proveedor ___ la misma explicación dos veces.",ops:["repetió","repitió","repetía"],correct:1,fb:"En pretérito, repetir → repitió."},
+      {q:"¿Qué forma completa mejor la frase? «Los clientes ___ mantener el alcance original».",ops:["prefirieron","preferieron","prefirían"],correct:0,fb:"Preferir cambia e → i en la 3.ª persona plural: prefirieron."},
+      {q:"Elige el resumen con mejor organización.",ops:["Pidió el cliente una revisión, conseguimos datos y prefirió esperar.","El cliente pidió una revisión; después, conseguimos los datos y finalmente prefirió esperar.","El cliente pedía una revisión y consiguió esperar."],correct:1,fb:"La segunda opción ordena los hechos y mantiene sujetos y resultados claros."}
+    ],
+    practica:{
+      situacion:"En una reunión de seguimiento debes explicar en 5–6 frases qué ocurrió con una solicitud urgente de un cliente.",
+      requisitos:["Incluye al menos tres verbos con cambio de raíz en pretérito.","Organiza la secuencia con conectores.","Aclara quién realizó cada acción.","Cierra con el resultado o decisión final."],
+      apoyo:["primero","después","sin embargo","finalmente"],
+      placeholder:"Escribe tu resumen..."
+    },
+    modelo:"Primero, el cliente pidió una actualización urgente. El equipo siguió el procedimiento y consiguió una respuesta parcial del proveedor. Después, el proveedor repitió que necesitaba más tiempo. Sin embargo, el cliente prefirió recibir una entrega parcial y finalmente conseguimos mantener la fecha principal.",
+    checklist:[
+      "Elijo correctamente las formas de 3.ª persona con cambio de raíz.",
+      "Puedo alternar sujetos sin perder claridad.",
+      "Organizo una secuencia pasada con conectores.",
+      "Distingo una solicitud, una acción y un resultado.",
+      "Puedo resumir una incidencia profesional con autonomía."
+    ]
+  },
+
+  b2: {
+    ruta:"🚀 B2 — Avanzado",
+    habilidad:"Narrar y matizar acciones pasadas con verbos de cambio de raíz",
+    subtitulo:"Trabaja precisión verbal, secuenciación y elección léxica al reconstruir decisiones, solicitudes y reacciones en contextos profesionales complejos.",
+    objetivo:"Al terminar esta semana podrás reconstruir una secuencia profesional pasada con precisión, usar correctamente los cambios de raíz del pretérito y elegir verbos que reflejen con exactitud la intención y el resultado de cada intervención.",
+    situacion:{
+      quien:"Tú, líder de un proyecto con responsabilidad ante dirección.",
+      conQuien:"Dirección, cliente y equipo interno.",
+      contexto:"Revisión posterior a una incidencia que afectó alcance, calendario y expectativas.",
+      meta:"Reconstruir qué pidió cada parte, qué decisiones siguieron, qué se consiguió y qué preferencias condicionaron el desenlace.",
+      dificultad:"Debes evitar ambigüedades, distinguir deseo de solicitud, percepción de conclusión y acción de resultado, y mantener un registro profesional."
+    },
+    vocabulario:[
+      {t:"pedir",exp:"Señala una solicitud explícita; suele ser más preciso que «querer» cuando importa la acción comunicativa.",ej:"La dirección pidió una evaluación de impacto antes de aprobar el cambio.",extra:"Contraste: «quiso» expresa voluntad; «pidió» identifica una petición realizada."},
+      {t:"seguir",exp:"Puede expresar continuidad o cumplimiento de una línea de actuación.",ej:"El equipo siguió la recomendación jurídica.",extra:"Conviene especificar qué se siguió: protocolo, criterio, instrucción, estrategia."},
+      {t:"conseguir",exp:"Marca logro efectivo, no solo intento.",ej:"El equipo consiguió renegociar el plazo sin modificar el presupuesto.",extra:"Frente a «intentó», presupone resultado alcanzado."},
+      {t:"preferir",exp:"Presenta una elección comparativa y puede suavizar una decisión.",ej:"El cliente prefirió posponer la implementación antes que reducir el alcance.",extra:"Útil para explicar decisiones sin presentarlas como imposiciones."},
+      {t:"sentir",exp:"Expresa percepción subjetiva; en ciertos contextos puede resultar menos verificable que «concluyó» o «consideró».",ej:"La responsable sintió que la propuesta generaba un riesgo innecesario.",extra:"Elegir según si interesa mostrar percepción, juicio o conclusión."},
+      {t:"dormir",exp:"Cambio o→u en 3.ª persona; menos frecuente en narración profesional, pero útil en viajes, turnos o incidencias operativas.",ej:"El técnico durmió en el aeropuerto por la cancelación del vuelo.",extra:"Forma plural: durmieron."}
+    ],
+    frases:[
+      {grupo:"Reconstruir decisiones",items:[
+        {f:"La dirección pidió una evaluación adicional antes de autorizar el cambio.",uso:"Precisa la acción comunicativa y la condición previa."},
+        {f:"El equipo siguió la alternativa de menor riesgo y consiguió mantener el plazo crítico.",uso:"Relaciona decisión operativa y resultado."},
+        {f:"El cliente prefirió posponer una fase antes que reducir el alcance.",uso:"Expone una preferencia estratégica entre dos opciones."}
+      ]},
+      {grupo:"Matizar la interpretación",items:[
+        {f:"La responsable sintió que la propuesta era prematura, aunque los datos no la descartaban.",uso:"Distingue percepción subjetiva de evidencia."},
+        {f:"Los interlocutores repitieron la objeción, pero reformularon la condición para llegar a un acuerdo.",uso:"Presenta reiteración y evolución de la posición."},
+        {f:"Aunque nos pidieron acelerar el cronograma, finalmente prefirieron preservar el alcance.",uso:"Contrasta solicitud inicial y decisión final."}
+      ]}
+    ],
+    builder:{
+      label1:"Marco discursivo",opts1:["Inicialmente,","Tras revisar el impacto,","Durante la negociación,","Finalmente,"],
+      label2:"Núcleo",opts2:["el cliente pidió acelerar el calendario.","la dirección prefirió mantener el alcance.","el equipo siguió la recomendación técnica.","los proveedores consiguieron asegurar capacidad."],
+      ejemplo:"Tras revisar el impacto, la dirección prefirió mantener el alcance."
+    },
+    gramatica:{
+      intro:"En el pretérito, ciertos verbos en -ir conservan una alternancia vocálica reducida en la 3.ª persona: e→i y o→u. La cuestión avanzada no es memorizar la forma, sino integrarla sin perder control de sujeto, secuencia y matiz léxico.",
+      tabla:[
+        ["pedir","pidió","pidieron"],
+        ["seguir","siguió","siguieron"],
+        ["preferir","prefirió","prefirieron"],
+        ["sentir","sintió","sintieron"],
+        ["dormir","durmió","durmieron"],
+        ["morir","murió","murieron"]
+      ],
+      nota:"La forma verbal correcta no garantiza precisión discursiva. «Pidió», «quiso», «prefirió», «consideró» y «sintió» describen actos mentales o comunicativos distintos."
+    },
+    registro:{
+      contexto:"Debes informar a dirección de una negociación tensa sin atribuir intenciones que no puedes demostrar.",
+      opciones:[
+        {t:"El cliente pidió modificar la fecha y prefirió mantener el alcance, pese al impacto en costes.",fb:"Adecuada: describe acciones y decisiones observables sin atribuir motivaciones no confirmadas.",ok:true},
+        {t:"El cliente se sintió inseguro y por eso pidió cambiar la fecha.",fb:"Puede ser válida solo si esa percepción fue expresada o está documentada. Si no, atribuye una causa psicológica no verificada.",ok:false},
+        {t:"El cliente pidió cambiar la fecha; posteriormente, tras revisar las alternativas, prefirió conservar el alcance.",fb:"Muy adecuada: separa la solicitud inicial de la decisión posterior y muestra evolución.",ok:true}
+      ]
+    },
+    ejemplo:{
+      texto:"Tras revisar el impacto, la dirección pidió un escenario alternativo. El equipo siguió la recomendación técnica y consiguió preservar el hito principal. El cliente, que inicialmente prefirió acelerar la implementación, finalmente pidió mantener el alcance y posponer una fase secundaria. Esa secuencia evitó atribuir el cambio a una sola parte y dejó claro qué decisión tomó cada interlocutor.",
+      bloques:[]
+    },
+    ejercicios:[
+      {q:"¿Qué opción distingue mejor voluntad de solicitud explícita?",ops:["El cliente quiso otra fecha.","El cliente pidió otra fecha.","El cliente sentía otra fecha."],correct:1,fb:"«Pidió» identifica una solicitud realizada; «quiso» solo expresa voluntad."},
+      {q:"Selecciona la frase con mejor control de sujeto y secuencia.",ops:["Pidieron revisar el alcance y prefirió aplazarlo.","Los proveedores pidieron revisar el alcance y el cliente prefirió aplazar una fase.","El cliente pidió revisar y prefirieron aplazar."],correct:1,fb:"La segunda evita ambigüedad sobre quién pidió y quién prefirió."},
+      {q:"¿Qué formulación es más prudente si no conoces la motivación interna del cliente?",ops:["El cliente sintió miedo y pidió posponer.","El cliente pidió posponer después de revisar el impacto.","El cliente prefirió posponer porque no confiaba en el equipo."],correct:1,fb:"Describe una secuencia observable sin atribuir una motivación no confirmada."}
+    ],
+    practica:{
+      situacion:"Debes redactar un resumen oral de 7–9 frases para dirección sobre una negociación en la que cliente, proveedor y equipo interno cambiaron de posición.",
+      requisitos:["Usa al menos cuatro verbos con cambio de raíz en pretérito.","Distingue solicitud, preferencia, percepción y resultado.","Evita pronombres ambiguos.","Incluye al menos un contraste y una consecuencia.","No atribuyas motivaciones internas sin evidencia."],
+      apoyo:["aunque inicialmente","tras revisar","sin embargo","como resultado","finalmente"],
+      placeholder:"Escribe tu reconstrucción..."
+    },
+    modelo:"Aunque inicialmente el cliente pidió adelantar la implementación, el proveedor prefirió no comprometer capacidad sin revisar el impacto. El equipo siguió la recomendación técnica y consiguió preparar dos escenarios. Después, los responsables del cliente repitieron su prioridad de mantener el alcance. Tras revisar los riesgos, finalmente prefirieron aplazar una fase secundaria. Como resultado, conseguimos proteger el hito principal sin presentar la decisión como responsabilidad exclusiva de una sola parte.",
+    checklist:[
+      "Uso correctamente las formas de 3.ª persona con alternancia vocálica.",
+      "Distingo entre pedir, querer, preferir y sentir según la intención.",
+      "Mantengo claro el sujeto de cada acción en secuencias complejas.",
+      "Puedo matizar una reconstrucción sin atribuir causas no verificadas.",
+      "Puedo reaccionar y reformular una narración profesional bajo presión."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const secciones = [
+  ["objetivo","1. 🎯 Tu objetivo esta semana"],
+  ["situacion","2. 🏢 La situación"],
+  ["vocabulario","3. 🗣️ Vocabulario clave"],
+  ["frases","4. 💬 Frases que puedes usar"],
+  ["construye","5. 🧩 Construye tu mensaje"],
+  ["gramatica","6. 📚 Gramática que necesitas"],
+  ["registro","7. 🎭 Elige el registro"],
+  ["ejemplo","8. 💼 Mira cómo se hace"],
+  ["ejercicios","9. ✍️ Comprueba lo que aprendiste"],
+  ["practica","10. 🏢 Ahora te toca a ti"],
+  ["modelo","11. 💡 Ver modelo"],
+  ["checklist","12. ✅ Checklist final"]
+];
+
+let level=null, current=0;
+const progressActions = new Set();
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
+function audioButtons(text){
+  if(level!=="a2") return "";
+  return `<div class="audio-row">
+    <button class="audio-btn" data-speak="${esc(text)}" data-rate="1" aria-label="Escuchar: ${esc(text)}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" data-speak="${esc(text)}" data-rate=".78" aria-label="Escuchar lento: ${esc(text)}">🐢 Lento / Slow</button>
+  </div>`;
+}
+function speakSpanish(text,rate=1){
+  if(!("speechSynthesis" in window)){
+    alert("La función de voz no está disponible en este navegador.");
+    return;
+  }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const voices=speechSynthesis.getVoices();
+  const prefs=["es-CO","es-MX","es-US","es-419","es-ES"];
+  let voice=null;
+  for(const lang of prefs){voice=voices.find(v=>v.lang===lang)||voice;if(voice)break}
+  if(!voice) voice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith("es"));
+  if(voice)u.voice=voice;
+  u.lang=voice?.lang||"es-CO";u.rate=Number(rate)||1;u.pitch=1;
+  speechSynthesis.speak(u);
+}
+window.speechSynthesis?.addEventListener?.("voiceschanged",()=>window.speechSynthesis.getVoices());
+
+function progressPlan(){
+  const plan = [
+    ...secciones.map((_,i)=>"section-"+i),
+    ...contenido[level].vocabulario.map((_,i)=>"vocab-"+i),
+    "builder","registro",
+    ...contenido[level].ejercicios.map((_,i)=>"exercise-"+i),
+    "practice","model","checklist-complete"
+  ];
+  if(level==="a2") plan.push("recall");
+  return plan;
+}
+function mark(action){progressActions.add(action);updateProgress()}
+function updateProgress(){
+  const plan=progressPlan();
+  const done=plan.filter(k=>progressActions.has(k)).length;
+  const pct=Math.round(done/plan.length*100);
+  document.getElementById("progressBar").style.width=pct+"%";
+  document.getElementById("progressBar").setAttribute("aria-valuenow",String(pct));
+  document.getElementById("progressText").textContent=pct+"% completado";
+}
+function setLevel(lvl){
+  level=lvl;current=0;progressActions.clear();
+  document.getElementById("levelScreen").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  render();
+  showSection(0);
+}
+function render(){
+  const c=contenido[level];
+  document.getElementById("routeLabel").textContent="Tu ruta: "+c.ruta;
+  document.getElementById("heroTitle").textContent=c.habilidad;
+  document.getElementById("heroSubtitle").textContent=c.subtitulo;
+  document.getElementById("navchips").innerHTML=secciones.map((s,i)=>`<button data-go="${i}">${i+1}</button>`).join("");
+  document.getElementById("sections").innerHTML=
+    sectionWrap("objetivo",`<h2>1. 🎯 Tu objetivo esta semana</h2><p>${esc(c.objetivo)}</p><div class="callout"><b>Al final del módulo comprobarás si ya puedes hacerlo.</b></div>`) +
+    sectionWrap("situacion",`<h2>2. 🏢 La situación</h2><div class="situation">
+      ${fact("Quién habla",c.situacion.quien)}${fact("Con quién",c.situacion.conQuien)}${fact("Contexto",c.situacion.contexto)}
+      ${fact("Qué quieres conseguir",c.situacion.meta)}${fact("Dificultad",c.situacion.dificultad)}
+    </div>`) +
+    sectionWrap("vocabulario",`<h2>3. 🗣️ Vocabulario clave</h2><p class="micro">Pulsa cada tarjeta para revelar el significado y el ejemplo.</p><div class="cards">${c.vocabulario.map((v,i)=>vocabCard(v,i)).join("")}</div>${level==="a2"?recallActivity(c):""}`) +
+    sectionWrap("frases",`<h2>4. 💬 Frases que puedes usar</h2>${c.frases.map((g,gi)=>`<div class="expr-group"><h3>${esc(g.grupo)}</h3>${g.items.map((it,ii)=>`<div class="expression"><div class="main">${esc(it.f)}</div>${audioButtons(it.f)}<button class="secondary explain-btn" data-target="exp-${gi}-${ii}">Ver cuándo usarla</button><div id="exp-${gi}-${ii}" class="explain hidden">${esc(it.uso)}</div></div>`).join("")}</div>`).join("")}`) +
+    sectionWrap("construye",`<h2>5. 🧩 Construye tu mensaje</h2><div class="builder">
+      <div class="builder-row"><label>${esc(c.builder.label1)}<select id="build1">${c.builder.opts1.map(x=>`<option>${esc(x)}</option>`).join("")}</select></label>
+      <label>${esc(c.builder.label2)}<select id="build2">${c.builder.opts2.map(x=>`<option>${esc(x)}</option>`).join("")}</select></label></div>
+      <button id="buildBtn" class="primary">Construir mensaje</button>
+      <div id="buildOutput" class="output">${esc(c.builder.ejemplo)}</div>
+      <div id="buildAudio">${audioButtons(c.builder.ejemplo)}</div>
+    </div>`) +
+    sectionWrap("gramatica",`<h2>6. 📚 Gramática que necesitas</h2><p>${esc(c.gramatica.intro)}</p>
+      <details class="grammar-card" open><summary>Ver patrón y ejemplos</summary><div class="table-wrap"><table><thead><tr><th>Infinitivo</th><th>él/ella/usted</th><th>ellos/ellas/ustedes</th></tr></thead><tbody>
+      ${c.gramatica.tabla.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}${level==="a2"?audioButtons(x):""}</td>`).join("")}</tr>`).join("")}
+      </tbody></table></div><p>${esc(c.gramatica.nota)}</p></details>`) +
+    sectionWrap("registro",`<h2>7. 🎭 Elige el registro</h2><div class="activity"><p><b>Situación:</b> ${esc(c.registro.contexto)}</p><div class="choices">${c.registro.opciones.map((o,i)=>`<button class="choice reg-choice" data-i="${i}">${esc(o.t)}</button>${level==="a2"?audioButtons(o.t):""}`).join("")}</div><div id="regFeedback" class="feedback hidden"></div></div>`) +
+    sectionWrap("ejemplo",`<h2>8. 💼 Mira cómo se hace</h2><div class="model"><p>${esc(c.ejemplo.texto)}</p>${audioButtons(c.ejemplo.texto)}
+    ${c.ejemplo.bloques?.length?`<div>${c.ejemplo.bloques.map(b=>`<div class="expression">${esc(b)}${audioButtons(b)}</div>`).join("")}</div>`:""}</div>`) +
+    sectionWrap("ejercicios",`<h2>9. ✍️ Comprueba lo que aprendiste</h2>${c.ejercicios.map((e,i)=>exercise(e,i)).join("")}`) +
+    sectionWrap("practica",`<h2>10. 🏢 Ahora te toca a ti</h2><div class="final-practice"><p><b>Situación:</b> ${esc(c.practica.situacion)}</p><p><b>Incluye:</b></p><ul>${c.practica.requisitos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <div class="callout"><b>Apoyo:</b> ${c.practica.apoyo.map(x=>`<span class="tag">${esc(x)}</span>`).join(" ")}</div>
+      ${level==="a2"?c.practica.apoyo.map(x=>audioButtons(x)).join(""):""}
+      <label for="practiceText"><b>Tu respuesta</b></label><textarea id="practiceText" rows="8" placeholder="${esc(c.practica.placeholder)}"></textarea>
+      <button id="savePractice" class="primary" style="margin-top:10px">Marcar práctica como realizada</button></div>`) +
+    sectionWrap("modelo",`<h2>11. 💡 Ver modelo</h2><p>Primero intenta escribir tu propia respuesta.</p><button id="showModel" class="primary">Ver una posible respuesta</button><div id="modelBox" class="model hidden"><b>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</b><p>${esc(c.modelo)}</p>${audioButtons(c.modelo)}</div>`) +
+    sectionWrap("checklist",`<h2>12. ✅ Checklist final</h2><p>Antes de terminar, comprueba:</p><div class="checklist">${c.checklist.map((x,i)=>`<label><input type="checkbox" class="check" data-i="${i}"><span>${esc(x)}</span></label>`).join("")}</div><div id="checkStatus" class="check-status">0 de ${c.checklist.length} completados</div>
+      <div id="finalBanner" class="final-banner"><h3>🎯 Ya estás listo para practicar</h3><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Inserta aquí la URL real del reto de hoy cuando esté disponible -->
+      <a class="cta" href="#">🔥 Ir al reto de hoy</a></div>`);
+  bindDynamic();
+}
+function sectionWrap(id,inner){
+  const idx=secciones.findIndex(s=>s[0]===id);
+  return `<section class="section" data-index="${idx}" id="sec-${id}"><div class="panel">${inner}<div class="section-controls">
+    <button class="secondary prev" ${idx===0?"disabled":""}>Anterior</button>
+    ${idx===secciones.length-1?"":`<button class="primary next">Siguiente</button>`}
+  </div></div></section>`;
+}
+function fact(k,v){return `<div class="fact"><b>${esc(k)}</b>${esc(v)}</div>`}
+function vocabCard(v,i){
+  return `<div class="flip"><button class="reveal" data-vocab="${i}">${esc(v.t)}</button><div id="vocab-${i}" class="detail hidden">
+    ${level==="a2"?`<div><span class="tag">English</span> ${esc(v.en)}</div><p>${esc(v.exp)}</p><p class="pron">${esc(v.pron)}</p>`:`<p>${esc(v.exp)}</p>`}
+    ${audioButtons(v.t)}<p><b>Ejemplo:</b> ${esc(v.ej)}</p>${audioButtons(v.ej)}<p class="micro">${esc(v.extra)}</p></div></div>`;
+}
+function recallActivity(c){
+  const item=c.vocabulario[0];
+  return `<div class="activity"><h3>Recupera una palabra</h3><p>¿Qué verbo en español significa <b>${esc(item.en)}</b>?</p>
+    <div class="choices"><button class="choice recall" data-correct="true">${esc(item.t)}</button><button class="choice recall">seguir</button><button class="choice recall">sentir</button></div>
+    <div id="recallFb" class="feedback hidden"></div></div>`;
+}
+function exercise(e,i){
+  return `<div class="activity"><p><b>${i+1}. ${esc(e.q)}</b></p><div class="choices">${e.ops.map((o,j)=>`<button class="choice ex-choice" data-ex="${i}" data-opt="${j}">${esc(o)}</button>${level==="a2"?audioButtons(o):""}`).join("")}</div><div id="exfb-${i}" class="feedback hidden"></div><button class="secondary retry hidden" data-ex="${i}" style="margin-top:8px">Volver a intentar</button></div>`;
+}
+function showSection(i){
+  current=Math.max(0,Math.min(secciones.length-1,i));
+  document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",Number(s.dataset.index)===current));
+  document.querySelectorAll("#navchips button").forEach((b,idx)=>b.classList.toggle("active",idx===current));
+  mark("section-"+current);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function bindDynamic(){
+  document.querySelectorAll("[data-speak]").forEach(b=>b.addEventListener("click",()=>{speakSpanish(b.dataset.speak,b.dataset.rate);mark("audio-"+b.dataset.speak.slice(0,24))}));
+  document.querySelectorAll(".reveal").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.vocab;document.getElementById("vocab-"+id).classList.toggle("hidden");mark("vocab-"+id)}));
+  document.querySelectorAll(".explain-btn").forEach(b=>b.addEventListener("click",()=>{document.getElementById(b.dataset.target).classList.toggle("hidden");mark("phrase-"+b.dataset.target)}));
+  document.querySelectorAll(".prev").forEach(b=>b.addEventListener("click",()=>showSection(current-1)));
+  document.querySelectorAll(".next").forEach(b=>b.addEventListener("click",()=>showSection(current+1)));
+  document.querySelectorAll("#navchips button").forEach(b=>b.addEventListener("click",()=>showSection(Number(b.dataset.go))));
+  const b1=document.getElementById("build1"),b2=document.getElementById("build2"),out=document.getElementById("buildOutput"),aud=document.getElementById("buildAudio");
+  document.getElementById("buildBtn").addEventListener("click",()=>{
+    let text=(b1.value+" "+b2.value).replace(/\s+/g," ").trim();
+    out.textContent=text;aud.innerHTML=audioButtons(text);mark("builder");
+    aud.querySelectorAll("[data-speak]").forEach(b=>b.addEventListener("click",()=>speakSpanish(b.dataset.speak,b.dataset.rate)));
+  });
+  document.querySelectorAll(".reg-choice").forEach(b=>b.addEventListener("click",()=>{
+    const o=contenido[level].registro.opciones[Number(b.dataset.i)],fb=document.getElementById("regFeedback");
+    document.querySelectorAll(".reg-choice").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+    fb.className="feedback "+(o.ok?"good":"warn");fb.textContent=o.fb;mark("registro");
+  }));
+  document.querySelectorAll(".ex-choice").forEach(b=>b.addEventListener("click",()=>{
+    const i=Number(b.dataset.ex),j=Number(b.dataset.opt),e=contenido[level].ejercicios[i],fb=document.getElementById("exfb-"+i);
+    fb.classList.remove("hidden");fb.className="feedback "+(j===e.correct?"good":"warn");fb.textContent=(j===e.correct?"Bien. ":"Revisa esta decisión. ")+e.fb;
+    document.querySelector(`.retry[data-ex="${i}"]`).classList.toggle("hidden",j===e.correct);
+    if(j===e.correct)mark("exercise-"+i);
+  }));
+  document.querySelectorAll(".retry").forEach(b=>b.addEventListener("click",()=>{
+    const i=b.dataset.ex;document.getElementById("exfb-"+i).classList.add("hidden");b.classList.add("hidden");
+  }));
+  document.querySelectorAll(".recall").forEach(b=>b.addEventListener("click",()=>{
+    const fb=document.getElementById("recallFb");fb.classList.remove("hidden");
+    if(b.dataset.correct){fb.className="feedback good";fb.textContent="Sí. Esa es la palabra.";mark("recall")}
+    else{fb.className="feedback warn";fb.textContent="Prueba otra vez. Piensa en «solicitar»."}
+  }));
+  document.getElementById("savePractice").addEventListener("click",()=>{
+    const t=document.getElementById("practiceText").value.trim();
+    if(t.length<15){alert("Escribe primero una respuesta breve para marcar esta práctica.");return}
+    mark("practice");alert("Práctica marcada como realizada.");
+  });
+  document.getElementById("showModel").addEventListener("click",()=>{
+    document.getElementById("modelBox").classList.remove("hidden");mark("model");
+  });
+  document.querySelectorAll(".check").forEach(ch=>ch.addEventListener("change",()=>{
+    if(ch.checked)mark("check-"+ch.dataset.i);else{progressActions.delete("check-"+ch.dataset.i);updateProgress()}
+    const checks=[...document.querySelectorAll(".check")];
+    const checked=checks.filter(x=>x.checked).length;
+    const status=document.getElementById("checkStatus");
+    if(status)status.textContent=`${checked} de ${checks.length} completados`;
+    const all=checked===checks.length;
+    document.getElementById("finalBanner").classList.toggle("show",all);
+    if(all)mark("checklist-complete");
+    else{progressActions.delete("checklist-complete");updateProgress()}
+  }));
+}
+document.querySelectorAll(".level-option").forEach(b=>b.addEventListener("click",()=>setLevel(b.dataset.level)));
+document.getElementById("changeLevel").addEventListener("click",()=>{
+  window.speechSynthesis?.cancel?.();
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("levelScreen").classList.remove("hidden");
+  window.scrollTo({top:0});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 13 · Preposiciones de lugar | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish: preposiciones de lugar aplicadas al trabajo.">
+<style>
+:root{
+  --blue:#003893; --yellow:#FCD116; --red:#CE1126; --white:#FFFFFF; --black:#000000;
+  --ink:#172033; --muted:#5b6474; --bg:#f4f7fb; --line:#dce4ef; --ok:#176b3a; --soft:#eef4ff;
+  --radius:18px; --shadow:0 12px 34px rgba(0,56,147,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.hidden{display:none!important}
+.wrap{width:min(1100px,92vw);margin:auto}
+.topline{height:7px;background:linear-gradient(90deg,var(--yellow) 0 33%,var(--blue) 33% 67%,var(--red) 67%)}
+.brand{display:flex;gap:12px;align-items:center;font-weight:800;color:var(--blue)}
+.logo{width:38px;height:38px;border-radius:11px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:900}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-weight:700}
+.primary,.secondary,.ghost,.audio-btn{
+  border:0;border-radius:12px;padding:12px 16px;font-weight:800;transition:.18s ease;
+}
+.primary{background:var(--blue);color:#fff}
+.primary:hover,.primary:focus-visible{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,56,147,.2)}
+.secondary{background:var(--yellow);color:#1c1c1c}
+.ghost{background:#fff;color:var(--blue);border:1px solid var(--line)}
+.audio-btn{background:#fff;border:1px solid var(--line);color:var(--blue);padding:8px 10px;font-size:.9rem}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(252,209,22,.75);outline-offset:2px}
+#levelScreen{min-height:calc(100vh - 7px);display:grid;place-items:center;padding:34px 0}
+.level-shell{background:#fff;border-radius:28px;box-shadow:var(--shadow);padding:34px;width:min(980px,92vw)}
+.level-shell h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:.4rem 0}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.level-card{border:2px solid var(--line);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:225px}
+.level-card:hover,.level-card:focus-visible{border-color:var(--blue);box-shadow:0 10px 24px rgba(0,56,147,.12)}
+.level-card .emoji{font-size:2rem}
+.level-card h2{margin:.4rem 0}
+header.module-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.head-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0}
+.progress-wrap{padding:0 0 12px}
+.progress-track{height:10px;background:#e7edf6;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2d67c8);transition:width .25s}
+.hero{padding:46px 0 24px}
+.hero-card{background:linear-gradient(135deg,#003893,#0b4dbb);color:#fff;border-radius:26px;padding:34px;box-shadow:var(--shadow)}
+.hero-card h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.08;margin:.35rem 0 1rem}
+.hero-card .eyebrow{color:#ffe873;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.module-grid{display:grid;grid-template-columns:240px 1fr;gap:24px;padding-bottom:60px}
+nav.section-nav{position:sticky;top:98px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px}
+.section-nav button{width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:9px 10px;color:var(--muted)}
+.section-nav button.active{background:var(--soft);color:var(--blue);font-weight:800}
+.lesson{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 8px 22px rgba(23,32,51,.04);margin-bottom:22px}
+.lesson h2{margin-top:0;font-size:1.45rem}
+.lesson h3{margin-bottom:.45rem}
+.callout{background:#f8fbff;border-left:5px solid var(--blue);padding:16px;border-radius:12px}
+.tip{background:#fff9d9;border-left:5px solid var(--yellow);padding:14px;border-radius:12px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.flip{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+.flip-btn{width:100%;border:0;background:#f8fbff;padding:18px;text-align:left;font-weight:900;color:var(--blue)}
+.flip-content{padding:0 18px 18px}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.phrase-group{border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.phrase{padding:12px 0;border-bottom:1px dashed var(--line)}
+.phrase:last-child{border-bottom:0}
+.builder{display:grid;gap:12px}
+.builder-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.builder-output{background:var(--soft);border:2px dashed #a9bce0;padding:18px;border-radius:14px;font-weight:800}
+.option-list{display:grid;gap:10px;margin:12px 0}
+.option{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;text-align:left}
+.option.selected{border-color:var(--blue);background:var(--soft)}
+.option.good{border-color:#8cc69f;background:#effaf3}
+.option.warn{border-color:#e6b3b3;background:#fff3f3}
+.feedback{margin-top:12px;padding:13px;border-radius:12px;background:#f4f7fb;border-left:4px solid var(--blue)}
+.example{background:#101b32;color:#fff;border-radius:16px;padding:20px}
+.example .chunk{display:inline-block;border-bottom:1px dashed rgba(255,255,255,.35);padding:4px 0;margin-right:5px}
+.quiz{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.quiz:first-child{border-top:0;padding-top:0}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+textarea{width:100%;min-height:170px;border:1px solid var(--line);border-radius:14px;padding:14px;resize:vertical}
+.checks{display:grid;gap:10px}
+.checks label{display:flex;gap:10px;align-items:flex-start;background:#f9fbfe;border:1px solid var(--line);padding:12px;border-radius:12px}
+.checks input{margin-top:4px;width:19px;height:19px}
+.completion{display:none;margin-top:18px;background:#eef9f2;border:1px solid #bde1c8;border-radius:16px;padding:20px}
+.footer-note{padding:26px 0 54px;text-align:center;color:var(--muted)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+@media(max-width:850px){
+  .level-grid,.module-grid,.cards,.builder-row{grid-template-columns:1fr}
+  .module-grid{display:block}
+  nav.section-nav{position:static;display:flex;overflow:auto;margin-bottom:18px}
+  .section-nav button{min-width:max-content}
+  .head-row{align-items:flex-start}
+}
+@media(max-width:520px){
+  .level-shell,.lesson,.hero-card{padding:20px}
+  .level-card{min-height:auto}
+  .head-row{flex-direction:column}
+  .primary,.secondary,.ghost{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+
+<section id="levelScreen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="brand"><div class="logo">LO</div><span>La Oficina en Español</span></div>
+    <p class="muted">Herramientas lingüísticas · Tema 13</p>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p>Selecciona una ruta para adaptar el apoyo, la dificultad y la práctica. El contenido se mantendrá oculto hasta que elijas.</p>
+    <div class="level-grid">
+      <button class="level-card" data-level="a2">
+        <div class="emoji">🌱</div>
+        <h2>A2 — Principiante</h2>
+        <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+      </button>
+      <button class="level-card" data-level="b1">
+        <div class="emoji">💼</div>
+        <h2>B1 — Intermedio</h2>
+        <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+      </button>
+      <button class="level-card" data-level="b2">
+        <div class="emoji">🚀</div>
+        <h2>B2 — Avanzado</h2>
+        <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<main id="module" class="hidden">
+  <header class="module-head">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="brand"><div class="logo">LO</div><span>La Oficina en Español</span></div>
+          <div id="routePill" class="small muted"></div>
+        </div>
+        <button id="changeLevel" class="ghost">Cambiar nivel</button>
+      </div>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <div class="row" style="justify-content:space-between"><strong>Progreso</strong><span id="progressText">0%</span></div>
+        <div class="progress-track" id="moduleProgress" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="eyebrow">Herramientas lingüísticas · Tema 13</div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap module-grid">
+    <nav id="sectionNav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    <div id="content"></div>
+  </div>
+
+  <div class="wrap footer-note">
+    <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a> · Español para trabajar.
+  </div>
+</main>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    route:"🌱 A2 — Principiante",
+    habilidad:"Explicar dónde están personas y cosas en el trabajo",
+    subtitulo:"Usa preposiciones de lugar para dar indicaciones sencillas, explicar dónde está algo y evitar confusiones en la oficina, una tienda, un almacén o una reunión.",
+    objetivo:"Al terminar esta semana podrás decir dónde está una persona, un documento, un equipo o un espacio de trabajo y podrás dar indicaciones sencillas usando preposiciones de lugar.",
+    objetivoExtra:"Al final del módulo comprobarás si ya puedes hacerlo. / At the end, you will check if you can do it.",
+    situacion:{
+      quien:"Eres parte de un equipo y recibes a una persona nueva.",
+      conQuien:"Hablas con un compañero o proveedor.",
+      contexto:"Están en una oficina y necesitan encontrar una sala, unos documentos y un equipo.",
+      meta:"Tu objetivo es indicar con claridad dónde está cada cosa.",
+      dificultad:"La persona no conoce el lugar y puede confundirse si las indicaciones son demasiado largas."
+    },
+    vocab:[
+      {term:"al lado de", en:"next to / beside", exp:"Muy cerca de otra cosa.", ex:"La impresora está al lado de la recepción.", note:"Pronunciación útil: la-DO", stress:"la-DO"},
+      {term:"delante de", en:"in front of", exp:"En una posición anterior o frontal.", ex:"La sala está delante de los ascensores.", note:"Pronunciación útil: de-LAN-te", stress:"de-LAN-te"},
+      {term:"detrás de", en:"behind", exp:"En la parte posterior.", ex:"El archivo está detrás de la sala de reuniones.", note:"Pronunciación útil: de-TRÁS", stress:"de-TRÁS"},
+      {term:"encima de", en:"on top of / above", exp:"En una posición superior y normalmente cercana.", ex:"El informe está encima del escritorio.", note:"Pronunciación útil: en-CI-ma", stress:"en-CI-ma"},
+      {term:"debajo de", en:"under / below", exp:"En una posición inferior.", ex:"La caja está debajo de la mesa.", note:"Pronunciación útil: de-BA-jo", stress:"de-BA-jo"},
+      {term:"entre", en:"between", exp:"En medio de dos referencias.", ex:"La recepción está entre la entrada y la cafetería.", note:"Pronunciación útil: EN-tre", stress:"EN-tre"},
+      {term:"cerca de", en:"near / close to", exp:"A poca distancia.", ex:"El almacén está cerca de la zona de carga.", note:"Pronunciación útil: CER-ca", stress:"CER-ca"},
+      {term:"lejos de", en:"far from", exp:"A bastante distancia.", ex:"La sala B está lejos de la entrada principal.", note:"Pronunciación útil: LE-jos", stress:"LE-jos"}
+    ],
+    frases:[
+      {grupo:"Ubicar un lugar",items:[
+        {text:"La sala de reuniones está al lado de la recepción.",use:"Úsala cuando quieres indicar una ubicación sencilla con un punto de referencia."},
+        {text:"La oficina de Marta está delante de los ascensores.",use:"Úsala cuando el interlocutor puede reconocer fácilmente los ascensores."},
+        {text:"El almacén está detrás del edificio principal.",use:"Úsala para indicar una posición posterior."}
+      ]},
+      {grupo:"Ubicar un objeto",items:[
+        {text:"Los documentos están encima de la mesa.",use:"Úsala para indicar una posición superior concreta."},
+        {text:"La caja está debajo del escritorio.",use:"Úsala para señalar una posición inferior."},
+        {text:"El cargador está entre el portátil y el teléfono.",use:"Úsala cuando el objeto está en medio de dos referencias."}
+      ]},
+      {grupo:"Dar una indicación sencilla",items:[
+        {text:"La recepción está cerca de la entrada.",use:"Úsala para una indicación aproximada y fácil."},
+        {text:"La sala C está lejos de aquí.",use:"Úsala para advertir que el lugar no está cerca."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una indicación breve. / Build a short direction.",
+      parts1:["La impresora","La sala de reuniones","El archivo","La cafetería"],
+      parts2:["está al lado de","está delante de","está detrás de","está cerca de"],
+      parts3:["la recepción.","los ascensores.","la entrada principal.","la sala B."]
+    },
+    grammar:[
+      {title:"estar + preposición de lugar",intent:"Decir dónde está una persona, espacio u objeto.",structure:"[persona / lugar / objeto] + está / están + preposición de lugar + referencia.",example:"Las llaves están encima del escritorio.",why:"Usamos estar porque hablamos de ubicación."},
+      {title:"de + el = del",intent:"Conectar algunas preposiciones con un sustantivo masculino singular.",structure:"delante de + el → delante del · detrás de + el → detrás del · cerca de + el → cerca del",example:"La sala está detrás del almacén.",why:"En español, de + el se contrae en del."},
+      {title:"está / están",intent:"Distinguir una cosa de varias cosas.",structure:"Una cosa: está. Varias cosas: están.",example:"El informe está encima de la mesa. Los informes están encima de la mesa.",why:"El verbo debe concordar con el sujeto."}
+    ],
+    registro:{
+      contexto:"Un proveedor visita tu oficina por primera vez y pregunta dónde está la sala de reuniones.",
+      opciones:[
+        {text:"Está por ahí.",quality:"warn",fb:"Es demasiado imprecisa para una persona que no conoce el lugar."},
+        {text:"La sala de reuniones está al lado de la recepción.",quality:"good",fb:"Funciona bien: es clara, breve y usa un punto de referencia reconocible."},
+        {text:"Tienes que irte para allá, más o menos.",quality:"warn",fb:"Suena poco precisa y puede generar confusión."}
+      ]
+    },
+    modelo:{
+      text:"La sala de reuniones está al lado de la recepción. Los documentos están encima de la mesa grande. La impresora está detrás de la sala, cerca de la ventana.",
+      chunks:[
+        ["La sala de reuniones está al lado de la recepción.","ubica un espacio"],
+        ["Los documentos están encima de la mesa grande.","ubica un objeto"],
+        ["La impresora está detrás de la sala, cerca de la ventana.","añade una segunda referencia"]
+      ]
+    },
+    ejercicios:[
+      {type:"mc",q:"¿Qué frase ubica correctamente un objeto que está bajo la mesa?",opts:["La caja está debajo de la mesa.","La caja está delante de la mesa.","La caja está entre la mesa."],answer:0,explain:"Debajo de indica una posición inferior."},
+      {type:"mc",q:"Elige la opción más clara para un visitante.",opts:["La recepción está por allá.","La recepción está entre la entrada y la cafetería.","Recepción, sí."],answer:1,explain:"La segunda opción usa dos referencias concretas."},
+      {type:"fill",q:"Completa: Los documentos ___ encima del escritorio.",answer:"están",explain:"Usamos están porque documentos es plural."},
+      {type:"mc",q:"¿Cuál es la forma correcta?",opts:["detrás de el almacén","detrás del almacén","detrás al almacén"],answer:1,explain:"de + el se contrae en del."}
+    ],
+    practica:{
+      situacion:"Una persona nueva llega a tu lugar de trabajo y necesita encontrar tres cosas: la sala de reuniones, la impresora y unos documentos.",
+      interlocutor:"Compañero nuevo / new coworker",
+      objetivo:"Da tres indicaciones claras y breves.",
+      requisitos:["Usa al menos tres preposiciones de lugar.","Usa está o están correctamente.","Incluye puntos de referencia claros."],
+      apoyo:["La sala de reuniones está…","La impresora está…","Los documentos están…"],
+      placeholder:"Ejemplo de inicio: La sala de reuniones está..."
+    },
+    modeloRespuesta:"La sala de reuniones está al lado de la recepción. La impresora está delante de la ventana. Los documentos están encima de la mesa de la sala.",
+    checklist:[
+      "Puedo reconocer las preposiciones de lugar esenciales.",
+      "Puedo decir dónde está una persona, un lugar o un objeto.",
+      "Puedo usar está y están correctamente.",
+      "Puedo dar una indicación breve con un punto de referencia.",
+      "Puedo producir tres frases para orientar a alguien en el trabajo."
+    ]
+  },
+
+  b1: {
+    route:"💼 B1 — Intermedio",
+    habilidad:"Explicar dónde están personas y cosas en el trabajo",
+    subtitulo:"Usa preposiciones de lugar y referencias espaciales para dar indicaciones claras, describir ubicaciones y reducir ambigüedades en contextos profesionales.",
+    objetivo:"Al terminar esta semana podrás ubicar personas, espacios, documentos y equipos, dar indicaciones más precisas y adaptar la cantidad de información al interlocutor.",
+    objetivoExtra:"Al final del módulo comprobarás si ya puedes hacerlo.",
+    situacion:{
+      quien:"Coordinas una visita de un proveedor a tus instalaciones.",
+      conQuien:"Hablas con el proveedor y con miembros de tu equipo.",
+      contexto:"La persona debe encontrar recepción, una sala, una zona de carga y varios documentos.",
+      meta:"Dar indicaciones suficientemente precisas para que pueda moverse sin depender de otra persona.",
+      dificultad:"Hay varios espacios parecidos y una referencia poco concreta puede provocar retrasos."
+    },
+    vocab:[
+      {term:"junto a",exp:"Equivale a «al lado de» y suele sonar algo más compacto.",ex:"La sala técnica está junto a la recepción.",note:"Útil en indicaciones breves."},
+      {term:"frente a",exp:"Indica una posición opuesta o encarada.",ex:"El punto de entrega está frente a la entrada principal.",note:"Puede alternar con «enfrente de»."},
+      {term:"al fondo de",exp:"En la parte más interior de un espacio.",ex:"El archivo físico está al fondo del pasillo.",note:"Muy útil en edificios y oficinas."},
+      {term:"a la derecha de",exp:"Indica posición lateral derecha tomando una referencia.",ex:"La sala B está a la derecha de los ascensores.",note:"Conviene aclarar la referencia."},
+      {term:"a la izquierda de",exp:"Indica posición lateral izquierda.",ex:"La recepción está a la izquierda de la entrada.",note:"Evita usarla sin punto de referencia."},
+      {term:"en medio de",exp:"En una posición central dentro de un espacio o grupo.",ex:"La mesa de muestras está en medio de la sala.",note:"No siempre requiere dos referencias."},
+      {term:"a pocos metros de",exp:"Expresa distancia aproximada corta.",ex:"El almacén está a pocos metros de la zona de carga.",note:"Más precisa que «cerca de»."},
+      {term:"al otro lado de",exp:"Indica que algo está en la parte opuesta de una referencia.",ex:"La cafetería está al otro lado del pasillo.",note:"Muy útil para orientar desplazamientos."}
+    ],
+    frases:[
+      {grupo:"Dar una ubicación exacta",items:[
+        {text:"La sala de reuniones está al fondo del pasillo, a la derecha.",use:"Combina una referencia principal y una orientación final."},
+        {text:"El punto de entrega está frente a la entrada principal.",use:"Útil cuando ambos puntos son visibles."}
+      ]},
+      {grupo:"Reducir ambigüedad",items:[
+        {text:"La impresora está junto a la sala B, no junto a recepción.",use:"Contrasta dos ubicaciones para evitar una confusión frecuente."},
+        {text:"Los documentos están en el segundo archivador, a la izquierda de la ventana.",use:"Añade una referencia específica cuando hay varios objetos parecidos."}
+      ]},
+      {grupo:"Comprobar comprensión",items:[
+        {text:"¿Te ubicas con esa referencia o prefieres que te dé otra?",use:"Permite comprobar si la indicación fue suficiente."},
+        {text:"Cuando llegues al final del pasillo, la sala queda a tu derecha.",use:"Organiza la orientación como una secuencia."}
+      ]}
+    ],
+    builder:{
+      intro:"Combina una ubicación principal con una referencia adicional.",
+      parts1:["La sala B","El archivo físico","La zona de carga","La recepción"],
+      parts2:["está al fondo de","está frente a","está junto a","está al otro lado de"],
+      parts3:["el pasillo, a la derecha.","la entrada principal.","la sala técnica.","la cafetería."]
+    },
+    grammar:[
+      {title:"preposición + referencia concreta",intent:"Orientar sin dejar la ubicación abierta a interpretación.",structure:"lugar + estar + preposición + referencia + detalle adicional",example:"La sala C está al fondo del pasillo, a la izquierda.",why:"La segunda referencia reduce ambigüedad."},
+      {title:"a + el = al / de + el = del",intent:"Mantener corrección en expresiones frecuentes de ubicación.",structure:"a + el → al · de + el → del",example:"Está al fondo del pasillo.",why:"Son contracciones obligatorias."},
+      {title:"relación entre movimiento y ubicación",intent:"Separar dónde está algo de cómo llegar.",structure:"Ubicación: está frente a… · Movimiento: ve hasta…, gira…, cruza…",example:"La sala está frente a la recepción. Ve hasta el final del pasillo y gira a la derecha.",why:"Una ubicación describe; una instrucción de movimiento guía."}
+    ],
+    registro:{
+      contexto:"Un cliente llega tarde y te llama porque no encuentra la sala donde empieza la reunión.",
+      opciones:[
+        {text:"Está por allá, cerca de todo.",quality:"warn",fb:"La frase no ofrece una referencia útil y aumenta la incertidumbre."},
+        {text:"Está al fondo del pasillo, a la derecha de los ascensores. Si ves la cafetería, te has pasado.",quality:"good",fb:"La indicación ofrece una referencia principal y un punto de control."},
+        {text:"Busca los ascensores y después ya la ves.",quality:"warn",fb:"Puede funcionar si el espacio es muy simple, pero depende demasiado de que la sala sea visible."}
+      ]
+    },
+    modelo:{
+      text:"La sala de reuniones está al fondo del pasillo, a la derecha de los ascensores. La zona de carga queda al otro lado del edificio, junto al acceso de proveedores. Los documentos están en el archivador gris, a la izquierda de la ventana.",
+      chunks:[
+        ["La sala de reuniones está al fondo del pasillo, a la derecha de los ascensores.","doble referencia"],
+        ["La zona de carga queda al otro lado del edificio, junto al acceso de proveedores.","orientación con dos relaciones espaciales"],
+        ["Los documentos están en el archivador gris, a la izquierda de la ventana.","objeto + referencia concreta"]
+      ]
+    },
+    ejercicios:[
+      {type:"mc",q:"¿Qué opción reduce mejor la ambigüedad?",opts:["Está cerca.","Está cerca de la entrada, frente al mostrador de seguridad.","Está por esa zona."],answer:1,explain:"Añade dos referencias verificables."},
+      {type:"mc",q:"¿Cuál distingue correctamente ubicación y movimiento?",opts:["Está al fondo del pasillo. Ve hasta el final y gira a la derecha.","Está gira a la derecha.","Ve frente a la sala."],answer:0,explain:"Primero describe la ubicación y después explica el recorrido."},
+      {type:"fill",q:"Completa: La sala está ___ fondo ___ pasillo.",answer:"al fondo del",explain:"Usamos las contracciones al y del."},
+      {type:"mc",q:"¿Qué frase funciona mejor para comprobar comprensión?",opts:["¿Sí?","¿Te ubicas con esa referencia o prefieres otra?","Bueno, ya sabes."],answer:1,explain:"Permite verificar comprensión sin sonar impaciente."}
+    ],
+    practica:{
+      situacion:"Un proveedor debe llegar a una sala de reunión dentro de un edificio que tiene dos pasillos, varios ascensores y una cafetería.",
+      interlocutor:"Proveedor que visita el lugar por primera vez",
+      objetivo:"Escribe una orientación de 4–5 frases.",
+      requisitos:["Incluye una ubicación principal y al menos dos referencias adicionales.","Diferencia ubicación de instrucciones de movimiento.","Usa al menos un conector como «cuando», «después» o «al final».","Comprueba al final si la indicación fue suficiente."],
+      apoyo:["La sala está…","Cuando llegues a…","A tu derecha / izquierda…","¿Te ubicas con…?"],
+      placeholder:"Escribe una orientación clara y profesional..."
+    },
+    modeloRespuesta:"La sala está al fondo del pasillo principal, a la derecha de los ascensores. Cuando llegues a la cafetería, sigue unos metros más. Verás la sala frente al área de descanso. Si ves la salida de emergencia, te has pasado. ¿Te ubicas con esas referencias?",
+    checklist:[
+      "Puedo combinar varias referencias espaciales en una misma indicación.",
+      "Puedo distinguir entre describir una ubicación y explicar un recorrido.",
+      "Puedo usar correctamente al y del en expresiones de lugar.",
+      "Puedo reducir ambigüedades cuando hay espacios parecidos.",
+      "Puedo comprobar si mi interlocutor entendió la orientación."
+    ]
+  },
+
+  b2: {
+    route:"🚀 B2 — Avanzado",
+    habilidad:"Explicar dónde están personas y cosas en el trabajo",
+    subtitulo:"Trabaja preposiciones y locuciones espaciales para describir configuraciones complejas, dar instrucciones eficientes y adaptar el grado de precisión a interlocutores y entornos distintos.",
+    objetivo:"Al terminar esta semana podrás describir ubicaciones complejas, orientar a otra persona con precisión, anticipar puntos de confusión y reformular indicaciones según el contexto profesional.",
+    objetivoExtra:"Al final del módulo comprobarás si ya puedes hacerlo.",
+    situacion:{
+      quien:"Eres responsable de coordinar una visita técnica.",
+      conQuien:"Hablas con técnicos externos, personal de seguridad y miembros de tu equipo.",
+      contexto:"El edificio tiene accesos restringidos, varias plantas y zonas con nombres similares.",
+      meta:"Evitar retrasos y errores de acceso mediante indicaciones precisas y adaptadas.",
+      dificultad:"Algunas referencias solo son útiles para personal interno y una formulación demasiado literal puede resultar poco práctica."
+    },
+    vocab:[
+      {term:"adyacente a",exp:"Contiguo o inmediatamente próximo. Registro más técnico/formal.",ex:"La sala de control está adyacente al área de servidores.",note:"Útil en planos, informes y visitas técnicas; menos natural en conversación informal."},
+      {term:"en las inmediaciones de",exp:"En la zona próxima, sin indicar un punto exacto.",ex:"Hay una zona de espera en las inmediaciones del acceso norte.",note:"Adecuado cuando la precisión métrica no es necesaria."},
+      {term:"en paralelo a",exp:"Con una orientación paralela respecto a otra referencia.",ex:"El corredor de servicio discurre en paralelo al área de producción.",note:"Frecuente en descripciones espaciales técnicas."},
+      {term:"perpendicular a",exp:"Forma aproximadamente un ángulo recto con otra referencia.",ex:"El pasillo de emergencia es perpendicular al corredor principal.",note:"Útil cuando el interlocutor interpreta planos o distribución."},
+      {term:"en el extremo opuesto de",exp:"En la parte más alejada dentro de un mismo espacio.",ex:"La sala de pruebas está en el extremo opuesto de la planta.",note:"Más preciso que «al otro lado» en espacios largos."},
+      {term:"a la altura de",exp:"En un punto equivalente de un recorrido o referencia.",ex:"El acceso restringido está a la altura del segundo ascensor.",note:"Muy útil para ubicar puntos sobre un eje."},
+      {term:"contiguo a",exp:"Que comparte límite o está inmediatamente al lado.",ex:"El almacén temporal está contiguo a la zona de expedición.",note:"Registro técnico y documental."},
+      {term:"en diagonal respecto de",exp:"Ubicación oblicua respecto a un punto de referencia.",ex:"La mesa de acreditación queda en diagonal respecto de recepción.",note:"Conviene usarla solo cuando realmente aporta precisión."}
+    ],
+    frases:[
+      {grupo:"Describir configuraciones complejas",items:[
+        {text:"El acceso técnico está en el extremo opuesto de la planta, a la altura del segundo núcleo de ascensores.",use:"Combina distancia interna y una referencia verificable."},
+        {text:"La sala de control es adyacente al área de servidores y queda en paralelo al corredor de servicio.",use:"Adecuada en una visita técnica o al comentar un plano."}
+      ]},
+      {grupo:"Anticipar errores de orientación",items:[
+        {text:"No tomes como referencia la recepción principal; el acceso correcto está en el lateral norte.",use:"Descarta una referencia intuitiva pero incorrecta."},
+        {text:"Si llegas a la zona de expedición, significa que has pasado el acceso restringido.",use:"Introduce un punto de control para autocorrección."}
+      ]},
+      {grupo:"Adaptar el registro",items:[
+        {text:"En el plano aparece como «sala adyacente al laboratorio»; en la práctica, es la puerta inmediatamente a la izquierda.",use:"Traduce lenguaje técnico a una indicación operativa."},
+        {text:"Para el personal externo, conviene usar la cafetería como referencia porque el código interno de la zona no les resultará útil.",use:"Explicita el criterio de selección de referencias."}
+      ]}
+    ],
+    builder:{
+      intro:"Formula una orientación técnica combinando una relación espacial y una referencia operativa.",
+      parts1:["El acceso técnico","La sala de control","La zona de expedición","El punto de acreditación"],
+      parts2:["está adyacente a","está a la altura de","está en el extremo opuesto de","queda en diagonal respecto de"],
+      parts3:["la sala de servidores.","el segundo ascensor.","la planta principal.","la recepción norte."]
+    },
+    grammar:[
+      {title:"locuciones espaciales y grado de precisión",intent:"Elegir una formulación compatible con el contexto.",structure:"cerca de < a pocos metros de < adyacente/contiguo a",example:"La sala está cerca del laboratorio / a pocos metros del laboratorio / adyacente al laboratorio.",why:"No son equivalentes: cada una expresa un grado distinto de proximidad."},
+      {title:"referencia relativa y perspectiva",intent:"Evitar indicaciones ambiguas como «a la derecha».",structure:"a la derecha de X / a tu derecha al salir de Y / en el lateral derecho del plano",example:"La puerta está a tu derecha al salir del ascensor.",why:"La orientación depende del punto de vista; conviene fijarlo."},
+      {title:"reformulación funcional",intent:"Pasar de una descripción técnica a una indicación operativa.",structure:"descripción espacial → referencia visible → punto de control",example:"Es adyacente al laboratorio; para ubicarte, busca la puerta azul frente al panel de seguridad.",why:"Una descripción exacta no siempre es la más útil para actuar."}
+    ],
+    registro:{
+      contexto:"Un técnico externo te llama desde el vestíbulo. Tiene el plano, pero no conoce los códigos internos del edificio.",
+      opciones:[
+        {text:"La sala es la 3N-214, sector C.",quality:"warn",fb:"Puede ser exacta para personal interno, pero no ayuda si el interlocutor no conoce la codificación."},
+        {text:"En el plano figura como 3N-214. Para ubicarte, toma el segundo ascensor y busca la puerta azul a tu derecha; está frente al panel de seguridad.",quality:"good",fb:"Combina la referencia documental con una orientación operativa adaptada al visitante."},
+        {text:"Está adyacente al núcleo C, perpendicular al corredor 3N.",quality:"warn",fb:"Es técnicamente precisa, pero probablemente excesiva para alguien que necesita actuar rápido desde el vestíbulo."}
+      ]
+    },
+    modelo:{
+      text:"El acceso técnico figura en el plano como 3N-214, pero esa referencia no suele ser útil para visitantes. Desde el segundo ascensor, avanza hasta el panel de seguridad; la puerta azul queda a tu derecha. La sala de control es adyacente a ese acceso. Si llegas al corredor de expedición, te has pasado.",
+      chunks:[
+        ["El acceso técnico figura en el plano como 3N-214, pero esa referencia no suele ser útil para visitantes.","evalúa la utilidad de una referencia"],
+        ["Desde el segundo ascensor, avanza hasta el panel de seguridad; la puerta azul queda a tu derecha.","fija perspectiva + referencia visible"],
+        ["La sala de control es adyacente a ese acceso.","añade relación espacial precisa"],
+        ["Si llegas al corredor de expedición, te has pasado.","introduce punto de control"]
+      ]
+    },
+    ejercicios:[
+      {type:"mc",q:"¿Qué formulación expresa mayor proximidad física?",opts:["en las inmediaciones de","cerca de","adyacente a"],answer:2,explain:"«Adyacente a» implica contigüidad o proximidad inmediata."},
+      {type:"mc",q:"¿Qué opción fija mejor la perspectiva?",opts:["Está a la derecha.","Está a tu derecha al salir del segundo ascensor.","Está por el lado derecho."],answer:1,explain:"Define el punto desde el que se interpreta derecha."},
+      {type:"mc",q:"¿Cuál reformula mejor una referencia técnica para un visitante?",opts:["Sector C-4.","Contiguo a 3N.","En el plano aparece como C-4; en la práctica, busca la puerta azul frente a seguridad."],answer:2,explain:"Conserva la referencia técnica y añade una referencia visible."},
+      {type:"fill",q:"Completa con una locución precisa: La sala está ___ segundo ascensor.",answer:"a la altura del",explain:"«A la altura de» permite ubicar un punto sobre un recorrido o eje."}
+    ],
+    practica:{
+      situacion:"Un técnico externo debe llegar a una zona restringida. Tiene un plano con códigos internos, pero el edificio es grande y varias puertas se parecen.",
+      interlocutor:"Técnico externo con tiempo limitado",
+      objetivo:"Escribe una orientación de 6–8 frases que combine precisión técnica y utilidad operativa.",
+      requisitos:["Fija la perspectiva de al menos una indicación lateral.","Incluye una referencia visible y una referencia técnica.","Anticipa un posible error de recorrido.","Justifica o deja ver por qué eliges esas referencias."],
+      apoyo:["En el plano figura como…","Para ubicarte mejor…","A tu derecha al salir de…","Si llegas a…, te has pasado."],
+      placeholder:"Redacta una orientación precisa, natural y adaptada al visitante..."
+    },
+    modeloRespuesta:"En el plano, el acceso restringido figura como 3N-214, pero para ubicarte mejor toma como referencia el segundo ascensor. Al salir, avanza hasta el panel de seguridad; la puerta azul queda a tu derecha. Ese acceso es adyacente a la sala de control. No uses la recepción principal como referencia porque está en el extremo opuesto de la planta. Si llegas al corredor de expedición, te has pasado. Desde allí tendrías que retroceder unos metros.",
+    checklist:[
+      "Puedo elegir entre referencias aproximadas, operativas y técnicas según el contexto.",
+      "Puedo fijar la perspectiva para evitar ambigüedades con derecha e izquierda.",
+      "Puedo reformular una descripción espacial para que sea útil a un visitante.",
+      "Puedo anticipar puntos de confusión y añadir referencias de control.",
+      "Puedo orientar con precisión sin sobrecargar innecesariamente el mensaje."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["objetivo","🎯 1. Tu objetivo esta semana"],
+  ["situacion","🏢 2. La situación"],
+  ["vocabulario","🗣️ 3. Vocabulario clave"],
+  ["frases","💬 4. Frases que puedes usar"],
+  ["construye","🧩 5. Construye tu mensaje"],
+  ["gramatica","📚 6. Gramática que necesitas"],
+  ["registro","🎭 7. Elige el registro"],
+  ["modelo","💼 8. Mira cómo se hace"],
+  ["comprueba","✍️ 9. Comprueba lo que aprendiste"],
+  ["practica","🏢 10. Ahora te toca a ti"],
+  ["respuesta","💡 11. Ver modelo"],
+  ["checklist","✅ 12. Checklist final"]
+];
+
+let selectedLevel = null;
+let completed = new Set();
+
+const $ = (s, root=document)=>root.querySelector(s);
+const $$ = (s, root=document)=>[...root.querySelectorAll(s)];
+const mark = id => { completed.add(id); updateProgress(); };
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
+}
+
+function getSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices = speechSynthesis.getVoices();
+  const preferred = [
+    v=>/es-CO/i.test(v.lang),
+    v=>/es-(MX|US|AR|CL|PE|VE|EC|UY|PY|BO|CR|PA|DO|GT|HN|NI|SV|PR)/i.test(v.lang),
+    v=>/^es/i.test(v.lang)
+  ];
+  for(const test of preferred){
+    const found = voices.find(test);
+    if(found) return found;
+  }
+  return null;
+}
+function speakSpanish(text, slow=false){
+  if(!("speechSynthesis" in window)){
+    alert("El navegador no ofrece síntesis de voz en este dispositivo.");
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = getSpanishVoice();
+  if(v) u.voice = v;
+  u.lang = v?.lang || "es-CO";
+  u.rate = slow ? 0.72 : 0.95;
+  u.pitch = 1;
+  speechSynthesis.speak(u);
+}
+if("speechSynthesis" in window){
+  speechSynthesis.onvoiceschanged = ()=>getSpanishVoice();
+}
+
+function audioControls(text, label="frase"){
+  if(selectedLevel!=="a2") return "";
+  const safe = escapeHtml(text);
+  return `<div class="audio-row">
+    <button class="audio-btn speak" data-text="${safe}" data-slow="0" aria-label="Escuchar ${escapeHtml(label)}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn speak" data-text="${safe}" data-slow="1" aria-label="Escuchar lentamente ${escapeHtml(label)}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function renderModule(){
+  const d = contenido[selectedLevel];
+  $("#routePill").textContent = `Tu ruta: ${d.route}`;
+  $("#heroTitle").textContent = d.habilidad;
+  $("#heroSubtitle").textContent = d.subtitulo;
+  completed = new Set(["nivel"]);
+  $("#sectionNav").innerHTML = sectionMeta.map(([id,label])=>`<button data-target="${id}">${label}</button>`).join("");
+
+  $("#content").innerHTML = `
+    <section class="lesson" id="objetivo">
+      <h2>🎯 1. Tu objetivo esta semana</h2>
+      <div class="callout"><strong>${escapeHtml(d.objetivo)}</strong><p class="small muted">${escapeHtml(d.objetivoExtra)}</p></div>
+    </section>
+
+    <section class="lesson" id="situacion">
+      <h2>🏢 2. La situación</h2>
+      <div class="cards">
+        <div><h3>Quién habla</h3><p>${escapeHtml(d.situacion.quien)}</p></div>
+        <div><h3>Con quién</h3><p>${escapeHtml(d.situacion.conQuien)}</p></div>
+        <div><h3>Contexto</h3><p>${escapeHtml(d.situacion.contexto)}</p></div>
+        <div><h3>Qué quieres conseguir</h3><p>${escapeHtml(d.situacion.meta)}</p></div>
+      </div>
+      <div class="tip"><strong>Dificultad:</strong> ${escapeHtml(d.situacion.dificultad)}</div>
+    </section>
+
+    <section class="lesson" id="vocabulario">
+      <h2>🗣️ 3. Vocabulario clave</h2>
+      <p class="muted">${selectedLevel==="a2"?"Toca cada tarjeta para revelar el significado y el ejemplo. / Tap each card to reveal meaning and example.":"Abre las tarjetas y compara precisión, colocación y registro."}</p>
+      <div class="cards">
+        ${d.vocab.map((v,i)=>`
+          <article class="flip">
+            <button class="flip-btn" data-flip="v${i}" aria-expanded="false">${escapeHtml(v.term)}</button>
+            <div class="flip-content hidden" id="v${i}">
+              ${v.en?`<p><strong>English:</strong> ${escapeHtml(v.en)}</p>`:""}
+              <p>${escapeHtml(v.exp)}</p>
+              <p><strong>Ejemplo:</strong> ${escapeHtml(v.ex)}</p>
+              <p class="small muted">${escapeHtml(v.note||"")}</p>
+              ${audioControls(v.term,`vocabulario ${v.term}`)}
+              ${audioControls(v.ex,`ejemplo ${v.term}`)}
+            </div>
+          </article>`).join("")}
+      </div>
+      ${selectedLevel==="a2"?`
+        <div class="quiz">
+          <h3>Recuperación rápida / Quick recall</h3>
+          <p>¿Cómo dices <strong>“under / below”</strong>?</p>
+          <div class="option-list">
+            <button class="option mini-recall" data-correct="0">encima de</button>
+            <button class="option mini-recall" data-correct="1">debajo de</button>
+            <button class="option mini-recall" data-correct="0">delante de</button>
+          </div><div id="recallFeedback" class="feedback hidden"></div>
+        </div>`:""}
+    </section>
+
+    <section class="lesson" id="frases">
+      <h2>💬 4. Frases que puedes usar</h2>
+      ${d.frases.map(g=>`<div class="phrase-group"><h3>${escapeHtml(g.grupo)}</h3>
+        ${g.items.map((p,i)=>`<div class="phrase"><strong>${escapeHtml(p.text)}</strong>
+          ${audioControls(p.text,"frase modelo")}
+          <div><button class="ghost reveal-use" data-use="${escapeHtml(p.use)}" style="margin-top:8px">Ver cuándo usarla</button></div>
+        </div>`).join("")}</div>`).join("")}
+    </section>
+
+    <section class="lesson" id="construye">
+      <h2>🧩 5. Construye tu mensaje</h2>
+      <p>${escapeHtml(d.builder.intro)}</p>
+      <div class="builder">
+        <div class="builder-row">
+          <label>1. Referencia<select id="build1">${d.builder.parts1.map(x=>`<option>${escapeHtml(x)}</option>`).join("")}</select></label>
+          <label>2. Relación espacial<select id="build2">${d.builder.parts2.map(x=>`<option>${escapeHtml(x)}</option>`).join("")}</select></label>
+        </div>
+        <label>3. Punto de referencia<select id="build3">${d.builder.parts3.map(x=>`<option>${escapeHtml(x)}</option>`).join("")}</select></label>
+        <div id="builderOutput" class="builder-output"></div>
+        <div id="builderAudio"></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="gramatica">
+      <h2>📚 6. Gramática que necesitas</h2>
+      <p class="muted">Situación → intención → estructura → ejemplo.</p>
+      ${d.grammar.map((g,i)=>`<div class="phrase-group">
+        <h3>${escapeHtml(g.title)}</h3><p><strong>Intención:</strong> ${escapeHtml(g.intent)}</p>
+        <button class="ghost grammar-toggle" data-g="g${i}">Ver explicación</button>
+        <div id="g${i}" class="hidden">
+          <p><strong>Estructura:</strong> ${escapeHtml(g.structure)}</p>
+          <p><strong>Ejemplo profesional:</strong> ${escapeHtml(g.example)}</p>
+          <p class="muted">${escapeHtml(g.why)}</p>
+          ${audioControls(g.example,"ejemplo de gramática")}
+        </div>
+      </div>`).join("")}
+    </section>
+
+    <section class="lesson" id="registro">
+      <h2>🎭 7. Elige el registro</h2>
+      <p>${escapeHtml(d.registro.contexto)}</p>
+      <div class="option-list">
+        ${d.registro.opciones.map((o,i)=>`
+          <button class="option reg-option" data-quality="${o.quality}" data-fb="${escapeHtml(o.fb)}">${escapeHtml(o.text)}</button>
+          ${selectedLevel==="a2"?audioControls(o.text,"opción de registro"):""}
+        `).join("")}
+      </div>
+      <div id="regFeedback" class="feedback hidden"></div>
+    </section>
+
+    <section class="lesson" id="modelo">
+      <h2>💼 8. Mira cómo se hace</h2>
+      <div class="example">
+        <p>${escapeHtml(d.modelo.text)}</p>
+        ${audioControls(d.modelo.text,"ejemplo profesional completo")}
+        <hr>
+        <div>
+          ${d.modelo.chunks.map(c=>`<button class="audio-btn function-chunk" data-fn="${escapeHtml(c[1])}" style="margin:4px">${escapeHtml(c[0])}</button>`).join("")}
+        </div>
+        <div id="chunkFeedback" class="feedback hidden" style="color:#172033"></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="comprueba">
+      <h2>✍️ 9. Comprueba lo que aprendiste</h2>
+      <p class="muted">Responde, revisa el feedback y vuelve a intentar si lo necesitas.</p>
+      <div id="quizBox">
+        ${d.ejercicios.map((q,i)=>renderQuestion(q,i)).join("")}
+      </div>
+    </section>
+
+    <section class="lesson" id="practica">
+      <h2>🏢 10. Ahora te toca a ti</h2>
+      <div class="callout"><strong>Situación:</strong> ${escapeHtml(d.practica.situacion)}<br><strong>Interlocutor:</strong> ${escapeHtml(d.practica.interlocutor)}<br><strong>Objetivo:</strong> ${escapeHtml(d.practica.objetivo)}</div>
+      <h3>Incluye:</h3><ul>${d.practica.requisitos.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
+      <h3>Recursos de apoyo</h3>
+      <div class="row">${d.practica.apoyo.map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}</div>
+      ${selectedLevel==="a2"?d.practica.apoyo.map(x=>audioControls(x,"estructura de apoyo")).join(""):""}
+      <label for="practiceText"><strong>Tu respuesta</strong></label>
+      <textarea id="practiceText" placeholder="${escapeHtml(d.practica.placeholder)}"></textarea>
+      <button id="savePractice" class="primary">He escrito mi respuesta</button>
+      <div id="practiceFeedback" class="feedback hidden"></div>
+    </section>
+
+    <section class="lesson" id="respuesta">
+      <h2>💡 11. Ver modelo</h2>
+      <p>Primero intenta resolver la práctica con tus propios recursos.</p>
+      <button id="showModelAnswer" class="secondary">Ver una posible respuesta</button>
+      <div id="modelAnswer" class="callout hidden" style="margin-top:14px">
+        <p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p>
+        <p>${escapeHtml(d.modeloRespuesta)}</p>
+        ${audioControls(d.modeloRespuesta,"respuesta modelo")}
+      </div>
+    </section>
+
+    <section class="lesson" id="checklist">
+      <h2>✅ 12. Checklist final</h2>
+      <p>Antes de terminar, comprueba:</p>
+      <div class="checks">
+        ${d.checklist.map((x,i)=>`<label><input type="checkbox" class="final-check" data-i="${i}"><span>${escapeHtml(x)}</span></label>`).join("")}
+      </div>
+      <div class="progress-track" id="checkTrack" role="progressbar" aria-label="Checklist completado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-top:12px"><div id="checkBar" class="progress-bar"></div></div><div id="checkProgress" class="small muted" style="margin-top:8px">0 de ${d.checklist.length} completados</div>
+      <div id="completion" class="completion">
+        <h3>🎯 Ya estás listo para practicar</h3>
+        <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+        <p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p>
+        <!-- Sustituir # por la URL real del reto diario cuando esté disponible -->
+        <a class="primary" href="#" style="display:inline-block;text-decoration:none">🔥 Ir al reto de hoy</a>
+      </div>
+    </section>
+  `;
+
+  bindInteractions();
+  updateBuilder();
+  observeSections();
+  updateProgress();
+}
+
+function renderQuestion(q,i){
+  if(q.type==="mc"){
+    return `<div class="quiz" data-q="${i}"><h3>${i+1}. ${escapeHtml(q.q)}</h3>
+      <div class="option-list">${q.opts.map((o,j)=>`<div><button class="option q-option" data-q="${i}" data-opt="${j}">${escapeHtml(o)}</button>${selectedLevel==="a2"?audioControls(o,"opción del ejercicio"):""}</div>`).join("")}</div>
+      <div class="quiz-actions"><button class="ghost retry-question hidden" data-q="${i}">Volver a intentar</button></div>
+      <div class="feedback q-feedback hidden"></div></div>`;
+  }
+  return `<div class="quiz" data-q="${i}"><h3>${i+1}. ${escapeHtml(q.q)}</h3>
+    <input class="q-fill" data-q="${i}" aria-label="Respuesta ejercicio ${i+1}" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:12px">
+    <div class="quiz-actions"><button class="primary check-fill" data-q="${i}">Comprobar</button><button class="ghost retry-question hidden" data-q="${i}">Volver a intentar</button></div>
+    <div class="feedback q-feedback hidden"></div></div>`;
+}
+
+function bindInteractions(){
+  $$(".flip-btn").forEach(btn=>btn.addEventListener("click",()=>{
+    const box = document.getElementById(btn.dataset.flip);
+    box.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!box.classList.contains("hidden")));
+    mark("vocab-"+btn.dataset.flip);
+  }));
+  $$(".speak").forEach(btn=>btn.addEventListener("click",()=>{
+    speakSpanish(btn.dataset.text, btn.dataset.slow==="1");
+    mark("audio-"+btn.dataset.text.slice(0,18));
+  }));
+  $$(".reveal-use").forEach(btn=>btn.addEventListener("click",()=>{
+    const existing = btn.nextElementSibling;
+    if(existing && existing.classList.contains("feedback")) existing.remove();
+    else btn.insertAdjacentHTML("afterend",`<div class="feedback">${btn.dataset.use}</div>`);
+    mark("phrase-use-"+btn.dataset.use.slice(0,15));
+  }));
+  ["build1","build2","build3"].forEach(id=>$("#"+id).addEventListener("change",()=>{updateBuilder(); mark("builder-"+id)}));
+  $$(".grammar-toggle").forEach(btn=>btn.addEventListener("click",()=>{
+    $("#"+btn.dataset.g).classList.toggle("hidden"); mark("grammar-"+btn.dataset.g);
+  }));
+  $$(".reg-option").forEach(btn=>btn.addEventListener("click",()=>{
+    $$(".reg-option").forEach(b=>b.classList.remove("selected","good","warn"));
+    btn.classList.add("selected",btn.dataset.quality);
+    $("#regFeedback").textContent = btn.dataset.fb;
+    $("#regFeedback").classList.remove("hidden");
+    mark("registro");
+  }));
+  $$(".function-chunk").forEach(btn=>btn.addEventListener("click",()=>{
+    $("#chunkFeedback").textContent = `Función: ${btn.dataset.fn}.`;
+    $("#chunkFeedback").classList.remove("hidden");
+    mark("modelo-chunk-"+btn.dataset.fn);
+  }));
+  $$(".q-option").forEach(btn=>btn.addEventListener("click",()=>checkMC(btn)));
+  $$(".check-fill").forEach(btn=>btn.addEventListener("click",()=>checkFill(Number(btn.dataset.q))));
+  $$(".retry-question").forEach(btn=>btn.addEventListener("click",()=>resetQuestion(Number(btn.dataset.q))));
+  if(selectedLevel==="a2"){
+    $$(".mini-recall").forEach(btn=>btn.addEventListener("click",()=>{
+      const ok=btn.dataset.correct==="1";
+      $("#recallFeedback").textContent = ok ? "Sí: «debajo de» = under / below." : "Todavía no. Intenta otra opción.";
+      $("#recallFeedback").classList.remove("hidden");
+      if(ok) mark("recall");
+    }));
+  }
+  $("#savePractice").addEventListener("click",()=>{
+    const t=$("#practiceText").value.trim();
+    $("#practiceFeedback").textContent = t.length<20 ? "Tu respuesta todavía es muy breve. Añade las referencias solicitadas antes de continuar." : "Respuesta registrada para tu autoevaluación. Compárala después con el modelo y revisa claridad, precisión y registro.";
+    $("#practiceFeedback").classList.remove("hidden");
+    if(t.length>=20) mark("practice");
+  });
+  $("#showModelAnswer").addEventListener("click",()=>{
+    $("#modelAnswer").classList.remove("hidden"); mark("model-answer");
+    bindNewAudio($("#modelAnswer"));
+  });
+  $$(".final-check").forEach(ch=>ch.addEventListener("change",updateChecklist));
+  $$("#sectionNav button").forEach(btn=>btn.addEventListener("click",()=>{
+    document.getElementById(btn.dataset.target).scrollIntoView({behavior:"smooth",block:"start"});
+  }));
+}
+
+function bindNewAudio(root){
+  $$(".speak",root).forEach(btn=>{ if(btn.dataset.bound) return; btn.dataset.bound="1"; btn.addEventListener("click",()=>speakSpanish(btn.dataset.text,btn.dataset.slow==="1")); });
+}
+
+function updateBuilder(){
+  const text=`${$("#build1").value} ${$("#build2").value} ${$("#build3").value}`;
+  $("#builderOutput").textContent=text;
+  $("#builderAudio").innerHTML=audioControls(text,"mensaje construido");
+  bindNewAudio($("#builderAudio"));
+}
+
+function normalize(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim()}
+function checkMC(btn){
+  const i=Number(btn.dataset.q), q=contenido[selectedLevel].ejercicios[i], chosen=Number(btn.dataset.opt);
+  const container=btn.closest(".quiz");
+  $$(".q-option",container).forEach(b=>b.classList.remove("good","warn"));
+  btn.classList.add(chosen===q.answer?"good":"warn");
+  const fb=$(".q-feedback",container);
+  fb.textContent=(chosen===q.answer?"Esta opción funciona. ":"Revisa la relación espacial. ")+q.explain;
+  fb.classList.remove("hidden");
+  $(".retry-question",container)?.classList.remove("hidden");
+  if(chosen===q.answer) mark("quiz-"+i);
+}
+function checkFill(i){
+  const q=contenido[selectedLevel].ejercicios[i], container=$(`.quiz[data-q="${i}"]`);
+  const input=$(".q-fill",container), ok=normalize(input.value)===normalize(q.answer);
+  const fb=$(".q-feedback",container);
+  fb.textContent=(ok?"Funciona. ":"Prueba otra vez. ")+q.explain+(!ok?` Respuesta esperada: ${q.answer}.`:"");
+  fb.classList.remove("hidden");
+  $(".retry-question",container)?.classList.remove("hidden");
+  if(ok) mark("quiz-"+i);
+}
+function resetQuestion(i){
+  const container=$(`.quiz[data-q="${i}"]`);
+  $$(".q-option",container).forEach(b=>b.classList.remove("good","warn","selected"));
+  const input=$(".q-fill",container);
+  if(input) input.value="";
+  const fb=$(".q-feedback",container);
+  if(fb){ fb.textContent=""; fb.classList.add("hidden"); }
+  $(".retry-question",container)?.classList.add("hidden");
+}
+function updateChecklist(){
+  const checks=$$(".final-check"), n=checks.filter(x=>x.checked).length;
+  $("#checkProgress").textContent=`${n} de ${checks.length} completados`;
+  const checkPct=Math.round((n/checks.length)*100);
+  $("#checkBar").style.width=checkPct+"%";
+  $("#checkTrack").setAttribute("aria-valuenow", String(checkPct));
+  checks.forEach((c,i)=>{if(c.checked) completed.add("check-"+i); else completed.delete("check-"+i)});
+  if(n===checks.length){$("#completion").style.display="block"; mark("checklist-complete")} else $("#completion").style.display="none";
+  updateProgress();
+}
+function updateProgress(){
+  const d=contenido[selectedLevel];
+  const quizCount=d?d.ejercicios.length:0;
+  const vocabCount=d?d.vocab.length:0;
+  const checklistCount=d?d.checklist.length:0;
+  const target = 1 + sectionMeta.length + Math.min(vocabCount,4) + quizCount + checklistCount + 4;
+  const capped=Math.min(completed.size,target);
+  const pct=Math.round((capped/target)*100);
+  $("#progressBar").style.width=pct+"%";
+  $("#progressText").textContent=pct+"%";
+  $("#moduleProgress").setAttribute("aria-valuenow", String(pct));
+}
+function observeSections(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        mark("section-"+e.target.id);
+        $$("#sectionNav button").forEach(b=>b.classList.toggle("active",b.dataset.target===e.target.id));
+      }
+    });
+  },{threshold:.28});
+  sectionMeta.forEach(([id])=>obs.observe(document.getElementById(id)));
+}
+
+$$(".level-card").forEach(btn=>btn.addEventListener("click",()=>{
+  selectedLevel=btn.dataset.level;
+  $("#levelScreen").classList.add("hidden");
+  $("#module").classList.remove("hidden");
+  renderModule();
+  window.scrollTo({top:0});
+}));
+
+$("#changeLevel").addEventListener("click",()=>{
+  if("speechSynthesis" in window) speechSynthesis.cancel();
+  $("#module").classList.add("hidden");
+  $("#levelScreen").classList.remove("hidden");
+  window.scrollTo({top:0});
+});
+</script>
+</body>
+</html>

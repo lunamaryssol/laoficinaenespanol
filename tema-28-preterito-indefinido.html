@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 28 · Pretérito indefinido | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish: pretérito indefinido regular e irregular aplicado a situaciones profesionales.">
+<style>
+:root{
+  --blue:#003893; --yellow:#FCD116; --red:#CE1126; --white:#fff; --black:#000;
+  --ink:#172033; --muted:#61708a; --bg:#f4f7fb; --card:#fff; --line:#dbe3ef;
+  --soft:#edf3ff; --ok:#146c43; --okbg:#ecf8f1; --warn:#8a5a00; --warnbg:#fff8df;
+  --shadow:0 12px 34px rgba(0,56,147,.10); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.hidden{display:none!important}
+.level-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:
+radial-gradient(circle at 90% 10%,rgba(252,209,22,.22),transparent 25%),
+linear-gradient(145deg,#eef4ff,#fff)}
+.level-box{width:min(1040px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(24px,5vw,48px);box-shadow:var(--shadow)}
+.brandline{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--blue) 0 70%,var(--yellow) 70% 88%,var(--red) 88%)}
+.eyebrow{margin-top:22px;color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+h1,h2,h3{line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3.6rem);margin:.35em 0 .2em}
+.lead{font-size:1.08rem;color:var(--muted);max-width:800px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.level-card{border:2px solid var(--line);background:#fff;border-radius:18px;text-align:left;padding:22px;min-height:210px;transition:.2s transform,.2s border-color,.2s box-shadow}
+.level-card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 24px rgba(0,56,147,.08)}
+.level-card strong{display:block;color:var(--blue);font-size:1.22rem;margin-bottom:10px}
+.level-card span{display:block;color:#49566d;font-size:.95rem}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.topbar-inner{width:min(1180px,calc(100% - 24px));margin:auto;display:grid;grid-template-columns:auto minmax(180px,1fr) auto minmax(160px,280px);align-items:center;gap:14px;padding:10px 0}
+.brand{font-weight:950;color:var(--blue);white-space:nowrap}
+.route-chip{background:var(--soft);color:var(--blue);font-weight:800;padding:8px 12px;border-radius:999px;justify-self:start}
+.progress-wrap{display:flex;align-items:center;gap:9px}
+.progress{height:10px;background:#e8edf5;border-radius:99px;overflow:hidden;flex:1;min-width:100px}
+.progress>div{height:100%;width:0;background:var(--blue);transition:width .25s}
+.progress-label{font-size:.82rem;font-weight:800;color:var(--muted);min-width:40px;text-align:right}
+.btn{border:0;border-radius:12px;padding:10px 14px;font-weight:850}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-soft{background:#edf3ff;color:var(--blue)}
+.btn-ghost{background:#fff;color:var(--blue);border:1px solid var(--line)}
+.btn-yellow{background:var(--yellow);color:#1d2738}
+.layout{width:min(1180px,calc(100% - 24px));margin:24px auto 50px;display:grid;grid-template-columns:235px 1fr;gap:20px}
+.sidebar{position:sticky;top:74px;height:max-content;max-height:calc(100vh - 90px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px}
+.nav-btn{width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:10px 11px;color:#4c5b72;font-weight:700;font-size:.9rem}
+.nav-btn:hover,.nav-btn.active{background:var(--soft);color:var(--blue)}
+.main{min-width:0}
+.hero,.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 5px 18px rgba(15,61,99,.04)}
+.hero{padding:clamp(24px,4vw,42px);margin-bottom:18px;background:
+linear-gradient(135deg,rgba(0,56,147,.97),rgba(0,56,147,.87));color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--yellow);right:-70px;top:-70px;opacity:.18}
+.hero .kicker{font-weight:850;color:#ffe97a}
+.hero h1{font-size:clamp(2rem,4vw,3rem);max-width:800px}
+.hero p{max-width:790px;color:#e6efff}
+.panel{padding:clamp(20px,4vw,34px);margin:18px 0}
+.section-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.section-num{width:38px;height:38px;border-radius:12px;background:var(--soft);color:var(--blue);display:grid;place-items:center;font-weight:950;flex:0 0 auto}
+.section-head h2{margin:3px 0 0;font-size:1.45rem}
+.callout{background:var(--soft);border-left:5px solid var(--blue);border-radius:12px;padding:15px 17px;margin:14px 0}
+.situation-grid,.cards,.phrase-groups,.grammar-grid,.register-grid,.builder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.fact{border:1px solid var(--line);border-radius:13px;padding:14px;background:#fbfcff}
+.fact b{display:block;color:var(--blue);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.card{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
+.flip{width:100%;border:0;background:#fff;padding:17px;text-align:left}
+.flip strong{display:block;color:var(--blue);font-size:1.04rem}
+.flip small{display:block;color:var(--muted);margin-top:5px}
+.card-body{display:none;padding:0 17px 17px;border-top:1px solid var(--line)}
+.card.open .card-body{display:block}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.audio-btn{border:1px solid #cbd7e8;background:#fff;color:var(--blue);padding:7px 10px;border-radius:9px;font-weight:750;font-size:.84rem}
+.audio-note{font-size:.82rem;color:var(--muted)}
+.tag{display:inline-block;padding:4px 8px;border-radius:99px;background:#f2f5f9;color:#536078;font-size:.78rem;font-weight:800;margin:2px}
+.phrase-group{border:1px solid var(--line);border-radius:15px;padding:16px}
+.phrase-group h3{margin-top:0;color:var(--blue)}
+.phrase{border-top:1px solid var(--line);padding:12px 0}
+.phrase:first-of-type{border-top:0}
+.phrase-text{font-weight:800}
+.why{display:none;margin-top:8px;color:#526078;font-size:.93rem}
+.why.show{display:block}
+.chunk{display:flex;flex-direction:column;gap:5px;margin:10px 0}
+.chunk span{background:#f4f7fb;padding:7px 9px;border-radius:8px;width:max-content;max-width:100%}
+.builder{border:1px solid var(--line);border-radius:15px;padding:16px}
+.builder-output{background:#f7f9fc;border:1px dashed #aebbd0;border-radius:12px;padding:14px;min-height:55px;margin:12px 0;font-weight:800}
+.choices{display:flex;gap:8px;flex-wrap:wrap}
+.choice{border:1px solid #ccd7e8;background:#fff;color:#29405f;padding:8px 10px;border-radius:10px}
+.choice.selected{border-color:var(--blue);background:var(--soft);color:var(--blue)}
+.grammar-card{border:1px solid var(--line);border-radius:15px;padding:16px}
+.grammar-card h3{margin-top:0;color:var(--blue)}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.grammar-table th,.grammar-table td{border-bottom:1px solid var(--line);padding:8px;text-align:left}
+.grammar-table th{background:#f7f9fc;color:var(--blue)}
+details{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;margin-top:10px}
+summary{font-weight:850;color:var(--blue);cursor:pointer}
+.register-card{border:1px solid var(--line);border-radius:14px;padding:15px}
+.option{display:block;width:100%;text-align:left;border:1px solid #cad5e6;background:#fff;border-radius:10px;padding:11px;margin:8px 0}
+.option:hover{border-color:var(--blue)}
+.feedback{display:none;border-radius:11px;padding:12px 14px;margin-top:10px}
+.feedback.show{display:block}
+.feedback.good{background:var(--okbg);color:var(--ok);border:1px solid #bfe0ce}
+.feedback.info{background:var(--warnbg);color:#604400;border:1px solid #f0dc97}
+.model{background:#f8faff;border:1px solid var(--line);border-radius:15px;padding:17px}
+.model-lines .line{border-left:3px solid var(--blue);padding:9px 12px;margin:8px 0;background:#fff;border-radius:0 10px 10px 0}
+.line .note{display:none;color:var(--muted);font-size:.9rem;margin-top:5px}
+.line.open .note{display:block}
+.quiz{border:1px solid var(--line);border-radius:15px;padding:17px;margin:13px 0}
+.quiz h3{font-size:1rem;margin-top:0}
+.quiz-options{display:grid;gap:8px}
+.quiz-option-row{border:1px solid #dbe3ef;border-radius:12px;padding:8px;background:#fff}.quiz-option-row .quiz-option{border:0;width:100%;padding:8px 4px}.quiz-option-row .audio-row{margin-top:4px}
+.quiz-option{border:1px solid #cbd6e6;background:#fff;border-radius:10px;padding:10px;text-align:left}
+.quiz-option.chosen{border-color:var(--blue);background:var(--soft)}
+.fill-row{display:flex;gap:8px;flex-wrap:wrap}
+.fill-row input{flex:1;min-width:180px;border:1px solid #b9c6d9;border-radius:10px;padding:10px}
+.practice{border:2px solid var(--blue);border-radius:16px;padding:18px;background:#fbfdff}
+.requirements{padding-left:20px}
+textarea{width:100%;min-height:170px;border:1px solid #b7c4d6;border-radius:12px;padding:13px;resize:vertical;background:#fff}
+.model-answer{display:none;margin-top:14px;background:#f4f8ff;border:1px solid #cddbf2;border-radius:13px;padding:16px}
+.model-answer.show{display:block}
+.checklist{display:grid;gap:10px}
+.check{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px}
+.check input{width:20px;height:20px;margin-top:2px}
+.ready{display:none;margin-top:16px;background:var(--okbg);border:1px solid #bfe0ce;border-radius:14px;padding:18px}
+.ready.show{display:block}
+.challenge{display:inline-block;margin-top:9px;background:var(--red);color:#fff;text-decoration:none;border-radius:10px;padding:10px 14px;font-weight:900}
+.section-move{display:flex;justify-content:space-between;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:10px 10px 34px}
+@media(max-width:900px){
+  .level-grid,.situation-grid,.cards,.phrase-groups,.grammar-grid,.register-grid,.builder-grid{grid-template-columns:1fr}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;display:flex;overflow:auto;max-height:none}
+  .nav-btn{white-space:nowrap;width:auto;flex:0 0 auto}
+  .topbar-inner{grid-template-columns:1fr auto}
+  .progress-wrap{grid-column:1/-1}
+}
+@media(max-width:600px){
+  .level-box{padding:22px}.panel,.hero{padding:19px}.layout{width:min(100% - 16px,1180px)}
+  .topbar-inner{width:min(100% - 16px,1180px)}
+  .section-move{position:sticky;bottom:7px;background:rgba(255,255,255,.96);padding:8px;border:1px solid var(--line);border-radius:12px;z-index:20}
+  .section-move .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-box">
+    <div class="brandline"></div>
+    <div class="eyebrow">La Oficina en Español · Herramientas lingüísticas</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Elige tu ruta. Todos trabajan la misma habilidad profesional; cambia el apoyo, la complejidad, la autonomía y la precisión esperada.</p>
+    <div class="level-grid" role="group" aria-label="Selecciona tu nivel">
+      <button class="level-card" data-level="a2">
+        <strong>🌱 A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-card" data-level="b1">
+        <strong>💼 B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-card" data-level="b2">
+        <strong>🚀 B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">La Oficina en Español</div>
+      <div id="routeChip" class="route-chip"></div>
+      <button id="changeLevel" class="btn btn-ghost">Cambiar nivel</button>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <div class="progress"><div id="progressBar"></div></div>
+        <div id="progressLabel" class="progress-label">0%</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav id="sidebar" class="sidebar" aria-label="Secciones del módulo"></nav>
+    <main class="main">
+      <section class="hero">
+        <div class="kicker">Tema 28 · Herramientas lingüísticas</div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+      </section>
+      <div id="sections"></div>
+    </main>
+  </div>
+  <div id="audioStatus" class="audio-note" role="status" aria-live="polite" style="width:min(1180px,calc(100% - 24px));margin:0 auto 12px"></div>\n  <footer>© La Oficina en Español · <a href="https://laoficinaenespanol.com" style="color:#003893">laoficinaenespanol.com</a></footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    label:"🌱 A2 — Principiante",
+    title:"Explica qué ocurrió en el trabajo",
+    subtitle:"Usa el pretérito indefinido para contar acciones terminadas: qué pasó, cuándo pasó y qué hizo cada persona.",
+    objetivo:"Al terminar esta semana podrás explicar de forma breve qué ocurrió en una situación de trabajo terminada, usando verbos regulares e irregulares frecuentes y marcadores de tiempo claros.",
+    situacion:{
+      quien:"Tú, como miembro de un equipo.",
+      conQuien:"Tu responsable o un compañero.",
+      contexto:"Una reunión breve de seguimiento después de un problema con un pedido.",
+      objetivo:"Explicar qué ocurrió ayer y qué acciones tomó el equipo.",
+      dificultad:"Necesitas distinguir acciones terminadas y usar correctamente formas frecuentes como envié, recibimos, fue, tuvo, hizo y pudo."
+    },
+    vocabulario:[
+      {term:"ayer",en:"yesterday",meaning:"Un día terminado antes de hoy.",example:"Ayer envié la propuesta al cliente.",extra:"Marcador típico del pretérito indefinido.",stress:"a-YER"},
+      {term:"la semana pasada",en:"last week",meaning:"Una semana que ya terminó.",example:"La semana pasada recibimos tres pedidos urgentes.",extra:"Ayuda a situar una acción en un periodo cerrado.",stress:"pa-SA-da"},
+      {term:"ocurrir",en:"to happen / occur",meaning:"Pasar o suceder.",example:"El problema ocurrió el lunes.",extra:"Forma útil: ocurrió.",stress:"o-cu-RRIR"},
+      {term:"enviar",en:"to send",meaning:"Mandar un documento, correo, pedido o información.",example:"Envié el informe a las nueve.",extra:"Yo: envié · nosotros: enviamos.",stress:"en-VI-ar"},
+      {term:"recibir",en:"to receive",meaning:"Obtener un mensaje, pedido, documento o respuesta.",example:"Recibimos la confirmación por la tarde.",extra:"Yo: recibí · nosotros: recibimos.",stress:"re-ci-BIR"},
+      {term:"resolver",en:"to solve",meaning:"Encontrar una solución a un problema.",example:"El equipo resolvió el problema antes del cierre.",extra:"En este nivel puedes memorizar «resolvió» como forma útil.",stress:"re-sol-VER"}
+    ],
+    vocabRecovery:{
+      prompt:"Recovery practice / Práctica de recuperación: What is the best Spanish word for “to send” in a work context?",
+      options:["recibir","enviar","resolver"],
+      correct:1,
+      feedback:"«Enviar» significa “to send”. Ejemplo: «Ayer envié la propuesta al cliente»."
+    },
+    frases:[
+      {group:"Situar el hecho",items:[
+        {text:"Ayer ocurrió un problema con el pedido.",when:"Úsala para introducir un hecho terminado y decir cuándo pasó."},
+        {text:"El lunes recibimos una llamada del cliente.",when:"Úsala para comenzar una secuencia con un momento específico."}
+      ]},
+      {group:"Explicar acciones",items:[
+        {text:"Primero revisamos la información.",when:"«Primero» organiza el inicio de la secuencia."},
+        {text:"Después llamé al proveedor.",when:"«Después» conecta una segunda acción terminada."},
+        {text:"El proveedor nos dio una nueva fecha.",when:"«dio» es una forma irregular frecuente de «dar»."}
+      ]},
+      {group:"Cerrar la explicación",items:[
+        {text:"Finalmente resolvimos el problema.",when:"Úsala para indicar la última acción de una secuencia."},
+        {text:"Al final, el cliente aceptó la nueva fecha.",when:"Úsala para explicar el resultado final."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una actualización breve. Elige un bloque de cada grupo.",
+      groups:[
+        {label:"Cuándo",options:["Ayer","El lunes","La semana pasada"]},
+        {label:"Qué ocurrió",options:["recibimos un pedido urgente","ocurrió un problema con el sistema","el cliente llamó por un retraso"]},
+        {label:"Qué hicimos",options:["y revisamos la información","y llamamos al proveedor","y enviamos una nueva propuesta"]},
+        {label:"Resultado",options:["Finalmente resolvimos el problema.","Al final, el cliente aceptó la solución.","Después confirmamos la nueva fecha."]}
+      ]
+    },
+    gramatica:[
+      {title:"1. Acciones terminadas en un tiempo terminado",body:"Usamos el pretérito indefinido cuando hablamos de una acción que vemos como terminada y situada en un momento cerrado: ayer, el lunes, la semana pasada, en 2025.",example:"Ayer envié el informe. El lunes recibimos la respuesta."},
+      {title:"2. Verbos regulares",body:"Para hablar de acciones profesionales terminadas, las terminaciones más útiles son: -AR → é, aste, ó, amos, aron; -ER/-IR → í, iste, ió, imos, ieron.",table:[
+        ["persona","hablar","recibir"],["yo","hablé","recibí"],["tú","hablaste","recibiste"],["él/ella/usted","habló","recibió"],["nosotros","hablamos","recibimos"],["ellos/ustedes","hablaron","recibieron"]
+      ],example:"Yo llamé al proveedor. Nosotros recibimos la confirmación."},
+      {title:"3. Irregulares frecuentes",body:"Algunos verbos muy frecuentes cambian. Aprende primero las formas que necesitas en situaciones de trabajo.",table:[
+        ["verbo","yo","él/ella/usted","nosotros"],["ser / ir","fui","fue","fuimos"],["tener","tuve","tuvo","tuvimos"],["hacer","hice","hizo","hicimos"],["poder","pude","pudo","pudimos"],["dar","di","dio","dimos"]
+      ],example:"El proveedor tuvo un problema y no pudo entregar el pedido. Nosotros hicimos un cambio y dimos una nueva fecha."}
+    ],
+    registro:{
+      prompt:"Tu responsable te pregunta: «¿Qué pasó ayer con el cliente?» ¿Qué respuesta funciona mejor?",
+      options:[
+        {text:"Cliente llamar. Problema pedido.",quality:"info",feedback:"Se entiende la idea general, pero faltan verbos conjugados y conexión entre las acciones."},
+        {text:"Ayer el cliente llamó por un problema con el pedido. Revisamos la información y después enviamos una solución.",quality:"good",feedback:"Funciona bien: sitúa el momento, usa acciones terminadas y organiza la secuencia con claridad."},
+        {text:"Ayer hemos hablado con el cliente y después enviamos una solución.",quality:"info",feedback:"En muchas variedades del español, con «ayer» es más claro usar el pretérito indefinido: «hablamos». La segunda acción ya está correctamente situada."}
+      ]
+    },
+    ejemplo:{
+      intro:"Actualización breve a un responsable",
+      lines:[
+        {text:"Ayer recibimos un mensaje del cliente.",note:"Sitúa el hecho en un periodo terminado."},
+        {text:"El cliente dijo que el pedido llegó incompleto.",note:"«dijo» es una forma irregular muy frecuente."},
+        {text:"Primero revisamos la orden y después llamé al proveedor.",note:"Los conectores organizan dos acciones terminadas."},
+        {text:"El proveedor tuvo un problema con una parte del envío.",note:"«tuvo» es el pretérito de «tener»."},
+        {text:"Finalmente enviamos la pieza que faltaba y el cliente aceptó la solución.",note:"Cierra la secuencia y explica el resultado."}
+      ]
+    },
+    ejercicios:[
+      {type:"mcq",q:"Completa: «Ayer yo ___ el informe al cliente».",options:["envío","envié","he enviado"],correct:[1],feedback:"Con «ayer», hablamos de un momento terminado. «Envié» expresa una acción completada."},
+      {type:"fill",q:"Completa: «El proveedor ___ un problema con el transporte». (tener)",accepted:["tuvo"],feedback:"La forma correcta es «tuvo»."},
+      {type:"mcq",q:"¿Qué secuencia está mejor organizada?",options:["Después revisamos. Ayer problema. Primero cliente llamó.","Ayer llamó el cliente. Primero revisamos el pedido y después contactamos al proveedor.","Ayer llamando cliente y después revisar."],correct:[1],feedback:"La segunda sitúa el momento y ordena las acciones con verbos conjugados."},
+      {type:"mcq",q:"Elige la forma correcta: «Nosotros ___ una solución y el cliente la aceptó». (hacer)",options:["hicimos","hacemos","hizo"],correct:[0],feedback:"Para «nosotros», el pretérito de «hacer» es «hicimos»."}
+    ],
+    practica:{
+      situacion:"Ayer un cliente informó que recibió un pedido incompleto. Tu responsable te pide una actualización breve.",
+      interlocutor:"Tu responsable.",
+      objetivo:"Explicar qué ocurrió y qué hizo el equipo.",
+      requisitos:["Escribe 4–5 frases.","Usa un marcador terminado: ayer, el lunes o la semana pasada.","Usa al menos dos verbos regulares en pretérito.","Usa al menos un irregular: fue, tuvo, hizo, pudo, dijo o dio.","Ordena la explicación con primero, después o finalmente."],
+      supports:["Ayer ocurrió…","El cliente llamó / dijo…","Primero revisamos…","Después llamé / enviamos…","El proveedor tuvo…","Finalmente resolvimos…"],
+      model:"Ayer el cliente llamó porque recibió un pedido incompleto. Primero revisamos la orden y encontramos el error. Después llamé al proveedor y el proveedor dijo que podía enviar la pieza faltante. Finalmente enviamos una nueva confirmación al cliente y resolvimos el problema.",
+      modelBlocks:[
+        "Ayer el cliente llamó porque recibió un pedido incompleto.",
+        "Primero revisamos la orden y encontramos el error.",
+        "Después llamé al proveedor y el proveedor dijo que podía enviar la pieza faltante.",
+        "Finalmente enviamos una nueva confirmación al cliente y resolvimos el problema."
+      ]
+    },
+    checklist:["Puedo decir cuándo ocurrió una acción terminada.","Puedo usar formas regulares como envié, hablamos y recibimos.","Puedo usar algunas formas irregulares frecuentes como fue, tuvo, hizo o dijo.","Puedo ordenar una secuencia con primero, después y finalmente.","Puedo explicar brevemente qué ocurrió en una situación de trabajo."]
+  },
+
+  b1: {
+    label:"💼 B1 — Intermedio",
+    title:"Explica qué ocurrió en una situación de trabajo",
+    subtitle:"Reconstruye hechos terminados con claridad, organiza una secuencia y combina verbos regulares e irregulares frecuentes con mayor autonomía.",
+    objetivo:"Al terminar esta semana podrás reconstruir una situación profesional pasada, explicar una secuencia de hechos terminados y presentar acciones, responsables y resultado con claridad temporal.",
+    situacion:{
+      quien:"Tú, responsable de informar sobre una incidencia.",
+      conQuien:"Tu responsable y personas de otros equipos.",
+      contexto:"Reunión de seguimiento después de una interrupción en una entrega.",
+      objetivo:"Reconstruir qué pasó, qué decisiones se tomaron y cómo terminó la situación.",
+      dificultad:"Debes evitar una lista desordenada de acciones y elegir formas del indefinido con precisión, incluidos verbos irregulares frecuentes."
+    },
+    vocabulario:[
+      {term:"incidencia",meaning:"Situación inesperada que afecta un proceso.",example:"La incidencia ocurrió durante la entrega.",extra:"Colocaciones: registrar una incidencia, resolver una incidencia."},
+      {term:"detectar",meaning:"Identificar un problema o anomalía.",example:"Detectamos un error en la orden de compra.",extra:"Alternativas: identificar, localizar."},
+      {term:"comprobar",meaning:"Verificar que una información o condición sea correcta.",example:"Comprobamos los datos antes de llamar al proveedor.",extra:"Más preciso que «mirar» en muchos contextos profesionales."},
+      {term:"notificar",meaning:"Comunicar formalmente una información relevante.",example:"Notificamos al cliente del cambio de fecha.",extra:"Registro más formal que «avisar»."},
+      {term:"resolver",meaning:"Dar solución a un problema.",example:"El equipo resolvió la incidencia esa misma tarde.",extra:"Colocación: resolver un problema / una incidencia."},
+      {term:"asumir",meaning:"Tomar una responsabilidad o aceptar una tarea.",example:"El equipo de operaciones asumió el seguimiento.",extra:"Útil para explicar responsabilidades en una secuencia."}
+    ],
+    frases:[
+      {group:"Abrir la reconstrucción",items:[
+        {text:"La incidencia ocurrió el martes por la mañana.",when:"Sitúa el hecho en un momento cerrado."},
+        {text:"Todo empezó cuando el cliente notificó una diferencia en el pedido.",when:"Introduce el primer acontecimiento de una secuencia."}
+      ]},
+      {group:"Ordenar hechos y decisiones",items:[
+        {text:"En cuanto recibimos el aviso, comprobamos la orden.",when:"Conecta reacción y acción sin perder precisión temporal."},
+        {text:"A continuación, el equipo contactó al proveedor y solicitó una verificación.",when:"Organiza una acción posterior con registro profesional."},
+        {text:"El proveedor reconoció el error y propuso una nueva entrega.",when:"Resume dos acciones terminadas del interlocutor."}
+      ]},
+      {group:"Explicar el resultado",items:[
+        {text:"Finalmente, acordamos una entrega parcial y notificamos al cliente.",when:"Cierra la secuencia con decisión y comunicación."},
+        {text:"La incidencia quedó resuelta esa misma tarde.",when:"Presenta el resultado final de manera compacta."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una reconstrucción profesional. No necesitas usar todas las opciones.",
+      groups:[
+        {label:"Inicio",options:["La incidencia ocurrió el martes.","Todo empezó cuando el cliente llamó.","El problema surgió después de la entrega."]},
+        {label:"Reacción",options:["En cuanto recibimos el aviso, comprobamos los datos.","Primero revisamos la documentación.","A continuación, contactamos al proveedor."]},
+        {label:"Decisión",options:["El proveedor propuso una nueva fecha.","El equipo decidió hacer un envío parcial.","Acordamos priorizar los productos críticos."]},
+        {label:"Cierre",options:["Finalmente, notificamos al cliente.","La incidencia quedó resuelta esa tarde.","Al final, confirmamos el nuevo compromiso por escrito."]}
+      ]
+    },
+    gramatica:[
+      {title:"1. Indefinido para hechos cerrados",body:"El pretérito indefinido presenta hechos como eventos terminados dentro de un marco temporal cerrado. En una actualización profesional ayuda a responder: ¿qué ocurrió?, ¿qué hizo cada parte?, ¿qué decisión se tomó?",example:"El martes detectamos el error, contactamos al proveedor y acordamos una nueva entrega."},
+      {title:"2. Regulares: atención a persona y acento",body:"Las terminaciones distinguen quién realizó la acción. En primera y tercera persona singular, las tildes son relevantes: revisé / revisó; recibí / recibió.",table:[
+        ["persona","revisar","recibir"],["yo","revisé","recibí"],["tú","revisaste","recibiste"],["usted / él / ella","revisó","recibió"],["nosotros","revisamos","recibimos"],["ustedes / ellos","revisaron","recibieron"]
+      ],example:"Yo revisé la documentación; el proveedor revisó el inventario."},
+      {title:"3. Irregulares frecuentes y raíces",body:"Muchos irregulares usan una raíz especial y las terminaciones e, iste, o, imos, ieron, sin tilde: tener → tuv-, estar → estuv-, poder → pud-, poner → pus-, saber → sup-, querer → quis-, venir → vin-. Hacer tiene «hizo» en tercera persona.",table:[
+        ["verbo","yo","usted/él/ella","nosotros"],["tener","tuve","tuvo","tuvimos"],["poder","pude","pudo","pudimos"],["poner","puse","puso","pusimos"],["hacer","hice","hizo","hicimos"],["venir","vine","vino","vinimos"]
+      ],example:"El proveedor tuvo un problema, pero pudo reorganizar la entrega y puso un vehículo adicional."}
+    ],
+    registro:{
+      prompt:"Estás informando a un cliente interno sobre una incidencia cerrada. ¿Qué versión resulta más precisa?",
+      options:[
+        {text:"Hubo un lío y al final lo arreglamos.",quality:"info",feedback:"Puede funcionar entre compañeros con mucha confianza, pero es imprecisa para una actualización que necesita dejar trazabilidad."},
+        {text:"Detectamos una diferencia en el pedido, verificamos la orden y acordamos con el proveedor una reposición para el mismo día.",quality:"good",feedback:"La secuencia es clara, precisa y adecuada para una actualización profesional."},
+        {text:"Se produjo una incidencia que fue objeto de las actuaciones pertinentes.",quality:"info",feedback:"Es formal, pero excesivamente impersonal y poco informativa. Oculta qué acciones se realizaron."}
+      ]
+    },
+    ejemplo:{
+      intro:"Reconstrucción de una incidencia en una reunión de seguimiento",
+      lines:[
+        {text:"La incidencia ocurrió el martes a primera hora, cuando el cliente notificó que faltaban dos referencias en la entrega.",note:"Sitúa el hecho y define el desencadenante."},
+        {text:"En cuanto recibimos el aviso, comprobamos la orden y detectamos que el proveedor preparó una versión anterior del pedido.",note:"Organiza dos acciones del equipo y explica el hallazgo."},
+        {text:"A continuación, llamamos al proveedor, que reconoció el error y propuso enviar las referencias faltantes ese mismo día.",note:"Explica la reacción del proveedor."},
+        {text:"Nosotros aceptamos la solución, pero pedimos confirmación escrita de la hora de salida.",note:"Introduce una decisión y una condición de seguimiento."},
+        {text:"Finalmente, la reposición llegó a las cuatro y notificamos al cliente. La incidencia quedó cerrada.",note:"Cierra con resultado y trazabilidad."}
+      ]
+    },
+    ejercicios:[
+      {type:"mcq",q:"Elige la forma correcta: «El proveedor ___ el error y propuso una solución». (reconocer)",options:["reconoció","reconoce","ha reconocido"],correct:[0],feedback:"Dentro de una secuencia terminada situada en el pasado, «reconoció» mantiene la referencia temporal."},
+      {type:"fill",q:"Completa: «El equipo no ___ entregar a tiempo, pero reorganizó la ruta». (poder)",accepted:["pudo"],feedback:"La tercera persona singular del pretérito de «poder» es «pudo»."},
+      {type:"mcq",q:"¿Qué versión distingue mejor responsabilidades?",options:["Se hicieron varias cosas y se solucionó.","Operaciones verificó la orden y el proveedor reorganizó la entrega.","Todo se resolvió de alguna manera."],correct:[1],feedback:"La segunda identifica actores y acciones concretas."},
+      {type:"mcq",q:"¿Qué opción mantiene una secuencia temporal clara?",options:["Después detectamos el error, primero llamamos, al final recibimos el aviso.","Recibimos el aviso, comprobamos la orden y después contactamos al proveedor.","Contactábamos y después hemos detectado y ayer resolvemos."],correct:[1],feedback:"La segunda mantiene los hechos en indefinido y los presenta en orden lógico."}
+    ],
+    practica:{
+      situacion:"El lunes una entrega importante llegó con cantidades incorrectas. Debes explicar la incidencia en una reunión de seguimiento con tu responsable y otro equipo.",
+      interlocutor:"Tu responsable y un equipo interno.",
+      objetivo:"Reconstruir los hechos, las decisiones y el resultado.",
+      requisitos:["Escribe 6–8 frases.","Sitúa el acontecimiento en un momento cerrado.","Incluye al menos cuatro verbos en pretérito indefinido.","Incluye dos irregulares frecuentes.","Usa conectores para ordenar la secuencia.","Distingue quién realizó cada acción y cierra con el resultado."],
+      supports:["La incidencia ocurrió…","En cuanto recibimos…","A continuación…","El proveedor tuvo / pudo / hizo…","Nosotros decidimos…","Finalmente…"],
+      model:"La incidencia ocurrió el lunes por la mañana, cuando recibimos una entrega con cantidades incorrectas. En cuanto el almacén informó del problema, comprobamos la orden y detectamos una diferencia en dos referencias. A continuación, contactamos al proveedor. El proveedor reconoció el error, tuvo que revisar su inventario y finalmente pudo preparar una reposición. Nosotros decidimos aceptar una entrega parcial para no detener la operación. A las cuatro recibimos el material pendiente y notificamos al equipo. La incidencia quedó cerrada ese mismo día."
+    },
+    checklist:["Puedo situar hechos terminados dentro de un marco temporal claro.","Puedo elegir correctamente formas regulares del pretérito indefinido.","Puedo usar varios irregulares frecuentes sin depender de una lista completa.","Puedo ordenar acontecimientos con conectores y distinguir responsabilidades.","Puedo reconstruir una incidencia profesional con suficiente claridad y autonomía."]
+  },
+
+  b2: {
+    label:"🚀 B2 — Avanzado",
+    title:"Reconstruye hechos pasados con precisión profesional",
+    subtitle:"Usa el pretérito indefinido para presentar una cronología verificable, atribuir acciones y decisiones y ajustar el grado de precisión según el interlocutor.",
+    objetivo:"Al terminar esta semana podrás reconstruir un episodio profesional terminado con una cronología clara, atribuir decisiones y acciones con precisión y seleccionar el nivel de detalle adecuado para informar, justificar o documentar lo ocurrido.",
+    situacion:{
+      quien:"Tú, responsable de presentar una reconstrucción de hechos.",
+      conQuien:"Dirección, un cliente o un equipo interfuncional.",
+      contexto:"Revisión posterior a una incidencia que afectó un compromiso de entrega.",
+      objetivo:"Explicar qué ocurrió, qué decisiones se tomaron, quién las tomó y qué resultado produjeron.",
+      dificultad:"Debes evitar vaguedad, exceso de dramatización y ambigüedad en la atribución de acciones. La selección verbal debe sostener una cronología fiable."
+    },
+    vocabulario:[
+      {term:"desencadenar",meaning:"Provocar el inicio de una situación o una cadena de acontecimientos.",example:"La actualización del sistema desencadenó una incompatibilidad con el módulo de facturación.",extra:"Más preciso que «causar» cuando interesa destacar el inicio de una secuencia."},
+      {term:"subsanar",meaning:"Corregir o remediar una deficiencia.",example:"El equipo subsanó el error antes de la segunda ejecución.",extra:"Registro formal; en conversación puede alternar con «corregir» o «resolver»."},
+      {term:"escalar",meaning:"Elevar un asunto a un nivel de decisión o soporte superior.",example:"Operaciones escaló la incidencia al equipo técnico.",extra:"Uso habitual en entornos corporativos y tecnológicos; conviene evitarlo si el interlocutor no comparte ese registro."},
+      {term:"constatar",meaning:"Comprobar un hecho a partir de evidencia.",example:"La revisión constató que la versión enviada no coincidía con la aprobada.",extra:"Útil cuando importa distinguir evidencia de interpretación."},
+      {term:"atribuir",meaning:"Asignar una acción, causa o responsabilidad a una persona o factor.",example:"El informe no atribuyó el retraso a una sola causa.",extra:"Permite formular análisis más prudentes."},
+      {term:"rectificar",meaning:"Corregir una información, decisión o actuación anterior.",example:"El proveedor rectificó la fecha comunicada inicialmente.",extra:"Puede implicar reconocimiento de una información previa incorrecta."}
+    ],
+    frases:[
+      {group:"Delimitar la cronología",items:[
+        {text:"La incidencia se inició a las 08:40, cuando el sistema rechazó la primera carga.",when:"Aporta un punto temporal verificable cuando el detalle es relevante."},
+        {text:"El primer indicio apareció después de que el equipo completó la actualización.",when:"Vincula dos hechos cerrados y marca relación temporal sin afirmar causalidad automática."}
+      ]},
+      {group:"Atribuir acciones con precisión",items:[
+        {text:"Operaciones escaló la incidencia y Tecnología reprodujo el error en un entorno de prueba.",when:"Distingue actores y evita el impersonal cuando la responsabilidad operativa importa."},
+        {text:"El proveedor confirmó que utilizó una versión anterior del archivo.",when:"Atribuye la fuente de la información y el hecho reportado."},
+        {text:"La revisión constató una discrepancia entre la versión aprobada y la versión procesada.",when:"Útil cuando quieres presentar un hallazgo basado en evidencia."}
+      ]},
+      {group:"Cerrar sin sobreinterpretar",items:[
+        {text:"El equipo subsanó el error, repitió la carga y confirmó el resultado con el cliente.",when:"Presenta acciones correctivas y verificación."},
+        {text:"La incidencia quedó resuelta; el análisis posterior identificó dos factores contribuyentes.",when:"Separa resolución operativa de análisis causal posterior."}
+      ]}
+    ],
+    builder:{
+      intro:"Formula una reconstrucción ajustando precisión y atribución. Algunas combinaciones pueden requerir edición adicional.",
+      groups:[
+        {label:"Desencadenante observado",options:["La incidencia se inició cuando el sistema rechazó la carga.","El primer indicio apareció tras la actualización.","El cliente notificó la discrepancia a las 09:10."]},
+        {label:"Evidencia",options:["La revisión constató una diferencia entre dos versiones.","El proveedor confirmó que utilizó un archivo anterior.","Tecnología reprodujo el error en pruebas."]},
+        {label:"Respuesta",options:["Operaciones escaló la incidencia y coordinó la respuesta.","El equipo corrigió la configuración y repitió el proceso.","Se acordó detener temporalmente la carga automática."]},
+        {label:"Cierre",options:["Finalmente, el cliente validó el resultado.","La incidencia quedó resuelta a las 14:30.","El análisis posterior identificó factores adicionales."]}
+      ]
+    },
+    gramatica:[
+      {title:"1. El indefinido como herramienta de cronología",body:"En informes orales o escritos, el indefinido permite construir una cadena de acontecimientos cerrados. La elección es especialmente útil cuando interesa delimitar qué ocurrió y en qué orden.",example:"A las 09:10 el cliente notificó la discrepancia; a las 09:25 Operaciones escaló la incidencia; a las 10:05 Tecnología reprodujo el error."},
+      {title:"2. Forma verbal y atribución",body:"La persona verbal puede cambiar la lectura de responsabilidad. «Detectamos el error» atribuye una acción al equipo hablante; «se detectó el error» desplaza el foco al hallazgo. Ambas formas pueden ser válidas, pero no producen el mismo efecto informativo.",example:"Operaciones revisó el archivo y detectó la discrepancia. / Durante la revisión se detectó una discrepancia."},
+      {title:"3. Irregulares: precisión sin hipercorrección",body:"Los irregulares de raíz especial mantienen terminaciones sin tilde: tuve, estuvo, pudo, puso, supo, quiso, vino. También son frecuentes dijo, trajo, produjo, condujo, hizo. En tercera persona plural, los verbos en -j usan -eron: dijeron, trajeron, produjeron.",table:[
+        ["patrón","ejemplos","uso profesional"],["raíz en -uv/-ud/-us","tuvo, pudo, puso","hechos y decisiones"],["raíz en -ij/-aj/-uj","dijo, trajo, produjo","reportes y resultados"],["forma especial","hizo","acciones ejecutadas"]
+      ],example:"El proveedor dijo que tuvo una interrupción, produjo una nueva versión del archivo y la trajo a la reunión de revisión."}
+    ],
+    registro:{
+      prompt:"Debes informar a dirección sobre una incidencia ya resuelta. ¿Qué formulación equilibra mejor precisión y prudencia?",
+      options:[
+        {text:"El proveedor causó el fallo porque utilizó mal el archivo.",quality:"info",feedback:"Atribuye causalidad de forma tajante. Solo sería adecuada si la evidencia permite sostener esa conclusión sin reservas."},
+        {text:"La revisión constató que el proveedor utilizó una versión anterior del archivo; ese hecho contribuyó al fallo junto con una validación interna insuficiente.",quality:"good",feedback:"Distingue el hecho constatado de la interpretación causal y evita concentrar toda la responsabilidad en una sola parte sin evidencia suficiente."},
+        {text:"Se produjeron ciertos inconvenientes y finalmente todo quedó solucionado.",quality:"info",feedback:"Evita atribuciones, pero pierde información esencial sobre hechos, acciones y factores relevantes."}
+      ]
+    },
+    ejemplo:{
+      intro:"Reconstrucción para una revisión posterior a una incidencia",
+      lines:[
+        {text:"La incidencia se inició a las 08:40, cuando el sistema rechazó la primera carga posterior a la actualización.",note:"Delimita el inicio observable sin anticipar una causa definitiva."},
+        {text:"Operaciones repitió el proceso, obtuvo el mismo resultado y escaló el caso a Tecnología a las 09:05.",note:"Atribuye acciones y mantiene una cronología verificable."},
+        {text:"Tecnología reprodujo el error y constató una incompatibilidad entre la configuración nueva y una regla heredada.",note:"Separa reproducción del error y hallazgo técnico."},
+        {text:"A las 10:20 el equipo corrigió la configuración, ejecutó una nueva prueba y obtuvo un resultado válido.",note:"Presenta intervención, verificación y resultado."},
+        {text:"Antes de reactivar el proceso, informamos al cliente y acordamos validar conjuntamente la primera carga.",note:"Explica una decisión preventiva y su interlocutor."},
+        {text:"La carga se completó a las 11:15 y el cliente confirmó la recepción. El análisis posterior identificó además una debilidad en la validación previa.",note:"Cierra el episodio y separa resolución de aprendizaje posterior."}
+      ]
+    },
+    ejercicios:[
+      {type:"mcq",q:"¿Qué versión distingue mejor hecho e interpretación?",options:["El proveedor provocó el problema, claramente.","El proveedor utilizó una versión anterior; la revisión posterior concluyó que ese hecho contribuyó al fallo.","Algo salió mal por culpa del proveedor."],correct:[1],feedback:"La segunda atribuye un hecho verificable y reserva la conclusión causal para el análisis."},
+      {type:"fill",q:"Completa: «El equipo técnico ___ reproducir el error en pruebas». (poder)",accepted:["pudo"],feedback:"«Pudo» presenta como hecho terminado que el equipo consiguió reproducir el error."},
+      {type:"mcq",q:"¿Qué formulación es más útil cuando importa la trazabilidad?",options:["Se revisó todo y se arregló.","Operaciones revisó el archivo, Tecnología reprodujo el error y el proveedor confirmó la versión utilizada.","Pasaron varias cosas y después funcionó."],correct:[1],feedback:"La segunda identifica actores y acciones concretas."},
+      {type:"mcq",q:"¿Cuál es correcta?",options:["Ellos producieron una nueva versión.","Ellos produjeron una nueva versión.","Ellos produjieron una nueva versión."],correct:[1],feedback:"Los verbos en -ducir forman el indefinido con -duj-: produjo, produjeron."},
+      {type:"mcq",q:"Dirección pide una reconstrucción prudente. ¿Qué formulaciones pueden ser adecuadas según la evidencia disponible?",options:["La revisión constató una discrepancia entre las dos versiones.","El proveedor confirmó que utilizó una versión anterior del archivo.","El proveedor fue el único responsable del fallo."],correct:[0,1],feedback:"Las dos primeras pueden ser adecuadas porque presentan hechos atribuibles o constatados. La tercera exige una evidencia causal más fuerte."}
+    ],
+    practica:{
+      situacion:"Una entrega digital falló después de una actualización. El caso ya está resuelto, pero dirección pide una reconstrucción para decidir cambios de control.",
+      interlocutor:"Dirección y responsables de Operaciones y Tecnología.",
+      objetivo:"Presentar una cronología fiable sin convertir una hipótesis en un hecho.",
+      requisitos:["Escribe 8–10 frases.","Delimita el inicio y el cierre del episodio.","Atribuye acciones a actores concretos cuando sea relevante.","Usa al menos cinco formas de pretérito indefinido, incluidas dos irregulares.","Distingue hechos observados de conclusiones posteriores.","Evita lenguaje acusatorio si la evidencia no permite atribuir una causa única.","Cierra con el resultado y un aprendizaje o decisión posterior."],
+      supports:["La incidencia se inició…","La revisión constató…","Operaciones / Tecnología / el proveedor…","A continuación…","El equipo pudo / tuvo que / hizo…","Finalmente…","El análisis posterior identificó…"],
+      model:"La incidencia se inició a las 08:40, cuando el sistema rechazó la primera carga posterior a la actualización. Operaciones repitió el proceso y obtuvo el mismo resultado, por lo que escaló el caso a Tecnología. El equipo técnico reprodujo el error y constató una incompatibilidad con una regla de configuración anterior. Paralelamente, el proveedor confirmó que utilizó la versión de archivo que recibió el día anterior. A las 10:20 Tecnología corrigió la configuración y pudo completar una prueba válida. Antes de reactivar el proceso, informamos al cliente y acordamos validar conjuntamente la siguiente carga. La operación se completó a las 11:15 y el cliente confirmó la recepción. El análisis posterior concluyó que la incompatibilidad técnica y una validación previa insuficiente contribuyeron a la incidencia. Dirección decidió incorporar una comprobación adicional antes de futuras actualizaciones."
+    },
+    checklist:["Puedo construir una cronología de hechos cerrados con precisión.","Puedo usar formas regulares e irregulares del indefinido sin perder claridad.","Puedo atribuir acciones a actores concretos cuando la trazabilidad lo exige.","Puedo distinguir un hecho constatado de una interpretación o conclusión posterior.","Puedo adaptar el nivel de detalle y el tono a una revisión profesional exigente."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["objetivo","🎯","Tu objetivo esta semana"],
+  ["situacion","🏢","La situación"],
+  ["vocabulario","🗣️","Vocabulario clave"],
+  ["frases","💬","Frases que puedes usar"],
+  ["builder","🧩","Construye tu mensaje"],
+  ["gramatica","📚","Gramática que necesitas"],
+  ["registro","🎭","Elige el registro"],
+  ["ejemplo","💼","Mira cómo se hace"],
+  ["ejercicios","✍️","Comprueba lo que aprendiste"],
+  ["practica","🏢","Ahora te toca a ti"],
+  ["modelo","💡","Ver modelo"],
+  ["checklist","✅","Checklist final"]
+];
+
+let level = null;
+let done = new Set();
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+
+function mark(key){
+  done.add(key);
+  updateProgress();
+}
+function progressUniverse(){
+  const c = contenido[level];
+  const base = sectionMeta.map(x=>"visit:"+x[0]);
+  const quiz = c.ejercicios.map((_,i)=>"quiz:"+i);
+  const checks = c.checklist.map((_,i)=>"check:"+i);
+  const extras = ["register","builder","practice","model"];
+  if(level==="a2") extras.push("audio:vocab","audio:phrase","audio:model","vocab:recovery");
+  return [...base,...quiz,...checks,...extras];
+}
+function updateProgress(){
+  if(!level) return;
+  const universe = progressUniverse();
+  const count = universe.filter(k=>done.has(k)).length;
+  const pct = Math.min(100,Math.round(count/universe.length*100));
+  $("#progressBar").style.width=pct+"%";
+  $("#progressLabel").textContent=pct+"%";
+}
+
+function getSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices = speechSynthesis.getVoices();
+  const spanish = voices.filter(v => /^es/i.test(v.lang));
+  const priorities = [
+    v=>/es-(CO|MX|US|419)/i.test(v.lang),
+    v=>/es-(AR|CL|PE|VE|EC|UY|CR|PA|DO|GT)/i.test(v.lang),
+    v=>/^es/i.test(v.lang)
+  ];
+  for(const p of priorities){ const found=spanish.find(p); if(found) return found; }
+  return spanish[0]||null;
+}
+function speak(text,slow=false,kind="general"){
+  const status=$("#audioStatus");
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    if(status) status.textContent="El audio no está disponible en este navegador. El resto del módulo funciona normalmente.";
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang="es-CO"; u.rate=slow ? .72 : .95; u.pitch=1;
+  const voice=getSpanishVoice(); if(voice) u.voice=voice;
+  u.onstart=()=>{ if(status) status.textContent=slow ? "Reproduciendo a velocidad lenta…" : "Reproduciendo…"; };
+  u.onend=()=>{ if(status) status.textContent=""; };
+  u.onerror=()=>{ if(status) status.textContent="No fue posible reproducir este audio. Puedes continuar con el módulo."; };
+  try{
+    speechSynthesis.speak(u);
+    if(level==="a2" && ["vocab","phrase","model"].includes(kind)) mark("audio:"+kind);
+  }catch(e){
+    if(status) status.textContent="No fue posible reproducir este audio. Puedes continuar con el módulo.";
+  }
+}
+if("speechSynthesis" in window) speechSynthesis.onvoiceschanged=()=>getSpanishVoice();
+
+function audioButtons(text,kind="general"){
+  if(level!=="a2") return "";
+  const safe=esc(text);
+  return `<div class="audio-row">
+    <button class="audio-btn" data-speak="${safe}" data-slow="0" data-kind="${kind}" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" data-speak="${safe}" data-slow="1" data-kind="${kind}" aria-label="Escuchar lento: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+function sectionShell(id,emoji,title,body){
+  return `<section class="panel module-section" id="sec-${id}" data-section="${id}">
+    <div class="section-head"><div class="section-num">${emoji}</div><h2>${title}</h2></div>
+    ${body}
+    <div class="section-move">
+      <button class="btn btn-ghost prev-btn">← Anterior</button>
+      <button class="btn btn-primary next-btn">Siguiente →</button>
+    </div>
+  </section>`;
+}
+
+function render(){
+  const c=contenido[level];
+  $("#heroTitle").textContent=c.title;
+  $("#heroSubtitle").textContent=c.subtitle;
+  $("#routeChip").textContent="Tu ruta: "+c.label;
+
+  $("#sidebar").innerHTML=sectionMeta.map(([id,em,t],i)=>`<button class="nav-btn" data-go="${id}">${i+1}. ${em} ${t}</button>`).join("");
+
+  let out="";
+  out+=sectionShell("objetivo","🎯","Tu objetivo esta semana",
+    `<p>${esc(c.objetivo)}</p><div class="callout"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>`);
+
+  const s=c.situacion;
+  out+=sectionShell("situacion","🏢","La situación",
+    `<div class="situation-grid">
+      <div class="fact"><b>Quién habla</b>${esc(s.quien)}</div>
+      <div class="fact"><b>Con quién</b>${esc(s.conQuien)}</div>
+      <div class="fact"><b>Contexto</b>${esc(s.contexto)}</div>
+      <div class="fact"><b>Qué quieres conseguir</b>${esc(s.objetivo)}</div>
+    </div><div class="callout"><strong>Dificultad:</strong> ${esc(s.dificultad)}</div>`);
+
+  out+=sectionShell("vocabulario","🗣️","Vocabulario clave",
+    `<p>Abre las tarjetas. Quédate con el vocabulario que necesitas para explicar hechos pasados en el trabajo.</p>
+    <div class="cards">${c.vocabulario.map((v,i)=>`
+      <article class="card">
+        <button class="flip" aria-expanded="false"><strong>${esc(v.term)}</strong><small>${level==="a2"?esc(v.en):"Pulsa para ver uso y ejemplo"}</small></button>
+        <div class="card-body">
+          <p><b>${level==="a2"?"Significado / Meaning":"Significado"}:</b> ${esc(v.meaning)}</p>
+          ${level==="a2"&&v.stress?`<p class="audio-note">Pronunciación útil: <b>${esc(v.stress)}</b></p>`:""}
+          <p><b>Ejemplo:</b> ${esc(v.example)}</p>
+          <p><b>${level==="a2"?"Ayuda":"Uso"}:</b> ${esc(v.extra)}</p>
+          ${audioButtons(v.term,"vocab")}
+          ${audioButtons(v.example,"vocab")}
+        </div>
+      </article>`).join("")}</div>
+      ${level==="a2"&&c.vocabRecovery?`<div class="quiz" id="vocabRecovery"><h3>Recupera una palabra / Retrieve a word</h3><p>${esc(c.vocabRecovery.prompt)}</p>
+        ${audioButtons("Ayer envié la propuesta al cliente.","vocab")}
+        <div class="quiz-options">${c.vocabRecovery.options.map((o,i)=>`<button class="quiz-option vocab-recovery-option" data-o="${i}">${esc(o)}</button>`).join("")}</div>
+        <div class="feedback" id="vocabRecoveryFeedback" aria-live="polite"></div>
+        <button class="btn btn-ghost retry-vocab" style="margin-top:8px">Volver a intentar / Try again</button>
+      </div>`:""}`);
+
+  out+=sectionShell("frases","💬","Frases que puedes usar",
+    `<div class="phrase-groups">${c.frases.map(g=>`<div class="phrase-group"><h3>${esc(g.group)}</h3>${g.items.map((p,idx)=>`
+      <div class="phrase"><div class="phrase-text">${esc(p.text)}</div>
+      ${audioButtons(p.text,"phrase")}
+      <button class="btn btn-soft why-btn" style="margin-top:8px">Ver cuándo usarla</button>
+      <div class="why">${esc(p.when)}</div></div>`).join("")}</div>`).join("")}</div>`);
+
+  out+=sectionShell("builder","🧩","Construye tu mensaje",
+    `<p>${esc(c.builder.intro)}</p>
+    <div class="builder">
+      <div class="builder-grid">${c.builder.groups.map((g,gi)=>`<div><b>${esc(g.label)}</b><div class="choices">${g.options.map(o=>`<button class="choice" data-builder-group="${gi}" data-value="${esc(o)}">${esc(o)}</button>`).join("")}</div></div>`).join("")}</div>
+      <div id="builderOutput" class="builder-output" aria-live="polite">Selecciona bloques para construir tu mensaje.</div>
+      <div id="builderAudio"></div>
+      <button id="clearBuilder" class="btn btn-ghost">Limpiar</button>
+    </div>`);
+
+  out+=sectionShell("gramatica","📚","Gramática que necesitas",
+    `<p>La gramática aparece aquí porque la necesitas para explicar hechos profesionales terminados.</p>
+    <div class="grammar-grid">${c.gramatica.map(g=>`<div class="grammar-card"><h3>${esc(g.title)}</h3><p>${esc(g.body)}</p>
+      ${g.table?`<div style="overflow:auto"><table class="grammar-table">${g.table.map((r,ri)=>`<tr>${r.map(x=>ri===0?`<th>${esc(x)}</th>`:`<td>${esc(x)}</td>`).join("")}</tr>`).join("")}</table></div>`:""}
+      <details><summary>Ver ejemplo</summary><p>${esc(g.example)}</p>${audioButtons(g.example,"phrase")}</details>
+      </div>`).join("")}</div>`);
+
+  out+=sectionShell("registro","🎭","Elige el registro",
+    `<div class="register-card"><p><strong>${esc(c.registro.prompt)}</strong></p>
+    ${c.registro.options.map((o,i)=>`<button class="option register-option" data-reg="${i}">${esc(o.text)}</button>`).join("")}
+    <div id="registerFeedback" class="feedback" aria-live="polite"></div></div>`);
+
+  out+=sectionShell("ejemplo","💼","Mira cómo se hace",
+    `<div class="model"><h3>${esc(c.ejemplo.intro)}</h3>
+    ${level==="a2"?audioButtons(c.ejemplo.lines.map(x=>x.text).join(" "),"model"):""}
+    <div class="model-lines">${c.ejemplo.lines.map(l=>`<div class="line"><div><b>${esc(l.text)}</b></div>${level==="a2"?audioButtons(l.text,"model"):""}<button class="btn btn-soft note-btn" style="margin-top:7px">¿Qué hace esta frase?</button><div class="note">${esc(l.note)}</div></div>`).join("")}</div></div>`);
+
+  out+=sectionShell("ejercicios","✍️","Comprueba lo que aprendiste",
+    `<p>No es un examen. Usa el feedback para ajustar tu respuesta y vuelve a intentarlo.</p>
+    <div id="quizArea">${c.ejercicios.map((q,i)=>renderQuiz(q,i)).join("")}</div>`);
+
+  const p=c.practica;
+  out+=sectionShell("practica","🏢","Ahora te toca a ti",
+    `<div class="practice">
+      <p><strong>Situación:</strong> ${esc(p.situacion)}</p>
+      <p><strong>Interlocutor:</strong> ${esc(p.interlocutor)}</p>
+      <p><strong>Objetivo:</strong> ${esc(p.objetivo)}</p>
+      <h3>Incluye:</h3><ul class="requirements">${p.requisitos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      ${p.supports?.length?`<h3>${level==="a2"?"Bloques que puedes usar":"Recursos opcionales"}</h3><div class="choices">${p.supports.map(x=>`<span class="tag">${esc(x)}</span>`).join("")}</div>${level==="a2"?p.supports.map(x=>audioButtons(x,"phrase")).join(""):""}`:""}
+      <label for="practiceText"><strong>Tu respuesta</strong></label>
+      <textarea id="practiceText" placeholder="Escribe aquí tu respuesta..."></textarea>
+      <button id="markPractice" class="btn btn-primary" style="margin-top:10px">He preparado mi respuesta</button>
+    </div>`);
+
+  out+=sectionShell("modelo","💡","Ver modelo",
+    `<p>Primero intenta resolver la situación con tus propios recursos.</p>
+    <button id="showModel" class="btn btn-yellow">Ver una posible respuesta</button>
+    <div id="modelAnswer" class="model-answer">
+      <p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p>
+      <p>${esc(p.model)}</p>
+      ${audioButtons(p.model,"model")}
+      ${level==="a2"&&p.modelBlocks?`<div class="chunk">${p.modelBlocks.map(x=>`<span>${esc(x)}${audioButtons(x,"model")}</span>`).join("")}</div>`:""}
+    </div>`);
+
+  out+=sectionShell("checklist","✅","Checklist final",
+    `<p>Antes de terminar, comprueba:</p><div class="checklist">${c.checklist.map((x,i)=>`
+      <label class="check"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join("")}</div>
+    <div id="readyBox" class="ready"><h3>🎯 Ya estás listo para practicar</h3>
+      <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Inserta aquí la URL real del reto diario cuando esté disponible -->
+      <a class="challenge" href="#">🔥 Ir al reto de hoy</a>
+    </div>`);
+
+  $("#sections").innerHTML=out;
+  attachInteractions();
+  updateProgress();
+  observeSections();
+}
+
+function renderQuiz(q,i){
+  const audio = level==="a2" ? audioButtons(q.q,"phrase") : "";
+  if(q.type==="fill"){
+    return `<div class="quiz" data-quiz="${i}"><h3>${i+1}. ${esc(q.q)}</h3>${audio}
+      <div class="fill-row"><input type="text" aria-label="Respuesta al ejercicio ${i+1}"><button class="btn btn-primary check-fill" data-i="${i}">Comprobar</button></div>
+      <div class="feedback quiz-feedback"></div>
+      <button class="btn btn-ghost retry-quiz" data-i="${i}" style="margin-top:8px">Volver a intentar</button></div>`;
+  }
+  return `<div class="quiz" data-quiz="${i}"><h3>${i+1}. ${esc(q.q)}</h3>${audio}
+    <div class="quiz-options">${q.options.map((o,oi)=>`<div class="quiz-option-row"><button class="quiz-option" data-i="${i}" data-o="${oi}">${esc(o)}</button>${level==="a2"?audioButtons(o,"phrase"):""}</div>`).join("")}</div>
+    <div class="feedback quiz-feedback"></div>
+    <button class="btn btn-ghost retry-quiz" data-i="${i}" style="margin-top:8px">Volver a intentar</button></div>`;
+}
+
+function attachInteractions(){
+  document.querySelectorAll(".flip").forEach(b=>b.addEventListener("click",()=>{
+    const card=b.closest(".card"); card.classList.toggle("open");
+    b.setAttribute("aria-expanded",card.classList.contains("open"));
+    mark("visit:vocabulario");
+  }));
+  document.querySelectorAll(".audio-btn").forEach(b=>b.addEventListener("click",()=>speak(b.dataset.speak,b.dataset.slow==="1",b.dataset.kind)));
+  document.querySelectorAll(".why-btn").forEach(b=>b.addEventListener("click",()=>{b.nextElementSibling.classList.toggle("show");mark("visit:frases")}));
+  document.querySelectorAll(".note-btn").forEach(b=>b.addEventListener("click",()=>b.closest(".line").classList.toggle("open")));
+
+  document.querySelectorAll(".vocab-recovery-option").forEach(b=>b.addEventListener("click",()=>{
+    const r=contenido[level].vocabRecovery, f=$("#vocabRecoveryFeedback"), chosen=+b.dataset.o;
+    document.querySelectorAll(".vocab-recovery-option").forEach(x=>x.classList.remove("chosen"));
+    b.classList.add("chosen");
+    const ok=chosen===r.correct;
+    f.className="feedback show "+(ok?"good":"info");
+    f.textContent=(ok?"Bien. ":"Revisa la relación entre significado y palabra. ")+r.feedback;
+    mark("vocab:recovery");
+  }));
+  document.querySelectorAll(".retry-vocab").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(".vocab-recovery-option").forEach(x=>x.classList.remove("chosen"));
+    const f=$("#vocabRecoveryFeedback"); if(f){f.className="feedback";f.textContent="";}
+  }));
+
+  let builder = {};
+  document.querySelectorAll(".choice[data-builder-group]").forEach(b=>b.addEventListener("click",()=>{
+    const g=b.dataset.builderGroup;
+    document.querySelectorAll(`.choice[data-builder-group="${g}"]`).forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected"); builder[g]=b.dataset.value;
+    const text=Object.keys(builder).sort((a,b)=>a-b).map(k=>builder[k]).join(" ");
+    $("#builderOutput").textContent=text||"Selecciona bloques para construir tu mensaje.";
+    $("#builderAudio").innerHTML=level==="a2"&&text?audioButtons(text,"phrase"):"";
+    $("#builderAudio").querySelectorAll(".audio-btn").forEach(x=>x.addEventListener("click",()=>speak(x.dataset.speak,x.dataset.slow==="1",x.dataset.kind)));
+    mark("builder");
+  }));
+  $("#clearBuilder").addEventListener("click",()=>{
+    builder={}; document.querySelectorAll(".choice[data-builder-group]").forEach(x=>x.classList.remove("selected"));
+    $("#builderOutput").textContent="Selecciona bloques para construir tu mensaje."; $("#builderAudio").innerHTML="";
+  });
+
+  document.querySelectorAll(".register-option").forEach(b=>b.addEventListener("click",()=>{
+    const o=contenido[level].registro.options[+b.dataset.reg], f=$("#registerFeedback");
+    document.querySelectorAll(".register-option").forEach(x=>x.classList.remove("chosen")); b.classList.add("chosen");
+    f.className="feedback show "+o.quality; f.textContent=o.feedback; mark("register");
+  }));
+
+  document.querySelectorAll(".quiz-option").forEach(b=>b.addEventListener("click",()=>{
+    const i=+b.dataset.i,o=+b.dataset.o,q=contenido[level].ejercicios[i],box=b.closest(".quiz"),f=box.querySelector(".quiz-feedback");
+    box.querySelectorAll(".quiz-option").forEach(x=>x.classList.remove("chosen"));b.classList.add("chosen");
+    const ok=q.correct.includes(o); f.className="feedback show "+(ok?"good":"info");
+    f.textContent=(ok?"Bien. ":"Revisa esta decisión. ")+q.feedback;
+    mark("quiz:"+i);
+  }));
+  document.querySelectorAll(".check-fill").forEach(b=>b.addEventListener("click",()=>{
+    const i=+b.dataset.i,q=contenido[level].ejercicios[i],box=b.closest(".quiz"),v=box.querySelector("input").value.trim().toLowerCase(),f=box.querySelector(".quiz-feedback");
+    const ok=q.accepted.map(x=>x.toLowerCase()).includes(v);
+    f.className="feedback show "+(ok?"good":"info"); f.textContent=(ok?"Bien. ":"Todavía no. ")+q.feedback; mark("quiz:"+i);
+  }));
+  document.querySelectorAll(".retry-quiz").forEach(b=>b.addEventListener("click",()=>{
+    const box=b.closest(".quiz");
+    box.querySelectorAll(".quiz-option").forEach(x=>x.classList.remove("chosen"));
+    const inp=box.querySelector("input"); if(inp) inp.value="";
+    const f=box.querySelector(".quiz-feedback"); if(f){f.className="feedback quiz-feedback";f.textContent="";}
+  }));
+
+  $("#markPractice").addEventListener("click",()=>{
+    const t=$("#practiceText");
+    if(t.value.trim().length<20){alert("Escribe primero una respuesta breve para marcar esta práctica como realizada.");return;}
+    mark("practice"); $("#markPractice").textContent="Respuesta preparada ✓";
+  });
+
+  $("#showModel").addEventListener("click",()=>{$("#modelAnswer").classList.toggle("show");mark("model")});
+  document.querySelectorAll("[data-check]").forEach(ch=>ch.addEventListener("change",()=>{
+    const key="check:"+ch.dataset.check; ch.checked?done.add(key):done.delete(key); updateProgress();
+    const all=[...document.querySelectorAll("[data-check]")].every(x=>x.checked);
+    $("#readyBox").classList.toggle("show",all);
+  }));
+
+  document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+  const secs=[...document.querySelectorAll(".module-section")];
+  secs.forEach((s,i)=>{
+    const prev=s.querySelector(".prev-btn"),next=s.querySelector(".next-btn");
+    if(i===0) prev.style.visibility="hidden"; else prev.addEventListener("click",()=>secs[i-1].scrollIntoView({behavior:"smooth"}));
+    if(i===secs.length-1) next.style.visibility="hidden"; else next.addEventListener("click",()=>secs[i+1].scrollIntoView({behavior:"smooth"}));
+  });
+}
+function observeSections(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.dataset.section; mark("visit:"+id);
+        document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.go===id));
+      }
+    })
+  },{threshold:.28});
+  document.querySelectorAll(".module-section").forEach(s=>obs.observe(s));
+}
+function go(id){document.querySelector("#sec-"+id)?.scrollIntoView({behavior:"smooth",block:"start"})}
+
+document.querySelectorAll(".level-card").forEach(b=>b.addEventListener("click",()=>{
+  level=b.dataset.level; done=new Set();
+  $("#levelScreen").classList.add("hidden"); $("#app").classList.remove("hidden");
+  render(); window.scrollTo(0,0);
+}));
+$("#changeLevel").addEventListener("click",()=>{
+  if("speechSynthesis" in window) speechSynthesis.cancel();
+  level=null; done=new Set(); $("#app").classList.add("hidden"); $("#levelScreen").classList.remove("hidden"); window.scrollTo(0,0);
+});
+</script>
+</body>
+</html>

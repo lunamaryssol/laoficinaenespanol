@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Tema 17 | Pronombres de objeto directo e indirecto | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--ink:#1e293b;--muted:#64748b;
+  --line:#dbe3ef;--soft:#f6f8fc;--ok:#166534;--warn:#9a3412;--white:#fff;
+  --shadow:0 10px 30px rgba(0,56,147,.10);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef4ff 0,#fff 24%,#fff 100%)}
+button,input,textarea{font:inherit} button{cursor:pointer}.hidden{display:none!important}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.selector-card{width:min(980px,100%);background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:32px;border:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.brand-mark{width:46px;height:46px;border-radius:14px;background:var(--blue);position:relative;flex:0 0 auto}
+.brand-mark:before{content:"";position:absolute;left:8px;right:8px;top:10px;height:8px;background:var(--yellow);border-radius:8px}
+.brand-mark:after{content:"";position:absolute;left:8px;right:8px;bottom:10px;height:6px;background:var(--red);border-radius:8px}
+.brand strong{display:block;color:var(--blue);font-size:1.1rem}.brand span{color:var(--muted);font-size:.9rem}
+h1,h2,h3,h4{font-family:"Arial Black",Arial,sans-serif;line-height:1.15;margin-top:0}
+h1{font-size:clamp(2rem,5vw,3.35rem);color:var(--blue);margin-bottom:12px}h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--blue)}h3{font-size:1.12rem}
+.lead{font-size:1.06rem;color:var(--muted);max-width:780px;line-height:1.65}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.level-btn{border:2px solid var(--line);background:#fff;border-radius:18px;padding:20px;text-align:left;min-height:190px;transition:.2s}
+.level-btn:hover,.level-btn:focus-visible{border-color:var(--blue);transform:translateY(-2px);outline:none;box-shadow:0 8px 20px rgba(0,56,147,.12)}
+.level-btn .emoji{font-size:2rem;display:block;margin-bottom:8px}.level-btn strong{display:block;color:var(--blue);font-size:1.08rem;margin-bottom:8px}.level-btn small{color:var(--muted);line-height:1.5}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{width:min(1180px,100%);margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+.route-badge{background:#eef4ff;color:var(--blue);font-weight:800;padding:9px 12px;border-radius:999px;font-size:.9rem}.change-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:9px 14px}
+.progress-wrap{flex:1;max-width:420px}.progress-track{height:9px;background:#e8edf5;border-radius:99px;overflow:hidden}.progress-bar{height:100%;width:0;background:var(--blue);transition:width .3s}.progress-label{font-size:.75rem;color:var(--muted);margin-top:4px;text-align:right}
+.layout{width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;padding:28px 20px 60px}
+.sidebar{position:sticky;top:78px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+.nav-btn{width:100%;border:0;background:transparent;padding:10px 12px;text-align:left;border-radius:10px;color:var(--ink);margin:2px 0}.nav-btn:hover,.nav-btn.active{background:#eef4ff;color:var(--blue);font-weight:800}
+.main{min-width:0}.hero{background:var(--blue);color:#fff;border-radius:24px;padding:30px;position:relative;overflow:hidden;margin-bottom:24px}.hero:after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:var(--yellow);opacity:.18}
+.hero .eyebrow{color:var(--yellow);font-weight:800;text-transform:uppercase;letter-spacing:.04em}.hero h1{color:#fff;font-size:clamp(1.9rem,4vw,3rem);max-width:900px}.hero p{max-width:880px;line-height:1.65;color:#eaf0ff}
+.section{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;margin:0 0 20px;box-shadow:0 4px 18px rgba(15,23,42,.04)}.section p,.section li{line-height:1.65}
+.section-kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--red);font-size:.83rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.callout{border-left:5px solid var(--yellow);background:#fff9dc;padding:16px 18px;border-radius:12px;margin:16px 0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff}.flip-card{min-height:170px}.flip-card>button{border:0;background:transparent;padding:0;color:var(--blue);font-weight:800;text-align:left}
+.reveal{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}.audio-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.audio-btn{border:1px solid #bfd0ef;background:#f7faff;color:var(--blue);border-radius:999px;padding:8px 12px;font-weight:700;font-size:.87rem}
+.tag{display:inline-block;background:#eef4ff;color:var(--blue);font-weight:700;padding:4px 9px;border-radius:999px;font-size:.78rem;margin:3px 4px 3px 0}
+.grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.formula{background:#eef4ff;border:1px solid #cddbf3;color:var(--blue);font-weight:800;border-radius:12px;padding:12px;margin:10px 0}
+.exercise{border:1px solid var(--line);background:var(--soft);border-radius:16px;padding:18px;margin:14px 0}.option-list{display:grid;gap:8px;margin:12px 0}.option{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;text-align:left}.option:hover,.option:focus-visible{border-color:var(--blue);outline:none}.option.selected{border-color:var(--blue);background:#eef4ff}
+.feedback{margin-top:10px;border-radius:10px;padding:12px 14px;line-height:1.5}.feedback.ok{background:#ecfdf3;color:var(--ok);border:1px solid #bbf7d0}.feedback.warn{background:#fff7ed;color:var(--warn);border:1px solid #fed7aa}
+input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:var(--ink)}textarea{min-height:145px;resize:vertical}
+.primary,.secondary{border:0;border-radius:12px;padding:11px 16px;font-weight:800}.primary{background:var(--blue);color:#fff}.secondary{background:#eef4ff;color:var(--blue)}
+.builder-pool{display:flex;flex-wrap:wrap;gap:8px}.builder-pool button{border:1px solid #cddbf3;background:#fff;color:var(--blue);padding:9px 11px;border-radius:10px}.builder-output{min-height:60px;border:1px dashed #9db5df;background:#f8fbff;border-radius:12px;padding:12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:#eef4ff;color:var(--blue)}
+.checklist{display:grid;gap:10px}.check-item{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.check-item input{margin-top:3px;transform:scale(1.2)}
+.final-box{text-align:center;background:linear-gradient(135deg,#eef4ff,#fff8d9);border:2px solid #d6e1f5;border-radius:20px;padding:26px;margin-top:18px}.step-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.meta{color:var(--muted);font-size:.88rem}.pron{font-weight:800;color:var(--red)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:4px;padding:8px}.nav-btn{white-space:nowrap;width:auto}.topbar-inner{flex-wrap:wrap}.progress-wrap{order:3;max-width:none;width:100%}}
+@media(max-width:700px){.level-grid,.cards,.grammar-grid{grid-template-columns:1fr}.selector-card{padding:22px}.section{padding:20px}.hero{padding:24px}.topbar-inner{padding:10px 14px}.layout{padding:18px 14px 50px}}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="screen">
+  <div class="selector-card">
+    <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><strong>La Oficina en Español</strong><span>Español para trabajar</span></div></div>
+    <h1>¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Elige una ruta. El tema es el mismo para todos, pero cambian el apoyo, la complejidad y la autonomía.</p>
+    <div class="level-grid">
+      <button type="button" class="level-btn" data-level="a2"><span class="emoji">🌱</span><strong>A2 — Principiante</strong><small>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</small></button>
+      <button type="button" class="level-btn" data-level="b1"><span class="emoji">💼</span><strong>B1 — Intermedio</strong><small>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</small></button>
+      <button type="button" class="level-btn" data-level="b2"><span class="emoji">🚀</span><strong>B2 — Avanzado</strong><small>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</small></button>
+    </div>
+  </div>
+</section>
+
+<div id="module" class="hidden">
+  <div class="topbar"><div class="topbar-inner">
+    <div id="routeBadge" class="route-badge"></div>
+    <div class="progress-wrap"><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><div id="progressLabel" class="progress-label">0 %</div></div>
+    <button type="button" id="changeLevel" class="change-btn">Cambiar nivel</button>
+  </div></div>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Navegación">
+      <button type="button" class="nav-btn active" data-target="objetivo">1. Objetivo</button>
+      <button type="button" class="nav-btn" data-target="situacion">2. Situación</button>
+      <button type="button" class="nav-btn" data-target="vocabulario">3. Vocabulario</button>
+      <button type="button" class="nav-btn" data-target="frases">4. Frases</button>
+      <button type="button" class="nav-btn" data-target="construye">5. Construye</button>
+      <button type="button" class="nav-btn" data-target="gramatica">6. Gramática</button>
+      <button type="button" class="nav-btn" data-target="registro">7. Registro</button>
+      <button type="button" class="nav-btn" data-target="modelo">8. Ejemplo</button>
+      <button type="button" class="nav-btn" data-target="comprueba">9. Comprueba</button>
+      <button type="button" class="nav-btn" data-target="practica">10. Tu práctica</button>
+      <button type="button" class="nav-btn" data-target="respuesta">11. Modelo</button>
+      <button type="button" class="nav-btn" data-target="checklist">12. Checklist</button>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div class="eyebrow">HABILIDAD PROFESIONAL DE LA SEMANA</div>
+        <h1>Usar pronombres de objeto para comunicarte con claridad en el trabajo</h1>
+        <p id="heroText"></p><p class="meta" style="color:#dce8ff"><strong>Tema 17:</strong> Pronombres de objeto directo e indirecto</p>
+      </section>
+
+      <section id="objetivo" class="section"><div class="section-kicker">🎯 1. Tu objetivo esta semana</div><div id="objectiveBody"></div></section>
+      <section id="situacion" class="section"><div class="section-kicker">🏢 2. La situación</div><div id="situationBody"></div></section>
+      <section id="vocabulario" class="section"><div class="section-kicker">🗣️ 3. Vocabulario clave</div><h2>Palabras y referencias que necesitas</h2><div id="vocabCards" class="cards"></div><div id="vocabRecovery"></div></section>
+      <section id="frases" class="section"><div class="section-kicker">💬 4. Frases que puedes usar</div><h2>Evita repetir información que ya está clara</h2><div id="phraseBody"></div></section>
+      <section id="construye" class="section"><div class="section-kicker">🧩 5. Construye tu mensaje</div><h2>Del nombre completo al pronombre correcto</h2><div id="builderBody"></div></section>
+      <section id="gramatica" class="section"><div class="section-kicker">📚 6. Gramática que necesitas</div><h2>¿Qué sustituyes y a quién?</h2><div id="grammarBody"></div></section>
+      <section id="registro" class="section"><div class="section-kicker">🎭 7. Precisión y registro</div><h2>Que el pronombre ahorre palabras sin crear ambigüedad</h2><div id="registerBody"></div></section>
+      <section id="modelo" class="section"><div class="section-kicker">💼 8. Mira cómo se hace</div><h2>Ejemplo profesional completo</h2><div id="modelBody"></div></section>
+      <section id="comprueba" class="section"><div class="section-kicker">✍️ 9. Comprueba lo que aprendiste</div><h2>Recupera la forma correcta</h2><div id="quizBody"></div></section>
+      <section id="practica" class="section"><div class="section-kicker">🏢 10. Ahora te toca a ti</div><h2>Responde en una situación de trabajo</h2><div id="practiceBody"></div></section>
+      <section id="respuesta" class="section"><div class="section-kicker">💡 11. Ver modelo</div><h2>Compara después de intentarlo</h2><button id="showModelAnswer" class="secondary" type="button">Ver una posible respuesta</button><div id="modelAnswer" class="hidden"><p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p><div id="modelAnswerContent"></div></div></section>
+      <section id="checklist" class="section"><div class="section-kicker">✅ 12. Checklist final</div><h2>Antes de terminar, comprueba</h2><div id="checklistItems" class="checklist"></div><div id="finalReady" class="final-box hidden"><h2>🎯 Ya estás listo para practicar</h2><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><button type="button" class="primary" style="display:inline-block;margin-top:8px" id="goChallenge">🔥 Ir al reto de hoy</button><p class="meta">El enlace puede conectarse aquí cuando exista una URL real del reto.</p></div></section>
+    </main>
+  </div>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const DATA = {
+a2:{
+ label:"Tu ruta: 🌱 A2 — Principiante",
+ hero:"Aprende a decir frases como “Se lo envío hoy” o “La llamo esta tarde” sin repetir nombres y objetos cada vez. / Learn to use direct and indirect object pronouns in practical work situations.",
+ objective:`<h2>Podrás comunicar entregas, llamadas y explicaciones con frases más naturales.</h2>
+ <p><strong>ES:</strong> Al terminar este módulo podrás identificar qué cosa o persona recibe directamente la acción, quién recibe algo, y usar <strong>lo, la, los, las, le, les</strong> y combinaciones como <strong>se lo</strong>.</p>
+ <p><strong>EN:</strong> You will be able to identify the direct object, the person who receives something, and use the most useful object pronouns in work messages.</p>
+ <div class="callout">Al final del módulo comprobarás si ya puedes hacerlo. / At the end, you will check whether you can do it.</div>`,
+ situation:`<h2>Un seguimiento con un cliente</h2>
+ <p><strong>ES:</strong> Después de una reunión, debes enviar una propuesta a una clienta, explicar un cambio a tu equipo y llamar a un proveedor.</p>
+ <p><strong>EN:</strong> After a meeting, you need to send a proposal to a client, explain a change to your team, and call a supplier.</p>
+ <ul><li><strong>Quién habla:</strong> tú.</li><li><strong>Con quién:</strong> cliente, equipo y proveedor.</li><li><strong>Qué quieres conseguir:</strong> comunicar acciones sin repetir constantemente “la propuesta”, “a la clienta”, “el cambio” o “al proveedor”.</li><li><strong>Dificultad:</strong> distinguir <em>lo/la/los/las</em> de <em>le/les</em>.</li></ul>`,
+ vocab:[
+  ["la propuesta","the proposal","pro-PUES-ta","La envío esta tarde.","Objeto directo femenino: la."],
+  ["el informe","the report","in-FOR-me","Lo reviso antes de enviarlo.","Objeto directo masculino: lo."],
+  ["al cliente","to the client","CLIEN-te","Le envío la propuesta.","Persona que recibe algo: le."],
+  ["al equipo","to the team","e-QUI-po","Les explico el cambio.","Grupo que recibe la explicación: les."],
+  ["enviar","to send","en-vi-AR","Se lo envío hoy.","Verbo frecuente con objeto directo e indirecto."],
+  ["explicar","to explain","ex-pli-CAR","Se lo explico ahora.","Puedes explicar algo a alguien."],
+  ["llamar","to call","lla-MAR","La llamo esta tarde.","Con llamar a una persona, normalmente usamos objeto directo."],
+  ["entregar","to deliver / hand in","en-tre-GAR","Se lo entrego mañana.","Algo se entrega a alguien."]
+ ],
+ phrases:[
+  ["Confirmar una acción","La propuesta está lista. <strong>La envío hoy.</strong>","The proposal is ready. I’m sending it today."],
+  ["Indicar destinatario","<strong>Le envío</strong> el informe al cliente.","I send the report to the client."],
+  ["Sustituir ambos complementos","El informe es para el cliente. <strong>Se lo envío</strong> hoy.","The report is for the client. I send it to him/her today."],
+  ["Hablar de una persona","María está disponible. <strong>La llamo</strong> después de la reunión.","María is available. I’ll call her after the meeting."],
+  ["Hablar de varias personas","Los clientes esperan la propuesta. <strong>Los contacto</strong> mañana.","The clients are waiting for the proposal. I’ll contact them tomorrow."]
+ ],
+ grammar:`<div class="grammar-grid">
+  <div class="card"><h3>1. Objeto directo: lo que recibe directamente la acción</h3><p>Puede ser una cosa o una persona, según el verbo. Pregunta primero qué elemento recibe directamente la acción.</p><div class="formula">lo · la · los · las</div>
+  <p>Reviso <strong>el informe</strong> → <strong>Lo</strong> reviso.</p><p>Llamo <strong>a María</strong> → <strong>La</strong> llamo. Aquí María es la persona directamente llamada.</p>
+  <div class="audio-row"><button type="button" class="audio-btn" data-speak="Lo reviso antes de enviarlo." data-rate="1">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="Lo reviso antes de enviarlo." data-rate=".72">🐢 Lento / Slow</button></div></div>
+  <div class="card"><h3>2. Objeto indirecto: destinatario o beneficiario</h3><p>Marca a la persona o grupo que recibe algo, una explicación, una confirmación u otra información.</p><div class="formula">le · les</div>
+  <p>Envío la propuesta <strong>al cliente</strong> → <strong>Le</strong> envío la propuesta.</p>
+  <div class="audio-row"><button type="button" class="audio-btn" data-speak="Le envío la propuesta al cliente." data-rate="1">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="Le envío la propuesta al cliente." data-rate=".72">🐢 Lento / Slow</button></div></div>
+  <div class="card"><h3>3. Cuando aparecen juntos</h3><div class="formula">le/les + lo/la/los/las → se + lo/la/los/las</div>
+  <p><strong>Le + lo</strong> no se usa: decimos <strong>se lo</strong>.</p><p>Envío el informe al cliente → <strong>Se lo envío.</strong></p>
+  <div class="audio-row"><button type="button" class="audio-btn" data-speak="Se lo envío esta tarde." data-rate="1">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="Se lo envío esta tarde." data-rate=".72">🐢 Lento / Slow</button></div></div>
+  <div class="card"><h3>4. Posición básica</h3><p>Con verbo conjugado, el pronombre va normalmente <strong>antes</strong>.</p><div class="formula">Se lo envío. · La llamo. · Les explico el cambio.</div><p>Con infinitivo también puedes unirlo: <strong>Voy a enviárselo.</strong></p></div>
+ </div>`,
+ register:{prompt:"Tu jefa pregunta: “¿Ya enviaste la propuesta a la clienta?”",opts:[
+  ["Sí, le la envié.",false,"No. Cuando <em>le</em> aparece con <em>la</em>, cambia a <strong>se</strong>."],
+  ["Sí, se la envié esta mañana.",true,"Correcto. <strong>Se</strong> representa a la clienta y <strong>la</strong> sustituye “la propuesta”."],
+  ["Sí, la envié a ella la propuesta.",false,"Se entiende, pero repite información innecesaria en este contexto."]
+ ]},
+ model:`<div class="callout"><strong>Cliente:</strong> ¿Me puede enviar el informe actualizado?<br><strong>Tú:</strong> Sí. <strong>Se lo envío</strong> esta tarde. Primero <strong>lo reviso</strong> con mi equipo y después <strong>le confirmo</strong> la versión final.</div>
+ <p><strong>Qué ocurre:</strong> <em>lo</em> = el informe; <em>se</em> = al cliente; <em>le</em> = al cliente cuando el objeto directo “la versión final” sigue expresado.</p>
+ <div class="audio-row"><button type="button" class="audio-btn" data-speak="Sí. Se lo envío esta tarde. Primero lo reviso con mi equipo y después le confirmo la versión final." data-rate="1">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="Sí. Se lo envío esta tarde. Primero lo reviso con mi equipo y después le confirmo la versión final." data-rate=".72">🐢 Lento / Slow</button></div>`,
+ practice:`<p><strong>Situación:</strong> Tu cliente necesita la propuesta hoy. Tu colega te pregunta qué vas a hacer.</p>
+ <p>Construye 3 frases. Intenta usar:</p><div class="formula">la · le · se la</div>
+ <p>Apoyo: <strong>La reviso… / Le confirmo… / Se la envío…</strong></p><div class="audio-row"><button type="button" class="audio-btn" data-speak="La reviso." data-rate="1" aria-label="Escuchar: La reviso">🔊 Escuchar: La reviso</button><button type="button" class="audio-btn" data-speak="Le confirmo." data-rate="1" aria-label="Escuchar: Le confirmo">🔊 Escuchar: Le confirmo</button><button type="button" class="audio-btn" data-speak="Se la envío." data-rate="1" aria-label="Escuchar: Se la envío">🔊 Escuchar: Se la envío</button><button type="button" class="audio-btn" data-speak="Se la envío." data-rate=".72" aria-label="Escuchar lento: Se la envío">🐢 Lento: Se la envío</button></div><label for="practiceText"><strong>Tu respuesta / Your answer</strong></label><textarea id="practiceText" placeholder="Primero la reviso..."></textarea>`,
+ answer:`<div class="callout">Primero <strong>la reviso</strong> con mi equipo. Después <strong>le confirmo</strong> al cliente que está lista y <strong>se la envío</strong> por correo.</div>`
+},
+b1:{
+ label:"Tu ruta: 💼 B1 — Intermedio",
+ hero:"Usa los pronombres de objeto para hacer seguimientos, confirmar entregas y referirte a personas o documentos sin repetir información innecesaria.",
+ objective:`<h2>Podrás gestionar referencias con más precisión en conversaciones de trabajo.</h2><p>Al terminar este módulo podrás decidir cuándo usar pronombres de objeto directo e indirecto, combinarlos correctamente y evitar repeticiones sin perder claridad.</p><div class="callout">Al final del módulo comprobarás si ya puedes hacerlo.</div>`,
+ situation:`<h2>Seguimiento de tareas después de una reunión</h2><p>Coordinas un proyecto. Debes confirmar si el equipo recibió unos documentos, decir quién enviará una actualización al cliente y explicar qué información ya comunicaron al proveedor.</p><ul><li><strong>Objetivo:</strong> mantener referencias claras mientras la conversación avanza.</li><li><strong>Dificultad:</strong> usar pronombres sin que “lo”, “la”, “le” o “se” tengan un referente ambiguo.</li></ul>`,
+ vocab:[
+  ["referente","Elemento al que se refiere un pronombre","—","El referente de «la» es «la propuesta».","Clave para evitar ambigüedad."],
+  ["destinatario","Persona que recibe algo","—","Le enviamos el documento al destinatario.","Suele activar un complemento indirecto."],
+  ["sustituir","Reemplazar una palabra o grupo nominal","—","«Lo» sustituye «el informe».","Útil para analizar la función del pronombre."],
+  ["confirmar","Dar por cierta una información","—","Les confirmo la fecha mañana.","Frecuente con complemento indirecto."],
+  ["adjuntar","Incluir un archivo","—","Lo adjunto en este correo.","Muy frecuente en comunicación escrita."],
+  ["remitir","Enviar formalmente","—","Se lo remito al departamento jurídico.","Registro más formal que «enviar»."]
+ ],
+ phrases:[
+  ["Evitar repetición","He revisado la propuesta y <strong>la</strong> enviaré esta tarde.",""],
+  ["Marcar destinatario","<strong>Le</strong> enviaremos una copia al cliente.",""],
+  ["Sustituir dos complementos","El contrato está listo; <strong>se lo</strong> remitiremos hoy.",""],
+  ["Mantener referente explícito","A Marta <strong>le</strong> expliqué el cambio, pero a Carlos todavía no.",""],
+  ["Corregir ambigüedad","Cuando hay dos posibles referentes, repite el sustantivo en lugar de forzar un pronombre.",""]
+ ],
+ grammar:`<div class="grammar-grid">
+ <div class="card"><h3>Objeto directo</h3><div class="formula">me · te · lo/la · nos · os · los/las</div><p>Sustituye la entidad directamente afectada: <em>Revisamos las condiciones → Las revisamos.</em></p></div>
+ <div class="card"><h3>Objeto indirecto</h3><div class="formula">me · te · le · nos · os · les</div><p>Indica destinatario o beneficiario: <em>Explicamos el cambio al equipo → Le explicamos el cambio.</em></p></div>
+ <div class="card"><h3>Combinación</h3><div class="formula">se + lo/la/los/las</div><p><em>Les enviamos los anexos → Se los enviamos.</em> <strong>Se</strong> sustituye a <em>le/les</em> delante de un pronombre de objeto directo.</p></div>
+ <div class="card"><h3>Posición</h3><p><strong>Antes</strong> de verbo conjugado: <em>Se lo explico.</em><br><strong>Unidos</strong> a infinitivo/gerundio/imperativo afirmativo: <em>Voy a explicárselo. Estoy explicándoselo. Envíamelo.</em></p></div>
+ </div>`,
+ register:{prompt:"Debes informar a un cliente de que ya enviaste dos documentos a su abogada.",opts:[
+  ["Ya los envié.",false,"Puede ser correcto, pero el destinatario queda fuera si es relevante para la conversación."],
+  ["Ya se los envié a su abogada.",true,"Mantiene claros tanto los documentos como el destinatario."],
+  ["Ya le los envié.",false,"La combinación <em>le + los</em> cambia a <strong>se los</strong>."]
+ ]},
+ model:`<div class="callout">He terminado los anexos y <strong>se los he enviado</strong> a la abogada del cliente. También <strong>le he confirmado</strong> la fecha de firma. El contrato principal todavía no <strong>lo</strong> he remitido porque falta una aprobación interna.</div><p>Observa que cada pronombre tiene un referente recuperable y que se repite el sustantivo cuando hace falta evitar ambigüedad.</p>`,
+ practice:`<p><strong>Situación:</strong> Coordinas una entrega. Ya mandaste los anexos al cliente, todavía no enviaste el contrato y debes explicar la situación a tu jefa.</p><p>Escribe 4–5 frases usando al menos un pronombre de objeto directo, uno indirecto y una combinación <strong>se + pronombre</strong>.</p><label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" placeholder="Los anexos ya..."></textarea>`,
+ answer:`<div class="callout">Los anexos ya están listos y <strong>se los envié</strong> al cliente esta mañana. También <strong>le confirmé</strong> que el contrato llegará mañana. El contrato todavía no <strong>lo he enviado</strong> porque estamos esperando una aprobación.</div>`
+},
+b2:{
+ label:"Tu ruta: 🚀 B2 — Avanzado",
+ hero:"Gestiona referencias, foco informativo y ambigüedad con pronombres de objeto en interacciones profesionales complejas y de mayor velocidad.",
+ objective:`<h2>Podrás usar pronombres como herramienta de cohesión, no solo como sustitución gramatical.</h2><p>Al terminar este módulo podrás decidir cuándo pronominalizar, cuándo mantener el referente explícito y cómo combinar pronombres sin sacrificar precisión, registro ni claridad.</p><div class="callout">Al final del módulo comprobarás si ya puedes hacerlo.</div>`,
+ situation:`<h2>Una conversación con varios actores y varios documentos</h2><p>En una negociación intervienen tu equipo, el cliente, su asesor jurídico y un proveedor. Circulan una propuesta, dos anexos y una versión revisada del contrato.</p><p>El reto no consiste en “usar muchos pronombres”. Consiste en mantener la cohesión sin obligar al interlocutor a adivinar a qué o a quién te refieres.</p>`,
+ vocab:[
+  ["pronominalización","Sustitución de un referente por un pronombre","—","La pronominalización reduce repetición, pero puede aumentar ambigüedad.","Decisión discursiva, no solo morfosintáctica."],
+  ["correferencia","Relación entre expresiones que apuntan al mismo referente","—","«El contrato» y «lo» mantienen una relación de correferencia.","Clave en textos densos."],
+  ["ambigüedad referencial","Imposibilidad de saber con certeza a qué remite un pronombre","—","Con dos propuestas activas, «la» puede resultar ambiguo.","Conviene reponer el sustantivo."],
+  ["foco informativo","Información que el hablante coloca en primer plano","—","A Marta se lo confirmé ayer.","La duplicación puede reforzar el referente."],
+  ["duplicación clítica","Presencia de pronombre y complemento expreso","—","A la clienta le enviamos una copia.","Común y natural con indirectos."],
+  ["registro","Adecuación lingüística a contexto e interlocutor","—","Se lo remito adjunto / Te lo mando ahora.","La elección verbal modifica el registro."]
+ ],
+ phrases:[
+  ["Cohesión","La versión revisada ya está aprobada; <strong>se la</strong> remitiremos al cliente hoy.",""],
+  ["Foco","<strong>A la asesora jurídica se lo</strong> enviamos ayer; al cliente, todavía no.",""],
+  ["Reponer referente","El cliente revisó la propuesta y el contrato. <strong>El contrato</strong> lo devolverá firmado mañana.",""],
+  ["Contraste","Los anexos <strong>se los</strong> enviamos al proveedor; la versión final, al cliente.",""],
+  ["Registro formal","En cuanto recibamos la aprobación, <strong>se lo remitiremos</strong> para su revisión.",""]
+ ],
+ grammar:`<div class="grammar-grid">
+ <div class="card"><h3>Funciones y formas</h3><p>OD: <strong>lo, la, los, las</strong>. OI de tercera persona: <strong>le, les</strong>. Ante OD pronominal, <strong>le/les → se</strong>.</p><div class="formula">Se lo remitiremos · Se las enviaremos</div></div>
+ <div class="card"><h3>Duplicación del indirecto</h3><p>La duplicación es frecuente y, en muchos contextos, natural: <em>A la clienta <strong>le</strong> enviamos una copia.</em> Puede aportar claridad o foco.</p></div>
+ <div class="card"><h3>Pronombre vs. referente explícito</h3><p>La economía expresiva deja de ser una ventaja cuando hay dos antecedentes plausibles. En ese caso, recuperar el sustantivo mejora la precisión.</p></div>
+ <div class="card"><h3>Colocación y densidad</h3><p><em>Se lo vamos a remitir / Vamos a remitírselo.</em> Ambas opciones son posibles. En mensajes densos, la colocación puede afectar ritmo y procesamiento.</p></div>
+ </div>`,
+ register:{prompt:"En una llamada hay dos contratos activos. Dices: «Lo enviaremos mañana». ¿Qué opción gestiona mejor la ambigüedad?",opts:[
+  ["Mantener «lo» porque repetir un sustantivo siempre suena menos natural.",false,"La economía no compensa una referencia incierta."],
+  ["Reponer el referente: «El contrato marco lo enviaremos mañana».",true,"La repetición parcial resuelve la ambigüedad y conserva cohesión."],
+  ["Usar «se lo enviaremos» aunque no se haya mencionado destinatario.",false,"Añadir otro pronombre no resuelve la falta de referente."]
+ ]},
+ model:`<div class="callout">La propuesta revisada ya está aprobada. <strong>Se la</strong> enviamos esta mañana a la asesora jurídica y <strong>le</strong> pedimos comentarios antes del viernes. El contrato marco, en cambio, todavía no <strong>lo</strong> hemos remitido: faltan dos anexos. En cuanto estén listos, <strong>se los</strong> enviaremos también.</div><p>La repetición de <em>el contrato marco</em> es deliberada: evita que <em>lo</em> pueda interpretarse como otro documento mencionado anteriormente.</p>`,
+ practice:`<p><strong>Situación:</strong> Debes actualizar a dirección sobre tres documentos y dos destinatarios. Hay riesgo real de ambigüedad.</p><p>Redacta 5–7 frases. Usa pronombres cuando mejoren cohesión y repón al menos un sustantivo cuando la referencia pueda resultar dudosa. Justifica en una frase una de tus elecciones.</p><label for="practiceText"><strong>Tu respuesta</strong></label><textarea id="practiceText" placeholder="La versión revisada..."></textarea>`,
+ answer:`<div class="callout">La versión revisada de la propuesta ya está aprobada y <strong>se la enviamos</strong> al cliente esta mañana. Los dos anexos todavía no están terminados; <strong>se los remitiremos</strong> mañana. El contrato marco sigue pendiente de firma. <strong>El contrato</strong> no lo enviaremos hasta que Legal confirme la última cláusula. He mantenido el sustantivo «contrato» porque en ese punto hay varios documentos activos y «lo» solo podría resultar ambiguo.</div>`
+}
+};
+
+// ===== FIN DEL CONTENIDO EDITABLE DE LA SEMANA =====
+
+// ===== LÓGICA GENERAL REUTILIZABLE =====
+let level = null;
+let completed = new Set();
+const $ = id => document.getElementById(id);
+
+function speak(text, rate=1){
+  if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+    alert("La síntesis de voz no está disponible en este navegador. El resto del módulo funciona normalmente.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "es-419";
+  u.rate = Number(rate);
+  const voices = window.speechSynthesis.getVoices();
+  const preferred =
+    voices.find(v=>/^es[-_]?CO$/i.test(v.lang)) ||
+    voices.find(v=>/es[-_](MX|US|AR|CL|PE|VE|EC|BO|PY|UY|CR|PA|GT|HN|SV|NI|DO|PR|CU|419)/i.test(v.lang)) ||
+    voices.find(v=>/^es/i.test(v.lang));
+  if(preferred){ u.voice = preferred; u.lang = preferred.lang || "es-419"; }
+  window.speechSynthesis.speak(u);
+  markDone("audio");
+}
+document.addEventListener("click", e=>{
+  const b=e.target.closest("[data-speak]");
+  if(b) speak(b.dataset.speak,b.dataset.rate||1);
+});
+
+function audioButtons(text){
+  return `<div class="audio-row"><button type="button" class="audio-btn" data-speak="${escapeAttr(text)}" data-rate="1" aria-label="Escuchar: ${escapeAttr(text)}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-speak="${escapeAttr(text)}" data-rate=".72" aria-label="Escuchar lento: ${escapeAttr(text)}">🐢 Lento / Slow</button></div>`;
+}
+function escapeAttr(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+function render(){
+ const d=DATA[level], a2=level==="a2";
+ $("routeBadge").textContent=d.label; $("heroText").innerHTML=d.hero;
+ $("objectiveBody").innerHTML=d.objective; $("situationBody").innerHTML=d.situation;
+ $("vocabCards").innerHTML=d.vocab.map(v=>`<article class="card flip-card"><button type="button" class="revealBtn" aria-expanded="false">${v[0]}</button>${a2?audioButtons(v[0]):""}<div class="reveal hidden">${a2?`<p><strong>EN:</strong> ${v[1]}</p><p class="pron">Pronunciación: ${v[2]}</p>`:`<p>${v[1]}</p>`}<p><strong>Ejemplo:</strong> ${v[3]}</p><p class="meta">${v[4]}</p>${a2?audioButtons(v[3]):""}</div></article>`).join("");
+ $("vocabRecovery").innerHTML=a2?`<div class="exercise"><h3>Recupera / Recall</h3><p>¿Qué pronombre sustituye <strong>la propuesta</strong>?</p><div class="option-list"><button type="button" class="option quick" data-ok="false">lo</button><button type="button" class="option quick" data-ok="true">la</button><button type="button" class="option quick" data-ok="false">le</button></div><div class="feedback hidden"></div></div>`:"";
+ $("phraseBody").innerHTML=d.phrases.map(p=>`<div class="card" style="margin-bottom:12px"><h3>${p[0]}</h3><p>${p[1]}</p>${a2?`<p class="meta">${p[2]}</p>${audioButtons(strip(p[1]))}`:""}</div>`).join("");
+ $("builderBody").innerHTML=builderFor(level);
+ $("grammarBody").innerHTML=d.grammar;
+ $("registerBody").innerHTML=renderMC(d.register.prompt,d.register.opts,"register");
+ $("modelBody").innerHTML=d.model;
+ $("quizBody").innerHTML=quizFor(level);
+ $("practiceBody").innerHTML=d.practice;
+ $("modelAnswerContent").innerHTML=d.answer + (a2?audioButtons(strip(d.answer)):"");
+ $("checklistItems").innerHTML=checklistFor(level);
+ bindDynamic();
+ updateProgress();
+}
+
+function strip(s){const x=document.createElement("div");x.innerHTML=s;return x.textContent.trim()}
+
+function builderFor(l){
+ if(l==="a2") return `<p>Haz clic en los bloques para construir una respuesta. / Click the blocks to build a response.</p>
+ <div class="builder-pool">${["La propuesta","la reviso","al cliente","le confirmo","la fecha","se la envío","hoy"].map(x=>`<span style="display:inline-flex;align-items:center;gap:6px"><button type="button" data-piece="${x}">${x}</button><button type="button" class="audio-btn" data-speak="${x}" data-rate="1" aria-label="Escuchar: ${x}">🔊 Escuchar</button></span>`).join("")}</div>
+ <div id="builderOutput" class="builder-output" aria-live="polite"></div><button id="clearBuilder" type="button" class="secondary">Borrar / Clear</button>
+ <div class="callout"><strong>Idea:</strong> La propuesta → <strong>la</strong>. Al cliente → <strong>le</strong>. La propuesta + al cliente → <strong>se la</strong>.</div>`;
+ if(l==="b1") return `<div class="exercise"><p>Transforma sin cambiar el significado:</p><p><strong>Enviamos los anexos al cliente esta mañana.</strong></p><label for="builderInput"><strong>Tu transformación</strong></label><input id="builderInput" type="text" placeholder="Escribe una versión con pronombres"><button type="button" id="checkBuilderText" class="primary" style="margin-top:10px">Comprobar</button><div id="builderFeedback" class="feedback hidden"></div></div>`;
+ return `<div class="exercise"><p>Decide si conviene pronominalizar o mantener el sustantivo:</p><p><strong>El cliente revisó la propuesta y el contrato. ___ devolverá firmado mañana.</strong></p>
+ <div class="option-list"><button type="button" class="option builderChoice" data-ok="false">Lo</button><button type="button" class="option builderChoice" data-ok="true">El contrato lo</button><button type="button" class="option builderChoice" data-ok="false">Se lo</button></div><div class="feedback hidden"></div></div>`;
+}
+
+function renderMC(prompt, opts, group){
+ const a2Audio = level==="a2";
+ return `<div class="exercise"><p><strong>${prompt}</strong></p><div class="option-list">${opts.map((o,i)=>{
+   const plain=strip(o[0]);
+   return `<div>${a2Audio?audioButtons(plain):""}<button type="button" class="option mc" data-group="${group}" data-index="${i}" data-ok="${o[1]}" data-feedback="${escapeAttr(o[2]||"")}">${o[0]}</button></div>`;
+ }).join("")}</div><div class="feedback hidden" aria-live="polite"></div></div>`;
+}
+
+function quizFor(l){
+ let qs;
+ if(l==="a2") qs=[
+  ["Quiero decir “I send the report to the client”. ¿Qué opción es correcta?",["Lo envío el cliente.","Le envío el informe al cliente.","La envío al cliente."],1,"<strong>Le</strong> representa al destinatario; «el informe» sigue expresado."],
+  ["Sustituye «el informe» en «Reviso el informe».",["Lo reviso.","Le reviso.","Se reviso."],0,"«El informe» es objeto directo masculino: <strong>lo</strong>."],
+  ["Completa: «La propuesta es para Ana. ___ ___ envío hoy».",["Le la","Se la","La le"],1,"Cuando <em>le</em> aparece con <em>la</em>, usamos <strong>se la</strong>."]
+ ];
+ else if(l==="b1") qs=[
+  ["«Les enviamos los documentos» → sustituye también «los documentos».",["Les los enviamos.","Se los enviamos.","Los les enviamos."],1,"<strong>Les + los</strong> se convierte en <strong>se los</strong>."],
+  ["¿Qué opción es más clara si hay dos propuestas activas?",["La enviamos mañana.","La propuesta comercial la enviamos mañana.","Se la enviamos."],1,"Reponer el sustantivo evita ambigüedad."],
+  ["En «A Marta le expliqué el cambio», ¿qué función cumple «le»?",["Objeto directo","Objeto indirecto","Sujeto"],1,"Marta es destinataria de la explicación."]
+ ];
+ else qs=[
+  ["¿Cuándo conviene reponer un referente nominal?",["Siempre que exista un pronombre.","Cuando hay dos o más antecedentes plausibles.","Nunca; la repetición debe evitarse."],1,"La cohesión exige economía, pero también referencia inequívoca."],
+  ["¿Qué describe mejor «A la asesora se lo remitimos ayer»?",["Duplicación del OD.","Foco del referente indirecto + combinación de clíticos.","Uso impersonal de se."],1,"«A la asesora» explicita y focaliza el destinatario; «se lo» mantiene la combinación pronominal."],
+  ["¿Qué alternativa mantiene mejor un registro formal?",["Te lo mando ya.","Se lo remito adjunto para su revisión.","Se lo paso."],1,"«Remitir» y la construcción completa encajan mejor en un registro formal."]
+ ];
+ return qs.map((q,n)=>renderMC(`${n+1}. ${q[0]}`,q[1].map((x,i)=>[x,i===q[2],q[3]]),`q${n}`)).join("");
+}
+
+function checklistFor(l){
+ const items=l==="a2"?[
+ "Puedo identificar qué sustituye lo/la/los/las.",
+ "Puedo identificar a quién representa le/les.",
+ "Recuerdo que le/les + lo/la/los/las cambia a se + lo/la/los/las.",
+ "Puedo decir una frase como «Se lo envío hoy»."
+ ]:l==="b1"?[
+ "Distingo objeto directo e indirecto en ejemplos de trabajo.",
+ "Combino correctamente se + lo/la/los/las.",
+ "Puedo elegir cuándo repetir un sustantivo para mantener claridad.",
+ "Puedo producir un seguimiento breve usando pronombres."
+ ]:[
+ "Uso la pronominalización como recurso de cohesión.",
+ "Detecto ambigüedad referencial y repongo el sustantivo cuando conviene.",
+ "Gestiono duplicación, foco y colocación de clíticos con precisión.",
+ "Adapto la elección al registro y a la carga informativa."
+ ];
+ return items.map(x=>`<label class="check-item"><input type="checkbox" class="finalCheck"> <span>${x}</span></label>`).join("");
+}
+
+function bindDynamic(){
+ document.querySelectorAll(".revealBtn").forEach(b=>b.onclick=()=>{const r=b.parentElement.querySelector(".reveal");r.classList.toggle("hidden");b.setAttribute("aria-expanded",String(!r.classList.contains("hidden"))); if(!r.classList.contains("hidden")) markDone("vocab");});
+ document.querySelectorAll(".mc,.quick,.builderChoice").forEach(b=>b.onclick=()=>{
+   const ex=b.closest(".exercise"); ex.querySelectorAll(".option").forEach(o=>o.classList.remove("selected")); b.classList.add("selected");
+   const fb=ex.querySelector(".feedback"); fb.classList.remove("hidden","ok","warn");
+   const ok=b.dataset.ok==="true"; fb.classList.add(ok?"ok":"warn");
+   if(b.classList.contains("mc")){
+     fb.innerHTML = b.dataset.feedback || (ok ? "Esta opción funciona en este contexto." : "Revisa la función del pronombre y el referente.");
+   } else if(b.classList.contains("quick")) fb.innerHTML=ok?"Correcto: «la propuesta» → «la».":"Prueba otra vez: piensa en género y función.";
+   else fb.innerHTML=ok?"Correcto. El sustantivo elimina la ambigüedad antes de volver al pronombre.":"Esa opción deja una referencia dudosa.";
+   markDone(`exercise:${b.dataset.group||"practice"}`);
+ });
+ document.querySelectorAll("[data-piece]").forEach(b=>b.onclick=()=>{$("builderOutput").textContent += ($("builderOutput").textContent?" ":"")+b.dataset.piece; markDone("builder");});
+ if($("clearBuilder")) $("clearBuilder").onclick=()=>{$("builderOutput").textContent=""};
+ if($("checkBuilderText")) $("checkBuilderText").onclick=()=>{
+   const v=$("builderInput").value.toLowerCase(), fb=$("builderFeedback"); fb.classList.remove("hidden","ok","warn");
+   const ok=v.includes("se los") || (v.includes("los") && v.includes("cliente")); fb.classList.add(ok?"ok":"warn");
+   fb.textContent=ok?"La referencia funciona. Una opción natural: «Se los enviamos esta mañana».":"Intenta sustituir «los anexos» y «al cliente»: «Se los…»"; markDone("builder");
+ };
+ const practiceText=$("practiceText"); if(practiceText) practiceText.addEventListener("input",()=>{ if(practiceText.value.trim().length>12) markDone("practice"); });
+ document.querySelectorAll(".finalCheck").forEach(c=>c.onchange=()=>{$("finalReady").classList.toggle("hidden",![...document.querySelectorAll(".finalCheck")].every(x=>x.checked)); markDone("checklist"); updateProgress()});
+}
+
+document.querySelectorAll(".level-btn").forEach(b=>b.onclick=()=>{
+ level=b.dataset.level; completed = new Set(); $("levelScreen").classList.add("hidden"); $("module").classList.remove("hidden"); render(); window.scrollTo(0,0);
+});
+$("changeLevel").onclick=()=>{window.speechSynthesis?.cancel?.();$("module").classList.add("hidden");$("levelScreen").classList.remove("hidden");window.scrollTo(0,0)};
+$("showModelAnswer").onclick=()=>{$("modelAnswer").classList.toggle("hidden");$("showModelAnswer").textContent=$("modelAnswer").classList.contains("hidden")?"Ver una posible respuesta":"Ocultar modelo"; if(!$("modelAnswer").classList.contains("hidden")) markDone("model"); updateProgress()};
+document.querySelectorAll(".nav-btn").forEach(b=>b.onclick=()=>{$(b.dataset.target).scrollIntoView({behavior:"smooth",block:"start"})});
+document.addEventListener("click",e=>{ if(e.target.id==="goChallenge") alert("El botón está preparado para conectar la URL real del reto de hoy."); });
+
+const milestones = ["vocab","builder","exercise:register","exercise:q0","exercise:q1","exercise:q2","practice","model","checklist"];
+function markDone(key){
+  completed.add(key);
+  updateProgress();
+}
+function updateProgress(){
+  if(!level) return;
+  const checked=[...document.querySelectorAll(".finalCheck")].filter(x=>x.checked).length;
+  const totalChecks=document.querySelectorAll(".finalCheck").length || 1;
+  const completedCore=milestones.filter(m=>completed.has(m)).length;
+  const corePct=(completedCore/milestones.length)*80;
+  const checkPct=(checked/totalChecks)*20;
+  const pct=Math.min(100,Math.round(corePct+checkPct));
+  $("progressBar").style.width=pct+"%";
+  $("progressLabel").textContent=pct+" %";
+}
+</script>
+</body>
+</html>

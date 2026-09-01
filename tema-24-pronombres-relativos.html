@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tema 24 · Pronombres relativos y oraciones de relativo</title>
+<style>
+:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#fff;--black:#000;--ink:#172033;--muted:#64748b;--soft:#eef4ff;--line:#d9e2f1;--ok:#0f766e;--warn:#9a6700}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#f7f9fc;line-height:1.55}
+button,input,textarea,select{font:inherit}.hidden{display:none!important}
+#levelScreen{min-height:100vh;background:linear-gradient(145deg,#001e50,#003893 65%,#0b4db5);display:grid;place-items:center;padding:28px}
+.level-shell{width:min(1100px,100%);background:rgba(255,255,255,.98);border-radius:28px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+.level-head{padding:34px 34px 10px}.brand{font-weight:900;letter-spacing:.08em;color:var(--blue);font-size:.85rem}.level-head h1{font-size:clamp(2rem,5vw,3.4rem);margin:.35rem 0}.level-head p{color:var(--muted);max-width:760px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:24px 34px 36px}.level-card{border:2px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;cursor:pointer;transition:.2s;min-height:260px}.level-card:hover,.level-card:focus-visible{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 30px rgba(0,56,147,.12);outline:none}.emoji{font-size:2rem}.level-card h2{margin:.5rem 0}.level-card p{color:#475569}.level-foot{background:var(--yellow);padding:12px 34px;font-weight:800;color:#13213a}
+.topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}.topbar-inner{max-width:1180px;margin:auto;padding:11px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between}.mini-brand{font-weight:900;color:var(--blue)}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.route-pill{background:var(--soft);color:var(--blue);padding:8px 11px;border-radius:999px;font-weight:800}.small-btn{border:1px solid var(--line);background:#fff;padding:8px 11px;border-radius:10px;cursor:pointer}.small-btn:hover{border-color:var(--blue)}
+.progress-wrap{height:6px;background:#e7ecf4}.progress-bar{height:100%;width:0;background:var(--yellow);transition:.3s}
+.hero{background:linear-gradient(145deg,#00276d,#003893);color:#fff;padding:54px 20px}.hero-inner{max-width:1020px;margin:auto}.eyebrow{color:var(--yellow);font-weight:900}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:.4rem 0 1rem}.hero p{max-width:820px;color:#e6edff}
+.layout{max-width:1180px;margin:26px auto;display:grid;grid-template-columns:220px 1fr;gap:22px;padding:0 18px}.side-nav{position:sticky;top:86px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.side-nav button{width:100%;text-align:left;border:0;background:transparent;padding:9px;border-radius:9px;cursor:pointer;color:#334155}.side-nav button:hover{background:var(--soft);color:var(--blue)}
+.content{display:grid;gap:18px}.section{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 5px 20px rgba(15,23,42,.04)}.section-head{padding:18px 22px;background:#f8fbff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.section-title{font-size:1.15rem;font-weight:900;color:#14213d}.section-body{padding:22px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}.flip{cursor:pointer}.flip:hover{border-color:#9bb7e8}.term{font-weight:900;color:var(--blue);font-size:1.08rem}.muted{color:var(--muted)}.tag{display:inline-block;background:var(--soft);color:var(--blue);padding:3px 8px;border-radius:999px;font-size:.82rem;font-weight:800}.tip{background:#fff8d8;border-left:4px solid var(--yellow);padding:12px 14px;border-radius:10px;margin:12px 0}.note{background:#edf8f6;border-left:4px solid var(--ok);padding:12px 14px;border-radius:10px;margin:12px 0}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.audio-btn{border:1px solid #bcd0f3;background:#f7faff;color:#003893;padding:7px 10px;border-radius:9px;cursor:pointer;font-weight:700}
+.function-group{margin-bottom:20px}.function-group h3{margin-bottom:8px}.phrase{border:1px solid var(--line);border-radius:13px;padding:13px;margin:9px 0}.phrase-top{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.reveal-btn{border:0;background:var(--soft);color:var(--blue);padding:7px 10px;border-radius:9px;cursor:pointer;font-weight:800}
+.builder{display:grid;gap:12px}.builder-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.builder select,.builder input,.builder textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px}.result{background:#f8fafc;border:1px dashed #94a3b8;padding:14px;border-radius:12px;font-weight:800}
+.quiz{display:grid;gap:14px}.q{border:1px solid var(--line);border-radius:14px;padding:15px}.options{display:grid;gap:8px;margin-top:10px}.option{border:1px solid #cbd5e1;background:#fff;padding:10px;border-radius:10px;text-align:left;cursor:pointer}.option:hover{border-color:var(--blue)}.feedback{margin-top:9px;padding:10px;border-radius:10px;background:#f8fafc}.feedback.good{background:#ecfdf5;color:#065f46}.feedback.try{background:#fff7ed;color:#9a3412}
+textarea{min-height:145px;resize:vertical}.model{margin-top:12px;padding:15px;background:#f8fafc;border:1px solid var(--line);border-radius:12px}
+.checklist{display:grid;gap:9px}.checkitem{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:10px}.checkitem input{margin-top:5px}
+.final-box{background:linear-gradient(145deg,#001e50,#003893);color:white;border-radius:18px;padding:24px}.cta{display:inline-block;background:var(--yellow);color:#111827;text-decoration:none;font-weight:900;padding:12px 18px;border-radius:12px;margin-top:10px}
+.nav-buttons{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.nav-buttons button{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:800}
+.footer{background:#001e50;color:#dce7fb;padding:28px 20px;text-align:center}.footer a{color:#fff;font-weight:800}
+@media(max-width:850px){.level-grid{grid-template-columns:1fr}.level-card{min-height:auto}.layout{grid-template-columns:1fr}.side-nav{display:none}.cards,.builder-controls{grid-template-columns:1fr}.topbar-inner{align-items:flex-start}.hero{padding-top:38px}}
+@media(max-width:520px){#levelScreen{padding:10px}.level-head,.level-grid{padding-left:18px;padding-right:18px}.section-head,.section-body{padding-left:15px;padding-right:15px}.section-title{font-size:1rem}}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="level-head">
+      <div class="brand">LA OFICINA EN ESPAÑOL</div>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p>Selecciona tu ruta. Trabajarás el mismo tema profesional con el apoyo y la dificultad adecuados para ti.</p>
+    </div>
+    <div class="level-grid">
+      <button class="level-card" data-level="a2"><div class="emoji">🌱</div><h2>A2 — Principiante</h2><p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p></button>
+      <button class="level-card" data-level="b1"><div class="emoji">💼</div><h2>B1 — Intermedio</h2><p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p></button>
+      <button class="level-card" data-level="b2"><div class="emoji">🚀</div><h2>B2 — Avanzado</h2><p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p></button>
+    </div>
+    <div class="level-foot">Business Spanish · Tema 24 · Pronombres relativos y oraciones de relativo</div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="mini-brand">LA OFICINA EN ESPAÑOL</div>
+      <div class="top-actions"><span id="routePill" class="route-pill"></span><button id="changeLevel" class="small-btn">Cambiar nivel</button></div>
+    </div>
+    <div class="progress-wrap" aria-label="Progreso del módulo"><div id="progressBar" class="progress-bar"></div></div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">TEMA 24 · HERRAMIENTAS LINGÜÍSTICAS</div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroIntro"></p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side-nav" aria-label="Secciones"><div id="navList"></div></nav>
+    <main id="content" class="content"></main>
+  </div>
+
+  <footer class="footer">La Oficina en Español · <a href="https://laoficinaenespanol.com">laoficinaenespanol.com</a></footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2:{
+    route:"🌱 A2 — Principiante",
+    title:"Describe personas, documentos y proyectos con más claridad",
+    intro:"Aprenderás a unir información con que, quien y donde para explicar mejor quién es una persona, qué hace un documento o dónde ocurre algo en tu trabajo. / You will learn to connect information with que, quien and donde to describe people, documents and places at work.",
+    objective:"Al terminar esta semana podrás describir personas, documentos, lugares y proyectos de tu trabajo uniendo información con oraciones de relativo sencillas. / By the end of the week, you will be able to describe people, documents, places and projects using simple relative clauses.",
+    situation:"Trabajas en un equipo internacional. Una persona nueva necesita saber quién es cada contacto, qué documento debe revisar y dónde se encuentra la información. Tu objetivo es dar explicaciones breves y claras sin repetir demasiadas palabras.",
+    vocab:[
+      ["el cliente","the client","Persona o empresa que compra o recibe un servicio.","El cliente que llamó ayer necesita una respuesta hoy.","CLI-en-te"],
+      ["el informe","the report","Documento con información o resultados.","El informe que envié contiene los resultados.","in-FOR-me"],
+      ["el equipo","the team","Grupo de personas que trabaja en una tarea o proyecto.","El equipo que trabaja en ventas está en otra reunión.","e-QUI-po"],
+      ["la oficina","the office","Lugar donde trabaja un equipo.","La oficina donde trabaja Marta está en Bogotá.","o-fi-CI-na"]
+    ],
+    phrases:[
+      ["Personas","La persona que coordina el proyecto es Laura.","Usa que para añadir información sobre una persona de forma sencilla."],
+      ["Personas","El proveedor con quien hablamos ayer confirmó la entrega.","Con quien es útil cuando una persona aparece después de una preposición."],
+      ["Cosas","Este es el documento que necesitas revisar.","Que conecta el documento con la información adicional."],
+      ["Lugares","Esta es la sala donde tenemos la reunión.","Donde conecta un lugar con lo que ocurre allí."]
+    ],
+    grammar:[
+      ["que","Se usa mucho con personas y cosas.","Necesito el archivo que contiene los precios."],
+      ["quien / quienes","Se usa para personas, especialmente después de preposición.","Ana es la persona con quien debes hablar."],
+      ["donde","Se usa para lugares.","Este es el sitio donde guardamos los contratos."]
+    ],
+    builder:[
+      {label:"Persona",start:"La persona que",ends:["coordina el proyecto es Laura","atiende al cliente es Carlos","prepara el informe es Marta"]},
+      {label:"Documento",start:"El documento que",ends:["necesitas revisar está en tu correo","contiene los precios está actualizado","enviamos ayer tiene la información correcta"]},
+      {label:"Lugar",start:"La oficina donde",ends:["trabaja Marta está en Bogotá","tenemos la reunión está en el segundo piso","guardamos los contratos está cerrada hoy"]},
+      {label:"Persona con preposición",start:"La persona con quien",ends:["debes hablar es Ana","revisamos el contrato es nuestra asesora","tenemos la reunión es el cliente"]}
+    ],
+    register:{
+      context:"Un cliente nuevo pregunta quién puede ayudarle con un problema técnico.",
+      options:[
+        ["Habla con el chico que sabe de eso.","Puede sonar demasiado informal y poco preciso para un cliente."],
+        ["Puedes hablar con Carlos, que es la persona que gestiona el soporte técnico.","Adecuada: identifica a la persona y explica su función con claridad."],
+        ["Carlos, quien arregla cosas, te ayuda.","La idea se entiende, pero suena poco natural y demasiado vaga."]
+      ],correct:1
+    },
+    model:"Carlos es la persona que coordina el proyecto. El informe que necesitas está en la carpeta compartida. La oficina donde trabaja su equipo está en el segundo piso.",
+    quiz:[
+      {q:"Completa / Complete: El informe ___ contiene los resultados está en tu correo.",o:["quien","que","donde"],a:1,why:"Que conecta una cosa, el informe, con la información que la describe."},
+      {q:"Completa / Complete: Marta es la persona con ___ debes hablar.",o:["que","quien","donde"],a:1,why:"Después de con, quien es una opción clara para referirse a una persona."},
+      {q:"Completa / Complete: Esta es la sala ___ hacemos las reuniones.",o:["donde","quien","que"],a:0,why:"Donde se usa para conectar un lugar con una acción que ocurre allí."}
+    ],
+    final:{
+      situation:"Una nueva compañera empieza hoy. Explícale quién es un contacto importante, qué documento debe revisar y dónde puede encontrarlo.",
+      req:["Incluye una frase con que.","Incluye una frase con donde.","Usa 3–4 frases breves."],
+      supports:["La persona que… es…","El documento que…","El lugar donde…"],
+      model:"Sofía es la persona que coordina las entregas. El documento que necesitas revisar se llama “Plan semanal”. Está en la carpeta donde guardamos los archivos del proyecto."
+    },
+    checklist:["Puedo usar que para describir una persona o cosa.","Puedo usar donde para describir un lugar.","Puedo reconocer cuándo usar quien después de una preposición.","Puedo unir dos ideas sin repetir el mismo sustantivo.","Puedo escribir una explicación profesional breve."]
+  },
+  b1:{
+    route:"💼 B1 — Intermedio",
+    title:"Conecta información profesional sin repetir ideas",
+    intro:"Trabajarás que, quien, donde, el que y lo que para describir personas, procesos, documentos y situaciones con más precisión y fluidez.",
+    objective:"Al terminar esta semana podrás conectar información sobre personas, procesos y proyectos usando diferentes pronombres relativos y evitando repeticiones innecesarias.",
+    situation:"Estás preparando a un compañero para una reunión con un cliente. Debes explicar quién participa, qué documentos son relevantes, qué decisiones anteriores importan y dónde encontrar la información.",
+    vocab:[
+      ["responsable","Persona que tiene a cargo una tarea o decisión.","La responsable que aprobó el presupuesto participará en la reunión.","registro: neutro profesional"],
+      ["antecedente","Información previa que ayuda a entender una situación.","Los antecedentes que revisamos explican el retraso.","colocación: revisar antecedentes"],
+      ["plataforma","Sistema digital utilizado para trabajar o gestionar información.","La plataforma donde registramos las incidencias está actualizada.","colocación: plataforma de gestión"],
+      ["criterio","Principio o razón que se usa para decidir.","El criterio que usamos para priorizar los casos es el impacto.","colocación: aplicar un criterio"]
+    ],
+    phrases:[
+      ["Identificar","La persona que lidera la negociación es nuestra directora comercial.","Que permite identificar a una persona por su función."],
+      ["Añadir precisión","El consultor con quien revisamos el contrato participará mañana.","Con quien introduce una relación entre una persona y la acción."],
+      ["Referirse a una idea","Lo que necesitamos confirmar es la fecha de entrega.","Lo que retoma una idea o información, no un sustantivo concreto."],
+      ["Especificar lugar","La plataforma donde registramos los casos permite adjuntar documentos.","Donde aporta información sobre el lugar físico o conceptual."]
+    ],
+    grammar:[
+      ["que vs quien","Que es el relativo más general; quien se limita a personas y aparece con frecuencia después de preposición.","La persona que llamó / La persona con quien hablé."],
+      ["el que / la que / los que / las que","Puede aparecer tras preposición y ayuda a evitar ambigüedad.","El informe al que me refiero es el de marzo."],
+      ["lo que","Se refiere a una idea, hecho o situación no expresada como sustantivo concreto.","Lo que preocupa al cliente es el plazo."]
+    ],
+    builder:[
+      {label:"Identificar persona",start:"La persona que",ends:["lidera la negociación es nuestra directora comercial","aprobó el presupuesto participará mañana","coordina la cuenta hablará con el cliente"]},
+      {label:"Persona con preposición",start:"El consultor con quien",ends:["revisamos el contrato participará mañana","hablé esta mañana enviará la actualización","negociamos el plazo conoce al cliente"]},
+      {label:"Documento con preposición",start:"El informe al que",ends:["me refiero es el de marzo","hicimos referencia contiene los antecedentes","debes responder está adjunto al correo"]},
+      {label:"Idea o situación",start:"Lo que",ends:["necesitamos confirmar es la fecha de entrega","preocupa al cliente es el nuevo plazo","debemos resolver primero es la discrepancia de precios"]},
+      {label:"Lugar o entorno",start:"La plataforma donde",ends:["registramos los casos estará disponible mañana","guardamos los contratos tiene la última versión","consultamos los datos está en mantenimiento"]}
+    ],
+    register:{
+      context:"Debes explicar a un directivo cuál de dos informes debe consultar.",
+      options:[
+        ["Mira el informe que te dije.","Comprensible, pero poco preciso para una situación profesional donde hay varios informes."],
+        ["Consulta el informe al que me referí en la reunión de ayer.","Adecuada: la preposición y el relativo delimitan con precisión el referente."],
+        ["Consulta el informe donde hablé ayer.","No funciona bien: donde remite a lugar, no al documento como referente."]
+      ],correct:1
+    },
+    model:"La directora que lidera la cuenta participará en la reunión. El documento al que me referí ayer contiene los antecedentes que necesitamos. Lo que todavía debemos confirmar es el plazo, y la plataforma donde está registrado el caso tiene la última actualización.",
+    quiz:[
+      {q:"Elige la opción más precisa: El proveedor ___ hablamos aceptó la propuesta.",o:["que","con quien","donde"],a:1,why:"La relación verbal es hablar con alguien; por eso con quien expresa claramente esa relación."},
+      {q:"Completa: ___ necesitamos resolver primero es la discrepancia de precios.",o:["El que","Lo que","Donde"],a:1,why:"Lo que introduce una idea o asunto completo, no un sustantivo específico."},
+      {q:"Elige la opción adecuada: El sistema ___ registramos las solicitudes estará fuera de servicio.",o:["donde","quien","lo que"],a:0,why:"Donde puede referirse al entorno o sistema en el que ocurre la acción."}
+    ],
+    final:{
+      situation:"Antes de una reunión, escribe un mensaje a un compañero explicando quién participará, qué documento debe revisar, qué tema falta por confirmar y dónde encontrará la información.",
+      req:["Usa al menos tres relativos diferentes.","Incluye una frase con lo que.","Evita repetir innecesariamente persona, documento o información.","Mantén un registro profesional neutro."],
+      supports:["La persona que…","El documento al que…","Lo que falta por…","La plataforma donde…"],
+      model:"La persona que liderará la reunión es Elena, nuestra directora de operaciones. El documento al que hice referencia esta mañana está en la plataforma donde guardamos los contratos. Lo que todavía falta por confirmar es el nuevo plazo de entrega."
+    },
+    checklist:["Puedo elegir entre que y quien según la estructura.","Puedo usar el que/la que después de preposición cuando aporta precisión.","Puedo usar lo que para referirme a una idea o situación.","Puedo reducir repeticiones al describir información profesional.","Puedo adaptar mis oraciones de relativo a un mensaje de trabajo claro."]
+  },
+  b2:{
+    route:"🚀 B2 — Avanzado",
+    title:"Precisa referentes, matices y relaciones en comunicación profesional",
+    intro:"Trabajarás la elección entre que, quien, el cual, el que, cuyo, donde y lo que para controlar precisión, registro, ambigüedad y densidad informativa.",
+    objective:"Al terminar esta semana podrás seleccionar y construir oraciones de relativo que mejoren la precisión, el registro y la gestión de referentes en mensajes profesionales complejos.",
+    situation:"Debes preparar una nota ejecutiva sobre un proyecto con varios actores, documentos y decisiones previas. El reto es condensar información sin crear ambigüedad ni sobrecargar las frases.",
+    vocab:[
+      ["alcance","Límite o extensión de un proyecto, acuerdo o responsabilidad.","El cambio cuyo alcance aún estamos evaluando afecta a tres áreas.","matiz: frecuente en gestión de proyectos"],
+      ["interlocutor","Persona con la que se mantiene una comunicación.","El interlocutor con el que negocies condicionará el grado de formalidad.","registro: técnico-profesional"],
+      ["referente","Elemento al que remite una expresión lingüística.","En una frase densa conviene que el referente del relativo sea inequívoco.","uso metalingüístico útil para edición"],
+      ["cláusula","Segmento con estructura predicativa dentro de una oración.","Una cláusula de relativo mal situada puede crear ambigüedad.","registro: lingüístico"]
+    ],
+    phrases:[
+      ["Delimitar","Los proveedores que cumplan los requisitos pasarán a la segunda fase.","Relativa especificativa: restringe el grupo de proveedores."],
+      ["Añadir información","Los proveedores, que ya fueron evaluados, recibirán la decisión mañana.","Relativa explicativa: añade información sobre todo el grupo."],
+      ["Elevar precisión","El comité ante el cual se presentó la propuesta solicitó cambios.","El cual es frecuente tras preposición en registros formales y puede reducir ambigüedad."],
+      ["Expresar posesión","El proyecto, cuyo alcance se amplió en junio, requiere una nueva estimación.","Cuyo concuerda con lo poseído, no con el antecedente."]
+    ],
+    grammar:[
+      ["Especificativa vs explicativa","Sin comas, la relativa restringe el referente; entre comas, añade información incidental.","Los contratos que vencen en junio / Los contratos, que vencen en junio, ..."],
+      ["el cual / el que","Tras preposición, ambas opciones pueden ser válidas; el cual suele sonar más formal y puede aportar claridad en estructuras largas.","La decisión sobre la cual debatimos / la decisión sobre la que debatimos."],
+      ["cuyo","Introduce una relación posesiva y concuerda con el sustantivo posterior.","La empresa cuyos resultados analizamos..."],
+      ["lo que / lo cual","Lo que suele introducir o retomar contenido; lo cual suele comentar una proposición anterior completa.","Se aplazó la entrega, lo cual afecta al cronograma."]
+    ],
+    builder:[
+      {label:"Especificar un grupo",start:"Los proveedores que",ends:["cumplan los requisitos pasarán a la segunda fase","presenten la documentación completa serán evaluados","acepten las nuevas condiciones recibirán el contrato"]},
+      {label:"Preposición + relativo",start:"La decisión sobre la que",ends:["hablamos ayer modifica el plan de implementación","debatió el comité afecta al cronograma","se basa el nuevo procedimiento fue comunicada hoy"]},
+      {label:"Registro más formal",start:"La decisión sobre la cual",ends:["deliberó el comité modifica el plan de implementación","se pronunció la dirección será revisada mañana","se fundamenta el cambio fue documentada en el acta"]},
+      {label:"Posesión con cuyo",start:"El proyecto, cuyo alcance",ends:["se amplió en junio, requiere una nueva estimación","afecta a tres áreas, necesita una revisión adicional","todavía se está evaluando, continuará en fase de análisis"]},
+      {label:"Comentar una consecuencia",start:"Se aplazó la fecha de lanzamiento, lo cual",ends:["afecta al cronograma general","obliga a renegociar el calendario con el proveedor","modifica las condiciones previstas para la implementación"]}
+    ],
+    register:{
+      context:"Redactas una nota para dirección sobre una decisión que afecta varias áreas y quieres evitar ambigüedad.",
+      options:[
+        ["La decisión que hablamos ayer cambia el plan.","Natural en conversación, pero la ausencia de preposición y el referente impreciso reducen la calidad en una nota ejecutiva."],
+        ["La decisión sobre la que hablamos ayer modifica el plan de implementación.","Correcta y profesional; mantiene naturalidad sin exceso de formalidad."],
+        ["La decisión sobre la cual deliberó el comité modifica el plan de implementación.","También adecuada; eleva el registro y resulta útil si el contexto es formal o jurídicamente sensible."]
+      ],correct:1,multi:[1,2]
+    },
+    model:"El comité que revisó la propuesta solicitó una nueva estimación. La decisión, cuyo alcance afecta a tres áreas, obliga a revisar el cronograma sobre el que trabajábamos. Se aplazó además la fecha de lanzamiento, lo cual modifica las condiciones bajo las cuales negociamos con el proveedor.",
+    quiz:[
+      {q:"¿Qué cambia principalmente entre “Los proveedores que cumplen los requisitos…” y “Los proveedores, que cumplen los requisitos, …”?",o:["Solo la puntuación visual","La primera restringe el grupo; la segunda presenta la información como aplicable al grupo completo","No existe diferencia semántica"],a:1,why:"La presencia o ausencia de comas modifica la interpretación del antecedente y puede alterar materialmente el mensaje."},
+      {q:"Elige la opción más precisa en un informe formal: La política ___ se basa la decisión fue actualizada.",o:["que","en la cual","donde"],a:1,why:"Basarse en exige preposición; en la cual mantiene un registro formal y un referente inequívoco."},
+      {q:"Completa: El proyecto, ___ presupuesto fue revisado, seguirá adelante.",o:["que","cuyo","lo cual"],a:1,why:"Cuyo expresa posesión y concuerda con presupuesto: cuyo presupuesto."}
+    ],
+    final:{
+      situation:"Redacta una nota breve para dirección. Debes explicar una decisión reciente, el comité que la tomó, el documento en el que se basa y una consecuencia para el proyecto. Existe riesgo de ambigüedad porque intervienen varios equipos.",
+      req:["Usa una relativa especificativa y una explicativa.","Incluye una estructura con preposición + relativo.","Incluye cuyo/cuya/cuyos/cuyas o lo cual.","Prioriza precisión sobre complejidad ornamental.","Justifica mentalmente por qué elegiste cada relativo."],
+      supports:["El comité que…","La decisión, cuyo alcance…","El documento en el que…","…, lo cual…"],
+      model:"El comité que evalúa los cambios aprobó una modificación del alcance. La decisión, cuyo impacto afecta a Operaciones y Ventas, se basa en el informe en el que se comparan los dos escenarios de implementación. El lanzamiento se aplazará dos semanas, lo cual obliga a renegociar el calendario con el proveedor."
+    },
+    checklist:["Distingo el efecto de una relativa especificativa y una explicativa.","Puedo elegir un relativo después de preposición según precisión y registro.","Puedo usar cuyo correctamente y controlar su concordancia.","Puedo usar lo cual para comentar una proposición anterior.","Puedo editar una frase compleja para eliminar ambigüedad sin volverla innecesariamente pesada."]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sections=[
+["objective","1. 🎯 TU OBJETIVO ESTA SEMANA"],
+["situation","2. 🏢 LA SITUACIÓN"],
+["vocab","3. 🗣️ VOCABULARIO CLAVE"],
+["phrases","4. 💬 FRASES QUE PUEDES USAR"],
+["builder","5. 🧩 CONSTRUYE TU MENSAJE"],
+["grammar","6. 📚 GRAMÁTICA QUE NECESITAS"],
+["register","7. 🎭 ELIGE EL REGISTRO"],
+["model","8. 💼 MIRA CÓMO SE HACE"],
+["quiz","9. ✍️ COMPRUEBA LO QUE APRENDISTE"],
+["practice","10. 🏢 AHORA TE TOCA A TI"],
+["possible","11. 💡 VER MODELO"],
+["check","12. ✅ CHECKLIST FINAL"]
+];
+let level=null, done=new Set(), quizDone=new Set();
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function audioButtons(text){
+ if(level!=="a2")return "";
+ return `<div class="audio-row"><button class="audio-btn" data-speak="${esc(text)}" data-rate="1" aria-label="Escuchar: ${esc(text)}">🔊 Escuchar / Listen</button><button class="audio-btn" data-speak="${esc(text)}" data-rate=".72" aria-label="Escuchar lento: ${esc(text)}">🐢 Lento / Slow</button></div>`
+}
+function speak(text,rate=1){
+ if(!("speechSynthesis" in window)){alert("La función de audio no está disponible en este navegador.");return}
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);u.lang="es-CO";u.rate=rate;
+ const voices=speechSynthesis.getVoices();
+ const prefs=["es-CO","es-MX","es-US","es-419","es-ES"];
+ let voice=null; for(const p of prefs){voice=voices.find(v=>v.lang===p);if(voice)break}
+ if(!voice)voice=voices.find(v=>v.lang && v.lang.toLowerCase().startsWith("es"));
+ if(voice)u.voice=voice;speechSynthesis.speak(u);
+ mark("audio:"+text.slice(0,18))
+}
+function mark(key){done.add(key);updateProgress()}
+function updateProgress(){
+ const base=sections.length+3; // sections + quiz group + practice + checklist
+ const sectionCount=sections.filter(s=>done.has("section:"+s[0])).length;
+ const q=quizDone.size?1:0;
+ const practice=done.has("practice")?1:0;
+ const checks=done.has("checklist")?1:0;
+ const extra=Math.min([...done].filter(x=>x.startsWith("audio:")).length,2)*.25;
+ const pct=Math.min(100,Math.round(((sectionCount+q+practice+checks+extra)/base)*100));
+ document.getElementById("progressBar").style.width=pct+"%";
+}
+function section(id,title,body){
+ return `<section class="section" id="${id}" data-section="${id}"><div class="section-head"><div class="section-title">${title}</div><span class="tag">Tema 24</span></div><div class="section-body">${body}<div class="nav-buttons"><button data-prev>← Anterior</button><button data-next>Siguiente →</button></div></div></section>`
+}
+function render(){
+ const c=contenido[level];
+ document.getElementById("routePill").textContent="Tu ruta: "+c.route;
+ document.getElementById("heroTitle").textContent=c.title;
+ document.getElementById("heroIntro").textContent=c.intro;
+ document.getElementById("navList").innerHTML=sections.map(([id,t])=>`<button data-jump="${id}">${t}</button>`).join("");
+ let out="";
+ out+=section("objective",sections[0][1],`<p>${esc(c.objective)}</p><div class="tip">Al final del módulo comprobarás si ya puedes hacerlo.</div>`);
+ out+=section("situation",sections[1][1],`<p>${esc(c.situation)}</p>`);
+ const vocabCards=c.vocab.map((v,i)=>{
+   if(level==="a2"){
+     return `<article class="card flip" tabindex="0" data-flip><div class="term">${esc(v[0])}</div>${audioButtons(v[0])}<p class="muted">Intenta recordar el significado y pulsa para revelar. / Try to remember the meaning, then reveal it.</p><div class="hidden reveal"><p><strong>English:</strong> ${esc(v[1])}</p><p><strong>Significado:</strong> ${esc(v[2])}</p><p><strong>Ejemplo:</strong> ${esc(v[3])}</p>${v[4]?`<span class="tag">${esc(v[4])}</span>`:""}${audioButtons(v[3])}</div></article>`;
+   }
+   return `<article class="card flip" tabindex="0" data-flip><div class="term">${esc(v[0])}</div><p class="muted">Pulsa para revelar.</p><div class="hidden reveal"><p>${esc(v[1])}</p><p><strong>Ejemplo:</strong> ${esc(v[2]||"")}</p>${v[3]?`<p>${esc(v[3])}</p>`:""}</div></article>`;
+ }).join("");
+ const vocabRecovery=level==="a2"?`<div class="q" style="margin-top:16px"><strong>Recupera el vocabulario / Recall</strong><p>¿Qué palabra corresponde a “the report”?</p><div class="options"><button class="option" data-vocab-answer="0">el cliente</button><button class="option" data-vocab-answer="1">el informe</button><button class="option" data-vocab-answer="0">la oficina</button></div><div id="vocabFeedback" class="feedback hidden"></div></div>`:"";
+ out+=section("vocab",sections[2][1],`<div class="cards">${vocabCards}</div>${vocabRecovery}`);
+ out+=section("phrases",sections[3][1],c.phrases.map(p=>`<div class="phrase"><div class="phrase-top"><div><span class="tag">${esc(p[0])}</span><div class="term" style="margin-top:6px">${esc(p[1])}</div></div><button class="reveal-btn" data-reveal>Ver cuándo usarla</button></div>${audioButtons(p[1])}<div class="hidden explanation"><p>${esc(p[2])}</p></div></div>`).join(""));
+ out+=section("builder",sections[4][1],`<div class="builder"><p>${level==="a2"?"Elige una estructura y después una terminación compatible. / Choose a structure and a compatible ending.":"Elige una intención y construye una oración de relativo adecuada al contexto."}</p><div class="builder-controls"><label><strong>Estructura</strong><select id="bFrame">${c.builder.map((x,i)=>`<option value="${i}">${esc(x.label)} — ${esc(x.start)}</option>`).join("")}</select></label><label><strong>Terminación</strong><select id="bEnd"></select></label></div><button id="buildBtn" class="small-btn" type="button">Construir frase</button><div id="buildResult" class="result">Tu frase aparecerá aquí.</div><div id="buildAudio"></div></div>`);
+ out+=section("grammar",sections[5][1],c.grammar.map(g=>`<div class="phrase"><div class="phrase-top"><strong>${esc(g[0])}</strong><button class="reveal-btn" data-reveal>Ver explicación</button></div><div class="hidden explanation"><p>${esc(g[1])}</p><p><strong>Ejemplo:</strong> ${esc(g[2])}</p>${audioButtons(g[2])}</div></div>`).join(""));
+ out+=section("register",sections[6][1],`<p><strong>Situación:</strong> ${esc(c.register.context)}</p><div class="options">${c.register.options.map((o,i)=>`<div><button class="option" data-reg="${i}">${esc(o[0])}</button>${level==="a2"?audioButtons(o[0]):""}</div>`).join("")}</div><div id="regFeedback" class="feedback hidden"></div>`);
+ out+=section("model",sections[7][1],`<div class="model"><p>${esc(c.model)}</p>${audioButtons(c.model)}</div>`);
+ out+=section("quiz",sections[8][1],`<div class="quiz">${c.quiz.map((q,qi)=>`<div class="q"><strong>${esc(q.q)}</strong><div class="options">${q.o.map((o,oi)=>`<div><button class="option" data-q="${qi}" data-o="${oi}">${esc(o)}</button>${level==="a2"?audioButtons(o):""}</div>`).join("")}</div><div id="fb${qi}" class="feedback hidden"></div></div>`).join("")}</div>`);
+ out+=section("practice",sections[9][1],`<p>${esc(c.final.situation)}</p><ul>${c.final.req.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="tip"><strong>Apoyos:</strong><br>${c.final.supports.map(x=>`<span class="tag" style="margin:4px">${esc(x)}</span>${audioButtons(x)}`).join("")}</div><label for="studentText"><strong>Tu respuesta</strong></label><textarea id="studentText" placeholder="Escribe aquí tu respuesta..."></textarea><button id="practiceDone" class="small-btn">He terminado mi respuesta</button>`);
+ out+=section("possible",sections[10][1],`<button id="showModel" class="small-btn">Ver una posible respuesta</button><div id="modelBox" class="model hidden"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(c.final.model)}</p>${audioButtons(c.final.model)}</div>`);
+ out+=section("check",sections[11][1],`<div class="checklist">${c.checklist.map((x,i)=>`<label class="checkitem"><input type="checkbox" class="ck" value="${i}"><span>${esc(x)}</span></label>`).join("")}</div><div id="finishBox" class="final-box hidden"><h2>🎯 Ya estás listo para practicar</h2><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Insertar aquí la URL real del reto cuando esté disponible --><a class="cta" href="#">🔥 Ir al reto de hoy</a></div>`);
+ document.getElementById("content").innerHTML=out;
+ bind();
+}
+function bind(){
+ document.querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.jump).scrollIntoView({behavior:"smooth"}));
+ document.querySelectorAll("[data-flip]").forEach(el=>{const fn=()=>{el.querySelector(".reveal").classList.toggle("hidden");mark("vocab")};el.onclick=fn;el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn()}}});
+ document.querySelectorAll("[data-reveal]").forEach(b=>b.onclick=()=>{b.closest(".phrase").querySelector(".explanation").classList.toggle("hidden");mark("reveal")});
+ document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.speak,Number(b.dataset.rate))});
+ const frameSelect=document.getElementById("bFrame");
+ const endSelect=document.getElementById("bEnd");
+ const resultBox=document.getElementById("buildResult");
+ const audioBox=document.getElementById("buildAudio");
+ const refreshEnds=()=>{
+   const frame=contenido[level].builder[Number(frameSelect.value)];
+   endSelect.innerHTML=frame.ends.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join("");
+ };
+ refreshEnds();
+ frameSelect.onchange=refreshEnds;
+ document.getElementById("buildBtn").onclick=()=>{
+   const frame=contenido[level].builder[Number(frameSelect.value)];
+   const text=(frame.start+" "+frame.ends[Number(endSelect.value)]).replace(/\s+/g," ").trim()+".";
+   resultBox.textContent=text;
+   audioBox.innerHTML=audioButtons(text);
+   audioBox.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,Number(b.dataset.rate)));
+   mark("builder");
+ };
+ const vocabAnswerButtons=document.querySelectorAll("[data-vocab-answer]");
+ vocabAnswerButtons.forEach(b=>b.onclick=()=>{
+   const fb=document.getElementById("vocabFeedback");
+   const good=b.dataset.vocabAnswer==="1";
+   fb.className="feedback "+(good?"good":"try");
+   fb.classList.remove("hidden");
+   fb.textContent=good?"Sí. “El informe” significa “the report”.":"Inténtalo otra vez. Busca la palabra que significa “the report”.";
+   if(good)mark("vocab-recovery");
+ });
+ document.querySelectorAll("[data-reg]").forEach(b=>b.onclick=()=>{
+   const i=Number(b.dataset.reg), c=contenido[level], good=c.register.multi?c.register.multi.includes(i):i===c.register.correct;
+   regFeedback.className="feedback "+(good?"good":"try");regFeedback.classList.remove("hidden");regFeedback.textContent=c.register.options[i][1];mark("register")
+ });
+ document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{
+   const qi=Number(b.dataset.q), oi=Number(b.dataset.o), q=contenido[level].quiz[qi], fb=document.getElementById("fb"+qi), good=oi===q.a;
+   fb.className="feedback "+(good?"good":"try");fb.classList.remove("hidden");fb.textContent=(good?"Funciona. ":"Revisa esta elección. ")+q.why;
+   if(good){quizDone.add(qi);if(quizDone.size===contenido[level].quiz.length)mark("quiz")}
+ });
+ document.getElementById("practiceDone").onclick=()=>{const field=document.getElementById("studentText");const btn=document.getElementById("practiceDone");if(field.value.trim().length<15){alert("Escribe primero una respuesta breve para completar esta práctica.");return}mark("practice");btn.textContent="Respuesta registrada ✓"};
+ document.getElementById("showModel").onclick=()=>{document.getElementById("modelBox").classList.toggle("hidden");mark("model")};
+ document.querySelectorAll(".ck").forEach(c=>c.onchange=()=>{
+   const all=[...document.querySelectorAll(".ck")];const box=document.getElementById("finishBox");if(all.every(x=>x.checked)){box.classList.remove("hidden");mark("checklist")}else box.classList.add("hidden")
+ });
+ document.querySelectorAll("[data-next],[data-prev]").forEach(b=>b.onclick=()=>{
+   const sec=b.closest(".section"), arr=[...document.querySelectorAll(".section")], i=arr.indexOf(sec), target=b.hasAttribute("data-next")?arr[i+1]:arr[i-1];if(target)target.scrollIntoView({behavior:"smooth"})
+ });
+ const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)mark("section:"+e.target.dataset.section)}),{threshold:.35});
+ document.querySelectorAll(".section").forEach(s=>obs.observe(s));
+}
+document.querySelectorAll(".level-card").forEach(b=>b.onclick=()=>selectLevel(b.dataset.level));
+document.getElementById("changeLevel").onclick=()=>{window.speechSynthesis?.cancel?.();document.getElementById("app").classList.add("hidden");document.getElementById("levelScreen").classList.remove("hidden");window.scrollTo(0,0)};
+function selectLevel(l){level=l;done=new Set();quizDone=new Set();document.getElementById("levelScreen").classList.add("hidden");document.getElementById("app").classList.remove("hidden");render();updateProgress();window.scrollTo(0,0)}
+</script>
+</body>
+</html>

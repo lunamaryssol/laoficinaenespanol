@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tema 23 · Adverbios de manera y cantidad | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish: adverbios de manera y cantidad aplicados al trabajo.">
+<style>
+:root{
+  --blue:#003893; --yellow:#FCD116; --red:#CE1126; --white:#FFFFFF; --black:#000000;
+  --ink:#172033; --muted:#667085; --soft:#F5F7FB; --line:#D8E0EC; --ok:#117A4B;
+  --shadow:0 14px 40px rgba(0,56,147,.10); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:#EEF3FA;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.level-screen{min-height:100vh;background:linear-gradient(145deg,#002B72,#003893 55%,#0D4AAD);display:grid;place-items:center;padding:24px}
+.level-panel{width:min(1100px,100%);background:var(--white);border-radius:28px;padding:clamp(22px,4vw,48px);box-shadow:0 24px 80px rgba(0,0,0,.25)}
+.brand-kicker{font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);font-size:.85rem}
+.level-panel h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin:.35rem 0 .7rem}
+.level-panel>p{color:var(--muted);max-width:760px}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.level-card{border:2px solid var(--line);border-radius:20px;background:#fff;padding:22px;text-align:left;transition:.2s;min-height:230px}
+.level-card:hover,.level-card:focus-visible{transform:translateY(-3px);border-color:var(--blue);box-shadow:var(--shadow);outline:none}
+.level-card .emoji{font-size:2rem}
+.level-card h2{margin:.6rem 0 .35rem;font-size:1.35rem;color:var(--blue)}
+.level-card p{margin:0;color:#4B5565}
+.shell{max-width:1180px;margin:0 auto;padding:18px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(238,243,250,.96);backdrop-filter:blur(10px);padding:12px 0}
+.topbar-inner{display:flex;gap:12px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.route{font-weight:800;color:var(--blue)}
+.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;min-height:44px}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-secondary{background:#fff;border:1px solid var(--line);color:var(--blue)}
+.btn-yellow{background:var(--yellow);color:#111}
+.btn-danger{background:var(--red);color:#fff}
+.btn-small{padding:8px 11px;min-height:38px;font-size:.9rem}
+.progress-wrap{background:#DDE5F1;height:10px;border-radius:999px;overflow:hidden;min-width:160px;flex:1;max-width:360px}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--yellow),#FFDE52);transition:width .35s ease}
+.hero{background:linear-gradient(135deg,#003893,#0A4CAA);color:#fff;border-radius:24px;padding:clamp(24px,4vw,44px);margin:16px 0 22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:rgba(252,209,22,.15)}
+.hero .eyebrow{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:.35rem 0 .8rem;max-width:850px}
+.hero p{max-width:840px;font-size:1.08rem}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:20px}
+.nav{position:sticky;top:86px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;max-height:calc(100vh - 110px);overflow:auto}
+.nav button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:10px 11px;border-radius:10px;color:#364153}
+.nav button:hover,.nav button:focus-visible{background:#EEF4FF;color:var(--blue);outline:none}
+.nav button.active{background:#E7EEFF;color:var(--blue);font-weight:800}
+main{min-width:0}
+.section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,3vw,30px);margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,.035)}
+.section h2{margin-top:0;color:var(--blue);font-size:1.55rem}
+.section h3{color:#14376C}
+.section-intro{color:var(--muted)}
+.info-box{background:#EEF4FF;border-left:5px solid var(--blue);padding:14px 16px;border-radius:12px;margin:14px 0}
+.yellow-box{background:#FFF9D8;border-left-color:var(--yellow)}
+.red-box{background:#FFF0F1;border-left-color:var(--red)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.flip{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+.flip-head{width:100%;border:0;background:#F9FBFE;padding:16px;text-align:left;font-weight:900;color:var(--blue);display:flex;justify-content:space-between;gap:10px}
+.flip-body{padding:0 16px 16px}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.audio-btn{border:1px solid #B9C7DC;background:#fff;color:var(--blue);border-radius:10px;padding:8px 10px;font-weight:700}
+.audio-btn:hover,.audio-btn:focus-visible{background:#EEF4FF;outline:2px solid rgba(0,56,147,.18)}
+.tag{display:inline-block;background:#EEF4FF;color:var(--blue);border-radius:999px;padding:4px 9px;font-size:.82rem;font-weight:800;margin:3px}
+.phrase-group{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
+.phrase-title{padding:13px 15px;background:#F8FAFD;font-weight:900}
+.phrase{padding:13px 15px;border-top:1px solid var(--line)}
+.phrase-main{font-weight:800}
+.why{margin-top:8px;color:#526070}
+.builder{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.builder select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.result{border:2px dashed #A9B8CF;border-radius:14px;padding:16px;background:#FAFCFF;font-weight:800;margin-top:12px}
+.grammar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grammar-card{border:1px solid var(--line);border-radius:14px;padding:15px}
+.option-list{display:grid;gap:10px}
+.option-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px;text-align:left}
+.option-btn:hover,.option-btn:focus-visible{border-color:var(--blue);outline:none}
+.option-btn.selected{border-color:var(--blue);background:#EEF4FF}
+.feedback{margin-top:12px;padding:12px 14px;border-radius:12px;background:#F3F6FA}
+.feedback.good{background:#EAF8F1;color:#0D5C3B}
+.feedback.note{background:#FFF8D7;color:#705900}
+.example{background:#F8FAFD;border-radius:14px;padding:16px}
+.annotation{border-bottom:2px dotted var(--blue);cursor:pointer}
+.exercise{border-top:1px solid var(--line);padding:18px 0}
+.exercise:first-child{border-top:0}
+.exercise input[type=text],textarea{width:100%;border:1px solid #BFCADD;border-radius:12px;padding:12px;background:#fff}
+textarea{min-height:150px;resize:vertical}
+.exercise-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+.model{background:#F7FAFF;border:1px solid #C9D8F1;border-radius:14px;padding:16px;margin-top:12px}
+.checklist{display:grid;gap:10px}
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:12px}
+.check-item input{width:20px;height:20px;margin-top:2px}
+.closing{background:linear-gradient(135deg,#FFF5BE,#FFFBE9);border:2px solid var(--yellow);border-radius:18px;padding:22px;text-align:center;margin-top:18px}
+.footer{text-align:center;color:#667085;padding:24px 8px 40px}
+.footer a{font-weight:800}
+.nav-buttons{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.mobile-menu{display:none}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .nav{display:none}
+  .mobile-menu{display:block;margin-bottom:12px}
+  .mobile-menu select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line)}
+  .level-grid,.cards,.grammar-grid,.builder{grid-template-columns:1fr}
+  .topbar-inner{flex-wrap:wrap}
+  .progress-wrap{order:3;max-width:none;width:100%}
+}
+@media(max-width:560px){
+  .shell{padding:10px}
+  .level-screen{padding:12px}
+  .level-panel{border-radius:20px;padding:18px}
+  .level-card{min-height:auto}
+  .hero{border-radius:18px}
+  .section{border-radius:14px}
+  .audio-row{flex-direction:column}
+  .audio-btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-panel">
+    <div class="brand-kicker">La Oficina en Español · Herramientas lingüísticas</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p>Selecciona tu ruta. Trabajarás la misma habilidad profesional, con un grado de apoyo y dificultad diferente.</p>
+    <div class="level-grid">
+      <button class="level-card" data-level="a2">
+        <div class="emoji">🌱</div>
+        <h2>A2 — Principiante</h2>
+        <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+      </button>
+      <button class="level-card" data-level="b1">
+        <div class="emoji">💼</div>
+        <h2>B1 — Intermedio</h2>
+        <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+      </button>
+      <button class="level-card" data-level="b2">
+        <div class="emoji">🚀</div>
+        <h2>B2 — Avanzado</h2>
+        <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="module" class="hidden">
+  <div class="topbar">
+    <div class="shell topbar-inner">
+      <div id="routeLabel" class="route"></div>
+      <div class="progress-wrap" aria-label="Progreso del módulo"><div id="progressBar" class="progress-bar"></div></div>
+      <div id="progressText" aria-live="polite">0%</div>
+      <button id="changeLevel" class="btn btn-secondary btn-small">Cambiar nivel</button>
+    </div>
+  </div>
+
+  <div class="shell">
+    <header class="hero">
+      <div class="eyebrow">Tema 23 · Herramientas lingüísticas</div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSubtitle"></p>
+    </header>
+
+    <div class="mobile-menu">
+      <label for="mobileNav" class="sr-only">Ir a una sección</label>
+      <select id="mobileNav"></select>
+    </div>
+
+    <div class="layout">
+      <nav id="sideNav" class="nav" aria-label="Secciones del módulo"></nav>
+      <main id="content"></main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a>
+    · Aprende y practica el español que necesitas para trabajar.
+  </footer>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    route:"🌱 A2 — Principiante",
+    title:"Adverbios de manera y cantidad para explicar cómo va el trabajo",
+    subtitle:"Aprende a decir cómo se realiza una acción y en qué grado ocurre: claramente, rápidamente, bien, mal, mucho, poco, bastante, demasiado.",
+    objective:"Al terminar esta semana podrás describir de forma sencilla cómo se realiza una tarea, cómo funciona un proceso y en qué cantidad o grado ocurre algo en el trabajo.",
+    situation:{
+      who:"Tú eres parte de un equipo de proyecto.",
+      with:"Hablas con tu supervisora y con un compañero.",
+      context:"En una reunión breve de seguimiento.",
+      goal:"Quieres explicar cómo avanza una tarea y si el equipo necesita hacer más o menos trabajo.",
+      difficulty:"Debes elegir palabras sencillas para decir cómo se hace algo y cuánto ocurre sin dar una explicación larga."
+    },
+    vocab:[
+      {term:"bien", en:"well", explain:"Indica que una acción se realiza de forma adecuada.", example:"El sistema funciona bien.", extra:"Colocación útil: trabajar bien / funcionar bien.", stress:"bien"},
+      {term:"mal", en:"badly / poorly", explain:"Indica que una acción o proceso no funciona de forma adecuada.", example:"La conexión funciona mal.", extra:"Úsalo para describir un problema sin explicar todavía la causa.", stress:"mal"},
+      {term:"rápidamente", en:"quickly", explain:"Indica que una acción ocurre con rapidez.", example:"El equipo respondió rápidamente.", extra:"También puedes decir: muy rápido, en lenguaje más conversacional.", stress:"rá-pi-da-MEN-te"},
+      {term:"claramente", en:"clearly", explain:"Indica que una idea o instrucción se comunica de forma fácil de entender.", example:"Necesitamos explicar el cambio claramente.", extra:"Muy útil con explicar, comunicar y indicar.", stress:"cla-ra-MEN-te"},
+      {term:"mucho", en:"a lot / much", explain:"Como adverbio, indica que una acción ocurre en gran cantidad o intensidad.", example:"Esta semana trabajamos mucho.", extra:"Con verbos es invariable: trabajamos mucho. Delante de un sustantivo puede funcionar como determinante y concordar: mucho trabajo, muchas tareas.", stress:"MU-cho"},
+      {term:"poco", en:"little / not much", explain:"Como adverbio, indica que una acción ocurre en cantidad reducida.", example:"Esta semana avanzamos poco.", extra:"Con verbos es invariable: avanzamos poco. Delante de un sustantivo puede concordar: poco tiempo, pocas reuniones.", stress:"PO-co"},
+      {term:"bastante", en:"quite / enough / fairly", explain:"Indica una cantidad o grado considerable, pero no extremo.", example:"El proceso es bastante rápido.", extra:"Puede modificar adjetivos: bastante claro, bastante fácil.", stress:"bas-TAN-te"},
+      {term:"demasiado", en:"too much / too", explain:"Como adverbio, indica que una acción o cualidad supera el grado conveniente.", example:"El proceso tarda demasiado.", extra:"Como adverbio es invariable: tarda demasiado, es demasiado lento. Delante de un sustantivo puede concordar: demasiado trabajo, demasiadas tareas.", stress:"de-ma-SIA-do"}
+    ],
+    phraseGroups:[
+      {title:"Describir cómo funciona algo", items:[
+        {text:"El sistema funciona bien.", when:"Para decir que un proceso o herramienta funciona de manera adecuada."},
+        {text:"La aplicación funciona mal hoy.", when:"Para señalar un problema de funcionamiento."},
+        {text:"El equipo respondió rápidamente.", when:"Para destacar la rapidez de una acción."}
+      ]},
+      {title:"Explicar con precisión", items:[
+        {text:"Necesitamos explicar el cambio claramente.", when:"Para indicar cómo debe comunicarse una información."},
+        {text:"La instrucción está bastante clara.", when:"Para decir que algo es claro en un grado considerable."}
+      ]},
+      {title:"Hablar de cantidad o grado", items:[
+        {text:"Tenemos mucho trabajo esta semana.", when:"Para expresar una cantidad alta de trabajo."},
+        {text:"Tenemos poco tiempo.", when:"Para expresar una cantidad baja de tiempo."},
+        {text:"El proceso es demasiado lento.", when:"Para expresar que la lentitud supera lo conveniente."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una actualización sencilla. Elige una situación y después el adverbio o expresión que mejor describe cómo va.",
+      patterns:[
+        {base:"El proyecto avanza", endings:["bien.","rápidamente.","bastante bien.","demasiado lentamente."]},
+        {base:"El sistema funciona", endings:["bien.","mal.","bastante bien.","demasiado lentamente."]},
+        {base:"El equipo responde", endings:["bien.","rápidamente.","bastante bien.","demasiado lentamente."]}
+      ]
+    },
+    grammar:[
+      {title:"Adverbios de manera", body:"Responden a la pregunta ¿cómo? y modifican una acción: trabajar bien, responder rápidamente, explicar claramente.", example:"El equipo respondió rápidamente."},
+      {title:"Adverbios de cantidad o grado", body:"Indican cuánto o en qué grado ocurre algo: mucho, poco, bastante, demasiado.", example:"Tenemos poco tiempo y demasiado trabajo."},
+      {title:"-mente", body:"Muchos adverbios se forman con un adjetivo en femenino + -mente: clara → claramente; rápida → rápidamente.", example:"Necesitamos comunicar la decisión claramente."},
+      {title:"Mucho / muy", body:"Usa mucho con verbos y sustantivos; usa muy delante de adjetivos o adverbios.", example:"Trabajamos mucho. / El proceso es muy lento."}
+    ],
+    register:{
+      scenario:"Un cliente importante pregunta por un retraso. ¿Qué opción explica el problema con un tono profesional y claro?",
+      options:[
+        {text:"Todo va muy mal y estamos demasiado ocupados.", score:"note", feedback:"Se entiende, pero suena general y poco profesional. No explica qué ocurre exactamente."},
+        {text:"El proceso avanza más lentamente de lo previsto y tenemos bastante trabajo pendiente.", score:"good", feedback:"Funciona mejor: describe el grado del problema sin dramatizar y mantiene un tono profesional."},
+        {text:"Estamos fatal.", score:"note", feedback:"Es demasiado informal y poco preciso para un cliente."}
+      ]
+    },
+    example:{
+      text:"El proyecto avanza bastante bien. El equipo respondió rápidamente a los cambios y ahora necesitamos revisar el informe más cuidadosamente. Tenemos poco tiempo, pero el trabajo está casi terminado.",
+      parts:[
+        ["bastante bien","grado positivo, sin exagerar"],
+        ["rápidamente","manera: explica cómo respondió el equipo"],
+        ["más cuidadosamente","manera: indica cómo debe hacerse la revisión"],
+        ["poco tiempo","cantidad"],
+        ["casi terminado","grado de finalización"]
+      ]
+    },
+    exercises:[
+      {type:"mc", q:"¿Qué frase indica la manera en que se hizo una acción?", options:["Tenemos mucho trabajo.","El equipo respondió rápidamente.","Hay poco tiempo."], answer:1, explain:"Rápidamente responde a ¿cómo respondió el equipo?"},
+      {type:"mc", q:"¿Qué opción expresa exceso?", options:["bastante","poco","demasiado"], answer:2, explain:"Demasiado indica que la cantidad o el grado supera lo conveniente."},
+      {type:"text", q:"Completa: Necesitamos explicar el cambio ________.", answers:["claramente"], explain:"Claramente indica cómo debe explicarse el cambio."},
+      {type:"mc", q:"Elige la opción correcta: Trabajamos ___ esta semana.", options:["muy","mucho","demasiada"], answer:1, explain:"Con el verbo trabajar usamos mucho: trabajamos mucho."}
+    ],
+    practice:{
+      situation:"Tu supervisora te pregunta cómo va un proyecto.",
+      interlocutor:"Tu supervisora.",
+      goal:"Dar una actualización breve y clara.",
+      requirements:["Di cómo avanza el proyecto.","Di cómo respondió el equipo.","Menciona una cantidad o grado: mucho, poco, bastante o demasiado."],
+      support:["El proyecto avanza…","El equipo respondió…","Tenemos… trabajo / tiempo.","El proceso es…"]
+    },
+    model:"El proyecto avanza bastante bien. El equipo respondió rápidamente a los cambios. Tenemos poco tiempo, pero el trabajo está casi terminado.",
+    checklist:[
+      "Puedo reconocer palabras que indican cómo se realiza una acción.",
+      "Puedo usar mucho, poco, bastante y demasiado en situaciones de trabajo.",
+      "Puedo construir una actualización breve con uno o dos adverbios.",
+      "Puedo elegir una expresión adecuada para un cliente o supervisor.",
+      "Puedo producir una respuesta corta sobre cómo va una tarea o proceso."
+    ]
+  },
+
+  b1: {
+    route:"💼 B1 — Intermedio",
+    title:"Adverbios de manera y cantidad para precisar procesos, resultados y desempeño",
+    subtitle:"Trabaja precisión y naturalidad al explicar cómo ocurre una acción y en qué grado se presenta una situación profesional.",
+    objective:"Al terminar esta semana podrás describir procesos, desempeño y resultados con mayor precisión, usando adverbios de manera y cantidad para matizar tus mensajes profesionales.",
+    situation:{
+      who:"Coordinas una parte de un proyecto.",
+      with:"Hablas con tu responsable y con otros miembros del equipo.",
+      context:"En una reunión de seguimiento donde debes explicar avances y problemas.",
+      goal:"Dar una actualización precisa sin sonar vago ni exagerado.",
+      difficulty:"Debes distinguir entre cantidad, grado y manera, y adaptar el registro según la situación."
+    },
+    vocab:[
+      {term:"adecuadamente", explain:"De una forma apropiada o correcta.", example:"El procedimiento se aplicó adecuadamente.", extra:"Alternativas: correctamente, de forma adecuada."},
+      {term:"parcialmente", explain:"Solo en una parte o de manera incompleta.", example:"La incidencia está parcialmente resuelta.", extra:"Útil para avances que todavía no están completos."},
+      {term:"considerablemente", explain:"En un grado importante o notable.", example:"Los costos aumentaron considerablemente.", extra:"Más formal que mucho."},
+      {term:"ligeramente", explain:"En un grado pequeño.", example:"La demanda aumentó ligeramente.", extra:"Útil para cambios pequeños y medibles."},
+      {term:"suficientemente", explain:"En el grado necesario.", example:"La propuesta está suficientemente detallada.", extra:"Puede implicar que cumple el mínimo requerido."},
+      {term:"excesivamente", explain:"En un grado mayor de lo conveniente.", example:"El proceso es excesivamente lento.", extra:"Registro más formal que demasiado."},
+      {term:"apenas", explain:"Casi no o en cantidad mínima.", example:"Apenas tenemos margen para cambiar la fecha.", extra:"También puede señalar que algo acaba de ocurrir según el contexto."},
+      {term:"prácticamente", explain:"Casi por completo.", example:"El informe está prácticamente terminado.", extra:"Muy útil para actualizaciones de estado."}
+    ],
+    phraseGroups:[
+      {title:"Precisar el estado de un proceso",items:[
+        {text:"La incidencia está parcialmente resuelta.",when:"Para indicar avance sin afirmar que el problema terminó."},
+        {text:"El informe está prácticamente terminado.",when:"Para señalar que falta muy poco."},
+        {text:"El procedimiento se está aplicando adecuadamente.",when:"Para evaluar cómo se ejecuta un proceso."}
+      ]},
+      {title:"Matizar cambios y resultados",items:[
+        {text:"La demanda aumentó ligeramente.",when:"Para describir un cambio pequeño."},
+        {text:"Los costos aumentaron considerablemente.",when:"Para describir un cambio importante con registro profesional."},
+        {text:"El proceso se ha vuelto excesivamente lento.",when:"Para señalar un grado problemático."}
+      ]},
+      {title:"Hablar de suficiencia",items:[
+        {text:"Tenemos suficiente información para decidir.",when:"Suficiente modifica un sustantivo."},
+        {text:"La propuesta está suficientemente detallada.",when:"Suficientemente modifica un adjetivo o participio."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una actualización y observa cómo cambia el mensaje según el adverbio. Las opciones se adaptan a la situación elegida.",
+      patterns:[
+        {base:"La incidencia está", endings:["parcialmente resuelta.","prácticamente resuelta.","completamente resuelta."]},
+        {base:"El informe está", endings:["parcialmente terminado.","prácticamente terminado.","suficientemente detallado."]},
+        {base:"El proceso avanza", endings:["adecuadamente.","progresivamente.","considerablemente mejor."]}
+      ]
+    },
+    grammar:[
+      {title:"Manera vs. grado", body:"Adecuadamente describe cómo se ejecuta una acción; considerablemente indica en qué grado cambia una variable.", example:"Aplicamos el procedimiento adecuadamente. / Los costos bajaron considerablemente."},
+      {title:"Adverbios en -mente", body:"Se forman normalmente con la forma femenina del adjetivo + -mente. Conservan la tilde del adjetivo cuando la tiene.", example:"rápida → rápidamente; fácil → fácilmente."},
+      {title:"Posición y foco", body:"La posición puede cambiar el foco. «Prácticamente terminamos» enfatiza que casi se completó la acción; «El informe está prácticamente terminado» enfatiza el estado.", example:"El equipo resolvió parcialmente el problema."},
+      {title:"Mucho, muy, bastante, demasiado", body:"Mucho suele modificar verbos o sustantivos; muy modifica adjetivos/adverbios; bastante y demasiado pueden expresar grado.", example:"Trabajamos mucho. / Es muy complejo. / Está bastante claro. / Es demasiado caro."}
+    ],
+    register:{
+      scenario:"Debes informar a un cliente de que el avance es menor de lo esperado. ¿Qué formulación mantiene precisión y profesionalismo?",
+      options:[
+        {text:"El proyecto va bastante mal.",score:"note",feedback:"Es comprensible, pero demasiado general. Falta precisar qué aspecto está por debajo de lo esperado."},
+        {text:"El proyecto avanza más lentamente de lo previsto y varias tareas están parcialmente completadas.",score:"good",feedback:"Precisa tanto la manera como el grado de avance y evita una valoración vaga."},
+        {text:"El proyecto está súper lento.",score:"note",feedback:"Súper es coloquial y aquí reduce el registro profesional."}
+      ]
+    },
+    example:{
+      text:"El proyecto avanza razonablemente bien, aunque dos entregables están parcialmente completados. La respuesta del proveedor ha sido considerablemente más lenta de lo esperado, por lo que necesitamos revisar el calendario cuidadosamente y reducir ligeramente el alcance de la próxima fase.",
+      parts:[
+        ["razonablemente bien","matiza una valoración positiva"],
+        ["parcialmente completados","indica grado de avance"],
+        ["considerablemente más lenta","marca una diferencia importante"],
+        ["cuidadosamente","indica manera"],
+        ["ligeramente","indica un ajuste pequeño"]
+      ]
+    },
+    exercises:[
+      {type:"mc",q:"¿Qué opción es más precisa para un aumento pequeño?",options:["aumentó mucho","aumentó ligeramente","aumentó excesivamente"],answer:1,explain:"Ligeramente expresa un cambio pequeño y controlado."},
+      {type:"mc",q:"¿Cuál es la mejor actualización si todavía falta una parte?",options:["Está terminado.","Está parcialmente resuelto.","Está fatal."],answer:1,explain:"Parcialmente resuelto comunica avance sin afirmar que está completo."},
+      {type:"text",q:"Completa con un adverbio adecuado: El procedimiento se aplicó ________ y no hubo incidencias.",answers:["adecuadamente","correctamente"],explain:"Adecuadamente o correctamente describen la manera de ejecución."},
+      {type:"mc",q:"¿Qué diferencia es correcta?",options:["muy modifica sustantivos; mucho adjetivos","mucho puede modificar verbos; muy modifica adjetivos o adverbios","mucho y muy siempre son intercambiables"],answer:1,explain:"Ej.: trabajamos mucho / es muy importante / responde muy rápidamente."}
+    ],
+    practice:{
+      situation:"Tu responsable te pide una actualización de un proyecto que avanza, pero tiene dos problemas: el proveedor responde con lentitud y queda una parte pendiente.",
+      interlocutor:"Tu responsable.",
+      goal:"Explicar el estado, la magnitud de los problemas y el siguiente paso.",
+      requirements:["Usa al menos un adverbio de manera.","Usa al menos dos recursos de grado o cantidad.","Evita valoraciones vagas como bien/mal sin contexto.","Cierra con una acción concreta."],
+      support:["parcialmente","considerablemente","ligeramente","adecuadamente","prácticamente","más lentamente de lo previsto"]
+    },
+    model:"El proyecto avanza razonablemente bien, pero dos tareas están parcialmente completadas. La respuesta del proveedor está siendo considerablemente más lenta de lo previsto. Propongo revisar cuidadosamente el calendario y ajustar ligeramente el alcance de la próxima entrega.",
+    checklist:[
+      "Puedo distinguir adverbios de manera y de grado o cantidad.",
+      "Puedo sustituir expresiones vagas por formulaciones más precisas.",
+      "Puedo matizar cambios pequeños, importantes o excesivos.",
+      "Puedo adaptar el registro de una actualización al interlocutor.",
+      "Puedo explicar un avance y un problema con suficiente precisión."
+    ]
+  },
+
+  b2: {
+    route:"🚀 B2 — Avanzado",
+    title:"Adverbios de manera y cantidad para matizar evaluaciones, riesgos y resultados",
+    subtitle:"Perfecciona el uso de adverbios para ajustar grado, énfasis, prudencia, evaluación y registro en comunicación profesional.",
+    objective:"Al terminar esta semana podrás modular evaluaciones, riesgos, avances y resultados mediante adverbios que aporten precisión, cautela, énfasis y adecuación al registro profesional.",
+    situation:{
+      who:"Lideras una reunión de revisión de resultados.",
+      with:"Hablas con dirección, un cliente interno y responsables de varias áreas.",
+      context:"Debes presentar avances, explicar desviaciones y justificar decisiones.",
+      goal:"Ser preciso sin dramatizar ni minimizar los datos.",
+      difficulty:"Varias formulaciones son gramaticalmente correctas, pero producen grados distintos de certeza, énfasis, prudencia o formalidad."
+    },
+    vocab:[
+      {term:"sustancialmente", explain:"En una medida considerable y relevante.", example:"El margen mejoró sustancialmente.", extra:"Frecuente en análisis de resultados; más técnico que mucho."},
+      {term:"marginalmente", explain:"En una medida muy pequeña.", example:"La conversión mejoró marginalmente.", extra:"Puede sugerir que el cambio existe pero es poco significativo."},
+      {term:"relativamente", explain:"En comparación con un marco o referencia, sin llegar a un extremo.", example:"El riesgo sigue siendo relativamente bajo.", extra:"Útil para matizar afirmaciones categóricas."},
+      {term:"notablemente", explain:"De forma claramente perceptible.", example:"La satisfacción mejoró notablemente.", extra:"Menos cuantitativo que sustancialmente; destaca que el cambio se percibe."},
+      {term:"presumiblemente", explain:"Según una inferencia razonable, sin certeza absoluta.", example:"El retraso se debe presumiblemente a la falta de capacidad.", extra:"Marca distancia epistémica; usar cuando la causa no está confirmada."},
+      {term:"deliberadamente", explain:"De manera intencional.", example:"Reducimos deliberadamente el volumen para proteger la calidad.", extra:"Atribuye intención; evita usarlo si no puedes sostener esa interpretación."},
+      {term:"progresivamente", explain:"De forma gradual a lo largo del tiempo.", example:"La tasa de errores ha disminuido progresivamente.", extra:"Adecuado para tendencias."},
+      {term:"desproporcionadamente", explain:"En una medida excesiva respecto de una referencia.", example:"El costo aumentó desproporcionadamente frente al volumen.", extra:"Introduce una comparación implícita y suele requerir evidencia."}
+    ],
+    phraseGroups:[
+      {title:"Matizar resultados",items:[
+        {text:"El margen mejoró sustancialmente durante el trimestre.",when:"Para señalar una mejora material y relevante."},
+        {text:"La tasa de conversión aumentó marginalmente.",when:"Para reconocer un cambio pequeño sin sobredimensionarlo."},
+        {text:"La satisfacción mejoró notablemente.",when:"Para destacar una mejora perceptible."}
+      ]},
+      {title:"Gestionar certeza y prudencia",items:[
+        {text:"El riesgo sigue siendo relativamente bajo.",when:"Para evitar una afirmación absoluta y situar la evaluación en un marco comparativo."},
+        {text:"El retraso se debe presumiblemente a un cuello de botella operativo.",when:"Para presentar una hipótesis razonable sin afirmar una causa como hecho."}
+      ]},
+      {title:"Explicar decisiones y tendencias",items:[
+        {text:"Reducimos deliberadamente el volumen para proteger la calidad.",when:"Para dejar claro que una decisión fue intencional."},
+        {text:"Los errores han disminuido progresivamente.",when:"Para describir una evolución gradual."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye formulaciones con distintos grados de fuerza. Después analiza qué matiz introduce cada adverbio.",
+      patterns:[
+        {base:"El margen mejoró", endings:["sustancialmente.","marginalmente.","notablemente."]},
+        {base:"El riesgo sigue siendo", endings:["relativamente bajo.","considerablemente alto.","notablemente menor."]},
+        {base:"La tasa de errores ha disminuido", endings:["progresivamente.","sustancialmente.","marginalmente."]}
+      ]
+    },
+    grammar:[
+      {title:"Adverbios evaluativos y alcance", body:"Algunos adverbios no solo modifican la acción; también orientan la interpretación del enunciado. «Relativamente bajo» introduce una referencia implícita, mientras «bajo» suena más categórico.", example:"El riesgo es bajo / El riesgo es relativamente bajo."},
+      {title:"Grado y comparabilidad", body:"Sustancialmente, marginalmente y desproporcionadamente suelen presuponer una comparación. En contextos profesionales conviene que esa referencia sea recuperable o explícita.", example:"Los costos crecieron desproporcionadamente respecto del volumen."},
+      {title:"Certeza epistémica", body:"Adverbios como presumiblemente, probablemente o aparentemente permiten graduar el compromiso con una afirmación. Son útiles cuando la evidencia es incompleta.", example:"La caída se debe presumiblemente a un cambio estacional."},
+      {title:"Posición y estilo", body:"En registro profesional, la posición inicial puede enmarcar toda la proposición; la posición cercana al verbo suele afectar de forma más local.", example:"Presumiblemente, el proveedor no llegará a tiempo. / El proveedor presumiblemente no llegará a tiempo."}
+    ],
+    register:{
+      scenario:"En una reunión con dirección, todavía no has confirmado la causa de una desviación. ¿Qué formulación es más responsable?",
+      options:[
+        {text:"La desviación se debe claramente a una mala planificación.",score:"note",feedback:"Es demasiado categórica si la causa no está confirmada. Además atribuye responsabilidad."},
+        {text:"La desviación se debe presumiblemente a una combinación de capacidad limitada y cambios de alcance; todavía estamos validando la causa principal.",score:"good",feedback:"Distingue hipótesis de hecho y explicita el grado de certeza."},
+        {text:"Parece que algo salió mal.",score:"note",feedback:"Es prudente, pero demasiado vago para una reunión de revisión de resultados."}
+      ]
+    },
+    example:{
+      text:"El rendimiento mejoró sustancialmente en las últimas seis semanas, aunque la conversión solo aumentó marginalmente. El riesgo operativo sigue siendo relativamente bajo, pero los costos han crecido desproporcionadamente respecto del volumen. Presumiblemente, esta desviación está vinculada a capacidad externa; lo estamos validando antes de recomendar un ajuste.",
+      parts:[
+        ["sustancialmente","cambio material"],
+        ["marginalmente","cambio pequeño"],
+        ["relativamente bajo","evaluación matizada"],
+        ["desproporcionadamente","comparación crítica"],
+        ["Presumiblemente","grado de certeza"]
+      ]
+    },
+    exercises:[
+      {type:"mc",q:"Quieres reconocer una mejora pequeña sin presentarla como material. ¿Qué opción funciona mejor?",options:["mejoró notablemente","mejoró marginalmente","mejoró desproporcionadamente"],answer:1,explain:"Marginalmente señala que el cambio existe, pero es reducido."},
+      {type:"mc",q:"¿Qué formulación distingue mejor una hipótesis de un hecho?",options:["El retraso se debe a capacidad insuficiente.","Presumiblemente, el retraso se debe a capacidad insuficiente.","El retraso evidentemente se debe a capacidad insuficiente."],answer:1,explain:"Presumiblemente reduce el compromiso epistémico y deja claro que se trata de una inferencia."},
+      {type:"text",q:"Completa con un adverbio que indique evolución gradual: La tasa de errores ha disminuido ________.",answers:["progresivamente","gradualmente"],explain:"Ambas opciones describen una tendencia que cambia poco a poco."},
+      {type:"mc",q:"¿Cuál contiene una comparación implícita que debería poder justificarse con datos?",options:["El proceso terminó.","Los costos crecieron desproporcionadamente.","La reunión empezó tarde."],answer:1,explain:"Desproporcionadamente presupone una referencia respecto de la cual el crecimiento resulta excesivo."}
+    ],
+    practice:{
+      situation:"Presentas resultados a dirección. El margen mejoró mucho, la conversión apenas cambió y los costos crecieron más de lo esperable. La causa del aumento de costos todavía no está confirmada.",
+      interlocutor:"Dirección.",
+      goal:"Presentar una lectura equilibrada, distinguir hechos de hipótesis y recomendar el siguiente paso.",
+      requirements:["Usa al menos tres adverbios con funciones distintas.","Matiza al menos una afirmación para evitar exceso de certeza.","Incluye una comparación o referencia explícita.","Evita dramatizar o minimizar los resultados.","Cierra con una recomendación o próximo paso."],
+      support:["sustancialmente","marginalmente","relativamente","presumiblemente","desproporcionadamente","progresivamente","deliberadamente"]
+    },
+    model:"El margen mejoró sustancialmente, mientras que la conversión solo aumentó marginalmente. El riesgo operativo sigue siendo relativamente bajo; sin embargo, los costos crecieron desproporcionadamente respecto del volumen procesado. Presumiblemente, el aumento está relacionado con capacidad externa, aunque todavía estamos validando esa hipótesis. Recomiendo confirmar la causa antes de ajustar el presupuesto.",
+    checklist:[
+      "Puedo usar adverbios para graduar la fuerza de una evaluación.",
+      "Puedo distinguir entre un cambio marginal, notable o sustancial.",
+      "Puedo expresar hipótesis sin presentar inferencias como hechos.",
+      "Puedo adaptar el adverbio al registro, al interlocutor y a la evidencia disponible.",
+      "Puedo presentar resultados y riesgos con precisión, matiz y un siguiente paso claro."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sections = [
+  ["objective","1. 🎯 Tu objetivo esta semana"],
+  ["situation","2. 🏢 La situación"],
+  ["vocab","3. 🗣️ Vocabulario clave"],
+  ["phrases","4. 💬 Frases que puedes usar"],
+  ["builder","5. 🧩 Construye tu mensaje"],
+  ["grammar","6. 📚 Gramática que necesitas"],
+  ["register","7. 🎭 Elige el registro"],
+  ["example","8. 💼 Mira cómo se hace"],
+  ["exercises","9. ✍️ Comprueba lo que aprendiste"],
+  ["practice","10. 🏢 Ahora te toca a ti"],
+  ["model","11. 💡 Ver modelo"],
+  ["checklist","12. ✅ Checklist final"]
+];
+
+let currentLevel = null;
+let state = {visited:new Set(), completed:new Set(), checklist:new Set(), vocab:new Set(), audio:new Set()};
+let currentSectionIndex = 0;
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));}
+
+function selectLevel(level){
+  currentLevel = level;
+  state = {visited:new Set(), completed:new Set(), checklist:new Set(), vocab:new Set(), audio:new Set()};
+  currentSectionIndex = 0;
+  document.getElementById("levelScreen").classList.add("hidden");
+  document.getElementById("module").classList.remove("hidden");
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function changeLevel(){
+  if("speechSynthesis" in window) speechSynthesis.cancel();
+  document.getElementById("module").classList.add("hidden");
+  document.getElementById("levelScreen").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function audioControls(text,label){
+  if(currentLevel!=="a2") return "";
+  const t = esc(text), l = esc(label || text);
+  return `<div class="audio-row">
+    <button class="audio-btn" type="button" data-speak="${t}" data-rate="0.95" aria-label="Escuchar ${l}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn" type="button" data-speak="${t}" data-rate="0.72" aria-label="Escuchar lentamente ${l}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function getSpanishVoice(){
+  const voices = speechSynthesis.getVoices();
+  const preferred = ["es-CO","es-MX","es-US","es-419","es-AR","es-CL","es-PE","es-ES"];
+  for(const lang of preferred){
+    const v = voices.find(v=>v.lang && v.lang.toLowerCase()===lang.toLowerCase());
+    if(v) return v;
+  }
+  return voices.find(v=>v.lang && v.lang.toLowerCase().startsWith("es")) || null;
+}
+
+function speak(text,rate,token){
+  if(!("speechSynthesis" in window)){
+    alert("Tu navegador no ofrece síntesis de voz. El resto del módulo funciona normalmente.");
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang="es-CO"; u.rate=Number(rate)||0.95; u.pitch=1;
+  const v=getSpanishVoice(); if(v) u.voice=v;
+  speechSynthesis.speak(u);
+  if(token) {state.audio.add(token); updateProgress();}
+}
+
+function render(){
+  const d = contenido[currentLevel];
+  document.getElementById("routeLabel").textContent = "Tu ruta: " + d.route;
+  document.getElementById("heroTitle").textContent = d.title;
+  document.getElementById("heroSubtitle").textContent = d.subtitle;
+  renderNav();
+  renderContent();
+  bindAll();
+  visitSection(sections[0][0]);
+}
+
+function renderNav(){
+  const nav = document.getElementById("sideNav");
+  const mobile = document.getElementById("mobileNav");
+  nav.innerHTML = sections.map(([id,label],i)=>`<button data-nav="${id}" class="${i===0?"active":""}">${label}</button>`).join("");
+  mobile.innerHTML = sections.map(([id,label])=>`<option value="${id}">${label}</option>`).join("");
+}
+
+function sectionWrap(id,title,body,index){
+  return `<section class="section" id="${id}" data-section="${id}">
+    <h2>${title}</h2>${body}
+    <div class="nav-buttons">
+      ${index>0?`<button class="btn btn-secondary" data-goto="${sections[index-1][0]}">← Anterior</button>`:"<span></span>"}
+      ${index<sections.length-1?`<button class="btn btn-primary" data-goto="${sections[index+1][0]}">Siguiente →</button>`:""}
+    </div>
+  </section>`;
+}
+
+function renderContent(){
+  const d=contenido[currentLevel];
+  const body=[];
+
+  body.push(sectionWrap("objective",sections[0][1],`
+    <p class="section-intro">${esc(d.objective)}</p>
+    <div class="info-box yellow-box"><strong>Al final del módulo comprobarás si ya puedes hacerlo.</strong></div>`,0));
+
+  body.push(sectionWrap("situation",sections[1][1],`
+    <div class="cards">
+      <div class="grammar-card"><strong>Quién habla</strong><br>${esc(d.situation.who)}</div>
+      <div class="grammar-card"><strong>Con quién</strong><br>${esc(d.situation.with)}</div>
+      <div class="grammar-card"><strong>Contexto</strong><br>${esc(d.situation.context)}</div>
+      <div class="grammar-card"><strong>Qué quieres conseguir</strong><br>${esc(d.situation.goal)}</div>
+    </div>
+    <div class="info-box red-box"><strong>Dificultad:</strong> ${esc(d.situation.difficulty)}</div>`,1));
+
+  body.push(sectionWrap("vocab",sections[2][1],`
+    <p class="section-intro">Pulsa cada tarjeta para recuperar el significado y ver un ejemplo profesional.</p>
+    <div class="cards">${d.vocab.map((v,i)=>`
+      <article class="flip">
+        <button class="flip-head" type="button" data-flip="v${i}" aria-expanded="false">
+          <span>${esc(v.term)}</span><span>+</span>
+        </button>
+        <div class="flip-body hidden" id="v${i}">
+          ${currentLevel==="a2"?`<p><strong>English:</strong> ${esc(v.en)}</p>`:""}
+          <p>${esc(v.explain)}</p>
+          <p><strong>Ejemplo:</strong> ${esc(v.example)}</p>
+          <p><strong>Uso:</strong> ${esc(v.extra)}</p>
+          ${currentLevel==="a2" && v.stress?`<p><strong>Pronunciación:</strong> ${esc(v.stress)}</p>`:""}
+          ${audioControls(v.term, v.term)}
+          ${audioControls(v.example, "ejemplo: "+v.example)}
+        </div>
+      </article>`).join("")}</div>
+    ${currentLevel==="a2"?`
+      <div class="info-box"><strong>Recuperación rápida:</strong> antes de abrir una tarjeta, intenta recordar qué significa y en qué frase de trabajo podrías usarla.</div>`:""}`,2));
+
+  body.push(sectionWrap("phrases",sections[3][1],`
+    ${d.phraseGroups.map((g,gi)=>`<div class="phrase-group">
+      <div class="phrase-title">${esc(g.title)}</div>
+      ${g.items.map((p,pi)=>`<div class="phrase">
+        <div class="phrase-main">${esc(p.text)}</div>
+        ${audioControls(p.text,p.text)}
+        <button class="btn btn-secondary btn-small" type="button" data-why="why-${gi}-${pi}">Ver cuándo usarla</button>
+        <div id="why-${gi}-${pi}" class="why hidden">${esc(p.when)}</div>
+      </div>`).join("")}
+    </div>`).join("")}`,3));
+
+  body.push(sectionWrap("builder",sections[4][1],`
+    <p>${esc(d.builder.intro)}</p>
+    <div class="builder">
+      <label>Situación
+        <select id="builderBase" data-builder="base">
+          ${d.builder.patterns.map((p,i)=>`<option value="${i}">${esc(p.base)}</option>`).join("")}
+        </select>
+      </label>
+      <label>Matiz
+        <select id="builderEnding" data-builder="ending"></select>
+      </label>
+    </div>
+    <div id="builderResult" class="result" aria-live="polite"></div>
+    <div id="builderAudio"></div>`,4));
+
+  body.push(sectionWrap("grammar",sections[5][1],`
+    <p class="section-intro">La gramática aparece aquí porque te ayuda a decir exactamente cómo ocurre algo o en qué grado.</p>
+    <div class="grammar-grid">${d.grammar.map((g,i)=>`
+      <article class="grammar-card">
+        <h3>${esc(g.title)}</h3>
+        <p>${esc(g.body)}</p>
+        <div class="info-box"><strong>Ejemplo profesional:</strong> ${esc(g.example)}${audioControls(g.example,g.example)}</div>
+      </article>`).join("")}</div>`,5));
+
+  body.push(sectionWrap("register",sections[6][1],`
+    <p><strong>Situación:</strong> ${esc(d.register.scenario)}</p>
+    <div class="option-list">${d.register.options.map((o,i)=>`
+      <button type="button" class="option-btn" data-register="${i}">${esc(o.text)}
+      ${currentLevel==="a2"?`<span class="sr-only">. Pulsa para elegir esta opción.</span>`:""}</button>`).join("")}</div>
+    <div id="registerFeedback" class="feedback hidden" aria-live="polite"></div>
+    ${currentLevel==="a2"?`<div class="info-box">Puedes escuchar las opciones antes de decidir.
+      ${d.register.options.map((o,i)=>audioControls(o.text,"opción "+(i+1))).join("")}
+    </div>`:""}`,6));
+
+  let annotated = esc(d.example.text);
+  d.example.parts.forEach(([phrase,note],i)=>{
+    annotated=annotated.replace(esc(phrase),`<span class="annotation" tabindex="0" data-note="${esc(note)}">${esc(phrase)}</span>`);
+  });
+  body.push(sectionWrap("example",sections[7][1],`
+    <p class="section-intro">Pulsa las expresiones subrayadas para descubrir qué función cumplen.</p>
+    <div class="example">${annotated}</div>
+    <div id="annotationFeedback" class="feedback hidden" aria-live="polite"></div>
+    ${audioControls(d.example.text,"ejemplo profesional completo")}`,7));
+
+  body.push(sectionWrap("exercises",sections[8][1],`
+    <p class="section-intro">Responde, revisa el feedback y vuelve a intentar si lo necesitas.</p>
+    <div id="exerciseList">${d.exercises.map((e,i)=>renderExercise(e,i)).join("")}</div>`,8));
+
+  body.push(sectionWrap("practice",sections[9][1],`
+    <div class="info-box">
+      <strong>Situación:</strong> ${esc(d.practice.situation)}<br>
+      <strong>Interlocutor:</strong> ${esc(d.practice.interlocutor)}<br>
+      <strong>Objetivo:</strong> ${esc(d.practice.goal)}
+    </div>
+    <h3>Incluye:</h3>
+    <ul>${d.practice.requirements.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <h3>Recursos que puedes usar</h3>
+    <div>${d.practice.support.map(x=>`<span class="tag">${esc(x)}</span>`).join("")}</div>
+    ${currentLevel==="a2"?d.practice.support.map(x=>audioControls(x,x)).join(""):""}
+    <label for="finalText"><strong>Tu respuesta</strong></label>
+    <textarea id="finalText" placeholder="${currentLevel==="a2"?"Escribe 2–4 frases.":"Escribe tu respuesta profesional aquí."}"></textarea>
+    <div class="exercise-actions">
+      <button id="markPractice" type="button" class="btn btn-primary">Marcar práctica como realizada</button>
+    </div>
+    <div id="practiceFeedback" class="feedback hidden"></div>`,9));
+
+  body.push(sectionWrap("model",sections[10][1],`
+    <p>Compara tu respuesta con un ejemplo después de haber intentado resolver la situación.</p>
+    <button id="showModel" class="btn btn-yellow" type="button">Ver una posible respuesta</button>
+    <div id="modelBox" class="model hidden">
+      <strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong>
+      <p>${esc(d.model)}</p>
+      ${audioControls(d.model,"respuesta modelo")}
+    </div>`,10));
+
+  body.push(sectionWrap("checklist",sections[11][1],`
+    <p>Antes de terminar, comprueba:</p>
+    <div class="checklist">${d.checklist.map((x,i)=>`
+      <label class="check-item"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join("")}</div>
+    <div id="checkProgress" class="info-box">0 de ${d.checklist.length} capacidades marcadas.</div>
+    <div id="closing" class="closing hidden">
+      <h3>🎯 Ya estás listo para practicar</h3>
+      <p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Inserta aquí la URL real del reto diario cuando esté disponible. -->
+      <a class="btn btn-danger" href="#" onclick="return false;">🔥 Ir al reto de hoy</a>
+    </div>`,11));
+
+  document.getElementById("content").innerHTML=body.join("");
+  updateBuilder();
+}
+
+function renderExercise(e,i){
+  if(e.type==="mc"){
+    return `<div class="exercise" data-ex="${i}">
+      <p><strong>${i+1}. ${esc(e.q)}</strong></p>
+      <div class="option-list">${e.options.map((o,j)=>`<button type="button" class="option-btn" data-exopt="${i}:${j}">${esc(o)}</button>`).join("")}</div>
+      <div class="exercise-actions"><button class="btn btn-secondary btn-small" type="button" data-resetex="${i}">Volver a intentar</button></div>
+      <div id="exfb-${i}" class="feedback hidden" aria-live="polite"></div>
+    </div>`;
+  }
+  return `<div class="exercise" data-ex="${i}">
+    <label for="extext-${i}"><strong>${i+1}. ${esc(e.q)}</strong></label>
+    <input id="extext-${i}" type="text" autocomplete="off">
+    ${currentLevel==="a2"?audioControls(e.q,"instrucción del ejercicio"):""}
+    <div class="exercise-actions">
+      <button class="btn btn-primary btn-small" type="button" data-checktext="${i}">Comprobar</button>
+      <button class="btn btn-secondary btn-small" type="button" data-resetex="${i}">Volver a intentar</button>
+    </div>
+    <div id="exfb-${i}" class="feedback hidden" aria-live="polite"></div>
+  </div>`;
+}
+
+function bindAll(){
+  document.querySelectorAll("[data-nav],[data-goto]").forEach(b=>b.addEventListener("click",()=>goTo(b.dataset.nav||b.dataset.goto)));
+  document.getElementById("mobileNav").addEventListener("change",e=>goTo(e.target.value));
+
+  document.querySelectorAll("[data-flip]").forEach(b=>b.addEventListener("click",()=>{
+    const id=b.dataset.flip, el=document.getElementById(id);
+    const open=!el.classList.contains("hidden");
+    el.classList.toggle("hidden",open); b.setAttribute("aria-expanded",String(!open));
+    if(!open){state.vocab.add(id);state.completed.add("vocab");updateProgress();}
+  }));
+
+  document.querySelectorAll("[data-why]").forEach(b=>b.addEventListener("click",()=>{
+    document.getElementById(b.dataset.why).classList.toggle("hidden");
+    state.completed.add("phrases"); updateProgress();
+  }));
+
+  document.querySelectorAll("[data-builder]").forEach(s=>s.addEventListener("change",()=>{
+    updateBuilder(); state.completed.add("builder"); updateProgress();
+  }));
+
+  document.querySelectorAll("[data-register]").forEach(b=>b.addEventListener("click",()=>{
+    const i=Number(b.dataset.register), o=contenido[currentLevel].register.options[i], fb=document.getElementById("registerFeedback");
+    document.querySelectorAll("[data-register]").forEach(x=>x.classList.remove("selected")); b.classList.add("selected");
+    fb.className="feedback "+o.score; fb.textContent=o.feedback; fb.classList.remove("hidden");
+    state.completed.add("register"); updateProgress();
+  }));
+
+  document.querySelectorAll(".annotation").forEach(a=>{
+    const show=()=>{const f=document.getElementById("annotationFeedback");f.textContent=a.dataset.note;f.classList.remove("hidden");state.completed.add("example");updateProgress();};
+    a.addEventListener("click",show); a.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();show();}});
+  });
+
+  document.querySelectorAll("[data-exopt]").forEach(b=>b.addEventListener("click",()=>checkMC(b)));
+  document.querySelectorAll("[data-checktext]").forEach(b=>b.addEventListener("click",()=>checkText(Number(b.dataset.checktext))));
+  document.querySelectorAll("[data-resetex]").forEach(b=>b.addEventListener("click",()=>resetExercise(Number(b.dataset.resetex))));
+
+  document.getElementById("markPractice").addEventListener("click",()=>{
+    const t=document.getElementById("finalText").value.trim(), fb=document.getElementById("practiceFeedback");
+    if(t.length<15){fb.textContent="Añade un poco más de información antes de marcar la práctica como realizada.";fb.className="feedback note";fb.classList.remove("hidden");return;}
+    fb.textContent="Práctica registrada en este módulo. Compárala ahora con el modelo si quieres revisar tus decisiones lingüísticas.";
+    fb.className="feedback good";fb.classList.remove("hidden");
+    state.completed.add("practice");updateProgress();
+  });
+
+  document.getElementById("showModel").addEventListener("click",()=>{
+    document.getElementById("modelBox").classList.remove("hidden");state.completed.add("model");updateProgress();
+  });
+
+  document.querySelectorAll("[data-check]").forEach(c=>c.addEventListener("change",()=>updateChecklist()));
+
+  document.querySelectorAll("[data-speak]").forEach((b,i)=>b.addEventListener("click",()=>speak(b.dataset.speak,b.dataset.rate,"audio-"+b.dataset.speak)));
+
+  document.getElementById("changeLevel").onclick=changeLevel;
+  setupSectionObserver();
+}
+
+function updateBuilder(){
+  const baseSel=document.getElementById("builderBase"), endingSel=document.getElementById("builderEnding");
+  if(!baseSel || !endingSel) return;
+  const patterns=contenido[currentLevel].builder.patterns;
+  const idx=Number(baseSel.value)||0;
+  const pattern=patterns[idx];
+  const previous=endingSel.value;
+  endingSel.innerHTML=pattern.endings.map((x,i)=>`<option value="${i}">${esc(x)}</option>`).join("");
+  if(previous && pattern.endings.includes(previous)) endingSel.value=previous;
+  const ending=pattern.endings[Number(endingSel.value)||0];
+  const text=`${pattern.base} ${ending}`;
+  document.getElementById("builderResult").textContent=text;
+  document.getElementById("builderAudio").innerHTML=audioControls(text,"mensaje construido");
+  document.querySelectorAll("#builderAudio [data-speak]").forEach(b=>b.addEventListener("click",()=>speak(b.dataset.speak,b.dataset.rate,"audio-builder")));
+}
+
+function checkMC(btn){
+  const [i,j]=btn.dataset.exopt.split(":").map(Number), e=contenido[currentLevel].exercises[i], fb=document.getElementById("exfb-"+i);
+  document.querySelectorAll(`[data-exopt^="${i}:"]`).forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+  if(j===e.answer){fb.textContent="Funciona. "+e.explain;fb.className="feedback good";state.completed.add("ex-"+i);}
+  else{fb.textContent="Revisa esta elección. "+e.explain;fb.className="feedback note";}
+  fb.classList.remove("hidden");updateProgress();
+}
+
+function norm(s){return s.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.,;:!?]/g,"");}
+function checkText(i){
+  const e=contenido[currentLevel].exercises[i], val=document.getElementById("extext-"+i).value, fb=document.getElementById("exfb-"+i);
+  const ok=e.answers.map(norm).includes(norm(val));
+  if(ok){fb.textContent="Funciona. "+e.explain;fb.className="feedback good";state.completed.add("ex-"+i);}
+  else{fb.textContent="Todavía no. "+e.explain+" Puedes volver a intentarlo.";fb.className="feedback note";}
+  fb.classList.remove("hidden");updateProgress();
+}
+
+function resetExercise(i){
+  document.querySelectorAll(`[data-exopt^="${i}:"]`).forEach(x=>x.classList.remove("selected"));
+  const inp=document.getElementById("extext-"+i); if(inp) inp.value="";
+  document.getElementById("exfb-"+i).classList.add("hidden");
+}
+
+function updateChecklist(){
+  const d=contenido[currentLevel];
+  state.checklist.clear();
+  document.querySelectorAll("[data-check]").forEach(c=>{if(c.checked)state.checklist.add(c.dataset.check);});
+  document.getElementById("checkProgress").textContent=`${state.checklist.size} de ${d.checklist.length} capacidades marcadas.`;
+  if(state.checklist.size===d.checklist.length){
+    document.getElementById("closing").classList.remove("hidden");state.completed.add("checklist");
+  } else document.getElementById("closing").classList.add("hidden");
+  updateProgress();
+}
+
+function visitSection(id){
+  state.visited.add(id);updateProgress();
+}
+
+function updateProgress(){
+  const d=contenido[currentLevel];
+  const total = sections.length + d.exercises.length + d.checklist.length + Math.min(4,d.vocab.length) + 5;
+  let score = state.visited.size + [...state.completed].filter(x=>x.startsWith("ex-")).length + state.checklist.size;
+  score += Math.min(4,state.vocab.size);
+  ["builder","register","example","practice","model"].forEach(x=>{if(state.completed.has(x))score++;});
+  const pct=Math.min(100,Math.round((score/total)*100));
+  document.getElementById("progressBar").style.width=pct+"%";
+  document.getElementById("progressText").textContent=pct+"%";
+}
+
+function goTo(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.scrollIntoView({behavior:"smooth",block:"start"});
+  visitSection(id);
+  document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+  document.getElementById("mobileNav").value=id;
+}
+
+function setupSectionObserver(){
+  if(!("IntersectionObserver" in window))return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.filter(e=>e.isIntersecting).forEach(e=>{
+      const id=e.target.dataset.section; if(!id)return;
+      visitSection(id);
+      document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+      document.getElementById("mobileNav").value=id;
+    });
+  },{rootMargin:"-25% 0px -60% 0px",threshold:.05});
+  document.querySelectorAll("[data-section]").forEach(s=>obs.observe(s));
+}
+
+document.querySelectorAll("[data-level]").forEach(b=>b.addEventListener("click",()=>selectLevel(b.dataset.level)));
+document.getElementById("changeLevel").addEventListener("click",changeLevel);
+if("speechSynthesis" in window){
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+}
+</script>
+</body>
+</html>

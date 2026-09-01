@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Tema 21 · Verbos y expresiones con preposición | La Oficina en Español</title>
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;
+  --ink:#172033;--muted:#657084;--line:#d9e0ea;--soft:#f5f8fc;
+  --white:#fff;--green:#287a4b;--orange:#a96500;
+  --shadow:0 16px 40px rgba(0,56,147,.12)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Montserrat,Arial,sans-serif;color:var(--ink);background:#f7f9fc;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid rgba(0,56,147,.28);outline-offset:3px}
+
+.level-screen{min-height:100vh;display:grid;place-items:center;padding:28px;background:linear-gradient(145deg,#eef4ff 0%,#fff 55%,#fff9df 100%)}
+.level-box{width:min(1050px,100%);background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:34px}
+.brandline{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--yellow) 0 33%,var(--blue) 33% 76%,var(--red) 76%)}
+.eyebrow{margin-top:20px;color:var(--blue);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}
+.level-box h1{font-size:clamp(2rem,5vw,3.4rem);margin:.35rem 0 .55rem;line-height:1.05}
+.lead{color:var(--muted);max-width:760px;font-size:1.05rem}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.level-card{border:2px solid var(--line);background:#fff;border-radius:18px;padding:22px;text-align:left;min-height:220px;transition:.18s}
+.level-card:hover,.level-card:focus-visible{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,56,147,.1)}
+.level-card strong{display:block;font-size:1.16rem;margin-bottom:9px}
+.level-card span{color:var(--muted)}
+
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{width:min(1180px,calc(100% - 28px));margin:auto;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:11px 0}
+.route-chip{background:#eef4ff;color:var(--blue);font-weight:850;padding:8px 12px;border-radius:999px}
+.change{border:1px solid var(--line);background:#fff;color:var(--blue);font-weight:800;border-radius:10px;padding:8px 11px}
+.progress-meta{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:5px}
+.progress-track{height:8px;background:#e9eef5;border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--yellow),var(--blue));transition:.25s}
+
+.layout{width:min(1180px,calc(100% - 28px));margin:24px auto 44px;display:grid;grid-template-columns:250px 1fr;gap:24px}
+.sidebar{position:sticky;top:84px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;max-height:calc(100vh - 110px);overflow:auto}
+.nav-btn{display:block;width:100%;border:0;background:transparent;text-align:left;padding:10px 11px;border-radius:10px;color:#39465a;font-weight:750}
+.nav-btn.active{background:#eef4ff;color:var(--blue)}
+
+.hero{background:linear-gradient(135deg,var(--blue),#0a52bf);color:#fff;border-radius:24px;padding:30px;box-shadow:var(--shadow);margin-bottom:20px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:var(--yellow);opacity:.18;right:-30px;top:-30px}
+.hero-kicker{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:#ffe675}
+.hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.08;margin:.5rem 0 .65rem}
+.hero p{max-width:780px;margin:0;color:#e9f0ff}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 8px 24px rgba(20,38,70,.04)}
+.panel h2{margin:0 0 10px;font-size:1.45rem}
+.panel h3{margin-top:20px}
+.note{background:#fff9df;border-left:5px solid var(--yellow);padding:12px 14px;border-radius:10px}
+.scenario{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.scenario div{background:var(--soft);padding:12px;border-radius:10px}
+.scenario strong{display:block;color:var(--blue);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.flip{border:1px solid var(--line);background:#fff;border-radius:14px;padding:16px;text-align:left}
+.flip.open{border-color:#9bb8e8;background:#fbfdff}
+.flip-toggle{width:100%;border:0;background:transparent;text-align:left;padding:0;color:inherit}
+.flip-title{display:block;font-weight:900;color:var(--blue);font-size:1.05rem}
+.reveal{display:none;margin-top:12px;color:#344056}
+.flip.open .reveal{display:block}
+.audio-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.audio-btn{border:1px solid #c9d5e8;background:#fff;color:var(--blue);padding:7px 9px;border-radius:9px;font-weight:800;font-size:.86rem}
+.stress{font-weight:900;color:var(--blue)}
+.recall{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.recall-q{font-weight:800}
+.recall-answer{display:none;margin-top:8px;padding:9px 10px;border-radius:9px;background:#eef4ff;color:var(--blue);font-weight:750}
+.recall-answer.show{display:block}
+
+.group{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.phrase{background:var(--soft);border:1px solid #e5ebf4;border-radius:12px;padding:13px;margin:9px 0}
+.phrase strong{display:block}
+.details-btn{margin-top:8px;border:0;background:transparent;color:var(--blue);padding:0;font-weight:850}
+.details{display:none;margin-top:7px;color:var(--muted)}
+.details.show{display:block}
+.blocks{display:grid;gap:6px;margin:10px 0}
+.block{background:#eef4ff;border-radius:8px;padding:7px 10px;font-weight:750}
+
+.builder{background:#fbfcff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.builder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.builder select{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.output{margin-top:12px;padding:13px;border-radius:11px;background:#eef4ff;font-weight:800;color:var(--blue)}
+
+.grammar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grammar-card{border:1px solid var(--line);border-radius:14px;padding:15px}
+.formula{display:inline-block;background:#eef4ff;color:var(--blue);font-weight:900;border-radius:8px;padding:5px 8px;margin:5px 0}
+.example-box{border-left:4px solid var(--blue);padding:10px 12px;background:#f7faff;border-radius:8px}
+.micro-tip{font-size:.9rem;color:var(--muted);margin-top:7px}
+
+.options{display:grid;gap:9px;margin-top:12px}
+.option{border:1px solid var(--line);border-radius:11px;padding:12px;text-align:left;background:#fff}
+.option.selected{border-color:var(--blue);background:#eef4ff}
+.feedback{display:none;margin-top:12px;padding:12px;border-radius:11px;background:#f0f5ff;border-left:4px solid var(--blue)}
+.feedback.show{display:block}
+.good{background:#eef8f1;border-left-color:var(--green)}
+.warn{background:#fff8e8;border-left-color:var(--orange)}
+
+.example-full{background:#f8fbff;border:1px solid #dce7f8;border-radius:14px;padding:16px}
+.annot{display:inline;border:0;background:transparent;padding:0;color:var(--blue);font-weight:850;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.annotation{margin-top:10px;padding:10px;background:#eef4ff;border-radius:9px;min-height:46px}
+
+.quiz{border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.quiz h3{font-size:1rem;margin:0 0 10px}
+.quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:850;text-decoration:none;display:inline-block}
+.btn.secondary{background:#fff;color:var(--blue);border:1px solid var(--line)}
+.btn.red{background:var(--red)}
+input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff}
+textarea{min-height:140px;resize:vertical}
+.token-bank{display:flex;flex-wrap:wrap;gap:8px}
+.token{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:10px}
+.token.used{opacity:.45}
+.order-output{min-height:44px;padding:9px;border:1px dashed #aebbd0;border-radius:10px;margin-top:8px}
+.support-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.support-chip{border:1px solid #c8d6ef;background:#f7faff;border-radius:999px;padding:7px 10px;color:var(--blue);font-weight:800}
+.model{display:none;margin-top:12px;padding:15px;border-radius:12px;background:#eef4ff}
+.model.show{display:block}
+.checklist{display:grid;gap:9px}
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff}
+.check-item input{margin-top:4px;transform:scale(1.2)}
+.check-progress{height:9px;background:#e9eef5;border-radius:99px;overflow:hidden;margin-top:12px}
+.check-progress > div{height:100%;width:0;background:var(--blue);transition:.2s}
+.check-count{font-size:.88rem;color:var(--muted);margin-top:6px}
+.ready{display:none;margin-top:16px;background:#eef8f1;border:1px solid #cde7d5;border-radius:14px;padding:18px}
+.ready.show{display:block}
+.challenge{display:inline-block;margin-top:9px;background:var(--red);color:#fff;text-decoration:none;border-radius:10px;padding:10px 14px;font-weight:900}
+.section-move{display:flex;justify-content:space-between;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:10px 10px 34px}
+
+@media(max-width:860px){
+  .level-grid,.cards,.grammar-grid,.scenario,.builder-grid{grid-template-columns:1fr}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;display:flex;overflow:auto;max-height:none}
+  .nav-btn{white-space:nowrap;width:auto;flex:0 0 auto}
+  .topbar-inner{grid-template-columns:1fr auto}
+  .progress-wrap{grid-column:1/-1}
+  .route-chip{font-size:.85rem}
+}
+@media(max-width:560px){
+  .level-box{padding:22px}
+  .panel,.hero{padding:19px}
+  .layout{width:min(100% - 18px,1180px)}
+  .section-move{position:sticky;bottom:7px;background:rgba(255,255,255,.95);padding:8px;border:1px solid var(--line);border-radius:12px;z-index:20}
+  .section-move .btn{flex:1}
+  .audio-btn{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<section id="levelScreen" class="level-screen" aria-labelledby="levelTitle">
+  <div class="level-box">
+    <div class="brandline"></div>
+    <div class="eyebrow">La Oficina en Español · Herramientas lingüísticas</div>
+    <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+    <p class="lead">Elige tu ruta. Todos trabajan el mismo tema profesional; cambia el apoyo, la complejidad, la autonomía y la precisión esperada.</p>
+    <div class="level-grid" role="group" aria-label="Selecciona tu nivel">
+      <button class="level-card" data-level="a2" type="button">
+        <strong>🌱 A2 — Principiante</strong>
+        <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+      </button>
+      <button class="level-card" data-level="b1" type="button">
+        <strong>💼 B1 — Intermedio</strong>
+        <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+      </button>
+      <button class="level-card" data-level="b2" type="button">
+        <strong>🚀 B2 — Avanzado</strong>
+        <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div id="routeChip" class="route-chip"></div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span>Tu progreso</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track" aria-label="Progreso del módulo"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <button id="changeLevel" class="change" type="button">Cambiar nivel</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav id="sidebar" class="sidebar" aria-label="Secciones del módulo"></nav>
+    <main>
+      <section id="hero" class="hero"></section>
+      <div id="sections"></div>
+    </main>
+  </div>
+
+  <footer>
+    La Oficina en Español ·
+    <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido={
+  meta:{
+    tema:"Tema 21 · Verbos y expresiones con preposición",
+    habilidad:"Usar correctamente verbos y expresiones que exigen una preposición en situaciones profesionales",
+    intro:"Aprende a elegir la preposición que forma parte de expresiones frecuentes del español para trabajar y úsala para hablar de responsabilidades, colaboración, proyectos, clientes, decisiones y seguimiento.",
+    secciones:[
+      "🎯 Tu objetivo esta semana",
+      "🏢 La situación",
+      "🗣️ Vocabulario clave",
+      "💬 Frases que puedes usar",
+      "🧩 Construye tu mensaje",
+      "📚 Gramática que necesitas",
+      "🎭 Elige el registro",
+      "💼 Mira cómo se hace",
+      "✍️ Comprueba lo que aprendiste",
+      "🏢 Ahora te toca a ti",
+      "💡 Ver modelo",
+      "✅ Checklist final"
+    ]
+  },
+
+  a2:{
+    ruta:"🌱 A2 — Principiante",
+    objetivo:"Al terminar esta semana podrás usar varias combinaciones frecuentes de verbo + preposición para explicar con quién trabajas, en qué participas, de qué te encargas, de qué depende una tarea y con quién necesitas ponerte en contacto. / By the end of the week, you can use common verb + preposition combinations in simple professional messages.",
+    situacion:{
+      resumen:"Tu coordinadora te pregunta por un proyecto nuevo. Necesitas explicar en qué proyecto participas, con quién trabajas, de qué tarea te encargas y de qué depende el siguiente paso. / Your coordinator asks about a new project. You need to explain your role and next steps.",
+      datos:[
+        ["Quién habla / Who","Tú, miembro de un equipo"],
+        ["Con quién / With whom","Tu coordinadora"],
+        ["Contexto / Context","Actualización breve sobre un proyecto"],
+        ["Objetivo / Goal","Explicar participación, responsabilidad y dependencia"],
+        ["Dificultad / Challenge","Recordar qué preposición acompaña a cada verbo"]
+      ]
+    },
+    vocab:[
+      {w:"participar en",en:"to participate in",ex:"Participo en el proyecto de capacitación.",extra:"Usamos «participar en + actividad/proyecto». / Use participar en + activity/project.",stress:"par-ti-ci-PAR en"},
+      {w:"trabajar con",en:"to work with",ex:"Trabajo con el equipo de ventas.",extra:"«Con» introduce la persona o el equipo con el que colaboras. / With a person or team.",stress:"tra-ba-JAR con"},
+      {w:"encargarse de",en:"to be responsible for",ex:"Me encargo de preparar el informe.",extra:"«Encargarse de + sustantivo o infinitivo». / Be responsible for something or doing something.",stress:"en-car-GAR-se de"},
+      {w:"depender de",en:"to depend on",ex:"La entrega depende del proveedor.",extra:"La preposición fija es «de». / The fixed preposition is de.",stress:"de-pen-DER de"},
+      {w:"hablar con",en:"to speak with",ex:"Tengo que hablar con el cliente.",extra:"«Hablar con + persona» = speak with someone. / Person.",stress:"ha-BLAR con"},
+      {w:"hablar de",en:"to talk about",ex:"Vamos a hablar del presupuesto.",extra:"«Hablar de + tema» = talk about something. «de + el» = «del».",stress:"ha-BLAR de"},
+      {w:"ponerse en contacto con",en:"to contact / get in touch with",ex:"Voy a ponerme en contacto con el proveedor.",extra:"Expresión frecuente y profesional para iniciar contacto. / Professional expression for contacting someone.",stress:"po-NER-se en con-TAC-to con"},
+      {w:"contar con",en:"to count on / have available",ex:"Contamos con dos personas para esta tarea.",extra:"Puede significar tener apoyo o recursos disponibles. / Have support or resources.",stress:"con-TAR con"}
+    ],
+    phrases:[
+      {g:"Hablar de tu participación / Talk about your participation",items:[
+        {t:"Participo en el proyecto de implementación.",u:"Participar en + proyecto, reunión, actividad. / Participate in."},
+        {t:"Trabajo con el equipo de operaciones.",u:"Trabajar con + persona o equipo. / Work with."}
+      ]},
+      {g:"Explicar responsabilidades / Explain responsibilities",items:[
+        {t:"Me encargo de preparar la presentación.",u:"Encargarse de + infinitivo. / Be responsible for doing something."},
+        {t:"Mi compañera se encarga del seguimiento.",u:"De + el = del. / De + el contracts to del."}
+      ]},
+      {g:"Explicar una dependencia / Explain a dependency",items:[
+        {t:"La fecha depende de la aprobación del cliente.",u:"Depender de + persona, decisión o condición. / Depend on."},
+        {t:"El siguiente paso depende del presupuesto.",u:"«Del» = de + el."}
+      ]},
+      {g:"Contactar y conversar / Contact and talk",items:[
+        {t:"Voy a hablar con el proveedor sobre la entrega.",u:"Hablar con + persona. Puedes añadir «sobre + tema»."},
+        {t:"Voy a ponerme en contacto con el cliente esta tarde.",u:"Expresión profesional frecuente para iniciar contacto."}
+      ]}
+    ],
+    builder:{
+      labels:["Participación","Responsabilidad","Siguiente paso"],
+      choices:[
+        ["Participo en el proyecto de capacitación.","Trabajo con el equipo de soporte."],
+        ["Me encargo de preparar el informe.","Me encargo del seguimiento con el cliente."],
+        ["El siguiente paso depende de la aprobación.","Después voy a ponerme en contacto con el proveedor."]
+      ]
+    },
+    grammar:[
+      {title:"Participar en",situation:"Dices en qué actividad o proyecto formas parte.",intent:"Nombrar la actividad.",formula:"participar + en + actividad",example:"Participo en la reunión semanal.",tip:"No digas «participar de» en este uso general."},
+      {title:"Encargarse de",situation:"Explicas una responsabilidad.",intent:"Decir qué tarea es tu responsabilidad.",formula:"encargarse + de + sustantivo / infinitivo",example:"Me encargo de revisar los documentos.",tip:"Si sigue «el», se contrae: de + el = del."},
+      {title:"Depender de",situation:"Explicas qué factor condiciona un resultado.",intent:"Indicar una dependencia.",formula:"depender + de + persona / factor",example:"La fecha depende del cliente.",tip:"La preposición forma parte de la combinación: depender de."},
+      {title:"Hablar con / hablar de",situation:"Quieres distinguir persona y tema.",intent:"Indicar interlocutor o asunto.",formula:"hablar con + persona · hablar de + tema",example:"Hablo con Ana del presupuesto.",tip:"«Del» = de + el: del presupuesto."}
+    ],
+    register:{
+      context:"Necesitas informar a tu coordinadora sobre una tarea. ¿Qué opción es más clara y natural? / You need to update your coordinator.",
+      options:[
+        "Yo participo el proyecto y encargo la presentación.",
+        "Participo en el proyecto y me encargo de preparar la presentación.",
+        "Estoy dentro del proyecto y hago cosa de presentación."
+      ],
+      best:1,
+      feedback:[
+        "Faltan las preposiciones y la forma pronominal: «participar en» y «encargarse de». / The required prepositions are missing.",
+        "Es correcta, clara y reutilizable en un contexto profesional. / Correct and professional.",
+        "Se entiende parcialmente, pero no utiliza las combinaciones naturales del español profesional. / Not natural."
+      ]
+    },
+    example:{
+      text:"Participo en el proyecto de actualización del sistema y trabajo con el equipo de soporte. Me encargo de preparar el informe semanal. La fecha final depende de la aprobación del cliente, así que mañana voy a ponerme en contacto con él.",
+      parts:[
+        {p:"Participo en",e:"participar + en + proyecto / actividad"},
+        {p:"trabajo con",e:"trabajar + con + persona o equipo"},
+        {p:"Me encargo de",e:"encargarse + de + tarea"},
+        {p:"depende de",e:"depender + de + factor"},
+        {p:"ponerme en contacto con",e:"expresión profesional para contactar a alguien"}
+      ]
+    },
+    exercises:[
+      {type:"mc",q:"Completa: «Participo ___ una reunión con el cliente». / Complete.",opts:["de","en","con"],a:1,fb:"La combinación es «participar en»."},
+      {type:"text",q:"Completa: «Me encargo ___ preparar la presentación». / Complete.",a:"de",fb:"Usamos «encargarse de + infinitivo»."},
+      {type:"mc",q:"Quieres decir que una fecha está condicionada por el proveedor. ¿Qué opción es correcta?",opts:["La fecha depende con el proveedor.","La fecha depende del proveedor.","La fecha participa del proveedor."],a:1,fb:"«Depender de» es la combinación correcta. «Del» = de + el."},
+      {type:"order",q:"Ordena los bloques para construir una frase profesional. / Put the blocks in order.",tokens:["con el proveedor","Voy a ponerme","esta tarde.","en contacto"],order:["Voy a ponerme","en contacto","con el proveedor","esta tarde."],fb:"La expresión completa es «ponerse en contacto con + persona»."},
+      {type:"mc",q:"¿Qué frase habla del tema, no de la persona?",opts:["Voy a hablar con el presupuesto.","Voy a hablar del presupuesto.","Voy a hablar en el presupuesto."],a:1,fb:"«Hablar de + tema». «Del» = de + el."}
+    ],
+    practice:{
+      situacion:"Tu coordinadora te pide una actualización breve sobre un proyecto. / Your coordinator asks for a short project update.",
+      interlocutor:"Tu coordinadora / Your coordinator",
+      objetivo:"Dar una actualización clara usando correctamente varias combinaciones de verbo + preposición. / Give a clear update using verb + preposition combinations correctly.",
+      req:[
+        "Di en qué proyecto o actividad participas. / Say what you participate in.",
+        "Di con quién trabajas. / Say who you work with.",
+        "Di de qué tarea te encargas. / Say what you are responsible for.",
+        "Explica de qué depende el siguiente paso. / Explain what the next step depends on.",
+        "Termina diciendo con quién vas a hablar o ponerte en contacto. / Finish with who you will contact."
+      ],
+      support:["Participo en...","Trabajo con...","Me encargo de...","Depende de...","Voy a hablar con...","Voy a ponerme en contacto con..."],
+      placeholder:"Escribe 4–5 frases. Ejemplo de inicio: Participo en el proyecto de...",
+      model:"Participo en el proyecto de capacitación y trabajo con el equipo de recursos humanos. Me encargo de preparar los materiales. La fecha depende de la aprobación de la gerente. Mañana voy a ponerme en contacto con ella para confirmar el siguiente paso."
+    },
+    check:[
+      "Puedo usar «participar en» para hablar de proyectos y reuniones. / I can use participar en.",
+      "Puedo usar «encargarse de» para explicar una responsabilidad. / I can use encargarse de.",
+      "Puedo usar «depender de» para explicar una condición. / I can use depender de.",
+      "Puedo distinguir «hablar con» una persona y «hablar de» un tema. / I can distinguish them.",
+      "Puedo construir una actualización profesional breve usando varias combinaciones con preposición. / I can build a short professional update."
+    ]
+  },
+
+  b1:{
+    ruta:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás utilizar con mayor precisión verbos y expresiones que seleccionan una preposición, explicar responsabilidades y dependencias, hablar de colaboración y seguimiento, y evitar combinaciones que parecen lógicas por traducción pero no son naturales en español.",
+    situacion:{
+      resumen:"Coordinas una parte de un proyecto transversal. En una reunión necesitas explicar de qué te encargas, con quién cuentas, en qué estás trabajando, de qué depende un plazo y a quién debes consultar antes de tomar una decisión.",
+      datos:[
+        ["Quién habla","Tú, responsable de una parte del proyecto"],
+        ["Con quién","Equipo interno y responsable de proyecto"],
+        ["Contexto","Reunión de seguimiento"],
+        ["Objetivo","Explicar relaciones entre tareas, personas y decisiones"],
+        ["Dificultad","Elegir la preposición exigida por el verbo sin traducir literalmente"]
+      ]
+    },
+    vocab:[
+      {w:"contar con",ex:"Contamos con el apoyo del equipo jurídico.",extra:"Puede expresar disponibilidad de recursos, apoyo o personas."},
+      {w:"contribuir a",ex:"Esta mejora contribuirá a reducir los tiempos de respuesta.",extra:"Se usa con sustantivo o infinitivo para expresar aporte a un resultado."},
+      {w:"insistir en",ex:"El cliente insiste en revisar el contrato antes de firmar.",extra:"Introduce la acción o idea sobre la que alguien mantiene su posición."},
+      {w:"centrarse en",ex:"Esta semana nos centraremos en las incidencias críticas.",extra:"Útil para definir una prioridad o foco."},
+      {w:"cumplir con",ex:"Necesitamos cumplir con los requisitos del cliente.",extra:"Frecuente para requisitos, compromisos, normas y obligaciones."},
+      {w:"ocuparse de",ex:"Marta se ocupa de coordinar las entregas.",extra:"Parecido a «encargarse de», generalmente neutro y natural."},
+      {w:"consultar con",ex:"Antes de confirmar el cambio, voy a consultarlo con Finanzas.",extra:"«Consultar algo con alguien» expresa pedir opinión o validación."},
+      {w:"referirse a",ex:"Cuando hablo de «fase dos», me refiero al despliegue regional.",extra:"Útil para aclarar el significado o referente de una expresión."}
+    ],
+    phrases:[
+      {g:"Responsabilidad y apoyo",items:[
+        {t:"Me ocupo de coordinar la implementación y cuento con dos personas del equipo técnico.",u:"«Ocuparse de» expresa responsabilidad; «contar con» introduce recursos disponibles."},
+        {t:"Nos encargamos del seguimiento, pero dependemos de la aprobación de Compras.",u:"Combina responsabilidad y dependencia."}
+      ]},
+      {g:"Prioridad y objetivos",items:[
+        {t:"Esta semana nos centraremos en resolver las incidencias más urgentes.",u:"«Centrarse en» permite delimitar el foco."},
+        {t:"La nueva automatización contribuirá a reducir el trabajo manual.",u:"«Contribuir a + infinitivo» conecta una acción con un efecto."}
+      ]},
+      {g:"Requisitos y decisiones",items:[
+        {t:"Antes de avanzar, tenemos que cumplir con los requisitos de seguridad.",u:"«Cumplir con» es frecuente en contextos normativos y de compromisos."},
+        {t:"Voy a consultarlo con el área legal antes de confirmar la condición.",u:"«Consultar algo con alguien» = pedir opinión o validación."}
+      ]},
+      {g:"Aclarar una referencia",items:[
+        {t:"Cuando digo «entrega final», me refiero a la versión aprobada por el cliente.",u:"«Referirse a» sirve para precisar de qué se está hablando."},
+        {t:"El proveedor insiste en cambiar el plazo, pero todavía no hemos aceptado la propuesta.",u:"«Insistir en» introduce la acción o idea defendida."}
+      ]}
+    ],
+    builder:{
+      labels:["Responsabilidad","Dependencia o apoyo","Siguiente paso"],
+      choices:[
+        ["Me ocupo de coordinar la implementación.","Nos centramos en resolver las incidencias críticas."],
+        ["Contamos con el apoyo del equipo técnico.","El plazo depende de la aprobación de Compras."],
+        ["Voy a consultarlo con el área legal antes de confirmar.","Después nos pondremos en contacto con el proveedor."]
+      ]
+    },
+    grammar:[
+      {title:"La preposición pertenece a la combinación",situation:"El verbo expresa una relación concreta.",intent:"Evitar elegir la preposición por intuición.",formula:"depender de · insistir en · contribuir a · contar con",example:"El resultado depende de varios factores.",tip:"Aprende la combinación completa, no solo el verbo."},
+      {title:"Verbo + preposición + infinitivo",situation:"Después de la preposición viene otra acción.",intent:"Conectar el verbo con una acción.",formula:"centrarse en + infinitivo · contribuir a + infinitivo · insistir en + infinitivo",example:"Nos centraremos en mejorar el proceso.",tip:"Después de una preposición, el verbo va en infinitivo."},
+      {title:"Contracciones con de y a",situation:"La preposición va seguida de «el».",intent:"Escribir de forma natural.",formula:"de + el = del · a + el = al",example:"Depende del cliente. Contribuye al resultado.",tip:"No se contrae con «la», «los» ni «las»."},
+      {title:"Cambiar la preposición puede cambiar el sentido",situation:"Un mismo verbo admite complementos diferentes.",intent:"Distinguir persona, tema o destino.",formula:"hablar con + persona · hablar de/sobre + tema",example:"Hablé con Marta del presupuesto.",tip:"No todas las preposiciones son intercambiables."}
+    ],
+    register:{
+      context:"En una reunión de seguimiento quieres explicar una dependencia sin sonar evasivo. ¿Qué opción funciona mejor?",
+      options:[
+        "Eso depende de ellos.",
+        "El siguiente paso depende de la aprobación de Compras; en cuanto la tengamos, podremos confirmar la fecha.",
+        "No podemos hacer nada porque Compras no responde."
+      ],
+      best:1,
+      feedback:[
+        "Es gramatical, pero demasiado vaga: no identifica qué depende de qué ni el siguiente paso.",
+        "Es clara y profesional: especifica la dependencia y explica qué ocurrirá después.",
+        "Desplaza la responsabilidad hacia otra área y puede sonar acusatoria. La información puede comunicarse con más precisión."
+      ]
+    },
+    example:{
+      text:"Nos centramos en cerrar la fase de pruebas y me ocupo de coordinar las incidencias con el equipo técnico. Contamos con el apoyo de Seguridad, pero la fecha de despliegue depende de la aprobación final del cliente. Antes de confirmar el calendario, voy a consultarlo con Operaciones para asegurar que cumplimos con los requisitos.",
+      parts:[
+        {p:"Nos centramos en",e:"centrarse en + prioridad o acción"},
+        {p:"me ocupo de",e:"ocuparse de + responsabilidad"},
+        {p:"Contamos con",e:"contar con + recurso o apoyo"},
+        {p:"depende de",e:"depender de + condición"},
+        {p:"consultarlo con",e:"consultar algo con + persona/área"},
+        {p:"cumplimos con",e:"cumplir con + requisito o compromiso"}
+      ]
+    },
+    exercises:[
+      {type:"mc",q:"¿Qué combinación completa la frase? «El cliente insiste ___ revisar la propuesta antes de firmar».",opts:["de","en","con"],a:1,fb:"La combinación es «insistir en + infinitivo»."},
+      {type:"text",q:"Completa: «Esta mejora contribuirá ___ reducir los errores».",a:"a",fb:"Usamos «contribuir a + infinitivo»."},
+      {type:"mc",q:"¿Qué frase expresa disponibilidad de apoyo?",opts:["Contamos con el equipo jurídico.","Dependemos con el equipo jurídico.","Nos referimos en el equipo jurídico."],a:0,fb:"«Contar con» puede expresar que tienes apoyo o recursos disponibles."},
+      {type:"order",q:"Ordena la actualización.",tokens:["antes de confirmar el cambio.","con el área legal","Voy a consultarlo"],order:["Voy a consultarlo","con el área legal","antes de confirmar el cambio."],fb:"La construcción es «consultar algo con alguien»."},
+      {type:"mc",q:"¿Cuál opción usa correctamente la contracción?",opts:["Depende de el cliente.","Depende del cliente.","Depende al cliente."],a:1,fb:"«De + el» se contrae: «del»."},
+      {type:"mc",q:"¿Qué opción expresa una prioridad de trabajo?",opts:["Nos centramos en resolver las incidencias.","Nos centramos de resolver las incidencias.","Nos contamos con resolver las incidencias."],a:0,fb:"«Centrarse en + infinitivo» define el foco de una actividad."}
+    ],
+    practice:{
+      situacion:"En una reunión de seguimiento debes explicar el estado de un proyecto cuya fecha todavía no puede confirmarse.",
+      interlocutor:"Responsable del proyecto y equipo interno",
+      objetivo:"Organizar una actualización profesional que explique responsabilidad, apoyo, dependencia y siguiente paso.",
+      req:[
+        "Explica de qué parte te ocupas o te encargas.",
+        "Indica con qué apoyo o recursos cuentas.",
+        "Explica de qué depende el plazo.",
+        "Menciona un requisito con el que deben cumplir.",
+        "Di a quién consultarás o con quién te pondrás en contacto antes de confirmar.",
+        "Usa al menos cuatro combinaciones verbo + preposición."
+      ],
+      support:["Me ocupo de...","Contamos con...","El plazo depende de...","Tenemos que cumplir con...","Voy a consultarlo con...","Nos centraremos en..."],
+      placeholder:"Escribe 5–7 frases. Prioriza claridad: responsabilidad → dependencia → siguiente paso.",
+      model:"Me ocupo de coordinar la fase final del proyecto y contamos con el apoyo del equipo técnico. Esta semana nos centramos en cerrar las pruebas pendientes. La fecha definitiva depende de la aprobación del cliente y también tenemos que cumplir con los requisitos de Seguridad. Antes de confirmar el calendario, voy a consultarlo con Operaciones y después me pondré en contacto con el cliente."
+    },
+    check:[
+      "Puedo reconocer varias combinaciones frecuentes de verbo + preposición.",
+      "Puedo usar «contar con», «depender de», «centrarse en» y «cumplir con» en contexto.",
+      "Puedo usar una preposición seguida de infinitivo correctamente.",
+      "Puedo explicar una dependencia sin que el mensaje suene evasivo o acusatorio.",
+      "Puedo construir una actualización profesional combinando responsabilidad, condición y siguiente paso."
+    ]
+  },
+
+  b2:{
+    ruta:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás seleccionar con precisión verbos y locuciones que rigen preposición, distinguir combinaciones cercanas pero no equivalentes, ajustar el registro y reformular mensajes profesionales cuando una elección preposicional afecta el sentido, la naturalidad o la atribución de responsabilidad.",
+    situacion:{
+      resumen:"Lideras una conversación entre varias áreas sobre un cambio contractual. Debes delimitar responsabilidades, explicar de qué depende una decisión, referirte con precisión a cláusulas y compromisos, insistir en ciertos requisitos sin sonar inflexible y negociar el siguiente paso con un cliente.",
+      datos:[
+        ["Quién habla","Tú, responsable de coordinación"],
+        ["Con quién","Cliente, Legal, Operaciones y proveedor"],
+        ["Contexto","Reunión sobre condiciones y responsabilidades"],
+        ["Objetivo","Precisar relaciones entre acciones, obligaciones y actores"],
+        ["Dificultad","Elegir combinaciones idiomáticas y ajustar matices de registro"]
+      ]
+    },
+    vocab:[
+      {w:"atenerse a",ex:"Debemos atenernos a las condiciones aprobadas en el contrato.",extra:"Implica ajustarse o someterse a una norma, condición o decisión; registro formal."},
+      {w:"prescindir de",ex:"No podemos prescindir de la revisión jurídica en esta fase.",extra:"Expresa que algo o alguien no puede eliminarse o dejar de utilizarse."},
+      {w:"incidir en",ex:"El cambio de proveedor puede incidir en el plazo de entrega.",extra:"Formal-neutro; expresa influencia sobre un resultado."},
+      {w:"derivar de",ex:"El retraso deriva de una incompatibilidad detectada en las pruebas.",extra:"Relaciona un efecto con su origen o causa; frecuente en análisis."},
+      {w:"velar por",ex:"El equipo de cumplimiento vela por la aplicación de la política.",extra:"Registro formal; significa cuidar o asegurar que algo se proteja o respete."},
+      {w:"optar por",ex:"Podemos optar por una implementación gradual para reducir el riesgo.",extra:"Introduce una elección entre alternativas."},
+      {w:"comprometerse a",ex:"El proveedor se comprometió a entregar la documentación antes del viernes.",extra:"Compromiso seguido de sustantivo o infinitivo."},
+      {w:"abstenerse de",ex:"Conviene abstenerse de confirmar fechas hasta recibir la validación final.",extra:"Formal; expresa decidir no realizar una acción."}
+    ],
+    phrases:[
+      {g:"Delimitar obligaciones y criterios",items:[
+        {t:"Mientras no se apruebe una excepción, debemos atenernos a las condiciones vigentes.",u:"«Atenerse a» enfatiza sujeción a un marco establecido."},
+        {t:"No podemos prescindir de la validación jurídica porque afecta a una cláusula esencial.",u:"«Prescindir de» presenta algo como necesario o no eliminable."}
+      ]},
+      {g:"Explicar causa e impacto",items:[
+        {t:"La desviación deriva de un cambio en los requisitos técnicos y puede incidir en el calendario.",u:"«Derivar de» = origen; «incidir en» = efecto o influencia."},
+        {t:"La decisión no depende únicamente del presupuesto; también está vinculada con la capacidad operativa.",u:"Permite evitar una causalidad demasiado simple."}
+      ]},
+      {g:"Proponer y comprometer",items:[
+        {t:"Podríamos optar por una transición gradual si el proveedor se compromete a mantener el soporte durante el cambio.",u:"Combina elección y compromiso con dos regencias distintas."},
+        {t:"Nos comprometemos a revisar la propuesta antes del jueves, siempre que recibamos la documentación completa.",u:"«Comprometerse a + infinitivo» expresa una obligación asumida."}
+      ]},
+      {g:"Gestionar cautela y cumplimiento",items:[
+        {t:"Hasta disponer de la validación final, conviene abstenerse de comunicar una fecha definitiva.",u:"«Abstenerse de» introduce una acción que se evita deliberadamente."},
+        {t:"El área de Cumplimiento debe velar por que el proceso respete los controles establecidos.",u:"«Velar por» puede ir seguido de sustantivo o de «que + oración»."}
+      ]}
+    ],
+    builder:{
+      labels:["Marco o causa","Decisión","Condición o consecuencia"],
+      choices:[
+        ["Dado que debemos atenernos a las condiciones aprobadas,","Como el retraso deriva de una incompatibilidad técnica,"],
+        ["propongo optar por una implementación gradual.","conviene abstenerse de confirmar una fecha definitiva."],
+        ["El proveedor tendría que comprometerse a mantener el soporte durante la transición.","Este cambio puede incidir en el calendario y deberá revisarse con Operaciones."]
+      ]
+    },
+    grammar:[
+      {title:"Regencia preposicional y colocación",situation:"Una elección gramaticalmente posible puede sonar poco idiomática.",intent:"Seleccionar la combinación asentada en español profesional.",formula:"atenerse a · prescindir de · incidir en · optar por",example:"Optamos por una transición gradual.",tip:"En nivel avanzado importa la combinación convencional, no solo que la frase sea comprensible."},
+      {title:"Origen, dependencia e impacto no son equivalentes",situation:"Analizas causas y consecuencias.",intent:"Precisar la relación lógica.",formula:"derivar de = origen · depender de = condición · incidir en = influencia",example:"El retraso deriva de un fallo que puede incidir en el calendario.",tip:"Elegir el verbo correcto evita atribuir causalidad donde solo existe influencia."},
+      {title:"Preposición + infinitivo / por que + oración",situation:"La locución introduce una acción.",intent:"Elegir la estructura sintáctica adecuada.",formula:"comprometerse a + infinitivo · abstenerse de + infinitivo · velar por + sustantivo / por que + subjuntivo",example:"Velamos por que se cumplan los controles.",tip:"«Por que» aquí son dos palabras: preposición «por» + conjunción «que»."},
+      {title:"Responsabilidad y registro",situation:"Comunicas normas o límites.",intent:"Ajustar el grado de imposición.",formula:"atenerse a (formal) · cumplir con (neutro) · ajustarse a (formal-neutro)",example:"La propuesta debe ajustarse a los criterios acordados.",tip:"La elección modifica el tono institucional aunque el contenido sea parecido."}
+    ],
+    register:{
+      context:"Un cliente pide confirmar una fecha que todavía depende de una validación jurídica. ¿Qué respuesta gestiona mejor precisión y tono?",
+      options:[
+        "No podemos comprometernos con esa fecha porque Legal todavía no ha dado permiso.",
+        "Por ahora conviene abstenernos de confirmar una fecha definitiva, ya que la aprobación depende de la revisión jurídica. En cuanto la tengamos, podremos comprometernos con un calendario.",
+        "Nos atendremos a lo que diga Legal y ya veremos."
+      ],
+      best:1,
+      feedback:[
+        "Es comprensible, pero «comprometerse con una fecha» es posible en algunos contextos, pero aquí resulta más preciso decir «comprometerse a cumplir una fecha» o «confirmar una fecha». Además, «dar permiso» simplifica demasiado la función jurídica.",
+        "Distingue cautela, dependencia y compromiso futuro; mantiene un tono profesional sin atribuir culpa.",
+        "«Atenerse a» es posible, pero la frase queda vaga y poco colaborativa; no define el siguiente paso."
+      ]
+    },
+    example:{
+      text:"El retraso deriva de una incompatibilidad detectada durante las pruebas y puede incidir en el calendario de implantación. Aun así, no podemos prescindir de la revisión jurídica ni apartarnos de los criterios aprobados. Propongo que optemos por una transición gradual, siempre que el proveedor se comprometa a mantener el soporte. Hasta que recibamos la validación final, conviene abstenerse de comunicar una fecha definitiva.",
+      parts:[
+        {p:"deriva de",e:"marca el origen o causa del retraso"},
+        {p:"incidir en",e:"marca influencia sobre el calendario, no causalidad absoluta"},
+        {p:"prescindir de",e:"presenta la revisión como elemento necesario"},
+        {p:"optar por",e:"introduce una alternativa elegida"},
+        {p:"se comprometa a",e:"comprometerse a + infinitivo"},
+        {p:"abstenerse de",e:"introduce la acción que se evita por cautela"}
+      ]
+    },
+    exercises:[
+      {type:"mc",q:"Quieres expresar que un cambio puede influir en el calendario sin afirmar que lo determina por completo. ¿Qué opción es más precisa?",opts:["El cambio deriva del calendario.","El cambio incide en el calendario.","El cambio se abstiene del calendario."],a:1,fb:"«Incidir en» expresa influencia o repercusión."},
+      {type:"mc",q:"¿Qué opción expresa que una decisión se origina en una causa concreta?",opts:["La decisión deriva de la nueva normativa.","La decisión incide de la nueva normativa.","La decisión opta a la nueva normativa."],a:0,fb:"«Derivar de» relaciona un efecto con su origen."},
+      {type:"text",q:"Completa: «El proveedor se comprometió ___ mantener el soporte durante la transición».",a:"a",fb:"La combinación es «comprometerse a + infinitivo»."},
+      {type:"order",q:"Ordena la recomendación.",tokens:["de confirmar una fecha","conviene abstenerse","hasta recibir la validación final."],order:["conviene abstenerse","de confirmar una fecha","hasta recibir la validación final."],fb:"«Abstenerse de + infinitivo» expresa la decisión de no realizar una acción."},
+      {type:"mc",q:"¿Cuál distingue correctamente origen e impacto?",opts:["El retraso deriva de un fallo y puede incidir en el calendario.","El retraso incide de un fallo y deriva en el calendario.","El retraso depende con un fallo e incide del calendario."],a:0,fb:"«Derivar de» = origen; «incidir en» = impacto."},
+      {type:"mc",q:"¿Qué opción tiene un registro formal apropiado para una norma contractual?",opts:["Tenemos que hacer caso a lo que pone el contrato.","Debemos atenernos a las condiciones estipuladas en el contrato.","Tenemos que ir con el contrato."],a:1,fb:"«Atenerse a» es una opción formal y precisa para ajustarse a condiciones establecidas."}
+    ],
+    practice:{
+      situacion:"Un cliente solicita acelerar una implementación. Legal todavía debe revisar una cláusula y el proveedor solo acepta ampliar soporte si se modifica el calendario. Debes responder en una reunión.",
+      interlocutor:"Cliente, Legal, Operaciones y proveedor",
+      objetivo:"Responder con precisión, delimitar restricciones, proponer una alternativa y justificar el registro elegido.",
+      req:[
+        "Explica de qué deriva la limitación actual.",
+        "Indica en qué puede incidir el cambio solicitado.",
+        "Explica qué requisito no puede omitirse usando «prescindir de», «atenerse a» o «ajustarse a».",
+        "Propón una alternativa con «optar por».",
+        "Formula una condición usando «comprometerse a».",
+        "Cierra con una recomendación prudente usando «abstenerse de» o una alternativa equivalente.",
+        "Justifica al menos una elección de registro o de verbo."
+      ],
+      support:["La limitación deriva de...","Esto puede incidir en...","No podemos prescindir de...","Debemos atenernos a...","Propongo optar por...","Si el proveedor se compromete a...","Conviene abstenerse de..."],
+      placeholder:"Escribe 6–9 frases. Busca precisión causal, buen registro y un siguiente paso concreto.",
+      model:"La limitación actual deriva de una cláusula que todavía requiere revisión jurídica y cualquier cambio puede incidir en el calendario general del proyecto. No podemos prescindir de esa validación ni apartarnos de los criterios de cumplimiento ya aprobados. Propongo optar por una transición gradual para no detener el trabajo. Si el proveedor se compromete a mantener el soporte durante dos semanas adicionales, podríamos adelantar una parte de la implementación. Hasta que Legal cierre la revisión, conviene abstenerse de confirmar una fecha definitiva. Uso «conviene abstenerse de» porque mantiene un tono de cautela profesional sin presentar la decisión como una prohibición unilateral."
+    },
+    check:[
+      "Puedo distinguir regencias frecuentes y colocaciones más formales.",
+      "Puedo diferenciar «derivar de», «depender de» e «incidir en» según la relación lógica.",
+      "Puedo usar «optar por», «prescindir de», «atenerse a» y «comprometerse a» con precisión.",
+      "Puedo adaptar el registro cuando comunico normas, límites y compromisos.",
+      "Puedo justificar por qué una combinación verbo + preposición es más precisa que otra en un contexto profesional."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+let nivel=null;
+let sectionIndex=0;
+let progressMarks=new Set();
+let progressTargets=new Set();
+let quizDone=new Set();
+let vocabOpened=new Set();
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+function speak(text,slow=false){
+  if(!("speechSynthesis" in window)){
+    alert("Tu navegador no tiene disponible la función de voz.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="es-CO";
+  u.rate=slow?.72:.95;
+  const voices=window.speechSynthesis.getVoices();
+  const preferences=["es-CO","es-MX","es-US","es-419","es-ES"];
+  let voice=null;
+  for(const lang of preferences){
+    voice=voices.find(v=>v.lang && v.lang.toLowerCase()===lang.toLowerCase());
+    if(voice)break;
+  }
+  if(!voice)voice=voices.find(v=>v.lang && v.lang.toLowerCase().startsWith("es"));
+  if(voice)u.voice=voice;
+  window.speechSynthesis.speak(u);
+}
+if("speechSynthesis" in window)window.speechSynthesis.getVoices();
+
+function spanishOnly(text){
+  return String(text).split(" / ")[0].trim();
+}
+
+function audioButtons(text){
+  if(nivel!=="a2")return "";
+  const spoken=spanishOnly(text);
+  const safe=escapeHtml(spoken);
+  return `<div class="audio-row">
+    <button class="audio-btn speak" type="button" data-text="${safe}" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button>
+    <button class="audio-btn speak slow" type="button" data-text="${safe}" aria-label="Escuchar lento: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function buildProgressTargets(){
+  progressTargets=new Set();
+  const d=contenido[nivel];
+  contenido.meta.secciones.forEach((_,i)=>progressTargets.add(`section-${i}`));
+  d.vocab.forEach((_,i)=>progressTargets.add(`vocab-${i}`));
+  d.exercises.forEach((_,i)=>progressTargets.add(`quiz-${i}`));
+  d.check.forEach((_,i)=>progressTargets.add(`check-${i}`));
+  ["builder","register","example-annotation","practice","model"].forEach(x=>progressTargets.add(x));
+}
+
+function mark(id){
+  if(progressTargets.has(id)) progressMarks.add(id);
+  updateProgress();
+}
+
+function updateProgress(){
+  const total=progressTargets.size || 1;
+  const done=[...progressMarks].filter(x=>progressTargets.has(x)).length;
+  const pct=Math.round(done/total*100);
+  $("#progressBar").style.width=pct+"%";
+  $("#progressText").textContent=pct+"%";
+}
+
+function showLevelScreen(){
+  window.speechSynthesis?.cancel();
+  $("#app").classList.add("hidden");
+  $("#levelScreen").classList.remove("hidden");
+  setTimeout(()=>$(".level-card")?.focus(),20);
+}
+
+function selectLevel(lvl){
+  nivel=lvl;
+  sectionIndex=0;
+  progressMarks=new Set();
+  quizDone=new Set();
+  vocabOpened=new Set();
+  buildProgressTargets();
+  $("#routeChip").textContent=contenido[lvl].ruta;
+  $("#levelScreen").classList.add("hidden");
+  $("#app").classList.remove("hidden");
+  renderAll();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderAll(){
+  renderHero();
+  renderSidebar();
+  renderSections();
+  updateProgress();
+  showSection(0,false);
+}
+
+function renderHero(){
+  $("#hero").innerHTML=`
+    <div class="hero-kicker">Herramientas lingüísticas · Tema 21</div>
+    <h1>Verbos y expresiones con preposición</h1>
+    <p>${escapeHtml(contenido.meta.intro)}</p>`;
+}
+
+function renderSidebar(){
+  $("#sidebar").innerHTML=contenido.meta.secciones.map((s,i)=>
+    `<button type="button" class="nav-btn" data-index="${i}">${escapeHtml(s)}</button>`
+  ).join("");
+}
+
+function scenarioHtml(s){
+  return `<p>${escapeHtml(s.resumen)}</p>
+  ${nivel==="a2"?audioButtons(s.resumen):""}
+  <div class="scenario">${s.datos.map(([a,b])=>`<div><strong>${escapeHtml(a)}</strong>${escapeHtml(b)}</div>`).join("")}</div>`;
+}
+
+function vocabHtml(items){
+  return `<p class="note">Haz clic en cada tarjeta para revelar el significado, el ejemplo y la información de uso.${nivel==="a2"?" Puedes escuchar cada combinación y su ejemplo.":""}</p>
+  <div class="cards">${items.map((v,i)=>`
+    <div class="flip" data-vocab="${i}">
+      <button type="button" class="flip-toggle" aria-expanded="false">
+        <span class="flip-title">${escapeHtml(v.w)}</span>
+        <span class="micro-tip">Ver significado y ejemplo</span>
+      </button>
+      ${nivel==="a2"&&v.stress?`<div class="micro-tip">Acento: <span class="stress">${escapeHtml(v.stress)}</span></div>`:""}
+      <div class="reveal">
+        ${v.en?`<strong>${escapeHtml(v.en)}</strong>`:""}
+        <p>${escapeHtml(v.extra)}</p>
+        <div class="example-box">${escapeHtml(v.ex)}</div>
+        ${audioButtons(v.w)}
+        ${audioButtons(v.ex)}
+        ${nivel==="a2"?`<div class="recall">
+          <div class="recall-q">Recuerda / Recall: ¿qué combinación acabas de estudiar?</div>
+          <button type="button" class="details-btn recall-btn">Mostrar respuesta / Show answer</button>
+          <div class="recall-answer">${escapeHtml(v.w)} — ${escapeHtml(v.en||"")}</div>
+        </div>`:""}
+      </div>
+    </div>`).join("")}</div>`;
+}
+
+function phrasesHtml(groups){
+  return groups.map(g=>`<div class="group"><h3>${escapeHtml(g.g)}</h3>${
+    g.items.map(it=>`<div class="phrase">
+      <strong>${escapeHtml(it.t)}</strong>
+      ${audioButtons(it.t)}
+      <button type="button" class="details-btn">¿Por qué funciona?</button>
+      <div class="details">${escapeHtml(it.u)}</div>
+    </div>`).join("")
+  }</div>`).join("");
+}
+
+function builderHtml(b){
+  return `<div class="builder">
+    <p>Combina los bloques y observa cómo cambia el mensaje.</p>
+    <div class="builder-grid">${b.labels.map((lab,i)=>`
+      <label><strong>${escapeHtml(lab)}</strong>
+        <select class="builder-select" data-builder="${i}">
+          ${b.choices[i].map((x,j)=>`<option value="${j}">${escapeHtml(x)}</option>`).join("")}
+        </select>
+      </label>`).join("")}</div>
+    <div id="builderOutput" class="output" aria-live="polite"></div>
+    ${nivel==="a2"?`<div id="builderAudio"></div>`:""}
+  </div>`;
+}
+
+function grammarHtml(cards){
+  return `<div class="grammar-grid">${cards.map(g=>`
+    <div class="grammar-card">
+      <h3>${escapeHtml(g.title)}</h3>
+      <p><strong>Situación:</strong> ${escapeHtml(g.situation)}</p>
+      <p><strong>Para qué sirve:</strong> ${escapeHtml(g.intent)}</p>
+      <div class="formula">${escapeHtml(g.formula)}</div>
+      <div class="example-box">${escapeHtml(g.example)}</div>
+      ${audioButtons(g.example)}
+      ${g.tip?`<p class="micro-tip"><strong>Fíjate:</strong> ${escapeHtml(g.tip)}</p>`:""}
+    </div>`).join("")}</div>`;
+}
+
+function registerHtml(r){
+  return `<p>${escapeHtml(r.context)}</p>
+  <div class="options">${r.options.map((o,i)=>`
+    <div>
+      <button type="button" class="option register-option" data-opt="${i}">${escapeHtml(o)}</button>
+      ${audioButtons(o)}
+    </div>`).join("")}</div>
+  <div id="registerFeedback" class="feedback" aria-live="polite"></div>`;
+}
+
+function exampleHtml(e){
+  let text=escapeHtml(e.text);
+  e.parts.forEach((p,i)=>{
+    const needle=escapeHtml(p.p);
+    text=text.replace(needle,`<button type="button" class="annot" data-ann="${i}">${needle}</button>`);
+  });
+  return `<div class="example-full">
+    <p>${text}</p>
+    ${audioButtons(e.text)}
+    <div id="annotation" class="annotation">Pulsa una expresión subrayada para ver qué función cumple.</div>
+  </div>`;
+}
+
+function quizHtml(q,i){
+  if(q.type==="mc"){
+    return `<div class="quiz" data-quiz="${i}"><h3>${i+1}. ${escapeHtml(q.q)}</h3>
+      <div class="options">${q.opts.map((o,j)=>`<button type="button" class="option quiz-mc" data-answer="${j}">${escapeHtml(o)}</button>`).join("")}</div>
+      <div class="quiz-actions"><button type="button" class="btn secondary retry-quiz">Volver a intentar</button></div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>`;
+  }
+  if(q.type==="text"){
+    return `<div class="quiz" data-quiz="${i}"><h3>${i+1}. ${escapeHtml(q.q)}</h3>
+      <input type="text" class="quiz-text" autocomplete="off" aria-label="Escribe tu respuesta">
+      <div class="quiz-actions"><button type="button" class="btn check-text">Comprobar</button><button type="button" class="btn secondary retry-quiz">Volver a intentar</button></div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>`;
+  }
+  if(q.type==="order"){
+    return `<div class="quiz" data-quiz="${i}"><h3>${i+1}. ${escapeHtml(q.q)}</h3>
+      <div class="token-bank">${q.tokens.map((t,j)=>`<button type="button" class="token" data-token="${j}">${escapeHtml(t)}</button>`).join("")}</div>
+      <div class="order-output" aria-live="polite"></div>
+      <div class="quiz-actions"><button type="button" class="btn check-order">Comprobar</button><button type="button" class="btn secondary reset-order">Reiniciar</button></div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>`;
+  }
+  return "";
+}
+
+function practiceHtml(p){
+  return `<div class="scenario">
+      <div><strong>Situación</strong>${escapeHtml(p.situacion)}</div>
+      <div><strong>Interlocutor</strong>${escapeHtml(p.interlocutor)}</div>
+      <div><strong>Objetivo</strong>${escapeHtml(p.objetivo)}</div>
+    </div>
+    <h3>Tu respuesta debe incluir</h3>
+    <ul>${p.req.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
+    ${p.support?.length?`<div class="support-list">${p.support.map(x=>`<span class="support-chip">${escapeHtml(x)}</span>`).join("")}</div>`:""}
+    <textarea id="practiceText" placeholder="${escapeHtml(p.placeholder)}"></textarea>
+    <div class="quiz-actions">
+      <button type="button" class="btn" id="practiceDone">Marcar como realizada</button>
+      ${nivel==="a2"?`<button type="button" class="btn secondary" id="listenSupport">🔊 Escuchar expresiones</button>`:""}
+    </div>
+    <div id="practiceFeedback" class="feedback" aria-live="polite"></div>`;
+}
+
+function modelHtml(p){
+  return `<p>Intenta producir tu respuesta antes de abrir el modelo. Úsalo para comparar estructura, claridad y elección de preposiciones.</p>
+    <button type="button" class="btn secondary" id="toggleModel">Ver una posible respuesta</button>
+    <div id="modelBox" class="model">
+      <p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p>
+      <p>${escapeHtml(p.model)}</p>
+      ${audioButtons(p.model)}
+    </div>`;
+}
+
+function checklistHtml(items){
+  return `<p>Antes de terminar, comprueba:</p>
+    <div class="checklist">${items.map((x,i)=>`
+    <label class="check-item"><input type="checkbox" data-check="${i}"><span>${escapeHtml(x)}</span></label>`).join("")}</div>
+    <div class="check-progress" aria-label="Progreso del checklist"><div id="checkProgressBar"></div></div>
+    <div id="checkCount" class="check-count" aria-live="polite">0 de ${items.length} comprobados</div>
+    <div id="readyBox" class="ready">
+      <h3>🎯 Ya estás listo para practicar</h3>
+      <p>Durante los próximos siete días volverás a encontrar estas combinaciones en situaciones diferentes. No necesitas memorizar todo de una vez: la repetición y la adaptación forman parte del entrenamiento.</p>
+      <!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. -->
+      <a class="challenge" href="#" id="challengeLink">🔥 Ir al reto de hoy</a>
+    </div>`;
+}
+
+function sectionPanel(title,body,index){
+  const prev=index>0?`<button type="button" class="btn secondary prev-section">Anterior</button>`:`<span></span>`;
+  const next=index<contenido.meta.secciones.length-1?`<button type="button" class="btn next-section">Siguiente</button>`:`<span></span>`;
+  return `<section class="panel module-section" data-section="${index}">
+    <h2>${escapeHtml(title)}</h2>
+    ${body}
+    <div class="section-move">${prev}${next}</div>
+  </section>`;
+}
+
+function renderSections(){
+  const d=contenido[nivel];
+  const bodies=[
+    `<p>${escapeHtml(d.objetivo)}</p><p class="note">Al final del módulo comprobarás si ya puedes hacerlo.</p>${nivel==="a2"?audioButtons(d.objetivo.split(" / ")[0]):""}`,
+    scenarioHtml(d.situacion),
+    vocabHtml(d.vocab),
+    phrasesHtml(d.phrases),
+    builderHtml(d.builder),
+    grammarHtml(d.grammar),
+    registerHtml(d.register),
+    exampleHtml(d.example),
+    d.exercises.map(quizHtml).join(""),
+    practiceHtml(d.practice),
+    modelHtml(d.practice),
+    checklistHtml(d.check)
+  ];
+  $("#sections").innerHTML=contenido.meta.secciones.map((t,i)=>sectionPanel(t,bodies[i],i)).join("");
+  bindDynamicEvents();
+  updateBuilder();
+}
+
+function bindDynamicEvents(){
+  $$(".nav-btn").forEach(b=>b.addEventListener("click",()=>showSection(+b.dataset.index)));
+  $$(".next-section").forEach(b=>b.addEventListener("click",()=>showSection(sectionIndex+1)));
+  $$(".prev-section").forEach(b=>b.addEventListener("click",()=>showSection(sectionIndex-1)));
+
+  $$(".flip-toggle").forEach(btn=>btn.addEventListener("click",()=>{
+    const card=btn.closest(".flip");
+    card.classList.toggle("open");
+    btn.setAttribute("aria-expanded",card.classList.contains("open"));
+    if(card.classList.contains("open")){
+      const i=+card.dataset.vocab;
+      vocabOpened.add(i);
+      mark(`vocab-${i}`);
+    }
+  }));
+  $$(".recall-btn").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();
+    b.nextElementSibling.classList.toggle("show");
+  }));
+  $$(".details-btn:not(.recall-btn)").forEach(b=>b.addEventListener("click",()=>b.nextElementSibling.classList.toggle("show")));
+
+  $$(".speak").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();
+    speak(b.dataset.text,b.classList.contains("slow"));
+  }));
+
+  $$(".builder-select").forEach(s=>s.addEventListener("change",()=>{updateBuilder();mark("builder");}));
+
+  $$(".register-option").forEach(b=>b.addEventListener("click",()=>checkRegister(+b.dataset.opt)));
+
+  $$(".annot").forEach(b=>b.addEventListener("click",()=>{
+    const p=contenido[nivel].example.parts[+b.dataset.ann];
+    $("#annotation").textContent=p.e;
+    mark("example-annotation");
+  }));
+
+  bindQuizzes();
+
+  $("#practiceDone")?.addEventListener("click",()=>{
+    const text=$("#practiceText").value.trim();
+    const fb=$("#practiceFeedback");
+    if(text.length<35){
+      fb.className="feedback show warn";
+      fb.textContent=nivel==="a2"?"Escribe unas frases antes de marcar la práctica como realizada. / Write a few sentences first.":"Añade suficiente contenido para que la respuesta pueda evaluarse como una intervención profesional.";
+      return;
+    }
+    fb.className="feedback show good";
+    fb.textContent="Práctica marcada como realizada. Ahora compara tu estructura con el modelo, pero no necesitas copiarlo.";
+    mark("practice");
+  });
+  $("#listenSupport")?.addEventListener("click",()=>{
+    speak(contenido[nivel].practice.support.join(". "),false);
+    mark("support-audio");
+  });
+
+  $("#toggleModel")?.addEventListener("click",()=>{
+    $("#modelBox").classList.toggle("show");
+    $("#toggleModel").textContent=$("#modelBox").classList.contains("show")?"Ocultar posible respuesta":"Ver una posible respuesta";
+    if($("#modelBox").classList.contains("show"))mark("model");
+  });
+
+  $$("[data-check]").forEach(c=>c.addEventListener("change",()=>{
+    const i=+c.dataset.check;
+    if(c.checked)mark(`check-${i}`);else progressMarks.delete(`check-${i}`);
+    updateProgress();
+    const checks=$$("[data-check]");
+    const checked=checks.filter(x=>x.checked).length;
+    const pct=Math.round(checked/checks.length*100);
+    $("#checkProgressBar").style.width=pct+"%";
+    $("#checkCount").textContent=`${checked} de ${checks.length} comprobados`;
+    const all=checked===checks.length;
+    $("#readyBox").classList.toggle("show",all);
+  }));
+
+  $("#challengeLink")?.addEventListener("click",e=>{
+    if(e.currentTarget.getAttribute("href")==="#")e.preventDefault();
+  });
+}
+
+function showSection(i,scroll=true){
+  i=Math.max(0,Math.min(i,contenido.meta.secciones.length-1));
+  sectionIndex=i;
+  $$(".module-section").forEach((s,j)=>s.classList.toggle("hidden",j!==i));
+  $$(".nav-btn").forEach((b,j)=>b.classList.toggle("active",j===i));
+  mark(`section-${i}`);
+  if(scroll){
+    const target=$(".module-section:not(.hidden)");
+    target?.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+}
+
+function updateBuilder(){
+  const b=contenido[nivel].builder;
+  const values=$$(".builder-select").map((s,i)=>b.choices[i][+s.value]);
+  const sentence=values.join(" ");
+  $("#builderOutput").textContent=sentence;
+  if(nivel==="a2")$("#builderAudio").innerHTML=audioButtons(sentence);
+  if(nivel==="a2"){
+    $("#builderAudio .speak")?.addEventListener("click",e=>speak(e.currentTarget.dataset.text,e.currentTarget.classList.contains("slow")));
+  }
+}
+
+function checkRegister(i){
+  const r=contenido[nivel].register;
+  $$(".register-option").forEach((b,j)=>b.classList.toggle("selected",j===i));
+  const fb=$("#registerFeedback");
+  fb.className="feedback show "+(i===r.best?"good":"warn");
+  fb.textContent=r.feedback[i];
+  mark("register");
+}
+
+function bindQuizzes(){
+  $$(".quiz-mc").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    const i=+quiz.dataset.quiz;
+    const q=contenido[nivel].exercises[i];
+    quiz.querySelectorAll(".quiz-mc").forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected");
+    const ok=+b.dataset.answer===q.a;
+    const fb=quiz.querySelector(".feedback");
+    fb.className="feedback show "+(ok?"good":"warn");
+    fb.textContent=(ok?"Correcto. ":"Revisa la combinación. ")+q.fb;
+    if(ok){quizDone.add(i);mark(`quiz-${i}`);}
+  }));
+
+  $$(".check-text").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    const i=+quiz.dataset.quiz;
+    const q=contenido[nivel].exercises[i];
+    const val=quiz.querySelector(".quiz-text").value.trim().toLowerCase().replace(/[.,;:!?]/g,"");
+    const accepted=Array.isArray(q.a)?q.a.map(x=>x.toLowerCase()):[String(q.a).toLowerCase()];
+    const ok=accepted.includes(val);
+    const fb=quiz.querySelector(".feedback");
+    fb.className="feedback show "+(ok?"good":"warn");
+    fb.textContent=(ok?"Correcto. ":"Todavía no. ")+q.fb;
+    if(ok){quizDone.add(i);mark(`quiz-${i}`);}
+  }));
+
+  $$(".token").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    if(b.classList.contains("used"))return;
+    b.classList.add("used");
+    const output=quiz.querySelector(".order-output");
+    const piece=document.createElement("button");
+    piece.type="button";
+    piece.className="token";
+    piece.textContent=b.textContent;
+    piece.dataset.source=b.dataset.token;
+    output.appendChild(piece);
+    piece.addEventListener("click",()=>{
+      quiz.querySelector(`.token-bank .token[data-token="${piece.dataset.source}"]`).classList.remove("used");
+      piece.remove();
+    });
+  }));
+
+  $$(".reset-order").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    quiz.querySelector(".order-output").innerHTML="";
+    quiz.querySelectorAll(".token-bank .token").forEach(t=>t.classList.remove("used"));
+    quiz.querySelector(".feedback").className="feedback";
+  }));
+
+  $$(".retry-quiz").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    quiz.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+    const input=quiz.querySelector(".quiz-text");
+    if(input) input.value="";
+    const fb=quiz.querySelector(".feedback");
+    if(fb){fb.className="feedback";fb.textContent="";}
+  }));
+
+  $$(".check-order").forEach(b=>b.addEventListener("click",()=>{
+    const quiz=b.closest(".quiz");
+    const i=+quiz.dataset.quiz;
+    const q=contenido[nivel].exercises[i];
+    const got=[...quiz.querySelectorAll(".order-output .token")].map(x=>x.textContent);
+    const ok=JSON.stringify(got)===JSON.stringify(q.order);
+    const fb=quiz.querySelector(".feedback");
+    fb.className="feedback show "+(ok?"good":"warn");
+    fb.textContent=(ok?"Correcto. ":"Revisa el orden. ")+q.fb;
+    if(ok){quizDone.add(i);mark(`quiz-${i}`);}
+  }));
+}
+
+$$(".level-card").forEach(b=>b.addEventListener("click",()=>selectLevel(b.dataset.level)));
+$("#changeLevel").addEventListener("click",showLevelScreen);
+</script>
+</body>
+</html>
