@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 31 · Pretérito imperfecto | La Oficina en Español</title>
+<meta name="description" content="Módulo interactivo de Business Spanish sobre el pretérito imperfecto para describir rutinas, procesos y situaciones pasadas en el trabajo.">
+<style>
+:root{
+  --blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;
+  --ink:#172033;--muted:#5f6b7a;--line:#dbe3ef;--soft:#f5f8fc;--blue-soft:#eaf1fb;
+  --ok:#156b3f;--warn:#8a5a00;--radius:18px;--shadow:0 14px 38px rgba(0,56,147,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;background:linear-gradient(180deg,#f6f9fd,#eef3f9);color:var(--ink);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button,a{touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(252,209,22,.75);outline-offset:3px}
+.hidden{display:none!important}
+
+/* Level screen */
+#levelScreen{min-height:100vh;display:grid;place-items:center;padding:28px}
+.level-shell{width:min(1120px,100%);background:#fff;border-radius:28px;box-shadow:var(--shadow);overflow:hidden;border:1px solid #e4eaf3}
+.level-head{background:linear-gradient(135deg,var(--blue),#062d70);color:#fff;padding:42px 38px 32px}
+.brand{font-weight:900;letter-spacing:.04em;text-transform:uppercase;font-size:.9rem;color:var(--yellow)}
+.level-head h1{font-size:clamp(2rem,5vw,3.2rem);margin:.35rem 0 .6rem;line-height:1.05}
+.level-head p{max-width:760px;margin:0;color:#dce8ff;font-size:1.03rem}
+.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:28px}
+.level-card{border:2px solid var(--line);background:#fff;border-radius:20px;padding:24px;text-align:left;cursor:pointer;min-height:260px;transition:.18s transform,.18s border-color,.18s box-shadow}
+.level-card:hover,.level-card:focus-visible{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 25px rgba(0,56,147,.12)}
+.level-card .emoji{font-size:2.2rem}.level-card h2{font-size:1.25rem;margin:.65rem 0}.level-card p{color:var(--muted);margin:0}
+.level-foot{padding:0 28px 26px;color:var(--muted);font-size:.9rem}
+
+/* App shell */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1200px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
+.mini-brand{font-weight:900;color:var(--blue);white-space:nowrap}
+.route-pill{background:var(--blue-soft);color:var(--blue);padding:7px 11px;border-radius:999px;font-weight:800;font-size:.9rem}
+.change-btn{margin-left:auto;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 11px;border-radius:10px;cursor:pointer;font-weight:700}
+.progress-wrap{flex:1;min-width:160px}.progress-meta{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:4px}.progress-track{height:9px;background:#e7edf5;border-radius:99px;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2b64bf);transition:width .25s ease}
+
+.main-wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:230px minmax(0,1fr);gap:22px;padding:22px 18px 50px}
+.side-nav{position:sticky;top:76px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;max-height:calc(100vh - 95px);overflow:auto}
+.nav-btn{display:block;width:100%;text-align:left;border:0;background:transparent;padding:9px 10px;border-radius:9px;cursor:pointer;color:#364153;font-size:.9rem}.nav-btn:hover,.nav-btn.active{background:var(--blue-soft);color:var(--blue);font-weight:800}
+.content{min-width:0}
+.hero{background:linear-gradient(135deg,#fff,#edf4ff);border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:var(--shadow);margin-bottom:18px}
+.eyebrow{font-weight:900;color:var(--red);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}.hero h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.08;color:var(--blue);margin:.3rem 0 .7rem}.hero p{margin:0;color:var(--muted);max-width:850px}
+
+.section{background:#fff;border:1px solid var(--line);border-radius:20px;margin:16px 0;overflow:hidden;box-shadow:0 6px 18px rgba(21,48,84,.05)}
+.section-head{padding:20px 22px;background:linear-gradient(90deg,#fbfdff,#f3f7fc);border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center}
+.section-num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:900;flex:none}.section-title{font-size:1.18rem;font-weight:900;color:#172c52}.section-body{padding:22px}
+.callout{border-left:4px solid var(--yellow);background:#fffbe5;padding:14px 15px;border-radius:10px;margin:12px 0}.small-note{color:var(--muted);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.card h3{margin:.1rem 0 .4rem;color:var(--blue);font-size:1rem}.card p{margin:.35rem 0}.term-btn{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:16px;cursor:pointer;min-height:74px}.term-btn strong{color:var(--blue)}.term-details{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.audio-btn{border:1px solid #b9c7dc;background:#f7faff;border-radius:9px;padding:7px 10px;cursor:pointer;color:#1d3f77;font-weight:700}.audio-btn:hover{background:#eaf2ff}
+.reveal-btn,.action-btn,.next-btn,.retry-btn{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:800}.reveal-btn.secondary,.action-btn.secondary{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.choice-list{display:grid;gap:9px;margin-top:12px}.choice{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 12px;text-align:left;cursor:pointer}.choice:hover{border-color:#9fb3d1}.choice.selected{border-color:var(--blue);background:var(--blue-soft)}
+.feedback{margin-top:10px;padding:11px 12px;border-radius:10px;background:#f4f7fb;color:#27384f}.feedback.good{border-left:4px solid var(--ok)}.feedback.adjust{border-left:4px solid var(--warn)}
+.builder{display:grid;gap:12px}.builder-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end}.builder-output{background:#eef5ff;border:1px solid #bfd1eb;border-radius:12px;padding:14px;font-weight:800;color:#123a75;min-height:52px}
+label{font-weight:800;font-size:.92rem;color:#2d3d54}select,input[type="text"],textarea{width:100%;border:1px solid #bfcade;border-radius:10px;padding:11px;background:#fff;color:var(--ink)}textarea{min-height:150px;resize:vertical}.support-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{border:1px solid #c6d4e8;background:#f8fbff;border-radius:999px;padding:7px 10px;cursor:pointer;color:#234b82}
+.grammar-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:stretch}.flow-step{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fbfdff}.flow-step span{display:block;color:var(--muted);font-size:.78rem;text-transform:uppercase;font-weight:900;margin-bottom:4px}
+.model-line{border-left:3px solid var(--blue);padding:9px 12px;margin:8px 0;background:#f8fbff;border-radius:0 9px 9px 0}.function{font-size:.86rem;color:var(--muted);margin-top:3px}
+.exercise{border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}.exercise h3{font-size:1rem;margin:.1rem 0 .6rem}.exercise-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}.status{font-size:.85rem;color:var(--muted)}
+.order-area{display:flex;flex-wrap:wrap;gap:8px}.order-token{border:1px solid #bfcde2;background:#fff;border-radius:9px;padding:8px 10px;cursor:pointer}.order-answer{min-height:46px;border:1px dashed #9db2d2;border-radius:10px;padding:8px;display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;background:#f8fbff}
+.checklist{display:grid;gap:10px}.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px}.check-item input{width:20px;height:20px;margin-top:2px}.check-progress{height:10px;background:#e6edf6;border-radius:99px;overflow:hidden;margin:12px 0}.check-progress>div{height:100%;width:0;background:var(--yellow);transition:width .2s}
+.ready{border:2px solid var(--yellow);background:#fffdf0;border-radius:16px;padding:20px;margin-top:16px}.cta-link{display:inline-block;margin-top:10px;background:var(--red);color:#fff;text-decoration:none;padding:11px 15px;border-radius:10px;font-weight:900}
+.section-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.section-actions button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:700}.section-actions button:hover{border-color:var(--blue);color:var(--blue)}
+.footer{text-align:center;color:var(--muted);padding:10px 0 30px;font-size:.9rem}.footer a{color:var(--blue);font-weight:800}
+
+@media(max-width:920px){.level-grid{grid-template-columns:1fr}.level-card{min-height:auto}.main-wrap{grid-template-columns:1fr}.side-nav{position:static;display:flex;overflow:auto;gap:6px;max-height:none}.nav-btn{width:auto;white-space:nowrap}.grid,.grid-3,.grammar-flow{grid-template-columns:1fr}.builder-row{grid-template-columns:1fr}.topbar-inner{flex-wrap:wrap}.progress-wrap{order:3;flex-basis:100%}.hero{padding:24px}}
+@media(max-width:560px){#levelScreen{padding:12px}.level-head{padding:30px 20px 24px}.level-grid{padding:18px}.level-card{padding:18px}.main-wrap{padding:12px}.section-head,.section-body{padding:16px}.topbar-inner{padding:9px 10px}.mini-brand{font-size:.84rem}.route-pill{font-size:.78rem}.change-btn{padding:7px 9px}.hero{padding:20px;border-radius:18px}}
+</style>
+</head>
+<body>
+<section id="levelScreen" aria-labelledby="levelTitle">
+  <div class="level-shell">
+    <div class="level-head">
+      <div class="brand">La Oficina en Español</div>
+      <h1 id="levelTitle">¿Cuál es tu nivel de español?</h1>
+      <p>Selecciona tu ruta. Trabajarás el mismo tema profesional, pero con el apoyo y la dificultad adecuados para ti.</p>
+    </div>
+    <div class="level-grid">
+      <button type="button" class="level-card" data-level="a2" aria-label="Seleccionar A2 Principiante">
+        <div class="emoji">🌱</div><h2>A2 — Principiante</h2>
+        <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+      </button>
+      <button type="button" class="level-card" data-level="b1" aria-label="Seleccionar B1 Intermedio">
+        <div class="emoji">💼</div><h2>B1 — Intermedio</h2>
+        <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+      </button>
+      <button type="button" class="level-card" data-level="b2" aria-label="Seleccionar B2 Avanzado">
+        <div class="emoji">🚀</div><h2>B2 — Avanzado</h2>
+        <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+      </button>
+    </div>
+    <div class="level-foot">Business Spanish · Tema 31 · Pretérito imperfecto</div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="mini-brand">La Oficina en Español</div>
+      <div id="routePill" class="route-pill"></div>
+      <div class="progress-wrap" aria-label="Progreso del módulo">
+        <div class="progress-meta"><span>Progreso</span><span id="progressText">0%</span></div>
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Progreso del módulo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <button id="changeLevel" class="change-btn">Cambiar nivel</button>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <nav id="sideNav" class="side-nav" aria-label="Secciones del módulo"></nav>
+    <div class="content">
+      <section class="hero">
+        <div class="eyebrow">Tema 31 · Herramientas lingüísticas</div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+      </section>
+      <div id="sections"></div>
+      <div class="footer">Material de <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">La Oficina en Español</a>.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  meta: {
+    tema: 31,
+    nombre: "Pretérito imperfecto",
+    habilidad: "Describir cómo eran antes los procesos y las rutinas de trabajo",
+    subtitulo: "Usa el pasado para explicar hábitos, contextos y formas de trabajar anteriores, y así dar contexto a cambios, problemas o decisiones actuales."
+  },
+  a2: {
+    label:"🌱 A2 — Principiante",
+    objetivo:"Al terminar esta semana podrás describir, con frases sencillas, cómo era antes una rutina, un proceso o una situación de trabajo.",
+    objetivoNota:"Al final del módulo comprobarás si ya puedes hacerlo.",
+    situacion:{
+      texto:"Tu equipo ha cambiado la manera de preparar los pedidos. Una compañera nueva te pregunta cómo funcionaba el proceso antes. Necesitas explicar la rutina anterior, describir el sistema y mencionar algunos problemas frecuentes.",
+      quien:"Tú, como miembro del equipo / You, as a team member",
+      interlocutor:"Una compañera nueva / A new colleague",
+      contexto:"Una conversación breve durante una reunión de operaciones / A short conversation in an operations meeting",
+      objetivo:"Explicar cómo funcionaba antes el proceso / Explain how the process used to work",
+      dificultad:"Necesitas hablar del pasado sin contar un solo evento terminado / You need to describe past habits, not one finished event"
+    },
+    vocabulario:[
+      {term:"antes",meaning:"before / in the past",example:"Antes revisábamos los pedidos a mano.",extra:"Se usa para introducir una situación anterior.",stress:"AN-tes"},
+      {term:"a mano",meaning:"manually / by hand",example:"Registrábamos los datos a mano.",extra:"Útil para describir procesos sin automatización.",stress:"a MA-no"},
+      {term:"cada semana",meaning:"every week",example:"Cada semana preparábamos un informe.",extra:"Indica una rutina repetida en el pasado.",stress:"CA-da se-MA-na"},
+      {term:"soler",meaning:"to usually do / used to",example:"Solíamos llamar al proveedor los viernes.",extra:"«Solíamos + infinitivo» expresa una costumbre frecuente.",stress:"so-LER"},
+      {term:"frecuente",meaning:"frequent",example:"Había retrasos frecuentes.",extra:"Sirve para describir un problema que ocurría muchas veces.",stress:"fre-CUEN-te"}
+    ],
+    recall:{prompt:"¿Qué expresión significa ‘manually’ en este contexto?",options:["cada semana","a mano","antes"],correct:1,good:"«A mano» significa que una tarea se hacía manualmente.",other:"Busca la expresión usada para describir un proceso manual."},
+    frases:[
+      {group:"Hablar de una rutina",items:[
+        {text:"Antes revisábamos los pedidos a mano.",use:"Úsala para explicar una acción que se repetía como parte del proceso.",blocks:["Antes","revisábamos los pedidos","a mano."]},
+        {text:"Cada semana preparábamos un informe.",use:"Úsala para describir una rutina con una frecuencia clara.",blocks:["Cada semana","preparábamos","un informe."]},
+        {text:"Solíamos llamar al proveedor los viernes.",use:"Úsala para hablar de una costumbre habitual.",blocks:["Solíamos","llamar al proveedor","los viernes."]}
+      ]},
+      {group:"Describir la situación",items:[
+        {text:"El sistema era más lento.",use:"Úsala para describir cómo era una situación o un proceso.",blocks:["El sistema","era","más lento."]},
+        {text:"Había muchos pasos manuales.",use:"Úsala para explicar qué existía en ese proceso anterior.",blocks:["Había","muchos pasos","manuales."]},
+        {text:"A veces teníamos retrasos.",use:"Úsala para mencionar un problema que aparecía de forma repetida.",blocks:["A veces","teníamos","retrasos."]}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una frase sobre una rutina anterior. Elige una referencia de tiempo, una acción y un complemento.",
+      parts:[
+        {label:"Tiempo",options:["Antes","Cada semana","Normalmente"]},
+        {label:"Acción",options:["revisábamos","preparábamos","enviábamos"]},
+        {label:"Complemento",options:["los pedidos a mano.","un informe para el equipo.","la información por correo."]}
+      ]
+    },
+    gramatica:[
+      {titulo:"Acciones habituales en el pasado",situacion:"Explicas una rutina que ocurría muchas veces.",intencion:"Describir lo que el equipo hacía normalmente.",estructura:"referencia de tiempo + verbo en imperfecto",ejemplo:"Cada semana preparábamos un informe.",porque:"El imperfecto presenta la acción como parte de una rutina pasada, sin enfocarse en un inicio o final."},
+      {titulo:"Cómo era una situación",situacion:"Describes un proceso anterior.",intencion:"Dar contexto sobre sus características.",estructura:"ser / haber / tener en imperfecto",ejemplo:"El sistema era lento y había muchos pasos manuales.",porque:"Usamos el imperfecto para describir el contexto y las condiciones que existían entonces."},
+      {titulo:"Formas que necesitas",situacion:"Hablas de hábitos de trabajo.",intencion:"Formar el imperfecto de verbos frecuentes.",estructura:"-ar → -aba / -ábamos · -er/-ir → -ía / -íamos · ser → era / éramos · haber → había",ejemplo:"revisábamos · teníamos · era · había",porque:"Estas terminaciones te permiten construir las frases principales de esta semana."}
+    ],
+    registro:{
+      contexto:"Una compañera nueva te pregunta cómo se trabajaba antes. ¿Qué respuesta es más clara y profesional?",
+      opciones:[
+        {text:"Antes todo era un desastre y siempre había problemas.",quality:"adjust",feedback:"Se entiende, pero «todo era un desastre» es demasiado general y puede sonar poco profesional. Conviene describir hechos concretos."},
+        {text:"Antes revisábamos los pedidos a mano y a veces teníamos retrasos.",quality:"good",feedback:"Funciona bien: describe la rutina y el problema con información concreta y un tono neutral."},
+        {text:"Antes fue manual y tuvimos retrasos cada semana.",quality:"adjust",feedback:"Para describir una rutina habitual, el imperfecto funciona mejor: «era», «teníamos»."}
+      ]
+    },
+    modelo:{
+      intro:"Tu compañera pregunta: «¿Cómo funcionaba el proceso antes?» Una respuesta sencilla puede ser:",
+      lineas:[
+        {text:"Antes revisábamos los pedidos a mano.",funcion:"Introduce la rutina anterior."},
+        {text:"Cada semana preparábamos un informe para el equipo.",funcion:"Añade una acción repetida."},
+        {text:"El sistema era más lento y había muchos pasos manuales.",funcion:"Describe el contexto."},
+        {text:"A veces teníamos retrasos con los proveedores.",funcion:"Explica un problema frecuente."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"Quieres describir una rutina anterior. ¿Qué opción funciona mejor?",opciones:["Antes revisamos los pedidos a mano.","Antes revisábamos los pedidos a mano.","Antes vamos a revisar los pedidos a mano."],correctas:[1],feedback:"«Revisábamos» presenta la acción como una rutina habitual del pasado."},
+      {tipo:"text",pregunta:"Completa: «Cada semana ___ un informe para el equipo». (preparar)",respuesta:"preparábamos",feedback:"Con nosotros, «preparar» en imperfecto es «preparábamos»."},
+      {tipo:"mc",pregunta:"¿Qué frase describe una situación pasada?",opciones:["El sistema era más lento.","El sistema será más lento.","El sistema fue más lento ayer."],correctas:[0],feedback:"«Era» describe cómo era la situación durante un período pasado."},
+      {tipo:"order",pregunta:"Ordena la frase para describir una costumbre.",tokens:["Solíamos","llamar","al proveedor","los viernes."],answer:"Solíamos llamar al proveedor los viernes.",feedback:"«Solíamos + infinitivo» es una estructura útil para hablar de hábitos anteriores."},
+      {tipo:"mc",pregunta:"Una compañera nueva pregunta por el proceso anterior. Elige la opción más informativa.",opciones:["Era diferente.","Antes registrábamos los datos a mano y había dos revisiones.","Eso cambió."],correctas:[1],feedback:"La segunda opción explica una rutina y una característica concreta del proceso."}
+    ],
+    practica:{
+      situacion:"Tu empresa ahora usa un sistema automático para registrar solicitudes de clientes. Antes el proceso era manual. Una compañera nueva quiere entender cómo funcionaba.",
+      interlocutor:"Una compañera nueva.",
+      objetivo:"Describe el proceso anterior en 3–4 frases.",
+      requisitos:["di una acción que hacían habitualmente","describe cómo era el sistema","menciona algo que ocurría con frecuencia"],
+      apoyos:["Antes + imperfecto","Cada día/semana + imperfecto","El sistema era...","Había...","A veces teníamos..."],
+      modelo:"Antes registrábamos las solicitudes a mano. Cada día preparábamos una lista para el equipo. El sistema era más lento y había varios pasos manuales. A veces teníamos errores en los datos."
+    },
+    checklist:[
+      "Puedo reconocer una rutina pasada.",
+      "Puedo usar terminaciones básicas del imperfecto.",
+      "Puedo describir cómo era un proceso anterior.",
+      "Puedo mencionar un problema que ocurría con frecuencia.",
+      "Puedo escribir una explicación breve de 3–4 frases."
+    ]
+  },
+  b1: {
+    label:"💼 B1 — Intermedio",
+    objetivo:"Al terminar esta semana podrás explicar con claridad cómo funcionaban antes procesos, rutinas y dinámicas de trabajo para contextualizar un cambio actual.",
+    objetivoNota:"Al final del módulo comprobarás si ya puedes hacerlo con autonomía y organización.",
+    situacion:{
+      texto:"Tu equipo implantó una nueva herramienta para gestionar incidencias de clientes. Durante una reunión, una persona de otra área pregunta qué problemas resolvió el cambio. Necesitas describir cómo se trabajaba antes, qué rutinas existían y qué dificultades aparecían con frecuencia.",
+      quien:"Tú, como responsable o participante del proceso",
+      interlocutor:"Una persona de otra área",
+      contexto:"Reunión interna de revisión de procesos",
+      objetivo:"Dar contexto al cambio comparándolo con la forma anterior de trabajar",
+      dificultad:"Evitar una lista de hechos sueltos y organizar una explicación coherente"
+    },
+    vocabulario:[
+      {term:"flujo de trabajo",meaning:"Secuencia habitual de tareas dentro de un proceso.",example:"El flujo de trabajo dependía de varias aprobaciones manuales.",extra:"Colocaciones: definir, simplificar, revisar un flujo de trabajo."},
+      {term:"incidencia",meaning:"Problema o situación que requiere atención o resolución.",example:"Las incidencias se registraban en diferentes archivos.",extra:"Alternativas según contexto: problema, caso, ticket (más técnico)."},
+      {term:"cuello de botella",meaning:"Punto del proceso que limita o retrasa el avance.",example:"La aprobación del supervisor era un cuello de botella frecuente.",extra:"Muy útil para explicar por qué un proceso era lento."},
+      {term:"de forma habitual",meaning:"De manera frecuente o como práctica normal.",example:"De forma habitual, el equipo revisaba los casos al final del día.",extra:"Alternativas: normalmente, por lo general, habitualmente."},
+      {term:"depender de",meaning:"Necesitar una condición, persona o recurso para poder avanzar.",example:"El cierre del caso dependía de una confirmación del cliente.",extra:"Estructura útil esta semana: depender de + sustantivo, por ejemplo «dependía de una confirmación»."}
+    ],
+    recall:{prompt:"¿Qué término describe un punto del proceso que provoca retrasos?",options:["flujo de trabajo","cuello de botella","incidencia"],correct:1,good:"«Cuello de botella» identifica una etapa que limita el avance.",other:"Busca el término que nombra una limitación dentro del proceso."},
+    frases:[
+      {group:"Describir rutinas anteriores",items:[
+        {text:"Antes, el equipo registraba las incidencias en varios archivos.",use:"Introduce una práctica habitual anterior."},
+        {text:"Por lo general, revisábamos los casos al final de cada jornada.",use:"Explica una rutina con frecuencia habitual."},
+        {text:"El seguimiento dependía mucho de correos individuales.",use:"Describe una característica recurrente del proceso."}
+      ]},
+      {group:"Dar contexto a un cambio",items:[
+        {text:"En ese momento, no teníamos una vista única del estado de cada caso.",use:"Describe una limitación estructural del sistema anterior."},
+        {text:"A menudo, dos personas trabajaban sobre la misma incidencia sin saberlo.",use:"Explica un problema recurrente con suficiente detalle."},
+        {text:"Mientras el equipo crecía, el proceso se volvía cada vez más difícil de coordinar.",use:"Relaciona una situación en desarrollo con el contexto general."}
+      ]}
+    ],
+    builder:{
+      intro:"Organiza una explicación de tres partes: rutina anterior → limitación → consecuencia habitual.",
+      parts:[
+        {label:"Rutina",options:["Antes registrábamos las incidencias en hojas separadas.","Por lo general, cada responsable actualizaba su propio archivo.","El equipo revisaba los casos una vez al día."]},
+        {label:"Limitación",options:["No teníamos una visión común del estado.","El proceso dependía de demasiados correos.","Había varias aprobaciones manuales."]},
+        {label:"Consecuencia",options:["A menudo se duplicaba el trabajo.","Con frecuencia aparecían retrasos.","A veces era difícil saber quién tenía cada caso."]}
+      ]
+    },
+    gramatica:[
+      {titulo:"Imperfecto para hábitos y procedimientos repetidos",situacion:"Explicas cómo funcionaba normalmente un proceso.",intencion:"Presentar acciones habituales como contexto.",estructura:"marcador de frecuencia + imperfecto",ejemplo:"Por lo general, revisábamos los casos al final del día.",porque:"El foco está en la repetición o funcionamiento habitual, no en un evento único terminado."},
+      {titulo:"Imperfecto para describir condiciones",situacion:"Das contexto sobre recursos, limitaciones o características anteriores.",intencion:"Explicar cómo era la situación en ese período.",estructura:"era / había / teníamos / dependía",ejemplo:"No teníamos una vista única y había varias aprobaciones manuales.",porque:"Estas formas construyen el escenario sobre el que después puedes explicar el cambio."},
+      {titulo:"Acción en desarrollo como fondo",situacion:"Describes algo que estaba ocurriendo durante un período.",intencion:"Relacionar un proceso progresivo con otra situación.",estructura:"mientras + imperfecto",ejemplo:"Mientras el equipo crecía, el proceso se volvía más difícil de coordinar.",porque:"El imperfecto presenta ambas situaciones como procesos en desarrollo, sin destacar su inicio o final."}
+    ],
+    registro:{
+      contexto:"Explicas a otra área por qué cambió un proceso. ¿Qué formulación aporta contexto sin sonar acusatoria?",
+      opciones:[
+        {text:"Antes el equipo hacía todo mal y por eso cambiamos el sistema.",quality:"adjust",feedback:"Atribuye el problema a las personas y generaliza. Es mejor describir el funcionamiento y sus límites."},
+        {text:"Antes el proceso dependía de varias revisiones manuales y, con frecuencia, eso generaba retrasos.",quality:"good",feedback:"Describe el sistema y su efecto sin culpabilizar a nadie. El tono es útil para una revisión de procesos."},
+        {text:"Antes hubo retrasos y luego cambiamos la herramienta.",quality:"adjust",feedback:"Menciona hechos, pero no explica la rutina ni el contexto habitual que justificó el cambio."}
+      ]
+    },
+    modelo:{
+      intro:"En una revisión de procesos te preguntan qué cambió realmente. Una respuesta organizada puede ser:",
+      lineas:[
+        {text:"Antes, cada responsable registraba las incidencias en su propio archivo.",funcion:"Presenta el funcionamiento habitual anterior."},
+        {text:"No teníamos una vista común del estado de los casos y el seguimiento dependía mucho del correo.",funcion:"Describe dos limitaciones estructurales."},
+        {text:"Por eso, a menudo se duplicaba el trabajo y era difícil detectar qué casos estaban bloqueados.",funcion:"Explica consecuencias recurrentes."},
+        {text:"Ese contexto ayuda a entender por qué necesitábamos una herramienta centralizada.",funcion:"Conecta el pasado con la decisión actual."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"¿Qué frase presenta mejor una rutina anterior?",opciones:["El martes revisamos todos los casos.","Normalmente revisábamos los casos al final del día.","Mañana revisaremos los casos."],correctas:[1],feedback:"El marcador «normalmente» y el imperfecto presentan una práctica habitual."},
+      {tipo:"text",pregunta:"Completa: «El seguimiento ___ mucho del correo electrónico». (depender)",respuesta:"dependía",feedback:"«Dependía» describe una característica habitual del proceso anterior."},
+      {tipo:"mc",pregunta:"Quieres explicar una limitación estructural del proceso. ¿Qué opción es más precisa?",opciones:["Hubo un problema.","No teníamos una vista única del estado de cada caso.","Una vez falló el sistema."],correctas:[1],feedback:"La segunda opción describe una condición que existía durante ese período."},
+      {tipo:"order",pregunta:"Ordena una explicación coherente.",tokens:["Mientras el equipo crecía,","el proceso","se volvía","más difícil de coordinar."],answer:"Mientras el equipo crecía, el proceso se volvía más difícil de coordinar.",feedback:"La estructura presenta dos procesos simultáneos en desarrollo."},
+      {tipo:"mc",pregunta:"¿Qué cierre conecta mejor el contexto anterior con una decisión actual?",opciones:["Y eso era todo.","Ese contexto explica por qué necesitábamos centralizar la información.","Antes las cosas eran diferentes."],correctas:[1],feedback:"La segunda convierte la descripción del pasado en una explicación útil para el presente."}
+    ],
+    practica:{
+      situacion:"Tu empresa sustituyó un sistema de seguimiento de proyectos por una plataforma compartida. En una reunión de incorporación, una persona nueva pregunta por qué se hizo el cambio.",
+      interlocutor:"Una persona de otra área que no conoce el proceso anterior.",
+      objetivo:"Explica en 5–6 frases cómo funcionaba antes, qué limitaciones tenía y qué ocurría con frecuencia.",
+      requisitos:["organiza la respuesta con al menos un conector","incluye una rutina anterior","describe una condición del proceso","menciona una consecuencia recurrente","conecta el contexto con la necesidad del cambio"],
+      apoyos:["Antes...","Por lo general...","No teníamos...","A menudo...","Por eso...","Ese contexto explica por qué..."],
+      modelo:"Antes, cada equipo actualizaba el avance en un archivo diferente. Por lo general, revisábamos la información una vez por semana y no teníamos una vista común del proyecto. El seguimiento dependía mucho de correos y mensajes individuales. A menudo aparecían versiones distintas del mismo dato y era difícil detectar los bloqueos a tiempo. Por eso necesitábamos una herramienta compartida que centralizara la información."
+    },
+    checklist:[
+      "Puedo describir rutinas y procedimientos habituales del pasado.",
+      "Puedo explicar cómo era una situación sin limitarme a hechos aislados.",
+      "Puedo organizar una explicación con conectores y marcadores de frecuencia.",
+      "Puedo describir consecuencias recurrentes sin culpar innecesariamente a personas.",
+      "Puedo conectar el contexto anterior con una decisión o cambio actual."
+    ]
+  },
+  b2: {
+    label:"🚀 B2 — Avanzado",
+    objetivo:"Al terminar esta semana podrás reconstruir con precisión cómo funcionaba un contexto profesional anterior y utilizar ese marco para explicar cambios, riesgos o decisiones sin simplificar en exceso la situación.",
+    objetivoNota:"Al final del módulo comprobarás si puedes hacerlo con matiz, criterio de registro y buena organización discursiva.",
+    situacion:{
+      texto:"Durante una revisión con dirección, te piden explicar por qué se rediseñó un proceso de atención a clientes. La decisión fue controvertida: algunas personas consideran que el sistema anterior funcionaba bien. Necesitas reconstruir cómo operaba realmente, distinguir prácticas habituales de problemas puntuales y mostrar qué condiciones hacían el modelo poco escalable.",
+      quien:"Tú, como responsable de proyecto o persona que conoce la operación",
+      interlocutor:"Dirección y responsables de otras áreas",
+      contexto:"Revisión de una decisión de cambio de proceso",
+      objetivo:"Dar contexto suficiente para que la decisión se entienda sin caricaturizar el sistema anterior",
+      dificultad:"Mantener precisión, neutralidad y matiz cuando existen interpretaciones distintas"
+    },
+    vocabulario:[
+      {term:"modelo operativo",meaning:"Forma estable en que se organizan procesos, responsabilidades y recursos para ejecutar una operación.",example:"El modelo operativo dependía de una coordinación muy informal entre áreas.",extra:"Más amplio que «proceso»: puede incluir funciones, decisiones y flujos de información."},
+      {term:"trazabilidad",meaning:"Capacidad de seguir el historial, estado y responsables de una acción o dato.",example:"La trazabilidad era limitada porque los cambios se registraban en canales distintos.",extra:"Frecuente en operaciones, calidad, logística, tecnología y cumplimiento."},
+      {term:"escalabilidad",meaning:"Capacidad de un sistema para crecer sin perder eficiencia o control de forma desproporcionada.",example:"El proceso funcionaba con un equipo pequeño, pero tenía poca escalabilidad.",extra:"Útil para evitar la afirmación simplista de que un sistema «no funcionaba»."},
+      {term:"de manera reactiva",meaning:"Actuando principalmente después de que aparece un problema, en lugar de anticiparlo.",example:"Los bloqueos se gestionaban de manera reactiva.",extra:"Contraste útil: enfoque reactivo / preventivo / proactivo."},
+      {term:"estar condicionado por",meaning:"Depender significativamente de una circunstancia o limitación.",example:"La capacidad de respuesta estaba condicionada por la disponibilidad de dos personas clave.",extra:"Permite expresar dependencia sin presentar una relación causal absoluta."}
+    ],
+    recall:{prompt:"¿Qué término permite decir que un proceso funcionaba, pero no podía crecer con facilidad?",options:["trazabilidad","escalabilidad","incidencia"],correct:1,good:"«Escalabilidad» describe la capacidad de crecer sin aumentar de forma desproporcionada la complejidad o el coste.",other:"Busca el término relacionado con crecimiento sostenible del sistema."},
+    frases:[
+      {group:"Reconstruir el contexto con precisión",items:[
+        {text:"El modelo funcionaba razonablemente bien mientras el volumen se mantenía estable.",use:"Introduce una valoración matizada: reconoce una fortaleza y delimita la condición en la que era válida."},
+        {text:"La coordinación dependía en gran medida del conocimiento tácito de unas pocas personas.",use:"Describe una dependencia estructural sin atribuir culpa."},
+        {text:"Cuando surgían excepciones, los equipos tendían a resolverlas de manera reactiva.",use:"Explica un patrón de comportamiento repetido."}
+      ]},
+      {group:"Explicar límites sin exagerar",items:[
+        {text:"La trazabilidad era suficiente para los casos estándar, pero se volvía frágil cuando intervenían varias áreas.",use:"Contrasta funcionamiento básico y limitaciones en escenarios complejos."},
+        {text:"A medida que aumentaba el volumen, cada ajuste requería más coordinación manual.",use:"Relaciona dos procesos graduales y muestra cómo crecía la fricción."},
+        {text:"El problema no era un fallo puntual, sino una dependencia que se repetía cada vez que cambiaba la prioridad.",use:"Distingue un patrón estructural de un incidente aislado."}
+      ]}
+    ],
+    builder:{
+      intro:"Construye una explicación matizada: condición válida → límite estructural → efecto cuando aumentaba la exigencia.",
+      parts:[
+        {label:"Condición",options:["El modelo funcionaba bien mientras el volumen se mantenía estable.","La coordinación era suficiente cuando intervenía un solo equipo.","La trazabilidad resultaba adecuada en los casos estándar."]},
+        {label:"Límite",options:["Sin embargo, dependía demasiado del conocimiento de personas concretas.","No obstante, la información estaba repartida entre varios canales.","Aun así, cada excepción requería coordinación manual adicional."]},
+        {label:"Efecto",options:["A medida que aumentaba la carga, los retrasos se volvían más frecuentes.","Cuando intervenían varias áreas, era difícil reconstruir quién había decidido qué.","Conforme crecía el volumen, el coste de coordinación aumentaba de forma desproporcionada."]}
+      ]
+    },
+    gramatica:[
+      {titulo:"Imperfecto como marco descriptivo",situacion:"Necesitas reconstruir un sistema anterior sin narrar una secuencia de eventos.",intencion:"Presentar condiciones, patrones y funcionamiento de fondo.",estructura:"imperfecto para estados + hábitos + procesos en desarrollo",ejemplo:"La coordinación dependía del conocimiento tácito y los equipos resolvían las excepciones de manera reactiva.",porque:"El imperfecto sitúa al oyente dentro del marco operativo y permite analizar cómo funcionaba el sistema de forma habitual."},
+      {titulo:"Relaciones graduales",situacion:"Explicas cómo cambiaba una situación a medida que otra evolucionaba.",intencion:"Mostrar una relación progresiva sin reducirla a un único momento.",estructura:"a medida que / conforme + imperfecto, imperfecto",ejemplo:"A medida que aumentaba el volumen, cada ajuste requería más coordinación manual.",porque:"Ambos procesos se presentan como evoluciones paralelas dentro de un período."},
+      {titulo:"Matizar generalizaciones",situacion:"El sistema anterior no era simplemente «bueno» o «malo».",intencion:"Delimitar cuándo una afirmación era válida.",estructura:"funcionaba... mientras / cuando / siempre que + contexto pasado",ejemplo:"El modelo funcionaba razonablemente bien mientras el volumen se mantenía estable.",porque:"El imperfecto ayuda a formular una evaluación condicionada por el contexto, evitando juicios absolutos."}
+    ],
+    registro:{
+      contexto:"Dirección cuestiona si el rediseño era realmente necesario. ¿Qué formulación ofrece más rigor?",
+      opciones:[
+        {text:"El sistema anterior era ineficiente y ya no servía.",quality:"adjust",feedback:"Es demasiado absoluta. Si el sistema funcionaba en ciertos escenarios, conviene explicitar esas condiciones antes de señalar sus límites."},
+        {text:"El sistema funcionaba en un entorno de menor volumen, pero su trazabilidad dependía de demasiados controles manuales y se volvía frágil cuando intervenían varias áreas.",quality:"good",feedback:"Reconoce el contexto en el que funcionaba y delimita con precisión la condición que lo hacía menos sostenible."},
+        {text:"Antes había problemas, así que decidimos cambiarlo.",quality:"adjust",feedback:"No distingue patrones de incidentes ni ofrece suficiente evidencia descriptiva para justificar una decisión controvertida."}
+      ]
+    },
+    modelo:{
+      intro:"En una reunión de revisión, puedes reconstruir el contexto sin convertir el pasado en una caricatura:",
+      lineas:[
+        {text:"El modelo anterior funcionaba razonablemente bien mientras el volumen de casos se mantenía estable y la mayoría de las incidencias seguían un recorrido estándar.",funcion:"Reconoce las condiciones en las que el sistema era suficiente."},
+        {text:"La dificultad aparecía cuando intervenían varias áreas, porque la trazabilidad dependía de correos, notas y conocimiento tácito.",funcion:"Delimita el escenario donde surgía el límite estructural."},
+        {text:"A medida que aumentaba el volumen, cada excepción requería más coordinación manual y los bloqueos se gestionaban de manera cada vez más reactiva.",funcion:"Describe una evolución gradual del problema."},
+        {text:"Por eso, el rediseño no respondía a un fallo aislado, sino a un patrón que se repetía cuando la operación ganaba complejidad.",funcion:"Interpreta el contexto sin exagerar ni culpabilizar."}
+      ]
+    },
+    ejercicios:[
+      {tipo:"mc",pregunta:"¿Qué formulación evita una generalización excesiva?",opciones:["El sistema era malo.","El sistema funcionaba bien mientras el volumen se mantenía estable.","El sistema falló muchas veces."],correctas:[1],feedback:"La segunda delimita la validez de la afirmación y aporta contexto."},
+      {tipo:"text",pregunta:"Completa: «A medida que ___ el volumen, aumentaba la coordinación manual». (crecer)",respuesta:"crecía",feedback:"La estructura presenta dos procesos graduales que evolucionaban en paralelo."},
+      {tipo:"mc",pregunta:"¿Qué frase distingue mejor un patrón de un incidente aislado?",opciones:["Una vez hubo un retraso.","Los retrasos aparecían cada vez que la aprobación dependía de varias áreas.","Ayer hubo un retraso importante."],correctas:[1],feedback:"El imperfecto y «cada vez que» presentan una regularidad dentro del período analizado."},
+      {tipo:"order",pregunta:"Ordena una formulación matizada.",tokens:["La trazabilidad","era suficiente","en los casos estándar,","pero se volvía frágil cuando intervenían varias áreas."],answer:"La trazabilidad era suficiente en los casos estándar, pero se volvía frágil cuando intervenían varias áreas.",feedback:"La frase reconoce una fortaleza y delimita con precisión el contexto en que aparecía la limitación."},
+      {tipo:"mc",pregunta:"¿Cuál de estas explicaciones sería más útil ante una dirección escéptica?",opciones:["Antes todo era más difícil.","El proceso funcionaba con poco volumen, pero se volvía difícil de escalar cuando aumentaban las excepciones.","Cambiamos porque la herramienta nueva era mejor."],correctas:[1],feedback:"La segunda explica condiciones, límite y efecto; por eso sostiene mejor la decisión."}
+    ],
+    practica:{
+      situacion:"Dirección revisa un rediseño que centralizó la gestión de reclamaciones. Una persona sostiene que el proceso anterior «funcionaba perfectamente» y cuestiona la inversión.",
+      interlocutor:"Dirección y responsables de áreas con perspectivas diferentes.",
+      objetivo:"Responde en 7–9 frases reconstruyendo el contexto anterior y explicando por qué el rediseño tenía sentido.",
+      requisitos:["reconoce al menos una condición en la que el sistema anterior sí funcionaba","describe dos patrones habituales con imperfecto","incluye una relación gradual con «a medida que» o «conforme»","evita culpar a personas","distingue un límite estructural de un incidente puntual","cierra conectando el contexto con la decisión"],
+      apoyos:["funcionaba razonablemente bien mientras...","la dificultad aparecía cuando...","dependía en gran medida de...","a medida que aumentaba...","no respondía a un fallo aislado, sino a..."],
+      modelo:"El proceso anterior funcionaba razonablemente bien mientras el volumen de reclamaciones se mantenía estable y la mayoría de los casos seguían un recorrido estándar. La coordinación dependía, sin embargo, de varias revisiones manuales y del conocimiento tácito de personas concretas. Cuando intervenían dos o más áreas, la trazabilidad se volvía menos fiable y era difícil reconstruir el estado real del caso. A medida que aumentaba el volumen, cada excepción requería más intercambios y los bloqueos se resolvían de manera reactiva. Eso no significa que el sistema fallara siempre; significa que su capacidad estaba condicionada por un contexto de menor complejidad. El rediseño buscaba reducir esa dependencia y hacer visible el estado de los casos en un único punto. Por eso la decisión respondía a un patrón operativo recurrente, no a un incidente aislado."
+    },
+    checklist:[
+      "Puedo usar el imperfecto para reconstruir un marco operativo anterior.",
+      "Puedo distinguir patrones habituales de incidentes puntuales.",
+      "Puedo matizar una valoración indicando en qué condiciones era válida.",
+      "Puedo describir relaciones graduales con precisión.",
+      "Puedo explicar límites estructurales sin culpabilizar ni simplificar en exceso.",
+      "Puedo conectar el contexto pasado con una decisión actual de forma convincente."
+    ]
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionDefs = [
+  ["objetivo","🎯","TU OBJETIVO ESTA SEMANA"],
+  ["situacion","🏢","LA SITUACIÓN"],
+  ["vocabulario","🗣️","VOCABULARIO CLAVE"],
+  ["frases","💬","FRASES QUE PUEDES USAR"],
+  ["builder","🧩","CONSTRUYE TU MENSAJE"],
+  ["gramatica","📚","GRAMÁTICA QUE NECESITAS"],
+  ["registro","🎭","ELIGE EL REGISTRO"],
+  ["modelo","💼","MIRA CÓMO SE HACE"],
+  ["ejercicios","✍️","COMPRUEBA LO QUE APRENDISTE"],
+  ["practica","🏢","AHORA TE TOCA A TI"],
+  ["vermodelo","💡","VER MODELO"],
+  ["checklist","✅","CHECKLIST FINAL"]
+];
+
+let currentLevel = null;
+let completed = new Set();
+let progressTargets = new Set();
+let orderedState = {};
+
+function esc(s){return String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));}
+function slug(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+
+// Reusable A2 speech system
+let voices=[];
+function refreshVoices(){voices=window.speechSynthesis?window.speechSynthesis.getVoices():[];}
+if('speechSynthesis' in window){refreshVoices();window.speechSynthesis.onvoiceschanged=refreshVoices;}
+function bestSpanishVoice(){
+  if(!voices.length) refreshVoices();
+  const prefs=[/es-CO/i,/es-(MX|US|AR|CL|PE|VE|EC|UY|CR|PA|DO|GT|HN|NI|SV|BO|PY|PR)/i,/^es/i];
+  for(const re of prefs){const v=voices.find(x=>re.test(x.lang));if(v)return v;}
+  return null;
+}
+function speakSpanish(text,slow=false,actionId=null){
+  if(actionId) markAction('audio-use');
+  if(!('speechSynthesis' in window)){
+    alert('La función de audio no está disponible en este navegador. El resto del módulo funciona normalmente.');return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const voice=bestSpanishVoice(); if(voice)u.voice=voice;
+  u.lang=voice?.lang || 'es-CO'; u.rate=slow?.76:.96; u.pitch=1;
+  window.speechSynthesis.speak(u);
+}
+
+function audioButtons(text,id){
+  if(currentLevel!=="a2") return "";
+  const safe=esc(text);
+  return `<div class="audio-row"><button class="audio-btn" type="button" data-speak="${safe}" data-slow="0" data-action="audio-${id}" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button><button class="audio-btn" type="button" data-speak="${safe}" data-slow="1" data-action="audio-slow-${id}" aria-label="Escuchar lento: ${safe}">🐢 Lento / Slow</button></div>`;
+}
+
+function buildSection(id,index,title,body){
+  const prevDisabled=index===1?' disabled':'';
+  const nextDisabled=index===sectionDefs.length?' disabled':'';
+  const nextText=index===sectionDefs.length?'Módulo completado':'Siguiente →';
+  return `<section class="section" id="sec-${id}" data-section="${id}"><div class="section-head"><div class="section-num">${index}</div><div class="section-title">${title}</div></div><div class="section-body">${body}<div class="section-actions"><button type="button" data-prev="${index-1}"${prevDisabled}>← Anterior</button><button type="button" data-next="${index+1}"${nextDisabled}>${nextText}</button></div></div></section>`;
+}
+
+function render(){
+  const d=contenido[currentLevel];
+  document.getElementById('routePill').textContent=`Tu ruta: ${d.label}`;
+  document.getElementById('heroTitle').textContent=contenido.meta.habilidad;
+  document.getElementById('heroSubtitle').textContent=contenido.meta.subtitulo;
+  document.getElementById('sideNav').innerHTML=sectionDefs.map((s,i)=>`<button class="nav-btn" data-target="sec-${s[0]}">${i+1}. ${s[1]} ${s[2].toLowerCase()}</button>`).join('');
+
+  let html='';
+  html+=buildSection('objetivo',1,'🎯 TU OBJETIVO ESTA SEMANA',`<p><strong>${esc(d.objetivo)}</strong></p><div class="callout">${esc(d.objetivoNota)}</div>`);
+  html+=buildSection('situacion',2,'🏢 LA SITUACIÓN',`<p>${esc(d.situacion.texto)}</p><div class="grid"><div class="card"><h3>Quién habla</h3><p>${esc(d.situacion.quien)}</p></div><div class="card"><h3>Con quién</h3><p>${esc(d.situacion.interlocutor)}</p></div><div class="card"><h3>Contexto</h3><p>${esc(d.situacion.contexto)}</p></div><div class="card"><h3>Qué quieres conseguir</h3><p>${esc(d.situacion.objetivo)}</p></div></div><div class="callout"><strong>Dificultad:</strong> ${esc(d.situacion.dificultad)}</div>`);
+
+  const vocabCards=d.vocabulario.map((v,i)=>`<div class="card"><button class="term-btn" type="button" data-reveal="vocab-${i}" data-action="vocab-${i}"><strong>${esc(v.term)}</strong><div class="small-note">Toca para recordar y revelar</div></button><div id="vocab-${i}" class="term-details hidden"><p><strong>Significado:</strong> ${esc(v.meaning)}</p><p><strong>Ejemplo:</strong> ${esc(v.example)}</p><p class="small-note">${esc(v.extra||'')}</p>${currentLevel==='a2'&&v.stress?`<p class="small-note"><strong>Pronunciación:</strong> ${esc(v.stress)}</p>`:''}${audioButtons(v.term,`vterm-${i}`)}${audioButtons(v.example,`vex-${i}`)}</div></div>`).join('');
+  const recall=`<div class="card"><h3>Recupera una palabra</h3><p>${esc(d.recall.prompt)}</p><div class="choice-list">${d.recall.options.map((o,i)=>`<button class="choice" type="button" data-recall="${i}">${esc(o)}</button>`).join('')}</div><div id="recallFeedback" class="feedback hidden"></div></div>`;
+  html+=buildSection('vocabulario',3,'🗣️ VOCABULARIO CLAVE',`<div class="grid">${vocabCards}</div><div style="margin-top:14px">${recall}</div>`);
+
+  const frases=d.frases.map((g,gi)=>`<div class="card"><h3>${esc(g.group)}</h3>${g.items.map((it,ii)=>`<div style="padding:10px 0;border-top:${ii?'1px solid var(--line)':'0'}"><strong>${esc(it.text)}</strong>${audioButtons(it.text,`fr-${gi}-${ii}`)}${currentLevel==='a2'&&it.blocks?`<div class="small-note" style="margin-top:8px">${it.blocks.map(b=>`<span class="chip" style="display:inline-block">${esc(b)}</span>`).join(' → ')}</div>`:''}<div style="margin-top:8px"><button type="button" class="reveal-btn secondary" data-reveal="frase-${gi}-${ii}" data-action="frase-${gi}-${ii}">Ver cuándo usarla</button><div id="frase-${gi}-${ii}" class="feedback hidden">${esc(it.use)}</div></div></div>`).join('')}</div>`).join('');
+  html+=buildSection('frases',4,'💬 FRASES QUE PUEDES USAR',`<div class="grid">${frases}</div>`);
+
+  const builderControls=d.builder.parts.map((p,i)=>`<div><label for="build-${i}">${esc(p.label)}</label><select id="build-${i}" data-builder>${p.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>${currentLevel==='a2'?`<div class="audio-row"><button type="button" class="audio-btn" data-builder-speak="${i}" data-slow="0" aria-label="Escuchar el bloque seleccionado: ${esc(p.label)}">🔊 Escuchar / Listen</button><button type="button" class="audio-btn" data-builder-speak="${i}" data-slow="1" aria-label="Escuchar lentamente el bloque seleccionado: ${esc(p.label)}">🐢 Lento / Slow</button></div>`:''}</div>`).join('');
+  html+=buildSection('builder',5,'🧩 CONSTRUYE TU MENSAJE',`<p>${esc(d.builder.intro)}</p><div class="builder"><div class="builder-row">${builderControls}<button class="action-btn" id="buildBtn" type="button">Construir</button></div><div id="builderOutput" class="builder-output" aria-live="polite">Elige tus opciones y construye el mensaje.</div><div id="builderAudio"></div></div>`);
+
+  const gram=d.gramatica.map((g,i)=>`<div class="card"><h3>${esc(g.titulo)}</h3><div class="grammar-flow"><div class="flow-step"><span>Situación</span>${esc(g.situacion)}</div><div class="flow-step"><span>Intención</span>${esc(g.intencion)}</div><div class="flow-step"><span>Estructura</span>${esc(g.estructura)}</div><div class="flow-step"><span>Ejemplo</span>${esc(g.ejemplo)}${audioButtons(g.ejemplo,`gram-${i}`)}</div></div><button class="reveal-btn secondary" type="button" data-reveal="gram-${i}" data-action="gram-${i}">¿Por qué se usa así?</button><div id="gram-${i}" class="feedback hidden">${esc(g.porque)}</div></div>`).join('');
+  html+=buildSection('gramatica',6,'📚 GRAMÁTICA QUE NECESITAS',`<div class="small-note">Situación → intención → estructura → ejemplo</div><div style="display:grid;gap:12px;margin-top:12px">${gram}</div>`);
+
+  const reg=d.registro.opciones.map((o,i)=>`<div class="card" style="padding:10px"><button class="choice" style="width:100%" type="button" data-register="${i}">${esc(o.text)}</button>${audioButtons(o.text,`reg-${i}`)}</div>`).join('');
+  html+=buildSection('registro',7,'🎭 ELIGE EL REGISTRO',`<p>${esc(d.registro.contexto)}</p><div class="choice-list">${reg}</div><div id="registerFeedback" class="feedback hidden"></div>`);
+
+  const model=d.modelo.lineas.map((l,i)=>`<div class="model-line"><strong>${esc(l.text)}</strong>${audioButtons(l.text,`model-${i}`)}<div class="function">${esc(l.funcion)}</div></div>`).join('');
+  const fullModel=d.modelo.lineas.map(x=>x.text).join(' ');
+  html+=buildSection('modelo',8,'💼 MIRA CÓMO SE HACE',`<p>${esc(d.modelo.intro)}</p>${model}${audioButtons(fullModel,'model-full')}`);
+
+  const exHtml=d.ejercicios.map((e,i)=>renderExercise(e,i)).join('');
+  html+=buildSection('ejercicios',9,'✍️ COMPRUEBA LO QUE APRENDISTE',`<p class="small-note">Responde, revisa el feedback y vuelve a intentar si lo necesitas.</p>${exHtml}`);
+
+  html+=buildSection('practica',10,'🏢 AHORA TE TOCA A TI',`<p><strong>Situación:</strong> ${esc(d.practica.situacion)}</p><p><strong>Interlocutor:</strong> ${esc(d.practica.interlocutor)}</p><p><strong>Objetivo:</strong> ${esc(d.practica.objetivo)}</p><div class="grid"><div class="card"><h3>Incluye</h3><ul>${d.practica.requisitos.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div><div class="card"><h3>Recursos que puedes usar</h3><div class="support-chips">${d.practica.apoyos.map((a,i)=>`<button type="button" class="chip" data-support="${esc(a)}" data-action="support-${i}">${esc(a)}</button>`).join('')}</div>${currentLevel==='a2'?`<div id="supportAudio"></div>`:''}</div></div><label for="practiceText">Tu respuesta</label><textarea id="practiceText" placeholder="Escribe aquí tu respuesta..."></textarea><div class="exercise-actions"><button id="practiceDone" type="button" class="action-btn">He terminado mi respuesta</button><span id="practiceStatus" class="status" aria-live="polite"></span></div>`);
+
+  html+=buildSection('vermodelo',11,'💡 VER MODELO',`<p>Compara tu respuesta después de haber intentado resolver la situación.</p><button id="showPracticeModel" type="button" class="reveal-btn">Ver una posible respuesta</button><div id="practiceModel" class="card hidden" style="margin-top:12px"><p><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong></p><p>${esc(d.practica.modelo)}</p>${audioButtons(d.practica.modelo,'practice-model')}</div>`);
+
+  const checks=d.checklist.map((c,i)=>`<label class="check-item"><input type="checkbox" data-check="${i}"><span>${esc(c)}</span></label>`).join('');
+  html+=buildSection('checklist',12,'✅ CHECKLIST FINAL',`<p>Antes de terminar, comprueba:</p><div class="checklist">${checks}</div><div class="check-progress" aria-label="Progreso del checklist"><div id="checkBar"></div></div><div id="checkText" class="small-note">0 de ${d.checklist.length} completados</div><div id="readyBox" class="ready hidden"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p><p>No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p><!-- Sustituir # por la URL real del reto diario cuando esté disponible --><a class="cta-link" href="#">🔥 Ir al reto de hoy</a></div>`);
+
+  document.getElementById('sections').innerHTML=html;
+  attachEvents();
+  calculateProgressModel();
+  observeSections();
+}
+
+function renderExercise(e,i){
+  const id=`ex-${i}`;
+  let body='';
+  if(e.tipo==='mc'){
+    body=`<div class="choice-list">${e.opciones.map((o,j)=>`<div class="card" style="padding:9px"><button type="button" class="choice" style="width:100%" data-ex-choice="${i}:${j}">${esc(o)}</button>${audioButtons(o,`${id}-${j}`)}</div>`).join('')}</div>`;
+  } else if(e.tipo==='text'){
+    body=`<label for="${id}-input">Tu respuesta</label><input type="text" id="${id}-input"><div class="exercise-actions"><button type="button" class="action-btn" data-check-text="${i}">Comprobar</button><button type="button" class="retry-btn" data-retry="${i}">Reintentar</button></div>${audioButtons(e.pregunta,`${id}-q`)}`;
+  } else if(e.tipo==='order'){
+    body=`<div id="${id}-tokens" class="order-area">${e.tokens.map((t,j)=>`<button type="button" class="order-token" data-order="${i}:${j}">${esc(t)}</button>`).join('')}</div><div id="${id}-answer" class="order-answer" aria-label="Tu frase ordenada"></div><div class="exercise-actions"><button type="button" class="action-btn" data-check-order="${i}">Comprobar</button><button type="button" class="retry-btn" data-retry-order="${i}">Reiniciar</button></div>`;
+  }
+  return `<div class="exercise" id="${id}"><h3>${i+1}. ${esc(e.pregunta)}</h3>${body}<div id="${id}-feedback" class="feedback hidden" aria-live="polite"></div></div>`;
+}
+
+function attachEvents(){
+  document.querySelectorAll('[data-speak]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();speakSpanish(btn.dataset.speak,btn.dataset.slow==='1',btn.dataset.action);
+  }));
+  document.querySelectorAll('[data-builder-speak]').forEach(btn=>btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const select=document.getElementById(`build-${btn.dataset.builderSpeak}`);
+    if(select) speakSpanish(select.value,btn.dataset.slow==='1','audio-use');
+  }));
+  document.querySelectorAll('[data-reveal]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.getElementById(btn.dataset.reveal).classList.toggle('hidden');markAction(btn.dataset.action||`reveal-${btn.dataset.reveal}`);
+  }));
+  document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>document.getElementById(btn.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'})));
+  document.querySelectorAll('[data-next]').forEach(btn=>btn.addEventListener('click',()=>gotoSection(Number(btn.dataset.next))));
+  document.querySelectorAll('[data-prev]').forEach(btn=>btn.addEventListener('click',()=>gotoSection(Number(btn.dataset.prev))));
+
+  document.querySelectorAll('[data-recall]').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=Number(btn.dataset.recall), d=contenido[currentLevel].recall;
+    const fb=document.getElementById('recallFeedback');fb.classList.remove('hidden','good','adjust');
+    fb.classList.add(i===d.correct?'good':'adjust');fb.textContent=i===d.correct?d.good:d.other;markAction('recall');
+  }));
+  document.getElementById('buildBtn').addEventListener('click',()=>{
+    const vals=[...document.querySelectorAll('[data-builder]')].map(x=>x.value);
+    const text=vals.join(' ');
+    document.getElementById('builderOutput').textContent=text;
+    document.getElementById('builderAudio').innerHTML=currentLevel==='a2'?audioButtons(text,'builder-result'):'';
+    if(currentLevel==='a2') document.querySelectorAll('#builderAudio [data-speak]').forEach(btn=>btn.addEventListener('click',()=>speakSpanish(btn.dataset.speak,btn.dataset.slow==='1',btn.dataset.action)));
+    markAction('builder');
+  });
+
+  document.querySelectorAll('[data-register]').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=Number(btn.dataset.register), o=contenido[currentLevel].registro.opciones[i];
+    const fb=document.getElementById('registerFeedback');fb.classList.remove('hidden','good','adjust');fb.classList.add(o.quality==='good'?'good':'adjust');fb.textContent=o.feedback;markAction('register');
+  }));
+
+  document.querySelectorAll('[data-ex-choice]').forEach(btn=>btn.addEventListener('click',()=>{
+    const [ei,oi]=btn.dataset.exChoice.split(':').map(Number), e=contenido[currentLevel].ejercicios[ei], ok=e.correctas.includes(oi);
+    document.querySelectorAll(`[data-ex-choice^="${ei}:"]`).forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
+    showExFeedback(ei,ok,e.feedback);if(ok)markAction(`exercise-${ei}`);
+  }));
+  document.querySelectorAll('[data-check-text]').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=Number(btn.dataset.checkText), e=contenido[currentLevel].ejercicios[i], val=document.getElementById(`ex-${i}-input`).value.trim().toLowerCase();
+    const ok=normalize(val)===normalize(e.respuesta);showExFeedback(i,ok,ok?e.feedback:`Todavía no. Revisa la forma del verbo y vuelve a intentarlo. Pista: ${e.respuesta.length} caracteres.`);if(ok)markAction(`exercise-${i}`);
+  }));
+  document.querySelectorAll('[data-retry]').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.retry);document.getElementById(`ex-${i}-input`).value='';document.getElementById(`ex-${i}-feedback`).classList.add('hidden');}));
+  orderedState={};
+  document.querySelectorAll('[data-order]').forEach(btn=>btn.addEventListener('click',()=>{
+    const [ei,ti]=btn.dataset.order.split(':').map(Number);orderedState[ei]??=[]; if(orderedState[ei].includes(ti))return;orderedState[ei].push(ti);btn.disabled=true;renderOrder(ei);
+  }));
+  document.querySelectorAll('[data-check-order]').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=Number(btn.dataset.checkOrder), e=contenido[currentLevel].ejercicios[i], text=(orderedState[i]||[]).map(j=>e.tokens[j]).join(' '), ok=normalize(text)===normalize(e.answer);showExFeedback(i,ok,ok?e.feedback:'El orden todavía no construye la frase esperada. Reinicia y prueba otra vez.');if(ok)markAction(`exercise-${i}`);
+  }));
+  document.querySelectorAll('[data-retry-order]').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.retryOrder);orderedState[i]=[];document.querySelectorAll(`[data-order^="${i}:"]`).forEach(x=>x.disabled=false);renderOrder(i);document.getElementById(`ex-${i}-feedback`).classList.add('hidden');}));
+
+  document.querySelectorAll('[data-support]').forEach(btn=>btn.addEventListener('click',()=>{
+    const ta=document.getElementById('practiceText');ta.value+=(ta.value?' ':'')+btn.dataset.support;ta.focus();markAction(btn.dataset.action);
+  }));
+  document.getElementById('practiceDone').addEventListener('click',()=>{
+    const val=document.getElementById('practiceText').value.trim();const st=document.getElementById('practiceStatus');
+    if(val.length<20){st.textContent='Escribe una respuesta un poco más completa antes de marcarla como terminada.';return;}
+    st.textContent='Respuesta registrada para tu propia comparación.';markAction('practice');
+  });
+  document.getElementById('showPracticeModel').addEventListener('click',()=>{document.getElementById('practiceModel').classList.toggle('hidden');markAction('show-model');});
+  document.querySelectorAll('[data-check]').forEach(cb=>cb.addEventListener('change',()=>{updateChecklist();markAction(`check-${cb.dataset.check}`,cb.checked);}));
+}
+
+function normalize(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,;:!?¿¡]/g,'').replace(/\s+/g,' ').trim();}
+function showExFeedback(i,ok,text){const fb=document.getElementById(`ex-${i}-feedback`);fb.classList.remove('hidden','good','adjust');fb.classList.add(ok?'good':'adjust');fb.textContent=text;}
+function renderOrder(i){const e=contenido[currentLevel].ejercicios[i];document.getElementById(`ex-${i}-answer`).innerHTML=(orderedState[i]||[]).map(j=>`<span class="chip">${esc(e.tokens[j])}</span>`).join('');}
+function gotoSection(n){if(n<1)n=1;if(n>sectionDefs.length)n=sectionDefs.length;document.getElementById(`sec-${sectionDefs[n-1][0]}`)?.scrollIntoView({behavior:'smooth',block:'start'});}
+
+function calculateProgressModel(){
+  completed=new Set();
+  progressTargets=new Set();
+  const d=contenido[currentLevel];
+  sectionDefs.forEach(([id])=>progressTargets.add(`section-${id}`));
+  d.vocabulario.forEach((_,i)=>progressTargets.add(`vocab-${i}`));
+  d.frases.forEach((g,gi)=>g.items.forEach((_,ii)=>progressTargets.add(`frase-${gi}-${ii}`)));
+  d.gramatica.forEach((_,i)=>progressTargets.add(`gram-${i}`));
+  d.ejercicios.forEach((_,i)=>progressTargets.add(`exercise-${i}`));
+  d.checklist.forEach((_,i)=>progressTargets.add(`check-${i}`));
+  progressTargets.add('recall');
+  progressTargets.add('builder');
+  progressTargets.add('register');
+  progressTargets.add('practice');
+  progressTargets.add('show-model');
+  if(currentLevel==='a2') progressTargets.add('audio-use');
+  updateProgress();
+}
+function markAction(id,state=true){
+  if(!id || !progressTargets.has(id)) return;
+  if(state) completed.add(id); else completed.delete(id);
+  updateProgress();
+}
+function updateProgress(){
+  const total=Math.max(1,progressTargets.size);
+  const done=[...completed].filter(id=>progressTargets.has(id)).length;
+  const pct=Math.min(100,Math.round((done/total)*100));
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'%';
+  document.getElementById('progressTrack')?.setAttribute('aria-valuenow',String(pct));
+}
+function updateChecklist(){const boxes=[...document.querySelectorAll('[data-check]')], checked=boxes.filter(x=>x.checked).length,pct=Math.round(checked/boxes.length*100);document.getElementById('checkBar').style.width=pct+'%';document.getElementById('checkText').textContent=`${checked} de ${boxes.length} completados`;document.getElementById('readyBox').classList.toggle('hidden',checked!==boxes.length);}
+
+let observer;
+function observeSections(){if(observer)observer.disconnect();observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.dataset.section;markAction(`section-${id}`);document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.target===`sec-${id}`));}})},{rootMargin:'-20% 0px -60% 0px',threshold:.05});document.querySelectorAll('[data-section]').forEach(s=>observer.observe(s));}
+
+function chooseLevel(level){
+  currentLevel=level;
+  document.getElementById('levelScreen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  render();window.scrollTo({top:0,behavior:'auto'});
+}
+document.querySelectorAll('[data-level]').forEach(btn=>btn.addEventListener('click',()=>chooseLevel(btn.dataset.level)));
+document.getElementById('changeLevel').addEventListener('click',()=>{
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  currentLevel=null;document.getElementById('app').classList.add('hidden');document.getElementById('levelScreen').classList.remove('hidden');window.scrollTo({top:0,behavior:'auto'});
+});
+</script>
+</body>
+</html>

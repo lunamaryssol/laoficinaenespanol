@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tema 35 de Herramientas Lingüísticas: perífrasis progresivas aplicadas al español para trabajar.">
+  <title>Tema 35 · Perífrasis progresivas | La Oficina en Español</title>
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#002766;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#13223a;
+      --muted:#5b6678;
+      --surface:#f6f8fc;
+      --line:#dfe5ee;
+      --ok:#15683d;
+      --warn:#8a5a00;
+      --shadow:0 16px 42px rgba(0,56,147,.12);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f7f9fd 0%,#ffffff 38%,#f7f9fd 100%);
+      font-family:Montserrat,Arial,sans-serif;
+      line-height:1.6;
+    }
+    button,input,select,textarea{font:inherit}
+    button,a{touch-action:manipulation}
+    a{color:var(--blue)}
+    .hidden{display:none!important}
+    .brand-title,.hero h1,.level-screen h1{
+      font-family:"Archivo Black",Montserrat,Arial,sans-serif;
+      letter-spacing:-.02em;
+    }
+    .level-screen{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:28px 18px;
+      background:
+        radial-gradient(circle at 12% 10%,rgba(252,209,22,.22),transparent 25%),
+        radial-gradient(circle at 88% 90%,rgba(206,17,38,.10),transparent 25%),
+        var(--blue);
+      color:white;
+    }
+    .level-shell{width:min(1080px,100%)}
+    .brand-kicker{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:7px 12px;
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      font-weight:800;
+      font-size:.92rem;
+    }
+    .level-screen h1{font-size:clamp(2rem,6vw,4.2rem);line-height:1.05;margin:22px 0 10px}
+    .level-intro{max-width:740px;color:#e9efff;font-size:1.07rem;margin:0 0 26px}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .level-card{
+      text-align:left;
+      min-height:235px;
+      border:2px solid transparent;
+      border-radius:22px;
+      padding:22px;
+      background:white;
+      color:var(--ink);
+      cursor:pointer;
+      box-shadow:0 12px 34px rgba(0,0,0,.16);
+      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .level-card:hover,.level-card:focus-visible{
+      transform:translateY(-3px);
+      border-color:var(--yellow);
+      box-shadow:0 18px 42px rgba(0,0,0,.22);
+      outline:none;
+    }
+    .level-card strong{display:block;font-size:1.3rem;margin:8px 0}
+    .level-card p{margin:0;color:#4a566a;font-size:.96rem}
+    .route-symbol{font-size:2rem}
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      width:min(1120px,calc(100% - 28px));
+      margin:auto;
+      display:grid;
+      grid-template-columns:minmax(180px,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:12px 0;
+    }
+    .brand-row{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-mark{
+      width:42px;height:42px;border-radius:12px;background:var(--blue);
+      display:grid;place-items:center;color:var(--yellow);font-weight:1000;
+      box-shadow:inset 0 -5px 0 var(--red);
+      flex:0 0 auto;
+    }
+    .brand-title{font-size:1rem;color:var(--blue);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .route-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .route-pill{font-weight:800;background:#eef3ff;color:var(--blue);border-radius:999px;padding:8px 12px;font-size:.9rem}
+    .ghost-btn,.small-btn,.audio-btn,.reveal-btn,.nav-btn,.choice-btn,.primary-btn{
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:white;
+      color:var(--ink);
+      padding:10px 13px;
+      cursor:pointer;
+      font-weight:750;
+      min-height:44px;
+    }
+    .ghost-btn:hover,.small-btn:hover,.audio-btn:hover,.reveal-btn:hover,.nav-btn:hover,.choice-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .progress-wrap{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .progress-track{height:9px;border-radius:999px;background:#e7ebf2;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2e6fe0);transition:width .28s ease}
+    .progress-label{font-size:.82rem;color:var(--muted);font-weight:700}
+    .section-nav{
+      width:min(1120px,calc(100% - 28px));
+      margin:12px auto 0;
+      display:flex;gap:8px;overflow-x:auto;padding:0 0 11px;
+      scrollbar-width:thin;
+    }
+    .nav-btn{white-space:nowrap;font-size:.84rem;padding:8px 11px;min-height:38px}
+    main{width:min(1000px,calc(100% - 28px));margin:28px auto 70px}
+    .hero{
+      background:var(--blue);color:white;border-radius:28px;padding:clamp(25px,5vw,48px);
+      box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:22px;
+    }
+    .hero:after{
+      content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+      right:-95px;top:-75px;background:var(--yellow);opacity:.18;
+    }
+    .hero .eyebrow{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+    .hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;margin:10px 0}
+    .hero p{max-width:780px;margin:0;color:#edf3ff;font-size:1.05rem}
+    .hero-link{display:inline-flex;margin-top:18px;color:white;font-weight:800;text-decoration-thickness:2px;text-underline-offset:3px}
+    details.section-card{
+      background:white;border:1px solid var(--line);border-radius:var(--radius);
+      margin:15px 0;box-shadow:0 9px 28px rgba(26,49,83,.07);overflow:hidden;
+    }
+    details.section-card[open]{box-shadow:var(--shadow);border-color:#cfd9ea}
+    details.section-card summary{
+      list-style:none;cursor:pointer;padding:19px 20px;font-weight:900;color:var(--blue);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:1.05rem;
+    }
+    details.section-card summary::-webkit-details-marker{display:none}
+    details.section-card summary:after{content:"＋";font-size:1.4rem;color:var(--blue)}
+    details.section-card[open] summary:after{content:"−"}
+    .section-body{padding:0 20px 22px;border-top:1px solid #edf0f5}
+    .section-body>p:first-child{margin-top:18px}
+    .hint{
+      background:#fff9d9;border-left:4px solid var(--yellow);padding:12px 14px;border-radius:10px;
+      color:#594900;margin:14px 0;
+    }
+    .situation-grid,.card-grid,.grammar-grid,.model-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .info-card,.vocab-card,.phrase-card,.grammar-card,.model-card,.activity,.practice-card,.builder-card{
+      border:1px solid var(--line);border-radius:16px;background:#fbfcfe;padding:16px;
+    }
+    .info-card strong,.grammar-card strong{color:var(--blue)}
+    .vocab-card{padding:0;overflow:hidden;background:white}
+    .vocab-head{
+      width:100%;border:0;background:white;padding:16px;text-align:left;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);font-weight:900;
+    }
+    .vocab-head:after{content:"Ver";font-size:.78rem;color:var(--blue);font-weight:800}
+    .vocab-card.open .vocab-head:after{content:"Ocultar"}
+    .vocab-body{display:none;padding:0 16px 16px;border-top:1px solid var(--line)}
+    .vocab-card.open .vocab-body{display:block}
+    .vocab-body p{margin:.7rem 0}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef3ff;color:var(--blue);font-size:.78rem;font-weight:800;margin-right:6px}
+    .stress{font-weight:900;letter-spacing:.02em}
+    .audio-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .audio-btn{font-size:.82rem;padding:8px 10px;min-height:38px}
+    .audio-note{font-size:.83rem;color:var(--muted)}
+    .phrase-group{margin:18px 0}
+    .phrase-group h3{font-size:1rem;color:var(--blue);margin:0 0 10px}
+    .phrase-card{margin:9px 0;background:white}
+    .phrase-top{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+    .phrase-text{font-weight:850}
+    .reveal{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed #cad3e1;color:#49566c}
+    .reveal.show{display:block}
+    .meaning-blocks{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:10px 0}
+    .meaning-blocks span{background:#eef3ff;color:var(--blue);border-radius:9px;padding:7px 9px;font-weight:800}
+    .meaning-blocks .arrow{background:transparent;color:#8590a2;padding:0}
+    .builder-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+    .field label{display:block;font-weight:800;font-size:.85rem;margin-bottom:5px}
+    select,input[type="text"],textarea{
+      width:100%;border:1px solid #cbd4e1;border-radius:12px;padding:11px 12px;background:white;color:var(--ink);
+    }
+    textarea{min-height:150px;resize:vertical}
+    select:focus,input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid rgba(0,56,147,.22);outline-offset:2px}
+    .built-output{
+      margin-top:12px;border-left:4px solid var(--blue);background:#eef3ff;padding:12px 14px;border-radius:10px;font-weight:800;
+    }
+    .grammar-card .flow{font-size:.86rem;color:var(--muted);margin:.4rem 0}
+    .structure{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#eef3ff;padding:7px 9px;border-radius:8px;color:var(--blue);font-weight:800;display:inline-block}
+    .register-options,.mcq-options{display:grid;gap:9px;margin-top:12px}
+    .choice-btn{text-align:left;background:white}
+    .choice-btn.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.12)}
+    .feedback{display:none;margin-top:11px;border-radius:10px;padding:11px 12px;background:#eef3ff;border-left:4px solid var(--blue)}
+    .feedback.show{display:block}
+    .feedback.good{background:#ecf8f1;border-left-color:var(--ok);color:#12492d}
+    .feedback.note{background:#fff8e8;border-left-color:#d89a16;color:#64430a}
+    .model-sentence{font-size:1.02rem}
+    .model-parts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .model-part{border:1px dashed #9fb0ca;background:white;border-radius:9px;padding:7px 9px;cursor:pointer}
+    .model-function{min-height:42px;margin-top:10px;color:var(--muted);font-size:.9rem}
+    .activity{margin:12px 0;background:white}
+    .activity h3{margin:.1rem 0 .5rem;font-size:1rem}
+    .activity-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .primary-btn{background:var(--blue);border-color:var(--blue);color:white}
+    .primary-btn:hover{background:var(--blue-dark)}
+    .secondary-btn{background:white}
+    .order-bank,.order-built{display:flex;flex-wrap:wrap;gap:8px;min-height:50px;padding:10px;border:1px dashed #acb8ca;border-radius:12px;margin:10px 0}
+    .order-chip{border:1px solid #cfd7e3;background:white;border-radius:10px;padding:8px 10px;cursor:pointer}
+    .practice-card{background:#f8faff}
+    .requirements{margin:10px 0 16px;padding-left:20px}
+    .support-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:12px 0}
+    .support-item{background:white;border:1px solid var(--line);border-radius:12px;padding:11px}
+    .model-hidden{display:none;margin-top:12px;padding:14px;border-radius:12px;background:#eef3ff}
+    .model-hidden.show{display:block}
+    .check-item{
+      display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #edf0f5;
+    }
+    .check-item input{width:21px;height:21px;accent-color:var(--blue);margin-top:2px}
+    .check-progress{height:10px;background:#e4e9f1;border-radius:999px;overflow:hidden;margin:12px 0}
+    .check-progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s ease}
+    .completion{
+      display:none;margin-top:18px;border-radius:18px;background:var(--blue);color:white;padding:20px;
+    }
+    .completion.show{display:block}
+    .completion h3{margin:0;color:var(--yellow)}
+    .completion p{color:#eef3ff}
+    .completion .primary-btn{background:var(--yellow);border-color:var(--yellow);color:#1c2d4b;text-decoration:none;display:inline-flex;align-items:center}
+    .retrieval{margin-top:16px;border:1px dashed #a9b7cb;border-radius:15px;padding:15px;background:#fafcff}
+    .retrieval h3{margin-top:0}
+    footer{
+      background:var(--blue-dark);color:#eef3ff;padding:28px 18px;text-align:center;
+    }
+    footer a{color:var(--yellow);font-weight:800}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:820px){
+      .level-grid{grid-template-columns:1fr}
+      .level-card{min-height:auto}
+      .situation-grid,.card-grid,.grammar-grid,.model-grid,.support-grid{grid-template-columns:1fr}
+      .builder-row{grid-template-columns:1fr}
+      .topbar-inner{grid-template-columns:1fr}
+      .route-box{justify-content:flex-start}
+      .progress-wrap{grid-column:1}
+    }
+    @media(max-width:520px){
+      .hero{border-radius:20px}
+      details.section-card summary,.section-body{padding-left:15px;padding-right:15px}
+      .route-pill{font-size:.8rem}
+      .ghost-btn{font-size:.82rem}
+      .brand-title{white-space:normal}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <section id="level-screen" class="level-screen" aria-labelledby="level-title">
+    <div class="level-shell">
+      <span class="brand-kicker">La Oficina en Español · Herramientas Lingüísticas</span>
+      <h1 id="level-title">¿Cuál es tu nivel de español?</h1>
+      <p class="level-intro">Elige una ruta para abrir el Tema 35. Todos trabajan la misma habilidad profesional; cambian el apoyo, la autonomía y la dificultad.</p>
+      <div class="level-grid">
+        <button class="level-card" data-level="a2" type="button">
+          <span class="route-symbol" aria-hidden="true">🌱</span>
+          <strong>A2 — Principiante</strong>
+          <p>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</p>
+        </button>
+        <button class="level-card" data-level="b1" type="button">
+          <span class="route-symbol" aria-hidden="true">💼</span>
+          <strong>B1 — Intermedio</strong>
+          <p>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</p>
+        </button>
+        <button class="level-card" data-level="b2" type="button">
+          <span class="route-symbol" aria-hidden="true">🚀</span>
+          <strong>B2 — Avanzado</strong>
+          <p>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">LO</div>
+          <div>
+            <div class="brand-title">La Oficina en Español</div>
+            <div style="font-size:.78rem;color:var(--muted)">Tema 35 · Herramientas Lingüísticas</div>
+          </div>
+        </div>
+        <div class="route-box">
+          <span id="route-pill" class="route-pill"></span>
+          <button id="change-level" class="ghost-btn" type="button">Cambiar nivel</button>
+        </div>
+        <div class="progress-wrap" aria-label="Progreso del módulo">
+          <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+          <span id="progress-label" class="progress-label">0%</span>
+        </div>
+      </div>
+      <nav id="section-nav" class="section-nav" aria-label="Secciones del módulo"></nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Tema 35 · Perífrasis progresivas</div>
+        <h1 id="hero-title"></h1>
+        <p id="hero-subtitle"></p>
+        <a class="hero-link" href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">laoficinaenespanol.com</a>
+      </section>
+      <div id="module-content"></div>
+    </main>
+
+    <footer>
+      <strong>La Oficina en Español</strong><br>
+      Aprende y practica el español que necesitas para trabajar.<br>
+      <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener noreferrer">laoficinaenespanol.com</a>
+    </footer>
+  </div>
+
+<script>
+"use strict";
+
+// ===== CONTENIDO EDITABLE DE LA SEMANA =====
+const contenido = {
+  a2: {
+    route:"🌱 A2 — Principiante",
+    title:"Cómo informar avances y evolución de proyectos en curso",
+    subtitle:"Usarás perífrasis progresivas sencillas para decir que una tarea continúa, que un proyecto avanza gradualmente y que un proceso lleva cierto tiempo en marcha. / You will use simple progressive verb structures to report continuity, gradual progress and duration.",
+    objective:"Al terminar este módulo podrás dar una actualización breve sobre un proyecto: decir qué continúa, qué va avanzando y cuánto tiempo lleva una actividad en marcha. / By the end, you can give a short project update: what continues, what is gradually progressing, and how long an activity has been in progress.",
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo. / At the end, you will check whether you can already do it.",
+    situation:{
+      lead:"Eres parte de un equipo que está implementando un nuevo sistema. En una reunión breve, tu responsable te pide una actualización. / You are part of a team implementing a new system. In a short meeting, your manager asks for an update.",
+      items:[
+        ["Quién habla / Who speaks","Tú, como miembro del equipo."],
+        ["Con quién / With whom","Tu responsable y dos compañeros."],
+        ["Contexto / Context","Reunión semanal de seguimiento."],
+        ["Objetivo / Goal","Explicar qué continúa y cómo avanza el proyecto."],
+        ["Dificultad / Challenge","Varias tareas todavía no están terminadas, así que necesitas hablar del proceso, no solo del resultado."]
+      ]
+    },
+    vocab:[
+      {term:"seguir",meaning:"to continue / seguir haciendo una actividad",example:"Seguimos revisando los datos.",extra:"Estructura útil: seguir + gerundio.",stress:"se-GUIR"},
+      {term:"avanzar",meaning:"to progress / progresar",example:"El proyecto va avanzando.",extra:"Con ir + gerundio, expresa progreso gradual.",stress:"a-van-ZAR"},
+      {term:"proceso",meaning:"process / serie de pasos",example:"El proceso sigue funcionando bien.",extra:"Colocación útil: proceso de implementación.",stress:"pro-CE-so"},
+      {term:"revisar",meaning:"to review / comprobar información",example:"Seguimos revisando el informe.",extra:"Gerundio: revisando.",stress:"re-vi-SAR"},
+      {term:"mejorar",meaning:"to improve / hacerse mejor",example:"El tiempo de respuesta va mejorando.",extra:"Gerundio: mejorando.",stress:"me-jo-RAR"},
+      {term:"llevar",meaning:"to have been doing for a period of time",example:"Llevamos dos semanas probando el sistema.",extra:"Estructura: llevar + tiempo + gerundio.",stress:"lle-VAR"}
+    ],
+    retrieval:{
+      title:"Recupera el vocabulario / Recall the vocabulary",
+      questions:[
+        {prompt:"Which Spanish verb means “to continue”?",options:["seguir","mejorar","revisar"],answer:0,feedback:"Seguir expresa continuidad. Ejemplo: Seguimos trabajando."},
+        {prompt:"Escucha la palabra y elige su significado. / Listen and choose the meaning.",audio:"avanzar",options:["to stop","to progress","to repeat"],answer:1,feedback:"Avanzar significa progresar."}
+      ]
+    },
+    phrases:[
+      {group:"Decir que una actividad continúa / Say an activity continues",items:[
+        {text:"Seguimos revisando los datos.",use:"Úsala cuando la actividad empezó antes y todavía continúa. / Use it when the activity started earlier and is still continuing.",blocks:["Seguimos","revisando","los datos."]},
+        {text:"El equipo sigue trabajando en la propuesta.",use:"Con un sujeto singular como “el equipo”, usa sigue. / With a singular subject, use sigue.",blocks:["El equipo","sigue trabajando","en la propuesta."]}
+      ]},
+      {group:"Decir que algo progresa / Say something is progressing",items:[
+        {text:"El proyecto va avanzando.",use:"Ir + gerundio muestra un cambio o progreso gradual. / It shows gradual change or progress.",blocks:["El proyecto","va avanzando."]},
+        {text:"Los resultados van mejorando.",use:"Con sujeto plural, usa van + gerundio. / With a plural subject, use van + gerund.",blocks:["Los resultados","van mejorando."]}
+      ]},
+      {group:"Decir cuánto tiempo lleva una actividad / Say how long it has been happening",items:[
+        {text:"Llevamos dos semanas probando el sistema.",use:"Llevar + tiempo + gerundio indica duración acumulada hasta ahora. / It shows accumulated duration up to now.",blocks:["Llevamos","dos semanas","probando el sistema."]}
+      ]}
+    ],
+    builders:[
+      {type:"select",prompt:"Construye una actualización de continuidad. / Build a continuity update.",leftLabel:"Inicio",left:["Seguimos","El equipo sigue"],rightLabel:"Actividad",right:["revisando el informe.","probando el sistema.","preparando la propuesta."]},
+      {type:"select",prompt:"Construye una actualización de progreso. / Build a progress update.",leftLabel:"Proceso",left:["El proyecto va","La implementación va","El tiempo de respuesta va"],rightLabel:"Progreso",right:["avanzando.","mejorando.","cambiando poco a poco."]}
+    ],
+    grammar:[
+      {situation:"Una tarea empezó antes y todavía continúa.",intention:"Mostrar continuidad.",structure:"seguir + gerundio",example:"Seguimos preparando la presentación.",why:"No dices que la tarea está terminada. Dices que continúa ahora. / You are saying the task is still continuing."},
+      {situation:"Quieres mostrar progreso gradual.",intention:"Mostrar evolución.",structure:"ir + gerundio",example:"El proyecto va avanzando.",why:"La idea es “poco a poco”. / The idea is gradual progress."},
+      {situation:"Quieres indicar duración hasta el presente.",intention:"Decir cuánto tiempo lleva una actividad.",structure:"llevar + tiempo + gerundio",example:"Llevamos tres días revisando los datos.",why:"La actividad empezó antes y todavía continúa. / The activity started earlier and is still ongoing."}
+    ],
+    register:{
+      context:"Tu responsable te pregunta por un retraso en una reunión. Quieres explicar que el equipo continúa trabajando.",
+      options:[
+        {text:"Seguimos trabajando en ello y esperamos terminar mañana.",preferred:true,feedback:"Funciona bien: es claro, profesional y explica continuidad más un siguiente paso."},
+        {text:"Todavía estamos con eso.",preferred:false,feedback:"Se entiende, pero “estar con eso” es impreciso para una actualización profesional. Conviene nombrar la acción o el proyecto."},
+        {text:"Andamos mirando eso.",preferred:false,feedback:"Es bastante informal y poco preciso para informar a un responsable en una reunión."}
+      ]
+    },
+    models:[
+      {title:"Actualización breve / Short update",text:"Seguimos revisando los datos. El proyecto va avanzando y los resultados van mejorando. Llevamos dos semanas probando el nuevo sistema.",parts:[
+        ["Seguimos revisando los datos.","Continuidad: la revisión todavía está en marcha."],
+        ["El proyecto va avanzando","Progreso gradual del proyecto."],
+        ["los resultados van mejorando","Cambio positivo gradual."],
+        ["Llevamos dos semanas probando el nuevo sistema.","Duración acumulada hasta ahora."]
+      ]}
+    ],
+    exercises:[
+      {type:"mcq",title:"1. Elige la estructura / Choose the structure",prompt:"El proyecto comenzó hace un mes y todavía continúa. ¿Qué frase expresa mejor continuidad?",options:["El proyecto sigue avanzando.","El proyecto acabó avanzando.","El proyecto dejó de avanzar."],answer:0,feedback:"Seguir + gerundio expresa que la acción continúa."},
+      {type:"fill",title:"2. Completa / Complete",prompt:"El equipo ______ preparando la propuesta.",answer:["sigue"],feedback:"Con “el equipo” (singular): El equipo sigue preparando la propuesta."},
+      {type:"order",title:"3. Ordena / Put in order",prompt:"Construye una frase para expresar duración.",pieces:["Llevamos","dos semanas","probando","el sistema."],answer:"Llevamos dos semanas probando el sistema.",feedback:"Llevar + tiempo + gerundio: Llevamos dos semanas probando el sistema."}
+    ],
+    practice:{
+      situation:"En la reunión semanal, tu responsable pregunta: “¿Cómo va la implementación del nuevo sistema?” / In the weekly meeting, your manager asks: “How is the new system implementation going?”",
+      interlocutor:"Tu responsable y tu equipo. / Your manager and team.",
+      objective:"Da una actualización de 3 frases. / Give a 3-sentence update.",
+      requirements:["di una actividad que continúa / say one activity that continues","di qué va avanzando o mejorando / say what is gradually progressing or improving","di cuánto tiempo lleva una actividad / say how long one activity has been ongoing"],
+      support:["Seguimos + gerundio","El proyecto va + gerundio","Los resultados van + gerundio","Llevamos + tiempo + gerundio"],
+      placeholder:"Ejemplo de inicio: Seguimos revisando...",
+      model:"Seguimos revisando los datos del sistema. La implementación va avanzando y el tiempo de respuesta va mejorando. Llevamos dos semanas probando la nueva configuración.",
+      modelNote:"Esta es una posible respuesta. No necesitas escribir exactamente lo mismo. / This is one possible answer."
+    },
+    checklist:[
+      "Puedo reconocer seguir + gerundio para expresar continuidad. / I can recognize seguir + gerundio for continuity.",
+      "Puedo usar ir + gerundio para hablar de progreso gradual. / I can use ir + gerundio for gradual progress.",
+      "Puedo usar llevar + tiempo + gerundio para expresar duración. / I can use llevar + time + gerundio for duration.",
+      "Puedo dar una actualización breve sobre un proyecto. / I can give a short project update.",
+      "Estoy listo para practicar estas estructuras durante la semana. / I am ready to practice these structures this week."
+    ],
+    close:"No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento. / You do not need to memorize everything. This week you will reuse these structures in different situations."
+  },
+
+  b1: {
+    route:"💼 B1 — Intermedio",
+    title:"Cómo informar avances y evolución de proyectos en curso",
+    subtitle:"Vas a elegir entre distintas perífrasis progresivas para dar actualizaciones más precisas sobre proyectos, tareas y cambios que siguen desarrollándose.",
+    objective:"Al terminar este módulo podrás explicar qué sigue ocurriendo, cuánto tiempo lleva un proceso en marcha y cómo está evolucionando, organizando una actualización profesional clara.",
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo.",
+    situation:{
+      lead:"Coordinas una parte de un proyecto de migración de datos. En la reunión de seguimiento debes explicar qué continúa, qué ha ido mejorando y qué tareas llevan más tiempo del previsto.",
+      items:[
+        ["Quién habla","Tú, como responsable de una parte del proyecto."],
+        ["Con quién","Equipo técnico y responsable del proyecto."],
+        ["Contexto","Reunión de seguimiento con decisiones pendientes."],
+        ["Objetivo","Dar una actualización precisa y orientar el siguiente paso."],
+        ["Dificultad","El proyecto avanza, pero no todas las tareas progresan al mismo ritmo."]
+      ]
+    },
+    vocab:[
+      {term:"avance",meaning:"Progreso realizado dentro de un proyecto o proceso.",example:"El avance de la migración es estable.",extra:"Colocaciones: informar de avances, revisar avances, avance gradual."},
+      {term:"disminuir",meaning:"Reducirse o hacerse menor.",example:"La tasa de incidencias va disminuyendo poco a poco.",extra:"Gerundio: disminuyendo. Es útil con ir + gerundio para describir una tendencia gradual."},
+      {term:"progresivamente",meaning:"De manera gradual.",example:"La tasa de errores va disminuyendo progresivamente.",extra:"Alternativas: gradualmente, poco a poco."},
+      {term:"acumular",meaning:"Ir sumando tiempo, trabajo o incidencias.",example:"Llevamos varias semanas acumulando retrasos.",extra:"Útil para explicar una tendencia que continúa."},
+      {term:"pendiente",meaning:"Que todavía no se ha completado o resuelto.",example:"Seguimos revisando los puntos pendientes.",extra:"Colocación: quedar pendiente, asunto pendiente."},
+      {term:"ritmo",meaning:"Velocidad o cadencia con la que avanza un proceso.",example:"La implementación va avanzando a buen ritmo.",extra:"Colocaciones: a buen ritmo, a un ritmo más lento."}
+    ],
+    phrases:[
+      {group:"Continuidad",items:[
+        {text:"Seguimos trabajando en los puntos pendientes.",use:"Destaca que la actividad continúa."},
+        {text:"El equipo sigue revisando las incidencias críticas.",use:"Útil cuando quieres mantener el foco en una actividad aún abierta."}
+      ]},
+      {group:"Duración acumulada",items:[
+        {text:"Llevamos tres semanas validando los datos.",use:"Llevar + tiempo + gerundio sitúa la duración desde un punto pasado hasta ahora."},
+        {text:"Llevamos varios días intentando reproducir el error.",use:"Permite subrayar que el esfuerzo se prolonga."}
+      ]},
+      {group:"Evolución gradual",items:[
+        {text:"La tasa de errores va disminuyendo.",use:"Ir + gerundio presenta una evolución gradual."},
+        {text:"El equipo va resolviendo los casos más urgentes.",use:"Destaca progreso por etapas o acumulación de pequeñas acciones."}
+      ]}
+    ],
+    builders:[
+      {type:"text",prompt:"Completa una actualización con continuidad + consecuencia.",starter:"Seguimos revisando los casos pendientes y, por eso, "},
+      {type:"text",prompt:"Formula una actualización que combine duración + evolución.",starter:"Llevamos tres semanas "}
+    ],
+    grammar:[
+      {situation:"Una actividad sigue abierta.",intention:"Destacar continuidad sin sugerir cierre.",structure:"seguir + gerundio",example:"Seguimos validando la información enviada por el proveedor.",why:"Centra la atención en la continuidad de una acción ya iniciada."},
+      {situation:"Quieres cuantificar el tiempo invertido hasta ahora.",intention:"Expresar duración acumulada.",structure:"llevar + período + gerundio",example:"Llevamos diez días corrigiendo las inconsistencias.",why:"Vincula una duración concreta con una actividad todavía en curso."},
+      {situation:"Quieres explicar una tendencia o progreso gradual.",intention:"Mostrar evolución.",structure:"ir + gerundio",example:"Los tiempos de respuesta van mejorando.",why:"Presenta el cambio como progresivo, no instantáneo."}
+    ],
+    register:{
+      context:"Un cliente importante pregunta si la incidencia está resuelta. Todavía no, pero hay progreso.",
+      options:[
+        {text:"Seguimos trabajando en la incidencia y vamos reduciendo el número de errores. Te enviaremos una nueva actualización mañana.",preferred:true,feedback:"Es precisa: reconoce que el problema continúa, muestra avance y concreta el siguiente paso."},
+        {text:"Vamos viendo el tema y parece que mejora.",preferred:false,feedback:"Suena demasiado vago para un cliente importante. Falta precisión sobre la acción y el avance."},
+        {text:"Llevamos un tiempo con esto, pero ya veremos.",preferred:false,feedback:"La duración queda imprecisa y “ya veremos” transmite poca gestión del siguiente paso."}
+      ]
+    },
+    models:[
+      {title:"Actualización de proyecto",text:"Seguimos validando los datos del último lote. Llevamos diez días revisando las inconsistencias y, aunque todavía quedan casos pendientes, la tasa de errores va disminuyendo. Por ahora, el equipo va resolviendo primero los casos que afectan al cierre mensual.",parts:[
+        ["Seguimos validando","Continuidad de una tarea."],
+        ["Llevamos diez días revisando","Duración acumulada."],
+        ["va disminuyendo","Tendencia gradual."],
+        ["va resolviendo primero","Progreso por etapas y priorización."]
+      ]}
+    ],
+    exercises:[
+      {type:"mcq",title:"1. Precisión temporal",prompt:"Quieres destacar que una tarea comenzó hace dos semanas y continúa. ¿Qué opción es más precisa?",options:["Seguimos revisando la tarea.","Llevamos dos semanas revisando la tarea.","La tarea va revisándose."],answer:1,feedback:"Llevar + período + gerundio incorpora explícitamente la duración acumulada."},
+      {type:"fill",title:"2. Evolución gradual",prompt:"La tasa de incidencias va ______ a medida que corregimos los datos.",answer:["bajando","disminuyendo"],feedback:"Ir + gerundio presenta una evolución gradual: va bajando / va disminuyendo."},
+      {type:"mcq",title:"3. Elige la intención",prompt:"¿Qué frase centra mejor la atención en progreso gradual por etapas?",options:["Seguimos resolviendo los casos.","Llevamos dos días resolviendo los casos.","Vamos resolviendo los casos más urgentes primero."],answer:2,feedback:"Ir + gerundio sugiere avance progresivo o por etapas."}
+    ],
+    practice:{
+      situation:"Debes actualizar al equipo sobre una migración de datos. La validación continúa, el equipo lleva 12 días trabajando y el porcentaje de registros correctos aumenta gradualmente.",
+      interlocutor:"Responsable del proyecto y equipo técnico.",
+      objective:"Escribe una actualización de 4–5 frases que permita entender el estado y el siguiente paso.",
+      requirements:["usa seguir + gerundio","incluye llevar + período + gerundio","usa ir + gerundio para una tendencia","conecta las ideas con aunque, por ahora, además o por eso","termina con un siguiente paso concreto"],
+      support:["Seguimos + gerundio","Llevamos + período + gerundio","va/van + gerundio","Aunque..., por ahora..."],
+      placeholder:"Escribe tu actualización aquí...",
+      model:"Seguimos validando los registros del último lote. Llevamos doce días corrigiendo inconsistencias y el porcentaje de registros correctos va aumentando de forma constante. Aunque todavía quedan casos pendientes, el equipo va resolviendo primero los que bloquean la migración. Por ahora, mantendremos esta prioridad y mañana revisaremos si podemos iniciar la siguiente fase.",
+      modelNote:"Esta es una posible respuesta. Compárala con la tuya: observa cómo se organiza continuidad, duración, evolución y siguiente paso."
+    },
+    checklist:[
+      "Puedo distinguir continuidad, duración acumulada y evolución gradual.",
+      "Puedo elegir entre seguir + gerundio, llevar + tiempo + gerundio e ir + gerundio.",
+      "Puedo organizar una actualización usando conectores.",
+      "Puedo adaptar el grado de precisión al interlocutor.",
+      "Puedo cerrar una actualización con un siguiente paso claro."
+    ],
+    close:"No necesitas memorizar todo. Esta semana vas a reutilizar las mismas perífrasis en situaciones diferentes para ganar velocidad, precisión y capacidad de adaptación."
+  },
+
+  b2: {
+    route:"🚀 B2 — Avanzado",
+    title:"Cómo informar avances y evolución de proyectos en curso",
+    subtitle:"Trabajarás la elección estratégica entre perífrasis progresivas para presentar continuidad, duración, desarrollo gradual, tendencia acumulada y actividad reiterada con un registro profesional preciso.",
+    objective:"Al terminar este módulo podrás seleccionar la perífrasis progresiva que mejor represente la evolución de un proceso, justificar esa elección y adaptar el matiz de una actualización a interlocutores y situaciones profesionales exigentes.",
+    finalHint:"Al final del módulo comprobarás si ya puedes hacerlo.",
+    situation:{
+      lead:"Presentas el estado de una transformación operativa ante dirección. Los indicadores mejoran, pero el proceso arrastra dificultades desde hace meses y algunos equipos muestran avances desiguales. Debes informar sin exagerar ni minimizar el problema.",
+      items:[
+        ["Quién habla","Tú, como responsable de la implementación."],
+        ["Con quién","Dirección y responsables de área."],
+        ["Contexto","Revisión mensual de resultados y riesgos."],
+        ["Objetivo","Explicar la evolución con matices y sostener una decisión."],
+        ["Dificultad","El proceso no puede describirse simplemente como “bien” o “mal”: hay continuidad, tendencia, duración y avances parciales."]
+      ]
+    },
+    vocab:[
+      {term:"sostenido",meaning:"Que se mantiene de forma relativamente estable durante un período.",example:"La mejora viene siendo sostenida desde el segundo trimestre.",extra:"Conviene no usarlo si los datos muestran oscilaciones fuertes."},
+      {term:"tendencia",meaning:"Dirección general que sigue una variable o un fenómeno.",example:"La tendencia viene apuntando a una reducción del coste operativo.",extra:"Colocaciones: tendencia al alza, a la baja, tendencia sostenida."},
+      {term:"arrastrar",meaning:"Mantener un problema o una consecuencia durante un período.",example:"El proyecto viene arrastrando retrasos desde la fase inicial.",extra:"Tiene una carga negativa; útil para problemas persistentes."},
+      {term:"paulatino",meaning:"Que ocurre gradualmente, paso a paso.",example:"La adopción ha sido paulatina y va ganando estabilidad.",extra:"Sinónimos según contexto: gradual, progresivo."},
+      {term:"reiterado",meaning:"Que se repite de manera frecuente o insistente.",example:"Algunos equipos andan reportando incidencias similares.",extra:"Andar + gerundio suele ser más coloquial y puede sugerir repetición o actividad dispersa."},
+      {term:"consolidar",meaning:"Hacer más estable o firme un avance.",example:"Los nuevos hábitos se van consolidando.",extra:"Muy útil para describir procesos de cambio organizacional."}
+    ],
+    phrases:[
+      {group:"Continuidad y persistencia",items:[
+        {text:"El equipo sigue encontrando fricciones en la fase de validación.",use:"Seguimiento directo de una situación que permanece activa."},
+        {text:"El proyecto viene arrastrando retrasos desde el cambio de proveedor.",use:"Venir + gerundio conecta una tendencia o situación que se desarrolla desde el pasado hasta el presente; “arrastrar” añade una valoración negativa."}
+      ]},
+      {group:"Evolución y tendencia",items:[
+        {text:"Los tiempos de respuesta se van estabilizando.",use:"Ir + gerundio presenta un cambio gradual que todavía no se considera completamente consolidado."},
+        {text:"La demanda viene creciendo por encima de lo previsto.",use:"Venir + gerundio enfoca una tendencia que se observa a lo largo de un período."}
+      ]},
+      {group:"Duración y reiteración",items:[
+        {text:"Llevamos cuatro meses ajustando el modelo operativo.",use:"Llevar + período + gerundio cuantifica duración acumulada y puede dar relevancia al esfuerzo o al retraso."},
+        {text:"Algunas áreas andan planteando dudas sobre el nuevo proceso.",use:"Andar + gerundio puede sugerir actividad repetida o dispersa; es menos neutro y suele ser más conversacional."}
+      ]}
+    ],
+    builders:[
+      {type:"text",prompt:"Dirección pide una formulación neutral sobre una tendencia positiva todavía no consolidada. Redacta una frase con ir + gerundio.",starter:"Los indicadores "},
+      {type:"text",prompt:"Ahora formula una tendencia observada durante varios meses con venir + gerundio y explica qué matiz añade.",starter:"Desde mayo, "}
+    ],
+    grammar:[
+      {situation:"El proceso continúa sin que la duración sea el foco.",intention:"Marcar persistencia.",structure:"seguir + gerundio",example:"El equipo sigue detectando inconsistencias en los datos.",why:"Es la opción más neutra para continuidad."},
+      {situation:"La duración acumulada es relevante para interpretar el problema.",intention:"Cuantificar cuánto se prolonga.",structure:"llevar + período + gerundio",example:"Llevamos seis meses ajustando el sistema de control.",why:"Hace visible el tiempo invertido y puede implicar esfuerzo, demora o persistencia."},
+      {situation:"Quieres presentar un cambio paulatino todavía en desarrollo.",intention:"Mostrar progresión gradual.",structure:"ir + gerundio",example:"La adopción se va consolidando en los equipos regionales.",why:"Enfatiza el avance paso a paso."},
+      {situation:"Quieres presentar una tendencia observada desde un punto anterior hasta ahora.",intention:"Enmarcar una trayectoria.",structure:"venir + gerundio",example:"La demanda viene creciendo de forma sostenida desde abril.",why:"Añade perspectiva retrospectiva a una tendencia que llega hasta el presente."},
+      {situation:"Quieres aludir a una actividad repetida con un tono más conversacional.",intention:"Sugerir reiteración o actividad dispersa.",structure:"andar + gerundio",example:"Algunas áreas andan pidiendo excepciones al nuevo procedimiento.",why:"Puede introducir una valoración pragmática; conviene usarla con cautela en registros muy formales."}
+    ],
+    register:{
+      context:"Presentas ante dirección una mejora que existe, pero todavía no es suficiente para afirmar que el problema está resuelto.",
+      options:[
+        {text:"Los tiempos de respuesta se van estabilizando, aunque todavía observamos variaciones relevantes entre equipos.",preferred:true,feedback:"Equilibra progreso y cautela. Ir + gerundio evita presentar la estabilización como un resultado cerrado."},
+        {text:"Los tiempos de respuesta ya están estabilizados.",preferred:false,feedback:"Cierra demasiado el proceso y puede sobreinterpretar la evidencia si aún hay variaciones."},
+        {text:"Los tiempos de respuesta vienen siendo mejores.",preferred:false,feedback:"Es posible, pero “mejores” es poco específico. Para dirección conviene nombrar el indicador y la naturaleza de la tendencia."}
+      ]
+    },
+    models:[
+      {title:"Actualización para dirección",text:"La adopción se va consolidando, aunque de forma desigual entre áreas. Desde mayo, los indicadores vienen mostrando una mejora sostenida, pero seguimos detectando fricciones en los equipos con mayor rotación. Llevamos cuatro meses ajustando el modelo de soporte y, por ahora, no propondría reducir recursos hasta confirmar que la tendencia se mantiene durante el próximo ciclo.",parts:[
+        ["se va consolidando","Cambio progresivo aún en desarrollo."],
+        ["vienen mostrando","Trayectoria observada desde el pasado hasta ahora."],
+        ["seguimos detectando","Persistencia de un problema."],
+        ["Llevamos cuatro meses ajustando","Duración acumulada relevante para la decisión."],
+        ["no propondría reducir recursos","Conclusión prudente basada en la evolución descrita."]
+      ]}
+    ],
+    exercises:[
+      {type:"mcq-nuanced",title:"1. Elige el matiz",prompt:"Quieres describir una tendencia que observas desde hace varios meses y que llega hasta hoy. ¿Qué formulación aporta mejor esa perspectiva?",options:[
+        {text:"La demanda sigue creciendo.",ok:true,feedback:"Es válida para continuidad, pero no subraya tanto la trayectoria desde meses anteriores."},
+        {text:"La demanda viene creciendo desde mayo.",ok:true,preferred:true,feedback:"Es la opción más específica para una tendencia que se observa desde un punto anterior hasta el presente."},
+        {text:"La demanda va creciendo.",ok:true,feedback:"Es válida si el foco es la progresión gradual; la perspectiva temporal retrospectiva queda menos marcada."}
+      ]},
+      {type:"fill",title:"2. Precisión de registro",prompt:"Completa con una perífrasis que destaque duración acumulada: “________ cuatro meses ajustando el modelo operativo.”",answer:["llevamos"],feedback:"Llevamos cuatro meses ajustando... cuantifica el tiempo que el proceso lleva en marcha."},
+      {type:"mcq-nuanced",title:"3. Registro y efecto",prompt:"¿Qué opción evitarías en un informe formal si no quieres añadir un matiz conversacional o valorativo?",options:[
+        {text:"Seguimos recibiendo solicitudes similares.",ok:false,preferred:false,feedback:"Es neutral y adecuada en un informe; por eso no sería la opción que conviene evitar."},
+        {text:"Venimos recibiendo solicitudes similares desde junio.",ok:false,preferred:false,feedback:"Es adecuada si importa la trayectoria temporal; tampoco es la opción que conviene evitar."},
+        {text:"Andamos recibiendo solicitudes similares.",ok:true,preferred:true,feedback:"Esta es la opción que conviene evitar aquí: andar + gerundio es más conversacional y puede añadir una valoración implícita."}
+      ]}
+    ],
+    practice:{
+      situation:"Dirección debe decidir si reduce el equipo de soporte. Los incidentes han bajado durante tres meses, pero aún existen diferencias entre regiones; además, llevas cuatro meses ajustando el proceso y algunas áreas siguen pidiendo excepciones.",
+      interlocutor:"Comité de dirección.",
+      objective:"Redacta una actualización de 6–8 frases y termina con una recomendación.",
+      requirements:["elige al menos tres perífrasis progresivas diferentes","distingue continuidad, duración y tendencia","no presentes como cerrado un resultado que todavía evoluciona","adapta el registro a dirección","justifica por qué tu elección verbal ayuda a interpretar el riesgo","termina con una recomendación concreta"],
+      support:["seguir + gerundio → persistencia","llevar + período + gerundio → duración","ir + gerundio → evolución gradual","venir + gerundio → trayectoria hasta el presente","andar + gerundio → reiteración con registro más conversacional"],
+      placeholder:"Redacta tu actualización y tu recomendación...",
+      model:"Los incidentes se van reduciendo, pero la mejora todavía no es homogénea entre regiones. Desde junio, los indicadores vienen mostrando una tendencia favorable, aunque seguimos detectando picos en los equipos con mayor volumen. Llevamos cuatro meses ajustando el proceso de soporte y algunas áreas siguen pidiendo excepciones que dificultan la estandarización. Por eso, no interpretaría la reducción actual como un resultado completamente consolidado. Recomendaría mantener la capacidad del equipo durante un ciclo adicional y revisar la decisión cuando confirmemos que la tendencia se sostiene en todas las regiones.",
+      modelNote:"Esta es una posible respuesta. No necesitas escribir exactamente lo mismo. Compárala con la tuya atendiendo al matiz de cada perífrasis y a cómo sostiene la recomendación."
+    },
+    checklist:[
+      "Puedo distinguir el matiz de seguir, llevar, ir, venir y andar + gerundio.",
+      "Puedo elegir una perífrasis según continuidad, duración, progresión o trayectoria.",
+      "Puedo evitar formulaciones que exageren el grado de consolidación de un resultado.",
+      "Puedo adaptar el registro y justificar mi elección lingüística.",
+      "Puedo usar estas perífrasis para sostener una recomendación profesional."
+    ],
+    close:"No necesitas memorizar una lista. Durante la semana vas a decidir qué perífrasis representa mejor cada situación. La precisión aparece cuando conectas forma, intención, evidencia e interlocutor."
+  }
+};
+// ===== FIN DEL CONTENIDO EDITABLE =====
+
+const sectionMeta = [
+  ["objective","1. 🎯 TU OBJETIVO ESTA SEMANA"],
+  ["situation","2. 🏢 LA SITUACIÓN"],
+  ["vocab","3. 🗣️ VOCABULARIO CLAVE"],
+  ["phrases","4. 💬 FRASES QUE PUEDES USAR"],
+  ["builder","5. 🧩 CONSTRUYE TU MENSAJE"],
+  ["grammar","6. 📚 GRAMÁTICA QUE NECESITAS"],
+  ["register","7. 🎭 ELIGE EL REGISTRO"],
+  ["model","8. 💼 MIRA CÓMO SE HACE"],
+  ["exercises","9. ✍️ COMPRUEBA LO QUE APRENDISTE"],
+  ["practice","10. 🏢 AHORA TE TOCA A TI"],
+  ["sample","11. 💡 VER MODELO"],
+  ["checklist","12. ✅ CHECKLIST FINAL"]
+];
+
+let currentLevel = null;
+let completed = new Set();
+let totalTasks = 1;
+
+const levelScreen = document.getElementById("level-screen");
+const app = document.getElementById("app");
+const moduleContent = document.getElementById("module-content");
+const routePill = document.getElementById("route-pill");
+const progressBar = document.getElementById("progress-bar");
+const progressLabel = document.getElementById("progress-label");
+const sectionNav = document.getElementById("section-nav");
+
+document.querySelectorAll(".level-card").forEach(btn=>{
+  btn.addEventListener("click",()=>selectLevel(btn.dataset.level));
+});
+
+document.getElementById("change-level").addEventListener("click",()=>{
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  currentLevel = null;
+  completed = new Set();
+  app.classList.add("hidden");
+  levelScreen.classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+function selectLevel(level){
+  currentLevel = level;
+  completed = new Set();
+  levelScreen.classList.add("hidden");
+  app.classList.remove("hidden");
+  renderLevel(level);
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function isA2(){ return currentLevel === "a2"; }
+
+function esc(str=""){
+  return String(str).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+function audioButtons(text){
+  if(!isA2()) return "";
+  const safe = esc(text);
+  return `<div class="audio-row">
+    <button type="button" class="audio-btn speak" data-text="${safe}" data-rate="1" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button>
+    <button type="button" class="audio-btn speak" data-text="${safe}" data-rate=".72" aria-label="Escuchar lentamente: ${safe}">🐢 Lento / Slow</button>
+  </div>`;
+}
+
+function renderLevel(level){
+  const c = contenido[level];
+  routePill.textContent = `Tu ruta: ${c.route}`;
+  document.getElementById("hero-title").textContent = c.title;
+  document.getElementById("hero-subtitle").textContent = c.subtitle;
+
+  sectionNav.innerHTML = sectionMeta.map(([id,title])=>
+    `<button type="button" class="nav-btn" data-target="${id}">${title.split(" ").slice(0,3).join(" ")}</button>`
+  ).join("");
+
+  moduleContent.innerHTML = [
+    renderObjective(c), renderSituation(c), renderVocab(c), renderPhrases(c),
+    renderBuilder(c), renderGrammar(c), renderRegister(c), renderModel(c),
+    renderExercises(c), renderPractice(c), renderSample(c), renderChecklist(c)
+  ].join("");
+
+  bindInteractions();
+  createTaskInventory(c);
+  markDone("section-objective");
+  const first = document.getElementById("objective");
+  if(first) first.open = true;
+  updateProgress();
+}
+
+function shell(id,title,body){
+  return `<details id="${id}" class="section-card">
+    <summary>${title}</summary>
+    <div class="section-body">${body}</div>
+  </details>`;
+}
+
+function renderObjective(c){
+  return shell("objective",sectionMeta[0][1],`
+    <p><strong>${esc(c.objective)}</strong></p>
+    <div class="hint">${esc(c.finalHint)}</div>
+  `);
+}
+
+function renderSituation(c){
+  return shell("situation",sectionMeta[1][1],`
+    <p>${esc(c.situation.lead)}</p>
+    <div class="situation-grid">
+      ${c.situation.items.map(([k,v])=>`<div class="info-card"><strong>${esc(k)}</strong><br>${esc(v)}</div>`).join("")}
+    </div>
+  `);
+}
+
+function renderVocab(c){
+  const cards = c.vocab.map((v,i)=>`
+    <article class="vocab-card" data-vocab="${i}">
+      <button type="button" class="vocab-head" aria-expanded="false"><span>${esc(v.term)}</span></button>
+      <div class="vocab-body">
+        ${v.stress ? `<p class="stress">Pronunciación: ${esc(v.stress)}</p>`:""}
+        ${audioButtons(v.term)}
+        <p><strong>Significado:</strong> ${esc(v.meaning)}</p>
+        <p><strong>Ejemplo:</strong> ${esc(v.example)}</p>
+        ${audioButtons(v.example)}
+        <p><span class="tag">Uso</span>${esc(v.extra)}</p>
+      </div>
+    </article>
+  `).join("");
+
+  let retrieval = "";
+  if(c.retrieval){
+    retrieval = `<div class="retrieval"><h3>${esc(c.retrieval.title)}</h3>
+      ${c.retrieval.questions.map((q,qi)=>`
+        <div class="activity retrieval-q" data-rq="${qi}">
+          <strong>${esc(q.prompt)}</strong>
+          ${q.audio ? audioButtons(q.audio):""}
+          <div class="mcq-options">
+            ${q.options.map((o,oi)=>`<button type="button" class="choice-btn retrieval-choice" data-q="${qi}" data-o="${oi}">${esc(o)}</button>`).join("")}
+          </div>
+          <div class="feedback" id="rq-feedback-${qi}"></div>
+        </div>`).join("")}
+    </div>`;
+  }
+  return shell("vocab",sectionMeta[2][1],`<div class="card-grid">${cards}</div>${retrieval}`);
+}
+
+function renderPhrases(c){
+  const groups = c.phrases.map((g,gi)=>`
+    <div class="phrase-group">
+      <h3>${esc(g.group)}</h3>
+      ${g.items.map((p,pi)=>`
+        <div class="phrase-card">
+          <div class="phrase-top">
+            <div class="phrase-text">${esc(p.text)}</div>
+            <button type="button" class="reveal-btn phrase-reveal" data-id="${gi}-${pi}">Ver cuándo usarla</button>
+          </div>
+          ${audioButtons(p.text)}
+          ${p.blocks && isA2() ? `<div class="meaning-blocks">${p.blocks.map((b,bi)=>`${bi?'<span class="arrow">↓</span>':''}<span>${esc(b)}</span>`).join("")}</div>`:""}
+          <div class="reveal" id="phrase-${gi}-${pi}">${esc(p.use)}</div>
+        </div>
+      `).join("")}
+    </div>
+  `).join("");
+  return shell("phrases",sectionMeta[3][1],groups);
+}
+
+function renderBuilder(c){
+  const blocks = c.builders.map((b,i)=>{
+    if(b.type==="select"){
+      return `<div class="builder-card" data-builder="${i}">
+        <p><strong>${esc(b.prompt)}</strong></p>
+        <div class="builder-row">
+          <div class="field"><label for="build-left-${i}">${esc(b.leftLabel)}</label>
+            <select id="build-left-${i}">${b.left.map(x=>`<option>${esc(x)}</option>`).join("")}</select></div>
+          <div class="field"><label for="build-right-${i}">${esc(b.rightLabel)}</label>
+            <select id="build-right-${i}">${b.right.map(x=>`<option>${esc(x)}</option>`).join("")}</select></div>
+          <button type="button" class="primary-btn build-select" data-builder="${i}">Construir</button>
+        </div>
+        <div class="built-output" id="built-${i}" aria-live="polite">Elige y pulsa “Construir”.</div>
+        <div id="built-audio-${i}"></div>
+      </div>`;
+    }
+    return `<div class="builder-card" data-builder="${i}">
+      <p><strong>${esc(b.prompt)}</strong></p>
+      <label class="sr-only" for="build-text-${i}">Tu frase</label>
+      <div class="built-output">${esc(b.starter)}</div>
+      <input id="build-text-${i}" type="text" placeholder="Continúa la frase...">
+      <div class="activity-actions"><button type="button" class="primary-btn build-text" data-builder="${i}">Guardar intento</button></div>
+      <div class="feedback" id="build-feedback-${i}">Tu formulación queda registrada como práctica. Revisa si expresa la intención pedida.</div>
+    </div>`;
+  }).join("");
+  return shell("builder",sectionMeta[4][1],`<div style="display:grid;gap:12px">${blocks}</div>`);
+}
+
+function renderGrammar(c){
+  const cards = c.grammar.map((g,i)=>`
+    <article class="grammar-card">
+      <div class="flow">Situación → intención → estructura → ejemplo</div>
+      <p><strong>Situación:</strong> ${esc(g.situation)}</p>
+      <p><strong>Intención:</strong> ${esc(g.intention)}</p>
+      <p><span class="structure">${esc(g.structure)}</span></p>
+      <p><strong>Ejemplo:</strong> ${esc(g.example)}</p>
+      ${audioButtons(g.example)}
+      <button type="button" class="reveal-btn grammar-reveal" data-id="${i}">¿Por qué se usa así?</button>
+      <div class="reveal" id="grammar-${i}">${esc(g.why)}</div>
+    </article>
+  `).join("");
+  return shell("grammar",sectionMeta[5][1],`<div class="grammar-grid">${cards}</div>`);
+}
+
+function renderRegister(c){
+  return shell("register",sectionMeta[6][1],`
+    <p>${esc(c.register.context)}</p>
+    <div class="register-options">
+      ${c.register.options.map((o,i)=>`
+        <div>
+          <button type="button" class="choice-btn register-choice" data-o="${i}">${esc(o.text)}</button>
+          ${audioButtons(o.text)}
+        </div>`).join("")}
+    </div>
+    <div id="register-feedback" class="feedback" aria-live="polite"></div>
+  `);
+}
+
+function renderModel(c){
+  return shell("model",sectionMeta[7][1],`
+    <div class="model-grid">
+      ${c.models.map((m,mi)=>`
+        <article class="model-card">
+          <h3>${esc(m.title)}</h3>
+          <p class="model-sentence">${esc(m.text)}</p>
+          ${audioButtons(m.text)}
+          <div class="model-parts">
+            ${m.parts.map((p,pi)=>`<button type="button" class="model-part" data-model="${mi}" data-part="${pi}">${esc(p[0])}</button>`).join("")}
+          </div>
+          <div class="model-function" id="model-function-${mi}">Pulsa una parte para ver su función.</div>
+        </article>`).join("")}
+    </div>
+  `);
+}
+
+function renderExercises(c){
+  return shell("exercises",sectionMeta[8][1],c.exercises.map((e,i)=>renderExercise(e,i)).join(""));
+}
+
+function renderExercise(e,i){
+  if(e.type==="mcq"){
+    return `<div class="activity" data-ex="${i}">
+      <h3>${esc(e.title)}</h3><p>${esc(e.prompt)}</p>
+      <div class="mcq-options">${e.options.map((o,oi)=>`<button type="button" class="choice-btn ex-mcq" data-ex="${i}" data-o="${oi}">${esc(o)}</button>`).join("")}</div>
+      <div id="ex-feedback-${i}" class="feedback"></div>
+    </div>`;
+  }
+  if(e.type==="mcq-nuanced"){
+    return `<div class="activity" data-ex="${i}">
+      <h3>${esc(e.title)}</h3><p>${esc(e.prompt)}</p>
+      <div class="mcq-options">${e.options.map((o,oi)=>`<button type="button" class="choice-btn ex-nuanced" data-ex="${i}" data-o="${oi}">${esc(o.text)}</button>`).join("")}</div>
+      <div id="ex-feedback-${i}" class="feedback"></div>
+    </div>`;
+  }
+  if(e.type==="fill"){
+    return `<div class="activity" data-ex="${i}">
+      <h3>${esc(e.title)}</h3><p>${esc(e.prompt)}</p>
+      ${e.audio ? audioButtons(e.audio):""}
+      <label for="fill-${i}">Tu respuesta</label>
+      <input id="fill-${i}" type="text" autocomplete="off">
+      <div class="activity-actions"><button type="button" class="primary-btn ex-fill" data-ex="${i}">Comprobar</button><button type="button" class="small-btn ex-reset" data-ex="${i}">Volver a intentar</button></div>
+      <div id="ex-feedback-${i}" class="feedback"></div>
+    </div>`;
+  }
+  if(e.type==="order"){
+    return `<div class="activity" data-ex="${i}">
+      <h3>${esc(e.title)}</h3><p>${esc(e.prompt)}</p>
+      <div class="order-bank" id="order-bank-${i}">
+        ${e.pieces.map((p,pi)=>`<button type="button" class="order-chip" data-ex="${i}" data-piece="${pi}">${esc(p)}</button>`).join("")}
+      </div>
+      <div class="order-built" id="order-built-${i}" aria-label="Frase construida"></div>
+      <div class="activity-actions"><button type="button" class="primary-btn ex-order-check" data-ex="${i}">Comprobar</button><button type="button" class="small-btn ex-order-reset" data-ex="${i}">Volver a intentar</button></div>
+      <div id="ex-feedback-${i}" class="feedback"></div>
+    </div>`;
+  }
+  return "";
+}
+
+function renderPractice(c){
+  return shell("practice",sectionMeta[9][1],`
+    <div class="practice-card">
+      <p><strong>Situación:</strong> ${esc(c.practice.situation)}</p>
+      <p><strong>Interlocutor:</strong> ${esc(c.practice.interlocutor)}</p>
+      <p><strong>Objetivo:</strong> ${esc(c.practice.objective)}</p>
+      <strong>Incluye:</strong>
+      <ul class="requirements">${c.practice.requirements.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <strong>Estructuras de apoyo:</strong>
+      <div class="support-grid">${c.practice.support.map(x=>`<div class="support-item">${esc(x)}${audioButtons(x)}</div>`).join("")}</div>
+      <label for="practice-text"><strong>Tu respuesta</strong></label>
+      <textarea id="practice-text" placeholder="${esc(c.practice.placeholder)}"></textarea>
+      <div class="activity-actions"><button type="button" id="practice-done" class="primary-btn">Marcar práctica como realizada</button></div>
+      <div id="practice-feedback" class="feedback">Tu respuesta abierta no se califica automáticamente. Compárala después con el modelo y revisa si cumple los requisitos.</div>
+    </div>
+  `);
+}
+
+function renderSample(c){
+  return shell("sample",sectionMeta[10][1],`
+    <p>El modelo permanece oculto para que intentes resolver primero.</p>
+    <button type="button" id="show-sample" class="primary-btn">Ver una posible respuesta</button>
+    <div id="sample-box" class="model-hidden">
+      <p><strong>${esc(c.practice.modelNote)}</strong></p>
+      <p>${esc(c.practice.model)}</p>
+      ${audioButtons(c.practice.model)}
+    </div>
+  `);
+}
+
+function renderChecklist(c){
+  return shell("checklist",sectionMeta[11][1],`
+    <p><strong>Antes de terminar, comprueba:</strong></p>
+    <div id="check-list">
+      ${c.checklist.map((x,i)=>`<label class="check-item"><input type="checkbox" class="check-box" data-i="${i}"><span>${esc(x)}</span></label>`).join("")}
+    </div>
+    <div class="check-progress"><span id="check-progress-bar"></span></div>
+    <div id="check-status" class="audio-note">0 de ${c.checklist.length} completados</div>
+    <div id="completion" class="completion">
+      <h3>🎯 Ya estás listo para practicar</h3>
+      <p>${esc(c.close)}</p>
+      <p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad.</p>
+      <!-- Sustituir # por la URL real del reto diario cuando esté disponible. -->
+      <a class="primary-btn" href="#" id="challenge-link">🔥 Ir al reto de hoy</a>
+    </div>
+  `);
+}
+
+function bindInteractions(){
+  document.querySelectorAll("details.section-card").forEach(d=>{
+    d.addEventListener("toggle",()=>{ if(d.open) markDone(`section-${d.id}`); });
+  });
+
+  sectionNav.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const d=document.getElementById(btn.dataset.target);
+      if(d){ d.open=true; d.scrollIntoView({behavior:"smooth",block:"start"}); }
+    });
+  });
+
+  document.querySelectorAll(".vocab-head").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const card=btn.closest(".vocab-card");
+      card.classList.toggle("open");
+      const open=card.classList.contains("open");
+      btn.setAttribute("aria-expanded",String(open));
+      if(open) markDone(`vocab-${card.dataset.vocab}`);
+    });
+  });
+
+  document.querySelectorAll(".phrase-reveal").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.getElementById(`phrase-${btn.dataset.id}`).classList.toggle("show");
+      markDone(`phrase-${btn.dataset.id}`);
+    });
+  });
+
+  document.querySelectorAll(".grammar-reveal").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.getElementById(`grammar-${btn.dataset.id}`).classList.toggle("show");
+      markDone(`grammar-${btn.dataset.id}`);
+    });
+  });
+
+  document.querySelectorAll(".speak").forEach(btn=>{
+    btn.addEventListener("click",()=>speakText(btn.dataset.text,Number(btn.dataset.rate)));
+  });
+
+  document.querySelectorAll(".build-select").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=btn.dataset.builder;
+      const left=document.getElementById(`build-left-${i}`).value;
+      const right=document.getElementById(`build-right-${i}`).value;
+      const text=`${left} ${right}`;
+      document.getElementById(`built-${i}`).textContent=text;
+      document.getElementById(`built-audio-${i}`).innerHTML=audioButtons(text);
+      document.getElementById(`built-audio-${i}`).querySelectorAll(".speak").forEach(b=>b.addEventListener("click",()=>speakText(b.dataset.text,Number(b.dataset.rate))));
+      markDone(`builder-${i}`);
+    });
+  });
+
+  document.querySelectorAll(".build-text").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=btn.dataset.builder;
+      const input=document.getElementById(`build-text-${i}`);
+      const fb=document.getElementById(`build-feedback-${i}`);
+      if(input.value.trim().length<5){
+        fb.textContent="Escribe primero una formulación suficientemente completa para poder revisarla.";
+        fb.className="feedback show note";
+        return;
+      }
+      fb.className="feedback show";
+      markDone(`builder-${i}`);
+    });
+  });
+
+  bindRetrieval();
+  bindRegister();
+  bindModels();
+  bindExercises();
+
+  document.getElementById("practice-done").addEventListener("click",()=>{
+    const t=document.getElementById("practice-text");
+    const fb=document.getElementById("practice-feedback");
+    if(t.value.trim().length<20){
+      fb.textContent=isA2() ? "Escribe primero una respuesta breve de varias frases. / Write a short response of several sentences first." : "Desarrolla primero una respuesta suficiente para poder compararla con los requisitos.";
+      fb.className="feedback show note";
+      return;
+    }
+    fb.className="feedback show";
+    markDone("practice-written");
+  });
+
+  document.getElementById("show-sample").addEventListener("click",()=>{
+    document.getElementById("sample-box").classList.add("show");
+    markDone("sample-viewed");
+  });
+
+  document.querySelectorAll(".check-box").forEach(cb=>cb.addEventListener("change",updateChecklist));
+
+  document.getElementById("challenge-link").addEventListener("click",e=>{
+    if(e.currentTarget.getAttribute("href")==="#") e.preventDefault();
+  });
+}
+
+function bindRetrieval(){
+  if(!contenido[currentLevel].retrieval) return;
+  document.querySelectorAll(".retrieval-choice").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const q=Number(btn.dataset.q),o=Number(btn.dataset.o);
+      const data=contenido[currentLevel].retrieval.questions[q];
+      const fb=document.getElementById(`rq-feedback-${q}`);
+      fb.textContent=data.feedback;
+      fb.className=`feedback show ${o===data.answer?"good":"note"}`;
+      markDone(`retrieval-${q}`);
+    });
+  });
+}
+
+function bindRegister(){
+  document.querySelectorAll(".register-choice").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".register-choice").forEach(x=>x.classList.remove("selected"));
+      btn.classList.add("selected");
+      const o=contenido[currentLevel].register.options[Number(btn.dataset.o)];
+      const fb=document.getElementById("register-feedback");
+      fb.textContent=o.feedback;
+      fb.className=`feedback show ${o.preferred?"good":"note"}`;
+      markDone("register-choice");
+    });
+  });
+}
+
+function bindModels(){
+  document.querySelectorAll(".model-part").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const m=contenido[currentLevel].models[Number(btn.dataset.model)];
+      const part=m.parts[Number(btn.dataset.part)];
+      document.getElementById(`model-function-${btn.dataset.model}`).textContent=part[1];
+      markDone(`model-part-${btn.dataset.model}`);
+    });
+  });
+}
+
+function bindExercises(){
+  document.querySelectorAll(".ex-mcq").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.ex),o=Number(btn.dataset.o);
+      const e=contenido[currentLevel].exercises[i];
+      const fb=document.getElementById(`ex-feedback-${i}`);
+      fb.textContent=e.feedback;
+      fb.className=`feedback show ${o===e.answer?"good":"note"}`;
+      if(o===e.answer) markDone(`exercise-${i}`);
+    });
+  });
+
+  document.querySelectorAll(".ex-nuanced").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.ex),o=Number(btn.dataset.o);
+      const e=contenido[currentLevel].exercises[i];
+      const opt=e.options[o];
+      const fb=document.getElementById(`ex-feedback-${i}`);
+      fb.textContent=opt.feedback;
+      // En ejercicios matizados, "preferred" identifica la opción que responde
+      // mejor a la consigna. Las demás pueden seguir siendo lingüísticamente válidas.
+      fb.className=`feedback show ${opt.preferred?"good":"note"}`;
+      markDone(`exercise-${i}`);
+    });
+  });
+
+  document.querySelectorAll(".ex-fill").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.ex);
+      const e=contenido[currentLevel].exercises[i];
+      const val=normalize(document.getElementById(`fill-${i}`).value);
+      const ok=e.answer.map(normalize).includes(val);
+      const fb=document.getElementById(`ex-feedback-${i}`);
+      fb.textContent=e.feedback;
+      fb.className=`feedback show ${ok?"good":"note"}`;
+      if(ok) markDone(`exercise-${i}`);
+    });
+  });
+
+  document.querySelectorAll(".ex-reset").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=btn.dataset.ex;
+      document.getElementById(`fill-${i}`).value="";
+      document.getElementById(`ex-feedback-${i}`).className="feedback";
+    });
+  });
+
+  document.querySelectorAll(".order-chip").forEach(chip=>{
+    chip.addEventListener("click",()=>{
+      document.getElementById(`order-built-${chip.dataset.ex}`).appendChild(chip);
+    });
+  });
+
+  document.querySelectorAll(".ex-order-check").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.ex),e=contenido[currentLevel].exercises[i];
+      const built=[...document.getElementById(`order-built-${i}`).querySelectorAll(".order-chip")].map(x=>x.textContent).join(" ");
+      const fb=document.getElementById(`ex-feedback-${i}`);
+      const ok=normalize(built)===normalize(e.answer);
+      fb.textContent=e.feedback;
+      fb.className=`feedback show ${ok?"good":"note"}`;
+      if(ok) markDone(`exercise-${i}`);
+    });
+  });
+
+  document.querySelectorAll(".ex-order-reset").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const i=Number(btn.dataset.ex);
+      const bank=document.getElementById(`order-bank-${i}`);
+      const e=contenido[currentLevel].exercises[i];
+      const chips=[...document.querySelectorAll(`.order-chip[data-ex="${i}"]`)].sort((a,b)=>Number(a.dataset.piece)-Number(b.dataset.piece));
+      chips.forEach(x=>bank.appendChild(x));
+      document.getElementById(`ex-feedback-${i}`).className="feedback";
+    });
+  });
+}
+
+function updateChecklist(){
+  const boxes=[...document.querySelectorAll(".check-box")];
+  const checked=boxes.filter(x=>x.checked).length;
+  const pct=Math.round((checked/boxes.length)*100);
+  document.getElementById("check-progress-bar").style.width=`${pct}%`;
+  document.getElementById("check-status").textContent=`${checked} de ${boxes.length} completados`;
+  boxes.forEach((b,i)=>{
+    const key=`check-${i}`;
+    if(b.checked) completed.add(key); else completed.delete(key);
+  });
+  if(checked===boxes.length){
+    document.getElementById("completion").classList.add("show");
+    markDone("checklist-complete");
+  }else{
+    document.getElementById("completion").classList.remove("show");
+    completed.delete("checklist-complete");
+    updateProgress();
+  }
+}
+
+function createTaskInventory(c){
+  let count=sectionMeta.length;
+  count += c.vocab.length;
+  count += c.phrases.reduce((sum,g)=>sum+g.items.length,0);
+  count += c.builders.length;
+  count += c.grammar.length;
+  count += 1; // register
+  count += c.models.length;
+  count += c.exercises.length;
+  count += 1; // practice
+  count += 1; // sample
+  count += c.checklist.length;
+  count += 1; // checklist complete
+  if(c.retrieval) count += c.retrieval.questions.length;
+  totalTasks=Math.max(1,count);
+}
+
+function markDone(key){
+  completed.add(key);
+  updateProgress();
+}
+
+function updateProgress(){
+  const pct=Math.min(100,Math.round((completed.size/totalTasks)*100));
+  progressBar.style.width=`${pct}%`;
+  progressLabel.textContent=`${pct}%`;
+}
+
+function normalize(s){
+  return String(s||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.,;:!?¿¡]/g,"").replace(/\s+/g," ");
+}
+
+// ===== LÓGICA GENERAL REUTILIZABLE DE AUDIO =====
+let spanishVoice = null;
+
+function chooseSpanishVoice(){
+  if(!("speechSynthesis" in window)) return null;
+  const voices=window.speechSynthesis.getVoices();
+  const es=voices.filter(v=>/^es([-_]|$)/i.test(v.lang));
+  const latinLocales=/^es[-_](CO|MX|US|419|AR|CL|PE|VE|EC|UY|PY|BO|CR|PA|GT|HN|NI|SV|DO|PR)/i;
+  spanishVoice =
+    es.find(v=>/^es[-_]CO/i.test(v.lang) || /colomb/i.test(v.name)) ||
+    es.find(v=>latinLocales.test(v.lang) || /latin|latino|mexic|argentin|chilen|peru/i.test(v.name)) ||
+    es[0] || null;
+  return spanishVoice;
+}
+if("speechSynthesis" in window){
+  chooseSpanishVoice();
+  window.speechSynthesis.onvoiceschanged=chooseSpanishVoice;
+}
+
+function speakText(text,rate=1){
+  if(!("speechSynthesis" in window)){
+    alert("La síntesis de voz no está disponible en este navegador. / Speech synthesis is not available in this browser.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=spanishVoice?.lang || "es-CO";
+  if(spanishVoice) u.voice=spanishVoice;
+  u.rate=rate;
+  u.pitch=1;
+  window.speechSynthesis.speak(u);
+}
+// ===== FIN DE LÓGICA GENERAL DE AUDIO =====
+</script>
+</body>
+</html>

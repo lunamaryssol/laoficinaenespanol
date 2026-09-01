@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tema 34 de Herramientas Lingüísticas: perífrasis verbales empezar a, dejar de y acabar de aplicadas al español para trabajar." />
+  <title>Tema 34 · Perífrasis verbales | La Oficina en Español</title>
+  <style>
+    :root{
+      --azul:#003893;--amarillo:#FCD116;--rojo:#CE1126;--blanco:#FFFFFF;--negro:#000000;
+      --tinta:#152033;--muted:#5c677a;--fondo:#f5f7fb;--borde:#dbe3f0;--ok:#176b45;
+      --sombra:0 12px 30px rgba(0,56,147,.10);--radio:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Montserrat,Arial,Helvetica,sans-serif;background:var(--fondo);color:var(--tinta);line-height:1.55}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid rgba(252,209,22,.7);outline-offset:3px}
+    a{color:var(--azul)}
+    .hidden{display:none!important}
+    .screen{min-height:100vh}
+    .level-screen{display:grid;place-items:center;padding:28px 18px;background:
+      radial-gradient(circle at 15% 15%,rgba(252,209,22,.28),transparent 28%),
+      linear-gradient(145deg,#eef4ff 0%,#fff 55%,#f5f7fb 100%)}
+    .level-wrap{width:min(1040px,100%)}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px;color:var(--azul);font-weight:800;letter-spacing:.01em}
+    .brand-mark{width:42px;height:42px;border-radius:12px;background:var(--azul);display:grid;place-items:center;color:#fff;box-shadow:var(--sombra)}
+    .eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;font-weight:800;color:var(--azul)}
+    h1,h2,h3{line-height:1.15;margin-top:0}
+    .level-title{font-size:clamp(2rem,5vw,3.5rem);margin-bottom:10px;color:var(--azul)}
+    .lead{font-size:1.06rem;color:var(--muted);max-width:780px;margin:0 0 24px}
+    .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .level-card{border:1px solid var(--borde);background:#fff;border-radius:var(--radio);padding:24px;text-align:left;box-shadow:var(--sombra);transition:.2s transform,.2s border-color}
+    .level-card:hover,.level-card:focus-visible{transform:translateY(-3px);border-color:var(--azul)}
+    .level-card strong{display:block;color:var(--azul);font-size:1.22rem;margin:8px 0}
+    .level-card span{color:var(--muted);font-size:.95rem}
+    .app-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--borde)}
+    .header-inner{width:min(1180px,100%);margin:auto;padding:12px 18px;display:flex;align-items:center;gap:14px}
+    .route-pill{font-weight:800;color:var(--azul);background:#edf3ff;border:1px solid #cddbf5;border-radius:999px;padding:8px 12px;white-space:nowrap}
+    .change-level{margin-left:auto;border:1px solid var(--borde);background:#fff;color:var(--azul);border-radius:10px;padding:8px 12px;font-weight:700}
+    .progress-wrap{flex:1;min-width:130px}
+    .progress-meta{display:flex;justify-content:space-between;font-size:.77rem;color:var(--muted);margin-bottom:4px}
+    .progress-track{height:9px;background:#e8edf5;border-radius:999px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--azul),#2865c7);transition:width .25s ease}
+    main{width:min(1180px,100%);margin:0 auto;padding:28px 18px 50px}
+    .hero{background:linear-gradient(135deg,var(--azul),#0a4db7);color:white;border-radius:24px;padding:30px;box-shadow:var(--sombra);position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-40px;bottom:-60px;width:190px;height:190px;border-radius:50%;background:rgba(252,209,22,.18)}
+    .hero .eyebrow{color:#ffe77b}
+    .hero h1{font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:10px;max-width:900px}
+    .hero p{max-width:850px;margin:0;color:#e8efff}
+    .nav-strip{display:flex;gap:8px;overflow-x:auto;padding:14px 0 8px;scrollbar-width:thin}
+    .nav-step{border:1px solid var(--borde);background:white;color:var(--muted);border-radius:999px;padding:9px 12px;white-space:nowrap;font-size:.86rem;font-weight:700}
+    .nav-step.active{background:var(--azul);color:white;border-color:var(--azul)}
+    .module-section{display:none;background:#fff;border:1px solid var(--borde);border-radius:22px;padding:26px;box-shadow:0 8px 22px rgba(21,32,51,.05);margin-top:12px}
+    .module-section.active{display:block}
+    .section-number{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#edf3ff;color:var(--azul);font-weight:900;margin-right:8px}
+    .section-head{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+    .section-head h2{margin:0;font-size:1.5rem}
+    .note{padding:14px 16px;border-left:4px solid var(--amarillo);background:#fff9d9;border-radius:10px;color:#554a0e;margin:14px 0}
+    .situation{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .mini-card,.card{border:1px solid var(--borde);border-radius:16px;background:#fff;padding:16px}
+    .mini-card strong{display:block;color:var(--azul);margin-bottom:3px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .vocab-btn{width:100%;text-align:left;border:1px solid var(--borde);background:#fff;border-radius:16px;padding:16px;min-height:110px;transition:.2s}
+    .vocab-btn:hover{border-color:#9eb8e6;box-shadow:0 6px 16px rgba(0,56,147,.06)}
+    .vocab-word{font-size:1.08rem;font-weight:900;color:var(--azul)}
+    .vocab-hint{color:var(--muted);font-size:.87rem;margin-top:7px}
+    .reveal{margin-top:10px;padding-top:10px;border-top:1px dashed var(--borde)}
+    .audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .audio-btn{border:1px solid #c9d7ef;background:#f4f7fd;color:var(--azul);border-radius:9px;padding:7px 10px;font-weight:700;font-size:.86rem}
+    .pill{display:inline-block;background:#edf3ff;color:var(--azul);border-radius:999px;padding:5px 9px;font-size:.8rem;font-weight:800;margin:3px 5px 3px 0}
+    .phrase-group{margin-bottom:18px}
+    .phrase-group h3{color:var(--azul);font-size:1rem;margin-bottom:8px}
+    .phrase-item{border:1px solid var(--borde);border-radius:14px;padding:14px;margin:9px 0}
+    .phrase-main{font-weight:800}
+    .small-btn{border:1px solid var(--borde);background:white;color:var(--azul);border-radius:9px;padding:7px 10px;font-weight:700;font-size:.85rem;margin-top:8px}
+    .builder{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    label{font-weight:800;color:#27344c;font-size:.9rem}
+    select,input[type="text"],textarea{width:100%;border:1px solid #bfcbe0;border-radius:11px;padding:11px 12px;background:#fff;margin-top:6px;color:var(--tinta)}
+    textarea{min-height:160px;resize:vertical}
+    .builder-output{margin-top:16px;border:2px solid #cbd9f3;background:#f5f8ff;border-radius:14px;padding:16px;font-size:1.08rem}
+    .grammar-list{display:grid;gap:10px}
+    details{border:1px solid var(--borde);border-radius:14px;padding:14px;background:#fff}
+    summary{cursor:pointer;font-weight:900;color:var(--azul)}
+    details p:last-child{margin-bottom:0}
+    .choice-list{display:grid;gap:10px;margin:12px 0}
+    .choice-btn{border:1px solid var(--borde);background:#fff;text-align:left;border-radius:12px;padding:13px}
+    .choice-btn.selected{border-color:var(--azul);background:#f1f5ff}
+    .feedback{margin-top:12px;padding:13px 15px;border-radius:12px;background:#eef8f2;color:#184c35;border:1px solid #cce9d8}
+    .feedback.warn{background:#fff6df;color:#6a4b00;border-color:#f0dfa6}
+    .example-box{border:1px solid var(--borde);background:#f8faff;border-radius:16px;padding:18px}
+    .example-line{margin:8px 0}
+    .segment{border:0;background:transparent;color:inherit;padding:2px 3px;border-bottom:2px dotted #91a9d2;font-weight:800}
+    .segment-note{margin-top:10px;color:var(--muted);font-size:.92rem}
+    .quiz-item{border:1px solid var(--borde);border-radius:16px;padding:16px;margin:12px 0}
+    .quiz-item h3{font-size:1rem;margin-bottom:8px}
+    .quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .primary,.secondary{border-radius:11px;padding:10px 14px;font-weight:800}
+    .primary{border:1px solid var(--azul);background:var(--azul);color:white}
+    .secondary{border:1px solid var(--borde);background:white;color:var(--azul)}
+    .requirements{margin:12px 0;padding-left:20px}
+    .model-box{margin-top:14px;border:1px solid #d5e0f2;background:#f8faff;border-radius:14px;padding:16px}
+    .check-list{display:grid;gap:10px;margin:16px 0}
+    .check-row{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--borde);border-radius:12px;padding:12px;background:#fff}
+    .check-row input{margin-top:4px;width:20px;height:20px;accent-color:var(--azul)}
+    .check-progress{font-weight:800;color:var(--azul)}
+    .ready{margin-top:18px;border:2px solid var(--amarillo);background:#fffbea;border-radius:16px;padding:18px}
+    .ready h3{color:var(--azul);margin-bottom:6px}
+    .section-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--borde)}
+    .footer{text-align:center;color:var(--muted);font-size:.88rem;padding-top:28px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .stress{font-weight:900;color:var(--rojo)}
+    .recovery{margin-top:18px;border:1px dashed #9fb4d8;border-radius:14px;padding:14px;background:#fbfcff}
+    .recovery strong{color:var(--azul)}
+    .counter{font-size:.84rem;color:var(--muted);text-align:right;margin-top:4px}
+    @media(max-width:820px){
+      .level-grid,.grid,.situation,.builder{grid-template-columns:1fr}
+      .header-inner{flex-wrap:wrap}.progress-wrap{order:3;flex-basis:100%}
+      .change-level{margin-left:auto}.hero{padding:24px}.module-section{padding:20px}
+    }
+    @media(max-width:520px){
+      .level-screen{padding:20px 14px}.level-card{padding:20px}.route-pill{font-size:.85rem}.change-level{font-size:.85rem}
+      main{padding:18px 12px 40px}.hero{border-radius:18px}.module-section{border-radius:18px;padding:18px}
+      .section-nav{flex-direction:column}.section-nav button{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div id="levelScreen" class="screen level-screen">
+    <div class="level-wrap">
+      <div class="brand"><div class="brand-mark">LO</div> La Oficina en Español</div>
+      <div class="eyebrow">Herramientas lingüísticas · Tema 34</div>
+      <h1 class="level-title">¿Cuál es tu nivel de español?</h1>
+      <p class="lead">Elige tu ruta para adaptar el apoyo, la dificultad y la práctica. El contenido de la lección permanecerá oculto hasta que selecciones un nivel.</p>
+      <div class="level-grid" role="group" aria-label="Selecciona tu nivel de español">
+        <button class="level-card" data-level="a2">
+          <div aria-hidden="true">🌱</div><strong>A2 — Principiante</strong>
+          <span>Ya puedo comprender y usar expresiones frecuentes y frases sencillas. Necesito vocabulario, estructuras, ejemplos y apoyo para comunicarme en situaciones profesionales.</span>
+        </button>
+        <button class="level-card" data-level="b1">
+          <div aria-hidden="true">💼</div><strong>B1 — Intermedio</strong>
+          <span>Ya puedo comunicarme en situaciones habituales y quiero responder con más precisión, libertad y naturalidad en el trabajo.</span>
+        </button>
+        <button class="level-card" data-level="b2">
+          <div aria-hidden="true">🚀</div><strong>B2 — Avanzado</strong>
+          <span>Puedo comunicarme con bastante autonomía y quiero trabajar precisión, matiz, registro, reacción y situaciones profesionales más exigentes.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header class="app-header">
+      <div class="header-inner">
+        <div id="routePill" class="route-pill">Tu ruta:</div>
+        <div class="progress-wrap" aria-label="Progreso del módulo">
+          <div class="progress-meta"><span>Progreso</span><span id="progressText">0%</span></div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        </div>
+        <button id="changeLevel" class="change-level">Cambiar nivel</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="moduleTitle">
+        <div class="eyebrow">Tema 34 · Perífrasis verbales</div>
+        <h1 id="moduleTitle"></h1>
+        <p id="moduleSubtitle"></p>
+      </section>
+
+      <nav id="navStrip" class="nav-strip" aria-label="Secciones del módulo"></nav>
+      <div id="sections"></div>
+      <div class="footer">La Oficina en Español · <a href="https://laoficinaenespanol.com" target="_blank" rel="noopener">laoficinaenespanol.com</a></div>
+    </main>
+  </div>
+
+  <script>
+    // ===== CONTENIDO EDITABLE DE LA SEMANA =====
+    const contenido = {
+      a2: {
+        route:"🌱 A2 — Principiante",
+        skill:"Dar actualizaciones sobre cambios de estado en tareas y procesos",
+        subtitle:"Aprende a comunicar cambios simples en tareas y procesos usando empezar a, dejar de y acabar de.",
+        objective:"Al terminar este módulo podrás decir cuándo una tarea empieza, cuándo se detiene y qué acción acaba de ocurrir, para dar una actualización breve y clara en el trabajo.",
+        situation:{
+          quien:"Tú, como miembro de un equipo de proyecto.",
+          conQuien:"Tu supervisora y dos compañeros.",
+          contexto:"Una reunión breve de seguimiento al inicio del día.",
+          objetivo:"Actualizar el estado de tres tareas: una comienza hoy, otra se detuvo y otra acaba de completarse.",
+          dificultad:"Necesitas diferenciar bien empezar a, dejar de y acabar de para que el equipo entienda el estado real de cada tarea."
+        },
+        vocab:[
+          {word:"empezar a",en:"to start / begin to",meaning:"Indica el inicio de una acción.",example:"Empezamos a revisar los datos hoy.",extra:"Pronunciación: em-PE-zar. Después usamos un infinitivo: empezar a + revisar.",stress:"em-PE-zar"},
+          {word:"dejar de",en:"to stop / cease doing",meaning:"Indica que una acción ya no continúa.",example:"Dejamos de usar el sistema antiguo.",extra:"Pronunciación: de-JAR. Después usamos un infinitivo: dejar de + usar.",stress:"de-JAR"},
+          {word:"acabar de",en:"to have just done",meaning:"Indica una acción que ocurrió hace muy poco.",example:"Acabamos de recibir la confirmación.",extra:"Pronunciación: a-ca-BAR. En este tema significa ‘just did’, no simplemente ‘finish’.",stress:"a-ca-BAR"},
+          {word:"revisar",en:"to review / check",meaning:"Examinar información para comprobarla.",example:"Empezamos a revisar el informe.",extra:"Pronunciación: re-vi-SAR.",stress:"re-vi-SAR"},
+          {word:"recibir",en:"to receive",meaning:"Obtener un mensaje, documento, pago o información.",example:"Acabamos de recibir el correo del cliente.",extra:"Pronunciación: re-ci-BIR.",stress:"re-ci-BIR"},
+          {word:"usar",en:"to use",meaning:"Utilizar una herramienta, sistema o proceso.",example:"Dejamos de usar esa plantilla.",extra:"Pronunciación: u-SAR.",stress:"u-SAR"}
+        ],
+        recovery:{prompt:"¿Qué expresión significa ‘to have just done’ ?",options:["empezar a","dejar de","acabar de"],answer:2,feedback:"Acabar de + infinitivo indica que algo ocurrió hace muy poco."},
+        phrases:[
+          {group:"Informar que algo empieza",items:[
+            {text:"Empezamos a revisar el informe hoy.",use:"Úsala para indicar el inicio de una tarea del equipo."},
+            {text:"Voy a empezar a preparar la propuesta.",use:"Úsala para decir qué tarea vas a comenzar tú."}
+          ]},
+          {group:"Informar que algo se detuvo",items:[
+            {text:"Dejamos de usar el sistema anterior.",use:"Úsala cuando una práctica o proceso ya no continúa."},
+            {text:"El equipo dejó de enviar mensajes manuales.",use:"Úsala para explicar un cambio en la forma de trabajar."}
+          ]},
+          {group:"Informar una novedad reciente",items:[
+            {text:"Acabamos de recibir la respuesta del cliente.",use:"Úsala cuando la acción ocurrió hace muy poco."},
+            {text:"Acabo de enviar el documento.",use:"Úsala para informar una acción tuya recién realizada."}
+          ]}
+        ],
+        builder:{
+          labels:["¿Qué cambio quieres comunicar?","¿Qué acción?","Añade un detalle"],
+          parts:[
+            ["Empezamos a","Dejamos de","Acabamos de"],
+            ["revisar el informe","procesar pedidos","usar la plantilla"],
+            ["hoy","esta mañana","en este proceso"]
+          ],
+          templates:["{0} {1} {2}."]
+        },
+        grammar:[
+          {title:"Empezar a + infinitivo",body:"Situación: una tarea inicia. Intención: comunicar el comienzo. Estructura: empezar conjugado + a + infinitivo. Ejemplo: “Empezamos a revisar los datos hoy.” En presente: empiezo, empiezas, empieza, empezamos, empiezan."},
+          {title:"Dejar de + infinitivo",body:"Situación: una acción se detiene. Intención: decir que ya no continúa. Estructura: dejar conjugado + de + infinitivo. Ejemplo: “Dejamos de usar el sistema antiguo.”"},
+          {title:"Acabar de + infinitivo",body:"Situación: una acción ocurrió hace muy poco. Intención: comunicar una novedad reciente. Estructura: acabar conjugado + de + infinitivo. Ejemplo: “Acabamos de recibir la confirmación.”"},
+          {title:"No mezcles las preposiciones",body:"Usa: empezar A trabajar · dejar DE trabajar · acabar DE trabajar. La preposición forma parte de la estructura y no se cambia."}
+        ],
+        register:{
+          context:"Vas a escribir a un cliente importante para informarle que acabas de recibir su documento y que tu equipo empezará a revisarlo.",
+          options:[
+            "Acabamos de recibir su documento. Vamos a empezar a revisarlo esta mañana.",
+            "Ya llegó. Lo miramos ahora.",
+            "¡Acabo de ver esto! Después te digo."
+          ],
+          accepted:[0],
+          feedback:[
+            "Esta formulación es clara, profesional y explica tanto la novedad reciente como el siguiente paso.",
+            "Se entiende, pero ‘lo miramos’ es impreciso para un cliente y el mensaje no expresa con claridad el estado del trabajo.",
+            "El tono es demasiado informal para este contexto y no comunica un siguiente paso profesional claro."
+          ]
+        },
+        example:{
+          intro:"Actualización en una reunión breve:",
+          full:"Esta mañana empezamos a revisar el nuevo informe. Dejamos de usar la plantilla anterior porque tenía información duplicada. Además, acabamos de recibir la confirmación del cliente.",
+          segments:[
+            {text:"Esta mañana empezamos a revisar el nuevo informe.",note:"Indica el inicio de una tarea."},
+            {text:"Dejamos de usar la plantilla anterior",note:"Indica que una práctica ya no continúa."},
+            {text:"acabamos de recibir la confirmación del cliente",note:"Presenta una novedad ocurrida hace muy poco."}
+          ]
+        },
+        quiz:[
+          {type:"choice",q:"Quieres decir que una tarea comenzó hoy. ¿Qué opción funciona?",options:["Empezamos de revisar el informe.","Empezamos a revisar el informe.","Acabamos a revisar el informe."],answer:[1],explain:"Empezar usa la estructura empezar a + infinitivo."},
+          {type:"choice",q:"El equipo ya no utiliza una herramienta. ¿Qué opción comunica ese cambio?",options:["El equipo dejó de usar esa herramienta.","El equipo empezó a usar esa herramienta.","El equipo acaba de usar esa herramienta."],answer:[0],explain:"Dejar de + infinitivo indica que la acción ya no continúa."},
+          {type:"choice",q:"Recibiste un correo hace un minuto. ¿Qué dices?",options:["Acabo de recibir el correo.","Dejo de recibir el correo.","Empiezo a recibir el correo."],answer:[0],explain:"Acabar de + infinitivo comunica una acción muy reciente."},
+          {type:"input",q:"Completa con una sola palabra: “Empezamos ___ preparar la propuesta.”",audioText:"Empezamos a preparar la propuesta.",answerText:"a",explain:"La estructura correcta es empezar a + infinitivo."}
+        ],
+        practice:{
+          situation:"En una reunión de seguimiento debes actualizar a tu supervisora sobre tres cambios del proyecto.",
+          interlocutor:"Tu supervisora.",
+          objective:"Explicar una tarea que empieza, una práctica que dejó de hacerse y una novedad que acaba de ocurrir.",
+          requirements:["Usa una frase con empezar a + infinitivo.","Usa una frase con dejar de + infinitivo.","Usa una frase con acabar de + infinitivo.","Escribe 3 frases breves y claras."],
+          supports:["Empezamos a + infinitivo + detalle.","Dejamos de + infinitivo + detalle.","Acabamos de + infinitivo + detalle."],
+          model:"Hoy empezamos a revisar las solicitudes nuevas. Dejamos de usar la hoja de cálculo anterior porque ahora trabajamos en el sistema nuevo. Además, acabamos de recibir la confirmación del proveedor.",
+          modelBlocks:["Hoy empezamos a revisar las solicitudes nuevas.","Dejamos de usar la hoja de cálculo anterior porque ahora trabajamos en el sistema nuevo.","Además, acabamos de recibir la confirmación del proveedor."]
+        },
+        checklist:[
+          "Puedo reconocer cuándo usar empezar a, dejar de y acabar de.",
+          "Puedo construir una frase sencilla con cada estructura.",
+          "Puedo explicar un cambio básico en una tarea o proceso.",
+          "Puedo adaptar una actualización breve a un contexto profesional.",
+          "Puedo producir mi propia actualización de tres frases."
+        ]
+      },
+
+      b1: {
+        route:"💼 B1 — Intermedio",
+        skill:"Dar actualizaciones sobre cambios de estado en tareas y procesos",
+        subtitle:"Usa empezar a, dejar de y acabar de para organizar actualizaciones y explicar el estado de un proyecto con mayor precisión.",
+        objective:"Al terminar este módulo podrás dar una actualización profesional diferenciando el inicio de una acción, su interrupción o cese y una novedad que acaba de ocurrir, conectando esos cambios con su impacto en el trabajo.",
+        situation:{
+          quien:"Tú, como responsable de una parte de un proyecto.",
+          conQuien:"Tu equipo y la persona que coordina el proyecto.",
+          contexto:"Una reunión de seguimiento después de un cambio en el proceso de trabajo.",
+          objetivo:"Explicar qué actividad comenzó, qué práctica se abandonó y qué información acaba de llegar, y relacionarlo con el siguiente paso.",
+          dificultad:"No basta con nombrar acciones: necesitas distinguir el momento y el cambio de estado para que el equipo interprete correctamente la actualización."
+        },
+        vocab:[
+          {word:"poner en marcha",meaning:"Iniciar un proceso, plan o sistema.",example:"Esta semana empezamos a poner en marcha el nuevo procedimiento.",extra:"Alternativas según contexto: iniciar, comenzar, activar."},
+          {word:"interrumpir",meaning:"Detener temporalmente una actividad o proceso.",example:"Interrumpimos el procesamiento de pedidos durante dos horas por una incidencia.",extra:"No siempre implica abandono definitivo; el contexto debe aclararlo."},
+          {word:"prescindir de",meaning:"Dejar de utilizar algo porque ya no se considera necesario.",example:"Hemos decidido dejar de usar el informe manual y prescindir de esa fase.",extra:"Registro más formal que simplemente ‘dejar de usar’."},
+          {word:"confirmación",meaning:"Información que valida una decisión, dato o autorización.",example:"Acabamos de recibir la confirmación del proveedor.",extra:"Colocaciones: recibir confirmación, solicitar confirmación, confirmar por escrito."},
+          {word:"incidencia",meaning:"Problema o evento que afecta un proceso.",example:"El sistema dejó de responder por una incidencia técnica.",extra:"Frecuente en contextos de operaciones, soporte y proyectos."},
+          {word:"actualización",meaning:"Información nueva sobre el estado de una tarea, proceso o proyecto.",example:"Voy a dar una actualización breve sobre el proyecto.",extra:"También: actualización de estado, informar del avance, poner al día."}
+        ],
+        phrases:[
+          {group:"Introducir el inicio",items:[
+            {text:"Esta semana hemos empezado a revisar las solicitudes con el nuevo criterio.",use:"Sirve para situar un cambio de proceso dentro de un periodo reciente."},
+            {text:"A partir de hoy, el equipo empieza a trabajar con la nueva herramienta.",use:"Marca el inicio de una práctica desde un punto temporal concreto."}
+          ]},
+          {group:"Explicar un cese o interrupción",items:[
+            {text:"Dejamos de enviar el informe manual porque el sistema ya lo genera automáticamente.",use:"Además del cese, explica la causa del cambio."},
+            {text:"El equipo dejó de procesar solicitudes durante la incidencia.",use:"El contexto permite interpretar el cese como temporal."}
+          ]},
+          {group:"Comunicar una novedad reciente",items:[
+            {text:"Acabamos de recibir la aprobación, así que podemos continuar con la siguiente fase.",use:"Conecta una acción muy reciente con su consecuencia inmediata."},
+            {text:"Acabo de hablar con el proveedor y ha confirmado la fecha.",use:"Introduce información recién obtenida que cambia la conversación."}
+          ]}
+        ],
+        builder:{
+          labels:["Cambio de estado","Acción principal","Contexto"],
+          parts:[
+            ["Hemos empezado a","Dejamos de","Acabamos de"],
+            ["revisar los contratos","procesar pedidos manualmente","utilizar el procedimiento anterior"],
+            ["esta mañana","en esta fase","por indicación de operaciones"]
+          ],
+          templates:["{0} {1} {2}."]
+        },
+        grammar:[
+          {title:"Inicio: empezar a + infinitivo",body:"Usa esta perífrasis cuando el dato relevante es el comienzo de una acción. Puedes combinarla con marcadores temporales: “Esta semana hemos empezado a revisar…”, “A partir de hoy empezamos a utilizar…”. El tiempo verbal de empezar sitúa el inicio; el infinitivo expresa la acción."},
+          {title:"Cese: dejar de + infinitivo",body:"Expresa que una acción ya no continúa. El contexto puede indicar si el cambio es definitivo o temporal: “Dejamos de usar esa plantilla” frente a “Durante la incidencia dejamos de procesar pedidos”. Añadir causa o duración mejora la precisión."},
+          {title:"Anterioridad inmediata: acabar de + infinitivo",body:"En presente, “acabo/acabas/acaba/acabamos de + infinitivo” presenta una acción como muy reciente respecto al momento de hablar: “Acabamos de recibir la aprobación”. Es especialmente útil para introducir una novedad que afecta el siguiente paso."},
+          {title:"Elige la perífrasis por el cambio que quieres destacar",body:"No elijas por el verbo principal, sino por la relación temporal: inicio → empezar a; cese → dejar de; acción recién ocurrida → acabar de. La misma acción puede aparecer con sentidos distintos: “empezamos a revisar”, “dejamos de revisar”, “acabamos de revisar”."}
+        ],
+        register:{
+          context:"Un proveedor estratégico te informa de un retraso. Tú acabas de recibir el dato y debes actualizar a tu directora sin dramatizar.",
+          options:[
+            "Acabo de recibir una actualización del proveedor: han retrasado la entrega dos días. Ya hemos empezado a revisar el impacto en el cronograma.",
+            "El proveedor acaba de avisar que se retrasa otra vez. Estamos viendo qué hacemos.",
+            "Nos acaban de comunicar un retraso de dos días. Estamos evaluando el impacto y compartiré una propuesta de ajuste esta tarde."
+          ],
+          accepted:[0,2],
+          feedback:[
+            "Funciona bien: presenta la novedad reciente y el inicio de la respuesta de forma clara y neutral.",
+            "Se entiende, pero ‘otra vez’ introduce una valoración y ‘estamos viendo qué hacemos’ resulta poco preciso para una actualización a dirección.",
+            "También es adecuada. Tiene un registro más formal y añade un siguiente paso concreto."
+          ]
+        },
+        example:{
+          intro:"Actualización de proyecto:",
+          full:"Esta semana hemos empezado a migrar los datos al nuevo sistema. Dejamos de cargar información en la plataforma anterior para evitar duplicidades. Además, acabamos de recibir la validación del cliente, así que podemos avanzar con la segunda fase.",
+          segments:[
+            {text:"hemos empezado a migrar los datos",note:"Sitúa el comienzo dentro de un periodo reciente."},
+            {text:"Dejamos de cargar información en la plataforma anterior",note:"Explica un cambio operativo que ya no continúa."},
+            {text:"acabamos de recibir la validación del cliente",note:"Introduce una novedad inmediata que justifica el siguiente paso."}
+          ]
+        },
+        quiz:[
+          {type:"choice",q:"¿Cuál actualización distingue mejor entre cese temporal y definitivo?",options:["Dejamos de procesar pedidos.","Durante la incidencia dejamos de procesar pedidos durante dos horas.","Acabamos de procesar pedidos."],answer:[1],explain:"El contexto temporal evita interpretar el cese como permanente."},
+          {type:"choice",q:"Necesitas introducir una información que llegó hace unos minutos y explicar su consecuencia. ¿Qué opción es más precisa?",options:["Empezamos a recibir la aprobación, así que seguimos.","Acabamos de recibir la aprobación, así que podemos continuar.","Dejamos de recibir la aprobación, así que podemos continuar."],answer:[1],explain:"Acabar de presenta la aprobación como novedad inmediata; el conector muestra su efecto."},
+          {type:"choice",q:"¿Qué frase suena más completa en una actualización profesional?",options:["Dejamos de usarlo.","Dejamos de usar el formulario manual porque el sistema ya genera ese registro.","Acabamos de dejar."],answer:[1],explain:"Identifica la práctica que cesa y explica la razón, reduciendo ambigüedad."},
+          {type:"input",q:"Completa la preposición: “El equipo dejó ___ enviar recordatorios manuales.”",answerText:"de",explain:"La estructura es dejar de + infinitivo."}
+        ],
+        practice:{
+          situation:"Tu equipo ha cambiado el proceso de aprobación de pedidos. Debes enviar una actualización breve a la directora de operaciones.",
+          interlocutor:"Directora de operaciones.",
+          objective:"Explicar un inicio, un cese y una novedad reciente, y cerrar con una consecuencia o siguiente paso.",
+          requirements:["Usa las tres perífrasis al menos una vez.","Incluye un conector de causa o consecuencia.","Aclara si el cese es temporal o definitivo cuando sea relevante.","Escribe entre 4 y 6 frases.","Mantén un registro profesional y directo."],
+          supports:["Esta semana hemos empezado a…","Dejamos de… porque…","Acabamos de…, así que…"],
+          model:"Esta semana hemos empezado a validar los pedidos directamente en el nuevo sistema. Por ese motivo, dejamos de utilizar la hoja de cálculo manual de forma definitiva. Además, acabamos de recibir la confirmación de que el módulo de reportes ya está activo. Así que, desde hoy, podemos centralizar la información y reducir duplicidades."
+        },
+        checklist:[
+          "Puedo diferenciar inicio, cese y anterioridad inmediata.",
+          "Puedo añadir contexto para evitar ambigüedades.",
+          "Puedo conectar una novedad reciente con su consecuencia.",
+          "Puedo adaptar el registro al interlocutor.",
+          "Puedo dar una actualización organizada de varias frases."
+        ]
+      },
+
+      b2: {
+        route:"🚀 B2 — Avanzado",
+        skill:"Dar actualizaciones sobre cambios de estado en tareas y procesos",
+        subtitle:"Usa empezar a, dejar de y acabar de para presentar cambios de estado, calibrar su alcance y reaccionar ante información reciente en contextos profesionales exigentes.",
+        objective:"Al terminar este módulo podrás construir actualizaciones de estado precisas, distinguir entre inicio, cese temporal o definitivo y anterioridad inmediata, y adaptar la formulación al grado de formalidad, responsabilidad y urgencia del contexto.",
+        situation:{
+          quien:"Tú, como responsable de proyecto.",
+          conQuien:"Dirección, un cliente clave y representantes de operaciones.",
+          contexto:"Una reunión extraordinaria después de un cambio técnico que afecta el calendario de implementación.",
+          objetivo:"Explicar qué proceso acaba de cambiar, qué actividad se ha detenido, qué nueva fase comienza y qué implicaciones tiene cada cambio.",
+          dificultad:"El interlocutor necesita precisión: una formulación ambigua puede hacer pensar que una suspensión temporal es definitiva o que una novedad reciente ya constituye una decisión cerrada."
+        },
+        vocab:[
+          {word:"cese",meaning:"Interrupción o terminación de una actividad.",example:"El cese temporal de las pruebas no afecta todavía la fecha de entrega.",extra:"Más nominal y formal que ‘parar’. Puede requerir especificar temporal, definitivo, parcial."},
+          {word:"discontinuar",meaning:"Dejar de ofrecer, producir o utilizar de forma planificada.",example:"La empresa dejó de utilizar la versión anterior y discontinuó el soporte interno.",extra:"Adecuado cuando existe una decisión estructural, no para una pausa accidental."},
+          {word:"desplegar",meaning:"Poner en funcionamiento una solución, sistema o cambio en un entorno real.",example:"Empezamos a desplegar la nueva versión por regiones.",extra:"Frecuente en tecnología, operaciones y proyectos; no equivale simplemente a ‘instalar’ en todos los contextos."},
+          {word:"incidencia crítica",meaning:"Evento con impacto relevante que requiere atención prioritaria.",example:"Acabamos de detectar una incidencia crítica en el entorno de producción.",extra:"El adjetivo ‘crítica’ debe corresponder al impacto real; evita sobredimensionar."},
+          {word:"contingencia",meaning:"Medida o plan alternativo para responder a un riesgo o interrupción.",example:"Hemos empezado a aplicar el plan de contingencia.",extra:"Colocaciones: activar, aplicar, ejecutar un plan de contingencia."},
+          {word:"alcance",meaning:"Extensión o límites de un cambio, proyecto o problema.",example:"Todavía estamos determinando el alcance del fallo.",extra:"Útil para evitar afirmar más de lo que la evidencia permite."}
+        ],
+        phrases:[
+          {group:"Presentar un inicio con alcance controlado",items:[
+            {text:"Hemos empezado a desplegar la actualización de forma gradual para limitar el riesgo operativo.",use:"El adverbio y la finalidad precisan cómo y por qué comienza el proceso."},
+            {text:"A partir de esta mañana, empezamos a aplicar el protocolo únicamente en las sedes afectadas.",use:"Delimita temporal y operativamente el inicio."}
+          ]},
+          {group:"Calibrar un cese",items:[
+            {text:"Hemos dejado de procesar nuevas solicitudes de forma temporal mientras validamos el origen de la incidencia.",use:"Evita que ‘dejar de’ se interprete como una decisión definitiva."},
+            {text:"La compañía dejó de utilizar ese proveedor a raíz de los incumplimientos reiterados.",use:"El contexto presenta el cese como una decisión estructural."}
+          ]},
+          {group:"Introducir información recién disponible",items:[
+            {text:"Acabamos de recibir una segunda confirmación independiente; aun así, prefiero validar el alcance antes de comunicar una fecha.",use:"Presenta una novedad sin convertirla automáticamente en certeza suficiente para decidir."},
+            {text:"El equipo técnico acaba de detectar una inconsistencia que podría afectar el calendario.",use:"Introduce una novedad inmediata y conserva cautela mediante ‘podría’."}
+          ]}
+        ],
+        builder:{
+          labels:["Enfoque comunicativo","Núcleo de la actualización","Alcance / contexto"],
+          parts:[
+            ["Hemos empezado a","Hemos dejado de","Acabamos de"],
+            ["desplegar la solución","procesar nuevas solicitudes","ejecutar pruebas"],
+            ["esta mañana","durante esta fase","tras la última actualización"]
+          ],
+          templates:["{0} {1} {2}."]
+        },
+        grammar:[
+          {title:"Aspecto incoativo: empezar a + infinitivo",body:"La perífrasis focaliza la entrada en una acción. En una actualización profesional, el matiz depende del tiempo verbal y de los modificadores: “hemos empezado a desplegar” presenta un inicio reciente con relevancia actual; “empezamos a desplegar” puede narrar un punto de inicio cerrado en el pasado. Añade alcance cuando el comienzo no sea total."},
+          {title:"Aspecto terminativo: dejar de + infinitivo",body:"Focaliza la interrupción o cese de una actividad, pero por sí sola no codifica si el cambio es temporal, definitivo, voluntario o forzado. Esa información debe expresarse: “hemos dejado de procesar temporalmente…”, “dejamos de trabajar con ese proveedor de forma definitiva…”."},
+          {title:"Anterioridad inmediata: acabar de + infinitivo",body:"En presente, sitúa el evento inmediatamente antes del momento de habla: “acabamos de recibir…”. Con imperfecto puede expresar anterioridad inmediata respecto a un punto pasado: “acabábamos de cerrar la reunión cuando llegó el aviso”. En ambos casos, la referencia temporal cambia, pero la relación de inmediatez se mantiene."},
+          {title:"Evita confundir estado, decisión y evidencia",body:"“Acabamos de detectar un fallo” informa una evidencia reciente; no equivale a “hemos decidido detener el servicio”. “Hemos dejado de procesar” informa un cese; no explica por sí solo su causa ni duración. En B2, completa la perífrasis con el matiz que el interlocutor necesita para decidir."}
+        ],
+        register:{
+          context:"Durante una llamada con un cliente clave, acabas de recibir datos preliminares sobre una incidencia. Aún no sabes si el impacto será permanente.",
+          options:[
+            "Acabamos de confirmar un problema grave y hemos dejado de operar hasta nuevo aviso.",
+            "Acabamos de recibir datos que apuntan a una incidencia. Hemos dejado de procesar nuevas operaciones de forma preventiva mientras validamos el alcance.",
+            "Nos acaba de llegar algo raro del sistema. Por ahora hemos parado todo."
+          ],
+          accepted:[1],
+          feedback:[
+            "La frase presenta como confirmados dos hechos que el contexto todavía no permite afirmar: gravedad y duración del cese. El problema principal es de precisión, no de gramática.",
+            "Es la opción más adecuada: distingue evidencia preliminar, medida preventiva y necesidad de validación sin minimizar el problema.",
+            "El mensaje es comprensible, pero ‘algo raro’ y ‘hemos parado todo’ son imprecisos para un cliente clave y aumentan la incertidumbre."
+          ]
+        },
+        example:{
+          intro:"Actualización a dirección y cliente:",
+          full:"Acabamos de recibir una alerta que apunta a una inconsistencia en los datos de facturación. Como medida preventiva, hemos dejado de procesar nuevas cargas de forma temporal mientras el equipo técnico valida el alcance. Paralelamente, hemos empezado a revisar los registros de las últimas 24 horas. Compartiremos una actualización confirmada en cuanto tengamos evidencia suficiente.",
+          segments:[
+            {text:"Acabamos de recibir una alerta",note:"Marca la anterioridad inmediata y sitúa la información como recién disponible."},
+            {text:"hemos dejado de procesar nuevas cargas de forma temporal",note:"El complemento evita interpretar el cese como definitivo."},
+            {text:"hemos empezado a revisar los registros",note:"Presenta la acción correctiva que ya se puso en marcha."}
+          ]
+        },
+        quiz:[
+          {type:"choice",q:"¿Qué formulación gestiona mejor la incertidumbre sin perder claridad?",options:["Acabamos de confirmar un fallo que afectará a todos los clientes.","Acabamos de detectar una anomalía que podría afectar a parte de las operaciones; estamos validando el alcance.","Dejamos de tener un problema y ya está resuelto."],answer:[1],explain:"La opción separa el hecho confirmado —detección— de la consecuencia todavía hipotética y explicita la validación pendiente."},
+          {type:"choice",q:"¿Cuál frase evita interpretar un cese como definitivo?",options:["Hemos dejado de procesar solicitudes.","Hemos dejado de procesar nuevas solicitudes temporalmente mientras revisamos la incidencia.","Acabamos de procesar solicitudes."],answer:[1],explain:"‘Temporalmente’ y la subordinada delimitan el alcance del cese."},
+          {type:"choice",q:"En una narración pasada, ¿qué opción expresa que una acción ocurrió inmediatamente antes de otra?",options:["Acabábamos de cerrar la reunión cuando llegó el aviso.","Empezábamos a cerrar la reunión desde ayer.","Dejábamos de cerrar la reunión cuando llegó el aviso."],answer:[0],explain:"Acabar de en imperfecto puede expresar anterioridad inmediata respecto a un punto de referencia pasado."},
+          {type:"input",q:"Completa con la preposición correcta: “La empresa dejó ___ trabajar con ese proveedor tras la auditoría.”",answerText:"de",explain:"La perífrasis es dejar de + infinitivo."}
+        ],
+        practice:{
+          situation:"Una actualización de software ha generado una incidencia potencial en un cliente clave. Acabas de recibir información preliminar, el equipo ha suspendido una parte del proceso y ya ha comenzado una revisión técnica.",
+          interlocutor:"Cliente clave y directora de operaciones en la misma llamada.",
+          objective:"Informar con precisión, evitar conclusiones no verificadas y proponer un siguiente paso sin sonar evasivo.",
+          requirements:["Integra las tres perífrasis con naturalidad.","Distingue hechos confirmados de hipótesis.","Aclara el alcance y la duración del cese si no son definitivos.","Adapta el registro a un cliente externo y a dirección simultáneamente.","Incluye un siguiente paso y un compromiso de actualización.","Escribe entre 6 y 8 frases."],
+          supports:["Acabamos de recibir/detectar…","Hemos dejado de… de forma temporal mientras…","Hemos empezado a… para…"],
+          model:"Acabamos de recibir una alerta que indica una posible inconsistencia en una parte de los datos procesados esta mañana. De forma preventiva, hemos dejado de ejecutar nuevas cargas en el módulo afectado mientras verificamos el alcance; el resto del servicio continúa operativo. Al mismo tiempo, hemos empezado a revisar los registros y a contrastarlos con la copia de respaldo. Por ahora no tenemos evidencia suficiente para afirmar que exista pérdida de información. Compartiremos una actualización confirmada dentro de una hora y, si detectamos impacto adicional, propondremos inmediatamente el plan de contingencia correspondiente."
+        },
+        checklist:[
+          "Puedo distinguir inicio, cese y anterioridad inmediata con precisión temporal.",
+          "Puedo indicar si un cese es temporal, parcial, definitivo o preventivo.",
+          "Puedo separar evidencia reciente de decisiones o conclusiones todavía no verificadas.",
+          "Puedo ajustar registro, alcance y grado de certeza según el interlocutor.",
+          "Puedo reaccionar ante una novedad reciente y formular un siguiente paso profesional."
+        ]
+      }
+    };
+    // ===== FIN DEL CONTENIDO EDITABLE =====
+
+    const sectionNames = [
+      "🎯 Objetivo","🏢 Situación","🗣️ Vocabulario","💬 Frases","🧩 Construye","📚 Gramática",
+      "🎭 Registro","💼 Modelo","✍️ Comprueba","🏢 Tu práctica","💡 Ver modelo","✅ Checklist"
+    ];
+
+    let currentLevel = null;
+    let currentSection = 0;
+    const progressActions = new Set();
+    let totalProgressActions = 1;
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+    const esc = (str='') => String(str).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+
+    function audioControls(text){
+      if(currentLevel !== 'a2') return '';
+      const safe = esc(text);
+      return `<div class="audio-row">
+        <button class="audio-btn speak-btn" data-text="${safe}" data-rate="1" aria-label="Escuchar: ${safe}">🔊 Escuchar / Listen</button>
+        <button class="audio-btn speak-btn" data-text="${safe}" data-rate="0.78" aria-label="Escuchar lento: ${safe}">🐢 Lento / Slow</button>
+      </div>`;
+    }
+
+    function getSpanishVoice(){
+      const voices = window.speechSynthesis?.getVoices?.() || [];
+      const es = voices.filter(v => /^es([-_]|$)/i.test(v.lang));
+      return es.find(v => /CO|Colombia|Latino|Latin America|MX|US/i.test(`${v.lang} ${v.name}`)) || es[0] || null;
+    }
+
+    function speak(text, rate=1){
+      if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)){
+        alert('El audio de pronunciación no está disponible en este navegador. El resto del módulo sigue funcionando normalmente.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'es-CO';
+      u.rate = Number(rate) || 1;
+      u.pitch = 1;
+      const voice = getSpanishVoice();
+      if(voice) u.voice = voice;
+      window.speechSynthesis.speak(u);
+    }
+    if('speechSynthesis' in window){
+      window.speechSynthesis.onvoiceschanged = () => getSpanishVoice();
+    }
+
+    function calcTotalActions(data){
+      return 12 + data.vocab.length + data.phrases.reduce((n,g)=>n+g.items.length,0) + data.grammar.length + data.quiz.length + data.checklist.length + 7 + (data.recovery ? 1 : 0);
+    }
+
+    function refreshProgress(){
+      const pct = currentLevel ? Math.min(100, Math.round(progressActions.size / totalProgressActions * 100)) : 0;
+      $('#progressBar').style.width = pct + '%';
+      $('#progressText').textContent = pct + '%';
+    }
+
+    function markProgress(id){
+      if(!currentLevel) return;
+      progressActions.add(id);
+      refreshProgress();
+    }
+
+    function unmarkProgress(id){
+      progressActions.delete(id);
+      refreshProgress();
+    }
+
+    function showLevelPicker(){
+      window.speechSynthesis?.cancel?.();
+      $('#app').classList.add('hidden');
+      $('#levelScreen').classList.remove('hidden');
+      currentLevel = null;
+      progressActions.clear();
+      refreshProgress();
+    }
+
+    function startLevel(level){
+      currentLevel = level;
+      currentSection = 0;
+      progressActions.clear();
+      const data = contenido[level];
+      totalProgressActions = calcTotalActions(data);
+      $('#routePill').textContent = `Tu ruta: ${data.route}`;
+      $('#moduleTitle').textContent = data.skill;
+      $('#moduleSubtitle').textContent = data.subtitle;
+      $('#levelScreen').classList.add('hidden');
+      $('#app').classList.remove('hidden');
+      renderNav();
+      renderSections();
+      showSection(0);
+      markProgress('level-selected');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function renderNav(){
+      $('#navStrip').innerHTML = sectionNames.map((n,i)=>`<button class="nav-step" data-index="${i}">${i+1}. ${n}</button>`).join('');
+    }
+
+    function sectionShell(index, title, body){
+      return `<section class="module-section" data-section="${index}" aria-labelledby="sec-${index}-title">
+        <div class="section-head"><span class="section-number">${index+1}</span><h2 id="sec-${index}-title">${title}</h2></div>
+        ${body}
+        <div class="section-nav">
+          <button class="secondary prev-btn" ${index===0?'disabled':''}>← Anterior</button>
+          <button class="primary next-btn" ${index===11?'disabled':''}>Siguiente →</button>
+        </div>
+      </section>`;
+    }
+
+    function renderSections(){
+      const d = contenido[currentLevel];
+      const sections = [];
+
+      sections.push(sectionShell(0,'🎯 TU OBJETIVO ESTA SEMANA',`
+        <p>${esc(d.objective)}</p>
+        <div class="note">Al final del módulo comprobarás si ya puedes hacerlo.</div>
+        ${currentLevel==='a2'?audioControls(d.objective):''}
+      `));
+
+      sections.push(sectionShell(1,'🏢 LA SITUACIÓN',`
+        <p>Trabajarás con una situación profesional que exige comunicar cambios de estado con precisión.</p>
+        <div class="situation">
+          <div class="mini-card"><strong>Quién habla</strong>${esc(d.situation.quien)}</div>
+          <div class="mini-card"><strong>Con quién</strong>${esc(d.situation.conQuien)}</div>
+          <div class="mini-card"><strong>Contexto</strong>${esc(d.situation.contexto)}</div>
+          <div class="mini-card"><strong>Qué quieres conseguir</strong>${esc(d.situation.objetivo)}</div>
+        </div>
+        <div class="note"><strong>Dificultad:</strong> ${esc(d.situation.dificultad)}</div>
+      `));
+
+      sections.push(sectionShell(2,'🗣️ VOCABULARIO CLAVE',`
+        <p>${currentLevel==='a2'?'Pulsa cada tarjeta para descubrir el significado, el ejemplo y la pronunciación.':'Pulsa cada tarjeta para ver explicación, ejemplo y matiz de uso.'}</p>
+        <div class="grid" id="vocabGrid">${d.vocab.map((v,i)=>`
+          <div class="vocab-item">
+            <button class="vocab-btn vocab-toggle" data-vocab="${i}" aria-expanded="false">
+              <div class="vocab-word">${esc(v.word)}</div>
+              <div class="vocab-hint">Pulsa para revelar</div>
+            </button>
+            <div class="reveal hidden card">
+              ${v.en?`<div><strong>English:</strong> ${esc(v.en)}</div>`:''}
+              <div><strong>Significado:</strong> ${esc(v.meaning)}</div>
+              <div><strong>Ejemplo:</strong> ${esc(v.example)}</div>
+              <div><strong>Uso:</strong> ${esc(v.extra)}</div>
+              ${v.stress?`<div><strong>Sílaba tónica:</strong> <span class="stress">${esc(v.stress)}</span></div>`:''}
+              ${audioControls(v.word)}${audioControls(v.example)}
+            </div>
+          </div>`).join('')}</div>
+          ${d.recovery?`<div class="recovery"><strong>Recupera una expresión</strong><p>${esc(d.recovery.prompt)}</p><div class="choice-list">${d.recovery.options.map((o,i)=>`<div class="choice-wrap"><button class="choice-btn recovery-choice" data-index="${i}">${esc(o)}</button>${audioControls(o)}</div>`).join('')}</div><div id="recoveryFeedback"></div></div>`:''}
+      `));
+
+      sections.push(sectionShell(3,'💬 FRASES QUE PUEDES USAR',`
+        <p>${currentLevel==='a2'?'Escucha, repite y descubre cuándo usar cada frase.':'Compara alternativas según su función comunicativa.'}</p>
+        ${d.phrases.map((g,gi)=>`<div class="phrase-group"><h3>${esc(g.group)}</h3>${g.items.map((it,ii)=>`
+          <div class="phrase-item"><div class="phrase-main">${esc(it.text)}</div>${audioControls(it.text)}<button class="small-btn phrase-help" data-key="${gi}-${ii}" aria-expanded="false">Ver cuándo usarla</button><div class="reveal hidden">${esc(it.use)}</div></div>`).join('')}</div>`).join('')}
+      `));
+
+      sections.push(sectionShell(4,'🧩 CONSTRUYE TU MENSAJE',`
+        <p>${currentLevel==='a2'?'Combina bloques conocidos. Primero construye; después podrás adaptar tu propio mensaje.':currentLevel==='b1'?'Combina una estructura, una acción y un contexto. Después amplía la idea con una causa, consecuencia o siguiente paso propio.':'Combina el núcleo de la actualización con un contexto temporal. Después añade el matiz de alcance, certeza o duración que necesite tu interlocutor.'}</p>
+        <div class="builder">${d.builder.parts.map((part,i)=>`<label>${esc(d.builder.labels[i])}<select class="builder-select" data-part="${i}">${part.map((x,idx)=>`<option value="${idx}">${esc(x)}</option>`).join('')}</select></label>`).join('')}</div>
+        <div class="builder-output"><strong>Tu frase:</strong> <span id="builderText"></span><div id="builderAudio"></div></div>
+      `));
+
+      sections.push(sectionShell(5,'📚 GRAMÁTICA QUE NECESITAS',`
+        <p>La gramática aparece aquí porque te ayuda a comunicar el estado real de una tarea o proceso.</p>
+        <div class="grammar-list">${d.grammar.map((g,i)=>`<details data-grammar="${i}"><summary>${esc(g.title)}</summary><p>${esc(g.body)}</p>${currentLevel==='a2'?audioControls(g.body.match(/“([^”]+)”/)?.[1] || g.title):''}</details>`).join('')}</div>
+      `));
+
+      sections.push(sectionShell(6,'🎭 ELIGE EL REGISTRO',`
+        <p><strong>Contexto:</strong> ${esc(d.register.context)}</p>
+        <div class="choice-list" id="registerChoices">${d.register.options.map((o,i)=>`<div class="choice-wrap"><button class="choice-btn register-choice" data-index="${i}">${esc(o)}</button>${currentLevel==='a2'?audioControls(o):''}</div>`).join('')}</div>
+        <div id="registerFeedback"></div>
+      `));
+
+      sections.push(sectionShell(7,'💼 MIRA CÓMO SE HACE',`
+        <p>${esc(d.example.intro)}</p>
+        <div class="example-box"><div class="example-line"><strong>${esc(d.example.full)}</strong></div>${audioControls(d.example.full)}
+        <p class="vocab-hint">Pulsa los fragmentos para descubrir qué función cumplen.</p>
+        <div>${d.example.segments.map((s,i)=>`<button class="segment" data-segment="${i}">${esc(s.text)}</button>${audioControls(s.text)}`).join('<br>')}</div><div id="segmentNote" class="segment-note">Selecciona un fragmento.</div></div>
+      `));
+
+      sections.push(sectionShell(8,'✍️ COMPRUEBA LO QUE APRENDISTE',`
+        <p>Estas actividades sirven para preparar el uso, no para calificarte.</p>
+        <div id="quizArea">${d.quiz.map((q,i)=>renderQuiz(q,i)).join('')}</div>
+      `));
+
+      sections.push(sectionShell(9,'🏢 AHORA TE TOCA A TI',`
+        <p><strong>Situación:</strong> ${esc(d.practice.situation)}</p>
+        <p><strong>Interlocutor:</strong> ${esc(d.practice.interlocutor)}</p>
+        <p><strong>Objetivo:</strong> ${esc(d.practice.objective)}</p>
+        <strong>Incluye:</strong><ul class="requirements">${d.practice.requirements.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+        <div class="mini-card"><strong>Estructuras de apoyo</strong>${d.practice.supports.map(s=>`<div class="pill">${esc(s)}</div>${audioControls(s)}`).join('')}</div>
+        <label for="practiceText">Tu respuesta<textarea id="practiceText" placeholder="Escribe aquí tu actualización profesional..."></textarea></label><div id="charCount" class="counter">0 caracteres</div>
+      `));
+
+      sections.push(sectionShell(10,'💡 VER MODELO',`
+        <p>Compara tu respuesta con una posibilidad. El modelo permanece oculto hasta que decidas verlo.</p>
+        <button id="showModel" class="primary">Ver una posible respuesta</button>
+        <div id="modelBox" class="model-box hidden"><strong>Esta es una posible respuesta. No necesitas escribir exactamente lo mismo.</strong><p>${esc(d.practice.model)}</p>${audioControls(d.practice.model)}${currentLevel==='a2'&&d.practice.modelBlocks?`<div class="phrase-group"><h3>Escucha por bloques</h3>${d.practice.modelBlocks.map(b=>`<div class="phrase-item"><div class="phrase-main">${esc(b)}</div>${audioControls(b)}</div>`).join('')}</div>`:''}</div>
+      `));
+
+      sections.push(sectionShell(11,'✅ CHECKLIST FINAL',`
+        <p>Antes de terminar, comprueba qué puedes hacer ya.</p>
+        <div id="checkList" class="check-list">${d.checklist.map((x,i)=>`<label class="check-row"><input type="checkbox" data-check="${i}"><span>${esc(x)}</span></label>`).join('')}</div>
+        <div class="check-progress" id="checkProgress">0 de ${d.checklist.length} completados</div>
+        <div id="readyBox" class="ready hidden"><h3>🎯 Ya estás listo para practicar</h3><p>Durante los próximos siete días encontrarás retos relacionados con esta habilidad. No necesitas memorizar todo. Esta semana vas a usar estas estructuras varias veces en situaciones diferentes. La repetición y la adaptación forman parte del entrenamiento.</p>
+          <!-- Sustituir href="#" por la URL real del reto diario cuando esté disponible. -->
+          <a class="primary" style="display:inline-block;text-decoration:none" href="#">🔥 Ir al reto de hoy</a>
+        </div>
+      `));
+
+      $('#sections').innerHTML = sections.join('');
+      updateBuilder();
+    }
+
+    function renderQuiz(q,i){
+      if(q.type==='choice'){
+        return `<div class="quiz-item" data-quiz="${i}"><h3>${i+1}. ${esc(q.q)}</h3><div class="choice-list">${q.options.map((o,oi)=>`<div class="choice-wrap"><button class="choice-btn quiz-choice" data-quiz="${i}" data-option="${oi}">${esc(o)}</button>${currentLevel==='a2'?audioControls(o):''}</div>`).join('')}</div><div class="quiz-actions"><button class="primary check-quiz" data-quiz="${i}">Comprobar</button><button class="secondary retry-quiz" data-quiz="${i}">Volver a intentar</button></div><div class="quiz-feedback"></div></div>`;
+      }
+      return `<div class="quiz-item" data-quiz="${i}"><h3>${i+1}. ${esc(q.q)}</h3>${currentLevel==='a2'&&q.audioText?audioControls(q.audioText):''}<label>Tu respuesta<input type="text" class="quiz-input" data-quiz="${i}" autocomplete="off"></label><div class="quiz-actions"><button class="primary check-quiz" data-quiz="${i}">Comprobar</button><button class="secondary retry-quiz" data-quiz="${i}">Volver a intentar</button></div><div class="quiz-feedback"></div></div>`;
+    }
+
+    function showSection(index){
+      currentSection = Math.max(0,Math.min(11,index));
+      $$('.module-section').forEach((s,i)=>s.classList.toggle('active',i===currentSection));
+      $$('.nav-step').forEach((b,i)=>b.classList.toggle('active',i===currentSection));
+      markProgress(`section:${currentSection}`);
+      $('.module-section.active')?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function updateBuilder(){
+      const d = contenido[currentLevel];
+      const sels = $$('.builder-select');
+      if(!sels.length) return;
+      const parts = sels.map((s,i)=>d.builder.parts[i][Number(s.value)]);
+      let text = d.builder.templates[0];
+      parts.forEach((p,i)=> text = text.replace(`{${i}}`,p));
+      $('#builderText').textContent = text;
+      $('#builderAudio').innerHTML = audioControls(text);
+    }
+
+    function checkQuiz(index){
+      const d = contenido[currentLevel];
+      const q = d.quiz[index];
+      const box = $(`.quiz-item[data-quiz="${index}"]`);
+      const fb = $('.quiz-feedback',box);
+      let ok=false;
+      if(q.type==='choice'){
+        const selected = $('.quiz-choice.selected',box);
+        if(!selected){fb.className='quiz-feedback feedback warn';fb.textContent='Selecciona una opción antes de comprobar.';return;}
+        const chosen = Number(selected.dataset.option);
+        ok = q.answer.includes(chosen);
+      }else{
+        const val = $('.quiz-input',box).value.trim().toLowerCase();
+        if(!val){fb.className='quiz-feedback feedback warn';fb.textContent='Escribe una respuesta antes de comprobar.';return;}
+        ok = val === q.answerText.toLowerCase();
+      }
+      fb.className = `quiz-feedback feedback${ok?'':' warn'}`;
+      fb.textContent = `${ok?'La formulación funciona. ':'Revisa la estructura. '}${q.explain}`;
+      if(ok) markProgress(`quiz:${index}`); else unmarkProgress(`quiz:${index}`);
+    }
+
+    function resetQuiz(index){
+      const box = $(`.quiz-item[data-quiz="${index}"]`);
+      $$('.quiz-choice',box).forEach(x=>x.classList.remove('selected'));
+      const inp = $('.quiz-input',box); if(inp) inp.value='';
+      const fb = $('.quiz-feedback',box); fb.className='quiz-feedback'; fb.textContent='';
+      unmarkProgress(`quiz:${index}`);
+    }
+
+    document.addEventListener('click', e=>{
+      const levelBtn=e.target.closest('[data-level]'); if(levelBtn){startLevel(levelBtn.dataset.level);return;}
+      if(e.target.closest('#changeLevel')){showLevelPicker();return;}
+      const nav=e.target.closest('.nav-step'); if(nav){showSection(Number(nav.dataset.index));return;}
+      const prev=e.target.closest('.prev-btn'); if(prev&&!prev.disabled){showSection(currentSection-1);return;}
+      const next=e.target.closest('.next-btn'); if(next&&!next.disabled){showSection(currentSection+1);return;}
+
+      const vb=e.target.closest('.vocab-toggle'); if(vb){
+        const item=vb.closest('.vocab-item'); const r=$('.reveal',item); const opening=r.classList.contains('hidden'); r.classList.toggle('hidden'); vb.setAttribute('aria-expanded',String(opening)); markProgress(`vocab:${vb.dataset.vocab}`);return;
+      }
+      const ph=e.target.closest('.phrase-help'); if(ph){const r=ph.nextElementSibling;r.classList.toggle('hidden');ph.setAttribute('aria-expanded',String(!r.classList.contains('hidden')));markProgress(`phrase:${ph.dataset.key}`);return;}
+      const sp=e.target.closest('.speak-btn'); if(sp){speak(sp.dataset.text,sp.dataset.rate);return;}
+      const grammarSummary=e.target.closest('details summary'); if(grammarSummary){const det=grammarSummary.parentElement;markProgress(`grammar:${det.dataset.grammar}`);}
+
+      const rec=e.target.closest('.recovery-choice'); if(rec&&contenido[currentLevel].recovery){
+        const r=contenido[currentLevel].recovery; $$('.recovery-choice').forEach(x=>x.classList.remove('selected'));rec.classList.add('selected');
+        const ok=Number(rec.dataset.index)===r.answer;$('#recoveryFeedback').className=`feedback${ok?'':' warn'}`;$('#recoveryFeedback').textContent=(ok?'Correcto. ':'Prueba otra vez. ')+r.feedback;markProgress('recovery');return;
+      }
+
+      const rg=e.target.closest('.register-choice'); if(rg){
+        const d=contenido[currentLevel].register; $$('.register-choice').forEach(x=>x.classList.remove('selected'));rg.classList.add('selected');
+        const i=Number(rg.dataset.index), ok=d.accepted.includes(i);const fb=$('#registerFeedback');fb.className=`feedback${ok?'':' warn'}`;fb.textContent=d.feedback[i];markProgress('register');return;
+      }
+
+      const seg=e.target.closest('.segment'); if(seg){$('#segmentNote').textContent=contenido[currentLevel].example.segments[Number(seg.dataset.segment)].note;markProgress('example-explored');return;}
+
+      const qc=e.target.closest('.quiz-choice'); if(qc){const box=qc.closest('.quiz-item');$$('.quiz-choice',box).forEach(x=>x.classList.remove('selected'));qc.classList.add('selected');return;}
+      const chk=e.target.closest('.check-quiz'); if(chk){checkQuiz(Number(chk.dataset.quiz));return;}
+      const retry=e.target.closest('.retry-quiz'); if(retry){resetQuiz(Number(retry.dataset.quiz));return;}
+      const model=e.target.closest('#showModel'); if(model){$('#modelBox').classList.remove('hidden');model.disabled=true;markProgress('model');return;}
+    });
+
+    document.addEventListener('change', e=>{
+      if(e.target.matches('.builder-select')){updateBuilder();markProgress('builder');}
+      if(e.target.matches('[data-check]')){
+        const checks=$$('[data-check]');const done=checks.filter(x=>x.checked).length;$('#checkProgress').textContent=`${done} de ${checks.length} completados`;
+        checks.forEach((x,i)=>{if(x.checked) markProgress(`check:${i}`); else unmarkProgress(`check:${i}`);});
+        $('#readyBox').classList.toggle('hidden',done!==checks.length);
+        if(done===checks.length) markProgress('ready'); else unmarkProgress('ready');
+      }
+    });
+
+    document.addEventListener('input', e=>{
+      if(e.target.id==='practiceText'){
+        $('#charCount').textContent=`${e.target.value.length} caracteres`;
+        if(e.target.value.trim().length>=30) markProgress('practice-written'); else unmarkProgress('practice-written');
+      }
+    });
+
+    $$('.level-card').forEach(btn=>btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();startLevel(btn.dataset.level);}}));
+  </script>
+</body>
+</html>
