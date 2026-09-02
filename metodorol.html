@@ -437,9 +437,125 @@
       .flow-arrow{transform:rotate(90deg)}
       .hero{padding-top:48px}
     }
+  
+    /* Pantalla inicial de selección de idioma */
+    .language-gate{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(252,209,22,.24), transparent 28%),
+        radial-gradient(circle at 12% 86%, rgba(206,17,38,.16), transparent 22%),
+        var(--blue);
+    }
+
+    .language-gate.hidden{
+      display:none;
+    }
+
+    .language-gate-card{
+      width:min(760px,100%);
+      background:var(--white);
+      border-radius:30px;
+      padding:clamp(28px,5vw,54px);
+      text-align:center;
+      box-shadow:0 28px 80px rgba(0,0,0,.30);
+    }
+
+    .language-gate-logo{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      margin-bottom:18px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--blue);
+      font-weight:800;
+      font-size:.9rem;
+    }
+
+    .language-gate h1{
+      margin-bottom:14px;
+      color:var(--blue);
+      font-size:clamp(2.7rem,7vw,5rem);
+      letter-spacing:-.04em;
+    }
+
+    .language-gate p{
+      max-width:600px;
+      margin:0 auto 28px;
+      color:#4b5d78;
+      font-size:1.08rem;
+    }
+
+    .language-gate-options{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      max-width:520px;
+      margin:0 auto;
+    }
+
+    .language-gate-btn{
+      border:2px solid var(--blue);
+      border-radius:18px;
+      padding:18px 16px;
+      background:var(--white);
+      color:var(--blue);
+      font-weight:800;
+      font-size:1.05rem;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .language-gate-btn:hover,
+    .language-gate-btn:focus-visible{
+      transform:translateY(-2px);
+      background:var(--blue);
+      color:var(--white);
+      outline:none;
+      box-shadow:0 12px 26px rgba(0,56,147,.18);
+    }
+
+    .language-gate-btn span{
+      display:block;
+      font-size:1.55rem;
+      margin-bottom:4px;
+    }
+
+    @media(max-width:560px){
+      .language-gate-options{
+        grid-template-columns:1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
+
+  <div id="language-gate" class="language-gate" role="dialog" aria-modal="true" aria-labelledby="language-gate-title">
+    <div class="language-gate-card">
+      <div class="language-gate-logo">💼 La Oficina en Español</div>
+      <h1 id="language-gate-title">Método <span class="yellow">ROL</span></h1>
+      <p>Conoce cómo aprenderás y practicarás español para utilizarlo en situaciones profesionales.</p>
+
+      <div class="language-gate-options" aria-label="Selecciona tu idioma">
+        <button id="gate-es" class="language-gate-btn" type="button">
+          <span>🇪🇸</span>
+          Español
+        </button>
+        <button id="gate-en" class="language-gate-btn" type="button">
+          <span>🇺🇸</span>
+          English
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -926,6 +1042,23 @@
       o:'🧩 Optimize:',
       l:'🎭 Put it into practice:'
     });
+  
+    const languageGate = document.getElementById('language-gate');
+    const gateEs = document.getElementById('gate-es');
+    const gateEn = document.getElementById('gate-en');
+
+    function enterExperience(lang){
+      setLang(lang);
+      languageGate.classList.add('hidden');
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+
+    gateEs.addEventListener('click', () => enterExperience('es'));
+    gateEn.addEventListener('click', () => enterExperience('en'));
+
+    // La pantalla inicial se muestra en cada carga para que la persona elija el idioma.
+    languageGate.classList.remove('hidden');
+
   </script>
 </body>
 </html>
