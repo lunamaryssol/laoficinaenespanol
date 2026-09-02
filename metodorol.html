@@ -1,48 +1,931 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Conoce el Método ROL de La Oficina en Español: Reto, Optimiza y Llévalo a la práctica." />
-<title>Método ROL | La Oficina en Español</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;--ink:#13213c;--muted:#5f6b7e;--soft:#f5f8fd;--border:#dbe4f2;--shadow:0 18px 50px rgba(0,56,147,.14)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#eef3fb;min-height:100vh;overflow-x:hidden}button,a{font:inherit}button{cursor:pointer}a{text-decoration:none}.app{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(18px,4vw,56px);background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,56,147,.10)}.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand-mark{width:42px;height:42px;border-radius:13px;background:var(--blue);color:var(--yellow);display:grid;place-items:center;font-family:"Archivo Black",Impact,sans-serif;font-size:18px;box-shadow:0 7px 18px rgba(0,56,147,.18)}.brand-name{font-weight:800;color:var(--blue);font-size:clamp(.82rem,2vw,1rem);white-space:nowrap}.web-link{padding:10px 15px;border-radius:999px;background:var(--yellow);color:var(--black);font-weight:800;border:2px solid var(--yellow);transition:.2s ease}.web-link:hover,.web-link:focus-visible{transform:translateY(-1px);box-shadow:0 7px 18px rgba(252,209,22,.32)}.stage{width:min(1180px,calc(100% - 28px));margin:24px auto;position:relative}.page{display:none;min-height:calc(100vh - 150px);background:var(--white);border-radius:32px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,56,147,.08);animation:pageIn .45s ease}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.hero{min-height:calc(100vh - 150px);background:var(--blue);color:var(--white);display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:36px;padding:clamp(34px,7vw,84px);position:relative;isolation:isolate}.hero::before,.hero::after{content:"";position:absolute;border-radius:999px;z-index:-1}.hero::before{width:360px;height:360px;background:rgba(252,209,22,.11);right:-80px;top:-100px}.hero::after{width:230px;height:230px;border:28px solid rgba(255,255,255,.06);left:-75px;bottom:-85px}.eyebrow{display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:800}.hero h1,.section-title,.big-letter,.final-title{font-family:"Archivo Black",Impact,sans-serif}.hero h1{margin:20px 0 18px;font-size:clamp(3rem,8vw,6.7rem);line-height:.92;letter-spacing:-.04em}.hero h1 span{color:var(--yellow)}.hero-sub{font-size:clamp(1rem,2vw,1.25rem);line-height:1.65;max-width:720px}.translation{margin-top:7px;font-size:.9em;opacity:.76;font-style:italic;line-height:1.55}.hero .translation{color:#dce8ff}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.btn{border:0;border-radius:999px;padding:14px 20px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.2s ease}.btn:hover,.btn:focus-visible{transform:translateY(-2px)}.btn-yellow{background:var(--yellow);color:var(--black)}.btn-white{background:var(--white);color:var(--blue)}.btn-blue{background:var(--blue);color:var(--white)}.rol-orbit{display:grid;place-items:center;min-height:420px;position:relative}.orbit-center{width:168px;height:168px;border-radius:50%;display:grid;place-items:center;background:var(--white);color:var(--blue);font-family:"Archivo Black",Impact,sans-serif;font-size:2.25rem;box-shadow:0 20px 50px rgba(0,0,0,.22);position:relative;z-index:3}.orbit{position:absolute;width:330px;height:330px;border:2px dashed rgba(255,255,255,.35);border-radius:50%;animation:spin 22s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.orbit-item{position:absolute;width:108px;height:108px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:900;line-height:1;box-shadow:0 12px 25px rgba(0,0,0,.18);padding:8px 7px}.orbit-item .orbit-lockup{display:flex;align-items:baseline;justify-content:center;gap:3px;max-width:100%}.orbit-item .orbit-letter{display:inline-block;font-family:"Archivo Black",Impact,sans-serif;font-size:1.85rem;line-height:.9;margin:0}.orbit-item small{display:inline-block;margin:0;font-size:.56rem;line-height:1.03;letter-spacing:.01em;text-align:left}.orbit-item.l .orbit-lockup{align-items:center;gap:2px}.orbit-item.l small{font-size:.43rem;line-height:1.02;max-width:62px;text-align:left}.orbit-item.r{background:var(--yellow);color:var(--black);top:-44px;left:111px}.orbit-item.o{background:white;color:var(--blue);bottom:7px;right:-24px}.orbit-item.l{background:var(--red);color:white;bottom:7px;left:-24px}.content{padding:clamp(30px,6vw,70px)}.kicker{font-weight:900;color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;margin-bottom:10px}.section-title{margin:0;color:var(--blue);font-size:clamp(2.2rem,6vw,4.4rem);line-height:1;letter-spacing:-.035em}.lede{max-width:880px;font-size:clamp(1rem,2vw,1.18rem);line-height:1.7;margin-top:20px}.three-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}.principle{border-radius:22px;padding:26px;background:var(--soft);border:1px solid var(--border);position:relative;overflow:hidden;transition:.25s ease}.principle:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(0,56,147,.11)}.principle::before{content:"";position:absolute;top:0;left:0;width:100%;height:6px;background:var(--yellow)}.principle:nth-child(2)::before{background:var(--blue)}.principle:nth-child(3)::before{background:var(--red)}.principle .num{font-family:"Archivo Black",Impact,sans-serif;font-size:2rem;color:var(--blue)}.principle strong{display:block;margin:10px 0 8px;font-size:1.03rem}.principle p{margin:0;line-height:1.55;color:var(--muted)}.principle .translation{color:#7f8898}.split{display:grid;grid-template-columns:.78fr 1.22fr;gap:38px;align-items:center}.letter-card{min-height:420px;border-radius:28px;background:var(--blue);color:white;display:grid;place-items:center;text-align:center;padding:30px;position:relative;overflow:hidden}.letter-card.yellow{background:var(--yellow);color:var(--black)}.letter-card.red{background:var(--red);color:white}.big-letter{font-size:clamp(8rem,22vw,15rem);line-height:.8}.letter-label{text-transform:uppercase;font-weight:900;letter-spacing:.12em;margin-top:15px}.letter-card::after{content:"";position:absolute;width:220px;height:220px;border:22px solid rgba(255,255,255,.10);border-radius:50%;right:-85px;bottom:-75px}.point-list{display:grid;gap:12px;margin-top:22px}.point{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:var(--soft);border:1px solid var(--border)}.dot{flex:0 0 12px;width:12px;height:12px;border-radius:50%;background:var(--yellow);margin-top:6px}.dot.blue{background:var(--blue)}.dot.red{background:var(--red)}.point p{margin:0;line-height:1.48}.point .translation{font-size:.84rem}.callout{margin-top:24px;border-left:6px solid var(--yellow);background:#fffbea;padding:20px 22px;border-radius:0 18px 18px 0;font-weight:700;line-height:1.6}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}.day{border-radius:20px;padding:22px;background:var(--soft);border:1px solid var(--border);min-height:195px}.day.highlight{background:var(--blue);color:white}.day .day-name{font-family:"Archivo Black",Impact,sans-serif;color:var(--blue);font-size:1.2rem;margin-bottom:12px}.day.highlight .day-name{color:var(--yellow)}.day p{line-height:1.55;margin:0}.day .translation{font-size:.83rem}.day.highlight .translation{color:#d7e5ff}.seven{margin-top:30px;display:grid;grid-template-columns:repeat(7,1fr);gap:9px}.challenge{min-height:100px;display:grid;place-items:center;text-align:center;border-radius:16px;background:white;border:2px solid var(--blue);color:var(--blue);font-weight:900;transition:.2s ease}.challenge:hover{background:var(--blue);color:white;transform:translateY(-4px)}.challenge span{display:block;font-size:.72rem;font-weight:600;margin-top:4px}.cycle-wrap{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.cycle-card{border-radius:26px;padding:28px;color:white;min-height:240px;position:relative;overflow:hidden}.cycle-card:nth-child(1){background:var(--blue)}.cycle-card:nth-child(2){background:#0c4aaa}.cycle-card:nth-child(3){background:#0f2d62}.cycle-card .cycle-letter{font-family:"Archivo Black",Impact,sans-serif;font-size:4rem;color:var(--yellow)}.cycle-card h3{margin:8px 0 10px;font-size:1.25rem}.cycle-card p{line-height:1.55;margin:0}.cycle-card .translation{color:#dce8ff}.role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}.role-pill{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--soft);border:1px solid var(--border);border-radius:16px;font-weight:700}.role-icon{width:38px;height:38px;border-radius:12px;background:var(--yellow);display:grid;place-items:center;flex:0 0 auto}.flip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}.flip-card{perspective:900px;min-height:250px}.flip-inner{position:relative;width:100%;height:250px;transform-style:preserve-3d;transition:transform .55s ease}.flip-card.flipped .flip-inner{transform:rotateY(180deg)}.flip-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 12px 28px rgba(0,56,147,.1)}.flip-front{background:var(--blue);color:white}.flip-front h3{font-family:"Archivo Black",Impact,sans-serif;font-size:1.65rem;margin:0}.flip-front small{color:var(--yellow);font-weight:800}.flip-back{transform:rotateY(180deg);background:white;border:2px solid var(--blue)}.flip-btn{margin-top:18px;border:0;background:var(--yellow);color:black;font-weight:900;border-radius:999px;padding:10px 14px}.statement{margin:34px 0 0;background:var(--blue);color:white;border-radius:26px;padding:clamp(28px,5vw,48px);text-align:center}.statement strong{display:block;font-family:"Archivo Black",Impact,sans-serif;color:var(--yellow);font-size:clamp(1.8rem,5vw,3.4rem);line-height:1.08}.statement .translation{color:#d9e6ff;margin-top:12px}.final{min-height:calc(100vh - 150px);background:var(--blue);color:white;display:grid;place-items:center;text-align:center;padding:clamp(34px,7vw,80px);position:relative;overflow:hidden}.final::before{content:"ROL";position:absolute;font-family:"Archivo Black",Impact,sans-serif;font-size:30vw;color:rgba(255,255,255,.035);line-height:1}.final-inner{position:relative;z-index:2;max-width:850px}.final-title{font-size:clamp(3rem,8vw,6.5rem);line-height:.95;margin:10px 0 22px}.final-title span{color:var(--yellow)}.final p{font-size:clamp(1rem,2vw,1.2rem);line-height:1.65}.final .translation{color:#dbe8ff}.final-sequence{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0;font-weight:900}.seq{padding:12px 16px;border-radius:999px;background:white;color:var(--blue)}.arrow{color:var(--yellow);font-size:1.45rem}.navbar{width:min(1180px,calc(100% - 28px));margin:0 auto 22px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px}.nav-btn{border:0;border-radius:999px;padding:12px 18px;background:var(--blue);color:white;font-weight:800;min-width:112px}.nav-btn:disabled{opacity:.35;cursor:not-allowed}.progress-wrap{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}.progress-dot{width:11px;height:11px;border-radius:50%;border:0;padding:0;background:#c9d5e7;transition:.2s ease}.progress-dot.active{background:var(--yellow);transform:scale(1.3)}.progress-dot.visited{background:var(--blue)}.floating-web{position:fixed;right:18px;bottom:20px;z-index:40;background:var(--yellow);color:black;padding:12px 15px;border-radius:999px;font-weight:900;box-shadow:0 12px 28px rgba(0,0,0,.18);display:none}.footer-note{text-align:center;color:#66758d;font-size:.78rem;padding:0 18px 18px}
-@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:left}.rol-orbit{min-height:350px}.split{grid-template-columns:1fr}.letter-card{min-height:300px}.three-principles,.cycle-wrap,.flip-grid{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.seven{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:620px){.topbar{padding:10px 13px}.brand-name{font-size:.72rem}.web-link{display:none}.floating-web{display:block}.stage{width:min(100% - 14px,1180px);margin:9px auto 14px}.page{border-radius:22px;min-height:calc(100vh - 130px)}.hero,.final{min-height:calc(100vh - 130px)}.hero{padding:32px 22px}.hero h1{font-size:clamp(3.1rem,18vw,5rem)}.orbit{width:280px;height:280px}.orbit-item{width:98px;height:98px;padding:7px 6px}.orbit-item .orbit-lockup{gap:2px}.orbit-item .orbit-letter{font-size:1.62rem}.orbit-item small{font-size:.49rem}.orbit-item.r{left:91px;top:-38px}.orbit-item.o{right:-18px;bottom:10px}.orbit-item.l{left:-18px;bottom:10px}.orbit-item.l small{font-size:.40rem;max-width:56px}.orbit-center{width:140px;height:140px}.content{padding:28px 20px}.timeline,.role-grid{grid-template-columns:1fr}.seven{grid-template-columns:repeat(2,1fr)}.seven .challenge:last-child{grid-column:1/-1}.navbar{grid-template-columns:auto 1fr auto;gap:8px;width:calc(100% - 14px)}.nav-btn{min-width:auto;padding:11px 13px;font-size:.82rem}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Descubre el Método ROL de La Oficina en Español: Reto, Optimiza y Llévalo a la práctica. Aprende y practica español para trabajar con una ruta progresiva y práctica frecuente." />
+  <title>Método ROL | La Oficina en Español</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#003893;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#10213d;
+      --soft:#f5f8ff;
+      --line:#dfe7f5;
+      --success:#1c7c54;
+      --shadow:0 16px 45px rgba(0,56,147,.12);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f9ff 100%);
+      line-height:1.65;
+    }
+
+    a{color:inherit}
+    button{font:inherit}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      max-width:1120px;
+      margin:auto;
+      padding:12px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      font-weight:800;
+      color:var(--blue);
+      text-decoration:none;
+      font-size:.98rem;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      background:var(--soft);
+      padding:4px;
+      border-radius:999px;
+      border:1px solid var(--line);
+    }
+
+    .lang-switch button{
+      border:0;
+      background:transparent;
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      color:var(--blue);
+    }
+
+    .lang-switch button.active{
+      background:var(--blue);
+      color:white;
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at 88% 12%, rgba(252,209,22,.22), transparent 28%),
+        radial-gradient(circle at 7% 85%, rgba(206,17,38,.12), transparent 22%),
+        var(--blue);
+      color:white;
+      padding:72px 20px 58px;
+    }
+
+    .hero-inner{
+      max-width:1120px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      padding:8px 13px;
+      font-size:.86rem;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3{
+      line-height:1.15;
+      margin-top:0;
+    }
+
+    h1{
+      font-size:clamp(2.4rem,6vw,5rem);
+      margin-bottom:18px;
+      letter-spacing:-.03em;
+    }
+
+    .yellow{color:var(--yellow)}
+    .hero p{
+      max-width:760px;
+      font-size:1.08rem;
+      color:rgba(255,255,255,.9);
+      margin-bottom:26px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+      font-weight:800;
+      padding:14px 20px;
+      border-radius:14px;
+      transition:.2s ease;
+      border:2px solid transparent;
+      cursor:pointer;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:var(--yellow);
+      color:#1d2a42;
+    }
+    .btn-secondary{
+      border-color:rgba(255,255,255,.5);
+      color:white;
+      background:rgba(255,255,255,.06);
+    }
+
+    .hero-card{
+      background:white;
+      color:var(--ink);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 28px 80px rgba(0,0,0,.28);
+    }
+
+    .hero-card h3{
+      color:var(--blue);
+      font-size:1.25rem;
+      margin-bottom:14px;
+    }
+
+    .micro-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .micro-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px;
+      border-radius:14px;
+      background:var(--soft);
+    }
+
+    .micro-item strong{display:block;color:var(--blue)}
+    .micro-icon{font-size:1.35rem}
+
+    main section{
+      padding:72px 20px;
+    }
+
+    .container{
+      max-width:1120px;
+      margin:auto;
+    }
+
+    .section-kicker{
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:var(--red);
+      font-size:.78rem;
+      margin-bottom:8px;
+    }
+
+    .section-title{
+      font-size:clamp(2rem,4vw,3.2rem);
+      color:var(--blue);
+      margin-bottom:16px;
+      letter-spacing:-.02em;
+    }
+
+    .section-intro{
+      max-width:780px;
+      color:#4b5d78;
+      font-size:1.05rem;
+      margin-bottom:34px;
+    }
+
+    .rol-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .rol-card{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:var(--shadow);
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .rol-card:hover{transform:translateY(-4px)}
+    .rol-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:6px;
+      background:var(--blue);
+    }
+    .rol-card:nth-child(2)::before{background:var(--yellow)}
+    .rol-card:nth-child(3)::before{background:var(--red)}
+
+    .rol-letter{
+      width:56px;height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:18px;
+      background:var(--blue);
+      color:white;
+      font-size:1.7rem;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+    .rol-card:nth-child(2) .rol-letter{background:var(--yellow);color:#1d2a42}
+    .rol-card:nth-child(3) .rol-letter{background:var(--red)}
+
+    .rol-card h3{color:var(--blue);margin-bottom:10px}
+    .rol-card ul{padding-left:20px;margin-bottom:0}
+
+    .flow{
+      margin-top:34px;
+      background:var(--blue);
+      color:white;
+      border-radius:26px;
+      padding:28px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      align-items:center;
+    }
+
+    .flow-step{
+      text-align:center;
+      padding:14px 10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:16px;
+    }
+
+    .flow-arrow{
+      text-align:center;
+      color:var(--yellow);
+      font-size:1.4rem;
+      font-weight:800;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .panel{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .panel h3{color:var(--blue)}
+    .checklist{display:grid;gap:12px}
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .simulator{
+      background:linear-gradient(135deg,#fff 0%,#f7f9ff 100%);
+    }
+
+    .choice-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:18px 0 24px;
+    }
+
+    .choice{
+      border:1px solid var(--line);
+      background:white;
+      color:var(--blue);
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .choice.active{
+      background:var(--blue);
+      color:white;
+      border-color:var(--blue);
+    }
+
+    .result-box{
+      border:2px solid var(--yellow);
+      background:#fffdf0;
+      border-radius:18px;
+      padding:20px;
+    }
+
+    .result-box h3{color:var(--blue);margin-bottom:8px}
+
+    .proof-strip{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .proof{
+      background:white;
+      border-radius:18px;
+      padding:20px;
+      border:1px solid var(--line);
+      text-align:center;
+    }
+
+    .proof strong{
+      display:block;
+      font-size:1.4rem;
+      color:var(--blue);
+      margin-bottom:6px;
+    }
+
+    .faq{
+      display:grid;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    details{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px 18px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--blue);
+    }
+
+    .cta{
+      background:var(--blue);
+      color:white;
+      border-radius:30px;
+      padding:38px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .cta h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:14px}
+    .cta p{
+      max-width:760px;
+      margin:0 auto 22px;
+      color:rgba(255,255,255,.9);
+    }
+
+    footer{
+      padding:30px 20px 46px;
+      text-align:center;
+      color:#62718a;
+      font-size:.9rem;
+    }
+
+    .hidden-lang{display:none!important}
+
+    @media(max-width:900px){
+      .hero-inner,.two-col{grid-template-columns:1fr}
+      .rol-grid,.proof-strip{grid-template-columns:1fr}
+      .flow{grid-template-columns:1fr}
+      .flow-arrow{transform:rotate(90deg)}
+      .hero{padding-top:48px}
+    }
+  </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-<div class="brand"><div class="brand-mark">LO</div><div class="brand-name">LA OFICINA EN ESPAÑOL</div></div>
-<a class="web-link" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Visitar la web ↗</a>
-</header>
-<main class="stage" aria-live="polite">
-<section class="page active" data-page="0"><div class="hero"><div><div class="eyebrow">Tu forma de aprender aquí · Your learning path here</div><h1>MÉTODO <span>ROL</span></h1><p class="hero-sub"><strong>Reto · Optimiza · Llévalo a la práctica</strong><br>Así vas a aprender y practicar el español que necesitas para trabajar.</p><p class="translation">Challenge · Optimize · Put it into practice<br>This is how you will learn and practice the Spanish you need for work.</p><div class="cta-row"><button class="btn btn-yellow" onclick="goToPage(1)">Descubre cómo funciona →</button><a class="btn btn-white" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español ↗</a></div></div><div class="rol-orbit"><div class="orbit"></div><div class="orbit-center">ROL</div><div class="orbit-item r"><div class="orbit-lockup"><span class="orbit-letter">R</span><small>RETO</small></div></div><div class="orbit-item o"><div class="orbit-lockup"><span class="orbit-letter">O</span><small>OPTIMIZA</small></div></div><div class="orbit-item l"><div class="orbit-lockup"><span class="orbit-letter">L</span><small>LLÉVALO A LA PRÁCTICA</small></div></div></div></div></section>
-<section class="page" data-page="1"><div class="content"><div class="kicker">Cómo aprendemos · How we learn</div><h2 class="section-title">No empiezas memorizando. Empiezas usando.</h2><p class="lede">El Método ROL desarrolla español aplicado al trabajo mediante una secuencia progresiva de práctica, estudio y simulación.</p><p class="translation lede">The ROL Method develops Spanish for work through a progressive sequence of practice, study and simulation.</p><div class="three-principles"><article class="principle"><div class="num">01</div><strong>Primero, la situación profesional.</strong><p>Comienzas con un reto antes de estudiar el contenido.</p><p class="translation">First, the professional situation. You begin with a challenge before studying the content.</p></article><article class="principle"><div class="num">02</div><strong>Después, optimizas.</strong><p>Estudias y practicas exactamente lo que necesitas para desenvolverte mejor.</p><p class="translation">Then, you optimize. You study and practice exactly what you need to perform better.</p></article><article class="principle"><div class="num">03</div><strong>Finalmente, lo usas.</strong><p>Llevas lo aprendido a role plays en grupo o individuales.</p><p class="translation">Finally, you use it. You take what you learned into group or individual role plays.</p></article></div><div class="statement"><strong>ESPAÑOL + TRABAJO + PRÁCTICA APLICADA</strong><div class="translation">SPANISH + WORK + APPLIED PRACTICE</div></div></div></section>
-<section class="page" data-page="2"><div class="content"><div class="split"><div class="letter-card"><div><div class="big-letter">R</div><div class="letter-label">Reto · Challenge</div></div></div><div><div class="kicker">Lunes · Monday</div><h2 class="section-title">Primero enfrentas el reto.</h2><p class="lede">El lunes te enfrentas a una situación profesional relacionada con el tema de la semana <strong>sin haber estudiado previamente el material</strong>.</p><p class="translation">On Monday, you face a professional situation connected to the week's topic <strong>before studying the learning material</strong>.</p><div class="callout">No buscamos una respuesta perfecta. Queremos que intentes resolver la situación con el español que ya tienes.<div class="translation">We are not looking for a perfect answer. We want you to try to handle the situation with the Spanish you already have.</div></div><div class="point-list"><div class="point"><span class="dot"></span><p>Descubres qué puedes expresar con facilidad.<span class="translation">You discover what you can already express with ease.</span></p></div><div class="point"><span class="dot"></span><p>Detectas qué vocabulario o estructuras necesitas.<span class="translation">You identify the vocabulary or structures you need.</span></p></div><div class="point"><span class="dot"></span><p>Ves qué aspectos debes mejorar para desenvolverte mejor.<span class="translation">You see what you need to improve to handle the situation better.</span></p></div></div></div></div></div></section>
-<section class="page" data-page="3"><div class="content"><div class="split"><div class="letter-card yellow"><div><div class="big-letter">O</div><div class="letter-label">Optimiza · Optimize</div></div></div><div><div class="kicker">Desde el martes · From Tuesday</div><h2 class="section-title">Ahora mejoras cómo lo haces.</h2><p class="lede">Después del primer reto comienza la fase de optimización. Trabajas el mismo tema mediante nuevos retos diarios y el material de estudio correspondiente.</p><p class="translation">After the first challenge, the optimization phase begins. You keep working on the same topic through new daily challenges and the corresponding study material.</p><div class="point-list"><div class="point"><span class="dot blue"></span><p>Amplías vocabulario y recursos lingüísticos.<span class="translation">You expand your vocabulary and language resources.</span></p></div><div class="point"><span class="dot blue"></span><p>Comparas distintas maneras de expresar una idea.<span class="translation">You compare different ways to express an idea.</span></p></div><div class="point"><span class="dot blue"></span><p>Mejoras claridad, precisión y naturalidad.<span class="translation">You improve clarity, precision and naturalness.</span></p></div><div class="point"><span class="dot blue"></span><p>Aplicas inmediatamente lo que estudias en nuevos retos.<span class="translation">You immediately apply what you study in new challenges.</span></p></div></div><div class="callout">El material no se estudia para memorizarlo. Se utiliza para mejorar tu desempeño frente a situaciones concretas de trabajo.<div class="translation">The material is not studied to memorize it. You use it to improve your performance in specific work situations.</div></div></div></div></div></section>
-<section class="page" data-page="4"><div class="content"><div class="split"><div class="letter-card red"><div><div class="big-letter">L</div><div class="letter-label">Llévalo a la práctica · Put it into practice</div></div></div><div><div class="kicker">Aplicación · Application</div><h2 class="section-title">Lo usas en tiempo real.</h2><p class="lede">Después de trabajar el tema mediante retos y material de estudio, llevas lo aprendido a una situación de mayor interacción mediante <strong>role plays en grupo o individuales</strong>.</p><p class="translation">After working on the topic through challenges and study material, you take what you learned into a more interactive situation through <strong>group or individual role plays</strong>.</p><div class="role-grid"><div class="role-pill"><span class="role-icon">💼</span><span>Participar en una reunión<span class="translation">Participate in a meeting</span></span></div><div class="role-pill"><span class="role-icon">🤝</span><span>Atender a un cliente<span class="translation">Handle a client interaction</span></span></div><div class="role-pill"><span class="role-icon">🗣️</span><span>Explicar una idea<span class="translation">Explain an idea</span></span></div><div class="role-pill"><span class="role-icon">📊</span><span>Presentar una propuesta<span class="translation">Present a proposal</span></span></div><div class="role-pill"><span class="role-icon">❓</span><span>Responder y aclarar<span class="translation">Respond and clarify</span></span></div><div class="role-pill"><span class="role-icon">⚖️</span><span>Negociar y decidir<span class="translation">Negotiate and decide</span></span></div></div><div class="callout">El objetivo es recuperar, combinar y utilizar lo aprendido de manera espontánea.<div class="translation">The goal is to retrieve, combine and use what you learned spontaneously.</div></div><div class="callout" style="border-left-color:var(--red);background:#fff4f5"><strong>Sesiones en vivo:</strong> para participar en los role plays en vivo necesitas un plan <strong>Premium o VIP</strong>.<div class="translation"><strong>Live sessions:</strong> to take part in the live role plays, you need a <strong>Premium or VIP</strong> plan.</div></div></div></div></div></section>
-<section class="page" data-page="5"><div class="content"><div class="kicker">Tu semana ROL · Your ROL week</div><h2 class="section-title">Un tema. Siete retos. Una aplicación realista.</h2><p class="lede">Cada semana trabaja una competencia profesional concreta. Los siete retos la abordan desde situaciones diferentes y, al final, las habilidades pueden aparecer combinadas dentro del role play.</p><p class="translation lede">Each week focuses on one specific professional competency. Seven challenges approach it from different situations, and at the end, the skills can appear together in the role play.</p><div class="timeline"><article class="day highlight"><div class="day-name">LUNES</div><p><strong>Reto inicial.</strong><br>Intentas resolver la situación sin material previo.</p><p class="translation">Initial challenge. You try to handle the situation before studying the material.</p></article><article class="day"><div class="day-name">DESDE EL MARTES</div><p><strong>Optimización.</strong><br>Nuevos retos + material de estudio.</p><p class="translation">Optimization. New challenges + study material.</p></article><article class="day"><div class="day-name">DURANTE LA SEMANA</div><p><strong>Repetición y adaptación.</strong><br>Practicas el mismo tema desde distintos ángulos.</p><p class="translation">Repetition and adaptation. You practice the same topic from different angles.</p></article><article class="day"><div class="day-name">APLICACIÓN</div><p><strong>Role play.</strong><br>Llevas lo aprendido a una interacción profesional simulada. Las sesiones en vivo están disponibles con los planes Premium o VIP.</p><p class="translation">Role play. You bring what you learned into a simulated professional interaction. Live sessions are available with Premium or VIP plans.</p></article></div><div class="cta-row"><a class="btn btn-blue" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Conoce La Oficina en Español ↗</a></div></div></section>
-<section class="page" data-page="6"><div class="content"><div class="kicker">Aula invertida · Flipped learning</div><h2 class="section-title">El tiempo de interacción se usa para interactuar.</h2><p class="lede">El Método ROL incorpora principios del aula invertida: trabajas previamente con retos y materiales para llegar a la práctica con una base lingüística ya desarrollada.</p><p class="translation lede">The ROL Method incorporates flipped-learning principles: you work with challenges and materials beforehand so you arrive at practice with a stronger language base.</p><div class="flip-grid"><div class="flip-card" onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' '){flipCard(this)}" tabindex="0" role="button"><div class="flip-inner"><div class="flip-face flip-front"><small>1 · ANTES / BEFORE</small><h3>Exploras la situación.</h3><button class="flip-btn" type="button">Ver más / See more</button></div><div class="flip-face flip-back"><strong>Reto inicial</strong><p>Intentas actuar con los recursos que ya tienes.</p><p class="translation">You try to act using the resources you already have.</p></div></div></div><div class="flip-card" onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' '){flipCard(this)}" tabindex="0" role="button"><div class="flip-inner"><div class="flip-face flip-front"><small>2 · DURANTE / DURING</small><h3>Construyes recursos.</h3><button class="flip-btn" type="button">Ver más / See more</button></div><div class="flip-face flip-back"><strong>Optimización</strong><p>Estudias, practicas, corriges y adaptas.</p><p class="translation">You study, practice, correct and adapt.</p></div></div></div><div class="flip-card" onclick="flipCard(this)" onkeydown="if(event.key==='Enter'||event.key===' '){flipCard(this)}" tabindex="0" role="button"><div class="flip-inner"><div class="flip-face flip-front"><small>3 · APLICACIÓN / APPLICATION</small><h3>Interactúas.</h3><button class="flip-btn" type="button">Ver más / See more</button></div><div class="flip-face flip-back"><strong>Role play</strong><p>Hablas, reaccionas, preguntas, respondes, negocias y resuelves.</p><p class="translation">You speak, react, ask, respond, negotiate and solve.</p></div></div></div></div><div class="statement"><strong>EL CONTENIDO SE ESTUDIA PARA PODER UTILIZARLO.</strong><div class="translation">YOU STUDY THE CONTENT SO YOU CAN USE IT.</div></div></div></section>
-<section class="page" data-page="7"><div class="content"><div class="kicker">Aprender haciendo · Learning by doing</div><h2 class="section-title">El español profesional se desarrolla utilizándolo.</h2><p class="lede">En ROL no esperas a dominar completamente una estructura antes de intentar comunicarte. Primero actúas, después identificas qué necesitas, luego estudias y practicas, y finalmente utilizas esos recursos en una interacción más compleja.</p><p class="translation lede">In ROL, you do not wait until you have completely mastered a structure before trying to communicate. First you act, then you identify what you need, study and practice it, and finally use those resources in a more complex interaction.</p><div class="cycle-wrap"><article class="cycle-card"><div class="cycle-letter">R</div><h3>Enfrenta una situación.</h3><p>Intenta comunicarte con los recursos disponibles.</p><p class="translation">Face a situation. Try to communicate with the resources you already have.</p></article><article class="cycle-card"><div class="cycle-letter">O</div><h3>Optimiza tu desempeño.</h3><p>Aprende y mejora a partir de la práctica.</p><p class="translation">Optimize your performance. Learn and improve through practice.</p></article><article class="cycle-card"><div class="cycle-letter">L</div><h3>Llévalo a la práctica.</h3><p>Utiliza lo aprendido en una interacción profesional simulada mediante role plays.</p><p class="translation">Put it into practice. Use what you learned in a simulated professional interaction through role plays.</p></article></div><div class="callout">El error forma parte del proceso porque ayuda a identificar qué debe optimizarse.<div class="translation">Mistakes are part of the process because they help identify what needs to be optimized.</div></div></div></section>
-<section class="page" data-page="8"><div class="final"><div class="final-inner"><div class="eyebrow">Así vas a aprender aquí · This is how you will learn here</div><h2 class="final-title">TU CICLO <span>ROL</span></h2><div class="final-sequence"><span class="seq">RETO</span><span class="arrow">→</span><span class="seq">OPTIMIZA</span><span class="arrow">→</span><span class="seq">LLÉVALO A LA PRÁCTICA</span></div><p>Primero enfrentas el reto. Después optimizas cómo lo haces. Finalmente lo llevas a la práctica.</p><p class="translation">First, you face the challenge. Then, you optimize how you do it. Finally, you put it into practice.</p><div class="cta-row" style="justify-content:center"><a class="btn btn-yellow" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Ir a La Oficina en Español ↗</a><button class="btn btn-white" onclick="goToPage(0)">Volver al inicio ↺</button></div></div></div></section>
-</main>
-<nav class="navbar" aria-label="Navegación del Método ROL"><button id="prevBtn" class="nav-btn" type="button" onclick="changePage(-1)">← Anterior</button><div id="progressDots" class="progress-wrap"></div><button id="nextBtn" class="nav-btn" type="button" onclick="changePage(1)">Siguiente →</button></nav>
-<a class="floating-web" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Web ↗</a>
-<div class="footer-note">La Oficina en Español · Método ROL · Reto · Optimiza · Llévalo a la práctica</div>
-</div>
-<script>
-const pages=Array.from(document.querySelectorAll('.page'));const prevBtn=document.getElementById('prevBtn');const nextBtn=document.getElementById('nextBtn');const dotsWrap=document.getElementById('progressDots');let currentPage=0;const visited=new Set([0]);
-function createDots(){pages.forEach((_,index)=>{const dot=document.createElement('button');dot.className='progress-dot';dot.type='button';dot.setAttribute('aria-label',`Ir a la página ${index+1}`);dot.addEventListener('click',()=>goToPage(index));dotsWrap.appendChild(dot)})}
-function updateUI(){pages.forEach((page,index)=>page.classList.toggle('active',index===currentPage));visited.add(currentPage);Array.from(dotsWrap.children).forEach((dot,index)=>{dot.classList.toggle('active',index===currentPage);dot.classList.toggle('visited',visited.has(index)&&index!==currentPage)});prevBtn.disabled=currentPage===0;nextBtn.disabled=currentPage===pages.length-1;nextBtn.textContent=currentPage===pages.length-2?'Final →':'Siguiente →';window.scrollTo({top:0,behavior:'smooth'})}
-function goToPage(index){if(index<0||index>=pages.length)return;currentPage=index;updateUI()}function changePage(delta){goToPage(currentPage+delta)}function flipCard(card){card.classList.toggle('flipped')}
-document.addEventListener('keydown',event=>{if(event.key==='ArrowRight'&&currentPage<pages.length-1)changePage(1);if(event.key==='ArrowLeft'&&currentPage>0)changePage(-1)});createDots();updateUI();
-</script>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">La Oficina en Español</a>
+      <div class="lang-switch" aria-label="Cambiar idioma">
+        <button id="btn-es" class="active" type="button" aria-pressed="true">ES</button>
+        <button id="btn-en" type="button" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">
+          <span>💼</span>
+          <span class="lang-es">Español para trabajar</span>
+          <span class="lang-en hidden-lang">Spanish for work</span>
+        </div>
+
+        <div class="lang-es">
+          <h1>Método <span class="yellow">ROL</span></h1>
+          <p><strong>Reto · Optimiza · Llévalo a la práctica</strong></p>
+          <p>
+            Aprender español para trabajar requiere algo más que leer explicaciones.
+            Necesitas encontrarte con situaciones, adquirir nuevas herramientas y volver a usarlas
+            cuando tienes que reaccionar de verdad.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#metodo">Descubre cómo funciona ↓</a>
+            <a class="btn btn-secondary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Conoce La Oficina en Español ↗</a>
+          </div>
+        </div>
+
+        <div class="lang-en hidden-lang">
+          <h1><span class="yellow">ROL</span> Method</h1>
+          <p><strong>Challenge · Optimize · Put it into practice</strong></p>
+          <p>
+            Learning Spanish for work takes more than reading explanations.
+            You need to face situations, acquire new tools, and use them again when you have to react in real time.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#method">See how it works ↓</a>
+            <a class="btn btn-secondary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Explore La Oficina en Español ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="lang-es">
+          <h3>Una experiencia que se repite y evoluciona</h3>
+          <div class="micro-list">
+            <div class="micro-item"><div class="micro-icon">🔥</div><div><strong>Practicas cada día</strong><span>con retos breves y variados.</span></div></div>
+            <div class="micro-item"><div class="micro-icon">🧩</div><div><strong>Aprendes cada semana</strong><span>con nuevos temas en tus cursos.</span></div></div>
+            <div class="micro-item"><div class="micro-icon">🎭</div><div><strong>Lo usas con otras personas</strong><span>en práctica, interacción y role plays.</span></div></div>
+          </div>
+        </div>
+
+        <div class="lang-en hidden-lang">
+          <h3>An experience that repeats and evolves</h3>
+          <div class="micro-list">
+            <div class="micro-item"><div class="micro-icon">🔥</div><div><strong>Practice every day</strong><span>with short, varied challenges.</span></div></div>
+            <div class="micro-item"><div class="micro-icon">🧩</div><div><strong>Learn every week</strong><span>with new topics in your courses.</span></div></div>
+            <div class="micro-item"><div class="micro-icon">🎭</div><div><strong>Use it with other people</strong><span>through practice, interaction and role plays.</span></div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <section id="metodo" class="lang-es">
+      <div class="container">
+        <div class="section-kicker">El sistema</div>
+        <h2 class="section-title">Tres movimientos. Una misma dirección.</h2>
+        <p class="section-intro">
+          ROL está pensado para que el español aparezca varias veces y de formas diferentes.
+          No funciona como una secuencia rígida alrededor de un solo tema: practicas, estudias y vuelves a utilizar el idioma de manera continua, con contenidos que se refuerzan entre sí.
+        </p>
+
+        <div class="rol-grid">
+          <article class="rol-card">
+            <div class="rol-letter">R</div>
+            <h3>🔥 Reto</h3>
+            <p>Todos los días encuentras una situación breve que te obliga a usar español.</p>
+            <ul>
+              <li>Puede ser un tema conocido o una primera exposición.</li>
+              <li>Incluye ayuda rápida para que puedas participar.</li>
+              <li>No necesitas haber estudiado esa lección antes.</li>
+            </ul>
+          </article>
+
+          <article class="rol-card">
+            <div class="rol-letter">O</div>
+            <h3>🧩 Optimiza</h3>
+            <p>Cada semana aparecen nuevos temas dentro de tus dos cursos principales.</p>
+            <ul>
+              <li>Español para el trabajo.</li>
+              <li>Herramientas lingüísticas y gramática.</li>
+              <li>Estudias con mayor profundidad lo que necesitas para comunicarte mejor.</li>
+            </ul>
+          </article>
+
+          <article class="rol-card">
+            <div class="rol-letter">L</div>
+            <h3>🎭 Llévalo a la práctica</h3>
+            <p>Después utilizas esas herramientas cuando tienes que hablar, reaccionar y adaptarte.</p>
+            <ul>
+              <li>Role plays.</li>
+              <li>Interacción con otras personas.</li>
+              <li>Situaciones profesionales más completas.</li>
+            </ul>
+          </article>
+        </div>
+
+        <p style="margin-top:28px;color:#4b5d78"><strong>Importante:</strong> ROL no obliga a que el reto, la lección semanal y la práctica en vivo trabajen exactamente el mismo tema. Las tres experiencias se complementan y se refuerzan con el tiempo.</p>
+
+        <div class="flow" aria-label="Flujo del método ROL">
+          <div class="flow-step">🔥 Practicas</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-step">🧩 Aprendes</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-step">🎭 Lo utilizas</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="lang-en hidden-lang">
+      <div class="container">
+        <div class="section-kicker">The system</div>
+        <h2 class="section-title">Three moves. One direction.</h2>
+        <p class="section-intro">
+          ROL is designed so Spanish appears repeatedly in different ways.
+          It does not work as a rigid sequence around one single topic: you practice, study, and use the language again continuously, with experiences that reinforce one another.
+        </p>
+
+        <div class="rol-grid">
+          <article class="rol-card">
+            <div class="rol-letter">R</div>
+            <h3>🔥 Reto — Challenge</h3>
+            <p>Every day, you face a short situation that gets you using Spanish.</p>
+            <ul>
+              <li>It may be familiar or your first exposure to the topic.</li>
+              <li>You get quick support so you can participate.</li>
+              <li>You do not need to have studied that lesson before.</li>
+            </ul>
+          </article>
+
+          <article class="rol-card">
+            <div class="rol-letter">O</div>
+            <h3>🧩 Optimiza — Optimize</h3>
+            <p>Every week, new topics appear inside your two main courses.</p>
+            <ul>
+              <li>Spanish for Work.</li>
+              <li>Language Tools and Grammar.</li>
+              <li>You study in greater depth what helps you communicate better.</li>
+            </ul>
+          </article>
+
+          <article class="rol-card">
+            <div class="rol-letter">L</div>
+            <h3>🎭 Llévalo a la práctica — Put it into practice</h3>
+            <p>Then you use those tools when you need to speak, react, and adapt.</p>
+            <ul>
+              <li>Role plays.</li>
+              <li>Interaction with other people.</li>
+              <li>More complete professional situations.</li>
+            </ul>
+          </article>
+        </div>
+
+        <p style="margin-top:28px;color:#4b5d78"><strong>Important:</strong> ROL does not require the daily challenge, weekly lesson, and live practice to cover exactly the same topic. The three experiences complement and reinforce one another over time.</p>
+
+        <div class="flow" aria-label="ROL method flow">
+          <div class="flow-step">🔥 Practice</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-step">🧩 Learn</div>
+          <div class="flow-arrow">↔</div>
+          <div class="flow-step">🎭 Use it</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="simulator">
+      <div class="container">
+        <div class="lang-es">
+          <div class="section-kicker">Pruébalo mentalmente</div>
+          <h2 class="section-title">Elige una situación de trabajo</h2>
+          <p class="section-intro">
+            Haz clic en una situación. Mira cómo ROL la convierte en práctica, aprendizaje y aplicación.
+          </p>
+
+          <div class="choice-row" id="choices-es">
+            <button class="choice active" data-key="reunion" type="button">🧩 Reunión</button>
+            <button class="choice" data-key="cliente" type="button">💼 Cliente</button>
+            <button class="choice" data-key="negociacion" type="button">🤝 Negociación</button>
+            <button class="choice" data-key="liderazgo" type="button">🚀 Liderazgo</button>
+          </div>
+
+          <div class="result-box" id="result-es">
+            <h3>🧩 Reunión</h3>
+            <p><strong>🔥 Reto:</strong> alguien cambia el orden de la reunión y necesitas reaccionar.</p>
+            <p><strong>🧩 Optimiza:</strong> estudias estructuras para intervenir, aclarar y organizar tu respuesta.</p>
+            <p><strong>🎭 Llévalo a la práctica:</strong> utilizas esas herramientas en una interacción donde otra persona responde y cambia la situación.</p>
+          </div>
+        </div>
+
+        <div class="lang-en hidden-lang">
+          <div class="section-kicker">Try it mentally</div>
+          <h2 class="section-title">Choose a work situation</h2>
+          <p class="section-intro">
+            Click a situation and see how ROL turns it into practice, learning, and application.
+          </p>
+
+          <div class="choice-row" id="choices-en">
+            <button class="choice active" data-key="meeting" type="button">🧩 Meeting</button>
+            <button class="choice" data-key="client" type="button">💼 Client</button>
+            <button class="choice" data-key="negotiation" type="button">🤝 Negotiation</button>
+            <button class="choice" data-key="leadership" type="button">🚀 Leadership</button>
+          </div>
+
+          <div class="result-box" id="result-en">
+            <h3>🧩 Meeting</h3>
+            <p><strong>🔥 Challenge:</strong> someone changes the meeting order and you need to react.</p>
+            <p><strong>🧩 Optimize:</strong> you study structures to intervene, clarify, and organize your response.</p>
+            <p><strong>🎭 Put it into practice:</strong> you use those tools in an interaction where another person responds and changes the situation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="two-col">
+          <div class="panel lang-es">
+            <div class="section-kicker">Por qué se siente diferente</div>
+            <h2 class="section-title" style="font-size:2rem">No tienes que esperar a “estar listo”</h2>
+            <div class="checklist">
+              <div class="check">✅ <span>Los retos reducen la distancia entre estudiar y usar el idioma.</span></div>
+              <div class="check">✅ <span>La ruta semanal evita tener que decidir entre decenas de lecciones.</span></div>
+              <div class="check">✅ <span>Volver a encontrarte con ideas conocidas puede ayudarte a reconocerlas y recuperarlas con mayor facilidad.</span></div>
+              <div class="check">✅ <span>La aplicación con otras personas añade reacción, presión y adaptación.</span></div>
+            </div>
+          </div>
+
+          <div class="panel lang-es">
+            <div class="section-kicker">La experiencia</div>
+            <h3>Lo que queremos que ocurra</h3>
+            <p>
+              Que una estructura deje de ser algo que “viste una vez” y empiece a convertirse en una herramienta que reconoces,
+              recuperas y utilizas cuando la necesitas.
+            </p>
+            <p>
+              Por eso el método combina <strong>frecuencia, progresión y aplicación</strong>.
+            </p>
+            <a class="btn btn-primary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Ver La Oficina en Español ↗</a>
+          </div>
+
+          <div class="panel lang-en hidden-lang">
+            <div class="section-kicker">Why it feels different</div>
+            <h2 class="section-title" style="font-size:2rem">You do not have to wait until you “feel ready”</h2>
+            <div class="checklist">
+              <div class="check">✅ <span>Daily challenges shorten the distance between studying and using Spanish.</span></div>
+              <div class="check">✅ <span>The weekly path reduces the need to choose among dozens of lessons.</span></div>
+              <div class="check">✅ <span>Meeting familiar ideas again can help you recognize and retrieve them more easily.</span></div>
+              <div class="check">✅ <span>Practicing with other people adds reaction, pressure, and adaptation.</span></div>
+            </div>
+          </div>
+
+          <div class="panel lang-en hidden-lang">
+            <div class="section-kicker">The experience</div>
+            <h3>What we want to happen</h3>
+            <p>
+              We want a structure to stop being something you “saw once” and start becoming a tool you can recognize,
+              retrieve, and use when you need it.
+            </p>
+            <p>
+              That is why the method combines <strong>frequency, progression, and application</strong>.
+            </p>
+            <a class="btn btn-primary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Explore La Oficina en Español ↗</a>
+          </div>
+        </div>
+
+        <div class="proof-strip">
+          <div class="proof lang-es"><strong>3–5 min</strong><span>Retos breves para reducir fricción de inicio.</span></div>
+          <div class="proof lang-es"><strong>Cada semana</strong><span>Nuevos temas para seguir avanzando.</span></div>
+          <div class="proof lang-es"><strong>Situaciones reales</strong><span>Reuniones, clientes, negociación, liderazgo y más.</span></div>
+
+          <div class="proof lang-en hidden-lang"><strong>3–5 min</strong><span>Short challenges designed to reduce starting friction.</span></div>
+          <div class="proof lang-en hidden-lang"><strong>Every week</strong><span>New topics to keep progressing.</span></div>
+          <div class="proof lang-en hidden-lang"><strong>Real situations</strong><span>Meetings, clients, negotiation, leadership, and more.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="lang-es">
+          <div class="section-kicker">Preguntas frecuentes</div>
+          <h2 class="section-title">Antes de empezar</h2>
+
+          <div class="faq">
+            <details>
+              <summary>¿Tengo que haber estudiado un tema antes de hacer el reto?</summary>
+              <p>No. Cada reto incluye una ayuda breve para que puedas participar aunque ese tema todavía no haya aparecido en tu ruta.</p>
+            </details>
+
+            <details>
+              <summary>¿Los retos siguen exactamente el mismo tema de la semana?</summary>
+              <p>No. Los retos trabajan temas variados. Eso permite practicar cosas conocidas y también tener primeras exposiciones a temas que estudiarás más adelante.</p>
+            </details>
+
+            <details>
+              <summary>¿Qué estudio cada semana?</summary>
+              <p>Cada semana encontrarás nuevos temas dentro de tus dos cursos: Español para el trabajo y Herramientas lingüísticas y gramática.</p>
+            </details>
+
+            <details>
+              <summary>¿Por qué practicar con otras personas?</summary>
+              <p>Porque en una situación real no controlas exactamente qué dirá la otra persona. La interacción obliga a escuchar, reaccionar, ajustar y continuar.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="lang-en hidden-lang">
+          <div class="section-kicker">Frequently asked questions</div>
+          <h2 class="section-title">Before you begin</h2>
+
+          <div class="faq">
+            <details>
+              <summary>Do I need to study a topic before doing the challenge?</summary>
+              <p>No. Each challenge includes quick support so you can participate even if that topic has not appeared in your path yet.</p>
+            </details>
+
+            <details>
+              <summary>Do the challenges follow the exact weekly topic?</summary>
+              <p>No. Challenges cover varied topics, so you practice familiar ideas and also get early exposure to things you will study later.</p>
+            </details>
+
+            <details>
+              <summary>What do I study every week?</summary>
+              <p>Every week, you will find new topics inside your two courses: Spanish for Work and Language Tools and Grammar.</p>
+            </details>
+
+            <details>
+              <summary>Why practice with other people?</summary>
+              <p>Because in a real situation you cannot control exactly what the other person will say. Interaction makes you listen, react, adapt, and continue.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta lang-es">
+          <h2>Aprende. Practica. Vuelve a usarlo.</h2>
+          <p>
+            ROL está diseñado para que el español que estudias vuelva a aparecer en situaciones profesionales diferentes,
+            de modo que puedas seguir ampliando los recursos que tienes disponibles cuando necesitas comunicarte.
+          </p>
+          <a class="btn btn-primary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Conoce La Oficina en Español ↗</a>
+        </div>
+
+        <div class="cta lang-en hidden-lang">
+          <h2>Learn. Practice. Use it again.</h2>
+          <p>
+            ROL is designed so the Spanish you study reappears in different professional situations,
+            helping you keep expanding the resources available to you when you need to communicate.
+          </p>
+          <a class="btn btn-primary" href="https://laoficinaenespanol.com" target="_blank" rel="noopener">Explore La Oficina en Español ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="lang-es">La Oficina en Español · Español para trabajar</div>
+    <div class="lang-en hidden-lang">La Oficina en Español · Spanish for work</div>
+  </footer>
+
+  <script>
+    const btnEs = document.getElementById('btn-es');
+    const btnEn = document.getElementById('btn-en');
+
+    function setLang(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-es').forEach(el => el.classList.toggle('hidden-lang', lang !== 'es'));
+      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden-lang', lang !== 'en'));
+      btnEs.classList.toggle('active', lang === 'es');
+      btnEn.classList.toggle('active', lang === 'en');
+      btnEs.setAttribute('aria-pressed', String(lang === 'es'));
+      btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+      localStorage.setItem('rol-lang', lang);
+    }
+
+    btnEs.addEventListener('click', () => setLang('es'));
+    btnEn.addEventListener('click', () => setLang('en'));
+
+    const savedLang = localStorage.getItem('rol-lang');
+    if(savedLang === 'en') setLang('en');
+
+    const dataEs = {
+      reunion: {
+        title:'🧩 Reunión',
+        r:'alguien cambia el orden de la reunión y necesitas reaccionar.',
+        o:'estudias estructuras para intervenir, aclarar y organizar tu respuesta.',
+        l:'utilizas esas herramientas en una interacción donde otra persona responde y cambia la situación.'
+      },
+      cliente: {
+        title:'💼 Cliente',
+        r:'un cliente pide algo que no puedes confirmar todavía.',
+        o:'trabajas formas de explicar límites, pedir tiempo y proponer un siguiente paso.',
+        l:'respondes a preguntas, dudas y cambios sin depender de una respuesta memorizada.'
+      },
+      negociacion: {
+        title:'🤝 Negociación',
+        r:'la otra parte propone una condición que no te conviene.',
+        o:'estudias lenguaje para matizar, contraofertar y explicar razones.',
+        l:'negocias mientras aparecen nuevas condiciones e intereses en conflicto.'
+      },
+      liderazgo: {
+        title:'🚀 Liderazgo',
+        r:'necesitas delegar una tarea importante con un plazo claro.',
+        o:'trabajas estructuras para indicar responsabilidad, resultado esperado y fecha.',
+        l:'respondes preguntas, corriges ambigüedades y confirmas acuerdos con el equipo.'
+      }
+    };
+
+    const dataEn = {
+      meeting: {
+        title:'🧩 Meeting',
+        r:'someone changes the meeting order and you need to react.',
+        o:'you study structures to intervene, clarify, and organize your response.',
+        l:'you use those tools in an interaction where another person responds and changes the situation.'
+      },
+      client: {
+        title:'💼 Client',
+        r:'a client asks for something you cannot confirm yet.',
+        o:'you work on ways to explain limits, ask for time, and propose a next step.',
+        l:'you respond to questions, doubts, and changes without relying on a memorized answer.'
+      },
+      negotiation: {
+        title:'🤝 Negotiation',
+        r:'the other side proposes a condition that does not work for you.',
+        o:'you study language to soften, counteroffer, and explain your reasons.',
+        l:'you negotiate while new conditions and conflicting interests appear.'
+      },
+      leadership: {
+        title:'🚀 Leadership',
+        r:'you need to delegate an important task with a clear deadline.',
+        o:'you work on structures for responsibility, expected outcome, and timing.',
+        l:'you answer questions, correct ambiguity, and confirm agreements with the team.'
+      }
+    };
+
+    function wireChoices(containerId, resultId, data, labels){
+      const container = document.getElementById(containerId);
+      const result = document.getElementById(resultId);
+
+      container.querySelectorAll('.choice').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          container.querySelectorAll('.choice').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          const item=data[btn.dataset.key];
+          result.innerHTML=`
+            <h3>${item.title}</h3>
+            <p><strong>${labels.r}</strong> ${item.r}</p>
+            <p><strong>${labels.o}</strong> ${item.o}</p>
+            <p><strong>${labels.l}</strong> ${item.l}</p>
+          `;
+        });
+      });
+    }
+
+    wireChoices('choices-es','result-es',dataEs,{
+      r:'🔥 Reto:',
+      o:'🧩 Optimiza:',
+      l:'🎭 Llévalo a la práctica:'
+    });
+
+    wireChoices('choices-en','result-en',dataEn,{
+      r:'🔥 Challenge:',
+      o:'🧩 Optimize:',
+      l:'🎭 Put it into practice:'
+    });
+  </script>
 </body>
 </html>
