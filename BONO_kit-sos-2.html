@@ -105,6 +105,40 @@
     .how-card .how-en{display:block;color:#3F5F91;font-weight:600;font-size:.82rem;margin-bottom:6px}
     .how-card .desc-es{display:block;color:#667085;font-size:.91rem}
     .how-card .desc-en{display:block;color:#8490A2;font-size:.83rem;margin-top:3px}
+
+    .community-cta{
+      margin:22px 0 10px;
+      display:flex;
+      justify-content:center;
+    }
+    .community-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:min(100%, 620px);
+      padding:15px 22px;
+      border-radius:16px;
+      background:var(--amarillo);
+      color:var(--azul);
+      text-decoration:none;
+      font-weight:800;
+      font-size:1rem;
+      text-align:center;
+      border:2px solid var(--amarillo);
+      box-shadow:0 10px 24px rgba(0,56,147,.12);
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .community-button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px rgba(0,56,147,.18);
+      background:#FFE24B;
+    }
+    .community-button:focus-visible{
+      outline:3px solid rgba(206,17,38,.35);
+      outline-offset:3px;
+    }
+
     .nav-pills{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 12px}
     .pill{
       text-decoration:none;color:var(--azul);background:var(--blanco);
@@ -255,6 +289,15 @@
         </div>
       </div>
     </section>
+
+    <div class="community-cta">
+      <a class="community-button"
+         href="https://skool.spanishatwork.co"
+         target="_blank"
+         rel="noopener noreferrer">
+        💬 Practica en la comunidad / Practice in the community
+      </a>
+    </div>
 
     <nav class="nav-pills" aria-label="Ir a una sección / Go to a section">
       <a class="pill" href="#reuniones">🤝 Reuniones / Meetings</a>
@@ -1193,6 +1236,16 @@
         </details>
       </div>
     </section>
+
+
+    <div class="community-cta">
+      <a class="community-button"
+         href="https://skool.spanishatwork.co"
+         target="_blank"
+         rel="noopener noreferrer">
+        💬 Practica en la comunidad / Practice in the community
+      </a>
+    </div>
 
     <section class="footer-note">
       <strong lang="es">Úsalo como apoyo, no como un guion para memorizar.</strong>
