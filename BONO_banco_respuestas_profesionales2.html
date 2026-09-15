@@ -443,6 +443,52 @@
       color:#fff;
       opacity:.82;
     }
+
+
+    .community-cta-wrap{
+      max-width:1100px;
+      margin:20px auto;
+      padding:0 20px;
+      text-align:center;
+    }
+
+    .community-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background:var(--amarillo);
+      color:var(--azul);
+      text-decoration:none;
+      font-weight:700;
+      border:3px solid var(--amarillo);
+      border-radius:999px;
+      padding:14px 24px;
+      box-shadow:0 10px 24px rgba(0,56,147,.14);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .community-cta:hover,
+    .community-cta:focus{
+      transform:translateY(-2px);
+      box-shadow:0 14px 28px rgba(0,56,147,.18);
+      background:#FFE04A;
+      outline:none;
+    }
+
+    .community-cta .cta-en{
+      font-weight:600;
+      opacity:.8;
+    }
+
+    @media (max-width:760px){
+      .community-cta{
+        width:100%;
+        padding:14px 18px;
+        line-height:1.3;
+        flex-wrap:wrap;
+      }
+    }
 </style>
 </head>
 <body>
@@ -463,7 +509,7 @@
 <div class="quick-step"><b>3. Practica</b><br/>hasta poder decirla sin leer.<br/><span class="en" lang="en"><b>3. Practice</b><br/>until you can say it without reading.</span></div>
 </div>
 </div>
-</header>
+</header><div class="community-cta-wrap"><a aria-label="Practica en la comunidad / Practice in the community" class="community-cta" href="https://skool.spanishatwork.co" rel="noopener noreferrer" target="_blank">💬 Practica en la comunidad<span aria-hidden="true">•</span><span class="cta-en" lang="en">Practice in the community</span></a></div>
 <main class="wrap">
 <section class="intro"><strong>No memorices respuestas completas.</strong> Usa estos modelos para construir tu propia respuesta. Cambia personas, fechas, cantidades, razones y siguientes pasos según tu trabajo.<br/><span class="en" lang="en"><strong>Do not memorize complete answers.</strong> Use these models to build your own response. Change people, dates, quantities, reasons, and next steps to fit your work.</span></section>
 <div class="toolbar">
@@ -788,7 +834,7 @@
 </details>
 </section>
 <div aria-live="polite" class="empty" id="empty">No encontré una situación con esas palabras. Prueba con términos como <strong>reunión</strong>, <strong>precio</strong>, <strong>problema</strong> o <strong>seguimiento</strong>.<br/><span class="en" lang="en">I couldn’t find a situation with those words. Try terms such as <strong>meeting</strong>, <strong>price</strong>, <strong>problem</strong> or <strong>follow-up</strong>.</span></div>
-<footer><strong>La Oficina en Español</strong><br/>Ya tienes una base de español; ahora aprende a usarla en el trabajo.<br/><span class="en" lang="en">You already have a foundation in Spanish; now learn to use it at work.</span></footer>
+<div class="community-cta-wrap"><a aria-label="Practica en la comunidad / Practice in the community" class="community-cta" href="https://skool.spanishatwork.co" rel="noopener noreferrer" target="_blank">💬 Practica en la comunidad<span aria-hidden="true">•</span><span class="cta-en" lang="en">Practice in the community</span></a></div><footer><strong>La Oficina en Español</strong><br/>Ya tienes una base de español; ahora aprende a usarla en el trabajo.<br/><span class="en" lang="en">You already have a foundation in Spanish; now learn to use it at work.</span></footer>
 </main>
 <script>
     const search = document.getElementById("search");
