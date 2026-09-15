@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#003893" name="theme-color"/>
+<title>Banco de respuestas profesionales | Professional Response Bank | La Oficina en Español</title>
+<!-- Tipografía oficial de marca -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{
+      --azul:#003893;
+      --amarillo:#FCD116;
+      --rojo:#CE1126;
+      --blanco:#FFFFFF;
+      --negro:#000000;
+      --gris:#F4F6FA;
+      --gris2:#E7ECF4;
+      --texto:#10213B;
+      --sombra:0 12px 30px rgba(0,56,147,.10);
+      --radio:20px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      color:var(--texto);
+      background:var(--gris);
+      line-height:1.6;
+    }
+
+    .hero{
+      background:var(--azul);
+      color:var(--blanco);
+      padding:28px 20px 34px;
+      border-bottom:6px solid var(--amarillo);
+    }
+
+    .hero-inner{
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:24px;
+      font-size:.92rem;
+      font-weight:600;
+      letter-spacing:.02em;
+    }
+
+    .brand-line{
+      width:6px;
+      height:42px;
+      background:var(--amarillo);
+      border-radius:8px;
+      flex:0 0 auto;
+    }
+
+    .brand strong{
+      display:block;
+      font-size:1.05rem;
+      line-height:1.1;
+      color:var(--blanco);
+    }
+
+    .brand span{
+      color:var(--amarillo);
+      font-weight:600;
+    }
+
+    h1{
+      font-size:clamp(2rem,6vw,4rem);
+      line-height:1.05;
+      margin:0 0 12px;
+      font-weight:700;
+      max-width:850px;
+    }
+
+    h1 .accent{color:var(--amarillo)}
+
+    .hero p{
+      max-width:760px;
+      margin:0;
+      font-size:clamp(1rem,2.5vw,1.2rem);
+    }
+
+    .quick-guide{
+      max-width:1100px;
+      margin:24px auto 0;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .quick-step{
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.18);
+      padding:14px 16px;
+      border-radius:16px;
+      font-size:.94rem;
+    }
+
+    .quick-step b{color:var(--amarillo)}
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px 20px 50px;
+    }
+
+    .intro{
+      background:var(--blanco);
+      border-radius:var(--radio);
+      padding:22px;
+      box-shadow:var(--sombra);
+      margin-bottom:22px;
+      border-left:7px solid var(--amarillo);
+    }
+
+    .intro strong{color:var(--azul)}
+
+    .toolbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(244,246,250,.96);
+      backdrop-filter:blur(10px);
+      padding:12px 0 14px;
+      margin-bottom:14px;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      width:100%;
+      border:2px solid var(--gris2);
+      border-radius:16px;
+      padding:15px 48px 15px 16px;
+      font-family:inherit;
+      font-size:1rem;
+      outline:none;
+      background:var(--blanco);
+      transition:.2s;
+    }
+
+    .search-box input:focus{
+      border-color:var(--azul);
+      box-shadow:0 0 0 4px rgba(0,56,147,.08);
+    }
+
+    .search-icon{
+      position:absolute;
+      right:16px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:1.15rem;
+      pointer-events:none;
+    }
+
+    .count{
+      margin:8px 4px 0;
+      font-size:.86rem;
+      color:#52657f;
+    }
+
+    .cards{
+      display:grid;
+      gap:16px;
+    }
+
+    .card{
+      background:var(--blanco);
+      border-radius:var(--radio);
+      box-shadow:var(--sombra);
+      overflow:hidden;
+      border:1px solid #edf0f5;
+    }
+
+    .card summary{
+      list-style:none;
+      cursor:pointer;
+      padding:20px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:600;
+      color:var(--azul);
+      position:relative;
+    }
+
+    .card summary::-webkit-details-marker{display:none}
+
+    .card summary::after{
+      content:"+";
+      margin-left:auto;
+      width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--gris);
+      color:var(--azul);
+      font-size:1.35rem;
+      font-weight:600;
+      transition:.2s;
+    }
+
+    .card[open] summary::after{
+      content:"–";
+      background:var(--amarillo);
+      color:var(--azul);
+    }
+
+    .num{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:var(--azul);
+      color:var(--blanco);
+      font-weight:700;
+      flex:0 0 auto;
+    }
+
+    .summary-text{
+      min-width:0;
+    }
+
+    .summary-title{
+      display:block;
+      font-size:1.08rem;
+    }
+
+    .summary-sub{
+      display:block;
+      color:#62738c;
+      font-size:.85rem;
+      font-weight:400;
+      margin-top:2px;
+    }
+
+    .content{
+      padding:0 20px 22px;
+      border-top:1px solid #edf0f5;
+    }
+
+    .usage{
+      margin:18px 0;
+      background:#FFF9D7;
+      border-left:5px solid var(--amarillo);
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:.92rem;
+    }
+
+    .level{
+      border:1px solid var(--gris2);
+      border-radius:16px;
+      margin:12px 0;
+      overflow:hidden;
+    }
+
+    .level-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      background:#F9FAFD;
+      border-bottom:1px solid var(--gris2);
+    }
+
+    .level-head h3{
+      margin:0;
+      font-size:.95rem;
+      color:var(--azul);
+      font-weight:600;
+    }
+
+    .copy-btn{
+      border:none;
+      border-radius:999px;
+      padding:8px 12px;
+      background:var(--azul);
+      color:var(--blanco);
+      font-family:inherit;
+      font-size:.78rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+      white-space:nowrap;
+    }
+
+    .copy-btn:hover{transform:translateY(-1px)}
+    .copy-btn.copied{background:#138447}
+
+    .level-body{
+      padding:14px;
+      background:var(--blanco);
+    }
+
+    .phrase{
+      margin:0;
+      font-size:1rem;
+    }
+
+    .adapt{
+      color:#445873;
+      font-size:.88rem;
+      margin-top:8px;
+    }
+
+    .template{
+      color:var(--azul);
+      font-weight:600;
+      background:#F0F5FF;
+      padding:10px 12px;
+      border-radius:10px;
+      display:block;
+    }
+
+    .tip{
+      margin-top:14px;
+      padding:12px 14px;
+      border:1px dashed #B8C6D9;
+      border-radius:12px;
+      font-size:.88rem;
+      color:#43556d;
+    }
+
+    .empty{
+      display:none;
+      text-align:center;
+      padding:40px 18px;
+      color:#61738d;
+      background:var(--blanco);
+      border-radius:var(--radio);
+    }
+
+    footer{
+      margin-top:34px;
+      background:var(--azul);
+      color:var(--blanco);
+      border-radius:20px;
+      padding:22px;
+      text-align:center;
+      font-size:.9rem;
+    }
+
+    footer strong{color:var(--amarillo)}
+
+    @media (max-width:760px){
+      .quick-guide{grid-template-columns:1fr}
+      .hero{padding-top:22px}
+      .wrap{padding-left:14px;padding-right:14px}
+      .card summary{padding:16px}
+      .content{padding:0 14px 18px}
+      .level-head{align-items:flex-start}
+      .copy-btn{font-size:.72rem}
+    }
+
+    @media print{
+      .toolbar,.copy-btn{display:none!important}
+      body{background:#fff}
+      .card{box-shadow:none;break-inside:avoid}
+      details{display:block}
+      details > *{display:block!important}
+    }
+  
+
+    .hero-en{
+      display:block;
+      margin-top:8px;
+      font-size:clamp(1.05rem,2.5vw,1.55rem);
+      color:var(--amarillo);
+      font-weight:600;
+    }
+
+    .en{
+      color:inherit;
+      opacity:.78;
+      font-size:.92em;
+    }
+
+    .en-title{
+      color:#60738f;
+      font-size:.78em;
+      font-weight:600;
+    }
+
+    .en-inline{
+      color:#60738f;
+      font-weight:600;
+    }
+
+    .translation{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed #CDD6E3;
+      color:#5C6F88;
+      font-size:.90rem;
+      font-style:italic;
+    }
+
+    .quick-step .en{
+      display:block;
+      margin-top:8px;
+      padding-top:8px;
+      border-top:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      opacity:.85;
+      font-style:normal;
+    }
+
+    .intro .en{
+      display:block;
+      margin-top:10px;
+      color:#536780;
+      opacity:1;
+    }
+
+    .usage .en{
+      display:block;
+      margin-top:7px;
+      color:#5f5b42;
+      opacity:1;
+    }
+
+    footer .en{
+      display:block;
+      margin-top:5px;
+      color:#fff;
+      opacity:.82;
+    }
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-inner">
+<div class="brand">
+<div class="brand-line"></div>
+<div>
+<strong>LA OFICINA</strong>
+<span>EN ESPAÑOL</span>
+</div>
+</div>
+<h1>💼 Banco de <span class="accent">respuestas profesionales</span><br/><span class="hero-en" lang="en">Professional Response Bank</span></h1>
+<p>Modelos para organizar lo que quieres decir en reuniones, con clientes, durante una negociación o cuando necesitas explicar una situación de trabajo.<br/><span class="en" lang="en">Models to organize what you want to say in meetings, with clients, during negotiations, or when you need to explain a work situation.</span></p>
+<div class="quick-guide">
+<div class="quick-step"><b>1. Elige</b><br/>la situación que necesitas.<br/><span class="en" lang="en"><b>1. Choose</b><br/>the situation you need.</span></div>
+<div class="quick-step"><b>2. Adapta</b><br/>la respuesta a tu contexto.<br/><span class="en" lang="en"><b>2. Adapt</b><br/>the response to your context.</span></div>
+<div class="quick-step"><b>3. Practica</b><br/>hasta poder decirla sin leer.<br/><span class="en" lang="en"><b>3. Practice</b><br/>until you can say it without reading.</span></div>
+</div>
+</div>
+</header>
+<main class="wrap">
+<section class="intro"><strong>No memorices respuestas completas.</strong> Usa estos modelos para construir tu propia respuesta. Cambia personas, fechas, cantidades, razones y siguientes pasos según tu trabajo.<br/><span class="en" lang="en"><strong>Do not memorize complete answers.</strong> Use these models to build your own response. Change people, dates, quantities, reasons, and next steps to fit your work.</span></section>
+<div class="toolbar">
+<div class="search-box">
+<input aria-label="Buscar una situación profesional" id="search" placeholder="Busca / Search: reunión / meeting, problema / problem, precio / price, desacuerdo / disagreement..." type="search"/>
+<span class="search-icon">🔎</span>
+</div>
+<div aria-live="polite" class="count" id="count">13 situaciones disponibles / 13 situations available</div>
+</div>
+<section class="cards" id="cards">
+<details class="card" data-keywords="opinar opinión punto de vista propuesta reunión idea Giving your opinion Express your point of view and explain why.">
+<summary>
+<span class="num">01</span>
+<span class="summary-text">
+<span class="summary-title">Opinar<br/><span class="en-title" lang="en">Giving your opinion</span></span>
+<span class="summary-sub">Expresa tu punto de vista y explica por qué.<br/><span class="en" lang="en">Express your point of view and explain why.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando te pregunten qué piensas o cuando quieras intervenir con una propuesta.<br/><span class="en" lang="en">Use it when someone asks what you think or when you want to contribute a proposal.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Creo que esta opción puede funcionar mejor porque nos permite terminar antes.</p><div class="translation" lang="en">I think this option may work better because it allows us to finish earlier.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Desde mi punto de vista, sería mejor mantener la fecha actual. El cliente ya la tiene confirmada y cambiarla ahora podría afectar la siguiente etapa del proyecto.</p><div class="translation" lang="en">From my point of view, it would be better to keep the current date. The client has already confirmed it, and changing it now could affect the next stage of the project.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Desde mi punto de vista, [propuesta], principalmente porque [razón]. Por eso, propongo [siguiente paso].</span><div class="translation" lang="en">From my point of view, [proposal], mainly because [reason]. Therefore, I suggest [next step].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="acuerdo estar de acuerdo apoyar propuesta opinión reunión Agreeing Support an idea and add useful information.">
+<summary>
+<span class="num">02</span>
+<span class="summary-text">
+<span class="summary-title">Estar de acuerdo<br/><span class="en-title" lang="en">Agreeing</span></span>
+<span class="summary-sub">Apoya una idea y añade información útil.<br/><span class="en" lang="en">Support an idea and add useful information.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo para mostrar acuerdo sin limitarte a decir “sí”.<br/><span class="en" lang="en">Use it to show agreement without limiting yourself to just saying “yes.”</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Estoy de acuerdo. Creo que es la opción más práctica.</p><div class="translation" lang="en">I agree. I think it is the most practical option.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Estoy de acuerdo con esa propuesta. Además, nos permitiría organizar mejor el trabajo del equipo y confirmar la fecha con el cliente hoy mismo.</p><div class="translation" lang="en">I agree with that proposal. In addition, it would allow us to organize the team’s work better and confirm the date with the client today.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Estoy de acuerdo con [idea]. Además, [razón o beneficio].</span><div class="translation" lang="en">I agree with [idea]. In addition, [reason or benefit].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="desacuerdo no estar de acuerdo opinión alternativa respeto reunión Disagreeing professionally Express a different position without stopping the conversation.">
+<summary>
+<span class="num">03</span>
+<span class="summary-text">
+<span class="summary-title">Mostrar desacuerdo<br/><span class="en-title" lang="en">Disagreeing professionally</span></span>
+<span class="summary-sub">Expresa una posición diferente sin detener la conversación.<br/><span class="en" lang="en">Express a different position without stopping the conversation.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando necesitas rechazar una idea, pero quieres explicar tu razón y proponer una alternativa.<br/><span class="en" lang="en">Use it when you need to reject an idea but want to explain your reason and suggest an alternative.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Entiendo tu punto, pero creo que necesitamos revisar otra opción.</p><div class="translation" lang="en">I understand your point, but I think we need to consider another option.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Entiendo la propuesta, pero me preocupa el plazo. Si esperamos hasta el viernes, el cliente tendrá muy poco tiempo para revisar el documento. Preferiría enviarlo el miércoles.</p><div class="translation" lang="en">I understand the proposal, but I’m concerned about the deadline. If we wait until Friday, the client will have very little time to review the document. I would prefer to send it on Wednesday.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Entiendo [idea], pero me preocupa [problema]. Preferiría [alternativa] porque [razón].</span><div class="translation" lang="en">I understand [idea], but I’m concerned about [problem]. I would prefer [alternative] because [reason].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="aclaración aclarar repetir entender pregunta confirmar reunión Asking for clarification Check what the other person means before answering.">
+<summary>
+<span class="num">04</span>
+<span class="summary-text">
+<span class="summary-title">Pedir una aclaración<br/><span class="en-title" lang="en">Asking for clarification</span></span>
+<span class="summary-sub">Comprueba qué quiere decir la otra persona antes de responder.<br/><span class="en" lang="en">Check what the other person means before answering.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando no entiendas una parte o cuando una pregunta pueda tener más de una interpretación.<br/><span class="en" lang="en">Use it when you do not understand part of something or when a question may have more than one interpretation.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">¿Puedes aclarar a qué fecha te refieres?</p><div class="translation" lang="en">Can you clarify which date you mean?</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Quiero confirmar que entendí bien. ¿Te refieres a la fecha de entrega al cliente o a la fecha interna para terminar el trabajo?</p><div class="translation" lang="en">I want to make sure I understood correctly. Do you mean the delivery date for the client or the internal deadline to finish the work?</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Quiero confirmar que entendí bien. ¿Te refieres a [opción A] o a [opción B]?</span><div class="translation" lang="en">I want to make sure I understood correctly. Do you mean [option A] or [option B]?</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="problema explicar incidencia error situación causa impacto Explaining a problem Describe what happened, the impact, and what is being done.">
+<summary>
+<span class="num">05</span>
+<span class="summary-text">
+<span class="summary-title">Explicar un problema<br/><span class="en-title" lang="en">Explaining a problem</span></span>
+<span class="summary-sub">Describe qué ocurrió, qué impacto tiene y qué se está haciendo.<br/><span class="en" lang="en">Describe what happened, the impact, and what is being done.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo para explicar una incidencia sin perderte en detalles y dejando claro el siguiente paso.<br/><span class="en" lang="en">Use it to explain an issue without getting lost in details and while making the next step clear.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Tenemos un problema con la entrega: el proveedor todavía no ha confirmado la fecha.</p><div class="translation" lang="en">We have a problem with the delivery: the supplier has not confirmed the date yet.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Tenemos un problema con la entrega. El proveedor no confirmó el envío previsto para hoy y eso puede retrasar la instalación. Ya estamos revisando una alternativa para mantener el plazo.</p><div class="translation" lang="en">We have a problem with the delivery. The supplier did not confirm the shipment scheduled for today, and that may delay the installation. We are already reviewing an alternative to keep the deadline.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Tenemos un problema con [situación]. Lo que ocurrió fue [causa]. Esto puede afectar [impacto]. En este momento estamos [acción].</span><div class="translation" lang="en">We have a problem with [situation]. What happened was [cause]. This may affect [impact]. At the moment, we are [action].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="solución proponer alternativa resolver problema acción Proposing a solution Present a concrete alternative and explain what it solves.">
+<summary>
+<span class="num">06</span>
+<span class="summary-text">
+<span class="summary-title">Proponer una solución<br/><span class="en-title" lang="en">Proposing a solution</span></span>
+<span class="summary-sub">Presenta una alternativa concreta y explica qué resuelve.<br/><span class="en" lang="en">Present a concrete alternative and explain what it solves.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo después de identificar un problema o cuando quieres mover la conversación hacia una decisión.<br/><span class="en" lang="en">Use it after identifying a problem or when you want to move the conversation toward a decision.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Propongo dividir la entrega en dos partes para no retrasar todo el proyecto.</p><div class="translation" lang="en">I suggest splitting the delivery into two parts so the entire project is not delayed.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Para evitar un retraso completo, propongo entregar primero la parte que ya está lista y enviar el resto el viernes. Así el cliente puede comenzar la revisión sin esperar todo el material.</p><div class="translation" lang="en">To avoid a full delay, I suggest delivering the part that is already ready first and sending the rest on Friday. That way, the client can begin the review without waiting for all the material.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Para solucionar [problema], propongo [acción]. Así podemos [beneficio o resultado].</span><div class="translation" lang="en">To solve [problem], I suggest [action]. This way, we can [benefit or result].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="negociar negociación condición plazo precio acuerdo alternativa Negotiating Negotiate one condition without losing sight of what you need to protect.">
+<summary>
+<span class="num">07</span>
+<span class="summary-text">
+<span class="summary-title">Negociar<br/><span class="en-title" lang="en">Negotiating</span></span>
+<span class="summary-sub">Negocia una condición sin perder de vista lo que necesitas proteger.<br/><span class="en" lang="en">Negotiate one condition without losing sight of what you need to protect.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando puedes aceptar una parte de la propuesta, pero necesitas modificar otra.<br/><span class="en" lang="en">Use it when you can accept one part of the proposal but need to change another.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Podemos aceptar esa fecha, siempre que mantengan el precio acordado.</p><div class="translation" lang="en">We can accept that date as long as you keep the agreed price.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Podemos aceptar la nueva fecha de entrega. Sin embargo, necesitamos mantener el precio acordado porque el presupuesto ya fue aprobado y no podemos modificarlo en esta etapa.</p><div class="translation" lang="en">We can accept the new delivery date. However, we need to keep the agreed price because the budget has already been approved and we cannot change it at this stage.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Podemos aceptar [punto], siempre que [condición]. Para nosotros es importante porque [razón].</span><div class="translation" lang="en">We can accept [point] as long as [condition]. This is important to us because [reason].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="precio precios presupuesto coste costo condiciones tarifa Talking about prices and terms Explain what a proposal includes and what the price depends on.">
+<summary>
+<span class="num">08</span>
+<span class="summary-text">
+<span class="summary-title">Hablar de precios y condiciones<br/><span class="en-title" lang="en">Talking about prices and terms</span></span>
+<span class="summary-sub">Explica qué incluye una propuesta y de qué depende el precio.<br/><span class="en" lang="en">Explain what a proposal includes and what the price depends on.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo para hablar de una tarifa, presupuesto o condición comercial con claridad.<br/><span class="en" lang="en">Use it to discuss a fee, budget, or commercial term clearly.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">El precio es de 850 dólares e incluye la instalación y el soporte inicial.</p><div class="translation" lang="en">The price is $850 and includes installation and initial support.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">El precio total es de 850 dólares. Incluye la instalación, la configuración inicial y dos semanas de soporte. Si necesitan soporte adicional, podemos cotizarlo por separado.</p><div class="translation" lang="en">The total price is $850. It includes installation, initial setup, and two weeks of support. If you need additional support, we can quote it separately.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">El precio es de [cantidad] e incluye [elementos]. Si necesitan [extra], podemos [condición o alternativa].</span><div class="translation" lang="en">The price is [amount] and includes [items]. If you need [extra], we can [condition or alternative].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="objeción objeciones cliente caro precio tiempo duda venta Responding to an objection Acknowledge the concern and respond with useful information.">
+<summary>
+<span class="num">09</span>
+<span class="summary-text">
+<span class="summary-title">Responder una objeción<br/><span class="en-title" lang="en">Responding to an objection</span></span>
+<span class="summary-sub">Reconoce la preocupación y responde con información útil.<br/><span class="en" lang="en">Acknowledge the concern and respond with useful information.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando un cliente o compañero presenta una duda, limitación o preocupación.<br/><span class="en" lang="en">Use it when a client or colleague raises a doubt, limitation, or concern.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Entiendo la preocupación por el precio. Podemos revisar qué parte de la propuesta es prioritaria.</p><div class="translation" lang="en">I understand the concern about the price. We can review which part of the proposal is the priority.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Entiendo que el presupuesto es una preocupación. Podemos revisar el alcance y separar lo imprescindible de lo que puede hacerse en una segunda etapa. Así reducimos el coste inicial sin eliminar lo esencial.</p><div class="translation" lang="en">I understand that the budget is a concern. We can review the scope and separate what is essential from what can be done in a second stage. This way, we reduce the initial cost without removing what is essential.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Entiendo la preocupación por [objeción]. Podemos [alternativa] para [resultado].</span><div class="translation" lang="en">I understand the concern about [objection]. We can [alternative] to achieve [result].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="seguimiento follow up actualización pendiente correo cliente compañero Following up Return to a pending item and ask for a specific update.">
+<summary>
+<span class="num">10</span>
+<span class="summary-text">
+<span class="summary-title">Dar seguimiento<br/><span class="en-title" lang="en">Following up</span></span>
+<span class="summary-sub">Retoma un pendiente y pide una actualización concreta.<br/><span class="en" lang="en">Return to a pending item and ask for a specific update.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo cuando esperas una respuesta, un documento, una aprobación o una fecha.<br/><span class="en" lang="en">Use it when you are waiting for a response, document, approval, or date.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Quería saber cómo va la revisión del informe y cuándo crees que estará lista.</p><div class="translation" lang="en">I wanted to know how the report review is going and when you think it will be ready.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Quería dar seguimiento al informe que enviamos ayer. ¿Puedes confirmarme si ya lo revisaste y si podremos tener los comentarios antes de las tres?</p><div class="translation" lang="en">I wanted to follow up on the report we sent yesterday. Can you confirm whether you have reviewed it and whether we can have the comments before three o’clock?</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Quería dar seguimiento a [pendiente]. ¿Puedes confirmarme [información] antes de [plazo]?</span><div class="translation" lang="en">I wanted to follow up on [pending item]. Can you confirm [information] before [deadline]?</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="retraso demora aplazar fecha entrega problema plazo Communicating a delay Explain the change, the cause, and the new expected timeline.">
+<summary>
+<span class="num">11</span>
+<span class="summary-text">
+<span class="summary-title">Comunicar un retraso<br/><span class="en-title" lang="en">Communicating a delay</span></span>
+<span class="summary-sub">Explica el cambio, la causa y la nueva previsión.<br/><span class="en" lang="en">Explain the change, the cause, and the new expected timeline.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo para informar un retraso sin dejar a la otra persona sin una nueva referencia.<br/><span class="en" lang="en">Use it to report a delay while giving the other person a new reference point.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">La entrega se retrasará un día. La nueva fecha prevista es el jueves.</p><div class="translation" lang="en">The delivery will be delayed by one day. The new expected date is Thursday.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">La entrega se retrasará un día porque estamos esperando una confirmación del proveedor. La nueva fecha prevista es el jueves y mañana te enviaré una actualización para confirmar que seguimos dentro de ese plazo.</p><div class="translation" lang="en">The delivery will be delayed by one day because we are waiting for confirmation from the supplier. The new expected date is Thursday, and tomorrow I will send you an update to confirm that we are still on schedule.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">[Entrega/tarea] se retrasará [tiempo] porque [causa]. La nueva fecha prevista es [fecha]. [Siguiente paso].</span><div class="translation" lang="en">[Delivery/task] will be delayed by [time] because [cause]. The new expected date is [date]. [Next step].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="confirmar acuerdo decisión responsabilidad próximo paso reunión Confirming an agreement Close the conversation with clear decisions and responsibilities.">
+<summary>
+<span class="num">12</span>
+<span class="summary-text">
+<span class="summary-title">Confirmar un acuerdo<br/><span class="en-title" lang="en">Confirming an agreement</span></span>
+<span class="summary-sub">Cierra la conversación dejando claras las decisiones y responsabilidades.<br/><span class="en" lang="en">Close the conversation with clear decisions and responsibilities.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo al final de una reunión, negociación o conversación donde se hayan tomado decisiones.<br/><span class="en" lang="en">Use it at the end of a meeting, negotiation, or conversation where decisions have been made.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Entonces quedamos en enviar la propuesta mañana y revisar los comentarios el viernes.</p><div class="translation" lang="en">So we agreed to send the proposal tomorrow and review the comments on Friday.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Para confirmar lo acordado: nosotros enviaremos la propuesta mañana antes del mediodía y ustedes nos enviarán sus comentarios el viernes. Después coordinaremos la fecha de la siguiente reunión.</p><div class="translation" lang="en">To confirm what we agreed: we will send the proposal tomorrow before noon, and you will send us your comments on Friday. After that, we will coordinate the date of the next meeting.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">Para confirmar lo acordado: [persona/equipo] hará [acción] antes de [plazo] y [persona/equipo] hará [acción]. Después, [siguiente paso].</span><div class="translation" lang="en">To confirm what we agreed: [person/team] will [action] before [deadline], and [person/team] will [action]. After that, [next step].</div></div>
+</div>
+</div>
+</details>
+<details class="card" data-keywords="resultados presentar datos informe progreso riesgo recomendación Presenting results Explain what happened, what it means, and what you recommend doing.">
+<summary>
+<span class="num">13</span>
+<span class="summary-text">
+<span class="summary-title">Presentar resultados<br/><span class="en-title" lang="en">Presenting results</span></span>
+<span class="summary-sub">Explica qué ocurrió, qué significa y qué recomiendas hacer.<br/><span class="en" lang="en">Explain what happened, what it means, and what you recommend doing.</span></span>
+</span>
+</summary>
+<div class="content">
+<div class="usage">Úsalo para presentar cifras, avances, resultados de un proyecto o una recomendación basada en datos.<br/><span class="en" lang="en">Use it to present figures, progress, project results, or a recommendation based on data.</span></div>
+<div class="level">
+<div class="level-head"><h3>Respuesta corta / <span class="en-inline" lang="en">Short response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Las ventas aumentaron un 12 % este mes y el mayor crecimiento vino de los clientes nuevos.</p><div class="translation" lang="en">Sales increased by 12% this month, and the largest growth came from new clients.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Respuesta desarrollada / <span class="en-inline" lang="en">Developed response</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><p class="phrase">Las ventas aumentaron un 12 % este mes. El mayor crecimiento vino de los clientes nuevos, mientras que las renovaciones se mantuvieron estables. Mi recomendación es reforzar la campaña que está generando esas nuevas oportunidades.</p><div class="translation" lang="en">Sales increased by 12% this month. The largest growth came from new clients, while renewals remained stable. My recommendation is to strengthen the campaign that is generating those new opportunities.</div></div>
+</div>
+<div class="level">
+<div class="level-head"><h3>Estructura adaptable / <span class="en-inline" lang="en">Adaptable structure</span></h3><button aria-label="Copiar el modelo en español / Copy the Spanish model" class="copy-btn" type="button">Copiar español / Copy Spanish</button></div>
+<div class="level-body"><span class="template">El resultado principal fue [dato]. Esto significa [interpretación]. También observamos [dato secundario]. Por eso, recomiendo [acción].</span><div class="translation" lang="en">The main result was [data]. This means [interpretation]. We also observed [secondary data]. Therefore, I recommend [action].</div></div>
+</div>
+</div>
+</details>
+</section>
+<div aria-live="polite" class="empty" id="empty">No encontré una situación con esas palabras. Prueba con términos como <strong>reunión</strong>, <strong>precio</strong>, <strong>problema</strong> o <strong>seguimiento</strong>.<br/><span class="en" lang="en">I couldn’t find a situation with those words. Try terms such as <strong>meeting</strong>, <strong>price</strong>, <strong>problem</strong> or <strong>follow-up</strong>.</span></div>
+<footer><strong>La Oficina en Español</strong><br/>Ya tienes una base de español; ahora aprende a usarla en el trabajo.<br/><span class="en" lang="en">You already have a foundation in Spanish; now learn to use it at work.</span></footer>
+</main>
+<script>
+    const search = document.getElementById("search");
+    const cards = [...document.querySelectorAll(".card")];
+    const count = document.getElementById("count");
+    const empty = document.getElementById("empty");
+
+    function normalize(text){
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"");
+    }
+
+    search.addEventListener("input", () => {
+      const q = normalize(search.value.trim());
+      let visible = 0;
+
+      cards.forEach(card => {
+        const haystack = normalize(card.textContent + " " + (card.dataset.keywords || ""));
+        const show = !q || haystack.includes(q);
+        card.style.display = show ? "" : "none";
+        if(show) visible++;
+      });
+
+      count.textContent = `${visible} ${visible === 1 ? "situación disponible / situation available" : "situaciones disponibles / situations available"}`;
+      empty.style.display = visible === 0 ? "block" : "none";
+    });
+
+    document.querySelectorAll(".copy-btn").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const text = btn.closest(".level").querySelector(".phrase, .template").textContent.trim();
+
+        let copied = false;
+
+        if (navigator.clipboard && window.isSecureContext){
+          try{
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          }catch{
+            copied = false;
+          }
+        }
+
+        // Método alternativo si la API moderna no está disponible o fue bloqueada.
+        if (!copied){
+          try{
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            copied = document.execCommand("copy");
+            ta.remove();
+          }catch{
+            copied = false;
+          }
+        }
+
+        const original = btn.textContent;
+        btn.textContent = copied ? "Copiado ✓ / Copied ✓" : "No se pudo copiar / Could not copy";
+        if (copied) btn.classList.add("copied");
+
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove("copied");
+        }, 1500);
+      });
+    });
+    // Al imprimir, muestra todas las tarjetas y todo su contenido,
+    // incluso si el usuario había aplicado un filtro de búsqueda.
+    let printState = [];
+    window.addEventListener("beforeprint", () => {
+      printState = cards.map(card => ({
+        open: card.open,
+        display: card.style.display
+      }));
+
+      cards.forEach(card => {
+        card.style.display = "";
+        card.open = true;
+      });
+
+      empty.style.display = "none";
+    });
+
+    window.addEventListener("afterprint", () => {
+      cards.forEach((card, index) => {
+        card.open = printState[index].open;
+        card.style.display = printState[index].display;
+      });
+
+      const visible = cards.filter(card => card.style.display !== "none").length;
+      empty.style.display = visible === 0 ? "block" : "none";
+    });
+
+  </script>
+</body>
+</html>
