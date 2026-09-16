@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#003893" />
+  <meta name="description" content="Mapa interactivo de transformación de La Oficina en Español: 16 lecciones para desarrollar mayor autonomía en español para el trabajo." />
+  <title>Tu mapa de transformación | La Oficina en Español</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#003893;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#15223a;
+      --muted:#60708a;
+      --soft:#f5f8fc;
+      --line:#dbe4ef;
+      --shadow:0 18px 50px rgba(0,56,147,.12);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      background:var(--soft);
+    }
+
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(252,209,22,.13), transparent 22rem),
+        linear-gradient(180deg,#fff 0%,#f7f9fd 44%,#fff 100%);
+      line-height:1.65;
+    }
+
+    button,a{font:inherit}
+    button{cursor:pointer}
+
+    .skip-link{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+      z-index:1000;
+      background:#fff;
+      color:var(--blue);
+      padding:10px 14px;
+      border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,56,147,.08);
+    }
+
+    .topbar-inner{
+      width:min(var(--max),calc(100% - 32px));
+      margin:auto;
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:var(--blue);
+      letter-spacing:-.02em;
+      white-space:nowrap;
+    }
+
+    .brand-mark{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--yellow);
+      box-shadow:18px 0 0 var(--blue),36px 0 0 var(--red);
+      margin-right:36px;
+      flex:0 0 auto;
+    }
+
+    .top-progress{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:260px;
+    }
+
+    .progress-track{
+      position:relative;
+      height:10px;
+      flex:1;
+      background:#e8edf5;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-fill{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:0%;
+      background:linear-gradient(90deg,var(--blue),#2459ad);
+      border-radius:999px;
+      transition:width .35s ease;
+    }
+
+    .progress-value{
+      min-width:48px;
+      text-align:right;
+      font-size:.85rem;
+      font-weight:700;
+      color:var(--blue);
+    }
+
+    main{
+      width:min(var(--max),calc(100% - 32px));
+      margin:auto;
+    }
+
+    .hero{
+      padding:74px 0 40px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    /* IMPORTANTE: el título principal NO lleva borde, contorno ni recuadro. */
+    .hero-title-wrap{
+      border:none !important;
+      outline:none !important;
+      box-shadow:none !important;
+      background:transparent !important;
+      padding:0 !important;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:14px;
+      color:var(--blue);
+      font-weight:600;
+      font-size:.9rem;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow-dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--red);
+    }
+
+    h1{
+      margin:0;
+      max-width:760px;
+      font-size:clamp(2.5rem,6vw,5.5rem);
+      line-height:.98;
+      letter-spacing:-.055em;
+      color:var(--blue);
+    }
+
+    h1 .accent{
+      color:var(--blue);
+      position:relative;
+      display:inline-block;
+      z-index:0;
+    }
+
+    h1 .accent::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:.04em;
+      height:.20em;
+      background:var(--yellow);
+      z-index:-1;
+      border-radius:999px;
+    }
+
+    .hero-lead{
+      margin:24px 0 0;
+      max-width:760px;
+      font-size:1.07rem;
+      color:#33445f;
+    }
+
+    .hero-lead strong{color:var(--blue)}
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .btn{
+      border:0;
+      border-radius:999px;
+      min-height:48px;
+      padding:12px 20px;
+      font-weight:600;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(0,56,147,.22);
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--blue);
+      box-shadow:inset 0 0 0 1px #d6e0ed;
+    }
+
+    .route-card{
+      position:relative;
+      min-height:440px;
+      border-radius:32px;
+      background:var(--blue);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:18px;
+      isolation:isolate;
+    }
+
+    .route-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(252,209,22,.15),transparent 20%),
+        radial-gradient(circle at 78% 74%,rgba(206,17,38,.15),transparent 22%);
+      pointer-events:none;
+    }
+
+    .route-card svg{
+      width:100%;
+      height:100%;
+      min-height:404px;
+      display:block;
+    }
+
+    .route-card .route-label{
+      font-family:"Poppins",sans-serif;
+      font-weight:700;
+      fill:#fff;
+      font-size:20px;
+    }
+
+    .route-card .route-small{
+      font-family:"Poppins",sans-serif;
+      font-weight:600;
+      fill:#fff;
+      font-size:13px;
+      opacity:.9;
+    }
+
+    .route-card .route-node{
+      transform-origin:center;
+      transition:transform .2s ease;
+    }
+
+    .route-card .route-node:hover{
+      transform:scale(1.04);
+    }
+
+    .note{
+      margin:16px 0 48px;
+      padding:22px 24px;
+      border-left:6px solid var(--yellow);
+      border-radius:0 18px 18px 0;
+      background:#fff;
+      box-shadow:0 8px 28px rgba(0,56,147,.07);
+      color:#34445f;
+    }
+
+    .note strong{color:var(--blue)}
+
+    .section-heading{
+      margin:0 0 10px;
+      font-size:clamp(2rem,4vw,3.4rem);
+      line-height:1.05;
+      letter-spacing:-.04em;
+      color:var(--blue);
+    }
+
+    .section-intro{
+      max-width:850px;
+      margin:0 0 34px;
+      color:#4d5b72;
+      font-size:1.02rem;
+    }
+
+    .map-controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:0 0 26px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .filter-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .filter-btn{
+      border:1px solid #d6e0ed;
+      background:#fff;
+      color:var(--blue);
+      border-radius:999px;
+      padding:9px 14px;
+      font-weight:600;
+    }
+
+    .filter-btn[aria-pressed="true"]{
+      background:var(--blue);
+      color:#fff;
+      border-color:var(--blue);
+    }
+
+    .utility-group{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .utility-btn{
+      border:0;
+      background:transparent;
+      color:var(--blue);
+      font-weight:600;
+      padding:9px 10px;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .journey{
+      position:relative;
+      padding:12px 0 30px;
+    }
+
+    .journey::before{
+      content:"";
+      position:absolute;
+      left:42px;
+      top:30px;
+      bottom:60px;
+      width:3px;
+      background:linear-gradient(var(--blue),var(--yellow),var(--red));
+      border-radius:999px;
+      opacity:.34;
+    }
+
+    .stage{
+      position:relative;
+      display:grid;
+      grid-template-columns:86px 1fr;
+      gap:20px;
+      margin-bottom:30px;
+      scroll-margin-top:100px;
+    }
+
+    .stage-marker{
+      position:relative;
+      z-index:2;
+      width:86px;
+      height:86px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border:3px solid var(--blue);
+      color:var(--blue);
+      font-size:1.5rem;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(0,56,147,.12);
+    }
+
+    .stage-card{
+      background:#fff;
+      border:1px solid rgba(0,56,147,.10);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 12px 36px rgba(0,56,147,.07);
+    }
+
+    .stage-head{
+      padding:26px 28px 20px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      background:linear-gradient(135deg,rgba(0,56,147,.04),rgba(252,209,22,.09));
+    }
+
+    .stage-kicker{
+      display:block;
+      color:var(--red);
+      font-size:.8rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:4px;
+    }
+
+    .stage-title{
+      margin:0;
+      color:var(--blue);
+      font-size:1.55rem;
+      line-height:1.2;
+      letter-spacing:-.02em;
+    }
+
+    .stage-count{
+      white-space:nowrap;
+      font-size:.83rem;
+      background:var(--blue);
+      color:#fff;
+      border-radius:999px;
+      padding:6px 10px;
+      font-weight:600;
+    }
+
+    .lessons{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      padding:22px 24px 10px;
+    }
+
+    .lesson{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+      overflow:hidden;
+      transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+
+    .lesson:hover{
+      border-color:#b8c8dd;
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(0,56,147,.08);
+    }
+
+    .lesson.is-done{
+      border-color:rgba(0,56,147,.35);
+      background:rgba(0,56,147,.025);
+    }
+
+    .lesson-button{
+      width:100%;
+      border:0;
+      background:transparent;
+      text-align:left;
+      padding:18px 18px 16px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:12px;
+      align-items:start;
+      color:inherit;
+    }
+
+    .lesson-num{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:var(--soft);
+      color:var(--blue);
+      font-weight:700;
+      font-size:.88rem;
+      border:1px solid #e2e9f2;
+    }
+
+    .lesson.is-done .lesson-num{
+      background:var(--blue);
+      color:#fff;
+      border-color:var(--blue);
+    }
+
+    .lesson-title{
+      margin:1px 0 4px;
+      font-size:1rem;
+      line-height:1.35;
+      color:#18375f;
+      font-weight:600;
+    }
+
+    .lesson-preview{
+      margin:0;
+      color:#6b778b;
+      font-size:.87rem;
+      line-height:1.45;
+    }
+
+    .chevron{
+      margin-top:6px;
+      width:24px;
+      height:24px;
+      color:var(--blue);
+      transition:transform .2s ease;
+    }
+
+    .lesson[open] .chevron{transform:rotate(180deg)}
+
+    .lesson-detail{
+      padding:0 18px 18px 64px;
+      color:#43506a;
+      font-size:.92rem;
+    }
+
+    .lesson-actions{
+      padding:0 18px 18px 64px;
+    }
+
+    .check-btn{
+      border:0;
+      border-radius:999px;
+      padding:9px 13px;
+      background:#edf2f8;
+      color:var(--blue);
+      font-weight:600;
+      font-size:.86rem;
+    }
+
+    .lesson.is-done .check-btn{
+      background:var(--yellow);
+      color:#17223a;
+    }
+
+    .transformation{
+      margin:16px 24px 24px;
+      background:var(--blue);
+      color:#fff;
+      border-radius:18px;
+      padding:18px 20px;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .transformation-icon{
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      background:var(--yellow);
+      color:var(--blue);
+      display:grid;
+      place-items:center;
+      font-weight:700;
+    }
+
+    .transformation strong{
+      display:block;
+      color:var(--yellow);
+      margin-bottom:4px;
+    }
+
+    .transformation p{
+      margin:0;
+      line-height:1.5;
+      font-size:.94rem;
+    }
+
+    .final{
+      margin:52px 0 36px;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .final-panel{
+      background:var(--blue);
+      color:#fff;
+      border-radius:30px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .final-panel h2{
+      margin:0 0 14px;
+      font-size:clamp(2rem,4vw,3rem);
+      line-height:1.08;
+      letter-spacing:-.04em;
+    }
+
+    .final-panel p{
+      margin:0;
+      color:rgba(255,255,255,.87);
+    }
+
+    .final-panel .result{
+      margin-top:26px;
+      padding:20px;
+      border-radius:18px;
+      background:rgba(255,255,255,.09);
+      border-left:5px solid var(--yellow);
+      font-weight:600;
+      color:#fff;
+    }
+
+    .skills{
+      background:#fff;
+      border-radius:30px;
+      border:1px solid rgba(0,56,147,.1);
+      padding:30px;
+      box-shadow:0 12px 36px rgba(0,56,147,.07);
+    }
+
+    .skills h3{
+      margin:0 0 18px;
+      color:var(--blue);
+      font-size:1.35rem;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px 18px;
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .skills-grid li{
+      position:relative;
+      padding-left:28px;
+      font-size:.93rem;
+      color:#3f4c63;
+    }
+
+    .skills-grid li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--blue);
+      font-weight:700;
+    }
+
+    .closing{
+      margin:34px 0 80px;
+      text-align:center;
+      padding:34px 24px;
+      border-radius:28px;
+      background:linear-gradient(135deg,#fff7cf,#fff);
+      border:1px solid rgba(252,209,22,.55);
+    }
+
+    .closing p{
+      margin:0 0 18px;
+      font-weight:600;
+      color:#273754;
+      font-size:1.05rem;
+    }
+
+    .closing .heart{color:var(--red)}
+
+    .reset{
+      display:block;
+      margin:10px auto 0;
+      border:0;
+      background:transparent;
+      color:#738198;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-size:.82rem;
+    }
+
+    .hidden-stage{display:none !important}
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:24px;
+      transform:translate(-50%,120px);
+      z-index:100;
+      background:#12284a;
+      color:#fff;
+      border-radius:999px;
+      padding:12px 18px;
+      box-shadow:0 12px 34px rgba(0,0,0,.22);
+      opacity:0;
+      transition:transform .3s ease,opacity .3s ease;
+      font-size:.9rem;
+      max-width:calc(100% - 32px);
+      text-align:center;
+    }
+
+    .toast.show{
+      transform:translate(-50%,0);
+      opacity:1;
+    }
+
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;gap:28px;padding-top:52px}
+      .route-card{min-height:360px}
+      .route-card svg{min-height:330px}
+      .final{grid-template-columns:1fr}
+      .top-progress{min-width:200px}
+    }
+
+    @media (max-width:700px){
+      main,.topbar-inner{width:min(100% - 22px,var(--max))}
+      .topbar-inner{min-height:62px}
+      .brand{font-size:.86rem}
+      .brand-mark{display:none}
+      .top-progress{min-width:150px}
+      .hero{padding-top:40px}
+      h1{font-size:clamp(2.55rem,15vw,4.5rem)}
+      .lessons{grid-template-columns:1fr;padding:16px 16px 8px}
+      .stage{grid-template-columns:58px 1fr;gap:12px}
+      .stage-marker{width:58px;height:58px;font-size:1.08rem}
+      .journey::before{left:28px}
+      .stage-head{padding:20px 18px;flex-direction:column}
+      .transformation{margin:14px 16px 18px}
+      .lesson-detail,.lesson-actions{padding-left:18px}
+      .skills-grid{grid-template-columns:1fr}
+      .final-panel,.skills{padding:24px}
+      .route-card{border-radius:24px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        scroll-behavior:auto !important;
+        transition:none !important;
+        animation:none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#recorrido">Saltar al recorrido</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" aria-label="La Oficina en Español">
+        <span class="brand-mark" aria-hidden="true"></span>
+        La Oficina en Español
+      </div>
+      <div class="top-progress" aria-label="Progreso del recorrido">
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-value" id="progressValue">0%</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <div>
+        <div class="hero-title-wrap">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Tu recorrido</div>
+          <h1 id="pageTitle">🗺️ Tu mapa de <span class="accent">transformación</span></h1>
+        </div>
+
+        <p class="hero-lead">
+          📚 En cada lección encontrarás recursos para trabajar <strong>gramática, vocabulario profesional y expresiones útiles</strong> para situaciones reales de trabajo. 💼
+        </p>
+        <p class="hero-lead">
+          Puedes verla a tu ritmo, volver a ella cuando lo necesites y usarla para prepararte antes de nuestras prácticas y conversaciones en vivo.
+        </p>
+        <p class="hero-lead">
+          No necesitas aprenderlo todo de una vez. Ve paso a paso, prueba lo que aprendes y vuelve a utilizarlo.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startBtn">Ver mi recorrido ↓</button>
+          <button class="btn btn-secondary" id="resumeBtn">Continuar donde quedé</button>
+        </div>
+      </div>
+
+      <div class="route-card" aria-label="Representación visual de las cuatro etapas del recorrido">
+        <svg viewBox="0 0 520 440" role="img" aria-labelledby="routeTitle routeDesc">
+          <title id="routeTitle">Ruta de cuatro etapas</title>
+          <desc id="routeDesc">Un recorrido visual desde empezar a comunicarte hasta trabajar con mayor autonomía.</desc>
+
+          <path d="M82 75 C180 10 335 22 394 112 C455 203 348 241 286 218 C198 185 117 228 126 320 C132 377 223 399 420 356"
+                fill="none" stroke="#FFFFFF" stroke-opacity=".28" stroke-width="16" stroke-linecap="round"/>
+          <path d="M82 75 C180 10 335 22 394 112 C455 203 348 241 286 218 C198 185 117 228 126 320 C132 377 223 399 420 356"
+                fill="none" stroke="#FCD116" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 16"/>
+
+          <g class="route-node" tabindex="0">
+            <circle cx="83" cy="75" r="37" fill="#FFFFFF"/>
+            <circle cx="83" cy="75" r="27" fill="#FCD116"/>
+            <text x="83" y="82" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">1</text>
+            <text x="36" y="133" class="route-label">Empieza</text>
+            <text x="36" y="153" class="route-small">a comunicarte</text>
+          </g>
+
+          <g class="route-node" tabindex="0">
+            <circle cx="394" cy="112" r="37" fill="#FFFFFF"/>
+            <circle cx="394" cy="112" r="27" fill="#FCD116"/>
+            <text x="394" y="119" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">2</text>
+            <text x="315" y="65" class="route-label">Participa</text>
+            <text x="315" y="85" class="route-small">en situaciones habituales</text>
+          </g>
+
+          <g class="route-node" tabindex="0">
+            <circle cx="126" cy="320" r="37" fill="#FFFFFF"/>
+            <circle cx="126" cy="320" r="27" fill="#FCD116"/>
+            <text x="126" y="327" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">3</text>
+            <text x="37" y="378" class="route-label">Explica</text>
+            <text x="37" y="398" class="route-small">información de trabajo</text>
+          </g>
+
+          <g class="route-node" tabindex="0">
+            <circle cx="420" cy="356" r="37" fill="#FFFFFF"/>
+            <circle cx="420" cy="356" r="27" fill="#FCD116"/>
+            <text x="420" y="363" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">4</text>
+            <text x="302" y="416" class="route-label">Más autonomía</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>De una base inicial a comunicarte con más autonomía en el trabajo.</strong><br>
+      Al comenzar este recorrido ya puedes comprender y utilizar algunas palabras, frases y estructuras sencillas en español.
+      Durante el programa vas a ampliar esa base para poder <strong>comprender, preguntar, responder y explicar información sencilla en situaciones habituales de trabajo</strong>.
+    </div>
+
+    <section id="recorrido" aria-labelledby="journeyTitle">
+      <h2 class="section-heading" id="journeyTitle">Tu recorrido, paso a paso</h2>
+      <p class="section-intro">
+        Abre cada lección para ver qué vas a trabajar. Marca las que ya hayas completado: tu progreso se guarda automáticamente en este dispositivo.
+      </p>
+
+      <div class="map-controls">
+        <div class="filter-group" role="group" aria-label="Filtrar etapas">
+          <button class="filter-btn" data-filter="all" aria-pressed="true">Todo el mapa</button>
+          <button class="filter-btn" data-filter="1" aria-pressed="false">Etapa 1</button>
+          <button class="filter-btn" data-filter="2" aria-pressed="false">Etapa 2</button>
+          <button class="filter-btn" data-filter="3" aria-pressed="false">Etapa 3</button>
+          <button class="filter-btn" data-filter="4" aria-pressed="false">Etapa 4</button>
+        </div>
+        <div class="utility-group">
+          <button class="utility-btn" id="expandAll">Abrir todas</button>
+          <button class="utility-btn" id="collapseAll">Cerrar todas</button>
+        </div>
+      </div>
+
+      <div class="journey">
+
+        <article class="stage" data-stage="1" id="etapa-1">
+          <div class="stage-marker" aria-hidden="true">1</div>
+          <div class="stage-card">
+            <div class="stage-head">
+              <div>
+                <span class="stage-kicker">Etapa 1</span>
+                <h3 class="stage-title">Empieza a comunicarte</h3>
+              </div>
+              <span class="stage-count">Lecciones 1–4</span>
+            </div>
+
+            <div class="lessons">
+              <details class="lesson" data-lesson="1">
+                <summary class="lesson-button">
+                  <span class="lesson-num">1</span>
+                  <span>
+                    <span class="lesson-title">Preséntate profesionalmente</span>
+                    <span class="lesson-preview">Habla de quién eres y de tu trabajo.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Di quién eres, dónde trabajas, qué haces y cuáles son tus responsabilidades principales.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="1">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="2">
+                <summary class="lesson-button">
+                  <span class="lesson-num">2</span>
+                  <span>
+                    <span class="lesson-title">Saluda y empieza una conversación</span>
+                    <span class="lesson-preview">Inicia una interacción profesional.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Saluda, da la bienvenida y utiliza expresiones sencillas para comenzar una interacción profesional.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="2">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="3">
+                <summary class="lesson-button">
+                  <span class="lesson-num">3</span>
+                  <span>
+                    <span class="lesson-title">Haz preguntas básicas</span>
+                    <span class="lesson-preview">Obtén la información que necesitas.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Pregunta por personas, lugares, horarios, tareas, fechas y otra información necesaria para trabajar.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="3">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="4">
+                <summary class="lesson-button">
+                  <span class="lesson-num">4</span>
+                  <span>
+                    <span class="lesson-title">Responde y confirma información</span>
+                    <span class="lesson-preview">Comprueba que entendiste bien.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Responde preguntas sencillas y confirma que has entendido correctamente.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="4">Marcar como completada</button></div>
+              </details>
+            </div>
+
+            <div class="transformation">
+              <div class="transformation-icon">↗</div>
+              <div>
+                <strong>Transformación</strong>
+                <p>Pasas de utilizar frases aisladas a mantener intercambios profesionales breves y previsibles.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="2" id="etapa-2">
+          <div class="stage-marker" aria-hidden="true">2</div>
+          <div class="stage-card">
+            <div class="stage-head">
+              <div>
+                <span class="stage-kicker">Etapa 2</span>
+                <h3 class="stage-title">Participa en situaciones habituales</h3>
+              </div>
+              <span class="stage-count">Lecciones 5–8</span>
+            </div>
+
+            <div class="lessons">
+              <details class="lesson" data-lesson="5">
+                <summary class="lesson-button">
+                  <span class="lesson-num">5</span>
+                  <span>
+                    <span class="lesson-title">Participa en una reunión sencilla</span>
+                    <span class="lesson-preview">Interviene de forma breve y clara.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Comprende el tema principal, responde preguntas y realiza intervenciones breves.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="5">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="6">
+                <summary class="lesson-button">
+                  <span class="lesson-num">6</span>
+                  <span>
+                    <span class="lesson-title">Pide una aclaración</span>
+                    <span class="lesson-preview">Recupera el control cuando no entiendes.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Pide que repitan, expliquen o hablen más despacio cuando no comprendes algo.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="6">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="7">
+                <summary class="lesson-button">
+                  <span class="lesson-num">7</span>
+                  <span>
+                    <span class="lesson-title">Habla de tareas y responsabilidades</span>
+                    <span class="lesson-preview">Explica quién hace qué.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Explica qué haces, qué necesitas hacer y quién es responsable de una tarea.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="7">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="8">
+                <summary class="lesson-button">
+                  <span class="lesson-num">8</span>
+                  <span>
+                    <span class="lesson-title">Habla de fechas y avances</span>
+                    <span class="lesson-preview">Sitúa el trabajo en el tiempo.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Pregunta y responde sobre horarios, plazos, tareas terminadas y trabajo pendiente.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="8">Marcar como completada</button></div>
+              </details>
+            </div>
+
+            <div class="transformation">
+              <div class="transformation-icon">↗</div>
+              <div>
+                <strong>Transformación</strong>
+                <p>Pasas de responder solamente cuando sabes exactamente qué decir a poder desenvolverte en situaciones habituales con apoyo.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="3" id="etapa-3">
+          <div class="stage-marker" aria-hidden="true">3</div>
+          <div class="stage-card">
+            <div class="stage-head">
+              <div>
+                <span class="stage-kicker">Etapa 3</span>
+                <h3 class="stage-title">Explica información de trabajo</h3>
+              </div>
+              <span class="stage-count">Lecciones 9–12</span>
+            </div>
+
+            <div class="lessons">
+              <details class="lesson" data-lesson="9">
+                <summary class="lesson-button">
+                  <span class="lesson-num">9</span>
+                  <span>
+                    <span class="lesson-title">Describe un producto, servicio o proyecto</span>
+                    <span class="lesson-preview">Explica qué es y para qué sirve.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Explica de forma sencilla qué es, para qué sirve y cuáles son sus características principales.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="9">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="10">
+                <summary class="lesson-button">
+                  <span class="lesson-num">10</span>
+                  <span>
+                    <span class="lesson-title">Habla con clientes y compañeros</span>
+                    <span class="lesson-preview">Pregunta y responde necesidades frecuentes.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Pregunta qué necesitan y responde solicitudes frecuentes.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="10">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="11">
+                <summary class="lesson-button">
+                  <span class="lesson-num">11</span>
+                  <span>
+                    <span class="lesson-title">Explica precios y condiciones</span>
+                    <span class="lesson-preview">Comunica datos concretos con claridad.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Habla de cantidades, precios, fechas, opciones y condiciones sencillas.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="11">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="12">
+                <summary class="lesson-button">
+                  <span class="lesson-num">12</span>
+                  <span>
+                    <span class="lesson-title">Explica un problema</span>
+                    <span class="lesson-preview">Cuenta qué ocurrió y qué necesita atención.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Cuenta qué ocurrió, qué necesita atención y qué posible solución existe.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="12">Marcar como completada</button></div>
+              </details>
+            </div>
+
+            <div class="transformation">
+              <div class="transformation-icon">↗</div>
+              <div>
+                <strong>Transformación</strong>
+                <p>Pasas de dar información muy básica a explicar varias ideas relacionadas dentro de una misma conversación.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="4" id="etapa-4">
+          <div class="stage-marker" aria-hidden="true">4</div>
+          <div class="stage-card">
+            <div class="stage-head">
+              <div>
+                <span class="stage-kicker">Etapa 4</span>
+                <h3 class="stage-title">Trabaja con mayor autonomía</h3>
+              </div>
+              <span class="stage-count">Lecciones 13–16</span>
+            </div>
+
+            <div class="lessons">
+              <details class="lesson" data-lesson="13">
+                <summary class="lesson-button">
+                  <span class="lesson-num">13</span>
+                  <span>
+                    <span class="lesson-title">Expresa tu opinión</span>
+                    <span class="lesson-preview">Di lo que piensas y añade una razón.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Di lo que piensas y añade una razón sencilla.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="13">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="14">
+                <summary class="lesson-button">
+                  <span class="lesson-num">14</span>
+                  <span>
+                    <span class="lesson-title">Propón una alternativa</span>
+                    <span class="lesson-preview">Ofrece otra opción cuando sea necesario.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Sugiere otra fecha, opción o forma de hacer algo.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="14">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="15">
+                <summary class="lesson-button">
+                  <span class="lesson-num">15</span>
+                  <span>
+                    <span class="lesson-title">Comunica decisiones y cambios</span>
+                    <span class="lesson-preview">Explica qué cambia y qué implica.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Explica cambios sencillos en horarios, tareas, planes o responsabilidades.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="15">Marcar como completada</button></div>
+              </details>
+
+              <details class="lesson" data-lesson="16">
+                <summary class="lesson-button">
+                  <span class="lesson-num">16</span>
+                  <span>
+                    <span class="lesson-title">Resume y confirma el siguiente paso</span>
+                    <span class="lesson-preview">Cierra con responsabilidades claras.</span>
+                  </span>
+                  <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="lesson-detail">Confirma qué se decidió, quién hará cada tarea y qué debe ocurrir después.</div>
+                <div class="lesson-actions"><button class="check-btn" data-check="16">Marcar como completada</button></div>
+              </details>
+            </div>
+
+            <div class="transformation">
+              <div class="transformation-icon">↗</div>
+              <div>
+                <strong>Transformación</strong>
+                <p>Pasas de depender de modelos completos a utilizar estructuras conocidas para construir tus propias respuestas.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="final" aria-labelledby="finalTitle">
+      <div class="final-panel">
+        <h2 id="finalTitle">Al terminar este recorrido</h2>
+        <p>Podrás desenvolverte mejor en situaciones profesionales frecuentes y previsibles.</p>
+        <div class="result">
+          <strong>Resultado final</strong><br>
+          Pasas de necesitar mucho apoyo para comunicar ideas básicas a poder desenvolverte en intercambios profesionales sencillos con mayor independencia.
+        </div>
+      </div>
+
+      <div class="skills">
+        <h3>Serás capaz de:</h3>
+        <ul class="skills-grid">
+          <li>presentarte y hablar de tu trabajo;</li>
+          <li>comprender y responder preguntas sencillas;</li>
+          <li>pedir aclaraciones;</li>
+          <li>participar brevemente en reuniones;</li>
+          <li>hablar de tareas, fechas y responsabilidades;</li>
+          <li>atender intercambios sencillos con clientes y compañeros;</li>
+          <li>explicar productos, servicios y problemas básicos;</li>
+          <li>expresar opiniones y razones sencillas;</li>
+          <li>proponer alternativas;</li>
+          <li>confirmar acuerdos y próximos pasos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="closing" aria-label="Cierre">
+      <p>Nos vemos dentro de la próxima lección. <span class="heart">💛</span></p>
+      <button class="btn btn-primary" id="backToMap">Volver al mapa ↑</button>
+      <button class="reset" id="resetProgress">Reiniciar mi progreso</button>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "loee_mapa_transformacion_v1";
+      const TOTAL = 16;
+
+      const lessons = [...document.querySelectorAll(".lesson")];
+      const checkButtons = [...document.querySelectorAll(".check-btn")];
+      const filterButtons = [...document.querySelectorAll(".filter-btn")];
+      const stages = [...document.querySelectorAll(".stage")];
+      const progressFill = document.getElementById("progressFill");
+      const progressValue = document.getElementById("progressValue");
+      const toast = document.getElementById("toast");
+
+      const readState = () => {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed.map(Number).filter(n => n >= 1 && n <= TOTAL) : [];
+        } catch {
+          return [];
+        }
+      };
+
+      let completed = new Set(readState());
+
+      const saveState = () => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([...completed].sort((a,b)=>a-b)));
+        } catch {}
+      };
+
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove("show"), 2300);
+      };
+
+      const updateProgress = () => {
+        const count = completed.size;
+        const pct = Math.round((count / TOTAL) * 100);
+        progressFill.style.width = pct + "%";
+        progressValue.textContent = pct + "%";
+        progressValue.setAttribute("aria-label", `${count} de ${TOTAL} lecciones completadas`);
+
+        lessons.forEach(lesson => {
+          const n = Number(lesson.dataset.lesson);
+          const done = completed.has(n);
+          lesson.classList.toggle("is-done", done);
+          const btn = lesson.querySelector(".check-btn");
+          btn.textContent = done ? "✓ Completada" : "Marcar como completada";
+          btn.setAttribute("aria-pressed", done ? "true" : "false");
+        });
+      };
+
+      checkButtons.forEach(btn => {
+        btn.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const n = Number(btn.dataset.check);
+
+          if (completed.has(n)) {
+            completed.delete(n);
+            showToast(`Lección ${n} marcada como pendiente.`);
+          } else {
+            completed.add(n);
+            showToast(`Lección ${n} completada.`);
+          }
+
+          saveState();
+          updateProgress();
+        });
+      });
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter;
+
+          filterButtons.forEach(b => b.setAttribute("aria-pressed", b === btn ? "true" : "false"));
+
+          stages.forEach(stage => {
+            const visible = filter === "all" || stage.dataset.stage === filter;
+            stage.classList.toggle("hidden-stage", !visible);
+          });
+
+          if (filter !== "all") {
+            document.getElementById(`etapa-${filter}`).scrollIntoView({behavior:"smooth",block:"start"});
+          }
+        });
+      });
+
+      document.getElementById("expandAll").addEventListener("click", () => {
+        lessons.forEach(lesson => lesson.open = true);
+      });
+
+      document.getElementById("collapseAll").addEventListener("click", () => {
+        lessons.forEach(lesson => lesson.open = false);
+      });
+
+      document.getElementById("startBtn").addEventListener("click", () => {
+        document.getElementById("recorrido").scrollIntoView({behavior:"smooth",block:"start"});
+      });
+
+      document.getElementById("backToMap").addEventListener("click", () => {
+        document.getElementById("recorrido").scrollIntoView({behavior:"smooth",block:"start"});
+      });
+
+      document.getElementById("resumeBtn").addEventListener("click", () => {
+        let target = 1;
+        for (let n = 1; n <= TOTAL; n++) {
+          if (!completed.has(n)) {
+            target = n;
+            break;
+          }
+          if (n === TOTAL) target = TOTAL;
+        }
+
+        const lesson = document.querySelector(`.lesson[data-lesson="${target}"]`);
+        if (lesson) {
+          filterButtons[0].click();
+          lesson.open = true;
+          setTimeout(() => lesson.scrollIntoView({behavior:"smooth",block:"center"}), 80);
+        }
+      });
+
+      document.getElementById("resetProgress").addEventListener("click", () => {
+        const ok = confirm("¿Quieres reiniciar el progreso de las 16 lecciones?");
+        if (!ok) return;
+        completed.clear();
+        saveState();
+        updateProgress();
+        showToast("Progreso reiniciado.");
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
