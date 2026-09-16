@@ -249,6 +249,27 @@
       box-shadow:inset 0 0 0 1px #d6e0ed;
     }
 
+    .btn-community{
+      background:var(--yellow);
+      color:#17223a;
+      box-shadow:0 10px 24px rgba(252,209,22,.28);
+    }
+
+    .community-cta{
+      margin:22px 0 10px;
+      padding:24px;
+      border-radius:22px;
+      background:linear-gradient(135deg,rgba(252,209,22,.18),rgba(0,56,147,.04));
+      border:1px solid rgba(252,209,22,.55);
+      text-align:center;
+    }
+
+    .community-cta p{
+      margin:0 0 14px;
+      color:#31415d;
+      font-weight:600;
+    }
+
     .route-card{
       position:relative;
       min-height:440px;
@@ -294,11 +315,20 @@
 
     .route-card .route-node{
       transform-origin:center;
-      transition:transform .2s ease;
+      transition:transform .2s ease, filter .2s ease;
+      cursor:pointer;
+      outline:none;
     }
 
-    .route-card .route-node:hover{
+    .route-card .route-node:hover,
+    .route-card .route-node:focus{
       transform:scale(1.04);
+      filter:drop-shadow(0 6px 10px rgba(0,0,0,.22));
+    }
+
+    .route-card .route-node:focus-visible circle:first-of-type{
+      stroke:#FCD116;
+      stroke-width:5;
     }
 
     .note{
@@ -812,6 +842,7 @@
         <div class="hero-actions">
           <button class="btn btn-primary" id="startBtn">Ver mi recorrido ↓</button>
           <button class="btn btn-secondary" id="resumeBtn">Continuar donde quedé</button>
+          <a class="btn btn-community" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Practicar en la comunidad ↗</a>
         </div>
       </div>
 
@@ -825,7 +856,7 @@
           <path d="M82 75 C180 10 335 22 394 112 C455 203 348 241 286 218 C198 185 117 228 126 320 C132 377 223 399 420 356"
                 fill="none" stroke="#FCD116" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 16"/>
 
-          <g class="route-node" tabindex="0">
+          <g class="route-node" tabindex="0" role="button" data-route-stage="1" aria-label="Ir a la etapa 1">
             <circle cx="83" cy="75" r="37" fill="#FFFFFF"/>
             <circle cx="83" cy="75" r="27" fill="#FCD116"/>
             <text x="83" y="82" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">1</text>
@@ -833,15 +864,15 @@
             <text x="36" y="153" class="route-small">a comunicarte</text>
           </g>
 
-          <g class="route-node" tabindex="0">
+          <g class="route-node" tabindex="0" role="button" data-route-stage="2" aria-label="Ir a la etapa 2">
             <circle cx="394" cy="112" r="37" fill="#FFFFFF"/>
             <circle cx="394" cy="112" r="27" fill="#FCD116"/>
             <text x="394" y="119" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">2</text>
-            <text x="315" y="65" class="route-label">Participa</text>
-            <text x="315" y="85" class="route-small">en situaciones habituales</text>
+            <text x="272" y="54" class="route-label">Participa</text>
+            <text x="272" y="76" class="route-small">en situaciones habituales</text>
           </g>
 
-          <g class="route-node" tabindex="0">
+          <g class="route-node" tabindex="0" role="button" data-route-stage="3" aria-label="Ir a la etapa 3">
             <circle cx="126" cy="320" r="37" fill="#FFFFFF"/>
             <circle cx="126" cy="320" r="27" fill="#FCD116"/>
             <text x="126" y="327" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">3</text>
@@ -849,7 +880,7 @@
             <text x="37" y="398" class="route-small">información de trabajo</text>
           </g>
 
-          <g class="route-node" tabindex="0">
+          <g class="route-node" tabindex="0" role="button" data-route-stage="4" aria-label="Ir a la etapa 4">
             <circle cx="420" cy="356" r="37" fill="#FFFFFF"/>
             <circle cx="420" cy="356" r="27" fill="#FCD116"/>
             <text x="420" y="363" text-anchor="middle" font-size="22" font-weight="700" fill="#003893">4</text>
@@ -1219,6 +1250,11 @@
           </div>
         </article>
       </div>
+
+      <div class="community-cta">
+        <p>¿Quieres llevar estas herramientas a la práctica con otras personas?</p>
+        <a class="btn btn-community" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrar a la comunidad ↗</a>
+      </div>
     </section>
 
     <section class="final" aria-labelledby="finalTitle">
@@ -1250,7 +1286,10 @@
 
     <section class="closing" aria-label="Cierre">
       <p>Nos vemos dentro de la próxima lección. <span class="heart">💛</span></p>
-      <button class="btn btn-primary" id="backToMap">Volver al mapa ↑</button>
+      <div class="hero-actions" style="justify-content:center; margin-top:0;">
+        <a class="btn btn-community" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Practicar en la comunidad ↗</a>
+        <button class="btn btn-primary" id="backToMap">Volver al mapa ↑</button>
+      </div>
       <button class="reset" id="resetProgress">Reiniciar mi progreso</button>
     </section>
   </main>
@@ -1344,6 +1383,35 @@
 
           if (filter !== "all") {
             document.getElementById(`etapa-${filter}`).scrollIntoView({behavior:"smooth",block:"start"});
+          }
+        });
+      });
+
+      const routeNodes = [...document.querySelectorAll(".route-node[data-route-stage]")];
+
+      const goToStage = (stageNumber) => {
+        const stage = document.getElementById(`etapa-${stageNumber}`);
+        if (!stage) return;
+
+        const filterButton = document.querySelector(`.filter-btn[data-filter="${stageNumber}"]`);
+        if (filterButton) filterButton.click();
+
+        setTimeout(() => {
+          stage.scrollIntoView({behavior:"smooth", block:"start"});
+        }, 80);
+      };
+
+      routeNodes.forEach(node => {
+        const stageNumber = node.dataset.routeStage;
+
+        node.addEventListener("click", () => {
+          goToStage(stageNumber);
+        });
+
+        node.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            goToStage(stageNumber);
           }
         });
       });
