@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#003893">
+  <title>Lección 02 · Participa y responde | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#151922;
+      --muted:#626b7a;
+      --line:#d9e2ef;
+      --soft:#f5f8fc;
+      --blue-soft:#eef4ff;
+      --ok:#0f6b3f;
+      --ok-bg:#eaf7f0;
+      --danger-bg:#fff0f2;
+      --radius:18px;
+      --shadow:0 12px 34px rgba(0,56,147,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f7f9fd 0,#fff 50%,#f7f9fd 100%);
+      line-height:1.6;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    button,input,textarea,select{font:inherit}
+    button,a,select,textarea,input{ -webkit-tap-highlight-color:transparent }
+    button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{
+      outline:3px solid var(--yellow);
+      outline-offset:3px;
+    }
+    h1:focus,h2:focus,h3:focus,#title-0:focus{
+      outline:none;
+      box-shadow:none;
+    }
+    h1,h2,h3{border:0;outline:0;box-shadow:none}
+    a{color:inherit}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:980px;
+      margin:0 auto;
+      padding:10px 18px 12px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:14px;
+    }
+    .brand-mini{font-weight:700;color:var(--blue);font-size:.92rem;white-space:nowrap}
+    .progress-wrap{display:grid;gap:5px}
+    .progress-track{height:8px;border-radius:999px;background:#e8edf5;overflow:hidden}
+    .progress-fill{height:100%;width:0;background:var(--yellow);transition:width .25s ease}
+    .progress-label{font-size:.76rem;color:var(--muted);text-align:right}
+    .reset-mini{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--blue);
+      border-radius:999px;
+      padding:7px 11px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:.78rem;
+    }
+    main{max-width:980px;margin:0 auto;padding:34px 18px 70px}
+    .screen{display:none;animation:fade .22s ease}
+    .screen.active{display:block}
+    @keyframes fade{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .hero{
+      background:var(--blue);
+      color:#fff;
+      border-radius:26px;
+      padding:clamp(28px,6vw,58px);
+      position:relative;
+      overflow:hidden;
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:280px;height:280px;
+      right:-100px;bottom:-120px;
+      border:46px solid rgba(252,209,22,.20);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .eyebrow{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--yellow);margin:0 0 10px}
+    .hero h1{font-size:clamp(2.15rem,7vw,4.35rem);line-height:1.05;margin:0 0 18px;max-width:780px}
+    .hero .tools{font-size:clamp(1.05rem,2.8vw,1.36rem);font-weight:600;margin:0 0 8px;max-width:760px}
+    .hero .apply{margin:0 0 24px;color:#dbe7ff;max-width:740px}
+    .goal{background:rgba(255,255,255,.10);border-left:4px solid var(--yellow);padding:16px 18px;border-radius:12px;max-width:760px;margin-bottom:24px}
+    .goal strong{color:var(--yellow)}
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+    .btn{
+      min-height:48px;
+      border:0;
+      border-radius:12px;
+      padding:12px 18px;
+      cursor:pointer;
+      font-weight:600;
+      transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 18px rgba(0,56,147,.18)}
+    .btn-yellow{background:var(--yellow);color:#111;box-shadow:0 8px 18px rgba(252,209,22,.18)}
+    .btn-secondary{background:#fff;color:var(--blue);border:1px solid #b9c9e3}
+    .btn-ghost{background:transparent;color:var(--blue);border:1px solid #b9c9e3}
+    .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+    .lesson-head{margin-bottom:22px}
+    .lesson-kicker{color:var(--blue);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+    .lesson-head h2{font-size:clamp(1.8rem,5vw,2.65rem);line-height:1.16;margin:0 0 10px;color:#0d2552}
+    .lesson-head p{margin:0;color:var(--muted);max-width:760px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card + .card{margin-top:16px}
+    .context-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:start}
+    .dialogue{display:grid;gap:12px}
+    .bubble{padding:14px 16px;border-radius:16px;background:var(--soft);border-left:4px solid #c4d3ec}
+    .bubble strong{display:block;color:var(--blue);margin-bottom:4px}
+    .bubble.marked{background:var(--blue-soft);border-left-color:var(--blue)}
+    .lang-tag{display:none;margin-top:7px;font-size:.82rem;font-weight:600;color:var(--blue)}
+    .bubble.marked .lang-tag{display:block}
+    .tool-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+    .tool-list li{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:12px;background:var(--soft)}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);margin-top:8px;flex:none}
+    .choice-grid{display:grid;gap:12px;margin-top:18px}
+    .choice{
+      text-align:left;
+      width:100%;
+      background:#fff;
+      color:var(--ink);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:15px 16px;
+      cursor:pointer;
+      transition:border-color .15s ease,background .15s ease,transform .15s ease;
+    }
+    .choice:hover{border-color:#93abd0;transform:translateY(-1px)}
+    .choice.correct{border-color:#6cae89;background:var(--ok-bg)}
+    .choice.wrong{border-color:#d98a96;background:var(--danger-bg)}
+    .feedback{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--soft);border-left:4px solid var(--blue);min-height:52px}
+    .feedback.success{background:var(--ok-bg);border-left-color:var(--ok)}
+    .feedback.error{background:var(--danger-bg);border-left-color:var(--red)}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+    .tab-btn{border:1px solid #b9c9e3;background:#fff;color:var(--blue);border-radius:999px;padding:9px 13px;font-weight:600;cursor:pointer}
+    .tab-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    .pattern{font-size:1.08rem;font-weight:600;color:#0d2552;background:var(--blue-soft);padding:12px 14px;border-radius:12px;margin:10px 0}
+    .examples{display:grid;gap:9px;margin-top:12px}
+    .example{padding:11px 13px;border-left:3px solid var(--yellow);background:#fffbea;border-radius:9px}
+    .note{font-size:.9rem;color:var(--muted)}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .compare > div{padding:15px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+    .compare h4{margin:0 0 7px;color:var(--blue)}
+    .select-list{display:grid;gap:14px;margin-top:16px}
+    .select-item{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    label{font-weight:600}
+    select,textarea,input[type="text"]{width:100%;border:1px solid #b9c9e3;border-radius:10px;padding:11px 12px;background:#fff;color:var(--ink)}
+    textarea{min-height:130px;resize:vertical}
+    .builder{display:grid;gap:16px}
+    .builder-output{min-height:62px;border:2px dashed #a8b9d4;border-radius:14px;padding:13px;background:#fbfdff;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start}
+    .token-bank{display:flex;flex-wrap:wrap;gap:8px}
+    .token{border:1px solid #b9c9e3;background:#fff;color:#17315c;border-radius:999px;padding:8px 11px;cursor:pointer}
+    .token.selected{opacity:.38;text-decoration:line-through}
+    .built-token{background:var(--blue-soft);border:1px solid #a8b9d4;border-radius:999px;padding:7px 10px;cursor:pointer;color:#17315c}
+    .step-indicator{display:flex;gap:6px;margin-bottom:12px}
+    .step-indicator span{width:26px;height:5px;background:#d8e0ec;border-radius:99px}
+    .step-indicator span.on{background:var(--yellow)}
+    .scenario{border-left:5px solid var(--blue);padding:18px;background:var(--blue-soft);border-radius:14px;margin-bottom:16px}
+    .scenario .speaker{font-weight:700;color:var(--blue);margin-bottom:4px}
+    .hint{display:none;margin-top:12px;padding:12px 14px;background:#fffbea;border-left:4px solid var(--yellow);border-radius:10px}
+    .hint.show{display:block}
+    .checklist{display:grid;gap:10px;margin-top:16px}
+    .checkline{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .checkline input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+    .timer-box{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#071e48;color:#fff;border-radius:18px;padding:18px 20px;margin-top:16px}
+    .timer{font-size:2rem;font-weight:700;letter-spacing:.04em;color:var(--yellow)}
+    .cta-box{margin-top:18px;background:var(--blue);color:#fff;border-radius:18px;padding:20px}
+    .cta-box h3{margin:0 0 8px}
+    .cta-box p{margin:0 0 14px;color:#e2eaff}
+    .cta-link{display:inline-flex;align-items:center;text-decoration:none;background:var(--yellow);color:#111;padding:12px 16px;border-radius:12px;font-weight:700}
+    .transfer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+    .transfer-btn{border:1px solid #b9c9e3;background:#fff;color:var(--blue);border-radius:12px;padding:12px;cursor:pointer;font-weight:600}
+    .transfer-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .mission{display:none;margin-top:16px;padding:15px 16px;background:#fffbea;border-left:4px solid var(--yellow);border-radius:12px}
+    .mission.show{display:block}
+    .summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+    .summary-item{padding:16px;border:1px solid var(--line);background:#fff;border-radius:14px}
+    .summary-item strong{display:block;color:var(--blue);margin-bottom:6px}
+    .nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .muted{color:var(--muted)}
+    .small{font-size:.88rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .footer-mark{margin-top:28px;text-align:center;color:var(--muted);font-size:.84rem}
+    @media(max-width:760px){
+      .topbar-inner{grid-template-columns:1fr auto;gap:8px}.progress-wrap{grid-column:1/-1;grid-row:2}.progress-label{text-align:left}
+      main{padding-top:24px}.hero{min-height:0;padding:30px 22px}.context-grid,.compare,.summary-grid{grid-template-columns:1fr}.select-item{grid-template-columns:1fr}.transfer-grid{grid-template-columns:1fr 1fr}.nav-row .btn{flex:1 1 42%}
+    }
+    @media(max-width:460px){.transfer-grid{grid-template-columns:1fr}.btn-row .btn{width:100%}.nav-row .btn{width:100%;flex-basis:100%}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Progreso de la lección">
+    <div class="topbar-inner">
+      <div class="brand-mini">Spanish at Work</div>
+      <div class="progress-wrap">
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label" id="progressLabel">0 % · Inicio</div>
+      </div>
+      <button class="reset-mini" id="resetTop" type="button">Reiniciar</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="live" class="sr-only" aria-live="polite"></div>
+
+    <section class="screen active" data-screen="0" aria-labelledby="title-0">
+      <div class="hero">
+        <p class="eyebrow">Spanish at Work · Lección 02</p>
+        <h1 id="title-0">Participa y responde</h1>
+        <p class="tools">Presente + conectores básicos + estructuras de opinión + interrogativos</p>
+        <p class="apply">Aplicación: intervenir y responder dentro de conversaciones profesionales.</p>
+        <div class="goal">
+          <strong>Al terminar:</strong> podrás expresar una opinión, reaccionar a otra intervención, dar una razón y formular preguntas para aclarar información.
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-yellow" id="startBtn" type="button">Comenzar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="1" aria-labelledby="title-1">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Encuentro con la lengua</p>
+        <h2 id="title-1">Observa una conversación realista</h2>
+        <p>Una entrega puede cambiar de fecha. Fíjate en el español que usan dos compañeros para opinar, reaccionar, explicar y preguntar.</p>
+      </div>
+      <div class="context-grid">
+        <div class="card">
+          <div class="dialogue" id="dialogue">
+            <div class="bubble" data-tag="opinión + presente"><strong>Marta</strong>Creo que necesitamos revisar la fecha porque el cliente necesita el informe el miércoles.<span class="lang-tag">Opinión + presente + porque</span></div>
+            <div class="bubble" data-tag="reacción + contraste"><strong>Leo</strong>Estoy de acuerdo, pero el equipo de producción necesita más tiempo.<span class="lang-tag">Reacción + pero + presente</span></div>
+            <div class="bubble" data-tag="interrogativo"><strong>Marta</strong>¿Por qué necesita más tiempo?<span class="lang-tag">Interrogativo + presente</span></div>
+            <div class="bubble" data-tag="razón + adición + opinión"><strong>Leo</strong>Porque falta una revisión técnica. También creo que necesitamos avisar al cliente.<span class="lang-tag">Porque + presente + también + opinión</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-secondary" id="listenDialogue" type="button">Escuchar diálogo</button>
+            <button class="btn btn-primary" id="observeBtn" type="button">Observar el español</button>
+          </div>
+          <div class="feedback" id="audioFeedback" aria-live="polite">Puedes leer primero y escuchar después. El audio utiliza la voz disponible en tu navegador.</div>
+        </div>
+        <aside class="card" aria-label="Herramientas que aparecen en la conversación">
+          <h3 style="margin-top:0;color:#003893">Busca estas cuatro herramientas</h3>
+          <ul class="tool-list">
+            <li><span class="dot"></span><span><strong>Presente:</strong> necesitamos, necesita, falta.</span></li>
+            <li><span class="dot"></span><span><strong>Opinión:</strong> creo que, estoy de acuerdo.</span></li>
+            <li><span class="dot"></span><span><strong>Conectores:</strong> porque, pero, también.</span></li>
+            <li><span class="dot"></span><span><strong>Pregunta:</strong> ¿Por qué…?</span></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next1" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2" aria-labelledby="title-2">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Activa lo que ya sabes</p>
+        <h2 id="title-2">Elige una respuesta que ya combina ideas</h2>
+        <p>Tu compañero dice: «El cliente quiere la propuesta hoy». ¿Qué respuesta usa una estructura de opinión y una razón?</p>
+      </div>
+      <div class="card">
+        <div class="choice-grid" id="warmupChoices">
+          <button class="choice" data-correct="false" type="button">Creo la propuesta es para hoy porque el cliente la necesita.</button>
+          <button class="choice" data-correct="true" type="button">Creo que necesitamos enviar la propuesta hoy porque el informe ya está listo.</button>
+          <button class="choice" data-correct="false" type="button">Creo podemos enviar hoy por qué está listo.</button>
+        </div>
+        <div class="feedback" id="warmupFeedback" aria-live="polite">Elige una opción y mira qué elementos lingüísticos aparecen.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next2" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="3" aria-labelledby="title-3">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Aprende la herramienta</p>
+        <h2 id="title-3">Cuatro recursos para intervenir</h2>
+        <p>Abre las cuatro pestañas. No necesitas memorizar frases completas: observa los patrones que puedes reutilizar.</p>
+      </div>
+      <div class="card">
+        <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
+          <button class="tab-btn active" id="tab-present" data-tab="present" role="tab" aria-selected="true" aria-controls="panel-present" tabindex="0" type="button">Presente</button>
+          <button class="tab-btn" id="tab-opinion" data-tab="opinion" role="tab" aria-selected="false" aria-controls="panel-opinion" tabindex="-1" type="button">Opinión</button>
+          <button class="tab-btn" id="tab-connectors" data-tab="connectors" role="tab" aria-selected="false" aria-controls="panel-connectors" tabindex="-1" type="button">Conectores</button>
+          <button class="tab-btn" id="tab-questions" data-tab="questions" role="tab" aria-selected="false" aria-controls="panel-questions" tabindex="-1" type="button">Interrogativos</button>
+        </div>
+
+        <div class="tab-panel active" id="panel-present" data-panel="present" role="tabpanel" aria-labelledby="tab-present">
+          <h3>Presente: expresa lo que piensas y lo que ocurre ahora</h3>
+          <p>En una conversación de trabajo, el presente te permite hablar de una necesidad, una preferencia, un hecho actual o una acción habitual.</p>
+          <div class="pattern">Creo que + oración en presente</div>
+          <div class="examples">
+            <div class="example">Creo que <strong>necesitamos</strong> más tiempo.</div>
+            <div class="example">El cliente <strong>necesita</strong> una respuesta hoy.</div>
+            <div class="example"><strong>Prefiero</strong> mantener la fecha actual.</div>
+          </div>
+          <p class="note">En español, muchas veces no necesitas decir el pronombre sujeto: «Creo…», «Necesitamos…», «Prefiero…».</p>
+        </div>
+
+        <div class="tab-panel" id="panel-opinion" data-panel="opinion" role="tabpanel" aria-labelledby="tab-opinion">
+          <h3>Estructuras de opinión y reacción</h3>
+          <div class="pattern">Creo que + idea</div>
+          <div class="pattern">Para mí, + idea</div>
+          <div class="pattern">Estoy de acuerdo con + persona / idea</div>
+          <div class="pattern">No estoy de acuerdo porque + razón</div>
+          <div class="examples">
+            <div class="example">Creo que necesitamos confirmar la fecha.</div>
+            <div class="example">Para mí, esta opción es más clara.</div>
+            <div class="example">Estoy de acuerdo con Marta.</div>
+            <div class="example">No estoy de acuerdo porque el cliente necesita el informe antes.</div>
+          </div>
+          <p class="note">Error frecuente: <s>Estoy acuerdo</s> → <strong>Estoy de acuerdo.</strong></p>
+        </div>
+
+        <div class="tab-panel" id="panel-connectors" data-panel="connectors" role="tabpanel" aria-labelledby="tab-connectors">
+          <h3>Conectores básicos: une ideas sin hacer frases demasiado largas</h3>
+          <div class="compare">
+            <div><h4>y / también</h4><p>Añaden información.</p><p><strong>Revisamos el informe y confirmamos la fecha.</strong></p><p><strong>También necesitamos avisar al cliente.</strong></p></div>
+            <div><h4>pero</h4><p>Introduce un contraste.</p><p><strong>Estoy de acuerdo, pero falta una confirmación.</strong></p></div>
+            <div><h4>porque</h4><p>Introduce la razón.</p><p><strong>Prefiero el miércoles porque el cliente necesita el informe.</strong></p></div>
+            <div><h4>por eso</h4><p>Introduce una consecuencia.</p><p><strong>El cliente necesita una respuesta hoy. Por eso, necesitamos responder hoy.</strong></p></div>
+          </div>
+          <p class="note"><strong>porque</strong> introduce una razón. <strong>¿por qué?</strong> aparece en una pregunta y se escribe separado y con tilde.</p>
+        </div>
+
+        <div class="tab-panel" id="panel-questions" data-panel="questions" role="tabpanel" aria-labelledby="tab-questions">
+          <h3>Interrogativos: pregunta para aclarar o continuar</h3>
+          <div class="examples">
+            <div class="example"><strong>¿Qué</strong> necesitas confirmar?</div>
+            <div class="example"><strong>¿Cuál</strong> es la fecha final?</div>
+            <div class="example"><strong>¿Cuándo</strong> responde el cliente?</div>
+            <div class="example"><strong>¿Quién</strong> confirma la entrega?</div>
+            <div class="example"><strong>¿Cómo</strong> resolvemos esto?</div>
+            <div class="example"><strong>¿Por qué</strong> prefieres el viernes?</div>
+          </div>
+          <div class="pattern">Para pedir una aclaración: interrogativo + información que necesitas precisar</div>
+          <div class="examples">
+            <div class="example"><strong>¿Qué parte</strong> del informe necesitamos revisar?</div>
+            <div class="example"><strong>¿Cuál de las dos fechas</strong> es la correcta?</div>
+          </div>
+          <p class="note">Los interrogativos llevan tilde cuando introducen una pregunta: qué, cuál, cuándo, quién, cómo, por qué. También puedes usarlos para pedir un dato que falta y aclarar una intervención poco precisa.</p>
+        </div>
+
+        <div class="feedback" id="tabsFeedback" aria-live="polite">Has abierto 1 de 4 herramientas.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next3" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4" aria-labelledby="title-4">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Comprueba que entendiste</p>
+        <h2 id="title-4">¿Qué información pide cada pregunta?</h2>
+        <p>Relaciona cada pregunta con la información que busca. Después comprueba.</p>
+      </div>
+      <div class="card">
+        <div class="select-list" id="questionMatch">
+          <div class="select-item">
+            <label for="q1">¿Cuándo responde el proveedor?</label>
+            <select id="q1" data-answer="tiempo"><option value="">Elige…</option><option value="persona">Una persona</option><option value="tiempo">Un momento o una fecha</option><option value="razon">Una razón</option></select>
+          </div>
+          <div class="select-item">
+            <label for="q2">¿Quién confirma el precio?</label>
+            <select id="q2" data-answer="persona"><option value="">Elige…</option><option value="persona">Una persona</option><option value="opcion">Una opción concreta</option><option value="manera">Una manera</option></select>
+          </div>
+          <div class="select-item">
+            <label for="q3">¿Por qué prefieres el miércoles?</label>
+            <select id="q3" data-answer="razon"><option value="">Elige…</option><option value="tiempo">Un momento</option><option value="razon">Una razón</option><option value="persona">Una persona</option></select>
+          </div>
+          <div class="select-item">
+            <label for="q4">¿Cuál es la prioridad?</label>
+            <select id="q4" data-answer="opcion"><option value="">Elige…</option><option value="opcion">Una opción o un elemento concreto</option><option value="manera">Una manera</option><option value="razon">Una razón</option></select>
+          </div>
+          <div class="select-item">
+            <label for="q5">¿Qué parte del informe necesitamos revisar?</label>
+            <select id="q5" data-answer="detalle"><option value="">Elige…</option><option value="detalle">Un detalle concreto para aclarar la información</option><option value="tiempo">Un momento o una fecha</option><option value="persona">Una persona</option></select>
+          </div>
+        </div>
+        <div class="btn-row"><button class="btn btn-primary" id="checkMatch" type="button">Comprobar</button></div>
+        <div class="feedback" id="matchFeedback" aria-live="polite">Observa el interrogativo antes de elegir.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next4" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="5" aria-labelledby="title-5">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Construye</p>
+        <h2 id="title-5">Reconstruye dos intervenciones</h2>
+        <p>Haz clic en las palabras o grupos de palabras en el orden correcto. Puedes quitar una pieza haciendo clic sobre ella.</p>
+      </div>
+      <div class="card builder">
+        <div class="step-indicator" aria-hidden="true"><span class="on"></span><span id="buildDot2"></span></div>
+        <p id="builderPrompt"><strong>1.</strong> Construye una opinión con una razón.</p>
+        <div class="builder-output" id="builderOutput" aria-label="Frase construida"></div>
+        <div class="token-bank" id="tokenBank" aria-label="Piezas disponibles"></div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="resetBuilder" type="button">Reiniciar frase</button>
+          <button class="btn btn-primary" id="checkBuilder" type="button">Comprobar</button>
+        </div>
+        <div class="feedback" id="builderFeedback" aria-live="polite">Primero construye la frase.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next5" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="6" aria-labelledby="title-6">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Recupera y reacciona</p>
+        <h2 id="title-6">Responde y pide una aclaración</h2>
+        <p>Ahora tienes menos apoyo. Reacciona, responde una pregunta y pide una aclaración cuando falta información.</p>
+      </div>
+      <div class="card">
+        <div class="scenario"><div class="speaker">Compañero</div>Creo que podemos mover la entrega al viernes.</div>
+        <div class="choice-grid" id="reactionChoices">
+          <button class="choice" data-correct="true" type="button">Estoy de acuerdo, pero necesitamos confirmar la fecha con el cliente.</button>
+          <button class="choice" data-correct="false" type="button">Estoy acuerdo, pero necesitamos confirmar la fecha con el cliente.</button>
+          <button class="choice" data-correct="false" type="button">Estoy de acuerdo, pero porque necesitamos confirmar la fecha con el cliente.</button>
+        </div>
+        <div class="feedback" id="reactionFeedback" aria-live="polite">Busca una reacción + un conector + una idea completa en presente.</div>
+        <button class="btn btn-secondary" id="hintReaction" type="button" style="margin-top:14px" aria-controls="reactionHint" aria-expanded="false">Ver pista</button>
+        <div class="hint" id="reactionHint">La estructura es <strong>estar de acuerdo</strong>. Si añades un contraste, usa <strong>pero</strong> y después una oración completa.</div>
+
+        <div id="followUp" style="display:none;margin-top:22px">
+          <div class="scenario"><div class="speaker">Compañero</div>¿Qué necesitamos confirmar?</div>
+          <div class="choice-grid" id="followChoices">
+            <button class="choice" data-correct="false" type="button">Porque el cliente la necesita.</button>
+            <button class="choice" data-correct="true" type="button">Necesitamos confirmar la fecha final con el cliente.</button>
+            <button class="choice" data-correct="false" type="button">El viernes.</button>
+          </div>
+          <div class="feedback" id="followFeedback" aria-live="polite">Responde a «qué» con la información solicitada.</div>
+        </div>
+
+        <div id="clarifyUp" style="display:none;margin-top:22px">
+          <div class="scenario"><div class="speaker">Compañero</div>También necesitamos revisar una parte del informe.</div>
+          <p class="small muted">La información es poco precisa. ¿Qué pregunta pide la aclaración que falta?</p>
+          <div class="choice-grid" id="clarifyChoices">
+            <button class="choice" data-correct="true" type="button">¿Qué parte del informe necesitamos revisar?</button>
+            <button class="choice" data-correct="false" type="button">¿Por qué necesitamos revisar el informe?</button>
+            <button class="choice" data-correct="false" type="button">¿Quién necesita revisar el informe?</button>
+          </div>
+          <div class="feedback" id="clarifyFeedback" aria-live="polite">Busca una pregunta completa que pida exactamente el dato que falta.</div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next6" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="7" aria-labelledby="title-7">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Cambia la situación</p>
+        <h2 id="title-7">Ahora responde a un cliente</h2>
+        <p>La herramienta es la misma, pero cambia el interlocutor. Escribe tu propia respuesta; aquí no se evalúa automáticamente un texto abierto.</p>
+      </div>
+      <div class="card">
+        <div class="scenario"><div class="speaker">Cliente</div>¿Por qué necesitan cambiar la fecha?</div>
+        <label for="freeAnswer">Tu respuesta</label>
+        <textarea id="freeAnswer" placeholder="Escribe 1 o 2 frases. Intenta usar presente + porque."></textarea>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="hintFree" type="button" aria-controls="freeHint" aria-expanded="false">Ver pista</button>
+          <button class="btn btn-primary" id="finishFree" type="button">Revisar mi respuesta</button>
+        </div>
+        <div class="hint" id="freeHint">Puedes comenzar con una idea en presente y después dar la razón con <strong>porque</strong>. Ejemplo de estructura: «Necesitamos ___ porque ___».</div>
+        <div class="feedback" id="freeFeedback" aria-live="polite">Escribe tu respuesta y después revísala con los criterios.</div>
+        <div id="freeReview" style="display:none">
+          <div class="checklist">
+            <label class="checkline"><input type="checkbox" class="free-check"> <span>Mi respuesta contiene una oración comprensible en presente.</span></label>
+            <label class="checkline"><input type="checkbox" class="free-check"> <span>Uso <strong>porque</strong> para introducir una razón.</span></label>
+            <label class="checkline"><input type="checkbox" class="free-check"> <span>La respuesta contesta realmente a «¿por qué?».</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next7" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8" aria-labelledby="title-8">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Ahora dilo tú</p>
+        <h2 id="title-8">Responde sin leer un modelo completo</h2>
+        <p>Tienes 45 segundos. Da tu opinión sobre una fecha, explica una razón y termina con una pregunta para continuar la conversación.</p>
+      </div>
+      <div class="card">
+        <div class="scenario"><div class="speaker">Situación</div>Tu equipo propone presentar el proyecto el lunes. Tú prefieres el martes porque falta una revisión. Responde y pregunta algo antes de cerrar tu intervención.</div>
+        <div class="timer-box">
+          <div><strong>Objetivo lingüístico</strong><br><span class="small">opinión + conector + presente + interrogativo</span></div>
+          <div class="timer" id="timer">00:45</div>
+          <button class="btn btn-yellow" id="timerBtn" type="button">Iniciar 45 s</button>
+        </div>
+        <button class="btn btn-secondary" id="oralHintBtn" type="button" style="margin-top:14px" aria-controls="oralHint" aria-expanded="false">Ver palabras de apoyo</button>
+        <div class="hint" id="oralHint">Puedes recuperar: <strong>creo que · prefiero · pero · porque · también · qué · cuándo · por qué</strong>.</div>
+        <div class="btn-row"><button class="btn btn-primary" id="oralDone" type="button">Ya respondí</button></div>
+        <div id="oralReview" style="display:none">
+          <div class="checklist">
+            <label class="checkline"><input type="checkbox" class="oral-check"> <span>Expresé una opinión o preferencia.</span></label>
+            <label class="checkline"><input type="checkbox" class="oral-check"> <span>Conecté al menos dos ideas.</span></label>
+            <label class="checkline"><input type="checkbox" class="oral-check"> <span>Utilicé el presente para explicar mi razón.</span></label>
+            <label class="checkline"><input type="checkbox" class="oral-check"> <span>Formulé una pregunta para continuar la conversación.</span></label>
+          </div>
+          <div class="feedback" id="oralFeedback" aria-live="polite">Revisa tu producción antes de continuar.</div>
+        </div>
+        <div class="cta-box">
+          <h3>Entrénalo con otras personas</h3>
+          <p>Ya aprendiste y practicaste estas herramientas aquí. El siguiente paso es recuperarlas dentro de una conversación real.</p>
+          <a class="cta-link" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost prev" type="button">Anterior</button>
+        <button class="btn btn-primary next" id="next8" type="button" disabled>Continuar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9" aria-labelledby="title-9">
+      <div class="lesson-head">
+        <p class="lesson-kicker">Llévalo a tu trabajo</p>
+        <h2 id="title-9">Elige dónde vas a recuperar estas herramientas</h2>
+        <p>Selecciona una situación. Recibirás una micro misión lingüística para transferir lo aprendido.</p>
+      </div>
+      <div class="card">
+        <div class="transfer-grid" id="transferGrid">
+          <button class="transfer-btn" data-place="reunión" type="button">Reunión</button>
+          <button class="transfer-btn" data-place="cliente" type="button">Cliente</button>
+          <button class="transfer-btn" data-place="compañero" type="button">Compañero</button>
+          <button class="transfer-btn" data-place="proveedor" type="button">Proveedor</button>
+          <button class="transfer-btn" data-place="llamada" type="button">Llamada</button>
+          <button class="transfer-btn" data-place="proyecto" type="button">Proyecto</button>
+          <button class="transfer-btn" data-place="presentación" type="button">Presentación</button>
+          <button class="transfer-btn" data-place="mensaje" type="button">Mensaje</button>
+        </div>
+        <div class="mission" id="mission" aria-live="polite"></div>
+        <div class="btn-row"><button class="btn btn-primary" id="finishLesson" type="button" disabled>Completar lección</button></div>
+      </div>
+      <div class="nav-row"><button class="btn btn-ghost prev" type="button">Anterior</button></div>
+    </section>
+
+    <section class="screen" data-screen="10" aria-labelledby="title-10">
+      <div class="hero" style="min-height:0">
+        <p class="eyebrow">Spanish at Work · Lección completada</p>
+        <h2 id="title-10" style="font-size:clamp(2rem,6vw,3.65rem);margin:0 0 16px">Participa y responde</h2>
+        <p class="tools">Presente + conectores básicos + estructuras de opinión + interrogativos</p>
+        <div class="summary-grid" style="color:#151922">
+          <div class="summary-item"><strong>1</strong>Construyes una opinión y la conectas con una razón.</div>
+          <div class="summary-item"><strong>2</strong>Reaccionas a otra intervención sin depender de una frase memorizada.</div>
+          <div class="summary-item"><strong>3</strong>Formulas preguntas para aclarar y continuar una conversación.</div>
+        </div>
+        <div class="goal"><strong>Aplicación:</strong> intervenir y responder dentro de conversaciones profesionales con más autonomía.</div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="repeatPractice" type="button">Repetir práctica</button>
+          <button class="btn btn-secondary" id="resetFinal" type="button">Reiniciar lección</button>
+          <a class="cta-link" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-mark">Spanish at Work · Español para trabajar.</div>
+  </main>
+
+  <script>
+  (() => {
+    'use strict';
+    const STORAGE_KEY = 'saw-lesson-02-progress-v1';
+    const screens = [...document.querySelectorAll('.screen')];
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const live = document.getElementById('live');
+    const maxLearningStep = 9;
+    let current = 0;
+    let completed = new Set();
+    let visitedTabs = new Set(['present']);
+    let timerId = null;
+    let timerLeft = 45;
+
+    const labels = ['Inicio','Observa','Activa','Herramientas','Comprueba','Construye','Reacciona','Adapta','Habla','Transfiere','Completada'];
+
+    function safeLoad(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const data = JSON.parse(raw);
+        if(Array.isArray(data.completed)) completed = new Set(data.completed.filter(n => Number.isInteger(n) && n >= 0 && n <= 9));
+        if(Number.isInteger(data.current) && data.current >= 0 && data.current <= 10) current = data.current;
+      }catch(e){ /* La lección funciona sin almacenamiento. */ }
+    }
+    function safeSave(){
+      try{localStorage.setItem(STORAGE_KEY, JSON.stringify({current,completed:[...completed]}));}catch(e){}
+    }
+    function progressPercent(){
+      if(current === 10) return 100;
+      return Math.round((completed.size / maxLearningStep) * 100);
+    }
+    function updateProgress(){
+      const p = progressPercent();
+      progressFill.style.width = p + '%';
+      progressLabel.textContent = `${p} % · ${labels[current] || ''}`;
+    }
+    function showScreen(index, announce=true){
+      if(index < 0 || index >= screens.length) return;
+      screens.forEach((s,i) => s.classList.toggle('active', i === index));
+      current = index;
+      updateProgress();
+      safeSave();
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+      if(announce){
+        live.textContent = `Paso ${Math.min(index+1,10)}. ${labels[index]}.`;
+        const heading = screens[index].querySelector('h1,h2');
+        if(heading){
+          heading.setAttribute('tabindex','-1');
+          heading.focus({preventScroll:true});
+        }
+      }
+    }
+    function completeStep(step){
+      if(step >= 1 && step <= 9){completed.add(step);updateProgress();safeSave();}
+    }
+    function bindNav(){
+      document.querySelectorAll('.prev').forEach(btn => btn.addEventListener('click',() => showScreen(current-1)));
+      document.querySelectorAll('.next').forEach(btn => btn.addEventListener('click',() => showScreen(current+1)));
+    }
+    function resetAll(){
+      if(timerId){clearInterval(timerId);timerId=null;}
+      timerLeft=45;
+      completed.clear();current=0;visitedTabs=new Set(['present']);
+      try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+      location.reload();
+    }
+    document.getElementById('resetTop').addEventListener('click',resetAll);
+    document.getElementById('resetFinal').addEventListener('click',resetAll);
+    document.getElementById('startBtn').addEventListener('click',() => showScreen(1));
+    bindNav();
+
+    // Screen 1: input comprensible
+    document.getElementById('observeBtn').addEventListener('click',() => {
+      document.querySelectorAll('#dialogue .bubble').forEach(b => b.classList.add('marked'));
+      completeStep(1);
+      document.getElementById('next1').disabled = false;
+      document.getElementById('audioFeedback').textContent = 'Ahora puedes ver cómo se combinan opinión, presente, conectores e interrogativos dentro de la misma conversación.';
+      document.getElementById('audioFeedback').className = 'feedback success';
+    });
+    document.getElementById('listenDialogue').addEventListener('click',() => {
+      const box = document.getElementById('audioFeedback');
+      if('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window){
+        window.speechSynthesis.cancel();
+        const text = 'Marta: Creo que necesitamos revisar la fecha porque el cliente necesita el informe el miércoles. Leo: Estoy de acuerdo, pero el equipo de producción necesita más tiempo. Marta: ¿Por qué necesita más tiempo? Leo: Porque falta una revisión técnica. También creo que necesitamos avisar al cliente.';
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'es-ES'; utter.rate = 0.9;
+        window.speechSynthesis.speak(utter);
+        box.textContent = 'Reproduciendo con la voz de español disponible en tu navegador.';
+      }else{
+        box.textContent = 'Tu navegador no ofrece síntesis de voz. Puedes continuar leyendo el diálogo; el audio no es necesario para completar la actividad.';
+      }
+    });
+
+    // Screen 2: activación
+    const warmFeedback = document.getElementById('warmupFeedback');
+    document.querySelectorAll('#warmupChoices .choice').forEach(btn => btn.addEventListener('click',() => {
+      document.querySelectorAll('#warmupChoices .choice').forEach(b => b.classList.remove('correct','wrong'));
+      if(btn.dataset.correct === 'true'){
+        btn.classList.add('correct');
+        warmFeedback.className='feedback success';
+        warmFeedback.innerHTML='<strong>Funciona.</strong> «Creo que» introduce la opinión y «porque» introduce la razón. Los verbos están en presente: «necesitamos» / «está».';
+        completeStep(2);document.getElementById('next2').disabled=false;
+      }else{
+        btn.classList.add('wrong');
+        warmFeedback.className='feedback error';
+        warmFeedback.innerHTML='Revisa la estructura. Necesitas una oración completa después de <strong>creo que</strong> y <strong>porque</strong> se escribe junto cuando introduce la razón.';
+      }
+    }));
+
+    // Screen 3: tabs
+    const tabsFeedback = document.getElementById('tabsFeedback');
+    const tabButtons=[...document.querySelectorAll('.tab-btn')];
+    function activateTab(btn, moveFocus=false){
+      const tab = btn.dataset.tab;
+      tabButtons.forEach(b => {
+        const active=b===btn;
+        b.classList.toggle('active',active);
+        b.setAttribute('aria-selected',active?'true':'false');
+        b.tabIndex=active?0:-1;
+      });
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active',p.dataset.panel===tab));
+      visitedTabs.add(tab);
+      tabsFeedback.textContent = `Has abierto ${visitedTabs.size} de 4 herramientas.`;
+      if(visitedTabs.size === 4){
+        tabsFeedback.className='feedback success';
+        tabsFeedback.textContent='Ya observaste las cuatro herramientas. Ahora vas a comprobar si distingues para qué sirve cada una.';
+        completeStep(3);document.getElementById('next3').disabled=false;
+      }
+      if(moveFocus) btn.focus();
+    }
+    tabButtons.forEach((btn,index) => {
+      btn.addEventListener('click',() => activateTab(btn));
+      btn.addEventListener('keydown',(event) => {
+        let nextIndex=null;
+        if(event.key==='ArrowRight') nextIndex=(index+1)%tabButtons.length;
+        if(event.key==='ArrowLeft') nextIndex=(index-1+tabButtons.length)%tabButtons.length;
+        if(event.key==='Home') nextIndex=0;
+        if(event.key==='End') nextIndex=tabButtons.length-1;
+        if(nextIndex!==null){
+          event.preventDefault();
+          activateTab(tabButtons[nextIndex],true);
+        }
+      });
+    });
+
+    // Screen 4: interrogativos
+    document.getElementById('checkMatch').addEventListener('click',() => {
+      const selects=[...document.querySelectorAll('#questionMatch select')];
+      const empty=selects.some(s=>!s.value);
+      const correct=selects.filter(s=>s.value===s.dataset.answer).length;
+      const fb=document.getElementById('matchFeedback');
+      if(empty){fb.className='feedback error';fb.textContent=`Completa las ${selects.length} relaciones antes de comprobar.`;return;}
+      if(correct===selects.length){
+        fb.className='feedback success';
+        fb.innerHTML='Las relaciones son correctas. Observa la lógica: <strong>cuándo → tiempo</strong>, <strong>quién → persona</strong>, <strong>por qué → razón</strong>, <strong>cuál → identificación de una opción o elemento</strong> y <strong>qué parte → detalle que necesitas aclarar</strong>.';
+        completeStep(4);document.getElementById('next4').disabled=false;
+      }else{
+        fb.className='feedback error';fb.textContent=`Tienes ${correct} de ${selects.length}. Mira primero el interrogativo y vuelve a intentarlo.`;
+      }
+    });
+
+    // Screen 5: sentence builder
+    const builderTasks=[
+      {prompt:'<strong>1.</strong> Construye una opinión con una razón.',pieces:['Creo que','necesitamos','más tiempo','porque','falta','la confirmación','del cliente.'],answer:['Creo que','necesitamos','más tiempo','porque','falta','la confirmación','del cliente.']},
+      {prompt:'<strong>2.</strong> Construye una pregunta para pedir una razón.',pieces:['¿Por qué','prefieres','mover','la entrega','al viernes?'],answer:['¿Por qué','prefieres','mover','la entrega','al viernes?']}
+    ];
+    let builderTask=0; let built=[];
+    const tokenBank=document.getElementById('tokenBank'), output=document.getElementById('builderOutput'), builderFeedback=document.getElementById('builderFeedback'), checkBuilderBtn=document.getElementById('checkBuilder');
+    function renderBuilder(){
+      document.getElementById('builderPrompt').innerHTML=builderTasks[builderTask].prompt;
+      output.innerHTML=''; tokenBank.innerHTML=''; built=[];
+      const shuffled=[...builderTasks[builderTask].pieces].sort(() => Math.random()-.5);
+      shuffled.forEach((text,idx)=>{
+        const b=document.createElement('button');b.type='button';b.className='token';b.textContent=text;b.dataset.id=String(idx);
+        b.addEventListener('click',()=>{if(b.classList.contains('selected'))return;b.classList.add('selected');built.push({text,el:b});renderBuilt();});
+        tokenBank.appendChild(b);
+      });
+      builderFeedback.className='feedback';builderFeedback.textContent='Primero construye la frase.';
+    }
+    function renderBuilt(){
+      output.innerHTML='';
+      built.forEach((item,idx)=>{
+        const b=document.createElement('button');b.type='button';b.className='built-token';b.textContent=item.text;
+        b.setAttribute('aria-label',`Quitar ${item.text}`);
+        b.addEventListener('click',()=>{item.el.classList.remove('selected');built.splice(idx,1);renderBuilt();});
+        output.appendChild(b);
+      });
+    }
+    document.getElementById('resetBuilder').addEventListener('click',renderBuilder);
+    checkBuilderBtn.addEventListener('click',()=>{
+      const actual=built.map(x=>x.text), expected=builderTasks[builderTask].answer;
+      const ok=actual.length===expected.length && actual.every((x,i)=>x===expected[i]);
+      if(ok){
+        builderFeedback.className='feedback success';
+        if(builderTask===0){
+          builderFeedback.innerHTML='La estructura está completa: <strong>Creo que + presente + porque + razón.</strong> Ahora construye una pregunta.';
+          builderTask=1;document.getElementById('buildDot2').classList.add('on');
+          checkBuilderBtn.disabled=true;
+          setTimeout(()=>{renderBuilder();checkBuilderBtn.disabled=false;},650);
+        }else{
+          builderFeedback.innerHTML='<strong>¿Por qué…?</strong> pide una razón. Observa la tilde y la escritura separada de «por qué».';
+          completeStep(5);document.getElementById('next5').disabled=false;
+        }
+      }else{
+        builderFeedback.className='feedback error';
+        builderFeedback.textContent='El orden todavía no forma la intervención esperada. Revisa el inicio, el verbo y la posición del conector.';
+      }
+    });
+    renderBuilder();
+
+    // Screen 6: reaction and follow-up
+    const reactionFeedback=document.getElementById('reactionFeedback');
+    document.querySelectorAll('#reactionChoices .choice').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('#reactionChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
+      if(btn.dataset.correct==='true'){
+        btn.classList.add('correct');reactionFeedback.className='feedback success';reactionFeedback.innerHTML='La forma <strong>estoy de acuerdo</strong> está completa. «Pero» introduce el contraste y después aparece una oración en presente.';
+        document.getElementById('followUp').style.display='block';
+      }else{btn.classList.add('wrong');reactionFeedback.className='feedback error';reactionFeedback.innerHTML='Revisa la forma fija <strong>estar de acuerdo</strong> y evita unir «pero» y «porque» sin una relación clara entre las ideas.';}
+    }));
+    document.getElementById('hintReaction').addEventListener('click',()=>{
+      const hint=document.getElementById('reactionHint');
+      const open=hint.classList.toggle('show');
+      document.getElementById('hintReaction').setAttribute('aria-expanded',open?'true':'false');
+    });
+    document.querySelectorAll('#followChoices .choice').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('#followChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
+      const fb=document.getElementById('followFeedback');
+      if(btn.dataset.correct==='true'){
+        btn.classList.add('correct');fb.className='feedback success';fb.innerHTML='«¿Qué…?» pide información. La respuesta da exactamente esa información mediante una oración completa en presente.';
+        document.getElementById('clarifyUp').style.display='block';
+      }else{btn.classList.add('wrong');fb.className='feedback error';fb.textContent='Responde con el dato solicitado: qué necesitamos confirmar, no cuándo ni por qué.';}
+    }));
+
+    document.querySelectorAll('#clarifyChoices .choice').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('#clarifyChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
+      const fb=document.getElementById('clarifyFeedback');
+      if(btn.dataset.correct==='true'){
+        btn.classList.add('correct');fb.className='feedback success';fb.innerHTML='<strong>¿Qué parte…?</strong> pide el detalle que falta y convierte una información poco precisa en una pregunta clara.';
+        completeStep(6);document.getElementById('next6').disabled=false;
+      }else{
+        btn.classList.add('wrong');fb.className='feedback error';fb.textContent='La pregunta debe ser completa y debe pedir el dato que falta: qué parte del informe.';
+      }
+    }));
+
+    // Screen 7: open production + self-check
+    document.getElementById('hintFree').addEventListener('click',()=>{
+      const hint=document.getElementById('freeHint');
+      const open=hint.classList.toggle('show');
+      document.getElementById('hintFree').setAttribute('aria-expanded',open?'true':'false');
+    });
+    document.getElementById('finishFree').addEventListener('click',()=>{
+      const text=document.getElementById('freeAnswer').value.trim();
+      const fb=document.getElementById('freeFeedback');
+      const review=document.getElementById('freeReview');
+      if(text.length<10){
+        review.style.display='none';
+        fb.className='feedback error';
+        fb.textContent='Escribe primero una respuesta propia de al menos una oración. Después usa los criterios para revisarla.';
+        live.textContent=fb.textContent;
+        return;
+      }
+      review.style.display='block';
+      fb.className='feedback';fb.textContent='Ahora revisa tu respuesta con los tres criterios. No se hace una evaluación automática del texto abierto.';
+    });
+    document.querySelectorAll('.free-check').forEach(c=>c.addEventListener('change',()=>{
+      const all=[...document.querySelectorAll('.free-check')].every(x=>x.checked);
+      if(all){const fb=document.getElementById('freeFeedback');fb.className='feedback success';fb.textContent='Has revisado forma, conector y relación con la pregunta. Intenta decir la misma respuesta sin leerla.';completeStep(7);document.getElementById('next7').disabled=false;}
+    }));
+    document.getElementById('freeAnswer').addEventListener('input',()=>{
+      if(!completed.has(7)) return;
+      completed.delete(7);
+      document.getElementById('next7').disabled=true;
+      document.querySelectorAll('.free-check').forEach(c=>c.checked=false);
+      document.getElementById('freeReview').style.display='none';
+      const fb=document.getElementById('freeFeedback');
+      fb.className='feedback';fb.textContent='Has cambiado tu respuesta. Revísala otra vez con los criterios.';
+      updateProgress();safeSave();
+    });
+
+    // Screen 8: oral production
+    function renderTimer(){document.getElementById('timer').textContent=`00:${String(timerLeft).padStart(2,'0')}`;}
+    document.getElementById('timerBtn').addEventListener('click',()=>{
+      if(timerId){clearInterval(timerId);timerId=null;}
+      timerLeft=45;renderTimer();document.getElementById('timerBtn').textContent='Reiniciar';
+      timerId=setInterval(()=>{
+        timerLeft--;renderTimer();
+        if(timerLeft<=0){
+          clearInterval(timerId);timerId=null;
+          document.getElementById('timerBtn').textContent='Repetir 45 s';
+          live.textContent='Tiempo terminado. Puedes cerrar tu respuesta y revisarla.';
+        }
+      },1000);
+    });
+    document.getElementById('oralHintBtn').addEventListener('click',()=>{
+      const hint=document.getElementById('oralHint');
+      const open=hint.classList.toggle('show');
+      document.getElementById('oralHintBtn').setAttribute('aria-expanded',open?'true':'false');
+    });
+    document.getElementById('oralDone').addEventListener('click',()=>{document.getElementById('oralReview').style.display='block';document.getElementById('oralFeedback').textContent='Marca lo que realmente utilizaste. Si falta un elemento, vuelve a responder antes de continuar.';});
+    document.querySelectorAll('.oral-check').forEach(c=>c.addEventListener('change',()=>{
+      const all=[...document.querySelectorAll('.oral-check')].every(x=>x.checked);
+      if(all){const fb=document.getElementById('oralFeedback');fb.className='feedback success';fb.textContent='Tu intervención incluye opinión, conexión, presente y una pregunta. Ahora traslada ese patrón a una situación real.';completeStep(8);document.getElementById('next8').disabled=false;}
+    }));
+
+    // Screen 9: transfer
+    const mission=document.getElementById('mission');
+    document.querySelectorAll('.transfer-btn').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('.transfer-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+      const p=btn.dataset.place;
+      mission.classList.add('show');
+      mission.innerHTML=`<strong>Micro misión para tu ${p}:</strong> usa una estructura de opinión, conecta una segunda idea con <em>pero</em> o <em>porque</em> y formula una pregunta con un interrogativo. No prepares toda la conversación: prepara las herramientas.`;
+      document.getElementById('finishLesson').disabled=false;
+    }));
+    document.getElementById('finishLesson').addEventListener('click',()=>{completeStep(9);current=10;updateProgress();safeSave();showScreen(10);});
+    document.getElementById('repeatPractice').addEventListener('click',()=>showScreen(6));
+
+    // Restore minimal navigation state. Completed steps unlock their next buttons.
+    safeLoad();
+    for(let s=1;s<=9;s++){
+      if(completed.has(s)){
+        const next=document.getElementById(`next${s}`);if(next) next.disabled=false;
+      }
+    }
+    if(completed.has(9)) current=10;
+    showScreen(current,false);
+  })();
+  </script>
+</body>
+</html>
