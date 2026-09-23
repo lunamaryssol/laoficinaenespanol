@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#003893">
+  <title>Lección 4 · Cierra y confirma | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-2:#0b4cac;
+      --blue-soft:#eef4ff;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --ink:#111827;
+      --muted:#5f6b7a;
+      --line:#dbe4f0;
+      --white:#fff;
+      --success:#166534;
+      --success-bg:#edf8f0;
+      --danger-bg:#fff0f1;
+      --shadow:0 10px 28px rgba(0,56,147,.10);
+      --radius:22px;
+      --radius-sm:14px;
+      --tap:48px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:#f5f8fc}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 95% 0%, rgba(252,209,22,.16), transparent 24rem),
+        linear-gradient(180deg,#f8fbff 0%,#f2f6fb 100%);
+      line-height:1.55;
+    }
+    button,input,textarea,select{font:inherit}
+    button,a,input,textarea,select{outline-offset:3px}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+      outline:3px solid #1c64d8;
+      outline-offset:3px;
+    }
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+    a{color:var(--blue)}
+    .skip-link{position:absolute;left:-9999px;top:auto}
+    .skip-link:focus{left:12px;top:12px;z-index:1000;background:#fff;padding:10px 14px;border-radius:10px}
+    .app-shell{max-width:1120px;margin:0 auto;padding:18px 16px 110px}
+    .topbar{
+      position:sticky;top:0;z-index:40;
+      margin:-18px -16px 16px;
+      padding:12px 16px 10px;
+      background:rgba(248,251,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,56,147,.09);
+    }
+    .topbar-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+    .brand-mini{font-weight:700;color:var(--blue);white-space:nowrap;font-size:.95rem}
+    .progress-wrap{min-width:0}
+    .progress-meta{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;color:var(--muted);margin-bottom:5px}
+    .progress-track{height:8px;border-radius:999px;background:#dfe7f2;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#2367c8);transition:width .25s ease}
+    .step-pill{font-size:.78rem;font-weight:600;background:#fff;border:1px solid var(--line);padding:6px 10px;border-radius:999px;white-space:nowrap}
+
+    main{display:block}
+    .screen{display:none;animation:fadeIn .22s ease}
+    .screen.active{display:block}
+    @keyframes fadeIn{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+    .hero{
+      min-height:72vh;
+      display:grid;
+      align-items:center;
+      grid-template-columns:1.2fr .8fr;
+      gap:30px;
+      background:var(--blue);
+      color:#fff;
+      border-radius:32px;
+      padding:clamp(28px,5vw,58px);
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow);
+    }
+    .hero::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(252,209,22,.14);right:-100px;top:-100px}
+    .hero-copy{position:relative;z-index:1}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;font-size:.77rem}
+    .eyebrow::before{content:"";width:28px;height:5px;background:var(--yellow);border-radius:999px}
+    .hero h1{font-size:clamp(2.35rem,6vw,4.8rem);line-height:1.02;margin:18px 0 16px;letter-spacing:-.045em;max-width:760px}
+    .hero .lead{font-size:clamp(1rem,2vw,1.25rem);max-width:700px;color:#e8effb;margin:0 0 26px}
+    .tool-strip{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 30px}
+    .tool-chip{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:999px;font-weight:600;font-size:.85rem}
+    .hero-diagram{position:relative;z-index:1;display:grid;gap:12px}
+    .signal-card{background:#fff;color:var(--ink);border-radius:18px;padding:17px 18px;box-shadow:0 14px 30px rgba(0,0,0,.12)}
+    .signal-card strong{display:block;color:var(--blue);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+    .signal-card .big{font-size:1.04rem;font-weight:600}
+    .signal-line{width:3px;height:28px;background:var(--yellow);margin:0 auto;border-radius:999px}
+
+    .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(22px,4vw,42px)}
+    .panel.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .panel.blue .muted{color:#dbe7fb}
+    .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:24px}
+    .kicker{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.055em;font-size:.76rem;margin-bottom:7px}
+    .panel.blue .kicker{color:var(--yellow)}
+    h2{font-size:clamp(1.65rem,4vw,2.6rem);line-height:1.15;margin:0;letter-spacing:-.025em}
+    h3{font-size:1.14rem;line-height:1.3;margin:0}
+    p{margin:0 0 14px}
+    .muted{color:var(--muted)}
+    .note{font-size:.9rem;color:var(--muted)}
+    .yellow-mark{box-shadow:inset 0 -.42em 0 rgba(252,209,22,.62)}
+
+    .btn{
+      border:none;border-radius:14px;min-height:var(--tap);padding:12px 18px;font-weight:600;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+      transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--yellow);color:#171717;box-shadow:0 7px 18px rgba(252,209,22,.22)}
+    .btn-blue{background:var(--blue);color:#fff}
+    .btn-outline{background:#fff;color:var(--blue);border:1.5px solid #9db7df}
+    .btn-ghost{background:#f4f7fb;color:var(--ink);border:1px solid var(--line)}
+    .btn-danger{background:var(--danger-bg);color:#9f1239;border:1px solid #fecdd3}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+
+    .context-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:start}
+    .meeting-brief{background:var(--blue-soft);border-radius:18px;padding:20px;border-left:5px solid var(--blue)}
+    .dialogue{display:grid;gap:12px}
+    .utterance{border:1px solid var(--line);border-radius:16px;padding:15px 16px;background:#fff;position:relative}
+    .utterance button{width:100%;text-align:left;border:none;background:transparent;padding:0;color:inherit;cursor:pointer;line-height:1.55}
+    .utterance.done{border-color:#8fb1e2;background:#f6f9ff}
+    .utterance .function{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed #bdd0ec;color:var(--blue);font-weight:600;font-size:.88rem}
+    .utterance.done .function{display:block}
+    .count-badge{font-size:.78rem;font-weight:600;background:#eef4ff;color:var(--blue);border-radius:999px;padding:6px 9px}
+
+    .choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .choice{
+      min-height:74px;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 15px;cursor:pointer;color:var(--ink)
+    }
+    .choice:hover{border-color:#95b3df}
+    .choice.selected{border-color:var(--blue);background:#f3f7ff}
+    .choice.correct{border-color:#5aa36a;background:var(--success-bg)}
+    .choice.incorrect{border-color:#e28a95;background:var(--danger-bg)}
+    .feedback{margin-top:14px;padding:14px 16px;border-radius:14px;background:#f6f8fb;border:1px solid var(--line);min-height:54px}
+    .feedback.good{background:var(--success-bg);border-color:#b9dfc1;color:#14532d}
+    .feedback.bad{background:var(--danger-bg);border-color:#fecdd3;color:#881337}
+
+    .pattern-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .pattern-card{border-radius:18px;padding:18px;border:1px solid var(--line);background:#fff;min-height:178px}
+    .pattern-card .label{display:inline-block;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--blue);background:var(--blue-soft);padding:5px 8px;border-radius:999px;margin-bottom:12px}
+    .formula{font-weight:700;color:var(--blue);font-size:1.03rem;margin-bottom:10px}
+    .example{padding:10px 12px;border-radius:12px;background:#f8fafc;font-size:.92rem;margin-top:8px}
+
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .tab-btn{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:600;color:var(--ink);min-height:var(--tap)}
+    .tab-btn[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+    .tab-panel{display:none;border-top:1px solid var(--line);padding-top:20px}
+    .tab-panel.active{display:block}
+    .mini-table{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:.93rem}
+    .mini-table th,.mini-table td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .mini-table th{color:var(--blue);font-weight:700;background:#f7faff}
+    .contrast{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .contrast > div{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .tiny-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700;color:var(--muted)}
+
+    .classify-list{display:grid;gap:12px}
+    .classify-item{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+    .classify-item .sentence{font-weight:600;margin-bottom:12px}
+    .category-row{display:flex;flex-wrap:wrap;gap:7px}
+    .cat-btn{border:1px solid #c9d7e9;background:#f8fbff;border-radius:999px;padding:8px 10px;cursor:pointer;font-size:.82rem;min-height:var(--tap)}
+    .cat-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .item-result{font-size:.84rem;margin-top:10px;min-height:20px}
+
+    .builder-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .prompt-box{background:#f7faff;border:1px solid var(--line);border-radius:18px;padding:18px}
+    .sentence-slot{min-height:92px;border:2px dashed #aec2df;border-radius:16px;padding:12px;background:#fff;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+    .token-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .token{border:1px solid #c5d3e6;background:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;min-width:44px;min-height:var(--tap)}
+    .token.used{opacity:.35;text-decoration:line-through}
+    .built-token{background:var(--blue-soft);border:1px solid #b8cceb;color:#143663;padding:8px 10px;border-radius:10px;cursor:pointer;min-width:44px;min-height:var(--tap)}
+
+    .recall-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .recall-card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}
+    .recall-card .task{min-height:76px}
+    .hint{display:none;margin-top:10px;padding:10px 12px;background:#fffbe8;border-left:4px solid var(--yellow);border-radius:8px;font-size:.88rem}
+    .hint.show{display:block}
+    .text-input{width:100%;border:1.5px solid #bdcbe0;border-radius:12px;padding:12px 13px;background:#fff;color:var(--ink);margin-top:10px}
+    textarea.text-input{min-height:110px;resize:vertical}
+    .model{display:none;margin-top:10px;padding:12px;border-radius:12px;background:#eef4ff;color:#173a70}
+    .model.show{display:block}
+
+    .sim-shell{background:#0d2f6f;border-radius:24px;padding:20px;color:#fff}
+    .sim-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+    .sim-step{font-size:.8rem;color:#cfe0ff}
+    .sim-message{background:#fff;color:var(--ink);border-radius:18px;padding:18px;min-height:110px;margin-bottom:15px}
+    .sim-options{display:grid;gap:9px}
+    .sim-option{text-align:left;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;padding:13px 14px;border-radius:14px;cursor:pointer}
+    .sim-option:hover{background:rgba(255,255,255,.14)}
+    .sim-option.best{background:#134f98;border-color:#f6d91f}
+    .sim-feedback{min-height:60px;margin-top:14px;background:rgba(255,255,255,.08);padding:12px 14px;border-radius:12px;color:#e8effb}
+
+    .closure-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+    .closure-field{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+    .closure-field label{display:block;font-size:.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+    .closure-field select{width:100%;min-height:var(--tap);border:1px solid #bfcee1;border-radius:10px;padding:9px;background:#fff;color:var(--ink)}
+    .closure-preview{padding:18px;border-radius:18px;background:#f5f8fd;border:1px solid var(--line);min-height:110px}
+
+    .timer-card{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--blue);color:#fff;border-radius:22px;padding:22px}
+    .timer-ring{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;border:10px solid rgba(255,255,255,.15);box-shadow:inset 0 0 0 4px var(--yellow)}
+    .timer-value{font-size:2rem;font-weight:700}
+    .speaking-brief{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+    .brief-item{padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.10);font-size:.9rem}
+
+    .checklist{display:grid;gap:9px}
+    .check-row{display:flex;align-items:flex-start;gap:10px;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:#fff;cursor:pointer}
+    .check-row input{margin-top:4px;accent-color:var(--blue);width:18px;height:18px}
+    .review-score{font-size:.93rem;font-weight:600;color:var(--blue);margin-top:12px}
+
+    .transfer-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .transfer-btn{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px 12px;text-align:left;cursor:pointer;min-height:76px}
+    .transfer-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+    .mission{margin-top:16px;padding:18px;border-radius:18px;background:#fffbe6;border:1px solid #f3d75e}
+
+    .final-grid{display:grid;grid-template-columns:1fr .85fr;gap:22px;align-items:start}
+    .final-grid > *{min-width:0}
+    .final-badge .btn{white-space:normal;text-align:center;max-width:100%}
+    .cap-list{display:grid;gap:10px;margin:18px 0}
+    .cap{display:block;position:relative;padding:13px 13px 13px 50px;border-radius:14px;background:#f7faff;border:1px solid var(--line);overflow-wrap:anywhere}
+    .cap::before{content:"✓";position:absolute;left:13px;top:13px;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700}
+    .final-badge{display:grid;place-items:center;min-height:260px;border-radius:26px;background:var(--blue);color:#fff;padding:28px;text-align:center}
+    .final-badge .percent{font-size:4.6rem;line-height:1;font-weight:700;color:var(--yellow)}
+
+    .nav-dock{
+      position:fixed;left:0;right:0;bottom:0;z-index:50;
+      background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);
+      padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    }
+    .nav-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .nav-label{font-size:.8rem;color:var(--muted);text-align:center;min-width:0}
+    .hidden{display:none!important}
+
+    @media (max-width:860px){
+      .hero,.context-grid,.builder-wrap,.final-grid{grid-template-columns:1fr}
+      .hero{min-height:auto}
+      .hero-diagram{max-width:520px}
+      .pattern-board{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .recall-grid{grid-template-columns:1fr}
+      .closure-board,.transfer-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:600px){
+      .app-shell{padding-left:10px;padding-right:10px}
+      .topbar{margin-left:-10px;margin-right:-10px}
+      .topbar-inner{grid-template-columns:1fr auto}
+      .progress-wrap{grid-column:1/-1;grid-row:2}
+      .brand-mini{font-size:.86rem}
+      .panel{padding:20px 16px;border-radius:18px}
+      .hero{padding:27px 20px;border-radius:22px}
+      .choice-grid,.pattern-board,.closure-board,.transfer-options,.speaking-brief{grid-template-columns:1fr}
+      .timer-card{grid-template-columns:1fr;text-align:center}
+      .timer-ring{margin:0 auto}
+      .section-head{display:block}
+      .section-head .count-badge{display:inline-block;margin-top:12px}
+      .nav-inner .btn{min-width:104px;padding:11px 13px}
+      .nav-label{font-size:.72rem}
+      .mini-table{font-size:.84rem}
+      .mini-table th,.mini-table td{padding:8px 7px}
+      .contrast{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#lesson-main">Saltar al contenido</a>
+<div class="app-shell">
+  <header class="topbar" aria-label="Progreso de la lección">
+    <div class="topbar-inner">
+      <div class="brand-mini">Spanish at Work</div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span id="progress-text">0 % completado</span><span id="current-topic">Inicio</span></div>
+        <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+      </div>
+      <div class="step-pill" id="step-pill">1 / 14</div>
+    </div>
+  </header>
+
+  <main id="lesson-main">
+    <section class="screen active" data-screen="0" data-topic="Inicio" aria-labelledby="title-0">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Lección 4 · Spanish at Work</div>
+          <h1 id="title-0" tabindex="-1">Cierra y confirma</h1>
+          <p class="lead">Aprende a cerrar una conversación de trabajo diciendo <strong>qué va a pasar</strong>, <strong>quién tiene que hacer qué</strong> y <strong>cómo confirmar el acuerdo</strong>.</p>
+          <div class="tool-strip" aria-label="Herramientas de la lección">
+            <span class="tool-chip">ir a + infinitivo</span>
+            <span class="tool-chip">tener que / hay que</span>
+            <span class="tool-chip">conectores de cierre</span>
+            <span class="tool-chip">estructuras para confirmar</span>
+          </div>
+          <button class="btn btn-primary" type="button" data-action="start">Comenzar</button>
+        </div>
+        <div class="hero-diagram" aria-label="Esquema de un cierre claro">
+          <div class="signal-card"><strong>1 · Siguiente paso</strong><div class="big">Vamos a enviar la propuesta mañana.</div></div>
+          <div class="signal-line" aria-hidden="true"></div>
+          <div class="signal-card"><strong>2 · Responsabilidad</strong><div class="big">Carlos tiene que confirmar el precio.</div></div>
+          <div class="signal-line" aria-hidden="true"></div>
+          <div class="signal-card"><strong>3 · Confirmación</strong><div class="big">¿Confirmamos entonces el viernes?</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="1" data-topic="Observa" aria-labelledby="title-1">
+      <div class="panel">
+        <div class="section-head">
+          <div><div class="kicker">Encuentro con la lengua</div><h2 id="title-1" tabindex="-1">Una reunión termina. ¿Qué español aparece?</h2></div>
+          <span class="count-badge" id="observe-count">0 / 4 observadas</span>
+        </div>
+        <div class="context-grid">
+          <div class="meeting-brief">
+            <h3>Situación</h3>
+            <p>Un equipo acaba de revisar una propuesta para un cliente. Antes de terminar la videollamada, Marta resume los próximos pasos.</p>
+            <p class="note">Toca cada frase. No analices la reunión: observa qué función tiene la lengua.</p>
+          </div>
+          <div class="dialogue" id="observation-list">
+            <div class="utterance"><button type="button" data-observe><span>“<strong>Para cerrar</strong>, revisamos los próximos pasos.”</span><span class="function">Conector: indica que la conversación entra en su cierre.</span></button></div>
+            <div class="utterance"><button type="button" data-observe><span>“Mañana <strong>vamos a enviar</strong> la propuesta al cliente.”</span><span class="function">Futuro próximo: presenta una acción prevista.</span></button></div>
+            <div class="utterance"><button type="button" data-observe><span>“Carlos <strong>tiene que confirmar</strong> el precio antes de las cuatro.”</span><span class="function">Obligación: asigna una acción necesaria a una persona.</span></button></div>
+            <div class="utterance"><button type="button" data-observe><span>“Entonces, <strong>¿confirmamos que</strong> hablamos otra vez el viernes?”</span><span class="function">Confirmación: comprueba que todos entienden el mismo acuerdo.</span></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2" data-topic="Activa" aria-labelledby="title-2">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Activa lo que ya sabes</div><h2 id="title-2" tabindex="-1">¿Cuál frase presenta un próximo paso?</h2></div></div>
+        <p class="muted">Elige la opción que expresa con claridad una acción prevista después de la reunión.</p>
+        <div class="choice-grid" id="warmup-choices">
+          <button class="choice" type="button" data-answer="no">Revisamos la propuesta todos los lunes.</button>
+          <button class="choice" type="button" data-answer="yes">Vamos a revisar la propuesta mañana.</button>
+          <button class="choice" type="button" data-answer="no">La propuesta está revisada.</button>
+          <button class="choice" type="button" data-answer="no">¿Revisas propuestas?</button>
+        </div>
+        <div class="feedback" id="warmup-feedback" aria-live="polite">Selecciona una frase.</div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="3" data-topic="Patrón" aria-labelledby="title-3">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Descubre el patrón</div><h2 id="title-3" tabindex="-1">Cuatro funciones que se combinan al cerrar</h2></div></div>
+        <div class="pattern-board">
+          <article class="pattern-card"><span class="label">Siguiente paso</span><div class="formula">ir (conjugado) + a + infinitivo</div><p>Presenta una acción prevista o decidida.</p><div class="example">Vamos a enviar el informe.</div></article>
+          <article class="pattern-card"><span class="label">Responsabilidad</span><div class="formula">tener que + infinitivo</div><p>Indica quién necesita realizar una acción.</p><div class="example">Ana tiene que llamar al cliente.</div></article>
+          <article class="pattern-card"><span class="label">Orden del cierre</span><div class="formula">para cerrar · por último</div><p>Organiza la parte final de la intervención.</p><div class="example">Por último, revisamos la fecha.</div></article>
+          <article class="pattern-card"><span class="label">Acuerdo común</span><div class="formula">¿confirmamos que…?</div><p>Comprueba información antes de terminar.</p><div class="example">¿Confirmamos que la entrega es el viernes?</div></article>
+        </div>
+        <div class="button-row"><button class="btn btn-blue" type="button" data-action="pattern-done">Ya veo el patrón</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4" data-topic="Herramientas" aria-labelledby="title-4">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Aprende la herramienta</div><h2 id="title-4" tabindex="-1">Cómo funciona cada recurso</h2></div><span class="count-badge" id="tabs-count">1 / 4 revisadas</span></div>
+        <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
+          <button class="tab-btn" type="button" id="tab-future" role="tab" aria-selected="true" aria-controls="panel-future" data-tab="future">Futuro próximo</button>
+          <button class="tab-btn" type="button" id="tab-obligation" role="tab" aria-selected="false" aria-controls="panel-obligation" data-tab="obligation">Obligación</button>
+          <button class="tab-btn" type="button" id="tab-connectors" role="tab" aria-selected="false" aria-controls="panel-connectors" data-tab="connectors">Conectores</button>
+          <button class="tab-btn" type="button" id="tab-confirm" role="tab" aria-selected="false" aria-controls="panel-confirm" data-tab="confirm">Confirmar</button>
+        </div>
+
+        <div class="tab-panel active" id="panel-future" role="tabpanel" aria-labelledby="tab-future">
+          <h3>1. Futuro próximo: <span class="yellow-mark">ir a + infinitivo</span></h3>
+          <p>Sirve para hablar de una acción futura que se presenta como plan, intención o próximo paso.</p>
+          <table class="mini-table">
+            <thead><tr><th>Persona</th><th>Forma de ir</th><th>+ a + infinitivo</th></tr></thead>
+            <tbody><tr><td>yo</td><td>voy</td><td>Voy a llamar al cliente.</td></tr><tr><td>tú</td><td>vas</td><td>Vas a revisar el contrato.</td></tr><tr><td>usted / él / ella</td><td>va</td><td>Ella va a enviar el informe.</td></tr><tr><td>nosotros/as</td><td>vamos</td><td>Vamos a confirmar la fecha.</td></tr><tr><td>ustedes / ellos / ellas</td><td>van</td><td>Van a preparar la reunión.</td></tr></tbody>
+          </table>
+          <div class="contrast"><div><div class="tiny-tag">Futuro próximo</div><strong>Vamos a revisar el informe mañana.</strong><p class="note">Presenta la revisión como un próximo paso.</p></div><div><div class="tiny-tag">Presente con valor futuro</div><strong>Mañana revisamos el informe.</strong><p class="note">También es correcto cuando el contexto deja claro que hablamos del futuro.</p></div></div>
+        </div>
+
+        <div class="tab-panel" id="panel-obligation" role="tabpanel" aria-labelledby="tab-obligation">
+          <h3>2. Obligación: <span class="yellow-mark">tener que</span> y <span class="yellow-mark">hay que</span></h3>
+          <p><strong>Tener que + infinitivo</strong> identifica a la persona o grupo responsable de una acción.</p>
+          <div class="example">Yo tengo que actualizar el documento. · Marta tiene que confirmar el precio. · Tenemos que responder hoy.</div>
+          <p style="margin-top:14px"><strong>Hay que + infinitivo</strong> expresa una necesidad general sin decir quién la realiza.</p>
+          <div class="example">Hay que enviar la propuesta antes del viernes.</div>
+          <div class="contrast"><div><div class="tiny-tag">Responsable explícito</div><strong>Carlos tiene que llamar al proveedor.</strong></div><div><div class="tiny-tag">Necesidad general</div><strong>Hay que llamar al proveedor.</strong></div></div>
+        </div>
+
+        <div class="tab-panel" id="panel-connectors" role="tabpanel" aria-labelledby="tab-connectors">
+          <h3>3. Conectores de cierre</h3>
+          <p>No cambian la obligación ni el tiempo verbal. Ayudan a organizar el mensaje para que la otra persona sepa que estás terminando o resumiendo.</p>
+          <table class="mini-table"><thead><tr><th>Conector</th><th>Uso frecuente</th><th>Ejemplo</th></tr></thead><tbody><tr><td>Para cerrar,…</td><td>Introducir la parte final.</td><td>Para cerrar, revisamos las fechas.</td></tr><tr><td>En resumen,…</td><td>Recoger lo principal.</td><td>En resumen, tenemos dos tareas pendientes.</td></tr><tr><td>Entonces,…</td><td>Conectar con una conclusión o acuerdo.</td><td>Entonces, vamos a enviar la versión final.</td></tr><tr><td>Por último,…</td><td>Introducir el último punto.</td><td>Por último, confirmamos quién llama al cliente.</td></tr></tbody></table>
+        </div>
+
+        <div class="tab-panel" id="panel-confirm" role="tabpanel" aria-labelledby="tab-confirm">
+          <h3>4. Estructuras para confirmar</h3>
+          <p>Antes de terminar, puedes comprobar una fecha, una responsabilidad o un acuerdo.</p>
+          <div class="example"><strong>¿Confirmamos que…?</strong> — ¿Confirmamos que la entrega es el viernes?</div>
+          <div class="example"><strong>Entonces, ¿quedamos en que…?</strong> — Entonces, ¿quedamos en que tú vas a llamar al cliente?</div>
+          <div class="example"><strong>¿Correcto?</strong> — Tú actualizas el documento y yo llamo al proveedor, ¿correcto?</div>
+          <div class="feedback" style="margin-top:14px"><strong>Atención:</strong> “quedar en” aquí significa <em>acordar</em>. No significa permanecer en un lugar.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="5" data-topic="Comprueba" aria-labelledby="title-5">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Comprueba que entendiste</div><h2 id="title-5" tabindex="-1">¿Qué función cumple cada frase?</h2></div><span class="count-badge" id="classify-count">0 / 4</span></div>
+        <div class="classify-list" id="classify-list">
+          <div class="classify-item" data-correct="proximo"><div class="sentence">“Vamos a enviar la nueva versión esta tarde.”</div><div class="category-row"><button class="cat-btn" type="button" data-cat="proximo">Siguiente paso</button><button class="cat-btn" type="button" data-cat="obligacion">Obligación</button><button class="cat-btn" type="button" data-cat="cierre">Cierre</button><button class="cat-btn" type="button" data-cat="confirmacion">Confirmación</button></div><div class="item-result" aria-live="polite"></div></div>
+          <div class="classify-item" data-correct="obligacion"><div class="sentence">“Tienes que confirmar el horario con Laura.”</div><div class="category-row"><button class="cat-btn" type="button" data-cat="proximo">Siguiente paso</button><button class="cat-btn" type="button" data-cat="obligacion">Obligación</button><button class="cat-btn" type="button" data-cat="cierre">Cierre</button><button class="cat-btn" type="button" data-cat="confirmacion">Confirmación</button></div><div class="item-result" aria-live="polite"></div></div>
+          <div class="classify-item" data-correct="cierre"><div class="sentence">“En resumen, ya tenemos el presupuesto y la fecha.”</div><div class="category-row"><button class="cat-btn" type="button" data-cat="proximo">Siguiente paso</button><button class="cat-btn" type="button" data-cat="obligacion">Obligación</button><button class="cat-btn" type="button" data-cat="cierre">Cierre</button><button class="cat-btn" type="button" data-cat="confirmacion">Confirmación</button></div><div class="item-result" aria-live="polite"></div></div>
+          <div class="classify-item" data-correct="confirmacion"><div class="sentence">“¿Confirmamos que la próxima llamada es el martes?”</div><div class="category-row"><button class="cat-btn" type="button" data-cat="proximo">Siguiente paso</button><button class="cat-btn" type="button" data-cat="obligacion">Obligación</button><button class="cat-btn" type="button" data-cat="cierre">Cierre</button><button class="cat-btn" type="button" data-cat="confirmacion">Confirmación</button></div><div class="item-result" aria-live="polite"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="6" data-topic="Construye" aria-labelledby="title-6">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Práctica guiada</div><h2 id="title-6" tabindex="-1">Construye el cierre</h2></div></div>
+        <div class="builder-wrap">
+          <div class="prompt-box">
+            <h3>Objetivo</h3>
+            <p>Construye una frase para introducir el último próximo paso.</p>
+            <p class="note">Toca las palabras en el orden correcto.</p>
+            <div class="sentence-slot" id="sentence-slot" aria-live="polite" aria-label="Frase construida"></div>
+            <div class="token-bank" id="token-bank"></div>
+            <div class="button-row"><button class="btn btn-outline" type="button" id="builder-reset">Reiniciar frase</button><button class="btn btn-blue" type="button" id="builder-check">Comprobar</button></div>
+            <div class="feedback" id="builder-feedback" aria-live="polite">Construye la frase antes de comprobar.</div>
+          </div>
+          <div>
+            <div class="meeting-brief"><h3>Información disponible</h3><p>El equipo va a revisar el contrato mañana. Este es el último punto antes de terminar la reunión.</p></div>
+            <div class="contrast"><div><div class="tiny-tag">Pista 1</div><strong>Conector</strong><p class="note">Introduce el último punto.</p></div><div><div class="tiny-tag">Pista 2</div><strong>Futuro próximo</strong><p class="note">vamos a + infinitivo</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="7" data-topic="Recupera" aria-labelledby="title-7">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Menos apoyo</div><h2 id="title-7" tabindex="-1">Recupera la estructura</h2></div><span class="count-badge" id="recall-count">0 / 3 comparadas</span></div>
+        <p class="muted">Escribe una opción propia. Después compárala con un modelo posible. El modelo no es la única respuesta correcta.</p>
+        <div class="recall-grid" id="recall-grid">
+          <article class="recall-card" data-recall="1"><div class="task"><strong>1. Próximo paso</strong><p>El próximo paso es enviar el informe mañana. Exprésalo con <em>ir a + infinitivo</em>.</p></div><input class="text-input" type="text" aria-label="Tu frase para el próximo paso" placeholder="Escribe tu frase"><div class="button-row"><button class="btn btn-ghost hint-btn" type="button">Ver pista</button><button class="btn btn-outline compare-btn" type="button">Comparar</button></div><div class="hint">Empieza con: “Vamos a…”</div><div class="model">Modelo posible: <strong>Vamos a enviar el informe mañana.</strong></div></article>
+          <article class="recall-card" data-recall="2"><div class="task"><strong>2. Responsabilidad</strong><p>Lucía necesita confirmar el precio hoy. Usa <em>tener que + infinitivo</em>.</p></div><input class="text-input" type="text" aria-label="Tu frase para la responsabilidad" placeholder="Escribe tu frase"><div class="button-row"><button class="btn btn-ghost hint-btn" type="button">Ver pista</button><button class="btn btn-outline compare-btn" type="button">Comparar</button></div><div class="hint">Sujeto + tiene que + infinitivo.</div><div class="model">Modelo posible: <strong>Lucía tiene que confirmar el precio hoy.</strong></div></article>
+          <article class="recall-card" data-recall="3"><div class="task"><strong>3. Confirmación</strong><p>Quieres comprobar que la próxima reunión es el jueves.</p></div><input class="text-input" type="text" aria-label="Tu frase para confirmar" placeholder="Escribe tu frase"><div class="button-row"><button class="btn btn-ghost hint-btn" type="button">Ver pista</button><button class="btn btn-outline compare-btn" type="button">Comparar</button></div><div class="hint">Puedes usar “¿Confirmamos que…?”</div><div class="model">Modelo posible: <strong>¿Confirmamos que la próxima reunión es el jueves?</strong></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8" data-topic="Simula" aria-labelledby="title-8">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Aplicación profesional</div><h2 id="title-8" tabindex="-1">Cierra una reunión paso a paso</h2></div></div>
+        <div class="sim-shell" id="simulation">
+          <div class="sim-top"><strong>Reunión · Proyecto Atlas</strong><span class="sim-step" id="sim-step-label">Paso 1 de 3</span></div>
+          <div class="sim-message" id="sim-message"></div>
+          <div class="sim-options" id="sim-options"></div>
+          <div class="sim-feedback" id="sim-feedback" aria-live="polite">Elige una respuesta para continuar.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9" data-topic="Adapta" aria-labelledby="title-9">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Cambia la situación</div><h2 id="title-9" tabindex="-1">Ahora organiza tú el cierre</h2></div></div>
+        <p>El proveedor no puede entregar el miércoles. El nuevo acuerdo es: <strong>entrega el viernes</strong>, <strong>el proveedor confirma el transporte hoy</strong> y <strong>tu equipo revisa el pedido mañana</strong>.</p>
+        <p class="muted">Selecciona una opción en cada columna. El objetivo es producir un cierre coherente, no memorizar una frase única.</p>
+        <div class="closure-board">
+          <div class="closure-field"><label for="close-connector">Conector</label><select id="close-connector"><option value="" selected disabled>Elige un conector</option><option value="Para cerrar">Para cerrar</option><option value="En resumen">En resumen</option><option value="Entonces">Entonces</option></select></div>
+          <div class="closure-field"><label for="close-action">Próximo paso</label><select id="close-action"><option value="" selected disabled>Elige el próximo paso</option><option value="vamos a revisar el pedido mañana">vamos a revisar el pedido mañana</option><option value="revisamos el pedido todos los días">revisamos el pedido todos los días</option></select></div>
+          <div class="closure-field"><label for="close-duty">Responsabilidad</label><select id="close-duty"><option value="" selected disabled>Elige la responsabilidad</option><option value="el proveedor tiene que confirmar el transporte hoy">el proveedor tiene que confirmar el transporte hoy</option><option value="hay un proveedor de transporte">hay un proveedor de transporte</option></select></div>
+          <div class="closure-field"><label for="close-confirm">Confirmación</label><select id="close-confirm"><option value="" selected disabled>Elige la confirmación</option><option value="¿Confirmamos que la entrega es el viernes?">¿Confirmamos que la entrega es el viernes?</option><option value="¿Dónde está el viernes?">¿Dónde está el viernes?</option></select></div>
+        </div>
+        <div class="closure-preview" id="closure-preview" aria-live="polite"></div>
+        <div class="button-row"><button class="btn btn-blue" type="button" id="closure-check">Comprobar mi cierre</button></div>
+        <div class="feedback" id="closure-feedback" aria-live="polite">Construye y comprueba una versión.</div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="10" data-topic="Habla" aria-labelledby="title-10">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Ahora dilo tú</div><h2 id="title-10" tabindex="-1">Cierra sin leer una respuesta completa</h2></div></div>
+        <div class="timer-card">
+          <div class="timer-ring" aria-live="polite"><span class="timer-value" id="timer-value">45</span></div>
+          <div>
+            <h3>Tu situación</h3>
+            <p>Acabas una conversación con un cliente. Debes decir qué van a hacer después, quién tiene una responsabilidad y cuándo volverán a hablar.</p>
+            <div class="speaking-brief">
+              <div class="brief-item"><strong>Próximo paso:</strong><br>enviar una propuesta mañana</div>
+              <div class="brief-item"><strong>Tu responsabilidad:</strong><br>confirmar el precio</div>
+              <div class="brief-item"><strong>Próxima conversación:</strong><br>lunes</div>
+              <div class="brief-item"><strong>Intenta usar:</strong><br>conector + ir a + tener que + confirmación</div>
+            </div>
+            <div class="button-row"><button class="btn btn-primary" type="button" id="timer-start">Empezar 45 s</button><button class="btn btn-outline" type="button" id="timer-reset">Reiniciar</button><button class="btn btn-ghost" type="button" id="speaking-done">Ya lo dije</button></div>
+          </div>
+        </div>
+        <p class="note" style="margin-top:14px">No necesitas grabarte. Habla en voz alta. Si te bloqueas, vuelve a las cuatro herramientas de la lección.</p>
+        <div class="button-row"><a class="btn btn-blue" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="11" data-topic="Revisa" aria-labelledby="title-11">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Revisa tu respuesta</div><h2 id="title-11" tabindex="-1">¿Qué herramientas lograste recuperar?</h2></div></div>
+        <div class="checklist" id="review-checklist">
+          <label class="check-row"><input type="checkbox" value="future"><span>Usé <strong>ir a + infinitivo</strong> para presentar un próximo paso.</span></label>
+          <label class="check-row"><input type="checkbox" value="duty"><span>Usé <strong>tener que</strong> o una estructura equivalente para indicar una responsabilidad.</span></label>
+          <label class="check-row"><input type="checkbox" value="connector"><span>Organicé el cierre con un conector como <strong>para cerrar</strong>, <strong>en resumen</strong>, <strong>entonces</strong> o <strong>por último</strong>.</span></label>
+          <label class="check-row"><input type="checkbox" value="confirm"><span>Comprobé una fecha, una tarea o un acuerdo con una <strong>estructura de confirmación</strong>.</span></label>
+          <label class="check-row"><input type="checkbox" value="connected"><span>Conecté <strong>dos o más ideas</strong> en lugar de responder con una sola frase aislada.</span></label>
+        </div>
+        <div class="review-score" id="review-score" aria-live="polite">Marca lo que realmente utilizaste.</div>
+        <div class="button-row"><button class="btn btn-blue" type="button" id="review-done">Guardar revisión</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="12" data-topic="Transfiere" aria-labelledby="title-12">
+      <div class="panel">
+        <div class="section-head"><div><div class="kicker">Llévalo a tu trabajo</div><h2 id="title-12" tabindex="-1">Elige dónde vas a usarlo</h2></div></div>
+        <p class="muted">Selecciona una situación. Te propongo una micro misión para recuperar estas estructuras fuera de la lección.</p>
+        <div class="transfer-options" id="transfer-options">
+          <button class="transfer-btn" type="button" data-context="reunion"><strong>Reunión</strong><br><span class="note">cerrar próximos pasos</span></button>
+          <button class="transfer-btn" type="button" data-context="cliente"><strong>Cliente</strong><br><span class="note">confirmar fecha y acción</span></button>
+          <button class="transfer-btn" type="button" data-context="equipo"><strong>Equipo</strong><br><span class="note">asignar responsabilidades</span></button>
+          <button class="transfer-btn" type="button" data-context="proveedor"><strong>Proveedor</strong><br><span class="note">confirmar entrega</span></button>
+        </div>
+        <div class="mission" id="mission" aria-live="polite">Elige una situación para generar tu misión.</div>
+        <div class="button-row"><a class="btn btn-blue" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="13" data-topic="Final" aria-labelledby="title-13">
+      <div class="panel">
+        <div class="final-grid">
+          <div>
+            <div class="kicker">Lección completada</div>
+            <h2 id="title-13" tabindex="-1">Ya tienes más recursos para cerrar y confirmar</h2>
+            <div class="cap-list">
+              <div class="cap">Puedo usar <strong>ir a + infinitivo</strong> para presentar próximos pasos.</div>
+              <div class="cap">Puedo expresar responsabilidades con <strong>tener que</strong> y necesidades generales con <strong>hay que</strong>.</div>
+              <div class="cap">Puedo organizar un cierre y <strong>confirmar fechas, tareas y acuerdos</strong>.</div>
+              <div class="cap">Puedo conectar varias ideas para producir un cierre más completo.</div>
+            </div>
+            <div class="button-row"><button class="btn btn-outline" type="button" id="repeat-practice">Repetir práctica</button><button class="btn btn-danger" type="button" id="restart-lesson">Reiniciar lección</button></div>
+          </div>
+          <div class="final-badge">
+            <div><div class="percent">100%</div><p><strong>Spanish at Work</strong></p><p>Aprendiste la herramienta. Ahora llévala a una conversación real.</p><a class="btn btn-primary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="nav-dock" aria-label="Navegación de la lección">
+  <div class="nav-inner">
+    <button class="btn btn-outline" id="prev-btn" type="button" disabled>Anterior</button>
+    <div class="nav-label" id="nav-label">Empieza cuando estés listo.</div>
+    <button class="btn btn-blue" id="next-btn" type="button" disabled>Siguiente</button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  const totalScreens = screens.length;
+  let current = 0;
+  const completed = new Set([0]);
+  const state = { observed:new Set(), tabs:new Set(['future']), classified:new Set(), recalls:new Set(), simStep:0, simAnswers:[], transfer:null };
+  let timerId = null;
+  let timerRemaining = 45;
+  let simTransitioning = false;
+
+  const els = {
+    progressBar:document.getElementById('progress-bar'),
+    progressText:document.getElementById('progress-text'),
+    topic:document.getElementById('current-topic'),
+    stepPill:document.getElementById('step-pill'),
+    prev:document.getElementById('prev-btn'),
+    next:document.getElementById('next-btn'),
+    navLabel:document.getElementById('nav-label')
+  };
+
+  const navMessages = [
+    'Empieza cuando estés listo.',
+    'Observa las cuatro funciones.',
+    'Activa una estructura conocida.',
+    'Mira cómo se organiza el cierre.',
+    'Revisa las cuatro herramientas.',
+    'Clasifica las frases.',
+    'Construye una frase completa.',
+    'Recupera sin modelo completo.',
+    'Responde dentro de la reunión.',
+    'Adapta el cierre a otra situación.',
+    'Habla sin leer.',
+    'Revisa qué recuperaste.',
+    'Elige una transferencia real.',
+    'Lección completada.'
+  ];
+
+  function safeSave(){
+    try{ localStorage.setItem('saw_l4_progress', JSON.stringify({current, completed:[...completed]})); }catch(e){}
+  }
+  function safeLoad(){
+    try{
+      const raw = localStorage.getItem('saw_l4_progress');
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      if(Number.isInteger(data.current) && data.current >= 0 && data.current < totalScreens) current = data.current;
+      if(Array.isArray(data.completed)) data.completed.forEach(n=>{ if(Number.isInteger(n) && n>=0 && n<totalScreens) completed.add(n); });
+    }catch(e){}
+  }
+  function clearSaved(){ try{ localStorage.removeItem('saw_l4_progress'); }catch(e){} }
+
+  function screenCanAdvance(index){
+    if(index === 0) return false;
+    return completed.has(index);
+  }
+
+  function updateProgress(){
+    const meaningful = Math.max(0, completed.size - 1);
+    const maxMeaningful = totalScreens - 2;
+    const pct = current === totalScreens - 1 ? 100 : Math.min(99, Math.round((meaningful / maxMeaningful) * 100));
+    els.progressBar.style.width = pct + '%';
+    els.progressText.textContent = pct + ' % completado';
+    els.topic.textContent = screens[current].dataset.topic || '';
+    els.stepPill.textContent = (current + 1) + ' / ' + totalScreens;
+    els.prev.disabled = current === 0;
+    els.next.disabled = current === 0 || current === totalScreens - 1 || !screenCanAdvance(current);
+    els.next.textContent = current === totalScreens - 1 ? 'Completada' : (current === totalScreens - 2 ? 'Finalizar' : 'Siguiente');
+    els.navLabel.textContent = navMessages[current] || '';
+  }
+
+  function showScreen(index, focusTitle=true){
+    if(index < 0 || index >= totalScreens) return;
+    if(current === 10 && index !== 10) stopTimer();
+    screens.forEach((s,i)=>s.classList.toggle('active', i === index));
+    current = index;
+    if(current === totalScreens - 1){ completed.add(current); }
+    updateProgress();
+    safeSave();
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(focusTitle){
+      const heading = screens[current].querySelector('h1,h2');
+      if(heading){ setTimeout(()=>heading.focus({preventScroll:true}),80); }
+    }
+  }
+
+  function completeScreen(index=current){
+    completed.add(index);
+    updateProgress();
+    safeSave();
+  }
+
+  function invalidateScreen(index=current){
+    if(completed.delete(index)){
+      updateProgress();
+      safeSave();
+    }
+  }
+
+  els.prev.addEventListener('click',()=>showScreen(current-1));
+  els.next.addEventListener('click',()=>{ if(screenCanAdvance(current)) showScreen(current+1); });
+  document.querySelector('[data-action="start"]').addEventListener('click',()=>{ completeScreen(0); showScreen(1); });
+
+  // Screen 1 · observation
+  document.querySelectorAll('[data-observe]').forEach((btn,idx)=>{
+    btn.addEventListener('click',()=>{
+      btn.closest('.utterance').classList.add('done');
+      state.observed.add(idx);
+      document.getElementById('observe-count').textContent = state.observed.size + ' / 4 observadas';
+      if(state.observed.size === 4) completeScreen(1);
+    });
+  });
+
+  // Screen 2 · warmup
+  document.querySelectorAll('#warmup-choices .choice').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#warmup-choices .choice').forEach(x=>x.classList.remove('selected','correct','incorrect'));
+      btn.classList.add('selected');
+      const fb = document.getElementById('warmup-feedback');
+      if(btn.dataset.answer === 'yes'){
+        btn.classList.add('correct');
+        fb.className='feedback good';
+        fb.textContent='Correcto. “Vamos a revisar…” usa ir a + infinitivo para presentar una acción futura como próximo paso.';
+        completeScreen(2);
+      }else{
+        btn.classList.add('incorrect');
+        fb.className='feedback bad';
+        fb.textContent='Esa frase cumple otra función. Busca la opción que presenta una acción futura como próximo paso.';
+        invalidateScreen(2);
+      }
+    });
+  });
+
+  document.querySelector('[data-action="pattern-done"]').addEventListener('click',()=>completeScreen(3));
+
+  // Screen 4 · tabs
+  const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+  function activateTab(btn, moveFocus=false){
+    tabBtns.forEach(b=>{
+      const active = b === btn;
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+      b.tabIndex = active ? 0 : -1;
+    });
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    state.tabs.add(btn.dataset.tab);
+    document.getElementById('tabs-count').textContent = state.tabs.size + ' / 4 revisadas';
+    if(state.tabs.size === 4) completeScreen(4);
+    if(moveFocus) btn.focus();
+  }
+  tabBtns.forEach((btn,index)=>{
+    btn.tabIndex = btn.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    btn.addEventListener('click',()=>activateTab(btn));
+    btn.addEventListener('keydown',e=>{
+      let nextIndex = null;
+      if(e.key === 'ArrowRight') nextIndex = (index + 1) % tabBtns.length;
+      if(e.key === 'ArrowLeft') nextIndex = (index - 1 + tabBtns.length) % tabBtns.length;
+      if(e.key === 'Home') nextIndex = 0;
+      if(e.key === 'End') nextIndex = tabBtns.length - 1;
+      if(nextIndex !== null){
+        e.preventDefault();
+        activateTab(tabBtns[nextIndex], true);
+      }
+    });
+  });
+
+  // Screen 5 · classify
+  document.querySelectorAll('.classify-item').forEach((item,index)=>{
+    item.querySelectorAll('.cat-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        item.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const result = item.querySelector('.item-result');
+        if(btn.dataset.cat === item.dataset.correct){
+          state.classified.add(index);
+          result.textContent='✓ Función identificada.';
+          result.style.color='#166534';
+        }else{
+          state.classified.delete(index);
+          const explanations={proximo:'Busca una acción prevista con “ir a + infinitivo”.',obligacion:'Busca una necesidad asignada con “tener que”.',cierre:'Busca una expresión que organice o resuma el final.',confirmacion:'Busca una pregunta que compruebe un acuerdo.'};
+          result.textContent=explanations[item.dataset.correct];
+          result.style.color='#9f1239';
+        }
+        document.getElementById('classify-count').textContent = state.classified.size + ' / 4';
+        if(state.classified.size === 4) completeScreen(5);
+        else invalidateScreen(5);
+      });
+    });
+  });
+
+  // Screen 6 · sentence builder
+  const builderWords = ['Por último,','vamos','a','revisar','el contrato','mañana.'];
+  const bank = document.getElementById('token-bank');
+  const slot = document.getElementById('sentence-slot');
+  let built=[];
+  function renderBuilder(){
+    bank.innerHTML=''; slot.innerHTML='';
+    builderWords.forEach((word,i)=>{
+      const b=document.createElement('button'); b.type='button'; b.className='token' + (built.includes(i)?' used':''); b.textContent=word; b.disabled=built.includes(i);
+      b.addEventListener('click',()=>{built.push(i);invalidateScreen(6);renderBuilder();}); bank.appendChild(b);
+    });
+    built.forEach((idx,pos)=>{
+      const b=document.createElement('button'); b.type='button'; b.className='built-token'; b.textContent=builderWords[idx]; b.setAttribute('aria-label','Quitar ' + builderWords[idx]);
+      b.addEventListener('click',()=>{built.splice(pos,1);invalidateScreen(6);renderBuilder();}); slot.appendChild(b);
+    });
+  }
+  renderBuilder();
+  document.getElementById('builder-reset').addEventListener('click',()=>{built=[];invalidateScreen(6);renderBuilder();document.getElementById('builder-feedback').className='feedback';document.getElementById('builder-feedback').textContent='Construye la frase antes de comprobar.';});
+  document.getElementById('builder-check').addEventListener('click',()=>{
+    const fb=document.getElementById('builder-feedback');
+    const correct=builderWords.map((_,i)=>i);
+    const isCorrect=built.length===correct.length && built.every((v,i)=>v===correct[i]);
+    if(isCorrect){fb.className='feedback good';fb.textContent='Correcto: “Por último, vamos a revisar el contrato mañana.” El conector organiza el cierre y “vamos a revisar” presenta el próximo paso.';completeScreen(6);}else{fb.className='feedback bad';fb.textContent='Revisa el orden: primero el conector; después “vamos a + infinitivo”; al final, la información de tiempo.';}
+  });
+
+  // Screen 7 · recall
+  document.querySelectorAll('.recall-card').forEach((card,idx)=>{
+    card.querySelector('.hint-btn').addEventListener('click',()=>card.querySelector('.hint').classList.toggle('show'));
+    card.querySelector('.compare-btn').addEventListener('click',()=>{
+      const input=card.querySelector('input');
+      if(!input.value.trim()){ input.focus(); return; }
+      card.querySelector('.model').classList.add('show');
+      state.recalls.add(idx);
+      document.getElementById('recall-count').textContent=state.recalls.size+' / 3 comparadas';
+      if(state.recalls.size===3) completeScreen(7);
+    });
+  });
+
+  // Screen 8 · simulation
+  const simData=[
+    {
+      message:'Ya revisamos el presupuesto y la fecha. Quieres indicar que vas a entrar en la parte final de la reunión.',
+      options:[
+        {text:'Para cerrar, revisamos los próximos pasos.',best:true,feedback:'Buena elección. “Para cerrar” señala de forma clara que empieza la parte final.'},
+        {text:'El cliente trabaja en Madrid.',best:false,feedback:'La frase es correcta, pero no organiza el cierre de esta conversación.'},
+        {text:'¿Cuántos proyectos tienes?',best:false,feedback:'Es una pregunta posible en otro momento, pero abre un tema nuevo en lugar de cerrar.'}
+      ]
+    },
+    {
+      message:'El siguiente paso es enviar la versión final mañana. ¿Cómo lo presentas?',
+      options:[
+        {text:'Vamos a enviar la versión final mañana.',best:true,feedback:'Correcto. “Vamos a enviar” presenta una acción futura como próximo paso.'},
+        {text:'Enviamos la versión final todos los meses.',best:false,feedback:'Esta frase describe una acción habitual, no el próximo paso concreto.'},
+        {text:'La versión final está mañana.',best:false,feedback:'“Estar” no expresa aquí la acción futura que necesitas comunicar.'}
+      ]
+    },
+    {
+      message:'Antes de terminar, necesitas comprobar que Laura confirma el precio hoy y que la próxima reunión es el viernes.',
+      options:[
+        {text:'Entonces, Laura tiene que confirmar el precio hoy. ¿Confirmamos que la próxima reunión es el viernes?',best:true,feedback:'Bien. Combinas responsabilidad y confirmación en dos ideas conectadas.'},
+        {text:'Laura confirma precios. Viernes.',best:false,feedback:'Se entiende parcialmente, pero faltan la obligación y una estructura clara de confirmación.'},
+        {text:'¿Laura? ¿Precio? ¿Viernes?',best:false,feedback:'Son fragmentos. El objetivo es construir un cierre organizado con estructuras completas.'}
+      ]
+    }
+  ];
+  function renderSim(){
+    const step=state.simStep;
+    simTransitioning=false;
+    document.getElementById('sim-step-label').textContent='Paso '+(step+1)+' de 3';
+    document.getElementById('sim-message').textContent=simData[step].message;
+    const options=document.getElementById('sim-options'); options.innerHTML='';
+    simData[step].options.forEach(opt=>{
+      const b=document.createElement('button'); b.type='button'; b.className='sim-option'; b.textContent=opt.text;
+      b.addEventListener('click',()=>{
+        if(simTransitioning) return;
+        document.querySelectorAll('.sim-option').forEach(x=>x.classList.remove('best'));
+        if(opt.best){
+          simTransitioning=true;
+          options.querySelectorAll('.sim-option').forEach(x=>{ x.disabled=true; });
+          b.classList.add('best');
+          state.simAnswers[step]=true;
+          document.getElementById('sim-feedback').textContent=opt.feedback + (step<2?' Continúa con el siguiente paso.':' Has construido un cierre completo.');
+          if(step<2){
+            setTimeout(()=>{
+              if(state.simStep===step){ state.simStep=step+1; renderSim(); }
+            },650);
+          }else{
+            completeScreen(8);
+          }
+        }else{
+          document.getElementById('sim-feedback').textContent=opt.feedback+' Prueba otra opción.';
+        }
+      }); options.appendChild(b);
+    });
+    document.getElementById('sim-feedback').textContent='Elige una respuesta para continuar.';
+  }
+  renderSim();
+
+  // Screen 9 · closure board
+  const closeSelects=['close-connector','close-action','close-duty','close-confirm'].map(id=>document.getElementById(id));
+  function updateClosurePreview(){
+    const [connector,action,duty,confirm]=closeSelects.map(s=>s.value);
+    const preview=document.getElementById('closure-preview');
+    if(!(connector&&action&&duty&&confirm)){
+      preview.textContent='Tu cierre aparecerá aquí cuando elijas las cuatro partes.';
+      return;
+    }
+    preview.textContent=connector+', '+action+'. Además, '+duty+'. '+confirm;
+  }
+  closeSelects.forEach(s=>s.addEventListener('change',()=>{
+    invalidateScreen(9);
+    const fb=document.getElementById('closure-feedback');
+    fb.className='feedback';
+    fb.textContent='Construye y comprueba una versión.';
+    updateClosurePreview();
+  })); updateClosurePreview();
+  document.getElementById('closure-check').addEventListener('click',()=>{
+    const fb=document.getElementById('closure-feedback');
+    const [connector,action,duty,confirm]=closeSelects.map(s=>s.value);
+    if(!(connector&&action&&duty&&confirm)){
+      fb.className='feedback bad';
+      fb.textContent='Selecciona una opción en las cuatro partes antes de comprobar tu cierre.';
+      return;
+    }
+    const goodAction=action==='vamos a revisar el pedido mañana';
+    const goodDuty=duty==='el proveedor tiene que confirmar el transporte hoy';
+    const goodConfirm=confirm==='¿Confirmamos que la entrega es el viernes?';
+    if(goodAction&&goodDuty&&goodConfirm){fb.className='feedback good';fb.textContent='El cierre funciona: organizas la parte final, expresas un próximo paso, asignas una responsabilidad y confirmas la fecha de entrega.';completeScreen(9);}else{fb.className='feedback bad';fb.textContent='Hay una parte que no cumple la función necesaria. Revisa próximo paso, responsabilidad y confirmación.';}
+  });
+
+  // Screen 10 · timer / production
+  const timerValue=document.getElementById('timer-value');
+  function stopTimer(){ if(timerId){clearInterval(timerId);timerId=null;} }
+  function resetTimer(){stopTimer();timerRemaining=45;timerValue.textContent='45';}
+  document.getElementById('timer-start').addEventListener('click',()=>{
+    if(timerId) return;
+    if(timerRemaining<=0) resetTimer();
+    timerId=setInterval(()=>{
+      timerRemaining--; timerValue.textContent=String(timerRemaining);
+      if(timerRemaining<=0){stopTimer();completeScreen(10);}
+    },1000);
+  });
+  document.getElementById('timer-reset').addEventListener('click',resetTimer);
+  document.getElementById('speaking-done').addEventListener('click',()=>{stopTimer();completeScreen(10);});
+
+  // Screen 11 · self-review
+  const reviewBoxes=Array.from(document.querySelectorAll('#review-checklist input[type="checkbox"]'));
+  function updateReviewScore(){
+    const n=reviewBoxes.filter(x=>x.checked).length;
+    document.getElementById('review-score').textContent=n===0?'Marca lo que realmente utilizaste.':n+' de 5 criterios marcados. '+(n<3?'Repite tu respuesta e intenta añadir otra herramienta.':'Ya tienes suficiente información para decidir qué quieres practicar otra vez.');
+    if(n===0) invalidateScreen(11);
+  }
+  reviewBoxes.forEach(b=>b.addEventListener('change',updateReviewScore));
+  document.getElementById('review-done').addEventListener('click',()=>{
+    const n=reviewBoxes.filter(x=>x.checked).length;
+    if(n===0){document.getElementById('review-score').textContent='Marca al menos un criterio antes de continuar.';return;}
+    completeScreen(11);
+  });
+
+  // Screen 12 · transfer
+  const missions={
+    reunion:'En tu próxima reunión, utiliza un conector de cierre, expresa al menos un próximo paso con “ir a + infinitivo” y confirma una fecha o una responsabilidad.',
+    cliente:'Al terminar una conversación con un cliente, resume una acción futura y comprueba una fecha con “¿Confirmamos que…?”.',
+    equipo:'Cuando cierres una conversación con tu equipo, indica una responsabilidad con “tener que” y conecta esa idea con el próximo paso.',
+    proveedor:'En una conversación con un proveedor, confirma la fecha de entrega y expresa qué acción va a realizar cada parte después.'
+  };
+  document.querySelectorAll('.transfer-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.transfer-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); state.transfer=btn.dataset.context;
+      document.getElementById('mission').textContent=missions[state.transfer];
+      completeScreen(12);
+    });
+  });
+
+  document.getElementById('repeat-practice').addEventListener('click',()=>{
+    state.simStep=0;
+    state.simAnswers=[];
+    simTransitioning=false;
+    invalidateScreen(8);
+    renderSim();
+    showScreen(8);
+  });
+  document.getElementById('restart-lesson').addEventListener('click',()=>{
+    clearSaved(); window.location.reload();
+  });
+
+  // Keyboard arrows only when focus is not in a form control.
+  document.addEventListener('keydown',e=>{
+    const tag=(document.activeElement && document.activeElement.tagName)||'';
+    if(['INPUT','TEXTAREA','SELECT','BUTTON','A'].includes(tag)) return;
+    if(e.key==='ArrowLeft' && current>0) showScreen(current-1);
+    if(e.key==='ArrowRight' && current<totalScreens-1 && screenCanAdvance(current)) showScreen(current+1);
+  });
+
+  safeLoad();
+  showScreen(current,false);
+})();
+</script>
+</body>
+</html>
