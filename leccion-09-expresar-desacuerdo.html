@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lección interactiva de Spanish at Work para aprender a expresar desacuerdo profesional en español con conectores, opinión, cortesía y modalización.">
+  <title>Lección 9 · Expresa desacuerdo | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#002968;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#172033;
+      --muted:#5d6678;
+      --line:#dbe3ef;
+      --soft:#f5f8fc;
+      --soft-blue:#eef4ff;
+      --success:#166534;
+      --success-bg:#ecfdf3;
+      --danger-bg:#fff1f2;
+      --shadow:0 14px 35px rgba(0,56,147,.10);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#eef4ff 0,#ffffff 24rem);
+      overflow-x:hidden;
+    }
+    button,input,textarea,select{font:inherit}
+    button,a,input,textarea,select{outline-offset:3px}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+      outline:3px solid var(--yellow);
+      outline-offset:3px;
+    }
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+    h1,h2,h3{margin-top:0;color:var(--blue)}
+    h1{font-size:clamp(2rem,7vw,4rem);line-height:1.02;margin-bottom:1rem}
+    h2{font-size:clamp(1.45rem,4vw,2.2rem);line-height:1.15}
+    h3{font-size:1.05rem}
+    p{line-height:1.65}
+    .app{min-height:100vh}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1100px;margin:auto;padding:.8rem 1rem;
+      display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;
+    }
+    .brand{font-weight:700;color:var(--blue);letter-spacing:-.02em}
+    .progress-wrap{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:.7rem;align-items:center}
+    .progress-track{height:9px;background:#e6edf7;border-radius:99px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:var(--yellow);transition:width .35s ease}
+    .progress-text{font-size:.85rem;font-weight:600;color:var(--blue)}
+    .step-label{font-size:.82rem;color:var(--muted);text-align:right}
+
+    main{max-width:1100px;margin:auto;padding:1.25rem 1rem 5rem}
+    .screen{display:none;animation:fade .28s ease}
+    .screen.active{display:block}
+    @keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    .hero{
+      background:var(--blue);color:var(--white);border-radius:28px;
+      padding:clamp(1.4rem,5vw,4rem);box-shadow:var(--shadow);
+      position:relative;overflow:hidden;
+    }
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(252,209,22,.18)}
+    .hero:before{width:240px;height:240px;right:-90px;top:-100px}
+    .hero:after{width:150px;height:150px;left:-70px;bottom:-70px}
+    .hero h1,.hero h2,.hero p{color:var(--white)}
+    .eyebrow{display:inline-flex;gap:.45rem;align-items:center;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:.8rem}
+    .tool-line{font-size:clamp(1.05rem,3vw,1.45rem);font-weight:600;margin:1.25rem 0;color:var(--white)}
+    .tool-line strong{color:var(--yellow)}
+    .hero-grid{display:grid;gap:1rem;margin:1.4rem 0}
+    .hero-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:1rem;border-radius:16px}
+    .hero-card strong{display:block;color:var(--yellow);font-size:.84rem;margin-bottom:.3rem}
+
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.1rem,3vw,2rem);box-shadow:0 8px 24px rgba(18,44,85,.06);margin:1rem 0}
+    .panel.soft{background:var(--soft)}
+    .panel.blue{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .panel.blue h2,.panel.blue h3,.panel.blue p{color:var(--white)}
+    .section-kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--blue);margin-bottom:.45rem}
+    .lead{font-size:1.08rem;color:var(--muted);max-width:72ch}
+    .accent{background:linear-gradient(transparent 58%,rgba(252,209,22,.65) 58%)}
+
+    .grid-2,.grid-3,.grid-4{display:grid;gap:1rem}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .mini-card{border:1px solid var(--line);border-radius:16px;padding:1rem;background:var(--white)}
+    .mini-card .tag{display:inline-block;background:var(--soft-blue);color:var(--blue);font-size:.75rem;font-weight:700;padding:.3rem .55rem;border-radius:99px;margin-bottom:.5rem}
+
+    .dialogue{display:grid;gap:.75rem;margin:1rem 0}
+    .bubble{max-width:86%;padding:.9rem 1rem;border-radius:16px;background:var(--soft);border:1px solid var(--line)}
+    .bubble.me{margin-left:auto;background:var(--soft-blue);border-color:#c9dafa}
+    .bubble .speaker{font-size:.75rem;font-weight:700;color:var(--blue);margin-bottom:.35rem}
+    .highlight{display:inline;border-bottom:3px solid var(--yellow);font-weight:600}
+
+    .choice-list{display:grid;gap:.75rem;margin:1rem 0}
+    .choice{
+      width:100%;text-align:left;border:1px solid var(--line);background:var(--white);
+      border-radius:14px;padding:1rem;cursor:pointer;color:var(--ink);transition:.18s ease;
+    }
+    .choice:hover{border-color:var(--blue);transform:translateY(-1px)}
+    .choice.selected{border:2px solid var(--blue);background:var(--soft-blue)}
+    .choice.correct{border:2px solid var(--success);background:var(--success-bg)}
+    .choice.wrong{border:2px solid var(--red);background:var(--danger-bg)}
+
+    .feedback{margin-top:.8rem;border-radius:14px;padding:.9rem 1rem;display:none;line-height:1.5}
+    .feedback.show{display:block}
+    .feedback.good{background:var(--success-bg);border-left:5px solid var(--success);color:#174a2a}
+    .feedback.bad{background:var(--danger-bg);border-left:5px solid var(--red);color:#67141f}
+    .feedback.info{background:var(--soft-blue);border-left:5px solid var(--blue);color:#173b74}
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.2rem}
+    .btn{border:0;border-radius:12px;padding:.82rem 1.05rem;font-weight:600;cursor:pointer;min-height:46px;transition:.18s ease;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
+    .btn.primary{background:var(--blue);color:var(--white)}
+    .btn.primary:hover{background:var(--blue-dark)}
+    .btn.secondary{background:var(--white);color:var(--blue);border:1px solid var(--blue)}
+    .btn.yellow{background:var(--yellow);color:#15203b}
+    .btn.ghost{background:var(--soft);color:var(--blue);border:1px solid var(--line)}
+    .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+    .function-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin-top:1rem}
+    .function-btn{border:1px solid var(--line);border-radius:14px;background:var(--white);padding:1rem;cursor:pointer;min-height:108px;text-align:left}
+    .function-btn.visited{border-color:var(--blue);background:var(--soft-blue)}
+    .function-btn strong{display:block;color:var(--blue);margin-bottom:.35rem}
+
+    .tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
+    .tab{border:1px solid var(--line);background:var(--white);color:var(--blue);font-weight:600;border-radius:999px;padding:.7rem 1rem;cursor:pointer}
+    .tab[aria-selected="true"]{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    .formula{border-left:5px solid var(--yellow);background:var(--soft);border-radius:12px;padding:.8rem 1rem;margin:.65rem 0;font-weight:600}
+    .note{font-size:.9rem;color:var(--muted)}
+
+    .quiz-item{border-top:1px solid var(--line);padding:1.1rem 0}
+    .quiz-item:first-child{border-top:0}
+    .quiz-item p{margin-top:0;font-weight:600}
+
+    label{font-weight:600;color:var(--blue);display:block;margin-bottom:.4rem}
+    select,input[type="text"],textarea{
+      width:100%;border:1px solid #aebcd0;border-radius:12px;padding:.8rem;background:var(--white);color:var(--ink)
+    }
+    textarea{min-height:115px;resize:vertical}
+    .builder{display:grid;gap:.9rem}
+    .preview{padding:1rem;border-radius:14px;background:var(--soft-blue);border:1px dashed #8aa8d9;font-size:1.05rem;line-height:1.6}
+
+    .recall-card{border:1px solid var(--line);border-radius:18px;padding:1rem;background:var(--white)}
+    .hint{display:none;margin:.7rem 0;padding:.75rem;border-radius:12px;background:#fff9d8;border-left:4px solid var(--yellow)}
+    .hint.show{display:block}
+
+    .scenario{display:grid;gap:1rem}
+    .scenario-step{border:1px solid var(--line);border-radius:18px;padding:1rem;background:var(--white)}
+    .scenario-step.locked{opacity:.55;pointer-events:none}
+    .status-pill{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .6rem;border-radius:999px;font-size:.74rem;font-weight:700;background:var(--soft-blue);color:var(--blue)}
+
+    .timer-box{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .timer{font-size:2rem;font-weight:700;color:var(--blue);min-width:88px}
+    .check-grid{display:grid;gap:.7rem;margin:1rem 0}
+    .check-item{display:flex;gap:.65rem;align-items:flex-start;padding:.75rem;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+    .check-item input{margin-top:.25rem;transform:scale(1.2)}
+    .context-options{display:flex;flex-wrap:wrap;gap:.55rem}
+    .context-chip{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:.6rem .9rem;cursor:pointer}
+    .context-chip.selected{background:var(--blue);color:var(--white);border-color:var(--blue)}
+
+    .summary-list{display:grid;gap:.7rem;margin:1rem 0;padding:0;list-style:none}
+    .summary-list li{padding:.8rem 1rem;border-left:5px solid var(--yellow);background:var(--soft);color:var(--ink);border-radius:10px}
+    .final-score{font-size:clamp(2.4rem,8vw,5.2rem);font-weight:700;color:var(--yellow);line-height:1}
+
+    .nav{display:flex;justify-content:space-between;gap:.8rem;margin-top:1.3rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media (max-width:800px){
+      .grid-4,.function-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-3{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      main{padding-left:.8rem;padding-right:.8rem}
+      .grid-2,.grid-4,.function-grid{grid-template-columns:1fr}
+      .hero{border-radius:20px;padding:1.3rem}
+      .panel{padding:1rem;border-radius:16px}
+      .nav{flex-direction:column-reverse}
+      .nav .btn{width:100%}
+      .bubble{max-width:96%}
+      .topbar-inner{grid-template-columns:1fr auto}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Spanish at Work</div>
+      <div class="step-label" id="stepLabel">Inicio</div>
+      <div class="progress-wrap" aria-label="Progreso de la lección">
+        <div class="progress-track" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-text" id="progressText">0 %</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="screen active" data-screen="0" aria-labelledby="title-0">
+      <div class="hero">
+        <div class="eyebrow">Lección 9 · Maneja conversaciones difíciles</div>
+        <h1 id="title-0" tabindex="-1">Expresa desacuerdo</h1>
+        <p class="tool-line"><strong>Conectores de contraste</strong> + opinión + cortesía + modalización</p>
+        <div class="hero-grid grid-2">
+          <div class="hero-card"><strong>Aplicación</strong>Introducir otra perspectiva, explicar tus razones y mantener una conversación profesional.</div>
+          <div class="hero-card"><strong>Al terminar</strong>Podrás expresar una posición diferente con un tono más preciso y adaptar cuánto suavizas tu mensaje.</div>
+        </div>
+        <p>No necesitas memorizar frases completas. Vas a observar patrones, construir tus propias respuestas y reducir el apoyo poco a poco.</p>
+        <button class="btn yellow" id="startBtn">Comenzar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="1" aria-labelledby="s1title">
+      <div class="panel">
+        <div class="section-kicker">1 · Activa lo que ya sabes</div>
+        <h2 id="s1title" tabindex="-1">La idea puede ser la misma. El tono cambia.</h2>
+        <p class="lead">Tu equipo propone aplazar una entrega hasta el viernes. Tú prefieres mantenerla el miércoles porque el cliente la necesita antes.</p>
+        <p><strong>¿Qué respuesta mantiene el desacuerdo, pero lo presenta con más matiz?</strong></p>
+        <div class="choice-list" id="warmupChoices">
+          <button class="choice" data-correct="false">No. Esa idea no funciona. La entrega es el miércoles.</button>
+          <button class="choice" data-correct="true">Entiendo tu idea, pero creo que sería mejor mantener el miércoles porque el cliente la necesita antes.</button>
+          <button class="choice" data-correct="false">Sí, estoy de acuerdo, aunque quiero mantener el miércoles.</button>
+        </div>
+        <div class="feedback" id="warmupFeedback" aria-live="polite"></div>
+        <div class="nav">
+          <button class="btn ghost" data-back="0">Anterior</button>
+          <button class="btn primary" id="s1Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2" aria-labelledby="s2title">
+      <div class="panel">
+        <div class="section-kicker">2 · Observa español en contexto</div>
+        <h2 id="s2title" tabindex="-1">¿Qué hace cada parte de la respuesta?</h2>
+        <div class="dialogue" aria-label="Conversación profesional de ejemplo">
+          <div class="bubble"><div class="speaker">MARIO</div>Propongo mover la entrega al viernes. Así tenemos dos días más para revisar.</div>
+          <div class="bubble me"><div class="speaker">SOFÍA</div><span class="highlight">Entiendo tu punto</span>, <span class="highlight">pero</span> <span class="highlight">creo que sería mejor</span> mantener el miércoles. El cliente necesita el informe antes. <span class="highlight">Quizá podríamos</span> revisar solo la parte pendiente hoy.</div>
+          <div class="bubble"><div class="speaker">MARIO</div>De acuerdo. Podemos revisar esa parte esta tarde.</div>
+        </div>
+        <p>Pulsa cada función para reconocerla en la respuesta de Sofía.</p>
+        <div class="function-grid" id="functionGrid">
+          <button class="function-btn" data-key="courtesy"><strong>1. Reconocer</strong>Entiendo tu punto</button>
+          <button class="function-btn" data-key="contrast"><strong>2. Contrastar</strong>pero</button>
+          <button class="function-btn" data-key="opinion"><strong>3. Dar opinión</strong>creo que sería mejor</button>
+          <button class="function-btn" data-key="soften"><strong>4. Suavizar propuesta</strong>Quizá podríamos</button>
+        </div>
+        <div class="feedback info" id="functionFeedback" aria-live="polite">Pulsa las cuatro funciones. La idea es observar cómo se combinan.</div>
+        <div class="nav">
+          <button class="btn ghost" data-back="1">Anterior</button>
+          <button class="btn primary" id="s2Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="3" aria-labelledby="s3title">
+      <div class="panel">
+        <div class="section-kicker">3 · Aprende la herramienta</div>
+        <h2 id="s3title" tabindex="-1">Cuatro recursos para expresar una posición diferente</h2>
+        <p class="lead">No todas las frases tienen el mismo grado de fuerza. Puedes combinar estos recursos según la situación y la relación con la otra persona.</p>
+
+        <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="tab-contrast" id="tabbtn-contrast" tabindex="0" data-tab="contrast">Contraste</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-opinion" id="tabbtn-opinion" tabindex="-1" data-tab="opinion">Opinión</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-courtesy" id="tabbtn-courtesy" tabindex="-1" data-tab="courtesy">Cortesía</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-modal" id="tabbtn-modal" tabindex="-1" data-tab="modal">Modalización</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-contrast" role="tabpanel" aria-labelledby="tabbtn-contrast">
+          <h3>Conectores de contraste</h3>
+          <div class="grid-2">
+            <div class="mini-card"><span class="tag">pero</span><p>Contraste directo dentro de la misma idea.</p><div class="formula">Entiendo la propuesta, <strong>pero</strong> prefiero mantener la fecha.</div></div>
+            <div class="mini-card"><span class="tag">sin embargo</span><p>Contrasta con una idea anterior. Suele aparecer como un nuevo segmento del mensaje.</p><div class="formula">Tenemos poco tiempo. <strong>Sin embargo</strong>, podemos revisar lo esencial hoy.</div></div>
+            <div class="mini-card"><span class="tag">aunque</span><p>Reconoce una información y después presenta otra idea.</p><div class="formula"><strong>Aunque</strong> entiendo la urgencia, creo que necesitamos un día más.</div></div>
+            <div class="mini-card"><span class="tag">en cambio</span><p>Contrasta dos opciones, situaciones o elementos.</p><div class="formula">La opción A es más rápida. <strong>En cambio</strong>, la B es más económica.</div></div>
+          </div>
+          <p class="note"><strong>Evita:</strong> “aunque pero…”. Normalmente eliges un conector principal para esa relación de contraste.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-opinion" role="tabpanel" aria-labelledby="tabbtn-opinion">
+          <h3>Estructuras de opinión</h3>
+          <div class="formula">Creo que + idea → Creo que necesitamos revisar el plazo.</div>
+          <div class="formula">Pienso que + idea → Pienso que esta opción es más clara.</div>
+          <div class="formula">Desde mi punto de vista, + idea → Desde mi punto de vista, conviene mantener el plan original.</div>
+          <div class="formula">Para mí, + idea → Para mí, el miércoles sigue siendo la mejor fecha.</div>
+          <p class="note"><strong>Error frecuente:</strong> decimos “pienso que…”, no “pienso de que…”.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-courtesy" role="tabpanel" aria-labelledby="tabbtn-courtesy">
+          <h3>Cortesía para mantener la conversación</h3>
+          <p>Reconocer la idea de la otra persona no significa aceptar todo.</p>
+          <div class="formula">Entiendo tu punto, pero…</div>
+          <div class="formula">Veo lo que dices. Sin embargo, creo que necesitamos revisar la fecha.</div>
+          <div class="formula">Estoy de acuerdo en parte, pero…</div>
+          <div class="formula">No estoy del todo de acuerdo porque…</div>
+          <p class="note">“No estoy de acuerdo” es correcto y puede ser apropiado. “No estoy <strong>del todo</strong> de acuerdo” reduce la fuerza y deja espacio para matizar.</p>
+        </div>
+
+        <div class="tab-panel" id="tab-modal" role="tabpanel" aria-labelledby="tabbtn-modal">
+          <h3>Modalización: hacer la propuesta menos categórica</h3>
+          <p>Modalizar es ajustar la fuerza con la que presentas una idea. No elimina tu posición; cambia cómo la formulas.</p>
+          <div class="grid-2">
+            <div class="mini-card"><strong>Más directa</strong><div class="formula">Tenemos que cambiar la fecha.</div></div>
+            <div class="mini-card"><strong>Más matizada</strong><div class="formula">Creo que sería mejor cambiar la fecha.</div></div>
+            <div class="mini-card"><strong>Más directa</strong><div class="formula">Revisemos otra opción.</div></div>
+            <div class="mini-card"><strong>Más matizada</strong><div class="formula">Quizá podríamos revisar otra opción.</div></div>
+          </div>
+          <p class="note">“Sería mejor” y “podríamos” reutilizan el condicional inicial trabajado previamente y ayudan a presentar alternativas con menos imposición.</p>
+        </div>
+
+        <div class="feedback info show" id="tabsFeedback">Explora las cuatro herramientas. Después podrás continuar.</div>
+        <div class="nav">
+          <button class="btn ghost" data-back="2">Anterior</button>
+          <button class="btn primary" id="s3Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4" aria-labelledby="s4title">
+      <div class="panel">
+        <div class="section-kicker">4 · Comprueba que entendiste</div>
+        <h2 id="s4title" tabindex="-1">Elige la forma que mejor cumple la intención.</h2>
+
+        <div class="quiz-item" data-q="1">
+          <p>1. Quieres discrepar sin negar por completo la idea de tu compañero.</p>
+          <div class="choice-list">
+            <button class="choice" data-correct="false">No estoy acuerdo con esa opción.</button>
+            <button class="choice" data-correct="true">No estoy del todo de acuerdo con esa opción.</button>
+            <button class="choice" data-correct="false">No estoy de acuerdo de esa opción.</button>
+          </div>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="quiz-item" data-q="2">
+          <p>2. Quieres reconocer una dificultad real y después presentar otra idea.</p>
+          <div class="choice-list">
+            <button class="choice" data-correct="true">Aunque tenemos poco tiempo, creo que podemos terminar hoy.</button>
+            <button class="choice" data-correct="false">Aunque pero tenemos poco tiempo, podemos terminar hoy.</button>
+            <button class="choice" data-correct="false">Sin embargo, aunque tenemos poco tiempo, pero podemos terminar hoy.</button>
+          </div>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="quiz-item" data-q="3">
+          <p>3. ¿Qué frase presenta una alternativa de forma más matizada?</p>
+          <div class="choice-list">
+            <button class="choice" data-correct="false">Cambiemos el proveedor.</button>
+            <button class="choice" data-correct="true">Quizá podríamos revisar otro proveedor.</button>
+            <button class="choice" data-correct="false">Tenemos que cambiar de proveedor hoy.</button>
+          </div>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="feedback info" id="quizSummary" aria-live="polite">Responde las tres preguntas para continuar.</div>
+        <div class="nav">
+          <button class="btn ghost" data-back="3">Anterior</button>
+          <button class="btn primary" id="s4Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="5" aria-labelledby="s5title">
+      <div class="panel">
+        <div class="section-kicker">5 · Construye</div>
+        <h2 id="s5title" tabindex="-1">Combina las piezas sin copiar una frase completa.</h2>
+        <p class="lead">Situación: una compañera quiere eliminar una reunión de seguimiento. Tú prefieres mantenerla porque todavía hay decisiones pendientes.</p>
+        <div class="builder grid-2">
+          <div>
+            <label for="buildOpen">1. Reconoce o introduce tu posición</label>
+            <select id="buildOpen">
+              <option value="">Selecciona…</option>
+              <option>Entiendo tu punto</option>
+              <option>Veo lo que dices</option>
+              <option>Estoy de acuerdo en parte</option>
+            </select>
+          </div>
+          <div>
+            <label for="buildConnector">2. Añade contraste</label>
+            <select id="buildConnector">
+              <option value="">Selecciona…</option>
+              <option value="pero">pero</option>
+              <option value="sin embargo">sin embargo</option>
+            </select>
+          </div>
+          <div>
+            <label for="buildOpinion">3. Formula tu idea</label>
+            <select id="buildOpinion">
+              <option value="">Selecciona…</option>
+              <option>creo que sería mejor mantener la reunión</option>
+              <option>pienso que necesitamos mantener la reunión</option>
+              <option>quizá podríamos mantener una reunión más corta</option>
+            </select>
+          </div>
+          <div>
+            <label for="buildReason">4. Explica una razón</label>
+            <select id="buildReason">
+              <option value="">Selecciona…</option>
+              <option>porque todavía hay decisiones pendientes</option>
+              <option>porque necesitamos confirmar dos responsabilidades</option>
+              <option>porque aún falta la respuesta del cliente</option>
+            </select>
+          </div>
+        </div>
+        <div class="preview" id="buildPreview" aria-live="polite">Tu intervención aparecerá aquí.</div>
+        <div class="btn-row">
+          <button class="btn secondary" id="buildBtn">Construir respuesta</button>
+          <button class="btn ghost" id="buildRetry" disabled>Probar otra combinación</button>
+        </div>
+        <div class="feedback" id="buildFeedback" aria-live="polite"></div>
+        <div class="nav">
+          <button class="btn ghost" data-back="4">Anterior</button>
+          <button class="btn primary" id="s5Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="6" aria-labelledby="s6title">
+      <div class="panel">
+        <div class="section-kicker">6 · Recupera y reacciona</div>
+        <h2 id="s6title" tabindex="-1">Menos apoyo. Recupera la estructura.</h2>
+        <p class="lead">Escribe una respuesta breve para cada situación. No necesitas una frase “perfecta”; intenta recuperar al menos una herramienta de la lección.</p>
+        <p class="note">Por privacidad, tus respuestas escritas no se guardan al recargar esta página. Si las necesitas, cópialas antes de salir.</p>
+        <div class="grid-3">
+          <div class="recall-card" data-recall="0">
+            <span class="status-pill">Cliente</span>
+            <p>El cliente quiere adelantar una fecha que tu equipo no puede cumplir.</p>
+            <button class="btn ghost hintBtn" type="button">Ver pista</button>
+            <div class="hint">Prueba: <strong>Entiendo…, pero… / Creo que sería mejor…</strong></div>
+            <label for="recall0">Tu respuesta</label>
+            <textarea id="recall0" placeholder="Escribe 1–2 frases."></textarea>
+          </div>
+          <div class="recall-card" data-recall="1">
+            <span class="status-pill">Compañero</span>
+            <p>Tu compañero cree que la opción más barata es la mejor. Tú prefieres la más rápida.</p>
+            <button class="btn ghost hintBtn" type="button">Ver pista</button>
+            <div class="hint">Prueba: <strong>En cambio… / Desde mi punto de vista…</strong></div>
+            <label for="recall1">Tu respuesta</label>
+            <textarea id="recall1" placeholder="Escribe 1–2 frases."></textarea>
+          </div>
+          <div class="recall-card" data-recall="2">
+            <span class="status-pill">Reunión</span>
+            <p>El equipo quiere cancelar una tarea. Tú piensas que todavía es necesaria.</p>
+            <button class="btn ghost hintBtn" type="button">Ver pista</button>
+            <div class="hint">Prueba: <strong>No estoy del todo de acuerdo… / Quizá podríamos…</strong></div>
+            <label for="recall2">Tu respuesta</label>
+            <textarea id="recall2" placeholder="Escribe 1–2 frases."></textarea>
+          </div>
+        </div>
+        <div class="btn-row"><button class="btn primary" id="recallCheck">Revisar mis respuestas</button></div>
+        <div class="feedback" id="recallFeedback" aria-live="polite"></div>
+        <div class="nav">
+          <button class="btn ghost" data-back="5">Anterior</button>
+          <button class="btn primary" id="s6Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="7" aria-labelledby="s7title">
+      <div class="panel">
+        <div class="section-kicker">7 · Aplícalo en una conversación</div>
+        <h2 id="s7title" tabindex="-1">La otra persona insiste. Adapta tu español.</h2>
+        <div class="scenario">
+          <div class="scenario-step" id="scenario1">
+            <div class="speaker">PROVEEDOR</div>
+            <p>“Podemos entregar el lunes. El viernes es imposible.”</p>
+            <p><strong>Quieres mantener el viernes porque el cliente lo necesita. ¿Cómo respondes?</strong></p>
+            <div class="choice-list">
+              <button class="choice scenarioChoice" data-step="1" data-score="0">No. Tiene que ser el viernes.</button>
+              <button class="choice scenarioChoice" data-step="1" data-score="2">Entiendo la dificultad, pero creo que necesitamos mantener el viernes. ¿Podemos revisar otra alternativa?</button>
+              <button class="choice scenarioChoice" data-step="1" data-score="1">No estoy de acuerdo. El cliente necesita la entrega el viernes.</button>
+            </div>
+            <div class="feedback" id="scenarioFeedback1" aria-live="polite"></div>
+          </div>
+
+          <div class="scenario-step locked" id="scenario2">
+            <div class="speaker">PROVEEDOR</div>
+            <p>“Podemos hacer una entrega parcial el viernes y completar el lunes.”</p>
+            <p><strong>La propuesta ayuda, pero todavía necesitas confirmar qué parte llegará el viernes.</strong></p>
+            <div class="choice-list">
+              <button class="choice scenarioChoice" disabled data-step="2" data-score="2">Esa opción puede funcionar. Sin embargo, necesitamos confirmar qué parte recibiríamos el viernes.</button>
+              <button class="choice scenarioChoice" disabled data-step="2" data-score="0">Sí. Está bien.</button>
+              <button class="choice scenarioChoice" disabled data-step="2" data-score="1">Aunque puede funcionar, necesito más información.</button>
+            </div>
+            <div class="feedback" id="scenarioFeedback2" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="panel soft" id="scenarioResult" style="display:none">
+          <h3>Lo importante aquí</h3>
+          <p>Has tenido que <strong>mantener tu posición</strong>, <strong>matizar</strong> y <strong>reaccionar a una propuesta nueva</strong>. Esa adaptación es parte de la progresión de esta lección.</p>
+          <a class="btn secondary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+        </div>
+        <div class="nav">
+          <button class="btn ghost" data-back="6">Anterior</button>
+          <button class="btn primary" id="s7Next" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8" aria-labelledby="s8title">
+      <div class="panel">
+        <div class="section-kicker">8 · Ahora dilo tú</div>
+        <h2 id="s8title" tabindex="-1">Habla durante 45 segundos.</h2>
+        <p class="lead">Situación: tu equipo quiere retrasar un lanzamiento una semana. Tú prefieres mantener la fecha original, pero aceptas revisar el alcance.</p>
+        <div class="panel soft">
+          <p><strong>Objetivo lingüístico:</strong> expresa una posición diferente y explica una razón o propone una alternativa. Intenta usar al menos:</p>
+          <ul>
+            <li>un conector de contraste;</li>
+            <li>una estructura de opinión;</li>
+            <li>un recurso de cortesía o modalización.</li>
+          </ul>
+          <div class="timer-box">
+            <div class="timer" id="timerDisplay">00:45</div>
+            <span class="sr-only" id="timerStatus" role="status" aria-live="polite"></span>
+            <button class="btn primary" id="timerStart">Iniciar 45 segundos</button>
+            <button class="btn ghost" id="timerReset">Reiniciar tiempo</button>
+          </div>
+        </div>
+
+        <label for="notes">Notas opcionales antes de hablar</label>
+        <textarea id="notes" placeholder="Palabras clave, no una respuesta completa."></textarea>
+        <p class="note">Estas notas tampoco se guardan si recargas o cierras la página.</p>
+
+        <h3 style="margin-top:1.4rem">Revisa tu respuesta</h3>
+        <div class="check-grid" id="selfCheck">
+          <label class="check-item"><input type="checkbox" value="contrast"> <span>Usé un conector de contraste.</span></label>
+          <label class="check-item"><input type="checkbox" value="opinion"> <span>Expresé claramente mi posición.</span></label>
+          <label class="check-item"><input type="checkbox" value="soften"> <span>Usé cortesía o modalización.</span></label>
+          <label class="check-item"><input type="checkbox" value="reason"> <span>Expliqué una razón o propuse una alternativa.</span></label>
+        </div>
+        <div class="feedback info show" id="selfFeedback">Marca al menos tres criterios después de hablar, incluido el de la razón o alternativa.</div>
+
+        <h3 style="margin-top:1.4rem">Llévalo a tu trabajo</h3>
+        <p>¿Dónde podrías utilizar estas herramientas?</p>
+        <div class="context-options" id="contextOptions">
+          <button class="context-chip">Reunión</button>
+          <button class="context-chip">Cliente</button>
+          <button class="context-chip">Compañero</button>
+          <button class="context-chip">Proveedor</button>
+          <button class="context-chip">Proyecto</button>
+          <button class="context-chip">Mensaje</button>
+        </div>
+        <div class="feedback info" id="mission" aria-live="polite"></div>
+
+        <div class="nav">
+          <button class="btn ghost" data-back="7">Anterior</button>
+          <button class="btn primary" id="s8Next" disabled>Finalizar lección</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9" aria-labelledby="s9title">
+      <div class="hero">
+        <div class="eyebrow">Lección completada</div>
+        <h2 id="s9title" tabindex="-1">Ya puedes construir un desacuerdo con más matiz.</h2>
+        <div class="final-score" id="finalScore">100 %</div>
+        <p>Has trabajado estas herramientas:</p>
+        <ul class="summary-list">
+          <li><strong>Conectores de contraste:</strong> pero, sin embargo, aunque, en cambio.</li>
+          <li><strong>Opinión:</strong> creo que, pienso que, desde mi punto de vista, para mí.</li>
+          <li><strong>Cortesía y modalización:</strong> entiendo tu punto, no estoy del todo de acuerdo, sería mejor, quizá podríamos.</li>
+        </ul>
+        <p><strong>Aplicación:</strong> expresar una posición diferente, justificarla, proponer alternativas y reaccionar cuando la conversación cambia.</p>
+        <p>Ahora intenta llevar una de estas estructuras a una conversación real de trabajo.</p>
+        <div class="btn-row">
+          <button class="btn yellow" id="repeatScenario">Repetir una práctica</button>
+          <button class="btn secondary" id="restartBtn">Reiniciar lección</button>
+          <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const screens = [...document.querySelectorAll('.screen')];
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const stepLabel = document.getElementById('stepLabel');
+  const completed = new Set();
+  const storageKey = 'saw-lesson-09-progress-v1';
+  let current = 0;
+  let restoring = false;
+  let savedSnapshot = null;
+
+  const labels = ['Inicio','Activa','Observa','Aprende','Comprueba','Construye','Recupera','Aplica','Habla','Final'];
+  const requiredSteps = [1,2,3,4,5,6,7,8];
+
+  // Guardar también las respuestas y decisiones que justifican el progreso.
+  // Una lista de pasos completados por sí sola no permite restaurar una práctica.
+  function safeSave(){
+    if(restoring) return;
+    const selectedIndex = selector => {
+      const buttons = [...document.querySelectorAll(selector)];
+      return buttons.findIndex(btn => btn.getAttribute('aria-pressed') === 'true');
+    };
+    const snapshot = {
+      version:3,
+      warmup:selectedIndex('#warmupChoices .choice'),
+      functions:[...document.querySelectorAll('.function-btn.visited')].map(btn => btn.dataset.key),
+      tabs:[...visitedTabs],
+      activeTab:document.querySelector('.tab[aria-selected="true"]').dataset.tab,
+      quiz:[...document.querySelectorAll('.quiz-item')].map(item => {
+        return [...item.querySelectorAll('.choice')].findIndex(btn => btn.getAttribute('aria-pressed') === 'true');
+      }),
+      builder:buildEls.map(el => el.value),
+      builderValid:completed.has(5),
+      // No guardar campos de texto libre: podrían contener datos de clientes o de trabajo.
+      scenario:[scenarioScores[1],scenarioScores[2]],
+      checks:[...document.querySelectorAll('#selfCheck input:checked')].map(el => el.value),
+      context:chosenContext
+    };
+    try{localStorage.setItem(storageKey,JSON.stringify(snapshot));}catch(e){}
+  }
+  function safeLoad(){
+    try{
+      const data = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      // Las versiones antiguas solo tenían números: sus respuestas no son recuperables.
+      if(data && !Array.isArray(data) && [2,3].includes(data.version)) savedSnapshot = data;
+    }catch(e){}
+  }
+  function updateProgress(){
+    const meaningful = requiredSteps.filter(n => completed.has(n)).length;
+    const pct = Math.round((meaningful / requiredSteps.length) * 100);
+    progressBar.style.width = pct + '%';
+    document.querySelector('.progress-track').setAttribute('aria-valuenow',String(pct));
+    progressText.textContent = pct + ' %';
+    const finalScore = document.getElementById('finalScore');
+    if(finalScore) finalScore.textContent = pct + ' %';
+    const finalBtn = document.getElementById('s8Next');
+    if(finalBtn && !requiredSteps.slice(0,-1).every(step => completed.has(step))){
+      finalBtn.disabled = true;
+    }
+  }
+  function showScreen(n){
+    const target = Math.max(0, Math.min(9, n));
+    if(target === 9 && !requiredSteps.every(step => completed.has(step))){
+      setFeedback(document.getElementById('selfFeedback'),'info','Tu práctica final está lista, pero todavía queda una actividad anterior por completar. Revisa el progreso antes de finalizar.');
+      document.getElementById('s8Next').disabled = true;
+      return;
+    }
+    current = target;
+    screens.forEach(s => s.classList.toggle('active', Number(s.dataset.screen) === current));
+    stepLabel.textContent = labels[current] || '';
+    updateProgress();
+    const reduceMotion = Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+    const heading = screens[current].querySelector('h1,h2');
+    if(heading) setTimeout(() => heading.focus({preventScroll:true}), 50);
+    if(current === 8) validateFinalPractice();
+  }
+  function markDone(n){completed.add(n);safeSave();updateProgress();}
+  function invalidateStep(n){
+    completed.delete(n);
+    // La práctica final depende de que todos los pasos anteriores sigan completos.
+    if(n < 8) completed.delete(8);
+    safeSave();
+    updateProgress();
+  }
+  function setFeedback(el, type, html){
+    el.className = 'feedback show ' + type;
+    el.innerHTML = html;
+  }
+
+  safeLoad();
+  document.querySelectorAll('.choice,.function-btn,.context-chip').forEach(el => el.setAttribute('aria-pressed','false'));
+  updateProgress();
+
+  document.getElementById('startBtn').addEventListener('click', () => showScreen(1));
+  document.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', () => showScreen(Number(btn.dataset.back))));
+
+  // 1 · Warm-up
+  const warmupFeedback = document.getElementById('warmupFeedback');
+  document.querySelectorAll('#warmupChoices .choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#warmupChoices .choice').forEach(b => {b.classList.remove('selected','correct','wrong');b.setAttribute('aria-pressed','false');});
+      const ok = btn.dataset.correct === 'true';
+      btn.classList.add(ok ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed','true');
+      if(ok){
+        setFeedback(warmupFeedback,'good','La respuesta mantiene una posición diferente, pero reconoce la propuesta y explica la razón. Ese equilibrio será el centro de la lección.');
+        document.getElementById('s1Next').disabled = false;
+        markDone(1);
+      }else{
+        setFeedback(warmupFeedback,'bad','La idea se entiende, pero revisa el tono o la coherencia. Busca una opción que exprese desacuerdo sin cerrar la conversación.');
+        document.getElementById('s1Next').disabled = true;
+        invalidateStep(1);
+      }
+    });
+  });
+  document.getElementById('s1Next').addEventListener('click', () => showScreen(2));
+
+  // 2 · Functions
+  const visitedFunctions = new Set();
+  const functionTexts = {
+    courtesy:'“Entiendo tu punto” reconoce lo que la otra persona acaba de decir sin obligarte a aceptarlo.',
+    contrast:'“Pero” introduce la diferencia entre la propuesta anterior y tu posición.',
+    opinion:'“Creo que sería mejor” presenta tu posición y, con “sería”, la formula de manera menos categórica.',
+    soften:'“Quizá podríamos” abre una alternativa con menor imposición y mantiene la conversación.'
+  };
+  document.querySelectorAll('.function-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      visitedFunctions.add(btn.dataset.key);
+      btn.classList.add('visited');
+      btn.setAttribute('aria-pressed','true');
+      safeSave();
+      setFeedback(document.getElementById('functionFeedback'),'info',functionTexts[btn.dataset.key]);
+      if(visitedFunctions.size === 4){
+        document.getElementById('s2Next').disabled = false;
+        markDone(2);
+      }
+    });
+  });
+  document.getElementById('s2Next').addEventListener('click', () => showScreen(3));
+
+  // 3 · Tabs
+  const visitedTabs = new Set(['contrast']);
+  function updateTabs(){
+    if(visitedTabs.size === 4){
+      document.getElementById('s3Next').disabled = false;
+      document.getElementById('tabsFeedback').innerHTML = 'Ya revisaste las cuatro herramientas. Ahora comprueba si puedes elegirlas según la intención.';
+      markDone(3);
+    }
+  }
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => {t.setAttribute('aria-selected','false');t.tabIndex=-1;});
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      tab.setAttribute('aria-selected','true');
+      tab.tabIndex=0;
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      visitedTabs.add(tab.dataset.tab);
+      updateTabs();
+      safeSave();
+    });
+  });
+  // Patrón de pestañas accesible: flechas y Home/End mueven el foco y activan la pestaña.
+  const tabs = [...document.querySelectorAll('.tab')];
+  tabs.forEach((tab,index) => tab.addEventListener('keydown', event => {
+    let next = null;
+    if(event.key === 'ArrowRight') next = (index+1) % tabs.length;
+    if(event.key === 'ArrowLeft') next = (index-1+tabs.length) % tabs.length;
+    if(event.key === 'Home') next = 0;
+    if(event.key === 'End') next = tabs.length-1;
+    if(next === null) return;
+    event.preventDefault();
+    tabs[next].focus();
+    tabs[next].click();
+  }));
+  updateTabs();
+  document.getElementById('s3Next').addEventListener('click', () => showScreen(4));
+
+  // 4 · Quiz
+  const quizDone = new Set();
+  document.querySelectorAll('.quiz-item').forEach(item => {
+    const feedback = item.querySelector('.feedback');
+    item.querySelectorAll('.choice').forEach(btn => {
+      btn.addEventListener('click', () => {
+        item.querySelectorAll('.choice').forEach(b => {b.classList.remove('correct','wrong');b.setAttribute('aria-pressed','false');});
+        const ok = btn.dataset.correct === 'true';
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        btn.setAttribute('aria-pressed','true');
+        if(ok){
+          quizDone.add(item.dataset.q);
+          const msg = item.dataset.q === '1'
+            ? 'Correcto: la expresión es <strong>estar de acuerdo con</strong> algo. “Del todo” reduce la fuerza del desacuerdo.'
+            : item.dataset.q === '2'
+              ? 'Correcto: “aunque” puede reconocer un hecho real antes de presentar otra idea. Aquí no necesitas añadir “pero”.'
+              : 'Correcto: “quizá podríamos…” presenta una alternativa con menos imposición que un imperativo directo.';
+          setFeedback(feedback,'good',msg);
+        }else{
+          quizDone.delete(item.dataset.q);
+          const msg = item.dataset.q === '1'
+            ? 'Revisa la estructura: decimos <strong>estar de acuerdo con</strong> algo. Para matizar, puedes añadir “del todo”.'
+            : item.dataset.q === '2'
+              ? 'Busca una estructura clara de concesión + idea principal. “Aunque… pero…” duplica la relación de contraste.'
+              : 'La frase puede expresar una idea, pero la tarea pide una alternativa <strong>más matizada</strong>. Busca una forma como “quizá podríamos…”.';
+          setFeedback(feedback,'bad',msg);
+        }
+        if(quizDone.size === 3){
+          setFeedback(document.getElementById('quizSummary'),'good','Has identificado forma, contraste y grado de fuerza. Puedes continuar.');
+          document.getElementById('s4Next').disabled = false;
+          markDone(4);
+        }else{
+          document.getElementById('s4Next').disabled = true;
+          invalidateStep(4);
+          setFeedback(document.getElementById('quizSummary'),'info','Responde correctamente las tres preguntas para continuar.');
+        }
+        safeSave();
+      });
+    });
+  });
+  document.getElementById('s4Next').addEventListener('click', () => showScreen(5));
+
+  // 5 · Builder
+  const buildEls = ['buildOpen','buildConnector','buildOpinion','buildReason'].map(id => document.getElementById(id));
+  function buildSentence(){
+    const [open,connector,opinion,reason] = buildEls.map(x => x.value.trim());
+    if(!open || !connector || !opinion || !reason){
+      setFeedback(document.getElementById('buildFeedback'),'bad','Falta una pieza. Completa las cuatro partes para construir la intervención.');
+      return;
+    }
+    let sentence;
+    if(connector === 'pero'){
+      sentence = `${open}, pero ${opinion} ${reason}.`;
+    }else{
+      sentence = `${open}. Sin embargo, ${opinion} ${reason}.`;
+    }
+    document.getElementById('buildPreview').textContent = sentence;
+    setFeedback(document.getElementById('buildFeedback'),'good','La respuesta combina posición + razón. Ahora prueba otra combinación y observa cómo cambia el tono.');
+    document.getElementById('buildRetry').disabled = false;
+    document.getElementById('s5Next').disabled = false;
+    markDone(5);
+  }
+  document.getElementById('buildBtn').addEventListener('click', buildSentence);
+  buildEls.forEach(el => el.addEventListener('change', () => {
+    document.getElementById('buildPreview').textContent = 'Tu intervención aparecerá aquí.';
+    document.getElementById('buildFeedback').className = 'feedback';
+    document.getElementById('buildFeedback').innerHTML = '';
+    document.getElementById('buildRetry').disabled = true;
+    document.getElementById('s5Next').disabled = true;
+    invalidateStep(5);
+  }));
+  document.getElementById('buildRetry').addEventListener('click', () => {
+    buildEls.forEach(el => el.selectedIndex = 0);
+    document.getElementById('buildPreview').textContent = 'Tu intervención aparecerá aquí.';
+    document.getElementById('buildFeedback').className = 'feedback';
+    document.getElementById('buildRetry').disabled = true;
+    document.getElementById('s5Next').disabled = true;
+    invalidateStep(5);
+  });
+  document.getElementById('s5Next').addEventListener('click', () => showScreen(6));
+
+  // 6 · Recall
+  document.querySelectorAll('.hintBtn').forEach((btn,index) => {
+    const hint = btn.nextElementSibling;
+    hint.id = 'recall-hint-' + index;
+    btn.setAttribute('aria-controls',hint.id);
+    btn.setAttribute('aria-expanded','false');
+    btn.addEventListener('click', () => {
+      hint.classList.toggle('show');
+      btn.setAttribute('aria-expanded',String(hint.classList.contains('show')));
+      btn.textContent = hint.classList.contains('show') ? 'Ocultar pista' : 'Ver pista';
+    });
+  });
+  ['recall0','recall1','recall2'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById('s6Next').disabled = true;
+      const feedback = document.getElementById('recallFeedback');
+      feedback.className = 'feedback';
+      feedback.innerHTML = '';
+      invalidateStep(6);
+    });
+  });
+  document.getElementById('recallCheck').addEventListener('click', () => {
+    const values = [0,1,2].map(i => document.getElementById('recall'+i).value.trim());
+    const nonEmpty = values.filter(v => v.length >= 12).length;
+    // Detectar expresiones completas; «espero» no contiene el conector «pero».
+    // Es una comprobación orientativa de recuperación, no un corrector gramatical.
+    const language = /(?:^|[^\p{L}\p{N}])(?:pero|aunque|sin\s+embargo|en\s+cambio|creo\s+que|pienso\s+que|desde\s+mi\s+punto\s+de\s+vista|para\s+mí|entiendo\s+(?:(?:tu|su)\s+(?:idea|punto|propuesta)|la\s+(?:dificultad|propuesta|situación)|el\s+(?:problema|contexto))|veo\s+lo\s+que\s+dices|(?:no\s+)?(?:estoy|estamos)\s+(?:del\s+todo\s+)?de\s+acuerdo|sería\s+mejor|podríamos|quizá)(?=$|[^\p{L}\p{N}])/iu;
+    // «No entiendo la propuesta» expresa falta de comprensión, no la fórmula
+    // de cortesía «Entiendo la propuesta» trabajada en esta lección.
+    const withTool = values.filter(v => language.test(v.replace(/\bno\s+entiendo\b/giu,'no comprendo'))).length;
+    if(nonEmpty < 3){
+      setFeedback(document.getElementById('recallFeedback'),'bad','Completa las tres respuestas con al menos una frase breve. La recuperación necesita producción, no solo reconocimiento.');
+      return;
+    }
+    if(withTool < 2){
+      setFeedback(document.getElementById('recallFeedback'),'bad','Tus respuestas tienen contenido, pero intenta recuperar de forma visible al menos dos herramientas de la lección: un conector, una estructura de opinión o una forma de modalizar.');
+      return;
+    }
+    setFeedback(document.getElementById('recallFeedback'),'good','Has escrito tres respuestas e incluido expresiones de la lección en al menos dos. Esta comprobación detecta expresiones, pero no corrige tus frases: revisa que cada respuesta exprese tu posición, tenga sentido y mantenga el tono que buscas.');
+    document.getElementById('s6Next').disabled = false;
+    markDone(6);
+  });
+  document.getElementById('s6Next').addEventListener('click', () => showScreen(7));
+
+  // 7 · Scenario
+  const scenarioScores = {1:null,2:null};
+  document.querySelectorAll('.scenarioChoice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = Number(btn.dataset.step);
+      const score = Number(btn.dataset.score);
+      const parent = document.getElementById('scenario'+step);
+      parent.querySelectorAll('.choice').forEach(b => {b.classList.remove('correct','wrong','selected');b.setAttribute('aria-pressed','false');});
+      scenarioScores[step] = score;
+      btn.classList.add(score === 2 ? 'correct' : score === 0 ? 'wrong' : 'selected');
+      btn.setAttribute('aria-pressed','true');
+      const feedback = document.getElementById('scenarioFeedback'+step);
+      if(step === 1){
+        const msg = score === 2
+          ? 'Buena elección: reconoces la dificultad, mantienes tu posición y abres una alternativa.'
+          : score === 1
+            ? 'La posición está clara, pero el mensaje deja menos espacio para continuar. Puedes reconocer la dificultad o abrir una alternativa.'
+            : 'La frase es comprensible, pero es muy categórica para esta situación. Intenta mantener la posición sin cerrar la conversación.';
+        setFeedback(feedback, score === 2 ? 'good' : score === 0 ? 'bad' : 'info', msg);
+        const secondStep = document.getElementById('scenario2');
+        if(score > 0){
+          secondStep.classList.remove('locked');
+          document.querySelectorAll('#scenario2 .scenarioChoice').forEach(choice => choice.disabled = false);
+        }else{
+          secondStep.classList.add('locked');
+          scenarioScores[2] = null;
+          document.querySelectorAll('#scenario2 .scenarioChoice').forEach(choice => {
+            choice.disabled = true;
+            choice.classList.remove('correct','wrong','selected');
+            choice.setAttribute('aria-pressed','false');
+          });
+          const previousFeedback = document.getElementById('scenarioFeedback2');
+          previousFeedback.className = 'feedback';
+          previousFeedback.innerHTML = '';
+        }
+      }else{
+        const msg = score === 2
+          ? 'Buena adaptación: aceptas que la propuesta puede funcionar, introduces contraste y pides la información que todavía falta.'
+          : score === 1
+            ? 'La respuesta reconoce la propuesta y pide más información. Podrías ser más precisa indicando qué necesitas confirmar.'
+            : 'La respuesta acepta, pero no recupera la información que necesitas para decidir. Mantén la conversación con una aclaración.';
+        setFeedback(feedback, score === 2 ? 'good' : score === 0 ? 'bad' : 'info', msg);
+      }
+      safeSave();
+      if(scenarioScores[1] > 0 && scenarioScores[2] > 0){
+        document.getElementById('scenarioResult').style.display = 'block';
+        document.getElementById('s7Next').disabled = false;
+        markDone(7);
+      }else{
+        document.getElementById('scenarioResult').style.display = 'none';
+        document.getElementById('s7Next').disabled = true;
+        invalidateStep(7);
+      }
+    });
+  });
+  document.getElementById('s7Next').addEventListener('click', () => showScreen(8));
+
+  // 8 · Timer, self-check, transfer
+  let timerId = null;
+  let seconds = 45;
+  function renderTimer(){
+    document.getElementById('timerDisplay').textContent = '00:' + String(seconds).padStart(2,'0');
+  }
+  document.getElementById('timerStart').addEventListener('click', () => {
+    if(timerId) return;
+    if(seconds <= 0){seconds=45;renderTimer();}
+    document.getElementById('timerStatus').textContent = 'Temporizador iniciado: 45 segundos.';
+    document.getElementById('timerStart').disabled = true;
+    timerId = setInterval(() => {
+      seconds -= 1;
+      renderTimer();
+      if(seconds <= 0){
+        clearInterval(timerId);timerId = null;
+        document.getElementById('timerStart').disabled = false;
+        document.getElementById('timerStart').textContent = 'Repetir 45 segundos';
+        document.getElementById('timerStatus').textContent = 'Tiempo terminado. Puedes repetir la práctica.';
+      }
+    },1000);
+  });
+  document.getElementById('timerReset').addEventListener('click', () => {
+    if(timerId){clearInterval(timerId);timerId=null;}
+    seconds = 45;renderTimer();
+    document.getElementById('timerStart').disabled = false;
+    document.getElementById('timerStart').textContent = 'Iniciar 45 segundos';
+    document.getElementById('timerStatus').textContent = 'Temporizador reiniciado.';
+  });
+  renderTimer();
+
+  let chosenContext = '';
+  function validateFinalPractice(){
+    const checked = document.querySelectorAll('#selfCheck input:checked').length;
+    const hasAction = document.querySelector('#selfCheck input[value="reason"]').checked;
+    const priorComplete = requiredSteps.slice(0,-1).every(step => completed.has(step));
+    const ready = checked >= 3 && hasAction && Boolean(chosenContext) && priorComplete;
+    if(checked < 3){
+      setFeedback(document.getElementById('selfFeedback'),'info','Marca al menos tres criterios después de hablar, incluido el de la razón o alternativa.');
+    }else if(!hasAction){
+      setFeedback(document.getElementById('selfFeedback'),'info','Marca también el último criterio: explica una razón o propone una alternativa antes de finalizar.');
+    }else if(!priorComplete){
+      setFeedback(document.getElementById('selfFeedback'),'info','Has revisado tu producción, pero todavía queda una actividad anterior por completar. Revisa el progreso antes de finalizar.');
+    }else if(!chosenContext){
+      setFeedback(document.getElementById('selfFeedback'),'info','Ahora elige en qué situación de trabajo utilizarías estas expresiones.');
+    }else{
+      setFeedback(document.getElementById('selfFeedback'),'good','Has revisado tu producción con criterios lingüísticos y comunicativos.');
+    }
+    document.getElementById('s8Next').disabled = !ready;
+    if(ready){
+      markDone(8);
+    }else{
+      invalidateStep(8);
+    }
+  }
+  document.querySelectorAll('#selfCheck input').forEach(cb => cb.addEventListener('change', validateFinalPractice));
+  document.querySelectorAll('.context-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.context-chip').forEach(b => {b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed','true');
+      chosenContext = btn.textContent.trim();
+      setFeedback(document.getElementById('mission'),'info',`Micro misión: en tu próxima situación de <strong>${chosenContext.toLowerCase()}</strong>, expresa una posición diferente usando un conector de contraste y una forma de modalizar. Después observa si pudiste mantener tu idea sin sonar más categórico de lo necesario.`);
+      validateFinalPractice();
+    });
+  });
+  document.getElementById('s8Next').addEventListener('click', () => showScreen(9));
+
+  // Final actions
+  document.getElementById('repeatScenario').addEventListener('click', () => {
+    scenarioScores[1] = null;
+    scenarioScores[2] = null;
+    document.querySelectorAll('.scenarioChoice').forEach(btn => {btn.classList.remove('correct','wrong','selected');btn.setAttribute('aria-pressed','false');});
+    ['scenarioFeedback1','scenarioFeedback2'].forEach(id => {
+      const el = document.getElementById(id);
+      el.className = 'feedback';
+      el.innerHTML = '';
+    });
+    document.getElementById('scenario2').classList.add('locked');
+    document.querySelectorAll('#scenario2 .scenarioChoice').forEach(choice => choice.disabled = true);
+    document.getElementById('scenarioResult').style.display = 'none';
+    document.getElementById('s7Next').disabled = true;
+    invalidateStep(7);
+    showScreen(7);
+  });
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    try{localStorage.removeItem(storageKey);}catch(e){}
+    window.location.reload();
+  });
+
+  // Reconstituir la UI desde las respuestas guardadas. No habilitar pasos por números aislados.
+  function restoreSnapshot(data){
+    if(!data) return;
+    restoring = true;
+    try{
+      const clickIndex = (selector,index) => {
+        if(!Number.isInteger(index) || index < 0) return;
+        const button = document.querySelectorAll(selector)[index];
+        if(button && !button.disabled) button.click();
+      };
+      clickIndex('#warmupChoices .choice',data.warmup);
+      if(Array.isArray(data.functions)) data.functions.forEach(key => {
+        const btn = [...document.querySelectorAll('.function-btn')].find(el => el.dataset.key===key);
+        if(btn) btn.click();
+      });
+      if(Array.isArray(data.tabs)) data.tabs.forEach(key => {
+        const tab = tabs.find(el => el.dataset.tab===key);
+        if(tab) tab.click();
+      });
+      if(data.activeTab){
+        const tab = tabs.find(el => el.dataset.tab===data.activeTab);
+        if(tab) tab.click();
+      }
+      if(Array.isArray(data.quiz)) data.quiz.forEach((index,i) => {
+        clickIndex('.quiz-item[data-q="'+(i+1)+'"] .choice',index);
+      });
+      if(Array.isArray(data.builder)) buildEls.forEach((el,i) => {
+        if([...el.options].some(option => option.value===data.builder[i])) el.value=data.builder[i];
+      });
+      if(data.builderValid) document.getElementById('buildBtn').click();
+      setFeedback(document.getElementById('recallFeedback'),'info','Las respuestas escritas no se guardan al recargar por privacidad. Si ya habías completado esta práctica, vuelve a escribir tus respuestas para continuar.');
+      if(Array.isArray(data.scenario)) [1,2].forEach((step,i) => {
+        const score=data.scenario[i];
+        if(score===null || ![0,1,2].includes(score)) return;
+        const btn=[...document.querySelectorAll('#scenario'+step+' .scenarioChoice')]
+          .find(el => Number(el.dataset.score)===score);
+        if(btn && !btn.disabled) btn.click();
+      });
+      if(data.context){
+        const btn=[...document.querySelectorAll('.context-chip')]
+          .find(el => el.textContent.trim()===data.context);
+        if(btn) btn.click();
+      }
+      if(Array.isArray(data.checks)) document.querySelectorAll('#selfCheck input').forEach(cb => {
+        cb.checked=data.checks.includes(cb.value);
+      });
+      validateFinalPractice();
+    }finally{
+      restoring = false;
+      safeSave();
+      updateProgress();
+    }
+  }
+  restoreSnapshot(savedSnapshot);
+  updateProgress();
+})();
+</script>
+</body>
+</html>

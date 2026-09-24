@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#003893">
+  <title>Lección 10 · Habla de problemas | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#002b70;
+      --blue-soft:#eaf1ff;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#111827;
+      --muted:#5b6473;
+      --line:#dbe3ef;
+      --soft:#f5f7fb;
+      --success:#146c43;
+      --success-soft:#eaf7ef;
+      --warning:#7a5b00;
+      --warning-soft:#fff8d6;
+      --shadow:0 16px 36px rgba(0,56,147,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--black);
+      background:
+        radial-gradient(circle at 95% 5%, rgba(252,209,22,.16), transparent 22rem),
+        linear-gradient(180deg,#f8fbff 0%,#f4f6fa 100%);
+    }
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+    h1,h2,h3{margin-top:0}
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+
+    .app{min-height:100vh;display:flex;flex-direction:column}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{max-width:1050px;margin:0 auto;padding:12px 18px 10px}
+    .brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--blue)}
+    .brand-mark{width:12px;height:12px;border-radius:3px;background:var(--yellow);box-shadow:14px 0 0 var(--blue)}
+    .lesson-mini{font-size:.82rem;color:var(--muted);text-align:right}
+    .progress-wrap{margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .progress-track{height:8px;background:#e8edf5;border-radius:99px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#245bb5);transition:width .35s ease}
+    .progress-text{font-size:.78rem;font-weight:600;color:var(--blue);min-width:44px;text-align:right}
+
+    main{flex:1;display:flex;align-items:stretch}
+    .screen{display:none;width:100%;animation:fade .24s ease}
+    .screen.active{display:block}
+    .screen-inner{max-width:980px;margin:0 auto;padding:34px 18px 110px}
+    @keyframes fade{from{opacity:.25;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+    .eyebrow::before{content:"";width:24px;height:4px;border-radius:99px;background:var(--yellow)}
+    .hero{
+      padding:clamp(28px,6vw,66px);
+      border-radius:30px;
+      background:linear-gradient(145deg,var(--blue) 0%,var(--blue-dark) 100%);
+      color:var(--white);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{content:"";position:absolute;width:220px;height:220px;border:34px solid rgba(252,209,22,.16);border-radius:50%;right:-80px;top:-100px}
+    .hero .eyebrow{color:var(--white)}
+    .hero h1{font-size:clamp(2rem,7vw,4rem);line-height:1.02;margin-bottom:18px;max-width:760px}
+    .hero p{font-size:clamp(1rem,2.4vw,1.2rem);line-height:1.65;max-width:760px;color:#edf3ff}
+    .tool-line{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0}
+    .tool-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);font-size:.86rem;font-weight:600}
+    .hero-goal{margin-top:26px;padding:18px 20px;border-left:5px solid var(--yellow);background:rgba(255,255,255,.08);border-radius:0 14px 14px 0;max-width:760px}
+    .hero-goal strong{color:var(--yellow)}
+
+    .section-head{margin-bottom:24px}
+    .section-head h2{font-size:clamp(1.55rem,4vw,2.35rem);line-height:1.15;margin-bottom:10px;color:var(--blue-dark)}
+    .section-head p{margin:0;color:var(--muted);line-height:1.7;max-width:780px}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 10px 26px rgba(17,24,39,.055)}
+    .card + .card{margin-top:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .callout{padding:16px 18px;border-radius:16px;background:var(--blue-soft);border-left:4px solid var(--blue);line-height:1.65}
+    .callout.yellow{background:var(--warning-soft);border-left-color:var(--yellow)}
+    .callout.red{background:#fff0f2;border-left-color:var(--red)}
+    .muted{color:var(--muted)}
+    .small{font-size:.88rem}
+    .highlight{background:linear-gradient(transparent 55%,rgba(252,209,22,.62) 55%);font-weight:600}
+
+    .btn{
+      border:0;border-radius:14px;padding:12px 18px;min-height:46px;
+      font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+    .hero button:focus-visible,.timer-box button:focus-visible{outline-color:var(--yellow)}
+    .btn-primary{background:var(--blue);color:var(--white);box-shadow:0 8px 18px rgba(0,56,147,.18)}
+    .btn-primary:hover{background:var(--blue-dark)}
+    .btn-secondary{background:var(--white);color:var(--blue);border:1px solid #b9c9e4}
+    .btn-yellow{background:var(--yellow);color:#1e2430}
+    .btn-ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}
+    .btn[disabled]{cursor:not-allowed;opacity:.45;transform:none;box-shadow:none}
+    .button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+    .scenario-strip{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+    .scenario-icon{width:54px;height:54px;border-radius:16px;background:var(--blue);display:grid;place-items:center;color:white;flex:0 0 auto}
+    .scenario-icon svg{width:27px;height:27px}
+    .question-box{margin-top:18px;padding:18px;background:var(--soft);border-radius:16px}
+    .choice-list{display:grid;gap:10px;margin-top:14px}
+    .choice{
+      text-align:left;width:100%;background:white;border:1px solid var(--line);border-radius:14px;padding:14px 16px;line-height:1.5;color:var(--black)
+    }
+    .choice:hover{border-color:#90a8cf}
+    .choice.selected{border-color:var(--blue);background:var(--blue-soft)}
+    .choice.correct{border-color:var(--success);background:var(--success-soft)}
+    .choice.wrong{border-color:var(--red);background:#fff1f3}
+
+    .feedback{margin-top:14px;padding:13px 15px;border-radius:13px;display:none;line-height:1.55}
+    .feedback.show{display:block}
+    .feedback.good{background:var(--success-soft);color:#0d5533;border:1px solid #b7dfc8}
+    .feedback.bad{background:#fff1f3;color:#8c1020;border:1px solid #f0bcc4}
+    .feedback.info{background:var(--blue-soft);color:#163c77;border:1px solid #c7d6ef}
+
+    .chat{display:grid;gap:12px}
+    .bubble{max-width:84%;padding:14px 16px;border-radius:18px;line-height:1.65;position:relative}
+    .bubble.left{background:#eef2f7;border-bottom-left-radius:6px}
+    .bubble.right{background:var(--blue);color:white;margin-left:auto;border-bottom-right-radius:6px}
+    .speaker{font-size:.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;opacity:.72;margin-bottom:5px}
+    .ling{border-bottom:2px solid transparent;font-weight:600;border-radius:3px;padding:0 1px;transition:.15s}
+    .show-past .ling.past{background:#e7efff;border-color:var(--blue);color:#17345f}
+    .show-link .ling.link{background:#fff2ae;border-color:#b78c00;color:#2e2a1a}
+    .show-time .ling.time{background:#edf8ef;border-color:#2d7f50;color:#183b29}
+    .bubble.right .ling{color:inherit}
+    .show-past .bubble.right .ling.past{color:#17345f}
+    .show-link .bubble.right .ling.link{color:#2e2a1a}
+    .show-time .bubble.right .ling.time{color:#183b29}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .legend span{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--muted)}
+    .dot{width:10px;height:10px;border-radius:50%}
+
+    .observe-controls{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
+    .observe-controls .btn.active{background:var(--blue);color:white;border-color:var(--blue)}
+
+    .classify-row{display:grid;grid-template-columns:1fr minmax(170px,230px);gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #edf0f5}
+    .classify-row:last-child{border-bottom:0}
+    select,input[type="text"],textarea{
+      width:100%;border:1px solid #bac5d4;border-radius:12px;padding:11px 12px;background:white;color:var(--black)
+    }
+    textarea{min-height:120px;resize:vertical;line-height:1.55}
+
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+    .tab{border:1px solid #b9c9e4;background:white;color:var(--blue);border-radius:999px;padding:10px 14px;font-weight:600}
+    .tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    .rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+    .rule{padding:17px;border-radius:16px;background:var(--soft);border:1px solid #e5e9f0}
+    .rule h3{font-size:1rem;color:var(--blue);margin-bottom:8px}
+    .rule p{margin:.4rem 0;line-height:1.55}
+    .example{margin-top:10px;padding:12px 14px;border-radius:12px;background:white;border-left:4px solid var(--yellow);line-height:1.55}
+    .mini-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .mini-table th,.mini-table td{padding:12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    .mini-table th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:var(--blue)}
+
+    .quiz-item{padding:18px 0;border-bottom:1px solid #edf0f5}
+    .quiz-item:last-child{border-bottom:0}
+    .quiz-item p{font-weight:600;line-height:1.55}
+    .radio-grid{display:grid;gap:9px;margin-top:10px}
+    .radio-option{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .radio-option input{width:auto;margin-top:4px}
+
+    .timeline-source{display:grid;gap:10px;margin-top:14px}
+    .timeline-card{border:1px solid var(--line);background:white;border-radius:14px;padding:13px 15px;text-align:left;line-height:1.5}
+    .timeline-card.picked{opacity:.84;text-decoration:line-through}
+    .timeline-build{margin-top:14px;min-height:84px;border:2px dashed #c5cfdd;border-radius:16px;padding:12px;background:#fbfcfe}
+    .timeline-token{display:flex;align-items:center;gap:10px;background:var(--blue-soft);border-radius:12px;padding:10px 12px;margin:7px 0}
+    .timeline-number{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--blue);color:white;font-weight:700;font-size:.83rem;flex:0 0 auto}
+
+    .recall-card{background:linear-gradient(140deg,#ffffff,#f7f9fc);border:1px solid var(--line);border-radius:20px;padding:22px}
+    .prompt-label{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--blue);letter-spacing:.04em}
+    .hint{display:none;margin-top:12px;padding:12px;background:var(--warning-soft);border-radius:12px;line-height:1.5}
+    .hint.show{display:block}
+    .model{display:none;margin-top:14px;padding:14px;border-radius:13px;background:var(--blue-soft);line-height:1.6}
+    .model.show{display:block}
+
+    .sim-stage{display:none}
+    .sim-stage.active{display:block}
+    .sim-next{display:none}
+    .sim-next.show{display:inline-flex}
+    .sim-progress{display:flex;gap:6px;margin-bottom:16px}
+    .sim-dot{height:7px;flex:1;background:#e1e7ef;border-radius:99px}
+    .sim-dot.done,.sim-dot.active{background:var(--yellow)}
+    .sim-message{padding:15px 17px;border-radius:14px;background:#f0f3f7;line-height:1.6;margin-bottom:14px}
+    .sim-message strong{color:var(--blue)}
+
+    .timer-box{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-radius:17px;background:var(--blue);color:white;margin-top:16px}
+    .timer-time{font-size:2rem;font-weight:700;letter-spacing:.04em}
+    .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .word-bank span{padding:7px 10px;border-radius:999px;background:#eef2f7;font-size:.84rem}
+
+    .checklist{display:grid;gap:10px}
+    .check-row{display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:white}
+    .check-row input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+
+    .context-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+    .context-btn{padding:16px 12px;border-radius:14px;border:1px solid var(--line);background:white;color:var(--black);font-weight:600}
+    .context-btn.selected{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+
+    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+    .summary-item{padding:16px;border-radius:16px;background:var(--soft);border-top:4px solid var(--yellow);line-height:1.55}
+    .final-banner{background:var(--blue);color:white;border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+    .final-banner h2{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:10px}
+    .final-banner p{color:#edf3ff;line-height:1.65}
+
+    .bottom-nav{
+      position:fixed;z-index:30;left:0;right:0;bottom:0;
+      background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+      border-top:1px solid var(--line);
+    }
+    .bottom-nav-inner{max-width:980px;margin:0 auto;padding:10px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .step-label{font-size:.78rem;color:var(--muted);text-align:center;flex:1}
+
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+    @media (max-width:760px){
+      .grid-2,.grid-3,.rule-grid,.summary-grid,.context-options{grid-template-columns:1fr}
+      .classify-row{grid-template-columns:1fr}
+      .bubble{max-width:94%}
+      .screen-inner{padding-top:24px}
+      .lesson-mini{display:none}
+      .hero{border-radius:22px;padding:30px 22px}
+      .bottom-nav-inner{padding-bottom:max(10px,env(safe-area-inset-bottom))}
+      .step-label{display:none}
+      .btn{min-height:48px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Spanish at Work</span></div>
+        <div class="lesson-mini">Lección 10 · Habla de problemas</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-text" id="progressText" aria-hidden="true">0 %</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="lessonMain">
+    <section class="screen active" data-step="0" aria-labelledby="title-0">
+      <div class="screen-inner">
+        <div class="hero">
+          <div class="eyebrow">Español para trabajar · Lección 10</div>
+          <h1 id="title-0">Habla de problemas</h1>
+          <p>Aprende a organizar un problema en español: <strong>dar contexto, contar qué ocurrió, explicar la causa y conectar la consecuencia</strong>.</p>
+          <div class="tool-line" aria-label="Herramientas lingüísticas">
+            <span class="tool-chip">Pasados</span>
+            <span class="tool-chip">Causa y consecuencia</span>
+            <span class="tool-chip">Conectores temporales</span>
+            <span class="tool-chip">Vocabulario de problemas</span>
+          </div>
+          <div class="hero-goal"><strong>Al terminar:</strong> podrás explicar un problema de trabajo con un orden claro y proponer una acción sencilla para continuar.</div>
+          <div class="button-row"><button class="btn btn-yellow" id="startBtn">Comenzar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="1" aria-labelledby="title-1">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Activa lo que ya sabes</div>
+          <h2 id="title-1">Un problema, dos formas de mirarlo</h2>
+          <p>Antes de estudiar la regla, observa qué frase presenta un hecho terminado y cuál describe lo que estaba ocurriendo.</p>
+        </div>
+        <div class="card">
+          <div class="scenario-strip">
+            <div class="scenario-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M5 16l4-4 3 3 5-7 2 2"/><path d="M5 5v11"/></svg>
+            </div>
+            <div>
+              <strong>Situación</strong>
+              <p class="muted">Ayer tu equipo preparaba un informe. A las 4:10 p. m., el sistema dejó de funcionar.</p>
+            </div>
+          </div>
+          <div class="question-box">
+            <strong>¿Qué frase presenta el hecho puntual que cambió la situación?</strong>
+            <div class="choice-list" id="activationChoices">
+              <button class="choice" data-value="context">Ayer estábamos preparando el informe.</button>
+              <button class="choice" data-value="event">A las 4:10, el sistema dejó de funcionar.</button>
+            </div>
+            <div class="feedback" id="activationFeedback" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="2" aria-labelledby="title-2">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Input comprensible</div>
+          <h2 id="title-2">Observa cómo se cuenta lo que pasó</h2>
+          <p>Lee el intercambio. Después activa las capas para ver qué recursos organizan la explicación.</p>
+        </div>
+        <div class="card">
+          <div class="chat" id="inputChat">
+            <div class="bubble left"><div class="speaker">Laura</div>¿Qué pasó con el informe de ayer?</div>
+            <div class="bubble right"><div class="speaker">Diego</div>A las cuatro <span class="ling past">estábamos revisando</span> los datos <span class="ling time">cuando</span> el sistema <span class="ling past">dejó de funcionar</span>.</div>
+            <div class="bubble left"><div class="speaker">Laura</div>¿Se perdió información?</div>
+            <div class="bubble right"><div class="speaker">Diego</div>Sí. <span class="ling past">Faltaban</span> dos archivos <span class="ling link">porque</span> la copia automática <span class="ling past">no se completó</span>. <span class="ling time">Primero</span> <span class="ling past">revisamos</span> el servidor y <span class="ling time">después</span> <span class="ling past">recuperamos</span> una copia anterior. <span class="ling link">Por eso</span>, el informe <span class="ling past">salió</span> con retraso.</div>
+            <div class="bubble left"><div class="speaker">Laura</div>¿Qué hacemos ahora?</div>
+            <div class="bubble right"><div class="speaker">Diego</div>Podemos revisar la versión final y enviarla antes de las diez. También vamos a comprobar que la copia automática funciona correctamente.</div>
+          </div>
+          <div class="observe-controls" aria-label="Capas de observación">
+            <button class="btn btn-secondary observe-btn" data-layer="past" aria-pressed="false">Ver pasados</button>
+            <button class="btn btn-secondary observe-btn" data-layer="link" aria-pressed="false">Ver causa y consecuencia</button>
+            <button class="btn btn-secondary observe-btn" data-layer="time" aria-pressed="false">Ver orden temporal</button>
+          </div>
+          <div class="legend">
+            <span><span class="dot" style="background:#3f6ec1"></span>pasados</span>
+            <span><span class="dot" style="background:#d0a500"></span>causa / consecuencia</span>
+            <span><span class="dot" style="background:#2d7f50"></span>orden temporal</span>
+          </div>
+          <div class="feedback info" id="observeFeedback" aria-live="polite">Activa las tres capas. No necesitas memorizar el diálogo: busca el patrón.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="3" aria-labelledby="title-3">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Descubre el patrón</div>
+          <h2 id="title-3">¿Qué función tiene cada parte?</h2>
+          <p>Clasifica cada fragmento. La idea es distinguir <strong>contexto, hecho, causa y consecuencia</strong> antes de ver la explicación completa.</p>
+        </div>
+        <div class="card" id="classifyActivity">
+          <div class="classify-row">
+            <span>“Estábamos revisando los datos.”</span>
+            <select data-answer="context" aria-label="Clasifica: Estábamos revisando los datos">
+              <option value="">Elige una función</option><option value="context">Contexto</option><option value="event">Hecho terminado</option><option value="cause">Causa</option><option value="effect">Consecuencia</option>
+            </select>
+          </div>
+          <div class="classify-row">
+            <span>“El sistema dejó de funcionar.”</span>
+            <select data-answer="event" aria-label="Clasifica: El sistema dejó de funcionar">
+              <option value="">Elige una función</option><option value="context">Contexto</option><option value="event">Hecho terminado</option><option value="cause">Causa</option><option value="effect">Consecuencia</option>
+            </select>
+          </div>
+          <div class="classify-row">
+            <span>“porque la copia automática no se completó”</span>
+            <select data-answer="cause" aria-label="Clasifica: porque la copia automática no se completó">
+              <option value="">Elige una función</option><option value="context">Contexto</option><option value="event">Hecho terminado</option><option value="cause">Causa</option><option value="effect">Consecuencia</option>
+            </select>
+          </div>
+          <div class="classify-row">
+            <span>“Por eso, el informe salió con retraso.”</span>
+            <select data-answer="effect" aria-label="Clasifica: Por eso, el informe salió con retraso">
+              <option value="">Elige una función</option><option value="context">Contexto</option><option value="event">Hecho terminado</option><option value="cause">Causa</option><option value="effect">Consecuencia</option>
+            </select>
+          </div>
+          <div class="button-row"><button class="btn btn-primary" id="checkClassify">Comprobar</button><button class="btn btn-ghost" id="resetClassify">Intentar otra vez</button></div>
+          <div class="feedback" id="classifyFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="4" aria-labelledby="title-4">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Aprende la herramienta</div>
+          <h2 id="title-4">Cuatro recursos para explicar un problema</h2>
+          <p>Explora las cuatro pestañas: distingue el contexto de los hechos, conecta causas y consecuencias, organiza el tiempo y elige vocabulario para describir el problema.</p>
+        </div>
+        <div class="card">
+          <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
+            <button class="tab active" id="tab-past" role="tab" aria-selected="true" aria-controls="panel-past" tabindex="0" data-tab="past">1. Pasados</button>
+            <button class="tab" id="tab-cause" role="tab" aria-selected="false" aria-controls="panel-cause" tabindex="-1" data-tab="cause">2. Causa y consecuencia</button>
+            <button class="tab" id="tab-time" role="tab" aria-selected="false" aria-controls="panel-time" tabindex="-1" data-tab="time">3. Orden temporal</button>
+            <button class="tab" id="tab-vocab" role="tab" aria-selected="false" aria-controls="panel-vocab" tabindex="-1" data-tab="vocab">4. Vocabulario</button>
+          </div>
+
+          <div class="tab-panel active" id="panel-past" role="tabpanel" aria-labelledby="tab-past" data-panel="past">
+            <div class="rule-grid">
+              <div class="rule">
+                <h3>Imperfecto: contexto o situación en curso</h3>
+                <p>Sirve para describir lo que <strong>estaba ocurriendo</strong>, una situación o un estado que forma el fondo de la historia.</p>
+                <div class="example">Estábamos revisando los datos.<br>Faltaban dos archivos.</div>
+              </div>
+              <div class="rule">
+                <h3>Indefinido: hecho terminado</h3>
+                <p>Sirve para contar un hecho completo que <strong>ocurrió y hace avanzar</strong> la explicación.</p>
+                <div class="example">El sistema falló.<br>Recuperamos una copia.</div>
+              </div>
+            </div>
+            <div class="callout yellow" style="margin-top:14px"><strong>Patrón frecuente:</strong> “Estábamos revisando el informe <strong>cuando</strong> el sistema falló”. El imperfecto da el contexto y el indefinido presenta el hecho puntual. Es un patrón muy útil, no una regla exclusiva para todos los relatos.</div>
+          </div>
+
+          <div class="tab-panel" id="panel-cause" role="tabpanel" aria-labelledby="tab-cause" data-panel="cause">
+            <table class="mini-table">
+              <thead><tr><th>Recurso</th><th>Función</th><th>Ejemplo</th></tr></thead>
+              <tbody>
+                <tr><td><strong>porque</strong></td><td>Introduce la causa.</td><td>No enviamos el informe <strong>porque</strong> faltaba una firma.</td></tr>
+                <tr><td><strong>por eso</strong></td><td>Introduce la consecuencia.</td><td>Faltaba una firma. <strong>Por eso</strong>, enviamos el informe más tarde.</td></tr>
+                <tr><td><strong>debido a + sustantivo</strong></td><td>Presenta una causa de forma más compacta.</td><td>La entrega se retrasó <strong>debido a un error</strong>.</td></tr>
+              </tbody>
+            </table>
+            <div class="callout" style="margin-top:14px"><strong>No confundas la dirección:</strong> “porque” responde <em>¿por qué ocurrió?</em>; “por eso” responde <em>¿qué ocurrió como resultado?</em></div>
+          </div>
+
+          <div class="tab-panel" id="panel-time" role="tabpanel" aria-labelledby="tab-time" data-panel="time">
+            <div class="grid-2">
+              <div class="rule"><h3>Orden</h3><p><strong>Primero</strong> revisamos el archivo.<br><strong>Después</strong> llamamos al proveedor.<br><strong>Al final</strong> enviamos una nueva versión.</p></div>
+              <div class="rule"><h3>Relación entre acciones</h3><p><strong>Cuando</strong> abrimos el documento, vimos el error.<br><strong>Mientras</strong> revisábamos los datos, llegó el mensaje del cliente.</p></div>
+            </div>
+            <div class="callout yellow" style="margin-top:14px">Los conectores temporales ayudan a que la otra persona no reciba una lista de hechos sin orden.</div>
+          </div>
+
+          <div class="tab-panel" id="panel-vocab" role="tabpanel" aria-labelledby="tab-vocab" data-panel="vocab">
+            <div class="grid-3">
+              <div class="rule"><h3>Problema</h3><p>un error<br>un retraso<br>falta de información</p></div>
+              <div class="rule"><h3>Qué ocurrió</h3><p>fallar<br>dejar de funcionar<br>retrasarse<br>faltar</p></div>
+              <div class="rule"><h3>Qué hacemos</h3><p>revisar<br>corregir<br>recuperar<br>resolver</p></div>
+            </div>
+            <div class="callout" style="margin-top:14px"><strong>Para proponer una acción</strong>, puedes recuperar estructuras conocidas: “Podemos revisar…”, “Vamos a enviar…”, “Tenemos que comprobar…”.</div>
+          </div>
+
+          <div class="button-row"><button class="btn btn-secondary" data-speak="Estábamos revisando el informe cuando el sistema falló. Faltaba una firma. Por eso, enviamos el documento más tarde.">Escuchar ejemplo</button><button class="btn btn-primary" id="finishTools" disabled>Ya revisé las cuatro herramientas</button></div>
+          <div class="feedback info show" id="tabsStatus" aria-live="polite">Has revisado 1 de 4 herramientas.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="5" aria-labelledby="title-5">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Comprueba que entendiste</div>
+          <h2 id="title-5">Elige la forma que expresa la idea correcta</h2>
+          <p>Estas preguntas comprueban significado y uso, no memoria de definiciones.</p>
+        </div>
+        <div class="card" id="quiz">
+          <div class="quiz-item" data-q="q1" data-answer="b">
+            <p>1. Quieres presentar una acción que estaba en curso cuando apareció el problema.</p>
+            <div class="radio-grid">
+              <label class="radio-option"><input type="radio" name="q1" value="a"> Revisamos el informe cuando el sistema fallaba.</label>
+              <label class="radio-option"><input type="radio" name="q1" value="b"> Estábamos revisando el informe cuando el sistema falló.</label>
+            </div>
+          </div>
+          <div class="quiz-item" data-q="q2" data-answer="a">
+            <p>2. Quieres explicar correctamente la causa del problema.</p>
+            <div class="radio-grid">
+              <label class="radio-option"><input type="radio" name="q2" value="a"> No pudimos terminar porque faltaba una firma.</label>
+              <label class="radio-option"><input type="radio" name="q2" value="b"> Faltaba una firma porque no pudimos terminar.</label>
+            </div>
+          </div>
+          <div class="quiz-item" data-q="q3" data-answer="b">
+            <p>3. Quieres presentar el retraso como consecuencia de la respuesta tardía del proveedor.</p>
+            <div class="radio-grid">
+              <label class="radio-option"><input type="radio" name="q3" value="a"> El proveedor respondió tarde porque la entrega se retrasó.</label>
+              <label class="radio-option"><input type="radio" name="q3" value="b"> El proveedor respondió tarde. Por eso, la entrega se retrasó.</label>
+            </div>
+          </div>
+          <div class="quiz-item" data-q="q4" data-answer="a">
+            <p>4. ¿Qué frase organiza mejor una secuencia de hechos?</p>
+            <div class="radio-grid">
+              <label class="radio-option"><input type="radio" name="q4" value="a"> Primero revisamos el archivo y después llamamos al cliente.</label>
+              <label class="radio-option"><input type="radio" name="q4" value="b"> Revisamos el archivo y llamamos al cliente.</label>
+            </div>
+          </div>
+          <div class="button-row"><button class="btn btn-primary" id="checkQuiz">Comprobar</button><button class="btn btn-ghost" id="resetQuiz">Intentar otra vez</button></div>
+          <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="6" aria-labelledby="title-6">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Construye</div>
+          <h2 id="title-6">Reconstruye la explicación</h2>
+          <p>Pulsa los hechos en el orden que permite entender el problema de principio a fin.</p>
+        </div>
+        <div class="card">
+          <div class="timeline-source" id="timelineSource">
+            <button class="timeline-card" data-order="3" aria-pressed="false">Por eso, enviamos el informe una hora más tarde.</button>
+            <button class="timeline-card" data-order="1" aria-pressed="false">Estábamos preparando el informe para el cliente.</button>
+            <button class="timeline-card" data-order="4" aria-pressed="false">Ahora vamos a comprobar que la copia automática funciona correctamente.</button>
+            <button class="timeline-card" data-order="2" aria-pressed="false">A las cuatro, el sistema falló y perdimos los últimos cambios.</button>
+          </div>
+          <div class="timeline-build" id="timelineBuild" aria-live="polite"><span class="muted small">Tu secuencia aparecerá aquí.</span></div>
+          <div class="button-row"><button class="btn btn-primary" id="checkTimeline" disabled>Comprobar orden</button><button class="btn btn-ghost" id="resetTimeline">Reiniciar</button></div>
+          <div class="feedback" id="timelineFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="7" aria-labelledby="title-7">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Recupera</div>
+          <h2 id="title-7">Ahora sin una respuesta completa</h2>
+          <p>Construye una explicación breve. Primero intenta recordar las herramientas; usa la pista solo si la necesitas.</p>
+        </div>
+        <div class="recall-card">
+          <div class="prompt-label">Situación</div>
+          <p><strong>El cliente no recibió la propuesta a tiempo.</strong> Tú estabas revisando el precio cuando descubriste que faltaba la aprobación final.</p>
+          <label for="recallText"><strong>Escribe 2–3 frases:</strong> contexto + hecho + causa o consecuencia.</label>
+          <textarea id="recallText" placeholder="Empieza con tus propias palabras…"></textarea>
+          <div class="button-row"><button class="btn btn-secondary" id="showHint" aria-expanded="false" aria-controls="recallHint">Ver pista</button><button class="btn btn-primary" id="compareRecall">Comparar con un modelo</button></div>
+          <div class="hint" id="recallHint">Puedes usar: <strong>estaba/estábamos + gerundio</strong> · <strong>cuando + indefinido</strong> · <strong>porque</strong> · <strong>por eso</strong>.</div>
+          <div class="model" id="recallModel"><strong>Un modelo posible:</strong><br>Estaba revisando el precio cuando vi que faltaba la aprobación final. No pudimos enviar la propuesta porque todavía no teníamos esa aprobación. Por eso, la enviamos más tarde.</div>
+          <div class="feedback info" id="recallFeedback" aria-live="polite">Escribe primero tu versión. El modelo sirve para comparar estructura, no para copiar una única respuesta correcta.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="8" aria-labelledby="title-8">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Aplícalo</div>
+          <h2 id="title-8">Explica el problema a tu supervisora</h2>
+          <p>Responde por etapas. Cada decisión lingüística debe ayudar a construir una explicación clara.</p>
+        </div>
+        <div class="card">
+          <div class="sim-progress" aria-hidden="true"><span class="sim-dot active"></span><span class="sim-dot"></span><span class="sim-dot"></span></div>
+
+          <div class="sim-stage active" data-stage="0">
+            <div class="sim-message"><strong>Supervisora:</strong> “¿Qué pasó con la entrega?”</div>
+            <p><strong>1. Da el contexto.</strong></p>
+            <div class="choice-list">
+              <button class="choice sim-choice" data-correct="true">Estábamos preparando el pedido cuando recibimos un mensaje del proveedor.</button>
+              <button class="choice sim-choice" data-correct="false">Preparamos el pedido cuando recibimos un mensaje del proveedor.</button>
+            </div>
+            <div class="feedback" aria-live="polite"></div>
+            <div class="button-row"><button class="btn btn-secondary sim-next">Siguiente parte</button></div>
+          </div>
+
+          <div class="sim-stage" data-stage="1">
+            <div class="sim-message"><strong>Supervisora:</strong> “¿Y cuál fue el problema?”</div>
+            <p><strong>2. Explica la causa.</strong></p>
+            <div class="choice-list">
+              <button class="choice sim-choice" data-correct="false">No pudimos confirmar la entrega. Por eso, el proveedor no tenía la fecha definitiva.</button>
+              <button class="choice sim-choice" data-correct="true">No pudimos confirmar la entrega porque el proveedor no tenía la fecha definitiva.</button>
+            </div>
+            <div class="feedback" aria-live="polite"></div>
+            <div class="button-row"><button class="btn btn-secondary sim-next">Siguiente parte</button></div>
+          </div>
+
+          <div class="sim-stage" data-stage="2">
+            <div class="sim-message"><strong>Supervisora:</strong> “¿Qué hacemos ahora?”</div>
+            <p><strong>3. Propón una acción.</strong></p>
+            <div class="choice-list">
+              <button class="choice sim-choice" data-correct="true">Podemos llamar al proveedor ahora y confirmar una nueva fecha.</button>
+              <button class="choice sim-choice" data-correct="false">Llamamos al proveedor ayer y confirmamos una nueva fecha.</button>
+            </div>
+            <div class="feedback" aria-live="polite"></div>
+            <div class="button-row"><button class="btn btn-secondary sim-next">Terminar simulación</button></div>
+          </div>
+          <div class="feedback info" id="simDone" aria-live="polite">Construye las tres partes: contexto → causa → acción.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="9" aria-labelledby="title-9">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Cambia la situación</div>
+          <h2 id="title-9">Ahora el problema es con un proveedor</h2>
+          <p>La estructura se mantiene, pero cambian los hechos. Completa la explicación con la forma que encaja en cada parte.</p>
+        </div>
+        <div class="card" id="variationActivity">
+          <p>“Ayer, mientras <select data-answer="revisabamos" aria-label="Primera forma verbal"><option value="">elige</option><option value="revisamos">revisamos</option><option value="revisabamos">revisábamos</option></select> el pedido, el proveedor <select data-answer="aviso" aria-label="Segunda forma verbal"><option value="">elige</option><option value="avisaba">avisaba</option><option value="aviso">avisó</option></select> que faltaba un producto. <select data-answer="poreso" aria-label="Conector de consecuencia"><option value="">elige</option><option value="sinembargo">Sin embargo</option><option value="poreso">Por eso</option></select>, cambiamos la fecha de entrega.”</p>
+          <div class="button-row"><button class="btn btn-primary" id="checkVariation">Comprobar</button><button class="btn btn-ghost" id="resetVariation">Intentar otra vez</button></div>
+          <div class="feedback" id="variationFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="10" aria-labelledby="title-10">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Ahora dilo tú</div>
+          <h2 id="title-10">Explica un problema en 60 segundos</h2>
+          <p>No leas una respuesta preparada. Usa el esquema como apoyo y construye tu propia intervención en voz alta.</p>
+        </div>
+        <div class="card">
+          <div class="grid-2">
+            <div>
+              <strong>Situación</strong>
+              <p class="muted">Un archivo importante llegó tarde. Explica qué estaba ocurriendo, qué pasó, por qué ocurrió y qué harás ahora.</p>
+              <div class="callout yellow"><strong>Intenta incluir:</strong><br>1) un imperfecto para el contexto;<br>2) un indefinido para el hecho;<br>3) “porque” o “por eso”;<br>4) una acción: “Podemos…”, “Vamos a…” o “Tenemos que…”.</div>
+            </div>
+            <div>
+              <strong>Palabras opcionales</strong>
+              <div class="word-bank"><span>revisar</span><span>faltar</span><span>retraso</span><span>archivo</span><span>cuando</span><span>primero</span><span>después</span><span>por eso</span><span>corregir</span></div>
+            </div>
+          </div>
+          <div class="timer-box">
+            <div><div class="small">Temporizador</div><div class="timer-time" id="timerTime">01:00</div></div>
+            <button class="btn btn-yellow" id="timerBtn">Iniciar 60 s</button>
+          </div>
+          <div class="button-row"><button class="btn btn-primary" id="finishSpeaking">Terminé mi respuesta</button></div>
+          <div class="feedback info" id="speakingFeedback" aria-live="polite">Puedes hacer la actividad sin grabarte. Lo importante es recuperar el español en tiempo real.</div>
+          <div class="card" style="margin-top:18px;background:#fbfcff">
+            <strong>¿Quieres llevarlo a una conversación real?</strong>
+            <p class="muted">Ya aprendiste y practicaste estas herramientas aquí. Ahora utilízalas con otras personas.</p>
+            <a class="btn btn-secondary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="11" aria-labelledby="title-11">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Revisa tu respuesta</div>
+          <h2 id="title-11">Comprueba lo que realmente utilizaste</h2>
+          <p>Marca los criterios que sí aparecieron en tu intervención. Si falta uno, vuelve a intentarlo antes de continuar.</p>
+        </div>
+        <div class="card">
+          <div class="checklist" id="selfChecklist">
+            <label class="check-row"><input type="checkbox"><span>Usé un pasado para dar contexto.</span></label>
+            <label class="check-row"><input type="checkbox"><span>Conté al menos un hecho terminado.</span></label>
+            <label class="check-row"><input type="checkbox"><span>Expliqué una causa o una consecuencia.</span></label>
+            <label class="check-row"><input type="checkbox"><span>Organicé los hechos con un conector temporal.</span></label>
+            <label class="check-row"><input type="checkbox"><span>Propuse una acción para continuar.</span></label>
+          </div>
+          <div class="button-row"><button class="btn btn-primary" id="checkSelf">Revisar mi checklist</button><button class="btn btn-secondary" id="redoSpeaking">Volver a practicar oralmente</button></div>
+          <div class="feedback" id="selfFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="12" aria-labelledby="title-12">
+      <div class="screen-inner">
+        <div class="section-head">
+          <div class="eyebrow">Llévalo a tu trabajo</div>
+          <h2 id="title-12">Elige dónde vas a usarlo</h2>
+          <p>Selecciona una situación real. La misión cambia de contexto, pero mantiene las mismas herramientas lingüísticas.</p>
+        </div>
+        <div class="card">
+          <div class="context-options" id="contextOptions">
+            <button class="context-btn" aria-pressed="false" data-context="reunión" data-mission="en una reunión">Reunión</button>
+            <button class="context-btn" aria-pressed="false" data-context="cliente" data-mission="con un cliente">Cliente</button>
+            <button class="context-btn" aria-pressed="false" data-context="proveedor" data-mission="con un proveedor">Proveedor</button>
+            <button class="context-btn" aria-pressed="false" data-context="equipo" data-mission="con tu equipo">Equipo</button>
+            <button class="context-btn" aria-pressed="false" data-context="proyecto" data-mission="en un proyecto">Proyecto</button>
+            <button class="context-btn" aria-pressed="false" data-context="mensaje" data-mission="en un mensaje de trabajo">Mensaje</button>
+          </div>
+          <div class="callout" id="missionBox" aria-live="polite" style="margin-top:18px">Elige una situación para crear tu micro misión.</div>
+          <div class="button-row"><button class="btn btn-primary" id="acceptMission" disabled>Guardar mi misión</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="13" aria-labelledby="title-13">
+      <div class="screen-inner">
+        <div class="final-banner">
+          <div class="eyebrow" style="color:white">Spanish at Work</div>
+          <h2 id="title-13">Ya puedes organizar mejor un problema en español</h2>
+          <p>La meta no era memorizar una historia. Era aprender a combinar recursos para explicar <strong>qué estaba pasando, qué ocurrió, por qué y qué sigue</strong>.</p>
+        </div>
+        <div class="summary-grid">
+          <div class="summary-item"><strong>Pasados</strong><br><span class="muted">Distingo contexto y hechos terminados en una explicación.</span></div>
+          <div class="summary-item"><strong>Conexión</strong><br><span class="muted">Uso causa, consecuencia y orden temporal para unir ideas.</span></div>
+          <div class="summary-item"><strong>Aplicación</strong><br><span class="muted">Puedo explicar un problema y proponer una acción sencilla.</span></div>
+        </div>
+        <div class="card">
+          <strong>Progreso de la lección: 100 %</strong>
+          <p class="muted">Puedes repetir una práctica o reiniciar toda la experiencia.</p>
+          <div class="button-row">
+            <button class="btn btn-secondary" id="repeatPractice">Repetir práctica oral</button>
+            <button class="btn btn-ghost" id="restartLesson">Reiniciar lección</button>
+            <a class="btn btn-primary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegación de la lección" id="bottomNav">
+    <div class="bottom-nav-inner">
+      <button class="btn btn-secondary" id="backBtn">Anterior</button>
+      <div class="step-label" id="stepLabel">Inicio</div>
+      <button class="btn btn-primary" id="nextBtn" disabled>Continuar</button>
+    </div>
+  </nav>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  const finalIndex = screens.length - 1;
+  const meaningfulSteps = finalIndex - 1; // Actividades 1–12; la portada y el cierre no cuentan como práctica.
+  const progressBar = document.getElementById('progressBar');
+  const progressTrack = document.getElementById('progressTrack');
+  const progressText = document.getElementById('progressText');
+  const stepLabel = document.getElementById('stepLabel');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const bottomNav = document.getElementById('bottomNav');
+  const storageKey = 'spanishAtWorkLesson10ProblemsV2';
+
+  let current = 0;
+  const completed = new Set();
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function safeLoad(){
+    try{
+      const raw = localStorage.getItem(storageKey);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      if(Array.isArray(data.completed)) data.completed.forEach(n => {
+        if(Number.isInteger(n) && n > 0 && n < finalIndex) completed.add(n);
+      });
+      if(Number.isInteger(data.current) && data.current >= 0 && data.current <= finalIndex){
+        current = data.current;
+      }
+    }catch(e){ /* La lección funciona sin almacenamiento local. */ }
+  }
+
+  function safeSave(){
+    try{
+      localStorage.setItem(storageKey, JSON.stringify({current, completed:Array.from(completed)}));
+    }catch(e){ /* La lección funciona sin almacenamiento local. */ }
+  }
+
+  function updateProgress(){
+    const pct = Math.round((completed.size / meaningfulSteps) * 100);
+    progressBar.style.width = pct + '%';
+    progressTrack.setAttribute('aria-valuenow',String(pct));
+    progressText.textContent = pct + ' %';
+  }
+
+  function renderScreen(){
+    screens.forEach((s,i) => s.classList.toggle('active', i === current));
+    backBtn.disabled = current === 0;
+    if(current === 0){
+      bottomNav.style.display = 'none';
+    }else{
+      bottomNav.style.display = 'block';
+    }
+    if(current === finalIndex){
+      nextBtn.style.display = 'none';
+      stepLabel.textContent = 'Lección completada';
+    }else{
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.disabled = !completed.has(current);
+      stepLabel.textContent = 'Paso ' + current + ' de ' + meaningfulSteps;
+    }
+    updateProgress();
+    safeSave();
+    const heading = screens[current].querySelector('h1,h2');
+    if(heading){
+      heading.setAttribute('tabindex','-1');
+      try{ heading.focus({preventScroll:true}); }catch(e){ heading.focus(); }
+    }
+    window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
+  }
+
+  function completeStep(step=current){
+    if(step > 0 && step < finalIndex){
+      completed.add(step);
+      if(step === current) nextBtn.disabled = false;
+      updateProgress();
+      safeSave();
+    }
+  }
+
+  function goTo(index){
+    if(index < 0 || index > finalIndex) return;
+    current = index;
+    renderScreen();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', () => {
+    goTo(1);
+  });
+  backBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => {
+    if(completed.has(current)) goTo(current + 1);
+  });
+
+  // Paso 1: activación
+  document.querySelectorAll('#activationChoices .choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#activationChoices .choice').forEach(b => b.classList.remove('selected','correct','wrong'));
+      btn.classList.add('selected');
+      const fb = document.getElementById('activationFeedback');
+      if(btn.dataset.value === 'event'){
+        btn.classList.add('correct');
+        fb.className = 'feedback good show';
+        fb.textContent = '“Dejó de funcionar” presenta un hecho puntual y terminado. “Estábamos preparando” describe el contexto que ya estaba en curso.';
+        completeStep(1);
+      }else{
+        btn.classList.add('wrong');
+        fb.className = 'feedback bad show';
+        fb.textContent = '“Estábamos preparando” sirve aquí para describir el contexto. Busca la acción puntual que cambió la situación.';
+      }
+    });
+  });
+
+  // Paso 2: capas de observación
+  const observed = new Set();
+  document.querySelectorAll('.observe-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const layer = btn.dataset.layer;
+      observed.add(layer);
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed','true');
+      const chat = document.getElementById('inputChat');
+      chat.classList.add('show-' + layer);
+      const fb = document.getElementById('observeFeedback');
+      if(observed.size === 3){
+        fb.textContent = 'Ya puedes ver el sistema completo: los pasados cuentan la historia, los conectores explican relaciones y los marcadores temporales organizan el orden.';
+        completeStep(2);
+      }else{
+        fb.textContent = 'Has activado ' + observed.size + ' de 3 capas. Sigue observando.';
+      }
+    });
+  });
+
+  // Paso 3: clasificación
+  document.getElementById('checkClassify').addEventListener('click', () => {
+    const selects = Array.from(document.querySelectorAll('#classifyActivity select'));
+    const fb = document.getElementById('classifyFeedback');
+    if(selects.some(s => !s.value)){
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Completa las cuatro clasificaciones antes de comprobar.';
+      return;
+    }
+    const wrong = selects.filter(s => s.value !== s.dataset.answer);
+    if(wrong.length === 0){
+      fb.className = 'feedback good show';
+      fb.textContent = 'Has separado correctamente las funciones: contexto, hecho terminado, causa y consecuencia. Esa estructura te permitirá organizar explicaciones más largas.';
+      completeStep(3);
+    }else{
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Hay ' + wrong.length + ' clasificación' + (wrong.length === 1 ? '' : 'es') + ' por revisar. Piensa qué pregunta responde cada fragmento: ¿qué estaba pasando?, ¿qué ocurrió?, ¿por qué?, ¿qué resultado produjo?';
+    }
+  });
+  document.getElementById('resetClassify').addEventListener('click', () => {
+    document.querySelectorAll('#classifyActivity select').forEach(s => s.value = '');
+    const fb = document.getElementById('classifyFeedback');
+    fb.className = 'feedback';
+    fb.textContent = '';
+  });
+
+  // Paso 4: pestañas
+  const visitedTabs = new Set(['past']);
+  function updateTabsStatus(){
+    const status = document.getElementById('tabsStatus');
+    status.textContent = 'Has revisado ' + visitedTabs.size + ' de 4 herramientas.';
+    document.getElementById('finishTools').disabled = visitedTabs.size < 4;
+  }
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  function activateTab(tab, moveFocus=false){
+    tabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected','false');
+      t.setAttribute('tabindex','-1');
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    tab.setAttribute('tabindex','0');
+    document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('active');
+    visitedTabs.add(tab.dataset.tab);
+    updateTabsStatus();
+    if(moveFocus) tab.focus();
+  }
+  tabs.forEach((tab,index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (event) => {
+      let targetIndex = null;
+      if(event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
+      if(event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
+      if(event.key === 'Home') targetIndex = 0;
+      if(event.key === 'End') targetIndex = tabs.length - 1;
+      if(targetIndex !== null){
+        event.preventDefault();
+        activateTab(tabs[targetIndex], true);
+      }
+    });
+  });
+  document.getElementById('finishTools').addEventListener('click', () => {
+    completeStep(4);
+    const status = document.getElementById('tabsStatus');
+    status.textContent = 'Has revisado las cuatro herramientas. Ahora comprueba si puedes elegirlas según la intención.';
+  });
+
+  document.querySelectorAll('[data-speak]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)){
+        btn.textContent = 'Audio no disponible en este navegador';
+        btn.disabled = true;
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(btn.dataset.speak);
+      u.lang = 'es-ES';
+      u.rate = 0.92;
+      window.speechSynthesis.speak(u);
+    });
+  });
+
+  // Paso 5: quiz
+  const quizExplanations = {
+    q1:'El imperfecto presenta la acción en curso (“estábamos revisando”) y el indefinido presenta el hecho puntual (“falló”).',
+    q2:'“Porque” introduce la causa: faltaba una firma.',
+    q3:'“Por eso” introduce el resultado de la situación anterior.',
+    q4:'“Primero” y “después” organizan la secuencia temporal.'
+  };
+  document.getElementById('checkQuiz').addEventListener('click', () => {
+    const items = Array.from(document.querySelectorAll('.quiz-item'));
+    const fb = document.getElementById('quizFeedback');
+    const unanswered = items.some(item => !item.querySelector('input:checked'));
+    if(unanswered){
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Responde las cuatro preguntas antes de comprobar.';
+      return;
+    }
+    const wrongItems = items.filter(item => item.querySelector('input:checked').value !== item.dataset.answer);
+    if(wrongItems.length === 0){
+      fb.className = 'feedback good show';
+      fb.textContent = 'Las cuatro decisiones son correctas. Estás distinguiendo contexto, hecho, causa, consecuencia y orden temporal.';
+      completeStep(5);
+    }else{
+      const first = wrongItems[0].dataset.q;
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Revisa ' + wrongItems.length + ' respuesta' + (wrongItems.length === 1 ? '' : 's') + '. Pista: ' + quizExplanations[first];
+    }
+  });
+  document.getElementById('resetQuiz').addEventListener('click', () => {
+    document.querySelectorAll('#quiz input[type="radio"]').forEach(i => i.checked = false);
+    const fb = document.getElementById('quizFeedback');
+    fb.className = 'feedback';
+    fb.textContent = '';
+  });
+
+  // Paso 6: línea de tiempo
+  const timelineSelection = [];
+  function renderTimeline(){
+    const box = document.getElementById('timelineBuild');
+    if(timelineSelection.length === 0){
+      box.innerHTML = '<span class="muted small">Tu secuencia aparecerá aquí.</span>';
+    }else{
+      box.innerHTML = timelineSelection.map((item,i) => '<div class="timeline-token"><span class="timeline-number">' + (i+1) + '</span><span>' + item.text + '</span></div>').join('');
+    }
+    document.getElementById('checkTimeline').disabled = timelineSelection.length !== 4;
+  }
+  document.querySelectorAll('.timeline-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(btn.classList.contains('picked')) return;
+      btn.classList.add('picked');
+      btn.setAttribute('aria-pressed','true');
+      timelineSelection.push({order:Number(btn.dataset.order),text:btn.textContent.trim(),el:btn});
+      renderTimeline();
+    });
+  });
+  document.getElementById('resetTimeline').addEventListener('click', () => {
+    timelineSelection.splice(0,timelineSelection.length);
+    document.querySelectorAll('.timeline-card').forEach(b => { b.classList.remove('picked'); b.setAttribute('aria-pressed','false'); });
+    renderTimeline();
+    const fb = document.getElementById('timelineFeedback');
+    fb.className = 'feedback';fb.textContent='';
+  });
+  document.getElementById('checkTimeline').addEventListener('click', () => {
+    const fb = document.getElementById('timelineFeedback');
+    const correct = timelineSelection.every((item,i) => item.order === i+1);
+    if(correct){
+      fb.className = 'feedback good show';
+      fb.textContent = 'El orden funciona: contexto → problema → consecuencia → acción. La explicación avanza cronológicamente y termina con un siguiente paso.';
+      completeStep(6);
+    }else{
+      fb.className = 'feedback bad show';
+      fb.textContent = 'El orden todavía mezcla partes de la historia. Empieza por el contexto, después cuenta el problema, conecta la consecuencia y termina con la acción.';
+    }
+  });
+
+  // Paso 7: recuperación abierta
+  document.getElementById('showHint').addEventListener('click', (event) => {
+    const hint = document.getElementById('recallHint');
+    const isOpen = hint.classList.toggle('show');
+    event.currentTarget.setAttribute('aria-expanded', String(isOpen));
+    event.currentTarget.textContent = isOpen ? 'Ocultar pista' : 'Ver pista';
+  });
+  document.getElementById('compareRecall').addEventListener('click', () => {
+    const text = document.getElementById('recallText').value.trim();
+    const fb = document.getElementById('recallFeedback');
+    if(text.length < 18){
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Escribe primero una explicación breve con al menos dos ideas. Después compárala con el modelo.';
+      return;
+    }
+    document.getElementById('recallModel').classList.add('show');
+    fb.className = 'feedback info show';
+    fb.textContent = 'Compara funciones, no palabras exactas: ¿tu versión incluye contexto, un hecho y una relación de causa o consecuencia?';
+    completeStep(7);
+  });
+
+  // Paso 8: simulación ramificada
+  let simStage = 0;
+  const simStages = Array.from(document.querySelectorAll('.sim-stage'));
+  const simDots = Array.from(document.querySelectorAll('.sim-dot'));
+  function updateSim(){
+    simStages.forEach((s,i) => s.classList.toggle('active', i === simStage));
+    simDots.forEach((d,i) => {
+      d.classList.toggle('done', i < simStage);
+      d.classList.toggle('active', i === simStage);
+    });
+  }
+  document.querySelectorAll('.sim-choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stage = btn.closest('.sim-stage');
+      const fb = stage.querySelector('.feedback');
+      stage.querySelectorAll('.sim-choice').forEach(b => b.classList.remove('correct','wrong'));
+      if(btn.dataset.correct === 'true'){
+        btn.classList.add('correct');
+        stage.querySelectorAll('.sim-choice').forEach(b => b.disabled = true);
+        fb.className = 'feedback good show';
+        if(simStage === 0) fb.textContent = 'Funciona: el imperfecto presenta la acción en curso y “recibimos” introduce el hecho que cambia la situación.';
+        if(simStage === 1) fb.textContent = 'Funciona: “porque” introduce de manera directa la causa del problema.';
+        if(simStage === 2) fb.textContent = 'Funciona: “podemos + infinitivo” propone una acción concreta sin introducir una estructura nueva innecesaria.';
+        const continueBtn = stage.querySelector('.sim-next');
+        continueBtn.classList.add('show');
+        continueBtn.focus();
+      }else{
+        btn.classList.add('wrong');
+        fb.className = 'feedback bad show';
+        if(simStage === 0) fb.textContent = '“Preparamos” presenta la preparación como un hecho terminado. Aquí necesitas decir que ya estábamos preparando el pedido cuando llegó el mensaje.';
+        if(simStage === 1) fb.textContent = 'La idea se entiende parcialmente, pero aquí necesitas introducir la causa de forma directa. Busca la opción con “porque”.';
+        if(simStage === 2) fb.textContent = '“Llamamos ayer” cuenta una acción pasada. La supervisora pregunta qué hacemos ahora: propone una acción con “podemos + infinitivo”.';
+      }
+    });
+  });
+  document.querySelectorAll('.sim-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stageNumber = Number(btn.closest('.sim-stage').dataset.stage);
+      if(stageNumber !== simStage || !btn.classList.contains('show')) return;
+      if(simStage < 2){
+        simStage += 1;
+        updateSim();
+        simStages[simStage].querySelector('.sim-choice').focus();
+      }else{
+        document.getElementById('simDone').textContent = 'Has construido una explicación completa: contexto → causa → acción. Ahora prueba la misma lengua con una situación diferente.';
+        completeStep(8);
+        nextBtn.focus();
+      }
+    });
+  });
+
+  // Paso 9: variación
+  document.getElementById('checkVariation').addEventListener('click', () => {
+    const selects = Array.from(document.querySelectorAll('#variationActivity select'));
+    const fb = document.getElementById('variationFeedback');
+    if(selects.some(s => !s.value)){
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Completa las tres partes antes de comprobar.';
+      return;
+    }
+    const wrong = selects.filter(s => s.value !== s.dataset.answer);
+    if(wrong.length === 0){
+      fb.className = 'feedback good show';
+      fb.textContent = 'Correcto: “revisábamos” crea el contexto, “avisó” presenta el hecho puntual y “por eso” introduce la consecuencia.';
+      completeStep(9);
+    }else{
+      fb.className = 'feedback bad show';
+      fb.textContent = 'Revisa la relación entre las acciones. Una estaba en curso, otra ocurrió de forma puntual y la última frase expresa el resultado.';
+    }
+  });
+  document.getElementById('resetVariation').addEventListener('click', () => {
+    document.querySelectorAll('#variationActivity select').forEach(s => s.value='');
+    const fb = document.getElementById('variationFeedback');fb.className='feedback';fb.textContent='';
+  });
+
+  // Paso 10: producción oral con temporizador
+  let timerId = null;
+  let seconds = 60;
+  const timerTime = document.getElementById('timerTime');
+  const timerBtn = document.getElementById('timerBtn');
+  function renderTimer(){
+    const m = String(Math.floor(seconds/60)).padStart(2,'0');
+    const s = String(seconds%60).padStart(2,'0');
+    timerTime.textContent = m + ':' + s;
+  }
+  function resetSpeakingPractice(){
+    if(timerId) clearInterval(timerId);
+    timerId = null;
+    seconds = 60;
+    renderTimer();
+    timerBtn.textContent = 'Iniciar 60 s';
+    const fb = document.getElementById('speakingFeedback');
+    fb.className = 'feedback info';
+    fb.textContent = 'Puedes hacer la actividad sin grabarte. Lo importante es recuperar el español en tiempo real.';
+  }
+  timerBtn.addEventListener('click', () => {
+    if(timerId){
+      clearInterval(timerId);timerId=null;timerBtn.textContent='Reanudar';return;
+    }
+    if(seconds === 0) seconds = 60;
+    timerBtn.textContent='Pausar';
+    timerId = setInterval(() => {
+      seconds -= 1;renderTimer();
+      if(seconds <= 0){
+        clearInterval(timerId);timerId=null;timerBtn.textContent='Repetir 60 s';
+        const fb = document.getElementById('speakingFeedback');
+        fb.className='feedback info show';
+        fb.textContent='Tiempo terminado. Cierra tu explicación con una acción concreta y después revisa tu respuesta.';
+      }
+    },1000);
+  });
+  document.getElementById('finishSpeaking').addEventListener('click', () => {
+    if(timerId){clearInterval(timerId);timerId=null;timerBtn.textContent='Reanudar';}
+    const fb = document.getElementById('speakingFeedback');
+    fb.className='feedback good show';
+    fb.textContent='Producción completada. Ahora revisa si realmente utilizaste las herramientas de la lección, no solo si lograste hablar durante un minuto.';
+    completeStep(10);
+  });
+
+  // Paso 11: autoevaluación
+  document.getElementById('checkSelf').addEventListener('click', () => {
+    const checks = Array.from(document.querySelectorAll('#selfChecklist input[type="checkbox"]'));
+    const count = checks.filter(c => c.checked).length;
+    const fb = document.getElementById('selfFeedback');
+    if(count === 5){
+      fb.className='feedback good show';
+      fb.textContent='Según tu autoevaluación, utilizaste las cinco funciones. Intenta repetirla una vez más con menos apoyo cuando tengas oportunidad.';
+      completeStep(11);
+    }else{
+      fb.className='feedback info show';
+      fb.textContent='Marcaste ' + count + ' de 5 criterios. No necesitas perfección, pero conviene volver a practicar e intentar incorporar lo que falta.';
+    }
+  });
+  document.getElementById('redoSpeaking').addEventListener('click', () => { resetSpeakingPractice(); goTo(10); });
+
+  // Paso 12: transferencia
+  let selectedContext = '';
+  document.querySelectorAll('.context-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.context-btn').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed','true');
+      selectedContext = btn.dataset.context;
+      const missionContext = btn.dataset.mission;
+      document.getElementById('missionBox').innerHTML = '<strong>Tu micro misión:</strong> La próxima vez que necesites explicar un problema <strong>' + missionContext + '</strong>, utiliza: un pasado para el contexto, un hecho terminado, un conector de causa o consecuencia y una acción para continuar.';
+      document.getElementById('acceptMission').disabled = false;
+    });
+  });
+  document.getElementById('acceptMission').addEventListener('click', () => {
+    if(!selectedContext) return;
+    completeStep(12);
+    goTo(13);
+  });
+
+  document.getElementById('repeatPractice').addEventListener('click', () => { resetSpeakingPractice(); goTo(10); });
+  document.getElementById('restartLesson').addEventListener('click', () => {
+    try{ localStorage.removeItem(storageKey); }catch(e){}
+    completed.clear();current=0;location.reload();
+  });
+
+  safeLoad();
+  // Si el progreso guardado apunta a la pantalla final sin completar todos los pasos, vuelve al primer paso pendiente.
+  if(current === finalIndex && completed.size < meaningfulSteps){
+    const pending = Array.from({length:meaningfulSteps},(_,i)=>i + 1).find(i => !completed.has(i));
+    current = Number.isInteger(pending) ? pending : 0;
+  }
+  renderScreen();
+  updateTabsStatus();
+})();
+</script>
+</body>
+</html>

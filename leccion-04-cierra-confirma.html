@@ -132,7 +132,7 @@
     .meeting-brief{background:var(--blue-soft);border-radius:18px;padding:20px;border-left:5px solid var(--blue)}
     .dialogue{display:grid;gap:12px}
     .utterance{border:1px solid var(--line);border-radius:16px;padding:15px 16px;background:#fff;position:relative}
-    .utterance button{width:100%;text-align:left;border:none;background:transparent;padding:0;color:inherit;cursor:pointer;line-height:1.55}
+    .utterance button{width:100%;min-height:44px;text-align:left;border:none;background:transparent;padding:8px 0;color:inherit;cursor:pointer;line-height:1.55}
     .utterance.done{border-color:#8fb1e2;background:#f6f9ff}
     .utterance .function{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed #bdd0ec;color:var(--blue);font-weight:600;font-size:.88rem}
     .utterance.done .function{display:block}
@@ -425,7 +425,7 @@
         <div class="builder-wrap">
           <div class="prompt-box">
             <h3>Objetivo</h3>
-            <p>Construye una frase para introducir el último próximo paso.</p>
+            <p>Construye una frase para introducir el último punto: un próximo paso.</p>
             <p class="note">Toca las palabras en el orden correcto.</p>
             <div class="sentence-slot" id="sentence-slot" aria-live="polite" aria-label="Frase construida"></div>
             <div class="token-bank" id="token-bank"></div>
@@ -604,27 +604,13 @@
     'Lección completada.'
   ];
 
-  function safeSave(){
-    try{ localStorage.setItem('saw_l4_progress', JSON.stringify({current, completed:[...completed]})); }catch(e){}
-  }
-  function safeLoad(){
-    try{
-      const raw = localStorage.getItem('saw_l4_progress');
-      if(!raw) return;
-      const data = JSON.parse(raw);
-      if(Number.isInteger(data.current) && data.current >= 0 && data.current < totalScreens) current = data.current;
-      if(Array.isArray(data.completed)) data.completed.forEach(n=>{ if(Number.isInteger(n) && n>=0 && n<totalScreens) completed.add(n); });
-    }catch(e){}
-  }
-  function clearSaved(){ try{ localStorage.removeItem('saw_l4_progress'); }catch(e){} }
-
   function screenCanAdvance(index){
     if(index === 0) return false;
     return completed.has(index);
   }
 
   function updateProgress(){
-    const meaningful = Math.max(0, completed.size - 1);
+    const meaningful = Array.from(completed).filter(i=>i > 0 && i < totalScreens - 1).length;
     const maxMeaningful = totalScreens - 2;
     const pct = current === totalScreens - 1 ? 100 : Math.min(99, Math.round((meaningful / maxMeaningful) * 100));
     els.progressBar.style.width = pct + '%';
@@ -642,9 +628,7 @@
     if(current === 10 && index !== 10) stopTimer();
     screens.forEach((s,i)=>s.classList.toggle('active', i === index));
     current = index;
-    if(current === totalScreens - 1){ completed.add(current); }
     updateProgress();
-    safeSave();
     window.scrollTo({top:0,behavior:'smooth'});
     if(focusTitle){
       const heading = screens[current].querySelector('h1,h2');
@@ -655,14 +639,12 @@
   function completeScreen(index=current){
     completed.add(index);
     updateProgress();
-    safeSave();
   }
 
   function invalidateScreen(index=current){
     if(completed.delete(index)){
       updateProgress();
-      safeSave();
-    }
+      }
   }
 
   els.prev.addEventListener('click',()=>showScreen(current-1));
@@ -783,11 +765,19 @@
 
   // Screen 7 · recall
   document.querySelectorAll('.recall-card').forEach((card,idx)=>{
+    const input=card.querySelector('input');
+    const model=card.querySelector('.model');
     card.querySelector('.hint-btn').addEventListener('click',()=>card.querySelector('.hint').classList.toggle('show'));
+    input.addEventListener('input',()=>{
+      if(state.recalls.delete(idx)){
+        model.classList.remove('show');
+        document.getElementById('recall-count').textContent=state.recalls.size+' / 3 comparadas';
+        if(state.recalls.size<3) invalidateScreen(7);
+      }
+    });
     card.querySelector('.compare-btn').addEventListener('click',()=>{
-      const input=card.querySelector('input');
       if(!input.value.trim()){ input.focus(); return; }
-      card.querySelector('.model').classList.add('show');
+      model.classList.add('show');
       state.recalls.add(idx);
       document.getElementById('recall-count').textContent=state.recalls.size+' / 3 comparadas';
       if(state.recalls.size===3) completeScreen(7);
@@ -889,10 +879,11 @@
   // Screen 10 · timer / production
   const timerValue=document.getElementById('timer-value');
   function stopTimer(){ if(timerId){clearInterval(timerId);timerId=null;} }
-  function resetTimer(){stopTimer();timerRemaining=45;timerValue.textContent='45';}
+  function resetTimer(){stopTimer();timerRemaining=45;timerValue.textContent='45';invalidateScreen(10);}
   document.getElementById('timer-start').addEventListener('click',()=>{
     if(timerId) return;
-    if(timerRemaining<=0) resetTimer();
+    if(completed.has(10) || timerRemaining<=0) resetTimer();
+    else if(timerRemaining < 45){ timerRemaining=45; timerValue.textContent='45'; }
     timerId=setInterval(()=>{
       timerRemaining--; timerValue.textContent=String(timerRemaining);
       if(timerRemaining<=0){stopTimer();completeScreen(10);}
@@ -940,7 +931,7 @@
     showScreen(8);
   });
   document.getElementById('restart-lesson').addEventListener('click',()=>{
-    clearSaved(); window.location.reload();
+    window.location.reload();
   });
 
   // Keyboard arrows only when focus is not in a form control.
@@ -951,7 +942,6 @@
     if(e.key==='ArrowRight' && current<totalScreens-1 && screenCanAdvance(current)) showScreen(current+1);
   });
 
-  safeLoad();
   showScreen(current,false);
 })();
 </script>

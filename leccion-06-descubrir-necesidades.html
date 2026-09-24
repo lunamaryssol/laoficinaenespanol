@@ -277,7 +277,7 @@
           <div class="brand-text"><strong>Spanish at Work</strong><span>Lección 6 · Español para trabajar</span></div>
         </div>
         <div class="progress-label" id="progressLabel">0 %</div>
-        <div class="progress-track" aria-label="Progreso de la lección"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
       </div>
     </header>
 
@@ -362,13 +362,13 @@
         </div>
         <div class="card">
           <div class="tabs" role="tablist" aria-label="Herramientas de la lección">
-            <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="interrogativos">Interrogativos</button>
-            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="preguntas">Preguntas</button>
-            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="pronombres">Pronombres</button>
-            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="reformula">Reformula</button>
+            <button class="tab-btn active" id="tab-interrogativos" type="button" role="tab" aria-selected="true" aria-controls="panel-interrogativos" tabindex="0" data-tab="interrogativos">Interrogativos</button>
+            <button class="tab-btn" id="tab-preguntas" type="button" role="tab" aria-selected="false" aria-controls="panel-preguntas" tabindex="-1" data-tab="preguntas">Preguntas</button>
+            <button class="tab-btn" id="tab-pronombres" type="button" role="tab" aria-selected="false" aria-controls="panel-pronombres" tabindex="-1" data-tab="pronombres">Pronombres</button>
+            <button class="tab-btn" id="tab-reformula" type="button" role="tab" aria-selected="false" aria-controls="panel-reformula" tabindex="-1" data-tab="reformula">Reformula</button>
           </div>
 
-          <div class="tab-panel active" data-panel="interrogativos">
+          <div class="tab-panel active" id="panel-interrogativos" role="tabpanel" aria-labelledby="tab-interrogativos" data-panel="interrogativos">
             <h3>1. Elige el interrogativo según lo que falta</h3>
             <table class="mini-table">
               <thead><tr><th>Buscas...</th><th>Pregunta útil</th></tr></thead>
@@ -386,7 +386,7 @@
             <div class="rule"><strong>Observa:</strong> qué, cuál, cómo, cuánto, cuándo, dónde y por qué llevan tilde cuando introducen una pregunta directa.</div>
           </div>
 
-          <div class="tab-panel" data-panel="preguntas">
+          <div class="tab-panel" id="panel-preguntas" role="tabpanel" aria-labelledby="tab-preguntas" data-panel="preguntas">
             <h3>2. Construye la pregunta alrededor del verbo</h3>
             <ul class="example-list">
               <li><strong>Interrogativo + verbo + complemento:</strong> ¿Qué necesitan cambiar?</li>
@@ -398,7 +398,7 @@
             <p class="small">El sujeto puede aparecer, pero muchas veces no es necesario: “¿Necesitan cambiarlo?” ya indica quién realiza la acción por la forma verbal y el contexto.</p>
           </div>
 
-          <div class="tab-panel" data-panel="pronombres">
+          <div class="tab-panel" id="panel-pronombres" role="tabpanel" aria-labelledby="tab-pronombres" data-panel="pronombres">
             <h3>3. Evita repetir un objeto que ya está claro</h3>
             <p>En las preguntas de esta lección, cuando la otra persona ya mencionó una cosa, puedes retomarla con <strong>lo, la, los, las</strong>. En estos ejemplos, el pronombre va delante del verbo conjugado.</p>
             <ul class="example-list">
@@ -410,7 +410,7 @@
             <div class="rule">El pronombre debe coincidir en género y número con la palabra que reemplaza: <strong>el informe → lo</strong>, <strong>la propuesta → la</strong>, <strong>los datos → los</strong>, <strong>las facturas → las</strong>.</div>
           </div>
 
-          <div class="tab-panel" data-panel="reformula">
+          <div class="tab-panel" id="panel-reformula" role="tabpanel" aria-labelledby="tab-reformula" data-panel="reformula">
             <h3>4. Reformula para comprobar comprensión</h3>
             <p>Después de escuchar varias respuestas, puedes resumir lo que entendiste y pedir confirmación.</p>
             <ul class="example-list">
@@ -671,6 +671,7 @@
       const navStatus = document.getElementById("navStatus");
       const progressFill = document.getElementById("progressFill");
       const progressLabel = document.getElementById("progressLabel");
+      const progressTrack = document.getElementById("progressTrack");
       const activityScreens = screens.filter(s => s.dataset.activity);
       const requiredActivities = activityScreens.map(s => s.dataset.activity);
       const completed = new Set();
@@ -678,6 +679,12 @@
 
       function normalizeText(value) {
         return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      }
+
+      function containsPhrase(value, phrase) {
+        const text = normalizeText(value);
+        const key = normalizeText(phrase).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return new RegExp(`(^|[^a-z0-9])${key}(?=$|[^a-z0-9])`).test(text);
       }
 
       function markComplete(activity) {
@@ -699,6 +706,7 @@
         const shown = current === screens.length - 1 ? 100 : Math.min(pct, 99);
         progressFill.style.width = `${shown}%`;
         progressLabel.textContent = `${shown} %`;
+        progressTrack.setAttribute("aria-valuenow", String(shown));
       }
 
       function currentActivityComplete() {
@@ -758,8 +766,15 @@
       });
 
       // Descubre el patrón
+      const patternSelects = [...document.querySelectorAll("#patternGrid select")];
+      patternSelects.forEach(select => {
+        select.addEventListener("change", () => {
+          markIncomplete("pattern");
+          document.getElementById("patternFeedback").className = "feedback";
+        });
+      });
       document.getElementById("checkPattern").addEventListener("click", () => {
-        const selects = [...document.querySelectorAll("#patternGrid select")];
+        const selects = patternSelects;
         const ok = selects.every(s => s.value === s.dataset.answer);
         const feedback = document.getElementById("patternFeedback");
         if (ok) {
@@ -774,13 +789,30 @@
       });
 
       // Tabs
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll(".tab-btn").forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected", "false"); });
-          document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-          btn.classList.add("active");
-          btn.setAttribute("aria-selected", "true");
-          document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add("active");
+      const tabButtons = [...document.querySelectorAll(".tab-btn")];
+      function activateTab(btn, moveFocus = false) {
+        tabButtons.forEach(b => {
+          const active = b === btn;
+          b.classList.toggle("active", active);
+          b.setAttribute("aria-selected", active ? "true" : "false");
+          b.setAttribute("tabindex", active ? "0" : "-1");
+        });
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        document.getElementById(btn.getAttribute("aria-controls")).classList.add("active");
+        if (moveFocus) btn.focus();
+      }
+      tabButtons.forEach((btn, index) => {
+        btn.addEventListener("click", () => activateTab(btn));
+        btn.addEventListener("keydown", event => {
+          let targetIndex = null;
+          if (event.key === "ArrowRight") targetIndex = (index + 1) % tabButtons.length;
+          if (event.key === "ArrowLeft") targetIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+          if (event.key === "Home") targetIndex = 0;
+          if (event.key === "End") targetIndex = tabButtons.length - 1;
+          if (targetIndex !== null) {
+            event.preventDefault();
+            activateTab(tabButtons[targetIndex], true);
+          }
         });
       });
 
@@ -875,6 +907,13 @@
       document.querySelectorAll(".hint-btn").forEach(btn => {
         btn.addEventListener("click", () => btn.parentElement.querySelector(".hint").classList.toggle("show"));
       });
+      document.querySelectorAll(".prompt-card input").forEach(input => {
+        input.addEventListener("input", () => {
+          markIncomplete("recall");
+          input.closest(".prompt-card").querySelector(".feedback").className = "feedback";
+          document.getElementById("recallSummary").className = "feedback";
+        });
+      });
       document.getElementById("checkRecall").addEventListener("click", () => {
         const cards = [...document.querySelectorAll(".prompt-card")];
         let correct = 0;
@@ -882,8 +921,8 @@
           const input = card.querySelector("input");
           const feedback = card.querySelector(".feedback");
           const value = normalizeText(input.value);
-          const keys = card.dataset.keywords.split("|").map(normalizeText);
-          const ok = value.length > 4 && keys.some(k => value.includes(k));
+          const keys = card.dataset.keywords.split("|");
+          const ok = value.length > 4 && keys.some(k => containsPhrase(value, k));
           if (ok) {
             correct++;
             feedback.className = "feedback show good";
@@ -968,10 +1007,15 @@
       }
       renderSim();
 
+      document.getElementById("simInput").addEventListener("input", () => {
+        markIncomplete("simulation");
+        document.getElementById("simFeedback").className = "feedback";
+      });
+
       document.getElementById("checkSimulation").addEventListener("click", () => {
         const value = normalizeText(document.getElementById("simInput").value);
         const feedback = document.getElementById("simFeedback");
-        const ok = value.length > 20 && ["entonces", "si entiendo bien", "es decir"].some(k => value.includes(normalizeText(k)));
+        const ok = value.length > 20 && ["entonces", "si entiendo bien", "es decir"].some(k => containsPhrase(value, k));
         if (ok) {
           feedback.className = "feedback show good";
           feedback.textContent = "La reformulación contiene una señal clara de resumen. Comprueba que incluya el problema principal y al menos un detalle que descubriste.";
@@ -984,14 +1028,21 @@
       });
 
       // Variación
+      [document.getElementById("variationQuestion"), document.getElementById("variationReform")].forEach(field => {
+        field.addEventListener("input", () => {
+          markIncomplete("variation");
+          document.getElementById("variationFeedback").className = "feedback";
+        });
+      });
       document.getElementById("checkVariation").addEventListener("click", () => {
         const q = normalizeText(document.getElementById("variationQuestion").value);
         const r = normalizeText(document.getElementById("variationReform").value);
         const feedback = document.getElementById("variationFeedback");
-        const hasInterrogative = ["que", "cual", "como", "cuanto", "cuando", "para que", "por que", "donde"].some(k => q.includes(k));
-        const hasQuestionMark = document.getElementById("variationQuestion").value.includes("?") || document.getElementById("variationQuestion").value.includes("¿");
-        const hasReform = ["entonces", "si entiendo bien", "es decir"].some(k => r.includes(normalizeText(k)));
-        if (q.length > 8 && hasInterrogative && hasQuestionMark && r.length > 15 && hasReform) {
+        const hasInterrogative = ["que", "cual", "como", "cuanto", "cuando", "para que", "por que", "donde"].some(k => containsPhrase(q, k));
+        const rawQuestion = document.getElementById("variationQuestion").value;
+        const hasQuestionMarks = rawQuestion.includes("¿") && rawQuestion.includes("?");
+        const hasReform = ["entonces", "si entiendo bien", "es decir"].some(k => containsPhrase(r, k));
+        if (q.length > 8 && hasInterrogative && hasQuestionMarks && r.length > 15 && hasReform) {
           feedback.className = "feedback show good";
           feedback.textContent = "Adaptaste las mismas herramientas a otro interlocutor: una pregunta para profundizar y una reformulación para confirmar.";
           markComplete("variation");
@@ -1054,6 +1105,12 @@
       });
 
       // Autoevaluación
+      document.querySelectorAll("#reviewChecklist input[type='checkbox']").forEach(box => {
+        box.addEventListener("change", () => {
+          markIncomplete("review");
+          document.getElementById("reviewFeedback").className = "feedback";
+        });
+      });
       document.getElementById("checkReview").addEventListener("click", () => {
         const boxes = [...document.querySelectorAll("#reviewChecklist input[type='checkbox']")];
         const count = boxes.filter(b => b.checked).length;
@@ -1117,9 +1174,11 @@
         document.querySelectorAll(".hint").forEach(el => el.classList.remove("show"));
         document.querySelectorAll(".mission-btn").forEach(el => el.classList.remove("active"));
         document.getElementById("missionOutput").classList.remove("show");
-        document.querySelectorAll(".tab-btn").forEach((el, index) => {
-          el.classList.toggle("active", index === 0);
-          el.setAttribute("aria-selected", index === 0 ? "true" : "false");
+        tabButtons.forEach((el, index) => {
+          const active = index === 0;
+          el.classList.toggle("active", active);
+          el.setAttribute("aria-selected", active ? "true" : "false");
+          el.setAttribute("tabindex", active ? "0" : "-1");
         });
         document.querySelectorAll(".tab-panel").forEach((el, index) => el.classList.toggle("active", index === 0));
         builtTokens = [];

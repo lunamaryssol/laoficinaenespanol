@@ -527,7 +527,7 @@
           </div>
         </div>
         <div class="btn-row"><button class="btn btn-primary" id="checkTime" type="button">Comprobar</button></div>
-        <div class="feedback" id="timeFeedback" aria-live="polite">Observa si la expresión indica continuidad, finalización, momento actual o límite.</div>
+        <div class="feedback" id="timeFeedback" aria-live="polite">Observa si la expresión indica continuidad, resultado alcanzado, momento actual o límite.</div>
       </div>
       <div class="nav-row">
         <button class="btn btn-ghost prev" type="button">Anterior</button>
@@ -732,8 +732,8 @@
         <p><strong>Herramientas trabajadas:</strong> interrogativos, presente, estar + gerundio, seguir + gerundio, acabar de + infinitivo y expresiones temporales.</p>
         <p><strong>Aplicación:</strong> preguntar por avances, pendientes, fechas, próximos pasos y estado de tareas dentro de situaciones profesionales.</p>
         <div class="summary-grid">
-          <div class="summary-item"><strong>Puedo elegir el interrogativo</strong>según si necesito estado, información, fecha, persona u opción.</div>
-          <div class="summary-item"><strong>Puedo distinguir el estado</strong>entre un hecho actual, una acción en proceso, una acción que continúa y una acción recién completada.</div>
+          <div class="summary-item"><strong>Puedo elegir el interrogativo</strong>según si necesito saber el estado, obtener información, conocer una fecha, identificar una persona o elegir una opción.</div>
+          <div class="summary-item"><strong>Puedo distinguir el significado de una actualización</strong>y reconocer si expresa un hecho actual, una acción en proceso, una acción que continúa o una acción recién completada.</div>
           <div class="summary-item"><strong>Puedo hacer seguimiento</strong>con preguntas propias y menos dependencia de modelos completos.</div>
         </div>
         <div class="feedback success"><strong>Progreso: 100 %.</strong> La práctica final consiste en recuperar estas preguntas cuando no conoces de antemano la respuesta de la otra persona.</div>
@@ -912,6 +912,7 @@
         }else{
           fb.className = "feedback error";
           fb.textContent = btn.textContent.includes("Qué") ? "“Qué” pediría información sobre la tarea pendiente, no la fecha." : "“Quién” pediría una persona. Aquí falta saber cuándo termina.";
+          markUndone("warmup");
         }
       });
     });
@@ -981,6 +982,7 @@
       if(unanswered){
         fb.className = "feedback error";
         fb.textContent = "Completa las cuatro frases antes de comprobar.";
+        markUndone("time");
         return;
       }
       if(correctCount === selects.length){
@@ -990,8 +992,12 @@
       }else{
         fb.className = "feedback error";
         fb.textContent = "Hay " + (selects.length - correctCount) + " respuesta(s) para revisar. Piensa qué relación temporal necesita cada frase y vuelve a intentarlo.";
+        markUndone("time");
       }
     });
+    document.querySelectorAll("#timeExercise select").forEach(select => select.addEventListener("change", () => {
+      if(completed.has("time")) markUndone("time");
+    }));
 
     const builderSteps = [
       {prompt:"Pregunta por el estado general de la propuesta.", tokens:["¿Cómo","va","la propuesta","?"], answer:"¿Cómo va la propuesta ?"},
@@ -1016,6 +1022,7 @@
         b.dataset.token = text; b.dataset.index = String(i);
         b.addEventListener("click", () => {
           if(b.classList.contains("selected")) return;
+          if(completed.has("builder")) markUndone("builder");
           b.classList.add("selected");
           b.disabled = true;
           builderSelection.push({text,source:b});
@@ -1032,6 +1039,7 @@
         b.type = "button"; b.className = "built-token"; b.textContent = item.text;
         b.setAttribute("aria-label","Quitar " + item.text);
         b.addEventListener("click", () => {
+          if(completed.has("builder")) markUndone("builder");
           item.source.classList.remove("selected");
           item.source.disabled = false;
           builderSelection.splice(index,1);
@@ -1040,7 +1048,10 @@
         out.appendChild(b);
       });
     }
-    document.getElementById("resetBuilder").addEventListener("click", renderBuilder);
+    document.getElementById("resetBuilder").addEventListener("click", () => {
+      if(completed.has("builder")) markUndone("builder");
+      renderBuilder();
+    });
     document.getElementById("checkBuilder").addEventListener("click", () => {
       const built = builderSelection.map(x => x.text).join(" ");
       const fb = document.getElementById("builderFeedback");
@@ -1070,7 +1081,7 @@
       const unanswered = selects.some(s => !s.value);
       const correctCount = selects.filter(s => s.value === s.dataset.answer).length;
       const fb = document.getElementById("statusFeedback");
-      if(unanswered){ fb.className="feedback error"; fb.textContent="Clasifica las cuatro actualizaciones antes de comprobar."; return; }
+      if(unanswered){ fb.className="feedback error"; fb.textContent="Clasifica las cuatro actualizaciones antes de comprobar."; markUndone("status"); return; }
       if(correctCount === selects.length){
         fb.className="feedback success";
         fb.textContent="Correcto. “Falta una aprobación” expresa un hecho o estado actual; “estar + gerundio” enfoca el proceso; “seguir + gerundio” añade continuidad; “acabar de + infinitivo” marca una acción muy reciente.";
@@ -1078,8 +1089,12 @@
       }else{
         fb.className="feedback error";
         fb.textContent="Revisa " + (selects.length-correctCount) + " clasificación(es). Pregúntate si la acción ocurre, continúa o acaba de terminar.";
+        markUndone("status");
       }
     });
+    document.querySelectorAll("#statusBoard select").forEach(select => select.addEventListener("change", () => {
+      if(completed.has("status")) markUndone("status");
+    }));
 
     const simSteps = [
       {
@@ -1175,35 +1190,22 @@
       hint.classList.toggle("show",show);
       document.getElementById("openHintBtn").setAttribute("aria-expanded",show ? "true":"false");
     });
+    ["openQ1","openQ2"].forEach(id => document.getElementById(id).addEventListener("input", () => {
+      if(completed.has("open")) markUndone("open");
+    }));
     document.getElementById("checkOpen").addEventListener("click", () => {
       const q1 = normalizeText(document.getElementById("openQ1").value);
       const q2 = normalizeText(document.getElementById("openQ2").value);
       const fb = document.getElementById("openFeedback");
       if(!q1 || !q2){ fb.className="feedback error"; fb.textContent="Escribe las dos preguntas antes de revisar."; return; }
-      const q1Patterns = [
-        /^que falta$/,
-        /^que falta (por )?(hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir|aprobar)\b/,
-        /^que falta (del|de la|de los|de las|en el|en la|en los|en las) .+/,
-        /^que queda(\s+(pendiente|por (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir)))?$/,
-        /^que (necesito|necesitamos|necesita|necesitan|debo|debemos|debe|deben) (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir)\b/,
-        /^que (tenemos|tiene|tienen) pendiente(s)?$/,
-        /^que hay que (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir)\b/,
-        /^que esta pendiente$/
-      ];
-      const q2Patterns = [
-        /^para cuando (esta|estan|estara|estaran) (listo|lista|listos|listas|terminado|terminada|terminados|terminadas|disponible|disponibles)\b/,
-        /^para cuando (termina|terminan|finaliza|finalizan|acaba|acaban|llega|llegan|envia|envian|entrega|entregan)\b/,
-        /^cuando (termina|terminan|finaliza|finalizan|acaba|acaban|llega|llegan|responde|responden|envia|envian|entrega|entregan|confirma|confirman|empieza|empiezan|comienza|comienzan)\b/,
-        /^cuando se (termina|terminan|finaliza|finalizan|acaba|acaban|envia|envian|entrega|entregan|confirma|confirman|empieza|empiezan|comienza|comienzan)\b/,
-        /^cuando (es|son|sera|seran) (la |el |las |los |una |un )?(fecha|entrega|reunion|revision|presentacion|llamada|plazo|cierre|envio|reunion final)\b/,
-        /^cuando (esta|estan|estara|estaran) (listo|lista|listos|listas|terminado|terminada|terminados|terminadas|disponible|disponibles)\b/,
-        /^cuando (puedo|puedes|puede|podemos|pueden|debo|debes|debe|debemos|deben) (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir|entregar|finalizar)\b/,
-        /^cuando (voy|vas|va|vamos|van) a (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir|entregar|finalizar)\b/,
-        /^cuando (tenemos|tiene|tienen) que (hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir|entregar|finalizar)\b/,
-        /^cuando (tendremos|tendra|tendran) (el|la|los|las)? ?(informe|revision|propuesta|documento|confirmacion|entrega) (listo|lista|listos|listas|terminado|terminada|terminados|terminadas)?$/
-      ];
-      const q1ok = q1Patterns.some(pattern => pattern.test(q1));
-      const q2ok = q2Patterns.some(pattern => pattern.test(q2));
+      const q1StartsWithQue = /^que\b/.test(q1);
+      const q1PendingCue = /\b(falta(?:n)?|queda(?:n)?|pendiente(?:s)?|necesit(?:o|amos|a|an)|hay que|ten(?:go|emos|e|en) que|deb(?:o|emos|e|en)|por (?:hacer|revisar|confirmar|completar|terminar|enviar|preparar|corregir|aprobar))\b/.test(q1);
+      const q1ok = q1StartsWithQue && q1.split(" ").length >= 3 && q1PendingCue;
+
+      const q2StartsWithCuando = /^(?:para )?cuando\b/.test(q2);
+      const q2VerbCue = /\b(termin\w*|finaliz\w*|acab\w*|tendr\w*|estar\w*|qued\w*|entreg\w*|envi\w*|confirm\w*|revis\w*|complet\w*|respond\w*|lleg\w*|empiez\w*|comienz\w*|pued\w*|podr\w*|voy|vas|va|vamos|van|deb\w*|ten\w*|crees|piensas|esperas|esperan)\b/.test(q2);
+      const q2Elliptical = /^para cuando (?:la |el |las |los |una |un )?(entrega|informe|revision|propuesta|documento|confirmacion|reunion|presentacion|envio|respuesta|firma|aprobacion|fecha|plazo)\b/.test(q2);
+      const q2ok = q2StartsWithCuando && q2.split(" ").length >= 3 && (q2VerbCue || q2Elliptical);
       if(q1ok && q2ok){
         fb.className="feedback success";
         fb.textContent="La estructura parece adecuada: “qué” pide el contenido pendiente y “cuándo” pide el momento. Comprueba también que cada pregunta tenga sentido en tu situación concreta.";
@@ -1278,6 +1280,7 @@
     }));
 
     document.getElementById("repeatPractice").addEventListener("click", () => {
+      markUndone("simulation");
       simIndex = 0;
       document.getElementById("simChat").innerHTML = '<div class="chat-line system"><strong>Proveedor</strong>Hola. Sí, dime.</div>';
       document.getElementById("simFeedback").className = "feedback";
