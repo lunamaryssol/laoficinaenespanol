@@ -297,7 +297,7 @@
       <div class="card">
         <div class="choice-grid" id="warmupChoices">
           <button class="choice" data-correct="false" type="button">Creo la propuesta es para hoy porque el cliente la necesita.</button>
-          <button class="choice" data-correct="true" type="button">Creo que necesitamos enviar la propuesta hoy porque el informe ya está listo.</button>
+          <button class="choice" data-correct="true" type="button">Creo que necesitamos enviar la propuesta hoy porque ya está lista.</button>
           <button class="choice" data-correct="false" type="button">Creo podemos enviar hoy por qué está listo.</button>
         </div>
         <div class="feedback" id="warmupFeedback" aria-live="polite">Elige una opción y mira qué elementos lingüísticos aparecen.</div>
@@ -562,7 +562,7 @@
       <div class="lesson-head">
         <p class="lesson-kicker">Llévalo a tu trabajo</p>
         <h2 id="title-9">Elige dónde vas a recuperar estas herramientas</h2>
-        <p>Selecciona una situación. Recibirás una micro misión lingüística para transferir lo aprendido.</p>
+        <p>Selecciona una situación. Recibirás una micromisión lingüística para transferir lo aprendido.</p>
       </div>
       <div class="card">
         <div class="transfer-grid" id="transferGrid">
@@ -661,6 +661,13 @@
     function completeStep(step){
       if(step >= 1 && step <= 9){completed.add(step);updateProgress();safeSave();}
     }
+    function invalidateStep(step){
+      completed.delete(step);
+      const next=document.getElementById(`next${step}`);
+      if(next) next.disabled=true;
+      updateProgress();
+      safeSave();
+    }
     function bindNav(){
       document.querySelectorAll('.prev').forEach(btn => btn.addEventListener('click',() => showScreen(current-1)));
       document.querySelectorAll('.next').forEach(btn => btn.addEventListener('click',() => showScreen(current+1)));
@@ -710,6 +717,7 @@
         completeStep(2);document.getElementById('next2').disabled=false;
       }else{
         btn.classList.add('wrong');
+        invalidateStep(2);
         warmFeedback.className='feedback error';
         warmFeedback.innerHTML='Revisa la estructura. Necesitas una oración completa después de <strong>creo que</strong> y <strong>porque</strong> se escribe junto cuando introduce la razón.';
       }
@@ -752,17 +760,27 @@
     });
 
     // Screen 4: interrogativos
+    const matchSelects=[...document.querySelectorAll('#questionMatch select')];
+    matchSelects.forEach(select=>select.addEventListener('change',()=>{
+      if(completed.has(4)){
+        invalidateStep(4);
+        const fb=document.getElementById('matchFeedback');
+        fb.className='feedback';
+        fb.textContent='Has cambiado una respuesta. Comprueba de nuevo las cinco relaciones.';
+      }
+    }));
     document.getElementById('checkMatch').addEventListener('click',() => {
-      const selects=[...document.querySelectorAll('#questionMatch select')];
+      const selects=matchSelects;
       const empty=selects.some(s=>!s.value);
       const correct=selects.filter(s=>s.value===s.dataset.answer).length;
       const fb=document.getElementById('matchFeedback');
-      if(empty){fb.className='feedback error';fb.textContent=`Completa las ${selects.length} relaciones antes de comprobar.`;return;}
+      if(empty){invalidateStep(4);fb.className='feedback error';fb.textContent=`Completa las ${selects.length} relaciones antes de comprobar.`;return;}
       if(correct===selects.length){
         fb.className='feedback success';
         fb.innerHTML='Las relaciones son correctas. Observa la lógica: <strong>cuándo → tiempo</strong>, <strong>quién → persona</strong>, <strong>por qué → razón</strong>, <strong>cuál → identificación de una opción o elemento</strong> y <strong>qué parte → detalle que necesitas aclarar</strong>.';
         completeStep(4);document.getElementById('next4').disabled=false;
       }else{
+        invalidateStep(4);
         fb.className='feedback error';fb.textContent=`Tienes ${correct} de ${selects.length}. Mira primero el interrogativo y vuelve a intentarlo.`;
       }
     });
@@ -780,7 +798,7 @@
       const shuffled=[...builderTasks[builderTask].pieces].sort(() => Math.random()-.5);
       shuffled.forEach((text,idx)=>{
         const b=document.createElement('button');b.type='button';b.className='token';b.textContent=text;b.dataset.id=String(idx);
-        b.addEventListener('click',()=>{if(b.classList.contains('selected'))return;b.classList.add('selected');built.push({text,el:b});renderBuilt();});
+        b.addEventListener('click',()=>{if(b.classList.contains('selected'))return;if(completed.has(5))invalidateStep(5);b.classList.add('selected');built.push({text,el:b});renderBuilt();});
         tokenBank.appendChild(b);
       });
       builderFeedback.className='feedback';builderFeedback.textContent='Primero construye la frase.';
@@ -790,11 +808,11 @@
       built.forEach((item,idx)=>{
         const b=document.createElement('button');b.type='button';b.className='built-token';b.textContent=item.text;
         b.setAttribute('aria-label',`Quitar ${item.text}`);
-        b.addEventListener('click',()=>{item.el.classList.remove('selected');built.splice(idx,1);renderBuilt();});
+        b.addEventListener('click',()=>{if(completed.has(5))invalidateStep(5);item.el.classList.remove('selected');built.splice(idx,1);renderBuilt();});
         output.appendChild(b);
       });
     }
-    document.getElementById('resetBuilder').addEventListener('click',renderBuilder);
+    document.getElementById('resetBuilder').addEventListener('click',()=>{if(completed.has(5))invalidateStep(5);renderBuilder();});
     checkBuilderBtn.addEventListener('click',()=>{
       const actual=built.map(x=>x.text), expected=builderTasks[builderTask].answer;
       const ok=actual.length===expected.length && actual.every((x,i)=>x===expected[i]);
@@ -818,12 +836,20 @@
 
     // Screen 6: reaction and follow-up
     const reactionFeedback=document.getElementById('reactionFeedback');
+    let reactionCorrect=false, followCorrect=false, clarifyCorrect=false;
     document.querySelectorAll('#reactionChoices .choice').forEach(btn=>btn.addEventListener('click',()=>{
       document.querySelectorAll('#reactionChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
       if(btn.dataset.correct==='true'){
+        reactionCorrect=true;
         btn.classList.add('correct');reactionFeedback.className='feedback success';reactionFeedback.innerHTML='La forma <strong>estoy de acuerdo</strong> está completa. «Pero» introduce el contraste y después aparece una oración en presente.';
         document.getElementById('followUp').style.display='block';
-      }else{btn.classList.add('wrong');reactionFeedback.className='feedback error';reactionFeedback.innerHTML='Revisa la forma fija <strong>estar de acuerdo</strong> y evita unir «pero» y «porque» sin una relación clara entre las ideas.';}
+      }else{
+        reactionCorrect=false;followCorrect=false;clarifyCorrect=false;
+        invalidateStep(6);
+        document.getElementById('followUp').style.display='none';
+        document.getElementById('clarifyUp').style.display='none';
+        btn.classList.add('wrong');reactionFeedback.className='feedback error';reactionFeedback.innerHTML='Revisa la forma fija <strong>estar de acuerdo</strong> y evita unir «pero» y «porque» sin una relación clara entre las ideas.';
+      }
     }));
     document.getElementById('hintReaction').addEventListener('click',()=>{
       const hint=document.getElementById('reactionHint');
@@ -834,18 +860,27 @@
       document.querySelectorAll('#followChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
       const fb=document.getElementById('followFeedback');
       if(btn.dataset.correct==='true'){
+        followCorrect=true;
         btn.classList.add('correct');fb.className='feedback success';fb.innerHTML='«¿Qué…?» pide información. La respuesta da exactamente esa información mediante una oración completa en presente.';
         document.getElementById('clarifyUp').style.display='block';
-      }else{btn.classList.add('wrong');fb.className='feedback error';fb.textContent='Responde con el dato solicitado: qué necesitamos confirmar, no cuándo ni por qué.';}
+      }else{
+        followCorrect=false;clarifyCorrect=false;
+        invalidateStep(6);
+        document.getElementById('clarifyUp').style.display='none';
+        btn.classList.add('wrong');fb.className='feedback error';fb.textContent='Responde con el dato solicitado: qué necesitamos confirmar, no cuándo ni por qué.';
+      }
     }));
 
     document.querySelectorAll('#clarifyChoices .choice').forEach(btn=>btn.addEventListener('click',()=>{
       document.querySelectorAll('#clarifyChoices .choice').forEach(b=>b.classList.remove('correct','wrong'));
       const fb=document.getElementById('clarifyFeedback');
       if(btn.dataset.correct==='true'){
+        clarifyCorrect=true;
         btn.classList.add('correct');fb.className='feedback success';fb.innerHTML='<strong>¿Qué parte…?</strong> pide el detalle que falta y convierte una información poco precisa en una pregunta clara.';
-        completeStep(6);document.getElementById('next6').disabled=false;
+        if(reactionCorrect && followCorrect && clarifyCorrect){completeStep(6);document.getElementById('next6').disabled=false;}
       }else{
+        clarifyCorrect=false;
+        invalidateStep(6);
         btn.classList.add('wrong');fb.className='feedback error';fb.textContent='La pregunta debe ser completa y debe pedir el dato que falta: qué parte del informe.';
       }
     }));
@@ -872,7 +907,18 @@
     });
     document.querySelectorAll('.free-check').forEach(c=>c.addEventListener('change',()=>{
       const all=[...document.querySelectorAll('.free-check')].every(x=>x.checked);
-      if(all){const fb=document.getElementById('freeFeedback');fb.className='feedback success';fb.textContent='Has revisado forma, conector y relación con la pregunta. Intenta decir la misma respuesta sin leerla.';completeStep(7);document.getElementById('next7').disabled=false;}
+      const fb=document.getElementById('freeFeedback');
+      if(all){
+        fb.className='feedback success';
+        fb.textContent='Has revisado forma, conector y relación con la pregunta. Intenta decir la misma respuesta sin leerla.';
+        completeStep(7);document.getElementById('next7').disabled=false;
+      }else if(completed.has(7)){
+        completed.delete(7);
+        document.getElementById('next7').disabled=true;
+        fb.className='feedback';
+        fb.textContent='Marca los tres criterios antes de continuar.';
+        updateProgress();safeSave();
+      }
     }));
     document.getElementById('freeAnswer').addEventListener('input',()=>{
       if(!completed.has(7)) return;
@@ -907,7 +953,18 @@
     document.getElementById('oralDone').addEventListener('click',()=>{document.getElementById('oralReview').style.display='block';document.getElementById('oralFeedback').textContent='Marca lo que realmente utilizaste. Si falta un elemento, vuelve a responder antes de continuar.';});
     document.querySelectorAll('.oral-check').forEach(c=>c.addEventListener('change',()=>{
       const all=[...document.querySelectorAll('.oral-check')].every(x=>x.checked);
-      if(all){const fb=document.getElementById('oralFeedback');fb.className='feedback success';fb.textContent='Tu intervención incluye opinión, conexión, presente y una pregunta. Ahora traslada ese patrón a una situación real.';completeStep(8);document.getElementById('next8').disabled=false;}
+      const fb=document.getElementById('oralFeedback');
+      if(all){
+        fb.className='feedback success';
+        fb.textContent='Tu intervención incluye opinión, conexión, presente y una pregunta. Ahora traslada ese patrón a una situación real.';
+        completeStep(8);document.getElementById('next8').disabled=false;
+      }else if(completed.has(8)){
+        completed.delete(8);
+        document.getElementById('next8').disabled=true;
+        fb.className='feedback';
+        fb.textContent='Marca los cuatro criterios antes de continuar.';
+        updateProgress();safeSave();
+      }
     }));
 
     // Screen 9: transfer
@@ -916,7 +973,7 @@
       document.querySelectorAll('.transfer-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
       const p=btn.dataset.place;
       mission.classList.add('show');
-      mission.innerHTML=`<strong>Micro misión para tu ${p}:</strong> usa una estructura de opinión, conecta una segunda idea con <em>pero</em> o <em>porque</em> y formula una pregunta con un interrogativo. No prepares toda la conversación: prepara las herramientas.`;
+      mission.innerHTML=`<strong>Micromisión para tu ${p}:</strong> usa una estructura de opinión, conecta una segunda idea con <em>pero</em> o <em>porque</em> y formula una pregunta con un interrogativo. No prepares toda la conversación: prepara las herramientas.`;
       document.getElementById('finishLesson').disabled=false;
     }));
     document.getElementById('finishLesson').addEventListener('click',()=>{completeStep(9);current=10;updateProgress();safeSave();showScreen(10);});
