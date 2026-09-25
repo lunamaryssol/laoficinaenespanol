@@ -37,6 +37,7 @@
     .eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
     .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(252,209,22,.2)}
     h1,h2,h3{line-height:1.15}
+    h1:focus,h2:focus,h3:focus{outline:none;box-shadow:none}
     h1{font-size:clamp(2.2rem,7vw,4.7rem);margin:0 0 18px;color:var(--blue);max-width:850px}
     h2{font-size:clamp(1.65rem,4vw,2.6rem);margin:6px 0 14px}
     h3{font-size:1.08rem;margin:22px 0 10px}
@@ -69,8 +70,8 @@
       width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 16px;cursor:pointer;color:var(--ink)
     }
     .choice:hover,.function-card:hover,.scenario-btn:hover,.transfer-btn:hover,.token:hover{border-color:#8EA8CF}
-    .choice.correct{border-color:var(--ok);background:var(--okbg)}
-    .choice.wrong{border-color:var(--bad);background:var(--badbg)}
+    .choice.correct,.function-card.correct{border-color:var(--ok);background:var(--okbg)}
+    .choice.wrong,.function-card.wrong{border-color:var(--bad);background:var(--badbg)}
     .feedback{margin-top:14px;padding:13px 15px;border-radius:14px;background:#F3F6FA;color:#35445A;min-height:50px}
     .feedback.ok{background:var(--okbg);color:#12583A}
     .feedback.bad{background:var(--badbg);color:#7B1D27}
@@ -101,7 +102,7 @@
     .order-item{display:flex;align-items:center;gap:12px}
     .order-item .num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#EEF3FA;color:var(--blue);font-weight:700;flex:0 0 auto}
     .order-controls{margin-left:auto;display:flex;gap:5px}
-    .move{border:1px solid var(--line);background:#fff;border-radius:9px;width:38px;height:38px;cursor:pointer}
+    .move{border:1px solid var(--line);background:#fff;border-radius:9px;width:44px;height:44px;cursor:pointer}
     .timer-box{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:18px;padding:18px;background:#F8FAFC;margin:18px 0}
     .timer{font-size:2rem;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
     .checklist{display:grid;gap:9px;margin:16px 0}
@@ -145,9 +146,9 @@
       <div class="panel hero">
         <div class="eyebrow"><span class="dot"></span> Lección 12 · Spanish at Work</div>
         <h1 tabindex="-1">Cierra conversaciones difíciles</h1>
-        <p class="lead">Aprende a combinar <strong>obligación, futuro, condición y conectores de cierre y consecuencia</strong> para resumir acuerdos, confirmar compromisos y dejar claro qué ocurre después.</p>
+        <p class="lead">Aprende a combinar <strong>obligación, futuro, condición y conectores de cierre y consecuencia</strong> para resumir posiciones y acuerdos, confirmar compromisos y dejar claro qué ocurre después.</p>
         <div class="tool-strip" aria-label="Herramientas lingüísticas">
-          <span class="pill">tener que / deber</span><span class="pill">futuro</span><span class="pill">si + condición</span><span class="pill">en resumen / entonces / por eso</span>
+          <span class="pill">tener que / deber</span><span class="pill">futuro</span><span class="pill">si + presente</span><span class="pill">en resumen / entonces / por eso</span>
         </div>
         <div class="application"><strong>Aplicación:</strong> cerrar una conversación compleja con claridad, confirmar compromisos y definir el siguiente paso.</div>
         <p class="lead">Al terminar podrás construir un cierre breve con varias ideas conectadas, sin depender de un guion completo.</p>
@@ -164,21 +165,21 @@
           <div class="scene-grid">
             <div class="mini"><span>Situación</span><strong>Entrega retrasada</strong></div>
             <div class="mini"><span>Personas</span><strong>Cliente + proveedor</strong></div>
-            <div class="mini"><span>Objetivo lingüístico</span><strong>Resumir + confirmar</strong></div>
+            <div class="mini"><span>Objetivo lingüístico</span><strong>Resumir posiciones + confirmar</strong></div>
           </div>
         </div>
         <div class="dialogue">
-          <div class="bubble a">—Entonces, <span class="highlight">tenemos que enviar</span> la versión corregida hoy.</div>
+          <div class="bubble a">—Entonces, <span class="highlight">ustedes tienen que enviar</span> la versión corregida hoy.</div>
           <div class="bubble b">—Sí. Nosotros <span class="highlight">la enviaremos</span> antes de las cinco.</div>
           <div class="bubble a">—Perfecto. <span class="highlight">Si recibimos</span> el archivo hoy, <span class="highlight">podremos revisar</span> todo mañana.</div>
-          <div class="bubble b">—De acuerdo. <span class="highlight">En resumen</span>, nosotros enviamos la versión y ustedes la revisan mañana.</div>
+          <div class="bubble b">—De acuerdo. <span class="highlight">En resumen</span>, nosotros enviaremos la versión hoy y ustedes la revisarán mañana.</div>
         </div>
         <h3>Activa lo que ya sabes</h3>
         <p>¿Qué frase expresa una responsabilidad pendiente?</p>
         <div class="choices" id="activateChoices">
           <button class="choice" type="button" data-correct="false">“La enviaremos antes de las cinco.”</button>
-          <button class="choice" type="button" data-correct="true">“Tenemos que enviar la versión corregida hoy.”</button>
-          <button class="choice" type="button" data-correct="false">“En resumen, nosotros enviamos la versión.”</button>
+          <button class="choice" type="button" data-correct="true">“Ustedes tienen que enviar la versión corregida hoy.”</button>
+          <button class="choice" type="button" data-correct="false">“En resumen, nosotros enviaremos la versión hoy.”</button>
         </div>
         <div class="feedback" id="activateFeedback" aria-live="polite">Elige una opción.</div>
         <div class="btn-row"><button class="btn secondary" data-nav="prev" type="button">Anterior</button><button class="btn primary" data-nav="next" id="next1" type="button" disabled>Continuar</button></div>
@@ -285,7 +286,7 @@
         <h2 tabindex="-1">Marca el cierre y conecta la consecuencia</h2>
         <p class="section-sub">Los conectores ayudan a que varias ideas formen un mensaje organizado.</p>
         <div class="grid-2">
-          <article class="rule"><h3>Para cerrar o resumir</h3><div class="tool-strip"><span class="pill">en resumen</span><span class="pill">para cerrar</span><span class="pill">entonces</span></div><div class="example">En resumen, nosotros corregimos el documento y ustedes confirman la fecha.</div></article>
+          <article class="rule"><h3>Para cerrar o resumir</h3><div class="tool-strip"><span class="pill">en resumen</span><span class="pill">para cerrar</span><span class="pill">entonces</span></div><div class="example">En resumen, ustedes necesitan comenzar mañana y nosotros proponemos enviar la versión corregida hoy.</div></article>
           <article class="rule"><h3>Para mostrar consecuencia</h3><div class="tool-strip"><span class="pill">por eso</span><span class="pill">así que</span><span class="pill">entonces</span></div><div class="example">No tenemos la aprobación; por eso, tendremos que esperar.</div></article>
         </div>
         <p class="note"><strong>Entonces</strong> puede servir para introducir una conclusión o una consecuencia según el contexto. No todos los conectores son intercambiables en todas las frases.</p>
@@ -314,15 +315,15 @@
             <button class="token" type="button" data-text="Para cerrar,">Para cerrar,</button>
             <button class="token" type="button" data-text="Entonces,">Entonces,</button>
           </div>
-          <div class="builder-label">2. Responsabilidad</div>
+          <div class="builder-label">2. Posición + responsabilidad</div>
           <div class="token-row" data-group="duty">
-            <button class="token" type="button" data-text="tenemos que enviar la corrección hoy.">tenemos que enviar la corrección hoy.</button>
-            <button class="token" type="button" data-text="debemos confirmar el precio hoy.">debemos confirmar el precio hoy.</button>
+            <button class="token" type="button" data-text="ustedes necesitan la corrección hoy y nosotros tenemos que enviarla antes de las cinco.">ustedes necesitan la corrección hoy y nosotros tenemos que enviarla antes de las cinco.</button>
+            <button class="token" type="button" data-text="ustedes mantienen ese precio y nosotros debemos proponer una alternativa hoy.">ustedes mantienen ese precio y nosotros debemos proponer una alternativa hoy.</button>
           </div>
           <div class="builder-label">3. Condición + siguiente paso</div>
           <div class="token-row" data-group="condition">
-            <button class="token" type="button" data-text="Si todo está correcto, firmaremos mañana.">Si todo está correcto, firmaremos mañana.</button>
-            <button class="token" type="button" data-text="Si recibimos la aprobación, enviaremos el pedido mañana.">Si recibimos la aprobación, enviaremos el pedido mañana.</button>
+            <button class="token" type="button" data-text="Si recibimos su confirmación, continuaremos mañana.">Si recibimos su confirmación, continuaremos mañana.</button>
+            <button class="token" type="button" data-text="Si llegamos a un acuerdo hoy, podremos avanzar mañana.">Si llegamos a un acuerdo hoy, podremos avanzar mañana.</button>
           </div>
           <div class="built" id="builtMessage" aria-live="polite">Selecciona una opción de cada grupo.</div>
         </div>
@@ -337,8 +338,8 @@
         <h2 tabindex="-1">Ordena un cierre completo</h2>
         <p class="section-sub">La conversación ya fue difícil. Ahora organiza estas cuatro intervenciones para que el cierre avance de resumen a compromiso y consecuencia.</p>
         <div class="order-list" id="orderList">
-          <div class="order-item" data-key="3"><span class="num">1</span><span>Si recibimos la confirmación hoy, podremos comenzar mañana.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
-          <div class="order-item" data-key="1"><span class="num">2</span><span>En resumen, hemos acordado cambiar la fecha de entrega.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
+          <div class="order-item" data-key="3"><span class="num">1</span><span>Si ustedes confirman la versión hoy, podrán comenzar mañana.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
+          <div class="order-item" data-key="1"><span class="num">2</span><span>En resumen, ustedes necesitan comenzar mañana y nosotros proponemos enviar la versión corregida hoy.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
           <div class="order-item" data-key="4"><span class="num">3</span><span>Entonces, quedamos pendientes de esa confirmación.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
           <div class="order-item" data-key="2"><span class="num">4</span><span>Nosotros tenemos que enviar el documento corregido antes de las cinco.</span><div class="order-controls"><button class="move up" type="button" aria-label="Mover arriba">↑</button><button class="move down" type="button" aria-label="Mover abajo">↓</button></div></div>
         </div>
@@ -373,10 +374,10 @@
         <p class="section-sub">No leas un modelo completo. Habla durante 40–60 segundos y construye tu propio cierre.</p>
         <div class="scene">
           <strong>Situación</strong>
-          <p>Un proveedor no pudo cumplir la fecha original. Después de conversar, acuerdan una nueva entrega para el viernes. Tú debes enviar hoy una lista de correcciones. Si el proveedor confirma los cambios mañana, el proyecto podrá continuar el viernes.</p>
+          <p>Un proveedor no pudo cumplir la fecha original. Tu equipo necesita continuar el proyecto el viernes, pero el proveedor propone entregar el lunes. Después de conversar, acuerdan una entrega parcial para el viernes. Tú debes enviar hoy una lista de correcciones. Si el proveedor confirma los cambios mañana, el proyecto podrá continuar el viernes.</p>
         </div>
         <div class="grid-2">
-          <div class="mini"><span>Intenta incluir</span><strong>un resumen + una responsabilidad</strong></div>
+          <div class="mini"><span>Intenta incluir</span><strong>un resumen de las posiciones + una responsabilidad</strong></div>
           <div class="mini"><span>Después añade</span><strong>una condición + un próximo paso</strong></div>
         </div>
         <div class="timer-box">
@@ -385,13 +386,13 @@
           <button class="btn yellow" id="timerBtn" type="button">Iniciar 50 segundos</button>
         </div>
         <div class="checklist" id="oralChecklist">
-          <label class="check-row"><input type="checkbox"><span>Usé un conector para marcar el cierre o resumir.</span></label>
+          <label class="check-row"><input type="checkbox"><span>Resumí las dos posiciones con un conector de cierre como <strong>en resumen</strong> o <strong>para cerrar</strong>.</span></label>
           <label class="check-row"><input type="checkbox"><span>Expresé una responsabilidad con <strong>tener que</strong>, <strong>deber</strong> o una estructura equivalente.</span></label>
           <label class="check-row"><input type="checkbox"><span>Definí un próximo paso con una forma de futuro.</span></label>
           <label class="check-row"><input type="checkbox"><span>Construí una condición con <strong>si + presente</strong>.</span></label>
           <label class="check-row"><input type="checkbox"><span>Conecté varias ideas sin leer un guion completo.</span></label>
         </div>
-        <div class="feedback" id="oralFeedback" aria-live="polite">Después de hablar, marca al menos cuatro criterios que realmente utilizaste.</div>
+        <div class="feedback" id="oralFeedback" aria-live="polite">Después de hablar, marca al menos cuatro criterios, incluido el resumen de las dos posiciones.</div>
         <div class="cta-card">
           <h3>Ya lo practicaste aquí. Ahora úsalo con personas.</h3>
           <p>Una conversación real añade preguntas, cambios y reacciones que un ejercicio cerrado no puede reproducir.</p>
@@ -426,11 +427,9 @@
         <div class="score">100%</div>
         <p>Has trabajado herramientas para cerrar conversaciones complejas con acuerdos y próximos pasos claros.</p>
         <ul class="final-list">
-          <li>Expreso responsabilidades con <strong>tener que</strong> y <strong>deber</strong>.</li>
-          <li>Uso el futuro para indicar compromisos y próximos pasos.</li>
-          <li>Construyo condiciones reales con <strong>si + presente</strong>.</li>
-          <li>Conecto el cierre con expresiones como <strong>en resumen</strong>, <strong>entonces</strong> y <strong>por eso</strong>.</li>
-          <li>Combino varias estructuras para resumir posiciones, confirmar compromisos y definir qué ocurre después.</li>
+          <li>Resumo posiciones y responsabilidades con conectores de cierre y estructuras de obligación.</li>
+          <li>Confirmo compromisos y próximos pasos utilizando formas de futuro.</li>
+          <li>Construyo condiciones reales con <strong>si + presente</strong> y conecto sus consecuencias con claridad.</li>
         </ul>
         <div class="application" style="text-align:left"><strong>Aplicación profesional:</strong> cerrar una conversación difícil sin dejar ambiguos los acuerdos, las responsabilidades o el siguiente paso.</div>
         <div class="btn-row" style="justify-content:center">
@@ -454,6 +453,7 @@
     const completed = new Set();
     const totalMeaningful = 10;
     const storageKey = "saw-lesson-12-progress-v1";
+    const reduceMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const safeSave = () => {
       try { localStorage.setItem(storageKey, JSON.stringify({current, completed:[...completed]})); } catch(e) {}
@@ -471,11 +471,12 @@
       current = Math.max(0, Math.min(11, n));
       screens.forEach((s,i) => s.classList.toggle("active", i === current));
       updateProgress();
-      window.scrollTo({top:0, behavior:"smooth"});
+      window.scrollTo({top:0, behavior:reduceMotion ? "auto" : "smooth"});
       const heading = screens[current].querySelector("h1,h2");
       if(heading){ heading.setAttribute("tabindex","-1"); setTimeout(()=>heading.focus({preventScroll:true}),80); }
     }
     function mark(step){ completed.add(step); updateProgress(); }
+    function unmark(step){ completed.delete(step); updateProgress(); }
 
     document.getElementById("startBtn").addEventListener("click",()=>showScreen(1));
     document.querySelectorAll("[data-nav='prev']").forEach(b=>b.addEventListener("click",()=>showScreen(current-1)));
@@ -489,10 +490,14 @@
         btn.classList.add(good ? "correct" : "wrong");
         feedback.className = "feedback " + (good ? "ok" : "bad");
         feedback.textContent = good ? okText : badText;
-        if(good){ next.disabled=false; mark(step); }
+        if(good){
+          next.disabled=false; mark(step);
+        }else{
+          next.disabled=true; unmark(step);
+        }
       }));
     }
-    setupChoice("activateChoices","activateFeedback","next1",1,"Correcto. “Tenemos que + infinitivo” presenta aquí una responsabilidad pendiente.","Esa frase cumple otra función. Busca la que indica qué acción es obligatoria.");
+    setupChoice("activateChoices","activateFeedback","next1",1,"Correcto. “Tener que + infinitivo” presenta aquí una responsabilidad pendiente: ustedes tienen que enviar.","Esa frase cumple otra función. Busca la que indica qué acción es obligatoria.");
     setupChoice("dutyChoices","dutyFeedback","next2",2,"Correcto: tener que + infinitivo → “tenemos que enviar”.","Revisa el segundo verbo: después de “tener que” debe ir en infinitivo.");
     setupChoice("futureFunctions","futureFeedback","next3",3,"Correcto. “Confirmaremos” sitúa la acción como un próximo paso.","Mira el tiempo verbal: “confirmaremos” indica una acción futura.");
     setupChoice("conditionChoices","conditionFeedback","next4",4,"Correcto. En esta condición usamos “si + presente”: si recibimos.","Después de “si” no usamos futuro en esta estructura. Prueba con “si recibimos”.");
@@ -508,8 +513,12 @@
         document.getElementById("builtMessage").textContent = parts.length ? parts.join(" ") : "Selecciona una opción de cada grupo.";
         if(parts.length===3){
           document.getElementById("builderFeedback").className="feedback ok";
-          document.getElementById("builderFeedback").textContent="Has conectado un cierre, una responsabilidad y una condición con próximo paso.";
+          document.getElementById("builderFeedback").textContent="Has conectado un cierre, un resumen de posiciones y responsabilidades, y una condición con próximo paso.";
           document.getElementById("next6").disabled=false; mark(6);
+        }else{
+          document.getElementById("builderFeedback").className="feedback";
+          document.getElementById("builderFeedback").textContent="Necesitas tres piezas para completar el mensaje.";
+          document.getElementById("next6").disabled=true; unmark(6);
         }
       }));
     });
@@ -519,8 +528,16 @@
     orderList.addEventListener("click",e=>{
       const b=e.target.closest(".move"); if(!b)return;
       const item=b.closest(".order-item");
-      if(b.classList.contains("up") && item.previousElementSibling) orderList.insertBefore(item,item.previousElementSibling);
-      if(b.classList.contains("down") && item.nextElementSibling) orderList.insertBefore(item.nextElementSibling,item);
+      let moved=false;
+      if(b.classList.contains("up") && item.previousElementSibling){ orderList.insertBefore(item,item.previousElementSibling); moved=true; }
+      if(b.classList.contains("down") && item.nextElementSibling){ orderList.insertBefore(item.nextElementSibling,item); moved=true; }
+      if(moved){
+        document.getElementById("next7").disabled=true;
+        unmark(7);
+        const f=document.getElementById("orderFeedback");
+        f.className="feedback";
+        f.textContent="Orden modificado. Compruébalo de nuevo antes de continuar.";
+      }
       renumber();
     });
     document.getElementById("checkOrder").addEventListener("click",()=>{
@@ -531,13 +548,14 @@
         document.getElementById("next7").disabled=false; mark(7);
       } else {
         f.className="feedback bad"; f.textContent="Todavía no. Empieza resumiendo el acuerdo; después confirma la responsabilidad y la condición. Deja la conclusión final al final.";
+        document.getElementById("next7").disabled=true; unmark(7);
       }
     });
 
     const scenarios={
       cliente:{
         title:"Cliente · cambio de alcance",
-        text:"El cliente acepta una versión más pequeña del proyecto. Tu equipo debe enviar hoy el nuevo alcance. Si el cliente lo aprueba mañana, comenzarán el lunes.",
+        text:"El cliente acepta una versión más pequeña del proyecto. Tu equipo debe enviar hoy el nuevo alcance. Si el cliente lo aprueba mañana, tu equipo podrá comenzar el lunes.",
         options:[
           ["Si el cliente aprueba el nuevo alcance mañana, comenzaremos el lunes.",true],
           ["Si el cliente aprobará el nuevo alcance mañana, comenzaremos el lunes.",false],
@@ -564,8 +582,12 @@
       }
     };
     let activeScenario="cliente";
-    function renderScenario(key){
+    function renderScenario(key, resetProgress=true){
       activeScenario=key; const s=scenarios[key];
+      if(resetProgress){
+        document.getElementById("next8").disabled=true;
+        unmark(8);
+      }
       document.querySelectorAll(".scenario-btn").forEach(b=>b.classList.toggle("active",b.dataset.scenario===key));
       document.getElementById("scenarioOutput").innerHTML=`<strong>${s.title}</strong><p>${s.text}</p><p class="note">Busca una condición real o posible con <strong>si + presente</strong>.</p>`;
       const choices=document.getElementById("scenarioChoices");
@@ -577,11 +599,15 @@
         const good=btn.dataset.correct==="true"; btn.classList.add(good?"correct":"wrong");
         const f=document.getElementById("scenarioFeedback"); f.className="feedback "+(good?"ok":"bad");
         f.textContent=good?"Correcto. La condición usa presente después de “si” y la consecuencia presenta el próximo paso.":"Revisa el verbo después de “si”: para esta condición usamos presente.";
-        if(good){document.getElementById("next8").disabled=false;mark(8)}
+        if(good){
+          document.getElementById("next8").disabled=false; mark(8);
+        }else{
+          document.getElementById("next8").disabled=true; unmark(8);
+        }
       }));
     }
-    document.querySelectorAll(".scenario-btn").forEach(b=>b.addEventListener("click",()=>renderScenario(b.dataset.scenario)));
-    renderScenario("cliente");
+    document.querySelectorAll(".scenario-btn").forEach(b=>b.addEventListener("click",()=>renderScenario(b.dataset.scenario, true)));
+    renderScenario("cliente", false);
 
     let timerId=null, seconds=50;
     const timer=document.getElementById("timer"), timerBtn=document.getElementById("timerBtn");
@@ -591,17 +617,22 @@
       seconds=50;paintTimer();timerBtn.textContent="Reiniciar temporizador";
       timerId=setInterval(()=>{
         seconds--;paintTimer();
-        if(seconds<=0){clearInterval(timerId);timerId=null;timerBtn.textContent="Repetir 50 segundos";mark(9)}
+        if(seconds<=0){clearInterval(timerId);timerId=null;timerBtn.textContent="Repetir 50 segundos"}
       },1000);
     });
     const oralChecks=[...document.querySelectorAll("#oralChecklist input")];
     oralChecks.forEach(c=>c.addEventListener("change",()=>{
       const count=oralChecks.filter(x=>x.checked).length, f=document.getElementById("oralFeedback");
-      if(count>=4){
-        f.className="feedback ok"; f.textContent=`Has marcado ${count} criterios. La práctica está lista para continuar.`;
+      const summarizedPositions=oralChecks[0].checked;
+      if(count>=4 && summarizedPositions){
+        f.className="feedback ok"; f.textContent=`Has marcado ${count} criterios, incluido el resumen de las dos posiciones. La práctica está lista para continuar.`;
         document.getElementById("next9").disabled=false;mark(9);
       }else{
-        f.className="feedback"; f.textContent=`Has marcado ${count} de 5. Marca al menos cuatro criterios que realmente utilizaste.`;
+        f.className="feedback";
+        f.textContent=!summarizedPositions
+          ? `Has marcado ${count} de 5. Para continuar, resume las dos posiciones y marca al menos cuatro criterios en total.`
+          : `Has marcado ${count} de 5. Marca al menos cuatro criterios que realmente utilizaste.`;
+        document.getElementById("next9").disabled=true; unmark(9);
       }
     }));
 
@@ -630,6 +661,7 @@
       document.querySelectorAll("input[type='checkbox']").forEach(x=>x.checked=false);
       document.querySelectorAll("[id^='next']").forEach(x=>x.disabled=true);
       document.getElementById("finishBtn").disabled=true;
+      document.getElementById("mission").textContent="Elige una situación.";
       document.getElementById("builtMessage").textContent="Selecciona una opción de cada grupo.";
       Object.keys(selections).forEach(k=>delete selections[k]);
       const initialOrder=["3","1","4","2"];
@@ -646,14 +678,14 @@
         connectorFeedback:"Selecciona una función.",
         builderFeedback:"Necesitas tres piezas para completar el mensaje.",
         orderFeedback:"Puedes mover cada frase con las flechas.",
-        oralFeedback:"Después de hablar, marca al menos cuatro criterios que realmente utilizaste."
+        oralFeedback:"Después de hablar, marca al menos cuatro criterios, incluido el resumen de las dos posiciones."
       };
       Object.entries(feedbackDefaults).forEach(([id,msg])=>{
         const el=document.getElementById(id);
         if(el){el.className="feedback";el.textContent=msg}
       });
       timerBtn.textContent="Iniciar 50 segundos";
-      renderScenario("cliente"); showScreen(0);
+      renderScenario("cliente", false); showScreen(0);
     }
     document.getElementById("resetTop").addEventListener("click",resetAll);
     document.getElementById("resetFinal").addEventListener("click",resetAll);
@@ -661,7 +693,28 @@
     try{
       const saved=JSON.parse(localStorage.getItem(storageKey)||"null");
       if(saved && Array.isArray(saved.completed)){
-        saved.completed.forEach(x=>completed.add(x));
+        saved.completed.forEach(x=>{ if(Number.isInteger(x) && x>=1 && x<=10) completed.add(x); });
+        completed.forEach(step=>{
+          const next=document.getElementById(`next${step}`);
+          if(next) next.disabled=false;
+        });
+        const restoredFeedback={
+          1:"activateFeedback", 2:"dutyFeedback", 3:"futureFeedback", 4:"conditionFeedback", 5:"connectorFeedback",
+          6:"builderFeedback", 7:"orderFeedback", 8:"scenarioFeedback", 9:"oralFeedback"
+        };
+        Object.entries(restoredFeedback).forEach(([step,id])=>{
+          if(completed.has(Number(step))){
+            const el=document.getElementById(id);
+            if(el){
+              el.className="feedback ok";
+              el.textContent="Actividad completada anteriormente. Puedes continuar o volver a realizarla.";
+            }
+          }
+        });
+        if(completed.has(10)){
+          document.getElementById("finishBtn").disabled=false;
+          document.getElementById("mission").textContent="Transferencia completada anteriormente. Puedes terminar la lección o elegir otra situación.";
+        }
         if(Number.isInteger(saved.current) && saved.current>=0 && saved.current<=11) current=saved.current;
       }
     }catch(e){}
