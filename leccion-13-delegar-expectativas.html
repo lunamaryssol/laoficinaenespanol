@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lección interactiva de español para el trabajo: delegar con claridad, dar instrucciones, marcar prioridades y plazos, y comprobar comprensión." />
+  <title>Lección 13 · Delega con claridad | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --ink:#121826;
+      --muted:#5B6474;
+      --bg:#F7F9FC;
+      --card:#FFFFFF;
+      --line:#DDE4EF;
+      --soft-blue:#EAF1FF;
+      --soft-yellow:#FFF8D8;
+      --soft-red:#FFF0F2;
+      --success:#16794B;
+      --success-bg:#EAF8F1;
+      --warning:#8A5A00;
+      --warning-bg:#FFF6D8;
+      --radius:22px;
+      --shadow:0 14px 38px rgba(18,24,38,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.65;
+    }
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+
+    .progress-top{
+      position:fixed;
+      inset:0 0 auto 0;
+      height:5px;
+      background:#E9EDF4;
+      z-index:1000;
+    }
+    .progress-top > span{
+      display:block;
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--yellow),var(--blue));
+      transition:width .2s ease;
+    }
+
+    .wrap{width:min(1120px,92vw);margin:0 auto}
+
+    header{
+      padding:54px 0 26px;
+      background:
+        radial-gradient(circle at 88% 15%, rgba(252,209,22,.32), transparent 22%),
+        linear-gradient(135deg,#ffffff 0%,#f4f7ff 65%,#eef3ff 100%);
+    }
+    .brand-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:34px;
+    }
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--blue);
+      letter-spacing:.02em;
+    }
+    .brand-mark{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(145deg,var(--blue),#1759C9);
+      position:relative;
+      box-shadow:0 6px 16px rgba(0,56,147,.18);
+    }
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      width:12px;height:12px;border-radius:50%;
+      background:var(--yellow);
+      right:5px;bottom:5px;
+    }
+    .lesson-pill{
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:8px 13px;
+      font-size:.86rem;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);
+      gap:36px;
+      align-items:center;
+      padding-bottom:34px;
+    }
+    .eyebrow{
+      color:var(--red);
+      font-size:.82rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin:0 0 10px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(2.2rem,5vw,4.7rem);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      color:var(--blue);
+    }
+    .hero p.lead{
+      max-width:760px;
+      font-size:clamp(1.04rem,2vw,1.24rem);
+      color:#344054;
+      margin:22px 0 0;
+    }
+    .hero-card{
+      background:var(--blue);
+      color:#fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow:0 20px 42px rgba(0,56,147,.20);
+    }
+    .hero-card .mini{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#D9E7FF}
+    .hero-card h2{font-size:1.35rem;margin:8px 0 14px;color:#fff}
+    .hero-card ul{margin:0;padding-left:20px}
+    .hero-card li{margin:9px 0;color:#F4F8FF}
+    .hero-card .hero-tools{margin:7px 0 14px;color:#fff;font-weight:600}
+    .hero-card .hero-application{margin:7px 0 18px;color:#F4F8FF}
+    .hero-card .hero-divider{height:1px;border:0;background:rgba(255,255,255,.22);margin:18px 0}
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:24px}
+    .hero-progress{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#485266;font-size:.86rem;font-weight:700}
+    .hero-progress meter{width:170px;height:18px}
+
+    .sticky-nav{
+      position:sticky;
+      top:5px;
+      z-index:100;
+      background:rgba(247,249,252,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(221,228,239,.8);
+    }
+    .nav-scroll{
+      display:flex;
+      gap:9px;
+      overflow:auto;
+      padding:12px 0;
+      scrollbar-width:none;
+    }
+    .nav-scroll::-webkit-scrollbar{display:none}
+    .nav-scroll a{
+      flex:0 0 auto;
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+      text-decoration:none;
+      font-size:.84rem;
+      font-weight:700;
+      color:#485266;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+    }
+    .nav-scroll a:hover{border-color:var(--blue);color:var(--blue)}
+    .nav-scroll a:focus-visible{border-color:var(--blue);color:var(--blue);outline:3px solid rgba(252,209,22,.9);outline-offset:3px}
+    .nav-scroll a[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+
+    main{padding:34px 0 80px}
+    section{scroll-margin-top:84px;margin:28px 0}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:clamp(22px,4vw,38px);
+      box-shadow:var(--shadow);
+    }
+    .section-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px}
+    .num{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      flex:0 0 auto;
+      background:var(--yellow);
+      color:#1F2937;
+      font-weight:800;
+    }
+    h2{margin:0;color:var(--blue);font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.18}
+    h3{color:var(--ink);margin:24px 0 10px;font-size:1.14rem}
+    h1:focus,h2:focus,h3:focus{outline:none;box-shadow:none}
+    p{margin:10px 0}
+    .muted{color:var(--muted)}
+    .tiny{font-size:.86rem;color:var(--muted)}
+
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .tool-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      background:#fff;
+    }
+    .tool-card strong{color:var(--blue)}
+    .tool-card .tag{display:inline-block;background:var(--soft-blue);color:var(--blue);border-radius:999px;padding:5px 9px;font-size:.76rem;font-weight:800;margin-bottom:8px}
+
+    .formula{
+      margin:18px 0;
+      border-left:6px solid var(--yellow);
+      background:var(--soft-yellow);
+      padding:18px 20px;
+      border-radius:0 16px 16px 0;
+    }
+    .formula b{color:#5B4700}
+    .example{
+      border:1px solid #C9D8F6;
+      background:var(--soft-blue);
+      border-radius:18px;
+      padding:18px;
+      margin:14px 0;
+    }
+    .example-row{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+    .speak{
+      border:none;
+      background:#fff;
+      color:var(--blue);
+      min-width:44px;height:44px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,56,147,.10);
+      font-weight:800;
+    }
+    .speak:hover,.speak:focus-visible{outline:3px solid rgba(252,209,22,.65)}
+
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px}
+    table{width:100%;border-collapse:collapse;min-width:640px;background:#fff}
+    th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+    th{background:#F4F7FB;color:var(--blue);font-size:.86rem}
+    tr:last-child td{border-bottom:none}
+
+    .quiz{
+      background:#FBFCFE;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      margin-top:18px;
+    }
+    .quiz p.q{font-weight:700;margin-top:0}
+    .option-list{display:grid;gap:10px;margin-top:14px}
+    .option{
+      width:100%;
+      text-align:left;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:13px 15px;
+      color:var(--ink);
+      transition:.15s ease;
+    }
+    .option:hover{border-color:#A8BDEA;transform:translateY(-1px)}
+    .option.correct{border-color:var(--success);background:var(--success-bg)}
+    .option.wrong{border-color:var(--red);background:var(--soft-red)}
+    .feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:.92rem}
+    .feedback.show{display:block}
+    .feedback.ok{background:var(--success-bg);color:#0C603A}
+    .feedback.no{background:var(--soft-red);color:#8C1E2C}
+
+    .builder{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    .builder-box{
+      min-height:170px;
+      border:1px dashed #A8B3C5;
+      border-radius:18px;
+      padding:16px;
+      background:#fff;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:9px}
+    .chip{
+      min-height:44px;
+      display:inline-flex;
+      align-items:center;
+      border:1px solid #BFD0EF;
+      background:#F7FAFF;
+      color:var(--blue);
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:.88rem;
+      font-weight:700;
+    }
+    .chip:hover,.chip:focus-visible{background:var(--soft-blue);outline:none}
+    .sentence-output{
+      min-height:56px;
+      border-radius:14px;
+      padding:13px 14px;
+      background:#F3F5F8;
+      margin-top:10px;
+      color:#344054;
+    }
+
+    .lab{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:22px;
+      align-items:start;
+    }
+    .field{margin:0 0 14px}
+    label{display:block;font-size:.86rem;font-weight:700;margin-bottom:6px;color:#394150}
+    select,input[type="text"],textarea{
+      width:100%;
+      border:1px solid #C9D2E0;
+      border-radius:13px;
+      padding:12px 13px;
+      background:#fff;
+      color:var(--ink);
+    }
+    select:focus,input:focus,textarea:focus{outline:3px solid rgba(0,56,147,.12);border-color:var(--blue)}
+    textarea{min-height:130px;resize:vertical}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:0;
+      border-radius:14px;
+      padding:12px 17px;
+      font-weight:800;
+      text-decoration:none;
+      transition:.15s ease;
+    }
+    .btn-primary{background:var(--blue);color:#fff}
+    .btn-primary:hover{background:#002E79;transform:translateY(-1px)}
+    .btn-yellow{background:var(--yellow);color:#241C00}
+    .btn-ghost{background:#fff;color:var(--blue);border:1px solid #BFD0EF}
+    .btn,.option,.chip,.speak,.nav-scroll a{min-height:44px}
+    .btn:focus-visible,.option:focus-visible,.chip:focus-visible{outline:3px solid rgba(252,209,22,.9);outline-offset:3px}
+
+    .result-card{
+      position:relative;
+      border-radius:20px;
+      padding:23px;
+      background:linear-gradient(145deg,var(--blue),#124FAE);
+      color:#fff;
+      min-height:260px;
+      overflow:hidden;
+    }
+    .result-card::after{
+      content:"";
+      position:absolute;
+      width:180px;height:180px;border-radius:50%;
+      background:rgba(252,209,22,.16);
+      right:-70px;top:-70px;
+    }
+    .result-card h3{color:#fff;margin-top:0}
+    .result-message{
+      position:relative;
+      z-index:1;
+      background:#fff;
+      color:var(--ink);
+      border-radius:16px;
+      padding:18px;
+      margin:14px 0;
+      min-height:112px;
+      display:flex;
+      align-items:center;
+      font-weight:600;
+    }
+    .result-card .tiny{color:#DCE8FF}
+
+    .practice-bridge{
+      margin:28px 0;
+      padding:18px 20px;
+      border:1px solid #C9D8F6;
+      border-radius:18px;
+      background:var(--soft-blue);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .practice-bridge p{margin:0;color:#344054}
+    .practice-bridge strong{color:var(--blue)}
+
+    .checklist{display:grid;gap:10px;margin:16px 0}
+    .check{
+      display:flex;gap:11px;align-items:flex-start;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:13px;
+      padding:11px 13px;
+    }
+    .check input{margin-top:5px;accent-color:var(--blue)}
+
+    .oral-practice{
+      margin-top:22px;
+      border:1px solid #C9D8F6;
+      background:var(--soft-blue);
+      border-radius:18px;
+      padding:20px;
+    }
+    .oral-practice h3{margin-top:0;color:var(--blue)}
+    .timer-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .timer-display{
+      min-width:76px;
+      text-align:center;
+      background:#fff;
+      border:1px solid #BFD0EF;
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:800;
+      color:var(--blue);
+    }
+
+    .rol{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .rol-step{border-radius:18px;padding:18px;background:#fff;border:1px solid var(--line)}
+    .rol-letter{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-weight:900;background:var(--yellow);margin-bottom:10px}
+
+    .final-cta{
+      background:linear-gradient(135deg,#002F7C,var(--blue) 65%,#1654B4);
+      color:#fff;
+      border-radius:26px;
+      padding:clamp(26px,5vw,44px);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:24px;
+      align-items:center;
+      box-shadow:0 18px 40px rgba(0,56,147,.20);
+    }
+    .final-cta h2{color:#fff}
+    .final-cta p{color:#EAF1FF;max-width:680px}
+
+    .completion{
+      display:flex;align-items:center;gap:12px;
+      margin-top:18px;
+      padding:14px 16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:15px;
+    }
+    .completion meter{width:180px;height:18px}
+
+    footer{padding:32px 0 50px;color:#6A7280;font-size:.85rem;text-align:center}
+
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media(max-width:850px){
+      .hero,.lab,.final-cta{grid-template-columns:1fr}
+      .grid-3,.rol{grid-template-columns:1fr}
+      .grid-2,.builder{grid-template-columns:1fr}
+      .final-cta .btn{width:100%}
+    }
+    @media(max-width:560px){
+      header{padding-top:34px}
+      .brand-row{align-items:flex-start}
+      .lesson-pill{font-size:.75rem}
+      .card{padding:20px}
+      .completion{align-items:flex-start;flex-direction:column}
+      .completion meter{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-top" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header>
+    <div class="wrap">
+      <div class="brand-row">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"></span>SPANISH AT WORK</div>
+        <div class="lesson-pill">Lección 13 · Módulo 4</div>
+      </div>
+
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Trabaja con autonomía</p>
+          <h1>Delega con claridad</h1>
+          <p class="lead">Aprende a dar instrucciones, marcar prioridades y plazos, y comprobar que la otra persona entendió qué debe hacer.</p>
+          <div class="hero-actions">
+            <a class="btn btn-yellow" href="#inicio">Comenzar</a>
+            <div class="hero-progress" aria-live="polite">
+              <span>Progreso:</span>
+              <meter id="heroCompletionMeter" min="0" max="8" value="0">0 de 8</meter>
+              <span id="heroCompletionText">0 de 8 actividades completadas</span>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Contenido y objetivos de la lección">
+          <div class="mini">Herramientas lingüísticas</div>
+          <p class="hero-tools">Imperativo · tener que / deber · pronombres · expresiones temporales</p>
+          <div class="mini">Aplicación profesional</div>
+          <p class="hero-application">Dar instrucciones y establecer expectativas.</p>
+          <hr class="hero-divider">
+          <div class="mini">Al terminar podrás</div>
+          <h2>Construir una delegación completa</h2>
+          <ul>
+            <li>asignar una tarea con una acción clara;</li>
+            <li>indicar prioridad y plazo;</li>
+            <li>usar pronombres para evitar repeticiones;</li>
+            <li>comprobar comprensión sin repetir todo.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky-nav" aria-label="Navegación de la lección">
+    <div class="wrap nav-scroll">
+      <a href="#inicio">Diagnóstico</a>
+      <a href="#imperativo">Imperativo</a>
+      <a href="#obligacion">Tener que / deber</a>
+      <a href="#pronombres">Pronombres</a>
+      <a href="#plazos">Plazos</a>
+      <a href="#laboratorio">Laboratorio</a>
+      <a href="#reto">Reto final</a>
+      <a href="#transferencia">Tu trabajo</a>
+      <a id="finalNavLink" href="#cierre" aria-disabled="true" tabindex="-1" title="Completa las 8 actividades para abrir el cierre">Cierre</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="inicio" class="card track" data-track="1">
+      <div class="section-head">
+        <div class="num">1</div>
+        <div>
+          <h2>Primero: reconoce las piezas del mensaje</h2>
+          <p class="muted">Observa qué formas del español expresan la acción, la prioridad, el plazo y la comprobación de comprensión.</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        <b>Para construir el mensaje, puedes combinar cinco piezas:</b><br>
+        persona o responsable · acción (<b>imperativo</b> o <b>tener que/deber</b>) · prioridad u orden · plazo · comprobación de comprensión
+      </div>
+
+      <div class="quiz" data-quiz
+        data-ok="Correcto. «Revisa» expresa la acción, «primero» marca la prioridad y «antes de las 3» expresa el plazo."
+        data-no="Busca un mensaje que combine una acción concreta con una expresión de prioridad y una expresión temporal.">
+        <p class="q">¿Qué opción combina un imperativo, una marca de prioridad y un plazo?</p>
+        <div class="option-list">
+          <button class="option" data-correct="false">Marta, mira la propuesta cuando puedas.</button>
+          <button class="option" data-correct="true">Marta, revisa la propuesta primero, antes de las 3, por favor.</button>
+          <button class="option" data-correct="false">Marta, tenemos varias cosas pendientes.</button>
+        </div>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="imperativo" class="card track" data-track="2">
+      <div class="section-head">
+        <div class="num">2</div>
+        <div>
+          <h2>Imperativo: indica la acción</h2>
+          <p class="muted">El imperativo sirve para dar instrucciones directas. En el trabajo, el tono también depende de la relación entre las personas y del contexto.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="tool-card">
+          <span class="tag">TÚ</span>
+          <strong>Revisa</strong> el informe.<br>
+          <strong>Envía</strong> la propuesta.<br>
+          <strong>Confirma</strong> la fecha.
+        </div>
+        <div class="tool-card">
+          <span class="tag">USTED</span>
+          <strong>Revise</strong> el informe.<br>
+          <strong>Envíe</strong> la propuesta.<br>
+          <strong>Confirme</strong> la fecha.
+        </div>
+        <div class="tool-card">
+          <span class="tag">USTEDES</span>
+          <strong>Revisen</strong> el informe.<br>
+          <strong>Envíen</strong> la propuesta.<br>
+          <strong>Confirmen</strong> la fecha.
+        </div>
+      </div>
+
+      <div class="formula">
+        <b>Patrón útil:</b> en los verbos regulares, el imperativo afirmativo de <b>tú</b> coincide con la tercera persona singular del presente (<i>revisa, confirma</i>). Para <b>usted</b> y <b>ustedes</b>, los verbos regulares en <b>-ar</b> usan <b>-e / -en</b> (<i>revise / revisen</i>) y los regulares en <b>-er / -ir</b> usan <b>-a / -an</b> (<i>responda / respondan</i>). En los verbos irregulares, la forma puede cambiar; por ejemplo: <b>hacer → haz / haga / hagan</b>.
+      </div>
+
+      <div class="example">
+        <div class="example-row">
+          <div><b>Ejemplo profesional</b><br>Laura, revisa las cifras primero y prepara la versión final para esta tarde, por favor.</div>
+          <button class="speak" data-speak="Laura, revisa las cifras primero y prepara la versión final para esta tarde, por favor." aria-label="Escuchar ejemplo">🔊</button>
+        </div>
+      </div>
+
+      <h3>¿Directo o demasiado brusco?</h3>
+      <p>El imperativo no es incorrecto en el trabajo. Pero puedes ajustar el tono con <b>por favor</b>, con una explicación breve o con una pregunta como <b>¿Puedes…?</b>.</p>
+
+      <div class="grid-2">
+        <div class="tool-card"><strong>Más directo</strong><br>Envía el contrato hoy.</div>
+        <div class="tool-card"><strong>Más colaborativo</strong><br>¿Puedes enviar el contrato hoy, por favor?</div>
+      </div>
+
+      <div class="quiz" data-quiz
+        data-ok="Correcto. «Revisa» es la forma del imperativo de «revisar» para «tú»."
+        data-no="Revisa la forma verbal: para dar esta instrucción a una persona con quien usas «tú», necesitas el imperativo «revisa».">
+        <p class="q">Elige la forma adecuada para dar una instrucción clara a una persona con quien usas “tú”.</p>
+        <div class="option-list">
+          <button class="option" data-correct="false">Revisas el presupuesto antes de la reunión.</button>
+          <button class="option" data-correct="true">Revisa el presupuesto antes de la reunión.</button>
+          <button class="option" data-correct="false">Revisar el presupuesto antes de la reunión.</button>
+        </div>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="obligacion" class="card track" data-track="3">
+      <div class="section-head">
+        <div class="num">3</div>
+        <div>
+          <h2>Tener que y deber: expresan necesidad u obligación</h2>
+          <p class="muted">Estas estructuras son útiles cuando necesitas explicar qué es necesario hacer, sin usar siempre un imperativo.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Comparación entre tener que y deber" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>Estructura</th><th>Uso frecuente</th><th>Ejemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>tener que + infinitivo</b></td><td>Necesidad o requisito concreto.</td><td>Tienes que enviar el informe antes de las 5.</td></tr>
+            <tr><td><b>deber + infinitivo</b></td><td>Obligación o indicación. Puede sonar más formal o normativa según el contexto.</td><td>Debes confirmar los datos antes de enviarlos.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example">
+        <div class="example-row">
+          <div><b>Contexto</b><br>El cliente necesita la propuesta hoy.<br><br><b>Mensaje:</b> Tenemos que terminar la propuesta esta mañana. Tú debes revisar los precios y yo preparo la versión final.</div>
+          <button class="speak" data-speak="Tenemos que terminar la propuesta esta mañana. Tú debes revisar los precios y yo preparo la versión final." aria-label="Escuchar ejemplo">🔊</button>
+        </div>
+      </div>
+
+      <div class="quiz" data-quiz
+        data-ok="Correcto. «Tenemos que + infinitivo» expresa aquí una necesidad concreta."
+        data-no="Busca una estructura que exprese obligación o necesidad, no una frecuencia ni una acción pasada.">
+        <p class="q">El informe tiene que estar listo porque la reunión empieza a las 4. ¿Qué frase expresa mejor esa necesidad?</p>
+        <div class="option-list">
+          <button class="option" data-correct="true">Tenemos que terminarlo antes de las 4.</button>
+          <button class="option" data-correct="false">A veces lo terminamos antes de las 4.</button>
+          <button class="option" data-correct="false">Terminamos antes de las 4 ayer.</button>
+        </div>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="pronombres" class="card track" data-track="4">
+      <div class="section-head">
+        <div class="num">4</div>
+        <div>
+          <h2>Pronombres: evita repetir la tarea o el objeto</h2>
+          <p class="muted">Cuando el objeto ya está claro, puedes sustituirlo por lo, la, los o las. Con el imperativo afirmativo, el pronombre se une al verbo.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Pronombres de objeto directo con imperativo" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>Objeto</th><th>Pronombre</th><th>Instrucción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>el informe</td><td>lo</td><td>Revisa el informe → <b>Revísalo.</b></td></tr>
+            <tr><td>la propuesta</td><td>la</td><td>Envía la propuesta → <b>Envíala.</b></td></tr>
+            <tr><td>los datos</td><td>los</td><td>Confirma los datos → <b>Confírmalos.</b></td></tr>
+            <tr><td>las cifras</td><td>las</td><td>Actualiza las cifras → <b>Actualízalas.</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula"><b>Atención a la tilde:</b> al unir el pronombre al imperativo, revisa la acentuación. Algunas formas añaden tilde para conservar el acento de la forma verbal: <b>revisa → revísalo</b>, <b>confirma → confírmalo</b>. Otras conservan una tilde que ya tenían: <b>envía → envíala</b>.</div>
+
+      <div class="quiz" data-quiz
+        data-ok="Correcto. «La presentación» es femenino singular; por eso usamos «la»: «envíala»."
+        data-no="Revisa el género y el número de «la presentación»: necesitas el pronombre «la».">
+        <p class="q">“La presentación está lista. ___ al cliente antes de las 2.”</p>
+        <div class="option-list">
+          <button class="option" data-correct="false">Envíalo</button>
+          <button class="option" data-correct="true">Envíala</button>
+          <button class="option" data-correct="false">Envíalas</button>
+        </div>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="plazos" class="card track" data-track="5">
+      <div class="section-head">
+        <div class="num">5</div>
+        <div>
+          <h2>Prioridad y plazo: di cuándo y en qué orden</h2>
+          <p class="muted">Una instrucción puede ser gramaticalmente correcta y seguir siendo poco útil si no deja claro qué va primero o cuándo debe terminarse.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="tool-card">
+          <span class="tag">PRIORIDAD</span><br>
+          primero · antes que nada · lo más urgente es… · empieza por… · después…
+        </div>
+        <div class="tool-card">
+          <span class="tag">PLAZO</span><br>
+          hoy · esta tarde · para mañana · antes de las 3 · al final del día · esta semana
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="example-row">
+          <div><b>Mensaje completo</b><br>Daniel, empieza por las facturas pendientes. Revísalas esta mañana y envía el resumen antes de las 2. Después puedes continuar con el inventario. ¿Puedes confirmarme qué vas a hacer primero y para cuándo?</div>
+          <button class="speak" data-speak="Daniel, empieza por las facturas pendientes. Revísalas esta mañana y envía el resumen antes de las dos. Después puedes continuar con el inventario. ¿Puedes confirmarme qué vas a hacer primero y para cuándo?" aria-label="Escuchar ejemplo">🔊</button>
+        </div>
+      </div>
+
+      <h3>Construye una instrucción</h3>
+      <p class="tiny">Pulsa los bloques en el orden que consideres correcto. Luego compara el resultado con una versión posible.</p>
+      <div class="builder">
+        <div class="builder-box">
+          <div class="chips" id="chipBank">
+            <button class="chip">Carlos,</button>
+            <button class="chip">revisa el contrato</button>
+            <button class="chip">primero</button>
+            <button class="chip">y envíalo</button>
+            <button class="chip">antes de las 4,</button>
+            <button class="chip">por favor.</button>
+          </div>
+          <button class="btn btn-ghost" id="resetBuilder" style="margin-top:16px">Reiniciar</button>
+        </div>
+        <div class="builder-box">
+          <b>Tu frase</b>
+          <div class="sentence-output" id="sentenceOutput" aria-live="polite">Pulsa los bloques para construir tu mensaje.</div>
+          <button class="btn btn-primary" id="checkBuilder" style="margin-top:12px">Comparar</button>
+          <div class="feedback" id="builderFeedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="laboratorio" class="card track" data-track="6">
+      <div class="section-head">
+        <div class="num">6</div>
+        <div>
+          <h2>Laboratorio: crea una delegación completa</h2>
+          <p class="muted">Cambia los datos y observa cómo se combinan acción, prioridad u orden, plazo y comprobación de comprensión.</p>
+        </div>
+      </div>
+
+      <div class="lab">
+        <div>
+          <div class="field">
+            <label for="person">Persona</label>
+            <select id="person">
+              <option>Andrea</option><option>Marco</option><option>Lucía</option><option>David</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="task">Tarea</label>
+            <select id="task">
+              <option value="revisa la propuesta">revisar la propuesta</option>
+              <option value="actualiza las cifras">actualizar las cifras</option>
+              <option value="confirma la fecha con el cliente">confirmar la fecha con el cliente</option>
+              <option value="prepara el resumen de la reunión">preparar el resumen de la reunión</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="priority">Prioridad u orden</label>
+            <select id="priority">
+              <option value="primero">primero</option>
+              <option value="antes que las otras tareas">antes que las otras tareas</option>
+              <option value="después de terminar el informe">después de terminar el informe</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="deadline">Plazo</label>
+            <select id="deadline">
+              <option value="antes de las 3">antes de las 3</option>
+              <option value="esta tarde">esta tarde</option>
+              <option value="para mañana">para mañana</option>
+              <option value="al final del día">al final del día</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="check">Comprobación</label>
+            <select id="check">
+              <option value="¿Puedes confirmarme qué vas a hacer y para cuándo?">¿Puedes confirmarme qué vas a hacer y para cuándo?</option>
+              <option value="¿Puedes confirmarme para cuándo debe quedar lista la tarea?">¿Puedes confirmarme para cuándo debe quedar lista la tarea?</option>
+              <option value="¿Puedes confirmarme en qué orden vas a hacer las tareas?">¿Puedes confirmarme en qué orden vas a hacer las tareas?</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="generate">Generar mensaje</button>
+        </div>
+
+        <div class="result-card">
+          <h3>Tu modelo</h3>
+          <p class="tiny">Úsalo como referencia. No necesitas memorizarlo palabra por palabra.</p>
+          <div class="result-message" id="generatedMessage" aria-live="polite">Andrea, revisa la propuesta primero. La tarea debe quedar lista antes de las 3. ¿Puedes confirmarme qué vas a hacer y para cuándo?</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1">
+            <button class="btn btn-yellow" id="speakGenerated">🔊 Escuchar</button>
+            <button class="btn btn-ghost" id="copyGenerated">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="practice-bridge" aria-label="Continuar la práctica en la comunidad">
+      <p><strong>Spanish at Work:</strong> ya construiste una instrucción. Ahora puedes entrenarla con otras personas y adaptarla a una conversación real.</p>
+      <a class="btn btn-primary" href="https://skool.spanishatwork.co/" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad ↗</a>
+    </aside>
+
+    <section id="reto" class="card track" data-track="7">
+      <div class="section-head">
+        <div class="num">7</div>
+        <div>
+          <h2>Reto final: delega una tarea real</h2>
+          <p class="muted">Piensa en una tarea de tu trabajo. Escribe un mensaje breve que puedas decir de forma natural.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="finalText">Tu mensaje</label>
+        <textarea id="finalText" placeholder="Construye tu mensaje: persona + acción + prioridad u orden + plazo + comprobación de comprensión."></textarea>
+      </div>
+
+      <div class="checklist" aria-label="Lista de comprobación">
+        <label class="check"><input type="checkbox" class="final-check"> <span>Deja claro <b>quién es responsable</b> de la tarea.</span></label>
+        <label class="check"><input type="checkbox" class="final-check"> <span>Mi mensaje dice <b>qué acción</b> debe hacer la persona.</span></label>
+        <label class="check"><input type="checkbox" class="final-check"> <span>Indica una <b>prioridad</b> o el orden de las tareas.</span></label>
+        <label class="check"><input type="checkbox" class="final-check"> <span>Incluye un <b>plazo</b> claro.</span></label>
+        <label class="check"><input type="checkbox" class="final-check"> <span>Incluye una forma de <b>comprobar comprensión</b>.</span></label>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" id="saveFinal">Guardar en este dispositivo</button>
+        <button class="btn btn-ghost" id="speakFinal">🔊 Escuchar mi mensaje</button>
+        <button class="btn btn-ghost" id="resetFinal">Reiniciar reto</button>
+      </div>
+      <div class="feedback" id="finalFeedback" aria-live="polite"></div>
+
+      <div class="oral-practice">
+        <h3>Ahora dilo tú</h3>
+        <p>Oculta o aparta tu texto y di el mensaje en voz alta. Intenta recuperar al menos una forma de acción, una expresión de prioridad, un plazo y una pregunta para comprobar comprensión.</p>
+        <div class="timer-row">
+          <span class="timer-display" id="oralTimer">30 s</span>
+          <button class="btn btn-primary" id="startOralTimer">Iniciar 30 s</button>
+          <button class="btn btn-ghost" id="resetOralTimer">Reiniciar tiempo</button>
+          <button class="btn btn-ghost" id="completeOral">Ya lo dije sin leer</button>
+        </div>
+        <p class="tiny" id="oralStatus" aria-live="polite">La práctica oral todavía no está marcada como completada.</p>
+      </div>
+
+      <div class="completion">
+        <b>Tu progreso en la lección</b>
+        <meter id="completionMeter" min="0" max="8" value="0">0 de 8</meter>
+        <span id="completionText" class="tiny">0 de 8 actividades completadas</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div class="num">ROL</div>
+        <div>
+          <h2>Ahora llévalo al Método ROL</h2>
+          <p class="muted">La lección te da herramientas. La autonomía aparece cuando las recuperas, las ajustas y las usas en situaciones diferentes.</p>
+        </div>
+      </div>
+      <div class="rol">
+        <div class="rol-step"><div class="rol-letter">R</div><b>Revisa</b><br><span class="tiny">Vuelve a los ejemplos que todavía necesitas mirar para construir tu mensaje.</span></div>
+        <div class="rol-step"><div class="rol-letter">O</div><b>Optimiza</b><br><span class="tiny">Practica una delegación, detecta qué falta y construye una versión más clara.</span></div>
+        <div class="rol-step"><div class="rol-letter">L</div><b>Llévalo a la práctica</b><br><span class="tiny">Usa una de estas estructuras en una tarea, reunión o conversación real de tu trabajo.</span></div>
+      </div>
+    </section>
+
+    <section id="transferencia" class="card track" data-track="8">
+      <div class="section-head">
+        <div class="num">↗</div>
+        <div>
+          <h2>Llévalo a tu trabajo</h2>
+          <p class="muted">Elige una situación donde podrías reutilizar estas herramientas y crea una micro misión de transferencia.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="transferContext">¿Dónde podrías usar este español?</label>
+          <select id="transferContext">
+            <option value="En tu próxima reunión">una reunión</option>
+            <option value="En una conversación con tu equipo">tu equipo</option>
+            <option value="En una conversación con un compañero">un compañero</option>
+            <option value="En una coordinación con un proveedor">un proveedor</option>
+            <option value="En un mensaje de trabajo">un mensaje</option>
+            <option value="En la coordinación de un proyecto">un proyecto</option>
+          </select>
+          <button class="btn btn-primary" id="createMission" style="margin-top:12px">Crear mi misión</button>
+        </div>
+        <div class="tool-card" aria-live="polite">
+          <span class="tag">MICRO MISIÓN</span>
+          <p id="transferMission">En tu próxima reunión, construye una instrucción real con una forma de acción, una expresión de prioridad, un plazo y una pregunta para comprobar comprensión. Después intenta decirla con menos apoyo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cierre" class="card" hidden>
+      <div class="section-head">
+        <div class="num">✓</div>
+        <div>
+          <p class="eyebrow">Spanish at Work</p>
+          <h2>Cierre de la lección</h2>
+          <p class="muted">Revisa qué español trabajaste y repite una práctica si todavía necesitas apoyo.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="tool-card">
+          <span class="tag">HERRAMIENTAS</span>
+          <p><b>Imperativo · tener que / deber · pronombres · expresiones temporales</b></p>
+          <p class="tiny">Aplicación profesional: dar instrucciones y establecer expectativas.</p>
+        </div>
+        <div class="tool-card">
+          <span class="tag">AHORA PUEDES</span>
+          <ul>
+            <li>construir instrucciones con una acción clara;</li>
+            <li>sustituir objetos con <b>lo, la, los, las</b> cuando el referente ya está claro;</li>
+            <li>combinar prioridad, plazo y una pregunta para comprobar comprensión.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="completion" aria-live="polite">
+        <b>Progreso final</b>
+        <meter id="finalCompletionMeter" min="0" max="100" value="0">0%</meter>
+        <span id="finalCompletionText" class="tiny">0% completado</span>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <a class="btn btn-ghost" href="#laboratorio">Repetir laboratorio</a>
+        <button class="btn btn-ghost" id="resetLesson">Reiniciar lección</button>
+        <a class="btn btn-yellow" href="https://skool.spanishatwork.co/" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Spanish at Work · Español para trabajar · Lección interactiva 13</div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (sel, root=document) => root.querySelector(sel);
+      const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+      // Progreso basado en actividades significativas, no en el desplazamiento por la página.
+      const scrollProgress = $("#scrollProgress");
+      const meter = $("#completionMeter");
+      const completionText = $("#completionText");
+      const heroMeter = $("#heroCompletionMeter");
+      const heroCompletionText = $("#heroCompletionText");
+      const finalMeter = $("#finalCompletionMeter");
+      const finalCompletionText = $("#finalCompletionText");
+      const finalSection = $("#cierre");
+      const finalNavLink = $("#finalNavLink");
+      const completed = new Set();
+
+      const updateCompletion = () => {
+        const count = completed.size;
+        const pct = (count / 8) * 100;
+        meter.value = count;
+        heroMeter.value = count;
+        completionText.textContent = `${count} de 8 actividades completadas`;
+        heroCompletionText.textContent = `${count} de 8 actividades completadas`;
+        finalMeter.value = pct;
+        finalCompletionText.textContent = `${Math.round(pct)}% completado`;
+        scrollProgress.style.width = `${pct}%`;
+
+        const lessonComplete = count === 8;
+        finalSection.hidden = !lessonComplete;
+        finalNavLink.setAttribute('aria-disabled', lessonComplete ? 'false' : 'true');
+        finalNavLink.tabIndex = lessonComplete ? 0 : -1;
+        finalNavLink.title = lessonComplete ? 'Ir al cierre de la lección' : 'Completa las 8 actividades para abrir el cierre';
+      };
+      const markComplete = (track) => {
+        if(track){
+          completed.add(String(track));
+          updateCompletion();
+        }
+      };
+      const unmarkComplete = (track) => {
+        completed.delete(String(track));
+        updateCompletion();
+      };
+      updateCompletion();
+
+      // TTS en español usando la voz del navegador.
+      const speak = (text) => {
+        if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+          alert("Tu navegador no tiene lectura de voz disponible.");
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "es-ES";
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+      };
+      $$('[data-speak]').forEach(btn => btn.addEventListener('click', () => speak(btn.dataset.speak)));
+
+      // Quizzes.
+      $$('[data-quiz]').forEach(quiz => {
+        const feedback = $('.feedback', quiz);
+        $$('.option', quiz).forEach(opt => {
+          opt.addEventListener('click', () => {
+            $$('.option', quiz).forEach(o => o.classList.remove('correct','wrong'));
+            const ok = opt.dataset.correct === 'true';
+            opt.classList.add(ok ? 'correct' : 'wrong');
+            feedback.className = `feedback show ${ok ? 'ok' : 'no'}`;
+            feedback.textContent = ok
+              ? (quiz.dataset.ok || 'Correcto.')
+              : (quiz.dataset.no || 'Revisa la opción y vuelve a intentarlo.');
+            const track = quiz.closest('.track')?.dataset.track;
+            if(ok) markComplete(track);
+            else unmarkComplete(track);
+          });
+        });
+      });
+
+      // Constructor de frase.
+      const bank = $('#chipBank');
+      const output = $('#sentenceOutput');
+      const builderFeedback = $('#builderFeedback');
+      let selected = [];
+
+      const renderSentence = () => {
+        output.textContent = selected.length ? selected.join(' ').replace(/\s+([,.!?])/g,'$1') : 'Pulsa los bloques para construir tu mensaje.';
+      };
+      $$('.chip', bank).forEach(chip => {
+        chip.addEventListener('click', () => {
+          selected.push(chip.textContent.trim());
+          chip.disabled = true;
+          chip.style.opacity = '.45';
+          renderSentence();
+        });
+      });
+      $('#resetBuilder').addEventListener('click', () => {
+        selected = [];
+        $$('.chip', bank).forEach(chip => { chip.disabled = false; chip.style.opacity = '1'; });
+        builderFeedback.className = 'feedback';
+        builderFeedback.textContent = '';
+        renderSentence();
+        unmarkComplete('5');
+      });
+      $('#checkBuilder').addEventListener('click', () => {
+        const validModels = [
+          ['Carlos,','revisa el contrato','primero','y envíalo','antes de las 4,','por favor.'],
+          ['Carlos,','primero','revisa el contrato','y envíalo','antes de las 4,','por favor.']
+        ];
+        const current = selected.join('|');
+        const ok = validModels.some(model => current === model.join('|'));
+        builderFeedback.className = `feedback show ${ok ? 'ok' : 'no'}`;
+        builderFeedback.innerHTML = ok
+          ? '<b>Muy bien.</b> La secuencia identifica a la persona, la acción, la prioridad, el plazo y ajusta el tono.'
+          : '<b>Revisa el orden.</b> Una versión clara es: Carlos, revisa el contrato primero y envíalo antes de las 4, por favor.';
+        if(ok) markComplete('5');
+      });
+
+      // Laboratorio.
+      const person = $('#person');
+      const task = $('#task');
+      const priority = $('#priority');
+      const deadline = $('#deadline');
+      const check = $('#check');
+      const generated = $('#generatedMessage');
+
+      const generate = (countAsActivity = false) => {
+        const action = task.value;
+        generated.textContent = `${person.value}, ${action} ${priority.value}. La tarea debe quedar lista ${deadline.value}. ${check.value}`;
+        if(countAsActivity) markComplete('6');
+      };
+      $('#generate').addEventListener('click', () => generate(true));
+      [person,task,priority,deadline,check].forEach(el => el.addEventListener('change', () => generate(true)));
+      generate(false);
+
+      $('#speakGenerated').addEventListener('click', () => speak(generated.textContent));
+      $('#copyGenerated').addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(generated.textContent);
+          $('#copyGenerated').textContent = 'Copiado ✓';
+          setTimeout(() => $('#copyGenerated').textContent = 'Copiar', 1400);
+        } catch {
+          alert('No se pudo copiar automáticamente. Selecciona el texto y cópialo manualmente.');
+        }
+      });
+
+      // Reto final y guardado local.
+      const finalText = $('#finalText');
+      const finalFeedback = $('#finalFeedback');
+      const oralTimer = $('#oralTimer');
+      const oralStatus = $('#oralStatus');
+      let oralDone = false;
+      let oralSeconds = 30;
+      let oralInterval = null;
+      const storageKey = 'saw_l13_delegacion';
+      const safeStorage = {
+        get(key){
+          try { return window.localStorage.getItem(key); }
+          catch { return null; }
+        },
+        set(key, value){
+          try {
+            window.localStorage.setItem(key, value);
+            return true;
+          } catch {
+            return false;
+          }
+        },
+        remove(key){
+          try {
+            window.localStorage.removeItem(key);
+            return true;
+          } catch {
+            return false;
+          }
+        }
+      };
+      const saved = safeStorage.get(storageKey);
+      if(saved) finalText.value = saved;
+
+      const finalChecksComplete = () => $$('.final-check:checked').length === 5;
+      const maybeCompleteFinal = () => {
+        if(finalText.value.trim() && finalChecksComplete() && oralDone) markComplete('7');
+        else unmarkComplete('7');
+      };
+
+      $('#saveFinal').addEventListener('click', () => {
+        const value = finalText.value.trim();
+        if(!value){
+          finalFeedback.className = 'feedback show no';
+          finalFeedback.textContent = 'Escribe primero tu mensaje de delegación.';
+          return;
+        }
+        if(safeStorage.set(storageKey, value)){
+          finalFeedback.className = 'feedback show ok';
+          finalFeedback.textContent = 'Guardado en este dispositivo. Puedes volver y editarlo cuando quieras.';
+        } else {
+          finalFeedback.className = 'feedback show ok';
+          finalFeedback.textContent = 'Tu mensaje está completo. El navegador no permite guardarlo aquí; puedes copiarlo antes de salir.';
+        }
+        maybeCompleteFinal();
+      });
+      $('#speakFinal').addEventListener('click', () => {
+        const value = finalText.value.trim();
+        if(value) speak(value);
+        else {
+          finalFeedback.className = 'feedback show no';
+          finalFeedback.textContent = 'Escribe tu mensaje antes de escucharlo.';
+        }
+      });
+
+      const resetOralPractice = () => {
+        if(oralInterval){
+          clearInterval(oralInterval);
+          oralInterval = null;
+        }
+        oralSeconds = 30;
+        oralTimer.textContent = '30 s';
+        oralDone = false;
+        oralStatus.textContent = 'La práctica oral todavía no está marcada como completada.';
+      };
+
+      $('#resetFinal').addEventListener('click', () => {
+        finalText.value = '';
+        safeStorage.remove(storageKey);
+        $$('.final-check').forEach(cb => { cb.checked = false; });
+        finalFeedback.className = 'feedback';
+        finalFeedback.textContent = '';
+        resetOralPractice();
+        unmarkComplete('7');
+      });
+
+      $('#startOralTimer').addEventListener('click', () => {
+        if(oralInterval) return;
+        if(oralSeconds <= 0) oralSeconds = 30;
+        oralStatus.textContent = 'Habla sin leer. Recupera las estructuras de la lección.';
+        oralInterval = setInterval(() => {
+          oralSeconds -= 1;
+          oralTimer.textContent = `${oralSeconds} s`;
+          if(oralSeconds <= 0){
+            clearInterval(oralInterval);
+            oralInterval = null;
+            oralTimer.textContent = '0 s';
+            oralStatus.textContent = 'Tiempo terminado. Si dijiste el mensaje sin leer, márcalo como completado.';
+          }
+        }, 1000);
+      });
+      $('#resetOralTimer').addEventListener('click', () => {
+        resetOralPractice();
+        maybeCompleteFinal();
+      });
+      $('#completeOral').addEventListener('click', () => {
+        if(oralInterval){
+          clearInterval(oralInterval);
+          oralInterval = null;
+        }
+        oralDone = true;
+        oralStatus.textContent = 'Práctica oral marcada como completada.';
+        maybeCompleteFinal();
+      });
+
+      // Los checks del reto también ayudan al estudiante a detectar lo que falta.
+      $$('.final-check').forEach(cb => cb.addEventListener('change', () => {
+        const done = $$('.final-check:checked').length;
+        if(done === 5){
+          finalFeedback.className = 'feedback show ok';
+          finalFeedback.textContent = 'Tu mensaje incluye los cinco elementos clave. Ahora intenta decirlo sin leer.';
+        } else if(finalFeedback.textContent === 'Tu mensaje incluye los cinco elementos clave. Ahora intenta decirlo sin leer.') {
+          finalFeedback.className = 'feedback';
+          finalFeedback.textContent = '';
+        }
+        maybeCompleteFinal();
+      }));
+      finalText.addEventListener('input', maybeCompleteFinal);
+
+      // Transferencia a una situación real de trabajo.
+      const transferContext = $('#transferContext');
+      const transferMission = $('#transferMission');
+      const createTransferMission = (countAsActivity = false) => {
+        transferMission.textContent = `${transferContext.value}, construye una instrucción real con una forma de acción, una expresión de prioridad, un plazo y una pregunta para comprobar comprensión. Después intenta decirla con menos apoyo.`;
+        if(countAsActivity) markComplete('8');
+      };
+      $('#createMission').addEventListener('click', () => createTransferMission(true));
+      transferContext.addEventListener('change', () => createTransferMission(true));
+
+      finalNavLink.addEventListener('click', (event) => {
+        if(completed.size !== 8){
+          event.preventDefault();
+        }
+      });
+
+      // Reinicio completo de la lección.
+      $('#resetLesson').addEventListener('click', () => {
+        completed.clear();
+        $$('[data-quiz]').forEach(quiz => {
+          $$('.option', quiz).forEach(o => o.classList.remove('correct','wrong'));
+          const feedback = $('.feedback', quiz);
+          feedback.className = 'feedback';
+          feedback.textContent = '';
+        });
+
+        selected = [];
+        $$('.chip', bank).forEach(chip => {
+          chip.disabled = false;
+          chip.style.opacity = '1';
+        });
+        builderFeedback.className = 'feedback';
+        builderFeedback.textContent = '';
+        renderSentence();
+
+        [person,task,priority,deadline,check].forEach(el => { el.selectedIndex = 0; });
+        generate(false);
+        $('#copyGenerated').textContent = 'Copiar';
+
+        finalText.value = '';
+        safeStorage.remove(storageKey);
+        $$('.final-check').forEach(cb => { cb.checked = false; });
+        finalFeedback.className = 'feedback';
+        finalFeedback.textContent = '';
+        resetOralPractice();
+        transferContext.selectedIndex = 0;
+        createTransferMission();
+        if('speechSynthesis' in window) window.speechSynthesis.cancel();
+        updateCompletion();
+        const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        $('#inicio').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+      });
+    })();
+  </script>
+</body>
+</html>

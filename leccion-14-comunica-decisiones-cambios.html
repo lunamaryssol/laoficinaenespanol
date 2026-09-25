@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lección interactiva de Spanish at Work para comunicar decisiones y cambios en español usando pasado, presente, futuro, causa y consecuencia.">
+  <title>Lección 14 · Comunica decisiones y cambios | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#002766;
+      --blue-soft:#EAF1FF;
+      --yellow:#FCD116;
+      --yellow-soft:#FFF8D5;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#172033;
+      --muted:#5C667A;
+      --line:#D9E1EE;
+      --surface:#F6F8FC;
+      --success:#146C43;
+      --success-soft:#E9F7EF;
+      --shadow:0 14px 40px rgba(0,56,147,.12);
+      --radius:22px;
+      --radius-sm:14px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(252,209,22,.19), transparent 27rem),
+        linear-gradient(180deg,#F9FBFF 0%,#F3F6FB 100%);
+    }
+
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:8px;
+      z-index:1000;
+      padding:10px 14px;
+      background:var(--black);
+      color:var(--white);
+      border-radius:8px;
+    }
+    .skip-link:focus{left:8px}
+
+    .app{
+      width:min(1120px,100%);
+      margin:0 auto;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,56,147,.1);
+      padding:12px clamp(16px,3vw,32px);
+    }
+
+    .topbar-row{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+      font-weight:700;
+      color:var(--blue);
+      letter-spacing:-.02em;
+    }
+
+    .brand-mark{
+      width:30px;
+      height:30px;
+      border-radius:9px;
+      background:var(--blue);
+      position:relative;
+      box-shadow:inset 0 -6px 0 var(--yellow);
+    }
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--red);
+      right:5px;
+      top:5px;
+    }
+
+    .progress-wrap{flex:1}
+    .progress-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:5px;
+      color:var(--muted);
+      font-size:.77rem;
+    }
+    .progress-track{
+      height:8px;
+      background:#E7ECF4;
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--blue),#205CC0 72%,var(--yellow));
+      transition:width .35s ease;
+    }
+
+    main{
+      flex:1;
+      padding:clamp(22px,4vw,46px) clamp(16px,3vw,32px) 36px;
+    }
+
+    .screen{
+      display:none;
+      animation:screenIn .35s ease both;
+    }
+    .screen.active{display:block}
+
+    @keyframes screenIn{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:none}
+    }
+
+    h1,h2,h3{color:var(--blue-dark);line-height:1.12;margin-top:0}
+    h1{font-size:clamp(2.15rem,6vw,4.35rem);letter-spacing:-.045em;margin-bottom:18px}
+    h2{font-size:clamp(1.65rem,4vw,2.55rem);letter-spacing:-.03em;margin-bottom:14px}
+    h3{font-size:1.06rem;margin-bottom:8px}
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+
+    p{line-height:1.72;margin:0 0 14px}
+    .lead{font-size:clamp(1.05rem,2.2vw,1.3rem);max-width:760px;color:#33405A}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:14px;
+    }
+    .eyebrow::before{content:"";width:24px;height:4px;border-radius:99px;background:var(--yellow)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:var(--white);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,56,147,.08);
+      padding:clamp(28px,6vw,68px);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      right:-90px;
+      top:-110px;
+      border:44px solid var(--yellow);
+      border-radius:50%;
+      opacity:.82;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:110px;
+      height:110px;
+      right:85px;
+      bottom:-65px;
+      background:var(--red);
+      transform:rotate(20deg);
+      border-radius:30px;
+      opacity:.92;
+    }
+    .hero-content{position:relative;z-index:2}
+
+    .tool-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:22px 0 28px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      min-height:36px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--blue-soft);
+      color:var(--blue-dark);
+      font-size:.88rem;
+      font-weight:600;
+      border:1px solid #C9D9FA;
+    }
+    .pill.yellow{background:var(--yellow-soft);border-color:#F7E38A}
+
+    .goal-card{
+      max-width:760px;
+      border-left:5px solid var(--yellow);
+      background:#F9FBFF;
+      padding:18px 20px;
+      border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom:26px;
+    }
+    .goal-card strong{color:var(--blue)}
+
+    .btn{
+      border:0;
+      border-radius:13px;
+      min-height:48px;
+      padding:12px 18px;
+      font-weight:700;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:9px;
+      transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+      text-decoration:none;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:focus-visible,
+    .choice:focus-visible,
+    .tab:focus-visible,
+    .phrase-chip:focus-visible,
+    .order-card:focus-visible,
+    input:focus-visible,textarea:focus-visible,select:focus-visible{
+      outline:3px solid rgba(252,209,22,.95);
+      outline-offset:3px;
+    }
+    .btn-primary{background:var(--blue);color:var(--white);box-shadow:0 7px 16px rgba(0,56,147,.2)}
+    .btn-primary:hover{background:var(--blue-dark)}
+    .btn-secondary{background:var(--white);color:var(--blue);border:1px solid #B9C9E7}
+    .btn-quiet{background:transparent;color:var(--blue);border:1px solid transparent}
+    .btn-red{background:var(--red);color:var(--white)}
+    .btn[disabled]{opacity:.48;cursor:not-allowed;transform:none}
+
+    .grid-2,.grid-3{display:grid;gap:18px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:clamp(18px,3vw,26px);
+      box-shadow:0 8px 24px rgba(31,50,86,.06);
+    }
+    .card.accent{border-top:6px solid var(--yellow)}
+    .card.blue{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .card.blue h3,.card.blue h2{color:var(--white)}
+    .card.soft{background:#FAFCFF}
+
+    .mini-label{
+      display:inline-block;
+      font-size:.73rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--blue);
+      margin-bottom:8px;
+    }
+
+    .scenario-strip{
+      display:grid;
+      grid-template-columns:40px 1fr;
+      gap:14px;
+      align-items:start;
+      background:var(--yellow-soft);
+      border:1px solid #F2DC76;
+      border-radius:var(--radius);
+      padding:20px;
+      margin:22px 0;
+    }
+    .scenario-icon{
+      width:40px;height:40px;border-radius:12px;background:var(--blue);display:grid;place-items:center;color:var(--white)
+    }
+    .scenario-icon svg{width:22px;height:22px}
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin:22px 0;
+    }
+    .time-node{
+      position:relative;
+      padding:18px 14px;
+      border-radius:16px;
+      background:var(--white);
+      border:1px solid var(--line);
+      text-align:center;
+    }
+    .time-node::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:-11px;
+      width:12px;
+      height:2px;
+      background:var(--blue);
+    }
+    .time-node:last-child::after{display:none}
+    .time-node strong{display:block;color:var(--blue);font-size:1.03rem}
+    .time-node span{font-size:.85rem;color:var(--muted)}
+
+    .quiz-card{
+      max-width:760px;
+      margin:18px auto 0;
+    }
+    .quiz-sentence{
+      font-size:clamp(1.25rem,3vw,1.8rem);
+      font-weight:600;
+      text-align:center;
+      line-height:1.5;
+      padding:24px 12px;
+    }
+    .choice-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .choice{
+      min-height:48px;
+      border:1px solid #B9C9E7;
+      border-radius:12px;
+      background:var(--white);
+      color:var(--blue-dark);
+      font-weight:700;
+      padding:10px;
+    }
+    .choice:hover{background:var(--blue-soft)}
+    .choice.correct{border-color:var(--success);background:var(--success-soft);color:var(--success)}
+    .choice.wrong{border-color:var(--red);background:#FFF0F2;color:#981224}
+
+    .feedback{
+      min-height:52px;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      background:#F7F9FC;
+      border-left:4px solid #A6B3C8;
+      line-height:1.55;
+      font-size:.92rem;
+    }
+    .feedback.success{background:var(--success-soft);border-left-color:var(--success)}
+    .feedback.error{background:#FFF0F2;border-left-color:var(--red)}
+
+    .message-panel{
+      background:var(--blue-dark);
+      color:var(--white);
+      border-radius:24px;
+      padding:clamp(22px,4vw,34px);
+      box-shadow:var(--shadow);
+    }
+    .message-panel p{color:#EFF4FF}
+    .message-text{font-size:1.03rem;line-height:1.9;margin-top:10px}
+    .phrase-chip{
+      display:inline;
+      border:0;
+      padding:2px 5px;
+      margin:0 1px;
+      border-radius:6px;
+      background:rgba(252,209,22,.16);
+      color:var(--white);
+      font-weight:600;
+      text-decoration:underline;
+      text-decoration-color:var(--yellow);
+      text-decoration-thickness:2px;
+      text-underline-offset:3px;
+    }
+    .phrase-chip.revealed{background:var(--yellow);color:var(--black);text-decoration:none}
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:18px
+    }
+    .legend-item{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:.8rem}
+
+    .pattern-note{
+      margin-top:18px;
+      border-radius:16px;
+      padding:16px;
+      background:var(--yellow-soft);
+      color:#4A3D00;
+      border:1px solid #F1DB72;
+      min-height:64px;
+    }
+
+    .tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px}
+    .tab{
+      flex:0 0 auto;
+      min-height:42px;
+      border:1px solid #B9C9E7;
+      background:var(--white);
+      color:var(--blue);
+      border-radius:999px;
+      padding:9px 14px;
+      font-weight:700;
+    }
+    .tab[aria-selected="true"]{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    .formula{
+      display:grid;
+      gap:10px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      margin:18px 0;
+    }
+    .formula-step{
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#FBFCFF;
+    }
+    .formula-step b{display:block;color:var(--blue);margin-bottom:4px}
+
+    .example{
+      border-left:4px solid var(--blue);
+      padding:10px 14px;
+      background:#F7FAFF;
+      border-radius:0 10px 10px 0;
+      margin:10px 0;
+      line-height:1.55;
+    }
+    .example strong{color:var(--blue)}
+
+    .compact-table{
+      width:100%;
+      max-width:100%;
+      table-layout:fixed;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:14px;
+      margin-top:12px;
+      font-size:.92rem;
+    }
+    .compact-table th,.compact-table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+    .compact-table th{background:#F2F6FC;color:var(--blue-dark)}
+    .compact-table tr:last-child td{border-bottom:0}
+
+    .check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .check-item{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--white)}
+    .check-item p{margin-bottom:10px;font-weight:600}
+    .check-item select{width:100%;min-height:44px;border:1px solid #B6C3D7;border-radius:10px;padding:9px;background:var(--white)}
+
+    .order-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .order-pool,.order-result{display:grid;gap:10px}
+    .order-card{
+      width:100%;
+      text-align:left;
+      border:1px solid #B9C9E7;
+      border-radius:14px;
+      background:var(--white);
+      padding:14px;
+      color:var(--ink);
+      line-height:1.5;
+    }
+    .order-card:hover{border-color:var(--blue);box-shadow:0 6px 18px rgba(0,56,147,.08)}
+    .order-card.used{opacity:.45;text-decoration:line-through}
+    .order-slot{
+      min-height:62px;
+      border:2px dashed #B7C4D9;
+      background:#F8FAFD;
+      border-radius:14px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+    }
+    .slot-number{width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:700;flex:0 0 auto}
+    .order-slot.filled{border-style:solid;border-color:#8BA7D4;background:var(--white);color:var(--ink)}
+
+    .recall-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .recall-card{border:1px solid var(--line);border-radius:18px;background:var(--white);padding:18px;position:relative}
+    .recall-prompt{font-weight:600;line-height:1.55;min-height:72px}
+    .recall-model{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#F4F7FC;line-height:1.55}
+    .recall-card.open .recall-model{display:block}
+    .self-rate{display:none;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .recall-card.open .self-rate{display:flex}
+
+    .simulation{
+      display:grid;
+      grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+      gap:18px;
+      align-items:start;
+    }
+    .brief{
+      background:var(--blue);
+      color:var(--white);
+      border-radius:22px;
+      padding:22px;
+      position:sticky;
+      top:92px;
+    }
+    .brief h3{color:var(--white)}
+    .brief ul{padding-left:20px;line-height:1.8;margin:10px 0 0}
+    .sim-stage{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:22px}
+    .sim-step{display:none}
+    .sim-step.active{display:block}
+    .sim-options{display:grid;gap:10px;margin-top:14px}
+    .sim-option{
+      text-align:left;
+      border:1px solid #B9C9E7;
+      border-radius:13px;
+      background:var(--white);
+      padding:13px 14px;
+      line-height:1.5;
+    }
+    .sim-option:hover{background:#F4F8FF;border-color:var(--blue)}
+    .sim-option.correct{background:var(--success-soft);border-color:var(--success)}
+    .sim-option.wrong{background:#FFF0F2;border-color:var(--red)}
+    .assembled{
+      margin-top:18px;
+      padding:16px;
+      border-radius:14px;
+      background:#F7FAFF;
+      border:1px solid #C9D8F0;
+      line-height:1.7;
+    }
+
+    .timer-box{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      background:var(--blue-dark);
+      color:var(--white);
+      padding:18px 20px;
+      border-radius:18px;
+      margin:18px 0;
+    }
+    .timer-number{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums}
+    textarea{
+      width:100%;
+      min-height:125px;
+      resize:vertical;
+      border:1px solid #B6C3D7;
+      border-radius:14px;
+      padding:14px;
+      background:var(--white);
+      color:var(--ink);
+    }
+    .checklist{display:grid;gap:10px;margin:16px 0}
+    .checkline{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);padding:12px;border-radius:12px;background:var(--white)}
+    .checkline input{margin-top:5px;width:18px;height:18px}
+
+    .transfer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+    .transfer-choice{
+      border:1px solid #B9C9E7;
+      background:var(--white);
+      border-radius:14px;
+      padding:14px 10px;
+      min-height:78px;
+      font-weight:600;
+      color:var(--blue-dark);
+    }
+    .transfer-choice.active{background:var(--yellow-soft);border-color:#D9B900;color:#3C3300}
+
+    .summary-list{display:grid;gap:10px;margin:20px 0}
+    .summary-item{display:flex;gap:12px;align-items:flex-start;background:#F8FAFD;border:1px solid var(--line);padding:14px;border-radius:14px}
+    .tick{width:24px;height:24px;border-radius:50%;background:var(--success-soft);color:var(--success);display:grid;place-items:center;font-weight:700;flex:0 0 auto}
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:28px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+
+    .note{font-size:.86rem;color:var(--muted);line-height:1.6}
+    .separator{height:1px;background:var(--line);margin:22px 0}
+    .hidden{display:none!important}
+
+    @media (max-width:800px){
+      .grid-2,.grid-3,.check-grid,.recall-grid,.order-layout,.simulation{grid-template-columns:1fr}
+      .transfer-grid{grid-template-columns:repeat(2,1fr)}
+      .brief{position:static}
+      .formula{grid-template-columns:1fr}
+      .topbar-row{align-items:flex-start}
+      .brand span:last-child{display:none}
+    }
+    @media (max-width:520px){
+      main{padding-left:12px;padding-right:12px}
+      .topbar{padding-left:12px;padding-right:12px}
+      .hero{padding:26px 20px}
+      .choice-row{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr}
+      .time-node::after{display:none}
+      .transfer-grid{grid-template-columns:1fr}
+      .timer-box{align-items:flex-start;flex-direction:column}
+      .nav{flex-direction:column-reverse}
+      .nav .btn{width:100%}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#lesson-main">Ir al contenido</a>
+  <div class="app">
+    <header class="topbar" aria-label="Progreso de la lección">
+      <div class="topbar-row">
+        <div class="brand" aria-label="Spanish at Work">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Spanish at Work</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span id="stepLabel">Inicio</span>
+            <span id="progressText">0 %</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><div id="progressBar" class="progress-bar"></div></div>
+        </div>
+      </div>
+    </header>
+
+    <main id="lesson-main">
+      <section class="screen active" data-screen="0" aria-labelledby="title-0">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="eyebrow">Lección 14 · Español para trabajar</div>
+            <h1 id="title-0" tabindex="-1">Comunica decisiones y cambios</h1>
+            <p class="lead">Aprende a conectar <strong>qué se decidió</strong>, <strong>por qué</strong>, <strong>qué cambia ahora</strong> y <strong>qué pasará después</strong>.</p>
+            <div class="tool-line" aria-label="Herramientas lingüísticas de la lección">
+              <span class="pill">Pasado + presente + futuro</span>
+              <span class="pill">Causa y consecuencia</span>
+              <span class="pill yellow">Conectores para justificar</span>
+            </div>
+            <div class="goal-card">
+              <strong>Al terminar podrás:</strong><br>
+              construir un mensaje claro para anunciar una decisión o un cambio, explicar su razón, indicar sus consecuencias y responder a una pregunta adicional.
+            </div>
+            <button class="btn btn-primary" type="button" data-next>Comenzar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="1" aria-labelledby="title-1">
+        <div class="eyebrow">Contexto de aplicación</div>
+        <h2 id="title-1" tabindex="-1">Un cambio puede conectar varios tiempos verbales</h2>
+        <p class="lead">En esta lección vas a practicar una forma clara de organizar un cambio: conectar lo que ocurrió, lo que cambia ahora y lo que sucederá después.</p>
+
+        <div class="scenario-strip">
+          <div class="scenario-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>
+          </div>
+          <div>
+            <strong>Situación:</strong> el cliente pidió una revisión adicional y tu equipo debe cambiar la fecha de entrega. Tú tienes que comunicar la decisión.
+          </div>
+        </div>
+
+        <div class="timeline" aria-label="Tres momentos del mensaje">
+          <div class="time-node"><strong>Antes</strong><span>¿Qué ocurrió o se decidió?</span></div>
+          <div class="time-node"><strong>Ahora</strong><span>¿Qué significa el cambio?</span></div>
+          <div class="time-node"><strong>Después</strong><span>¿Qué pasará o qué hará el equipo?</span></div>
+        </div>
+
+        <div class="card accent">
+          <span class="mini-label">La idea lingüística</span>
+          <p>En esta lección vas a practicar un patrón frecuente: <strong>pasado</strong> para una decisión o un hecho anterior, <strong>presente</strong> para la situación actual y <strong>futuro</strong> para el siguiente paso. Los conectores explican la relación entre esas ideas.</p>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="2" aria-labelledby="title-2">
+        <div class="eyebrow">Activa lo que ya sabes</div>
+        <h2 id="title-2" tabindex="-1">¿Pasado, presente o futuro?</h2>
+        <p>Lee una frase cada vez. Decide en qué momento se sitúa la idea.</p>
+
+        <div class="card quiz-card">
+          <div class="mini-label" id="timeCounter">Frase 1 de 6</div>
+          <div id="timeSentence" class="quiz-sentence"></div>
+          <div class="choice-row" aria-label="Elige el tiempo verbal">
+            <button class="choice" type="button" data-time-choice="pasado">Pasado</button>
+            <button class="choice" type="button" data-time-choice="presente">Presente</button>
+            <button class="choice" type="button" data-time-choice="futuro">Futuro</button>
+          </div>
+          <div id="timeFeedback" class="feedback" aria-live="polite">Elige una opción.</div>
+          <div style="display:flex;justify-content:flex-end;margin-top:12px">
+            <button id="nextTimeQuestion" class="btn btn-secondary" type="button" disabled>Siguiente frase</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="3" aria-labelledby="title-3">
+        <div class="eyebrow">Input comprensible</div>
+        <h2 id="title-3" tabindex="-1">Observa cómo se construye el mensaje</h2>
+        <p>Pulsa las partes subrayadas. Busca qué función cumple cada una.</p>
+
+        <div class="message-panel">
+          <div class="mini-label" style="color:var(--yellow)">Mensaje al equipo</div>
+          <div class="message-text">
+            Equipo, <button class="phrase-chip" type="button" aria-pressed="false" data-pattern="pasado">ayer decidimos cambiar la fecha de entrega del miércoles al viernes</button>
+            <button class="phrase-chip" type="button" aria-pressed="false" data-pattern="causa">porque el cliente pidió una revisión adicional</button>.
+            <button class="phrase-chip" type="button" aria-pressed="false" data-pattern="presente">Desde hoy, la prioridad es corregir los datos del informe</button>.
+            <button class="phrase-chip" type="button" aria-pressed="false" data-pattern="consecuencia">Por eso</button>, Ana revisará las cifras y yo actualizaré la presentación.
+            <button class="phrase-chip" type="button" aria-pressed="false" data-pattern="futuro">El jueves enviaremos una versión preliminar al cliente</button>.
+            Este cambio significa que la reunión interna será el jueves a las 9:00.
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span class="legend-item">decisión anterior</span>
+            <span class="legend-item">razón</span>
+            <span class="legend-item">situación actual</span>
+            <span class="legend-item">consecuencia</span>
+            <span class="legend-item">siguiente paso</span>
+          </div>
+        </div>
+        <div id="patternNote" class="pattern-note" aria-live="polite">Pulsa una parte del mensaje para analizarla.</div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="4" aria-labelledby="title-4">
+        <div class="eyebrow">Aprende la herramienta</div>
+        <h2 id="title-4" tabindex="-1">Revisa las herramientas del mensaje</h2>
+        <p>Usa las pestañas para revisar solo lo que necesitas. Después tendrás que combinarlo.</p>
+
+        <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
+          <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-times" id="tab-times" data-tab="times" tabindex="0">1. Tiempos</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cause" id="tab-cause" data-tab="cause" tabindex="-1">2. Razón</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-effect" id="tab-effect" data-tab="effect" tabindex="-1">3. Consecuencia</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-justify" id="tab-justify" data-tab="justify" tabindex="-1">4. Justificación</button>
+        </div>
+
+        <div class="card">
+          <div class="tab-panel active" id="panel-times" role="tabpanel" aria-labelledby="tab-times">
+            <h3>Un patrón: pasado → presente → futuro</h3>
+            <p>No necesitas contar toda la historia. En este patrón, el tiempo sitúa cada parte del mensaje: decisión anterior, situación actual y siguiente paso.</p>
+            <div class="formula">
+              <div class="formula-step"><b>Pasado</b>Ayer decidimos cambiar la fecha.<br><span class="note">«Ayer» sitúa la decisión en el pasado.</span></div>
+              <div class="formula-step"><b>Presente</b>La prioridad es revisar los datos.<br><span class="note">Describe la situación actual.</span></div>
+              <div class="formula-step"><b>Futuro</b>Enviaremos la versión el jueves.<br><span class="note">Indica lo que ocurrirá después.</span></div>
+            </div>
+            <div class="example"><strong>Atención con «decidimos»:</strong> esta forma puede ser presente o pretérito. El contexto indica el tiempo: <strong>«Normalmente decidimos las prioridades al inicio»</strong> es presente habitual; <strong>«Ayer decidimos cambiar la fecha»</strong> sitúa la decisión en el pasado.</div>
+            <p><strong>Futuro simple:</strong> en los verbos regulares, mantienes el infinitivo y añades la terminación. Algunos verbos cambian la raíz, pero conservan estas terminaciones.</p>
+            <table class="compact-table">
+              <thead><tr><th>Persona</th><th>Terminación</th><th>Ejemplo</th></tr></thead>
+              <tbody>
+                <tr><td>yo</td><td>-é</td><td>actualizaré</td></tr>
+                <tr><td>tú</td><td>-ás</td><td>revisarás</td></tr>
+                <tr><td>él / ella / usted</td><td>-á</td><td>revisará</td></tr>
+                <tr><td>nosotros</td><td>-emos</td><td>enviaremos</td></tr>
+                <tr><td>ellos / ustedes</td><td>-án</td><td>confirmarán</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-panel" id="panel-cause" role="tabpanel" aria-labelledby="tab-cause" hidden>
+            <h3>Explica la razón</h3>
+            <p>La razón responde a la pregunta <strong>«¿por qué?»</strong>.</p>
+            <div class="example"><strong>porque + oración:</strong> Cambiamos la fecha <strong>porque el cliente pidió una revisión</strong>.</div>
+            <div class="example"><strong>debido a + sustantivo:</strong> Cambiamos la fecha <strong>debido a una solicitud del cliente</strong>.</div>
+            <div class="example"><strong>debido a que + oración:</strong> Cambiamos la fecha <strong>debido a que faltan dos datos</strong>.</div>
+            <p class="note">“Debido a” suele sonar algo más formal que “porque”.</p>
+          </div>
+
+          <div class="tab-panel" id="panel-effect" role="tabpanel" aria-labelledby="tab-effect" hidden>
+            <h3>Explica la consecuencia</h3>
+            <p>La consecuencia responde a la pregunta <strong>«¿qué cambia como resultado?»</strong>.</p>
+            <div class="example"><strong>por eso:</strong> El cliente pidió una revisión. <strong>Por eso</strong>, cambiaremos la fecha.</div>
+            <div class="example"><strong>así que:</strong> Faltan dos datos, <strong>así que</strong> terminaremos mañana.</div>
+            <div class="example"><strong>por lo tanto:</strong> La aprobación llegó tarde. <strong>Por lo tanto</strong>, la entrega será el viernes.</div>
+            <p class="note">“Así que” es frecuente en conversación. “Por lo tanto” suele sonar más formal.</p>
+          </div>
+
+          <div class="tab-panel" id="panel-justify" role="tabpanel" aria-labelledby="tab-justify" hidden>
+            <h3>Justifica sin hacer una explicación larga</h3>
+            <p>Estas estructuras te ayudan a presentar de forma explícita la razón de una decisión o un cambio.</p>
+            <div class="example"><strong>La razón principal es que…</strong> La razón principal es que todavía falta la aprobación.</div>
+            <div class="example"><strong>Este cambio se debe a…</strong> Este cambio se debe a una nueva solicitud del cliente.</div>
+            <div class="example"><strong>El motivo es que…</strong> El motivo es que necesitamos más tiempo para revisar.</div>
+            <div class="example"><strong>Tomamos esta decisión porque…</strong> Tomamos esta decisión porque necesitamos revisar los datos.</div>
+          </div>
+        </div>
+
+        <div class="card soft" style="margin-top:16px">
+          <span class="mini-label">Patrón reutilizable</span>
+          <p style="margin:0">En este patrón: <strong>decisión o hecho anterior en pasado</strong> + razón → <strong>situación actual</strong> → consecuencia → <strong>siguiente paso en futuro</strong>.</p>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="5" aria-labelledby="title-5">
+        <div class="eyebrow">Comprueba que entendiste</div>
+        <h2 id="title-5" tabindex="-1">Elige la forma que conecta mejor la idea</h2>
+        <p>Completa las cuatro frases. Después comprueba tus respuestas.</p>
+
+        <div class="check-grid" id="connectorCheck">
+          <div class="check-item">
+            <p>1. Decidimos aplazar la entrega ___ el cliente pidió una revisión adicional.</p>
+            <label class="sr-only" for="q1">Conector para la frase 1</label>
+            <select id="q1" data-answer="porque" aria-describedby="connectorFeedback">
+              <option value="">Elige…</option><option>porque</option><option>por eso</option><option>por lo tanto</option>
+            </select>
+          </div>
+          <div class="check-item">
+            <p>2. Falta la aprobación final; ___, la reunión será mañana.</p>
+            <label class="sr-only" for="q2">Conector para la frase 2</label>
+            <select id="q2" data-answer="por eso" aria-describedby="connectorFeedback">
+              <option value="">Elige…</option><option>porque</option><option>por eso</option><option>debido a</option>
+            </select>
+          </div>
+          <div class="check-item">
+            <p>3. El cambio se debe ___ una nueva solicitud del cliente.</p>
+            <label class="sr-only" for="q3">Conector para la frase 3</label>
+            <select id="q3" data-answer="a" aria-describedby="connectorFeedback">
+              <option value="">Elige…</option><option>por</option><option>a</option><option>que</option>
+            </select>
+          </div>
+          <div class="check-item">
+            <p>4. Mañana ___ la nueva fecha al proveedor.</p>
+            <label class="sr-only" for="q4">Verbo para la frase 4</label>
+            <select id="q4" data-answer="confirmaremos" aria-describedby="connectorFeedback">
+              <option value="">Elige…</option><option>confirmaste</option><option>confirmaremos</option><option>confirmábamos</option>
+            </select>
+          </div>
+        </div>
+        <button id="checkConnectors" class="btn btn-primary" type="button" style="margin-top:16px">Comprobar</button>
+        <div id="connectorFeedback" class="feedback" aria-live="polite">Completa las cuatro frases.</div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="6" aria-labelledby="title-6">
+        <div class="eyebrow">Construye</div>
+        <h2 id="title-6" tabindex="-1">Ordena un mensaje completo</h2>
+        <p>Selecciona los bloques en el orden que produzca un mensaje claro: decisión → razón → consecuencia actual → siguiente paso.</p>
+
+        <div class="order-layout">
+          <div>
+            <h3>Bloques disponibles</h3>
+            <div class="order-pool" id="orderPool">
+              <button class="order-card" type="button" data-order="2">porque recibimos nuevos datos del proveedor.</button>
+              <button class="order-card" type="button" data-order="4">Mañana enviaremos el informe actualizado.</button>
+              <button class="order-card" type="button" data-order="1">Ayer decidimos revisar nuevamente el presupuesto</button>
+              <button class="order-card" type="button" data-order="3">Por eso, hoy la prioridad es comprobar las cifras.</button>
+            </div>
+            <button id="resetOrder" class="btn btn-quiet" type="button" style="margin-top:8px">Reiniciar orden</button>
+          </div>
+          <div>
+            <h3>Tu mensaje</h3>
+            <div class="order-result" id="orderResult" aria-live="polite">
+              <div class="order-slot"><span class="slot-number">1</span><span>Primera idea</span></div>
+              <div class="order-slot"><span class="slot-number">2</span><span>Segunda idea</span></div>
+              <div class="order-slot"><span class="slot-number">3</span><span>Tercera idea</span></div>
+              <div class="order-slot"><span class="slot-number">4</span><span>Cuarta idea</span></div>
+            </div>
+            <button id="checkOrder" class="btn btn-primary" type="button" style="margin-top:12px" disabled>Comprobar orden</button>
+            <div id="orderFeedback" class="feedback" aria-live="polite">Selecciona cuatro bloques.</div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="7" aria-labelledby="title-7">
+        <div class="eyebrow">Recupera y reacciona</div>
+        <h2 id="title-7" tabindex="-1">Primero dilo. Después mira el modelo.</h2>
+        <p>Lee la situación y formula una frase en voz alta antes de revelar el ejemplo. No necesitas decir exactamente lo mismo.</p>
+
+        <div class="recall-grid" id="recallGrid">
+          <article class="recall-card" data-recall="1">
+            <div class="mini-label">Recupera pasado</div>
+            <div class="recall-prompt">Ya tomaste la decisión de cambiar la fecha. ¿Cómo la anuncias?</div>
+            <button class="btn btn-secondary reveal-model" type="button">Ver modelo después de decirlo</button>
+            <div class="recall-model">“Ayer decidimos cambiar la fecha de entrega.”</div>
+            <div class="self-rate"><button class="btn btn-quiet rate" type="button" aria-pressed="false">La dije sin mirar</button><button class="btn btn-quiet rate" type="button" aria-pressed="false">Necesité la pista</button></div>
+          </article>
+          <article class="recall-card" data-recall="2">
+            <div class="mini-label">Recupera causa</div>
+            <div class="recall-prompt">El cliente pidió una revisión. Conecta esa razón con la decisión.</div>
+            <button class="btn btn-secondary reveal-model" type="button">Ver modelo después de decirlo</button>
+            <div class="recall-model">“Cambiamos la fecha porque el cliente pidió una revisión adicional.”</div>
+            <div class="self-rate"><button class="btn btn-quiet rate" type="button" aria-pressed="false">La dije sin mirar</button><button class="btn btn-quiet rate" type="button" aria-pressed="false">Necesité la pista</button></div>
+          </article>
+          <article class="recall-card" data-recall="3">
+            <div class="mini-label">Recupera consecuencia</div>
+            <div class="recall-prompt">Faltan dos datos. Explica qué cambia ahora usando “por eso”.</div>
+            <button class="btn btn-secondary reveal-model" type="button">Ver modelo después de decirlo</button>
+            <div class="recall-model">“Faltan dos datos. Por eso, hoy la prioridad es revisar el informe.”</div>
+            <div class="self-rate"><button class="btn btn-quiet rate" type="button" aria-pressed="false">La dije sin mirar</button><button class="btn btn-quiet rate" type="button" aria-pressed="false">Necesité la pista</button></div>
+          </article>
+          <article class="recall-card" data-recall="4">
+            <div class="mini-label">Recupera futuro</div>
+            <div class="recall-prompt">Dato: mañana debe salir la versión final para el cliente. ¿Cómo expresas el siguiente paso?</div>
+            <button class="btn btn-secondary reveal-model" type="button">Ver modelo después de decirlo</button>
+            <div class="recall-model">“Mañana enviaremos la versión final al cliente.”</div>
+            <div class="self-rate"><button class="btn btn-quiet rate" type="button" aria-pressed="false">La dije sin mirar</button><button class="btn btn-quiet rate" type="button" aria-pressed="false">Necesité la pista</button></div>
+          </article>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="8" aria-labelledby="title-8">
+        <div class="eyebrow">Aplícalo</div>
+        <h2 id="title-8" tabindex="-1">Simulación: cambia una prioridad</h2>
+        <p>Construye una comunicación breve con los datos disponibles. El objetivo es usar la lengua de la lección con precisión.</p>
+
+        <div class="simulation">
+          <aside class="brief">
+            <h3>Datos de la situación</h3>
+            <ul>
+              <li>Ayer: decisión de priorizar el proyecto Atlas.</li>
+              <li>Razón: el cliente necesita una respuesta antes del viernes.</li>
+              <li>Ahora: la propuesta Atlas es la prioridad.</li>
+              <li>Después: envío de una versión al cliente el jueves.</li>
+            </ul>
+          </aside>
+
+          <div class="sim-stage">
+            <div class="sim-step active" data-sim-step="0">
+              <span class="mini-label">Paso 1 · decisión</span>
+              <h3>¿Cómo empiezas?</h3>
+              <div class="sim-options">
+                <button class="sim-option" type="button" data-correct="true" data-text="Ayer decidimos priorizar el proyecto Atlas">Ayer decidimos priorizar el proyecto Atlas.</button>
+                <button class="sim-option" type="button" data-correct="false">Mañana decidiremos priorizar el proyecto Atlas.</button>
+                <button class="sim-option" type="button" data-correct="false">Ahora priorizamos el proyecto Atlas.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite">Elige la frase que presenta una decisión ya tomada.</div>
+            </div>
+
+            <div class="sim-step" data-sim-step="1">
+              <span class="mini-label">Paso 2 · razón</span>
+              <h3>¿Cómo justificas la decisión?</h3>
+              <div class="sim-options">
+                <button class="sim-option" type="button" data-correct="false">por eso el cliente necesita una respuesta antes del viernes.</button>
+                <button class="sim-option" type="button" data-correct="true" data-text="porque el cliente necesita una respuesta antes del viernes">porque el cliente necesita una respuesta antes del viernes.</button>
+                <button class="sim-option" type="button" data-correct="false">a partir del viernes el cliente necesita una respuesta.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite">Elige el conector que introduce la razón.</div>
+            </div>
+
+            <div class="sim-step" data-sim-step="2">
+              <span class="mini-label">Paso 3 · situación actual</span>
+              <h3>¿Qué significa ahora?</h3>
+              <div class="sim-options">
+                <button class="sim-option" type="button" data-correct="true" data-text="Por eso, ahora la propuesta Atlas es la prioridad">Por eso, ahora la propuesta Atlas es la prioridad.</button>
+                <button class="sim-option" type="button" data-correct="false">En cambio, ahora la propuesta Atlas es la prioridad.</button>
+                <button class="sim-option" type="button" data-correct="false">Ayer la propuesta Atlas era la prioridad.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite">Busca presente para la situación actual y un conector de consecuencia.</div>
+            </div>
+
+            <div class="sim-step" data-sim-step="3">
+              <span class="mini-label">Paso 4 · siguiente paso</span>
+              <h3>¿Cómo cierras?</h3>
+              <div class="sim-options">
+                <button class="sim-option" type="button" data-correct="false">El jueves enviábamos una versión al cliente.</button>
+                <button class="sim-option" type="button" data-correct="true" data-text="El jueves enviaremos una versión al cliente">El jueves enviaremos una versión al cliente.</button>
+                <button class="sim-option" type="button" data-correct="false">Ayer enviamos una versión al cliente.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite">Elige la forma que expresa el siguiente paso.</div>
+            </div>
+
+            <div id="assembledMessage" class="assembled" aria-live="polite"><strong>Tu mensaje aparecerá aquí.</strong></div>
+
+            <div id="followupChallenge" class="card accent" style="margin-top:18px;display:none">
+              <span class="mini-label">Pregunta adicional</span>
+              <h3>Ahora reacciona sin preparar toda la respuesta</h3>
+              <p><strong>Un compañero pregunta:</strong> “¿Qué tenemos que hacer hoy con Atlas?”</p>
+              <p>Respóndele en voz alta usando <strong>presente</strong> y, si te resulta natural, un conector de consecuencia.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button id="revealFollowup" class="btn btn-secondary" type="button">Ver una posible respuesta</button>
+                <button id="completeFollowup" class="btn btn-primary" type="button">Ya respondí</button>
+              </div>
+              <div id="followupModel" class="feedback" aria-live="polite" style="display:none">Una posible respuesta: “Por eso, hoy la prioridad es revisar la propuesta Atlas y preparar la versión del jueves.” Tu respuesta puede ser diferente si mantiene la misma idea.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="9" aria-labelledby="title-9">
+        <div class="eyebrow">Ahora dilo tú</div>
+        <h2 id="title-9" tabindex="-1">Comunica un cambio sin leer un modelo</h2>
+        <p>Primero prepara solo palabras clave. Después habla durante 45–60 segundos.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <span class="mini-label">Nueva situación</span>
+            <h3>El proveedor cambió la fecha</h3>
+            <p><strong>Datos:</strong> ayer, el proveedor cambió la fecha de entrega de los materiales del lunes al miércoles. Motivo: un problema de transporte. Hoy: ajustar el plan. El jueves: confirmar que todo llegó correctamente.</p>
+            <div class="separator"></div>
+            <p><strong>Intenta incluir:</strong></p>
+            <ul style="line-height:1.8;padding-left:20px">
+              <li>el cambio en pasado;</li>
+              <li>una razón;</li>
+              <li>una consecuencia actual;</li>
+              <li>un siguiente paso en futuro.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <label for="speakerNotes"><strong>Notas breves</strong> <span class="note">(no escribas un guion completo)</span></label>
+            <textarea id="speakerNotes" placeholder="Ej.: ayer lunes → miércoles · transporte · hoy ajustar plan · jueves confirmar"></textarea>
+            <div class="timer-box">
+              <div><div class="mini-label" style="color:var(--yellow)">Temporizador</div><div id="timerNumber" class="timer-number">60</div></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button id="startTimer" class="btn btn-primary" type="button">Empezar 60 s</button>
+                <button id="resetTimer" class="btn btn-secondary" type="button">Reiniciar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:22px">Revisa tu respuesta</h3>
+        <div class="checklist" id="oralChecklist">
+          <label class="checkline"><input type="checkbox"> <span>Expresé qué cambió o qué se decidió.</span></label>
+          <label class="checkline"><input type="checkbox"> <span>Expliqué la razón con <strong>porque</strong>, <strong>debido a</strong> u otra estructura adecuada.</span></label>
+          <label class="checkline"><input type="checkbox"> <span>Expliqué una consecuencia actual.</span></label>
+          <label class="checkline"><input type="checkbox"> <span>Indiqué un siguiente paso en futuro.</span></label>
+          <label class="checkline"><input type="checkbox"> <span>Mi mensaje se entiende sin necesitar un modelo completo.</span></label>
+        </div>
+        <div id="oralFeedback" class="feedback" aria-live="polite">Marca lo que lograste. Si falta una parte, vuelve a intentarlo con menos apoyo.</div>
+
+        <div class="card accent" style="margin-top:18px">
+          <span class="mini-label">Siguiente paso</span>
+          <p>Ya combinaste las herramientas aquí. Ahora úsalas con otras personas y responde preguntas que no puedes preparar de antemano.</p>
+          <a class="btn btn-primary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button class="btn btn-primary" type="button" data-next>Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="10" aria-labelledby="title-10">
+        <div class="eyebrow">Llévalo a tu trabajo</div>
+        <h2 id="title-10" tabindex="-1">Elige dónde vas a utilizarlo</h2>
+        <p>Selecciona una situación real. Tu misión es comunicar un cambio usando las cuatro piezas de la lección.</p>
+        <div class="transfer-grid" id="transferGrid">
+          <button class="transfer-choice" type="button" aria-pressed="false">Reunión</button>
+          <button class="transfer-choice" type="button" aria-pressed="false">Cliente</button>
+          <button class="transfer-choice" type="button" aria-pressed="false">Proveedor</button>
+          <button class="transfer-choice" type="button" aria-pressed="false">Equipo</button>
+        </div>
+        <div id="transferMission" class="card blue" aria-live="polite">
+          <h3>Micro misión</h3>
+          <p>Elige una situación para crear tu misión.</p>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-secondary" type="button" data-prev>Anterior</button>
+          <button id="finishLesson" class="btn btn-primary" type="button">Terminar lección</button>
+          <div id="finishFeedback" class="feedback" aria-live="polite" style="flex-basis:100%;display:none"></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="11" aria-labelledby="title-11">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="eyebrow">Lección completada</div>
+            <h2 id="title-11" tabindex="-1">Ya puedes construir un mensaje de cambio con más autonomía</h2>
+            <p class="lead">Has trabajado cómo conectar pasado, presente y futuro con razones y consecuencias dentro de una comunicación profesional.</p>
+            <div class="summary-list">
+              <div class="summary-item"><span class="tick">✓</span><span>Distingo qué parte del mensaje necesita pasado, presente o futuro.</span></div>
+              <div class="summary-item"><span class="tick">✓</span><span>Conecto una decisión con su razón y su consecuencia.</span></div>
+              <div class="summary-item"><span class="tick">✓</span><span>Justifico un cambio y explico el siguiente paso sin depender de un guion completo.</span></div>
+              <div class="summary-item"><span class="tick">✓</span><span>Respondo una pregunta adicional usando las herramientas de la lección.</span></div>
+            </div>
+            <div class="tool-line">
+              <span class="pill">Pasado + presente + futuro</span>
+              <span class="pill">porque · debido a · por eso</span>
+              <span class="pill yellow">La razón principal es que… · Este cambio se debe a…</span>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button id="repeatPractice" class="btn btn-secondary" type="button">Repetir práctica oral</button>
+              <button id="restartLesson" class="btn btn-secondary" type="button">Reiniciar lección</button>
+              <a class="btn btn-primary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const screens = [...document.querySelectorAll('.screen')];
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const stepLabel = document.getElementById('stepLabel');
+      let currentScreen = 0;
+
+      const completed = new Set();
+      const progressTasks = ['time','patterns','connectors','order','recall','simulation','followup','oral','transfer'];
+
+      function saveState(){
+        try{
+          localStorage.setItem('saw-lesson-14', JSON.stringify({
+            currentScreen,
+            completed:[...completed]
+          }));
+        }catch(e){ /* La lección funciona sin almacenamiento local. */ }
+      }
+
+      function loadState(){
+        try{
+          const raw = localStorage.getItem('saw-lesson-14');
+          if(!raw) return;
+          const state = JSON.parse(raw);
+          if(Number.isInteger(state.currentScreen) && state.currentScreen >= 0 && state.currentScreen < screens.length){
+            currentScreen = state.currentScreen;
+          }
+          if(Array.isArray(state.completed)){
+            state.completed.forEach(k => {
+              if(progressTasks.includes(k)) completed.add(k);
+            });
+          }
+        }catch(e){ /* Ignorar estado inválido. */ }
+      }
+
+      function markCompleted(key){
+        if(progressTasks.includes(key)) completed.add(key);
+        updateProgress();
+        saveState();
+      }
+
+      function updateProgress(){
+        const percent = Math.round((completed.size / progressTasks.length) * 100);
+        progressBar.style.width = percent + '%';
+        progressText.textContent = percent + ' %';
+        stepLabel.textContent = currentScreen === 0 ? 'Inicio' : currentScreen === screens.length - 1 ? 'Final' : `Paso ${currentScreen} de ${screens.length - 2}`;
+      }
+
+      function showScreen(index, focusTitle = true){
+        currentScreen = Math.max(0, Math.min(index, screens.length - 1));
+        screens.forEach((s,i) => s.classList.toggle('active', i === currentScreen));
+        updateProgress();
+        saveState();
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
+        if(focusTitle){
+          const title = screens[currentScreen].querySelector('h1,h2');
+          if(title) setTimeout(() => title.focus({preventScroll:true}), 60);
+        }
+      }
+
+      document.addEventListener('click', e => {
+        const next = e.target.closest('[data-next]');
+        const prev = e.target.closest('[data-prev]');
+        if(next) showScreen(currentScreen + 1);
+        if(prev) showScreen(currentScreen - 1);
+      });
+
+      // Actividad: tiempos verbales
+      const timeItems = [
+        {text:'Ayer decidimos cambiar la fecha.', answer:'pasado', feedback:'“Ayer” sitúa la idea en el pasado. La forma “decidimos” coincide en presente y pretérito; aquí el marcador temporal elimina la ambigüedad.'},
+        {text:'La prioridad es revisar el informe.', answer:'presente', feedback:'“Es” describe la situación actual.'},
+        {text:'Mañana enviaremos la versión final.', answer:'futuro', feedback:'“Enviaremos” indica un siguiente paso.'},
+        {text:'El cliente pidió una revisión adicional.', answer:'pasado', feedback:'“Pidió” cuenta un hecho anterior.'},
+        {text:'Este cambio afecta a dos tareas.', answer:'presente', feedback:'“Afecta” explica una consecuencia actual.'},
+        {text:'El equipo confirmará la fecha.', answer:'futuro', feedback:'“Confirmará” expresa una acción posterior.'}
+      ];
+      let timeIndex = 0;
+      let timeAnswered = false;
+      const timeSentence = document.getElementById('timeSentence');
+      const timeCounter = document.getElementById('timeCounter');
+      const timeFeedback = document.getElementById('timeFeedback');
+      const nextTimeQuestion = document.getElementById('nextTimeQuestion');
+      const timeChoices = [...document.querySelectorAll('[data-time-choice]')];
+
+      function renderTimeItem(){
+        const item = timeItems[timeIndex];
+        timeSentence.textContent = item.text;
+        timeCounter.textContent = `Frase ${timeIndex + 1} de ${timeItems.length}`;
+        timeFeedback.className = 'feedback';
+        timeFeedback.textContent = 'Elige una opción.';
+        timeAnswered = false;
+        nextTimeQuestion.disabled = true;
+        timeChoices.forEach(b => b.classList.remove('correct','wrong'));
+        nextTimeQuestion.textContent = timeIndex === timeItems.length - 1 ? 'Terminar actividad' : 'Siguiente frase';
+      }
+
+      timeChoices.forEach(btn => btn.addEventListener('click', () => {
+        if(timeAnswered) return;
+        const item = timeItems[timeIndex];
+        const selected = btn.dataset.timeChoice;
+        const ok = selected === item.answer;
+        if(!ok){
+          btn.classList.add('wrong');
+          timeFeedback.className = 'feedback error';
+          timeFeedback.textContent = 'Mira el marcador temporal y el tiempo de la acción. Inténtalo otra vez.';
+          return;
+        }
+        timeAnswered = true;
+        btn.classList.add('correct');
+        timeFeedback.className = 'feedback success';
+        timeFeedback.textContent = 'Sí. ' + item.feedback;
+        nextTimeQuestion.disabled = false;
+      }));
+
+      nextTimeQuestion.addEventListener('click', () => {
+        if(!timeAnswered) return;
+        if(timeIndex < timeItems.length - 1){
+          timeIndex += 1;
+          renderTimeItem();
+        }else{
+          markCompleted('time');
+          timeFeedback.className = 'feedback success';
+          timeFeedback.textContent = 'Actividad completada. Ya identificaste los tres momentos que vas a combinar.';
+          nextTimeQuestion.disabled = true;
+        }
+      });
+
+      renderTimeItem();
+
+      // Descubre el patrón
+      const patternInfo = {
+        pasado:'Pasado: “ayer” sitúa “decidimos cambiar…” como una decisión ya tomada. Sin ese contexto, “decidimos” también puede ser presente.',
+        causa:'Causa: “porque…” introduce la razón de la decisión.',
+        presente:'Presente: “la prioridad es…” describe lo que importa ahora.',
+        consecuencia:'Consecuencia: “por eso” conecta la razón con un resultado o cambio.',
+        futuro:'Futuro: “enviaremos…” indica lo que ocurrirá después.'
+      };
+      const revealedPatterns = new Set();
+      const patternNote = document.getElementById('patternNote');
+      document.querySelectorAll('.phrase-chip').forEach(btn => btn.addEventListener('click', () => {
+        const key = btn.dataset.pattern;
+        btn.classList.add('revealed');
+        btn.setAttribute('aria-pressed', 'true');
+        revealedPatterns.add(key);
+        patternNote.textContent = patternInfo[key];
+        if(revealedPatterns.size === Object.keys(patternInfo).length){
+          patternNote.textContent += ' Ya encontraste las cinco funciones del mensaje.';
+          markCompleted('patterns');
+        }
+      }));
+
+      // Tabs
+      const tabs = [...document.querySelectorAll('.tab')];
+      const tabPanels = [...document.querySelectorAll('.tab-panel')];
+
+      function activateTab(tab, moveFocus = false){
+        tabs.forEach(t => {
+          const selected = t === tab;
+          t.setAttribute('aria-selected', String(selected));
+          t.tabIndex = selected ? 0 : -1;
+        });
+        tabPanels.forEach(panel => {
+          const active = panel.id === 'panel-' + tab.dataset.tab;
+          panel.classList.toggle('active', active);
+          panel.hidden = !active;
+        });
+        if(moveFocus) tab.focus();
+      }
+
+      tabs.forEach((tab,index) => {
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', e => {
+          let nextIndex = null;
+          if(e.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if(e.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if(e.key === 'Home') nextIndex = 0;
+          if(e.key === 'End') nextIndex = tabs.length - 1;
+          if(nextIndex !== null){
+            e.preventDefault();
+            activateTab(tabs[nextIndex], true);
+          }
+        });
+      });
+
+      // Comprobación de conectores
+      const connectorSelects = [...document.querySelectorAll('#connectorCheck select')];
+      const connectorFeedback = document.getElementById('connectorFeedback');
+      document.getElementById('checkConnectors').addEventListener('click', () => {
+        let correct = 0;
+        connectorSelects.forEach(sel => {
+          const ok = sel.value === sel.dataset.answer;
+          sel.style.borderColor = ok ? 'var(--success)' : 'var(--red)';
+          sel.setAttribute('aria-invalid', String(!ok));
+          if(ok) correct += 1;
+        });
+        if(correct === connectorSelects.length){
+          connectorFeedback.className = 'feedback success';
+          connectorFeedback.textContent = '4 de 4. Bien: distingues razón, consecuencia y futuro dentro del mensaje.';
+          markCompleted('connectors');
+        }else{
+          connectorFeedback.className = 'feedback error';
+          connectorFeedback.textContent = `${correct} de 4. Revisa: “porque” introduce una razón; “por eso” introduce una consecuencia; “se debe a” necesita “a”; “confirmaremos” expresa futuro.`;
+        }
+      });
+
+      // Ordenar mensaje
+      const orderCards = [...document.querySelectorAll('.order-card')];
+      const orderSlots = [...document.querySelectorAll('.order-slot')];
+      const selectedOrder = [];
+      const checkOrder = document.getElementById('checkOrder');
+      const orderFeedback = document.getElementById('orderFeedback');
+
+      function renderOrder(){
+        orderSlots.forEach((slot,i) => {
+          const item = selectedOrder[i];
+          if(item){
+            slot.classList.add('filled');
+            slot.innerHTML = `<span class="slot-number">${i+1}</span><span>${item.textContent}</span>`;
+          }else{
+            slot.classList.remove('filled');
+            slot.innerHTML = `<span class="slot-number">${i+1}</span><span>${['Primera','Segunda','Tercera','Cuarta'][i]} idea</span>`;
+          }
+        });
+        checkOrder.disabled = selectedOrder.length !== 4;
+      }
+
+      orderCards.forEach(card => card.addEventListener('click', () => {
+        if(card.classList.contains('used') || selectedOrder.length >= 4) return;
+        selectedOrder.push(card);
+        card.classList.add('used');
+        card.disabled = true;
+        renderOrder();
+      }));
+
+      document.getElementById('resetOrder').addEventListener('click', () => {
+        selectedOrder.length = 0;
+        orderCards.forEach(c => {
+          c.classList.remove('used');
+          c.disabled = false;
+        });
+        orderFeedback.className = 'feedback';
+        orderFeedback.textContent = 'Selecciona cuatro bloques.';
+        renderOrder();
+      });
+
+      checkOrder.addEventListener('click', () => {
+        const sequence = selectedOrder.map(c => Number(c.dataset.order));
+        const ok = sequence.every((n,i) => n === i+1);
+        if(ok){
+          orderFeedback.className = 'feedback success';
+          orderFeedback.textContent = 'El orden funciona: decisión → razón → consecuencia actual → siguiente paso.';
+          markCompleted('order');
+        }else{
+          orderFeedback.className = 'feedback error';
+          orderFeedback.textContent = 'La información es correcta, pero el orden puede ser más claro. Empieza por la decisión; después explica la razón, la consecuencia actual y el siguiente paso.';
+        }
+      });
+
+      // Recuperación activa
+      const recallDone = new Set();
+      document.querySelectorAll('.reveal-model').forEach(btn => btn.addEventListener('click', () => {
+        const card = btn.closest('.recall-card');
+        card.classList.add('open');
+        btn.disabled = true;
+      }));
+      document.querySelectorAll('.rate').forEach(btn => btn.addEventListener('click', () => {
+        const card = btn.closest('.recall-card');
+        card.querySelectorAll('.rate').forEach(b => {
+          const selected = b === btn;
+          b.classList.toggle('btn-primary', selected);
+          b.setAttribute('aria-pressed', String(selected));
+        });
+        recallDone.add(card.dataset.recall);
+        if(recallDone.size === 4) markCompleted('recall');
+      }));
+
+      // Simulación
+      const simSteps = [...document.querySelectorAll('.sim-step')];
+      let simIndex = 0;
+      const assembledParts = [];
+      const assembledMessage = document.getElementById('assembledMessage');
+
+      function renderAssembled(){
+        if(!assembledParts.length){
+          assembledMessage.innerHTML = '<strong>Tu mensaje aparecerá aquí.</strong>';
+          return;
+        }
+        let text = assembledParts.join(' ');
+        if(text && !/[.!?]$/.test(text)) text += '.';
+        assembledMessage.innerHTML = `<strong>Tu mensaje:</strong><br>${text}`;
+      }
+
+      document.querySelectorAll('.sim-option').forEach(option => option.addEventListener('click', () => {
+        const step = option.closest('.sim-step');
+        if(step.dataset.locked === 'true') return;
+        const feedback = step.querySelector('.sim-feedback');
+        const ok = option.dataset.correct === 'true';
+        step.querySelectorAll('.sim-option').forEach(o => o.classList.remove('correct','wrong'));
+        option.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok){
+          feedback.className = 'feedback sim-feedback error';
+          feedback.textContent = simIndex === 0 ? 'La decisión ya ocurrió: necesitas pasado.' : simIndex === 1 ? 'Aquí necesitas introducir la razón; usa un conector causal, como «porque».' : simIndex === 2 ? 'Aquí necesitas presentar la consecuencia actual: usa presente y un conector de consecuencia, como «por eso».' : 'El siguiente paso necesita una referencia futura coherente.';
+          return;
+        }
+        feedback.className = 'feedback sim-feedback success';
+        feedback.textContent = simIndex === 0
+          ? 'Sí. «Ayer» sitúa «decidimos» como una decisión ya tomada.'
+          : simIndex === 1
+            ? 'Sí. «Porque» introduce la razón de la decisión.'
+            : simIndex === 2
+              ? 'Sí. «Por eso» conecta la razón con la consecuencia actual, y «es» la sitúa en el presente.'
+              : 'Sí. «Enviaremos» expresa el siguiente paso en futuro.';
+        step.dataset.locked = 'true';
+        assembledParts.push(option.dataset.text + (simIndex === 0 ? '' : '.'));
+        renderAssembled();
+        setTimeout(() => {
+          if(simIndex < simSteps.length - 1){
+            simSteps[simIndex].classList.remove('active');
+            simIndex += 1;
+            simSteps[simIndex].classList.add('active');
+            const nextOption = simSteps[simIndex].querySelector('.sim-option');
+            if(nextOption) nextOption.focus();
+          }else{
+            markCompleted('simulation');
+            assembledMessage.innerHTML += '<br><span class="note" style="color:#42506B">Has combinado las cuatro funciones sin depender de un modelo completo.</span>';
+            const followupChallenge = document.getElementById('followupChallenge');
+            followupChallenge.style.display = 'block';
+            const firstFollowupButton = followupChallenge.querySelector('button');
+            if(firstFollowupButton) firstFollowupButton.focus();
+          }
+        }, 450);
+      }));
+
+      // Reacción ante una pregunta adicional
+      const revealFollowup = document.getElementById('revealFollowup');
+      const completeFollowup = document.getElementById('completeFollowup');
+      const followupModel = document.getElementById('followupModel');
+      revealFollowup.addEventListener('click', () => {
+        followupModel.style.display = 'block';
+        revealFollowup.disabled = true;
+      });
+      completeFollowup.addEventListener('click', () => {
+        markCompleted('followup');
+        completeFollowup.disabled = true;
+        completeFollowup.textContent = 'Respuesta registrada';
+        followupModel.style.display = 'block';
+      });
+
+      // Temporizador y autoevaluación oral
+      const timerNumber = document.getElementById('timerNumber');
+      const startTimer = document.getElementById('startTimer');
+      const resetTimer = document.getElementById('resetTimer');
+      let timerValue = 60;
+      let timerId = null;
+
+      function paintTimer(){ timerNumber.textContent = timerValue; }
+      function stopTimer(){ if(timerId){ clearInterval(timerId); timerId = null; } }
+      startTimer.addEventListener('click', () => {
+        if(timerId) return;
+        if(timerValue <= 0){
+          timerValue = 60;
+          paintTimer();
+        }
+        startTimer.textContent = 'Temporizador en marcha';
+        timerId = setInterval(() => {
+          timerValue -= 1;
+          paintTimer();
+          if(timerValue <= 0){
+            timerValue = 0;
+            paintTimer();
+            stopTimer();
+            startTimer.textContent = 'Empezar otra vez';
+          }
+        },1000);
+      });
+      resetTimer.addEventListener('click', () => {
+        stopTimer();
+        timerValue = 60;
+        paintTimer();
+        startTimer.textContent = 'Empezar 60 s';
+      });
+
+      const oralChecks = [...document.querySelectorAll('#oralChecklist input')];
+      const oralFeedback = document.getElementById('oralFeedback');
+      oralChecks.forEach(ch => ch.addEventListener('change', () => {
+        const count = oralChecks.filter(c => c.checked).length;
+        const coreComplete = oralChecks.slice(0, 4).every(c => c.checked);
+        if(coreComplete){
+          oralFeedback.className = 'feedback success';
+          oralFeedback.textContent = `${count} de 5 criterios. Has incluido las cuatro piezas lingüísticas principales. Intenta repetirlo una vez con menos apoyo.`;
+          markCompleted('oral');
+        }else{
+          oralFeedback.className = 'feedback';
+          oralFeedback.textContent = `${count} de 5 criterios. Revisa qué pieza lingüística falta y vuelve a decir el mensaje.`;
+        }
+      }));
+
+      // Transferencia
+      const transferMission = document.getElementById('transferMission');
+      const transferChoices = [...document.querySelectorAll('.transfer-choice')];
+      const missions = {
+        'Reunión':'En tu próxima reunión, comunica un cambio real o posible. Incluye: qué se decidió, por qué, qué cambia ahora y qué pasará después.',
+        'Cliente':'Explica a un cliente un cambio de fecha, proceso o condición. Usa una razón y una consecuencia antes de indicar el siguiente paso.',
+        'Proveedor':'Comunica un ajuste relacionado con entrega, precio o información pendiente. Intenta usar pasado, presente y futuro en el mismo mensaje.',
+        'Equipo':'Anuncia al equipo un cambio de prioridad. Explica la razón, qué significa hoy y qué acción ocurrirá después.'
+      };
+      transferChoices.forEach(btn => btn.addEventListener('click', () => {
+        transferChoices.forEach(b => {
+          const selected = b === btn;
+          b.classList.toggle('active', selected);
+          b.setAttribute('aria-pressed', String(selected));
+        });
+        transferMission.innerHTML = `<h3>Micro misión · ${btn.textContent}</h3><p>${missions[btn.textContent]}</p>`;
+        markCompleted('transfer');
+      }));
+
+      // Cierre: solo marcar la lección como completada cuando las actividades significativas estén terminadas.
+      const taskNames = {
+        time:'identificar pasado, presente y futuro',
+        patterns:'analizar el mensaje modelo',
+        connectors:'comprobar conectores y futuro',
+        order:'ordenar el mensaje',
+        recall:'recuperar las cuatro estructuras',
+        simulation:'completar la simulación',
+        followup:'responder la pregunta adicional',
+        oral:'revisar la práctica oral',
+        transfer:'elegir una micro misión'
+      };
+      const finishFeedback = document.getElementById('finishFeedback');
+      document.getElementById('finishLesson').addEventListener('click', () => {
+        const pending = progressTasks.filter(k => !completed.has(k));
+        if(pending.length){
+          finishFeedback.style.display = 'block';
+          finishFeedback.className = 'feedback error';
+          finishFeedback.textContent = 'Antes de terminar, completa: ' + pending.map(k => taskNames[k]).join('; ') + '.';
+          return;
+        }
+        finishFeedback.style.display = 'none';
+        showScreen(11);
+      });
+
+      // Final
+      document.getElementById('repeatPractice').addEventListener('click', () => showScreen(9));
+      document.getElementById('restartLesson').addEventListener('click', () => {
+        try{ localStorage.removeItem('saw-lesson-14'); }catch(e){}
+        location.reload();
+      });
+
+      loadState();
+      showScreen(currentScreen, false);
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>

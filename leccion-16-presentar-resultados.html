@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#003893">
+  <title>Lección 16 · Presenta resultados | Spanish at Work</title>
+  <meta name="description" content="Lección interactiva para aprender a comunicar resultados, compararlos, explicar causas, señalar riesgos y formular recomendaciones en español para el trabajo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-dark:#00265f;
+      --blue-soft:#eaf1ff;
+      --yellow:#FCD116;
+      --yellow-soft:#fff8d5;
+      --red:#CE1126;
+      --red-soft:#fff0f2;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#18233a;
+      --muted:#5f6c7b;
+      --line:#d9e2ef;
+      --surface:#f5f7fb;
+      --success:#176a3a;
+      --success-soft:#eaf7ef;
+      --shadow:0 18px 44px rgba(0,56,147,.10);
+      --radius:20px;
+      --font:"Poppins",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:var(--font);
+      color:var(--ink);
+      background:var(--surface);
+      line-height:1.6;
+    }
+    body.lock-scroll{overflow:hidden}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+    [hidden]{display:none!important}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip-link{position:absolute;left:-9999px;top:auto;z-index:200;background:var(--yellow);color:var(--black);padding:.7rem 1rem;border-radius:10px;font-weight:700}
+    .skip-link:focus{left:1rem;top:1rem}
+
+    h1,h2,h3{line-height:1.16;margin:0 0 .85rem;color:var(--blue-dark)}
+    h1{font-size:clamp(2rem,7vw,4.5rem);letter-spacing:-.045em}
+    h2{font-size:clamp(1.55rem,4vw,2.6rem);letter-spacing:-.025em}
+    h3{font-size:1.12rem}
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+    p{margin:.35rem 0 1rem}
+
+    :focus-visible{
+      outline:3px solid var(--yellow);
+      outline-offset:3px;
+    }
+    h1:focus-visible,h2:focus-visible,h3:focus-visible{outline:none;box-shadow:none}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+      outline:3px solid var(--yellow);
+      outline-offset:3px;
+      box-shadow:0 0 0 6px var(--blue-dark);
+    }
+
+    .topbar{
+      position:sticky;top:0;z-index:100;
+      background:rgba(0,56,147,.97);
+      color:var(--white);
+      border-bottom:1px solid rgba(255,255,255,.16);
+    }
+    .topbar-inner{
+      width:min(1120px,100%);
+      margin:0 auto;
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:10px 18px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      min-width:max-content;
+      font-weight:700;
+    }
+    .brand-mark{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      background:var(--yellow);color:var(--blue);
+      font-weight:700;
+    }
+    .progress-area{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+    .progress-track{
+      height:10px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;flex:1;
+    }
+    .progress-fill{height:100%;width:0;background:var(--yellow);transition:width .3s ease}
+    .progress-text{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+
+    .app{width:min(1120px,100%);margin:0 auto;padding:30px 18px 110px}
+    .screen{display:none;animation:fadeIn .22s ease}
+    .screen.active{display:block}
+    @keyframes fadeIn{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+    .cover{
+      min-height:calc(100vh - 130px);
+      display:grid;
+      align-items:center;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+    }
+    .cover-copy{padding:22px 4px}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.83rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+    .kicker::before{content:"";width:26px;height:4px;border-radius:999px;background:var(--yellow)}
+    .lead{font-size:clamp(1rem,2vw,1.25rem);color:var(--muted);max-width:720px}
+    .tool-line{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 24px}
+    .pill{display:inline-flex;align-items:center;border:1px solid #cbd7ea;background:var(--white);border-radius:999px;padding:.5rem .78rem;font-size:.86rem;font-weight:600;color:var(--blue-dark)}
+    .application-box{border-left:5px solid var(--yellow);padding:10px 14px;background:var(--yellow-soft);border-radius:0 14px 14px 0;margin:18px 0}
+    .cover-panel{
+      background:var(--blue);
+      color:var(--white);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:0 28px 70px rgba(0,56,147,.22);
+      position:relative;
+      overflow:hidden;
+    }
+    .cover-panel::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:rgba(252,209,22,.16);right:-60px;top:-50px}
+    .mini-dashboard{display:grid;gap:14px;position:relative;z-index:1}
+    .metric{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:16px}
+    .metric strong{display:block;font-size:1.7rem;color:var(--yellow);line-height:1.1}
+    .metric span{font-size:.9rem;color:#e9efff}
+
+    .card{
+      background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,3.8vw,34px);margin-bottom:22px;
+    }
+    .card.flat{box-shadow:none}
+    .section-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
+    .step-tag{min-width:42px;height:42px;border-radius:14px;background:var(--blue);color:var(--white);display:grid;place-items:center;font-weight:700}
+    .section-sub{color:var(--muted);margin-top:-.35rem}
+    .callout{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line);background:#fbfcff}
+    .callout.blue{background:var(--blue-soft);border-color:#c9d8f7}
+    .callout.yellow{background:var(--yellow-soft);border-color:#f1dc7a}
+    .callout.red{background:var(--red-soft);border-color:#f0c7ce}
+    .rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+    .rule{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+    .rule .label{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:700}
+    .example{background:#f7f9fd;border-left:4px solid var(--blue);padding:12px 14px;border-radius:0 12px 12px 0;margin:10px 0;font-weight:600}
+    .note{font-size:.9rem;color:var(--muted)}
+
+    .report{
+      border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--white);margin:18px 0;
+    }
+    .report-head{background:var(--blue);color:var(--white);padding:18px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .report-head strong{font-size:1.05rem}
+    .report-body{padding:20px}
+    .report-line{padding:13px 14px;border-radius:14px;margin:9px 0;background:#f8faff;border:1px solid #e5ebf4}
+    .mark{
+      border:0;background:var(--yellow-soft);color:var(--blue-dark);font:inherit;font-weight:700;border-radius:7px;padding:1px 5px;text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:var(--yellow);text-underline-offset:3px;
+    }
+    .mark:hover{background:#fff0a6}
+    .inspector{min-height:78px;border-radius:14px;padding:14px 16px;background:var(--blue-soft);border:1px solid #c6d7f5;color:var(--blue-dark)}
+
+    .choice-list{display:grid;gap:10px;margin:15px 0}
+    .choice{
+      display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
+      border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:14px;padding:13px 14px;
+      transition:.18s ease;
+    }
+    .choice:hover{border-color:#93a9cc;transform:translateY(-1px)}
+    .choice.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.08)}
+    .choice.correct{border-color:#8cc7a3;background:var(--success-soft)}
+    .choice.wrong{border-color:#e4a7b0;background:var(--red-soft)}
+    .choice.correct::after{content:"✓";margin-left:auto;font-weight:700;color:var(--success)}
+    .choice.wrong::after{content:"✕";margin-left:auto;font-weight:700;color:var(--red)}
+    .choice .letter{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;background:var(--blue-soft);font-weight:700;color:var(--blue);flex:0 0 auto}
+
+    .feedback{border-radius:14px;padding:13px 15px;margin-top:12px;display:none}
+    .feedback.show{display:block}
+    .feedback.good{background:var(--success-soft);border:1px solid #add8bd;color:#124e2b}
+    .feedback.bad{background:var(--red-soft);border:1px solid #efc4cb;color:#7d1422}
+    .feedback.info{background:var(--blue-soft);border:1px solid #c7d8f8;color:var(--blue-dark)}
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .btn{
+      min-height:46px;border-radius:13px;border:2px solid transparent;padding:.72rem 1.05rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+    }
+    .btn.primary{background:var(--blue);color:var(--white)}
+    .btn.primary:hover{background:var(--blue-dark)}
+    .btn.secondary{background:var(--white);color:var(--blue);border-color:var(--blue)}
+    .btn.secondary:hover{background:var(--blue-soft)}
+    .btn.yellow{background:var(--yellow);color:var(--black)}
+    .btn.yellow:hover{filter:brightness(.97)}
+    .btn.ghost{background:transparent;color:var(--blue);border-color:var(--line)}
+    .btn:disabled{opacity:.52;cursor:not-allowed;transform:none}
+
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}
+    .tab{border:1px solid var(--line);background:var(--white);color:var(--blue);border-radius:999px;padding:.55rem .8rem;font-weight:700}
+    .tab[aria-selected="true"]{background:var(--blue);color:var(--white);border-color:var(--blue)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    .quiz-block{border-top:1px solid var(--line);padding-top:17px;margin-top:17px}
+    .quiz-block:first-child{border-top:0;padding-top:0;margin-top:0}
+    .quiz-q{font-weight:700;margin-bottom:10px}
+
+    .function-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+    .function-card{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--white);min-height:110px}
+    .function-card strong{display:block;color:var(--blue);margin-bottom:6px}
+
+    .builder{display:grid;gap:16px}
+    .builder-bank{display:flex;flex-wrap:wrap;gap:9px;padding:15px;border-radius:16px;background:#f4f7fc;border:1px dashed #b9c7dc}
+    .chip{border:1px solid #b9c7dc;background:var(--white);color:var(--ink);border-radius:12px;padding:.65rem .8rem;font-weight:600}
+    .chip.used{opacity:.4;text-decoration:line-through}
+    .builder-output{min-height:120px;border:2px dashed #b5c4d8;border-radius:16px;padding:14px;display:flex;align-content:flex-start;flex-wrap:wrap;gap:8px;background:#fff}
+    .builder-output.empty::before{content:"Pulsa las partes en el orden que quieres construir el mensaje.";color:var(--muted);font-size:.9rem}
+
+    .data-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+    .data-cell{border-radius:16px;padding:15px;background:var(--blue-soft);border:1px solid #c9d8f7}
+    .data-cell .big{font-size:1.6rem;font-weight:700;color:var(--blue-dark)}
+    .data-cell .small{font-size:.82rem;color:var(--muted)}
+
+    textarea{width:100%;min-height:140px;border:1px solid #aebfd7;border-radius:14px;padding:14px;resize:vertical;background:#fff;color:var(--ink)}
+    textarea:focus{border-color:var(--blue)}
+    .hint-box{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--yellow-soft);border:1px solid #ecd66b}
+    .hint-box.show{display:block}
+
+    .checklist{display:grid;gap:10px;margin:15px 0}
+    .check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:13px;padding:11px 12px;background:#fff}
+    .check-item input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue)}
+
+    .scenario-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}
+    .scenario-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px;text-align:left;font-weight:600;color:var(--ink)}
+    .scenario-btn.active{border-color:var(--blue);background:var(--blue-soft);color:var(--blue-dark)}
+    .scenario-panel{border-radius:18px;background:#fff;border:1px solid var(--line);padding:18px}
+
+    .timer-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin:18px 0}
+    .timer{
+      width:118px;height:118px;border-radius:50%;display:grid;place-items:center;
+      border:10px solid var(--blue-soft);box-shadow:inset 0 0 0 2px #cbd8eb;
+      color:var(--blue-dark);font-size:2rem;font-weight:700;background:#fff;
+    }
+    .timer-controls{display:flex;gap:9px;flex-wrap:wrap}
+
+    .transfer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+    .transfer-option{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;font-weight:600;text-align:left;color:var(--ink)}
+    .transfer-option.selected{border-color:var(--blue);background:var(--blue-soft);color:var(--blue-dark)}
+
+    .completion{
+      text-align:center;padding:40px 20px;background:var(--blue);color:var(--white);border-radius:28px;box-shadow:0 26px 70px rgba(0,56,147,.22)
+    }
+    .completion h2{color:var(--white)}
+    .completion .hundred{font-size:clamp(3rem,9vw,6rem);font-weight:700;letter-spacing:-.06em;color:var(--yellow);line-height:1}
+    .completion-list{max-width:720px;margin:22px auto;text-align:left;display:grid;gap:10px}
+    .completion-item{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px}
+
+    .bottom-nav{
+      position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(255,255,255,.97);border-top:1px solid var(--line);backdrop-filter:blur(10px);
+    }
+    .bottom-nav-inner{width:min(1120px,100%);margin:0 auto;padding:11px 18px;display:flex;justify-content:space-between;gap:10px}
+
+    .toast{position:fixed;right:16px;bottom:86px;z-index:150;max-width:min(420px,calc(100vw - 32px));border-radius:14px;padding:13px 15px;background:var(--blue-dark);color:#fff;box-shadow:0 14px 38px rgba(0,0,0,.18)}
+
+    @media (max-width:860px){
+      .cover{grid-template-columns:1fr;min-height:auto}
+      .cover-panel{order:-1}
+      .function-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .data-board{grid-template-columns:1fr}
+      .scenario-switch{grid-template-columns:1fr}
+      .transfer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .rule-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .topbar-inner{gap:10px;padding:9px 12px}
+      .brand span:last-child{display:inline;font-size:.78rem;line-height:1.15}
+      .app{padding:20px 12px 98px}
+      .card{padding:18px 16px;border-radius:17px}
+      .cover-panel{padding:20px;border-radius:22px}
+      .function-grid,.transfer-grid{grid-template-columns:1fr}
+      .bottom-nav-inner{padding:9px 12px}
+      .bottom-nav .btn{padding:.65rem .85rem}
+      .timer-wrap{align-items:flex-start}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir al contenido</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" aria-label="Spanish at Work">
+        <span class="brand-mark" aria-hidden="true">SW</span>
+        <span>Spanish at Work</span>
+      </div>
+      <div class="progress-area">
+        <span class="sr-only" id="progressLabel">Progreso de la lección</span>
+        <div class="progress-track" role="progressbar" aria-labelledby="progressLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="progress-text" id="progressText">0%</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="app" tabindex="-1">
+    <section class="screen active" data-screen="0" aria-labelledby="title-0">
+      <div class="cover">
+        <div class="cover-copy">
+          <div class="kicker">Lección 16 · Español para trabajar</div>
+          <h1 id="title-0" tabindex="-1">Presenta resultados</h1>
+          <p class="lead">Aprende a explicar qué se consiguió, comparar datos, conectar causas y consecuencias, señalar un riesgo y formular una recomendación en español.</p>
+
+          <div class="tool-line" aria-label="Herramientas lingüísticas principales">
+            <span class="pill">Pasados</span>
+            <span class="pill">Comparativos</span>
+            <span class="pill">Causa y consecuencia</span>
+            <span class="pill">Recomendaciones</span>
+          </div>
+
+          <div class="application-box">
+            <strong>Aplicación:</strong> comunicar resultados, riesgos y recomendaciones en una reunión, presentación, llamada o actualización profesional.
+          </div>
+
+          <p>Al terminar podrás construir una explicación sostenida con varias ideas conectadas y reaccionar cuando te pidan más información.</p>
+          <button class="btn primary" id="startBtn" type="button">Comenzar</button>
+        </div>
+
+        <aside class="cover-panel" aria-label="Vista previa de la situación">
+          <p style="margin-top:0;color:#eaf1ff;font-weight:600">Informe de resultados · ejemplo</p>
+          <div class="mini-dashboard">
+            <div class="metric"><strong>+14 %</strong><span>ventas frente al trimestre anterior</span></div>
+            <div class="metric"><strong>-18 %</strong><span>tiempo medio de respuesta</span></div>
+            <div class="metric"><strong>2</strong><span>riesgos que todavía necesitan seguimiento</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="1" aria-labelledby="title-1">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">1</div>
+          <div>
+            <h2 id="title-1" tabindex="-1">Observa español funcionando</h2>
+            <p class="section-sub">Primero mira cómo se conectan resultados, comparación, causa, riesgo y recomendación.</p>
+          </div>
+        </div>
+
+        <div class="report">
+          <div class="report-head">
+            <strong>Actualización trimestral</strong>
+            <span>Equipo de atención al cliente</span>
+          </div>
+          <div class="report-body">
+            <p class="report-line">El trimestre pasado <button class="mark" type="button" data-note="Pasado: presenta un resultado terminado dentro de un periodo cerrado.">redujimos</button> el tiempo de respuesta en un 18 %.</p>
+            <p class="report-line">El resultado fue <button class="mark" type="button" data-note="Comparación: ‘mejor que’ relaciona este resultado con un punto de referencia.">mejor que</button> el del trimestre anterior.</p>
+            <p class="report-line">La mejora se produjo <button class="mark" type="button" data-note="Causa: ‘porque + verbo’ introduce la razón de un resultado.">porque automatizamos</button> una parte del proceso.</p>
+            <p class="report-line"><button class="mark" type="button" data-note="Contraste: ‘sin embargo’ introduce una idea que limita o contrasta con la anterior.">Sin embargo</button>, todavía existe el riesgo de retrasos cuando aumenta el volumen de solicitudes.</p>
+            <p class="report-line"><button class="mark" type="button" data-note="Recomendación: ‘recomiendo + infinitivo’ permite proponer una acción directamente: ‘Recomiendo mantener…’.">Recomiendo mantener</button> el nuevo proceso y revisar la capacidad del equipo en las semanas de mayor demanda.</p>
+          </div>
+        </div>
+        <div class="inspector" id="inspector" aria-live="polite">Pulsa las partes subrayadas para ver qué herramienta lingüística aparece.</div>
+      </div>
+
+      <div class="card flat">
+        <h3>Activa lo que ya sabes</h3>
+        <p>¿Qué función tiene cada frase? Elige la opción que corresponde.</p>
+        <div id="starterQuiz"></div>
+        <div class="feedback info" id="starterFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2" aria-labelledby="title-2">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">2</div>
+          <div>
+            <h2 id="title-2" tabindex="-1">Usa el pasado para presentar resultados</h2>
+            <p class="section-sub">Elige el pasado según cómo presentes el periodo de tiempo.</p>
+          </div>
+        </div>
+
+        <div class="rule-grid">
+          <div class="rule">
+            <div class="label">Periodo cerrado</div>
+            <h3>Pretérito perfecto simple</h3>
+            <p>Úsalo para presentar un hecho terminado dentro de un periodo que presentas como cerrado.</p>
+            <div class="example">El mes pasado <strong>redujimos</strong> los errores en un 10 %.</div>
+            <div class="example">En 2025 <strong>alcanzamos</strong> el objetivo de ventas.</div>
+          </div>
+          <div class="rule">
+            <div class="label">Periodo conectado con ahora</div>
+            <h3>Pretérito perfecto compuesto</h3>
+            <p>En variedades que usan este contraste, puede relacionar un resultado pasado con un periodo todavía abierto o con el presente.</p>
+            <div class="example">Este mes <strong>hemos reducido</strong> los tiempos de espera.</div>
+            <div class="example">Este año <strong>hemos mejorado</strong> la satisfacción del cliente.</div>
+          </div>
+        </div>
+
+        <div class="callout yellow">
+          <strong>Español internacional:</strong> en buena parte de América también es natural usar el pretérito perfecto simple con periodos recientes: “Este mes redujimos los tiempos de espera”. No trates esa variante como incorrecta.
+        </div>
+
+        <div class="callout blue">
+          <strong>Patrón útil:</strong> sujeto + verbo en pasado + resultado + dato.<br>
+          “El equipo <strong>aumentó</strong> la productividad <strong>en un 12 %</strong>.”
+        </div>
+      </div>
+
+      <div class="card flat">
+        <h3>Comprueba que entendiste</h3>
+        <div id="pastQuiz"></div>
+        <div class="feedback info" id="pastFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="3" aria-labelledby="title-3">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">3</div>
+          <div>
+            <h2 id="title-3" tabindex="-1">Compara y conecta la información</h2>
+            <p class="section-sub">Un resultado aislado dice poco. El español te permite mostrar con qué lo comparas y por qué ocurrió.</p>
+          </div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Herramientas para comparar y conectar">
+          <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-compare" id="tab-compare">Comparar</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-cause" id="tab-cause">Causa</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-consequence" id="tab-consequence">Consecuencia</button>
+        </div>
+
+        <div class="tab-panel active" id="panel-compare" role="tabpanel" aria-labelledby="tab-compare">
+          <div class="function-grid">
+            <div class="function-card"><strong>más + adjetivo + que</strong>Las ventas fueron <b>más altas que</b> las del trimestre anterior.</div>
+            <div class="function-card"><strong>menos + adjetivo + que</strong>El proceso fue <b>menos complejo que</b> el anterior.</div>
+            <div class="function-card"><strong>mejor / peor que</strong>El resultado fue <b>mejor que</b> el previsto.</div>
+            <div class="function-card"><strong>mayor / menor que</strong>La demanda fue <b>mayor que</b> en junio.</div>
+          </div>
+          <p class="note">Cuando un dato es porcentual, puedes añadir la diferencia: “Las ventas fueron un 14 % más altas que las del trimestre anterior”.</p>
+        </div>
+
+        <div class="tab-panel" id="panel-cause" role="tabpanel" aria-labelledby="tab-cause">
+          <div class="rule-grid">
+            <div class="rule"><div class="label">porque + verbo</div><div class="example">Mejoramos el tiempo de entrega <strong>porque reorganizamos</strong> el proceso.</div></div>
+            <div class="rule"><div class="label">debido a + sustantivo</div><div class="example">El costo aumentó <strong>debido a un cambio</strong> del proveedor.</div></div>
+          </div>
+          <p class="note">En esta lección practicamos la forma más simple: <strong>debido a + sustantivo</strong>. También existe <strong>debido a que + oración</strong>, pero no necesitas incorporarla todavía.</p>
+        </div>
+
+        <div class="tab-panel" id="panel-consequence" role="tabpanel" aria-labelledby="tab-consequence">
+          <div class="rule-grid">
+            <div class="rule"><div class="label">por eso</div><div class="example">Faltaron dos entregas; <strong>por eso</strong>, no alcanzamos el objetivo.</div></div>
+            <div class="rule"><div class="label">como resultado</div><div class="example">Automatizamos parte del proceso. <strong>Como resultado</strong>, redujimos el tiempo de respuesta.</div></div>
+          </div>
+          <p class="note">“Porque” introduce la causa. “Por eso” y “como resultado” introducen la consecuencia.</p>
+        </div>
+      </div>
+
+      <div class="card flat">
+        <h3>Elige la conexión correcta</h3>
+        <div id="connectorQuiz"></div>
+        <div class="feedback info" id="connectorFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4" aria-labelledby="title-4">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">4</div>
+          <div>
+            <h2 id="title-4" tabindex="-1">Señala riesgos y formula recomendaciones</h2>
+            <p class="section-sub">Estas estructuras te permiten pasar de describir lo que ocurrió a explicar qué conviene hacer después.</p>
+          </div>
+        </div>
+
+        <div class="rule-grid">
+          <div class="rule">
+            <div class="label">Riesgo</div>
+            <div class="example">El principal riesgo <strong>es</strong> un nuevo retraso.</div>
+            <div class="example"><strong>Existe el riesgo de</strong> no cumplir la fecha de entrega.</div>
+            <p class="note">En esta lección practicamos: <strong>riesgo de + sustantivo o infinitivo</strong>.</p>
+          </div>
+          <div class="rule">
+            <div class="label">Recomendación</div>
+            <div class="example"><strong>Recomiendo revisar</strong> el plan antes del viernes.</div>
+            <div class="example"><strong>Conviene confirmar</strong> la capacidad del proveedor.</div>
+            <div class="example"><strong>Podemos priorizar</strong> los pedidos urgentes.</div>
+          </div>
+        </div>
+
+        <div class="callout blue">
+          <strong>Evita un error frecuente:</strong> para una recomendación directa no necesitas decir “yo recomiendo de revisar”. En español: <strong>recomiendo revisar</strong>.
+        </div>
+      </div>
+
+      <div class="card flat">
+        <h3>¿Qué frase cumple la función?</h3>
+        <div id="recommendQuiz"></div>
+        <div class="feedback info" id="recommendFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="5" aria-labelledby="title-5">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">5</div>
+          <div>
+            <h2 id="title-5" tabindex="-1">Construye una explicación completa</h2>
+            <p class="section-sub">Para esta práctica, ordena las piezas con este recorrido: resultado → comparación → causa → riesgo → recomendación.</p>
+          </div>
+        </div>
+
+        <div class="builder">
+          <div>
+            <strong>Piezas disponibles</strong>
+            <div class="builder-bank" id="builderBank" aria-label="Piezas disponibles"></div>
+          </div>
+          <div>
+            <strong>Tu mensaje</strong>
+            <div class="note">Pulsa una pieza de tu mensaje para quitarla.</div>
+            <div class="builder-output empty" id="builderOutput" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn primary" id="checkBuilder" type="button">Comprobar orden</button>
+          <button class="btn ghost" id="resetBuilder" type="button">Reiniciar construcción</button>
+        </div>
+        <div class="feedback info" id="builderFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="6" aria-labelledby="title-6">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">6</div>
+          <div>
+            <h2 id="title-6" tabindex="-1">Recupera la lengua con menos apoyo</h2>
+            <p class="section-sub">Ahora tienes datos, pero no una respuesta completa. Construye tu propia actualización.</p>
+          </div>
+        </div>
+
+        <div class="data-board" aria-label="Datos del proyecto">
+          <div class="data-cell"><div class="big">+9 %</div><div class="small">pedidos entregados a tiempo frente al mes anterior</div></div>
+          <div class="data-cell"><div class="big">3</div><div class="small">incidencias por falta de inventario</div></div>
+          <div class="data-cell"><div class="big">viernes</div><div class="small">fecha para revisar el nuevo stock</div></div>
+        </div>
+
+        <label for="recoveryText"><strong>Escribe 3 o 4 frases.</strong> Intenta incluir un resultado, una comparación o causa, un riesgo y una recomendación.</label>
+        <textarea id="recoveryText" placeholder="Empieza con el resultado..."></textarea>
+        <div class="btn-row">
+          <button class="btn secondary" id="showHint" type="button" aria-controls="hintBox" aria-expanded="false">Ver pista</button>
+          <button class="btn ghost" id="showModel" type="button" aria-controls="modelBox" aria-expanded="false">Comparar con una posibilidad</button>
+        </div>
+        <div class="hint-box" id="hintBox">Puedes empezar con: “Este mes hemos…” o “El mes pasado…”. Después conecta otra idea con “porque”, “por eso” o “sin embargo”.</div>
+        <div class="hint-box" id="modelBox"><strong>Una posibilidad:</strong> “Este mes hemos entregado a tiempo un 9 % más de pedidos que el mes pasado. Sin embargo, tuvimos tres incidencias por falta de inventario. Existe el riesgo de nuevos retrasos; por eso, recomiendo revisar el stock el viernes.”</div>
+      </div>
+
+      <div class="card flat">
+        <h3>Revisa tu respuesta</h3>
+        <p>No busques una copia exacta del modelo. Comprueba si tu español cumple estas funciones.</p>
+        <div class="checklist" id="recoveryChecklist">
+          <label class="check-item"><input type="checkbox" value="result"> <span>Presenté al menos un resultado con un verbo adecuado.</span></label>
+          <label class="check-item"><input type="checkbox" value="connection"> <span>Conecté dos ideas con una relación clara de comparación, causa, consecuencia o contraste.</span></label>
+          <label class="check-item"><input type="checkbox" value="risk"> <span>Expresé un riesgo con una estructura natural.</span></label>
+          <label class="check-item"><input type="checkbox" value="recommend"> <span>Formulé una recomendación con “recomiendo + infinitivo”, “conviene + infinitivo” o una estructura equivalente.</span></label>
+        </div>
+        <button class="btn primary" id="confirmRecovery" type="button">Confirmar revisión</button>
+        <div class="feedback info" id="recoveryFeedback" aria-live="polite"></div>
+      </div>
+
+      <div class="card" style="background:var(--blue);color:white;border-color:transparent">
+        <h3 style="color:white">Entrénalo con otras personas</h3>
+        <p>Ya construiste una actualización con tus propias palabras. El siguiente paso es recuperarla dentro de una conversación real.</p>
+        <a class="btn yellow" href="https://skool.spanishatwork.co/" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="7" aria-labelledby="title-7">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">7</div>
+          <div>
+            <h2 id="title-7" tabindex="-1">Cambia la situación</h2>
+            <p class="section-sub">La información cambia. Recupera las mismas herramientas y adapta el mensaje.</p>
+          </div>
+        </div>
+
+        <div class="scenario-switch" role="group" aria-label="Elige una situación">
+          <button class="scenario-btn active" type="button" data-scenario="ventas">Ventas</button>
+          <button class="scenario-btn" type="button" data-scenario="proyecto">Proyecto</button>
+          <button class="scenario-btn" type="button" data-scenario="cliente">Cliente</button>
+        </div>
+        <div class="scenario-panel" id="scenarioPanel" aria-live="polite" aria-atomic="true"></div>
+      </div>
+
+      <div class="card flat">
+        <h3>Elige una versión lingüísticamente completa</h3>
+        <div id="scenarioQuiz"></div>
+        <div class="feedback info" id="scenarioFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8" aria-labelledby="title-8">
+      <div class="card">
+        <div class="section-head">
+          <div class="step-tag">8</div>
+          <div>
+            <h2 id="title-8" tabindex="-1">Ahora dilo tú</h2>
+            <p class="section-sub">Habla durante aproximadamente un minuto sin leer una respuesta completa.</p>
+          </div>
+        </div>
+
+        <div class="callout yellow">
+          <strong>Situación:</strong> presentas una actualización breve de un proyecto. Explica un resultado, compáralo con una referencia, menciona una causa o consecuencia, señala un riesgo y termina con una recomendación. Después responde, sin preparar una respuesta completa, a una pregunta breve: “¿Por qué ocurrió?” o “¿Qué recomiendas hacer ahora?”.
+        </div>
+
+        <div class="timer-wrap">
+          <div class="timer" id="timerDisplay" role="timer" aria-label="60 segundos restantes">60</div>
+          <div>
+            <p><strong>Intenta utilizar:</strong></p>
+            <div class="tool-line" style="margin:8px 0 14px">
+              <span class="pill">un verbo en pasado</span>
+              <span class="pill">mejor/peor/más/menos que</span>
+              <span class="pill">porque / por eso</span>
+              <span class="pill">existe el riesgo de</span>
+              <span class="pill">recomiendo / conviene</span>
+            </div>
+            <div class="timer-controls">
+              <button class="btn primary" id="timerStart" type="button">Iniciar 60 segundos</button>
+              <button class="btn ghost" id="timerReset" type="button">Reiniciar tiempo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="checklist" id="speakChecklist">
+          <label class="check-item"><input type="checkbox"> <span>Hablé sin leer una respuesta completa.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Presenté un resultado con un verbo en pasado y lo comparé con una referencia.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Conecté al menos tres ideas e incluí una causa o consecuencia.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Señalé un riesgo con una estructura natural.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Respondí a una pregunta breve sobre la causa o el siguiente paso.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Incluí una recomendación o siguiente acción.</span></label>
+        </div>
+        <button class="btn primary" id="confirmSpeak" type="button">He hecho mi práctica oral</button>
+        <div class="feedback info" id="speakFeedback" aria-live="polite"></div>
+      </div>
+
+      <div class="card flat">
+        <h3>Llévalo a tu trabajo</h3>
+        <p>Elige dónde podrías utilizar estas herramientas esta semana.</p>
+        <div class="transfer-grid" id="transferGrid">
+          <button class="transfer-option" type="button">Reunión</button>
+          <button class="transfer-option" type="button">Presentación</button>
+          <button class="transfer-option" type="button">Cliente</button>
+          <button class="transfer-option" type="button">Proyecto</button>
+          <button class="transfer-option" type="button">Llamada</button>
+          <button class="transfer-option" type="button">Mensaje</button>
+        </div>
+        <div class="callout blue" id="missionBox" style="display:none" aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9" aria-labelledby="title-9">
+      <div class="completion">
+        <div class="kicker" style="color:white;justify-content:center">Spanish at Work</div>
+        <div class="hundred">100%</div>
+        <h2 id="title-9" tabindex="-1">Lección completada</h2>
+        <p>Has trabajado pasados, comparativos, conectores de causa y consecuencia, lenguaje para riesgos y estructuras de recomendación.</p>
+        <div class="completion-list">
+          <div class="completion-item">Puedo presentar un resultado pasado y situarlo en el tiempo.</div>
+          <div class="completion-item">Puedo comparar resultados y conectar causa, consecuencia y contraste.</div>
+          <div class="completion-item">Puedo señalar un riesgo y formular una recomendación dentro de una actualización profesional.</div>
+        </div>
+        <p><strong>Aplicación:</strong> presentar resultados, riesgos y recomendaciones con una explicación más sostenida y conectada.</p>
+        <div class="btn-row" style="justify-content:center">
+          <button class="btn yellow" id="repeatPractice" type="button">Repetir una práctica</button>
+          <button class="btn secondary" id="restartLesson" type="button" style="background:white">Reiniciar lección</button>
+          <a class="btn yellow" href="https://skool.spanishatwork.co/" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegación de la lección" id="bottomNav">
+    <div class="bottom-nav-inner">
+      <button class="btn ghost" id="prevBtn" type="button">← Anterior</button>
+      <button class="btn primary" id="nextBtn" type="button">Siguiente →</button>
+    </div>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    'use strict';
+
+    const screens = Array.from(document.querySelectorAll('.screen'));
+    const totalScreens = screens.length;
+    const coreTasks = ['starter','past','connector','recommend','builder','recover','scenario','speak','transfer'];
+    const state = {
+      current: 0,
+      completed: Object.fromEntries(coreTasks.map(k => [k,false])),
+      builder: [],
+      transfer: ''
+    };
+
+    const storageKey = 'spanishAtWorkLesson16v2';
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const progressTrack = document.getElementById('progressTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const bottomNav = document.getElementById('bottomNav');
+    const toast = document.getElementById('toast');
+
+    function safeSave(){
+      try{
+        localStorage.setItem(storageKey, JSON.stringify({current:state.current,completed:state.completed,transfer:state.transfer}));
+      }catch(e){/* La lección funciona sin almacenamiento. */}
+    }
+    function safeLoad(){
+      try{
+        const raw = localStorage.getItem(storageKey);
+        if(!raw) return;
+        const saved = JSON.parse(raw);
+        if(Number.isInteger(saved.current) && saved.current >= 0 && saved.current < totalScreens) state.current = saved.current;
+        if(saved.completed){
+          coreTasks.forEach(k => state.completed[k] = Boolean(saved.completed[k]));
+        }
+        if(typeof saved.transfer === 'string') state.transfer = saved.transfer;
+      }catch(e){/* Ignorar estado inválido. */}
+    }
+
+    function progressValue(){
+      if(state.current === 9) return 100;
+      const done = coreTasks.filter(k => state.completed[k]).length;
+      return Math.round((done / coreTasks.length) * 100);
+    }
+    function updateProgress(){
+      const value = progressValue();
+      progressFill.style.width = value + '%';
+      progressText.textContent = value + '%';
+      progressTrack.setAttribute('aria-valuenow', String(value));
+    }
+
+    const requirements = {
+      1:'starter',
+      2:'past',
+      3:'connector',
+      4:'recommend',
+      5:'builder',
+      6:'recover',
+      7:'scenario',
+      8:['speak','transfer']
+    };
+
+    function canAdvance(){
+      const req = requirements[state.current];
+      if(!req) return true;
+      return Array.isArray(req) ? req.every(task => state.completed[task]) : state.completed[req];
+    }
+
+    function showToast(message){
+      toast.textContent = message;
+      toast.hidden = false;
+      clearTimeout(showToast.t);
+      showToast.t = setTimeout(() => { toast.hidden = true; }, 3200);
+    }
+
+    function showScreen(index, focus=true){
+      const previous = state.current;
+      const next = Math.max(0, Math.min(index, totalScreens - 1));
+      if(previous === 8 && next !== 8) stopTimer(true);
+      state.current = next;
+      screens.forEach((s,i) => s.classList.toggle('active', i === state.current));
+      prevBtn.disabled = state.current === 0;
+      nextBtn.hidden = state.current === 9;
+      bottomNav.hidden = state.current === 0 || state.current === 9;
+      nextBtn.textContent = state.current === 8 ? 'Finalizar →' : 'Siguiente →';
+      updateProgress();
+      safeSave();
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
+      if(focus){
+        const title = screens[state.current].querySelector('h1,h2');
+        if(title) setTimeout(() => title.focus({preventScroll:true}), 80);
+      }
+    }
+
+    function complete(task){
+      if(!state.completed[task]){
+        state.completed[task] = true;
+        updateProgress();
+        safeSave();
+      }
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => showScreen(1));
+    prevBtn.addEventListener('click', () => showScreen(state.current - 1));
+    nextBtn.addEventListener('click', () => {
+      if(!canAdvance()){
+        showToast('Completa la actividad principal de esta sección antes de continuar.');
+        return;
+      }
+      if(state.current === 8) showScreen(9);
+      else showScreen(state.current + 1);
+    });
+
+    document.querySelectorAll('.mark').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('inspector').textContent = btn.dataset.note;
+      });
+    });
+
+    function renderMultiQuestion(hostId, questions, task, feedbackId){
+      const host = document.getElementById(hostId);
+      const feedback = document.getElementById(feedbackId);
+      host.innerHTML = '';
+      feedback.className = 'feedback info';
+      feedback.textContent = '';
+      const answers = {};
+      questions.forEach((q,qi) => {
+        const block = document.createElement('div');
+        block.className = 'quiz-block';
+        const title = document.createElement('div');
+        title.className = 'quiz-q';
+        title.id = hostId + '-q-' + qi;
+        title.textContent = (qi + 1) + '. ' + q.prompt;
+        block.appendChild(title);
+        const list = document.createElement('div');
+        list.className = 'choice-list';
+        list.setAttribute('role','group');
+        list.setAttribute('aria-labelledby', title.id);
+        q.options.forEach((opt,oi) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'choice';
+          b.dataset.q = String(qi);
+          b.dataset.o = String(oi);
+          b.setAttribute('aria-pressed','false');
+          b.setAttribute('aria-label', opt);
+          b.innerHTML = '<span class="letter">' + String.fromCharCode(65 + oi) + '</span><span>' + opt + '</span>';
+          b.addEventListener('click', () => {
+            answers[qi] = oi;
+            list.querySelectorAll('.choice').forEach(x => {
+              x.classList.remove('selected','correct','wrong');
+              x.setAttribute('aria-pressed','false');
+              const optionText = x.querySelector('span:last-child');
+              x.setAttribute('aria-label', optionText ? optionText.textContent : x.textContent);
+            });
+            b.classList.add('selected');
+            b.setAttribute('aria-pressed','true');
+          });
+          list.appendChild(b);
+        });
+        block.appendChild(list);
+        host.appendChild(block);
+      });
+      const check = document.createElement('button');
+      check.type = 'button';
+      check.className = 'btn primary';
+      check.textContent = 'Comprobar';
+      check.addEventListener('click', () => {
+        const fb = document.getElementById(feedbackId);
+        if(Object.keys(answers).length !== questions.length){
+          fb.className = 'feedback info show';
+          fb.textContent = 'Responde todas las preguntas antes de comprobar.';
+          return;
+        }
+        let correct = 0;
+        questions.forEach((q,qi) => {
+          const buttons = host.querySelectorAll('[data-q="'+qi+'"]');
+          buttons.forEach((b,oi) => {
+            b.classList.remove('correct','wrong');
+            if(oi === q.answer){
+              b.classList.add('correct');
+              b.setAttribute('aria-label', q.options[oi] + ' — respuesta correcta');
+            }else if(oi === answers[qi]){
+              b.classList.add('wrong');
+              b.setAttribute('aria-label', q.options[oi] + ' — respuesta seleccionada; revisa esta opción');
+            }else{
+              b.setAttribute('aria-label', q.options[oi]);
+            }
+          });
+          if(answers[qi] === q.answer) correct++;
+        });
+        if(correct === questions.length){
+          fb.className = 'feedback good show';
+          fb.textContent = 'Las elecciones son correctas. Has distinguido la función lingüística que cumple cada forma.';
+          complete(task);
+        }else{
+          const firstWrong = questions.findIndex((q,i) => answers[i] !== q.answer);
+          fb.className = 'feedback bad show';
+          fb.textContent = questions[firstWrong].feedback;
+        }
+      });
+      host.appendChild(check);
+    }
+
+    renderMultiQuestion('starterQuiz',[
+      {prompt:'“Las ventas fueron un 12 % más altas que las del trimestre anterior.”',options:['Resultado aislado','Comparación','Recomendación'],answer:1,feedback:'“Más altas que las del trimestre anterior” compara las ventas de dos periodos.'},
+      {prompt:'“El costo aumentó debido a un cambio del proveedor.”',options:['Causa','Riesgo','Consecuencia'],answer:0,feedback:'“Debido a + sustantivo” introduce la causa del aumento.'},
+      {prompt:'“Recomiendo revisar el plan antes del viernes.”',options:['Consecuencia','Recomendación','Comparación'],answer:1,feedback:'“Recomiendo + infinitivo” formula una recomendación.'}
+    ],'starter','starterFeedback');
+
+    renderMultiQuestion('pastQuiz',[
+      {prompt:'Quieres hablar de un periodo cerrado: “El año pasado ___ el objetivo.”',options:['alcanzamos','alcanzábamos','alcanzaremos'],answer:0,feedback:'“El año pasado” presenta un periodo cerrado; “alcanzamos” expresa un resultado terminado. “Alcanzábamos” presenta la acción como habitual o en desarrollo y “alcanzaremos” habla del futuro.'},
+      {prompt:'En una variedad que contrasta periodo abierto y cerrado: “Este trimestre ___ los tiempos de espera.”',options:['hemos reducido','reducíamos','reduciremos'],answer:0,feedback:'“Este trimestre hemos reducido…” puede conectar un resultado pasado con un periodo todavía abierto. En muchas variedades americanas también es natural “Este trimestre redujimos…”.'},
+      {prompt:'¿Qué frase presenta un resultado terminado dentro de un periodo cerrado?',options:['El equipo redujo el costo el mes pasado.','El equipo reducía el costo durante el proyecto.','El equipo ha reducido el costo este mes.'],answer:0,feedback:'“El equipo redujo el costo el mes pasado” presenta un resultado terminado en un periodo cerrado. “Reducía” describe una acción en desarrollo o habitual; “ha reducido” puede relacionarse con un periodo todavía abierto en las variedades que usan ese contraste.'}
+    ],'past','pastFeedback');
+
+    renderMultiQuestion('connectorQuiz',[
+      {prompt:'“Automatizamos una parte del proceso; ___, bajó el tiempo de respuesta.”',options:['porque','por eso','debido a'],answer:1,feedback:'“Por eso” introduce una consecuencia. “Porque” introduciría una causa y necesitaría otra estructura.'},
+      {prompt:'“El costo aumentó ___ un cambio del proveedor.”',options:['porque','por eso','debido a'],answer:2,feedback:'“Debido a” va aquí delante de un sustantivo: “debido a un cambio”.'},
+      {prompt:'“La satisfacción fue ___ que la del trimestre anterior.”',options:['mejor','más bien','más mejor'],answer:0,feedback:'“Mejor” ya es un comparativo. No decimos “más mejor”.'}
+    ],'connector','connectorFeedback');
+
+    renderMultiQuestion('recommendQuiz',[
+      {prompt:'Quieres señalar un riesgo.',options:['Existe el riesgo de un retraso.','Recomiendo un retraso.','Existe el riesgo para un retraso.'],answer:0,feedback:'“Existe el riesgo de + sustantivo/infinitivo” es una estructura natural para introducir un riesgo. Aquí necesitamos la preposición “de”.'},
+      {prompt:'Quieres recomendar una acción.',options:['Recomiendo de revisar el plan.','Recomiendo revisar el plan.','Recomiendo que revisar el plan.'],answer:1,feedback:'Después de “recomiendo” puedes usar directamente un infinitivo: “recomiendo revisar”.'},
+      {prompt:'Quieres proponer una acción posible sin dar una orden.',options:['Podemos priorizar los pedidos urgentes.','Podemos priorizando los pedidos urgentes.','Podemos de priorizar los pedidos urgentes.'],answer:0,feedback:'Después de “podemos” usamos un infinitivo sin preposición: “podemos priorizar”.'}
+    ],'recommend','recommendFeedback');
+
+    // Builder
+    const builderParts = [
+      {id:'k',text:'Sin embargo, existe el riesgo de una caída de las ventas en octubre.'},
+      {id:'r',text:'El trimestre pasado aumentamos las ventas en un 11 %.'},
+      {id:'m',text:'Por eso, recomiendo reforzar el seguimiento comercial.'},
+      {id:'a',text:'La mejora se produjo porque recuperamos varios clientes.'},
+      {id:'c',text:'El resultado fue mejor que el del trimestre anterior.'}
+    ];
+    const builderCorrect = ['r','c','a','k','m'];
+    const builderBank = document.getElementById('builderBank');
+    const builderOutput = document.getElementById('builderOutput');
+    function renderBuilder(){
+      builderBank.innerHTML = '';
+      builderOutput.innerHTML = '';
+      builderOutput.classList.toggle('empty', state.builder.length === 0);
+      builderParts.forEach(part => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip' + (state.builder.includes(part.id) ? ' used' : '');
+        b.textContent = part.text;
+        b.setAttribute('aria-label', 'Añadir al mensaje: ' + part.text);
+        b.disabled = state.builder.includes(part.id);
+        b.addEventListener('click', () => { state.builder.push(part.id); renderBuilder(); });
+        builderBank.appendChild(b);
+      });
+      state.builder.forEach(id => {
+        const part = builderParts.find(p => p.id === id);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip';
+        b.textContent = part.text;
+        b.title = 'Pulsa para quitar esta pieza';
+        b.setAttribute('aria-label', 'Quitar del mensaje: ' + part.text);
+        b.addEventListener('click', () => { state.builder = state.builder.filter(x => x !== id); renderBuilder(); });
+        builderOutput.appendChild(b);
+      });
+    }
+    renderBuilder();
+    document.getElementById('resetBuilder').addEventListener('click', () => {
+      state.builder = [];
+      renderBuilder();
+      const fb = document.getElementById('builderFeedback');
+      fb.className = 'feedback info';
+      fb.textContent = '';
+    });
+    document.getElementById('checkBuilder').addEventListener('click', () => {
+      const fb = document.getElementById('builderFeedback');
+      if(state.builder.length !== builderParts.length){
+        fb.className = 'feedback info show';
+        fb.textContent = 'Usa las cinco piezas antes de comprobar.';
+        return;
+      }
+      const ok = state.builder.every((id,i) => id === builderCorrect[i]);
+      if(ok){
+        fb.className = 'feedback good show';
+        fb.textContent = 'En este ejercicio, el mensaje avanza de resultado a comparación, causa, riesgo y recomendación. La conexión entre ideas es clara.';
+        complete('builder');
+      }else{
+        fb.className = 'feedback bad show';
+        fb.textContent = 'Para este ejercicio, usa el recorrido indicado: presenta el resultado, compáralo, explica la causa, señala el riesgo y cierra con la recomendación.';
+      }
+    });
+
+    function toggleDisclosure(buttonId, panelId){
+      const button = document.getElementById(buttonId);
+      const panel = document.getElementById(panelId);
+      const open = panel.classList.toggle('show');
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    document.getElementById('showHint').addEventListener('click', () => toggleDisclosure('showHint','hintBox'));
+    document.getElementById('showModel').addEventListener('click', () => toggleDisclosure('showModel','modelBox'));
+    document.getElementById('confirmRecovery').addEventListener('click', () => {
+      const text = document.getElementById('recoveryText').value.trim();
+      const checked = document.querySelectorAll('#recoveryChecklist input:checked').length;
+      const fb = document.getElementById('recoveryFeedback');
+      const phrases = text.split(/[.!?]+|\n+/).map(part => part.trim()).filter(Boolean);
+      if(phrases.length < 3){
+        fb.className = 'feedback info show';
+        fb.textContent = 'Escribe una actualización de al menos tres frases antes de revisarla.';
+        return;
+      }
+      if(checked < 4){
+        fb.className = 'feedback info show';
+        fb.textContent = 'Marca los cuatro criterios únicamente si realmente aparecen en tu respuesta. Si falta uno, ajusta tu actualización y vuelve a revisarla.';
+        return;
+      }
+      fb.className = 'feedback good show';
+      fb.textContent = 'Has producido una respuesta propia y la has revisado con criterios lingüísticos. Ahora intenta decirla sin leerla.';
+      complete('recover');
+    });
+
+    const scenarios = {
+      ventas:{
+        title:'Ventas',
+        data:'Las ventas subieron un 8 %. El objetivo era del 10 %. Dos clientes importantes aplazaron pedidos.',
+        task:'Explica el resultado, compáralo con el objetivo y formula una recomendación.'
+      },
+      proyecto:{
+        title:'Proyecto',
+        data:'Terminamos 7 de 8 tareas. La última depende de un proveedor y puede retrasarse dos días.',
+        task:'Presenta el resultado, señala el riesgo y propone una acción.'
+      },
+      cliente:{
+        title:'Cliente',
+        data:'La satisfacción subió del 82 % al 89 %. También aumentó el tiempo de espera en horas pico.',
+        task:'Compara la satisfacción con la medición anterior, introduce el contraste y recomienda un siguiente paso.'
+      }
+    };
+    const scenarioQuestions = {
+      ventas:[{
+        prompt:'Para estos datos de ventas, ¿qué versión conecta la información con más claridad?',
+        options:[
+          'Las ventas subieron un 8 %. El aumento fue menor que el objetivo del 10 %. Dos clientes importantes aplazaron pedidos; por eso, conviene reforzar el seguimiento.',
+          'Las ventas subieron un 8 % porque el objetivo era del 10 %. Dos clientes aplazaron pedidos y recomiendo que reforzar el seguimiento.',
+          'Las ventas subieron un 8 % y el objetivo era del 10 %. Conviene aumentar más.'
+        ],
+        answer:0,
+        feedback:'La primera versión compara el aumento con el objetivo mediante “menor que”, conecta la consecuencia con “por eso” y formula una recomendación natural.'
+      }],
+      proyecto:[{
+        prompt:'Para estos datos del proyecto, ¿qué versión expresa mejor el resultado, el riesgo y la recomendación?',
+        options:[
+          'Terminamos 7 de 8 tareas. La última depende de un proveedor. Existe el riesgo de un retraso de dos días; por eso, recomiendo confirmar hoy la nueva fecha.',
+          'Terminamos 7 de 8 tareas. Existe el riesgo para retrasarse dos días y recomiendo de confirmar la fecha.',
+          'Terminamos 7 de 8 tareas porque el proveedor puede retrasarse. El riesgo está dos días.'
+        ],
+        answer:0,
+        feedback:'La primera versión usa “existe el riesgo de + sustantivo”, conecta el riesgo con “por eso” y formula la recomendación con “recomiendo + infinitivo”.'
+      }],
+      cliente:[{
+        prompt:'Para estos datos del cliente, ¿qué versión combina comparación, contraste y recomendación?',
+        options:[
+          'La satisfacción fue más alta que en la medición anterior: subió del 82 % al 89 %. Sin embargo, aumentó el tiempo de espera en horas pico. Recomiendo revisar la capacidad del equipo en esos periodos.',
+          'La satisfacción subió del 82 % al 89 % porque aumentó el tiempo de espera. Recomiendo de revisar la capacidad.',
+          'La satisfacción fue más mejor, pero el tiempo de espera aumentó. Existe el riesgo para clientes.'
+        ],
+        answer:0,
+        feedback:'La primera versión compara la satisfacción con la medición anterior mediante “más alta que”, introduce un contraste real con “sin embargo” y cierra con una recomendación construida correctamente.'
+      }]
+    };
+
+    const scenarioPanel = document.getElementById('scenarioPanel');
+    function renderScenario(key){
+      const s = scenarios[key];
+      scenarioPanel.innerHTML = '<h3>'+s.title+'</h3><p><strong>Datos:</strong> '+s.data+'</p><p><strong>Tu objetivo lingüístico:</strong> '+s.task+'</p>';
+      document.querySelectorAll('.scenario-btn').forEach(b => {
+        const active = b.dataset.scenario === key;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      renderMultiQuestion('scenarioQuiz',scenarioQuestions[key],'scenario','scenarioFeedback');
+    }
+    renderScenario('ventas');
+    document.querySelectorAll('.scenario-btn').forEach(b => b.addEventListener('click', () => renderScenario(b.dataset.scenario)));
+
+    // Tabs
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    function activateTab(tab, moveFocus=false){
+      tabs.forEach(t => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).classList.toggle('active', selected);
+      });
+      if(moveFocus) tab.focus();
+    }
+    tabs.forEach((tab,index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', event => {
+        let next = index;
+        if(event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if(event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        else if(event.key === 'Home') next = 0;
+        else if(event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activateTab(tabs[next], true);
+      });
+    });
+    if(tabs[0]) activateTab(tabs[0]);
+
+    // Timer
+    let timerSeconds = 60;
+    let timerId = null;
+    const timerDisplay = document.getElementById('timerDisplay');
+    function stopTimer(reset=false){
+      if(timerId){
+        clearInterval(timerId);
+        timerId = null;
+      }
+      if(reset){
+        timerSeconds = 60;
+        paintTimer();
+      }
+    }
+    function paintTimer(){
+      timerDisplay.textContent = String(timerSeconds);
+      timerDisplay.setAttribute('aria-label', timerSeconds + (timerSeconds === 1 ? ' segundo restante' : ' segundos restantes'));
+    }
+    document.getElementById('timerStart').addEventListener('click', () => {
+      if(timerId) return;
+      if(timerSeconds <= 0) timerSeconds = 60;
+      paintTimer();
+      timerId = setInterval(() => {
+        timerSeconds--;
+        paintTimer();
+        if(timerSeconds <= 0){
+          clearInterval(timerId);timerId = null;
+          showToast('Tiempo terminado. Revisa qué herramientas lograste recuperar.');
+        }
+      },1000);
+    });
+    document.getElementById('timerReset').addEventListener('click', () => {
+      stopTimer(true);
+    });
+    document.getElementById('confirmSpeak').addEventListener('click', () => {
+      const checked = document.querySelectorAll('#speakChecklist input:checked').length;
+      const total = document.querySelectorAll('#speakChecklist input').length;
+      const fb = document.getElementById('speakFeedback');
+      if(checked < total){
+        fb.className = 'feedback info show';
+        fb.textContent = 'Marca todos los criterios únicamente si realmente los cumpliste. Si falta uno, repite la práctica oral e inténtalo otra vez.';
+        return;
+      }
+      fb.className = 'feedback good show';
+      fb.textContent = 'Has pasado de una respuesta escrita a una producción oral con menos apoyo. Esa recuperación es el objetivo de esta etapa.';
+      complete('speak');
+    });
+
+    const transferContexts = {
+      'Reunión':'En tu próxima reunión',
+      'Presentación':'En tu próxima presentación',
+      'Cliente':'En tu próxima conversación con un cliente',
+      'Proyecto':'En tu próxima actualización de proyecto',
+      'Llamada':'En tu próxima llamada',
+      'Mensaje':'En tu próximo mensaje'
+    };
+    function showTransferMission(){
+      const mission = document.getElementById('missionBox');
+      const context = transferContexts[state.transfer];
+      if(!context){
+        mission.style.display = 'none';
+        mission.textContent = '';
+        return;
+      }
+      mission.style.display = 'block';
+      mission.innerHTML = '<strong>Micro misión:</strong> '+context+', intenta comunicar un resultado con un verbo en pasado, compararlo con una referencia y cerrar con una recomendación o siguiente acción.';
+    }
+
+    document.querySelectorAll('.transfer-option').forEach(b => {
+      b.setAttribute('aria-pressed','false');
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.transfer-option').forEach(x => { x.classList.remove('selected'); x.setAttribute('aria-pressed','false'); });
+        b.classList.add('selected');
+        b.setAttribute('aria-pressed','true');
+        state.transfer = b.textContent.trim();
+        complete('transfer');
+        showTransferMission();
+      });
+    });
+
+    document.getElementById('repeatPractice').addEventListener('click', () => showScreen(6));
+    document.getElementById('restartLesson').addEventListener('click', () => {
+      try{localStorage.removeItem(storageKey);}catch(e){}
+      window.location.reload();
+    });
+
+    safeLoad();
+    if(state.transfer){
+      document.querySelectorAll('.transfer-option').forEach(b => {
+        if(b.textContent.trim() === state.transfer){ b.classList.add('selected'); b.setAttribute('aria-pressed','true'); }
+      });
+      state.completed.transfer = true;
+      showTransferMission();
+    }
+    showScreen(state.current,false);
+  </script>
+</body>
+</html>

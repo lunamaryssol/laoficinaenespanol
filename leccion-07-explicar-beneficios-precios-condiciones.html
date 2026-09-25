@@ -1,0 +1,2034 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Lección 7 · Explica beneficios y condiciones | Spanish at Work</title>
+  <meta name="description" content="Lección interactiva de Spanish at Work para practicar comparativos, por/para, cantidades y conectores de causa y consecuencia en situaciones profesionales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-2:#082d70;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --black:#000000;
+      --ink:#172033;
+      --muted:#5b6475;
+      --line:#dfe5ef;
+      --soft:#f5f7fb;
+      --success:#146c43;
+      --success-bg:#edf8f2;
+      --danger-bg:#fff1f2;
+      --shadow:0 14px 40px rgba(0,56,147,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(252,209,22,.16), transparent 28rem),
+        linear-gradient(180deg,#eef3fb 0%,#f9fbfe 46%,#ffffff 100%);
+    }
+
+    button,input,select,textarea{font:inherit}
+    button,a,input,select,textarea{outline-offset:3px}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+      outline:3px solid var(--yellow);
+      outline-offset:3px;
+      box-shadow:0 0 0 6px var(--blue)!important;
+    }
+    h1:focus,h2:focus,h3:focus,#title-0:focus{
+      outline:none;
+      box-shadow:none;
+    }
+
+    a{color:var(--blue)}
+    .sr-only{
+      position:absolute!important;
+      width:1px!important;
+      height:1px!important;
+      padding:0!important;
+      margin:-1px!important;
+      overflow:hidden!important;
+      clip:rect(0,0,0,0)!important;
+      white-space:nowrap!important;
+      border:0!important;
+    }
+
+    .app{
+      width:min(1120px,calc(100% - 28px));
+      margin:0 auto;
+      padding:18px 0 36px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+      padding:12px 14px;
+      border:1px solid rgba(0,56,147,.10);
+      border-radius:18px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 8px 24px rgba(0,56,147,.07);
+      backdrop-filter:blur(10px);
+    }
+
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+      color:var(--blue);
+      font-weight:700;
+      font-size:.9rem;
+    }
+    .brand-mark{
+      width:32px;
+      height:32px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:var(--blue);
+      color:var(--yellow);
+      font-weight:700;
+      letter-spacing:-.04em;
+    }
+
+    .progress-wrap{min-width:0}
+    .progress-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-size:.78rem;
+    }
+    .progress-track{
+      height:9px;
+      overflow:hidden;
+      border-radius:999px;
+      background:#e6ebf3;
+    }
+    .progress-bar{
+      height:100%;
+      width:0;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--yellow),#ffd947);
+      transition:width .35s ease;
+    }
+
+    .icon-btn{
+      min-width:42px;
+      min-height:42px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--white);
+      color:var(--blue);
+      cursor:pointer;
+      font-weight:700;
+    }
+    .icon-btn:hover{background:#f2f6fd}
+
+    main{min-height:680px}
+    .screen{
+      display:none;
+      animation:screenIn .34s ease;
+    }
+    .screen.active{display:block}
+    @keyframes screenIn{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:none}
+    }
+
+    .panel{
+      background:var(--white);
+      border:1px solid rgba(0,56,147,.09);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panel-pad{padding:clamp(22px,4vw,46px)}
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      min-height:650px;
+    }
+    .hero-main{
+      padding:clamp(30px,5vw,64px);
+      background:var(--blue);
+      color:var(--white);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      width:max-content;
+      gap:8px;
+      margin:0 0 18px;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(252,209,22,.14);
+      color:var(--yellow);
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      margin-bottom:18px;
+      font-size:clamp(2rem,5vw,4.3rem);
+      line-height:1.02;
+      letter-spacing:-.045em;
+    }
+    h2{
+      margin-bottom:12px;
+      color:var(--blue);
+      font-size:clamp(1.55rem,3.5vw,2.55rem);
+      line-height:1.12;
+      letter-spacing:-.025em;
+    }
+    h3{
+      margin-bottom:8px;
+      font-size:1.05rem;
+      line-height:1.25;
+    }
+    .lead{
+      max-width:760px;
+      font-size:clamp(1rem,1.6vw,1.17rem);
+      line-height:1.75;
+      color:#e8efff;
+    }
+    .tool-line{
+      margin:12px 0 26px;
+      padding:14px 16px;
+      border-left:4px solid var(--yellow);
+      background:rgba(255,255,255,.08);
+      border-radius:0 14px 14px 0;
+      line-height:1.6;
+    }
+    .tool-line strong{color:var(--yellow)}
+
+    .hero-side{
+      padding:clamp(26px,4vw,46px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:16px;
+      background:linear-gradient(160deg,#ffffff 0%,#f4f7fb 100%);
+    }
+    .goal-card{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:var(--white);
+    }
+    .goal-card b{display:block;color:var(--blue);margin-bottom:5px}
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      margin-top:22px;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      border-radius:14px;
+      padding:13px 18px;
+      min-height:48px;
+      background:var(--blue);
+      color:var(--white);
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+      box-shadow:0 7px 18px rgba(0,56,147,.16);
+    }
+    .btn:hover{transform:translateY(-1px);background:var(--blue-2)}
+    .btn.secondary{
+      background:var(--white);
+      color:var(--blue);
+      border:1px solid #bfcbe0;
+      box-shadow:none;
+    }
+    .btn.secondary:hover{background:#f3f6fb}
+    .btn.yellow{
+      background:var(--yellow);
+      color:#1b2434;
+      box-shadow:0 7px 18px rgba(176,142,0,.20);
+    }
+    .btn.yellow:hover{background:#f1c600}
+    .btn.small{padding:9px 12px;min-height:40px;font-size:.88rem}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-start;
+      margin-bottom:24px;
+    }
+    .step{
+      display:inline-block;
+      margin-bottom:9px;
+      color:var(--blue);
+      font-size:.8rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    .section-intro{color:var(--muted);line-height:1.75;max-width:780px}
+
+    .context-strip{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin:24px 0;
+    }
+    .context-item{
+      padding:16px;
+      border-radius:16px;
+      background:var(--soft);
+      border:1px solid var(--line);
+    }
+    .context-item span{
+      display:block;
+      margin-bottom:4px;
+      color:var(--muted);
+      font-size:.78rem;
+    }
+    .context-item b{color:var(--blue)}
+
+    .choice-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+    .choice{
+      width:100%;
+      min-height:118px;
+      padding:16px;
+      text-align:left;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--white);
+      color:var(--ink);
+      cursor:pointer;
+      line-height:1.55;
+      transition:border .16s ease,transform .16s ease,background .16s ease;
+    }
+    .choice:hover{transform:translateY(-1px);border-color:#9eb4d8}
+    .choice.correct{border-color:#62a981;background:var(--success-bg)}
+    .choice.wrong{border-color:#e6a3ad;background:var(--danger-bg)}
+
+    .feedback{
+      display:none;
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      line-height:1.65;
+    }
+    .feedback.show{display:block}
+    .feedback.ok{background:var(--success-bg);border-color:#b9dfca;color:#134d31}
+    .feedback.no{background:var(--danger-bg);border-color:#f0bec4;color:#771724}
+    .feedback.neutral{background:#f3f6fb;color:#33405a}
+
+    .dialogue{
+      display:grid;
+      gap:10px;
+      margin:22px 0;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fbfcfe;
+    }
+    .bubble{
+      max-width:88%;
+      padding:13px 15px;
+      border-radius:16px;
+      line-height:1.65;
+    }
+    .bubble.a{justify-self:start;background:#eaf1fd;border-bottom-left-radius:4px}
+    .bubble.b{justify-self:end;background:#fff8d8;border-bottom-right-radius:4px}
+    .speaker{display:block;margin-bottom:4px;font-size:.75rem;font-weight:700;color:var(--blue)}
+    mark{
+      padding:.08em .2em;
+      border-radius:.3em;
+      background:#fff0a3;
+      color:inherit;
+    }
+
+    .pattern-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+    .pattern-btn{
+      min-height:108px;
+      padding:15px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--white);
+      text-align:left;
+      cursor:pointer;
+      line-height:1.55;
+    }
+    .pattern-btn .label{
+      display:none;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed #bbc7d8;
+      color:var(--blue);
+      font-size:.88rem;
+      font-weight:600;
+    }
+    .pattern-btn.revealed{background:#f7faff;border-color:#a9bad7}
+    .pattern-btn.revealed .label{display:block}
+
+    .grammar-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin:20px 0;
+    }
+    .grammar-card{
+      padding:19px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:var(--white);
+    }
+    .formula{
+      display:inline-block;
+      margin:7px 0 12px;
+      padding:8px 10px;
+      border-radius:10px;
+      background:#eef4ff;
+      color:var(--blue);
+      font-weight:700;
+    }
+    .example-list{margin:10px 0 0;padding-left:20px;line-height:1.75}
+
+    .quiz-card{
+      margin-top:20px;
+      padding:20px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fbfcff;
+    }
+    .quiz-question{font-weight:600;line-height:1.55;margin-bottom:12px}
+    .quiz-options{display:grid;gap:9px}
+    .quiz-option{
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:var(--white);
+      text-align:left;
+      cursor:pointer;
+    }
+    .quiz-option.correct{background:var(--success-bg);border-color:#78b693}
+    .quiz-option.wrong{background:var(--danger-bg);border-color:#e2a0aa}
+    .quiz-option:disabled{cursor:default}
+    .quiz-counter{color:var(--muted);font-size:.82rem;margin-bottom:8px}
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin:20px 0;
+    }
+    .mini-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:.92rem;
+    }
+    .mini-table th,.mini-table td{
+      padding:11px 10px;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      vertical-align:top;
+    }
+    .mini-table th{color:var(--blue);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+
+    .select-task{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+    .task-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 180px auto;
+      gap:12px;
+      align-items:center;
+      padding:13px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fbfcfe;
+    }
+    .row-result{
+      min-width:88px;
+      font-size:.78rem;
+      font-weight:700;
+    }
+    .row-result.ok{color:var(--success)}
+    .row-result.no{color:var(--red)}
+    select{
+      width:100%;
+      min-height:44px;
+      border:1px solid #b9c4d6;
+      border-radius:10px;
+      background:var(--white);
+      color:var(--ink);
+      padding:8px 10px;
+    }
+
+    .builder{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin:18px 0;
+    }
+    .builder label{display:grid;gap:7px;font-size:.86rem;font-weight:600;color:#364157}
+    .output-box{
+      margin-top:16px;
+      min-height:112px;
+      padding:18px;
+      border-radius:16px;
+      background:var(--blue);
+      color:var(--white);
+      line-height:1.75;
+    }
+    .output-box strong{color:var(--yellow)}
+
+    .scenario{
+      margin:18px 0;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid #ccd6e6;
+      background:linear-gradient(135deg,#f7faff,#fffdf3);
+    }
+    .scenario-data{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .data-card{
+      padding:13px;
+      border-radius:13px;
+      background:var(--white);
+      border:1px solid var(--line);
+    }
+
+    textarea{
+      width:100%;
+      min-height:150px;
+      resize:vertical;
+      padding:14px;
+      border:1px solid #b9c4d6;
+      border-radius:14px;
+      line-height:1.6;
+      color:var(--ink);
+      background:var(--white);
+    }
+    .hint-box{
+      display:none;
+      margin-top:12px;
+      padding:14px;
+      border-left:4px solid var(--yellow);
+      border-radius:0 12px 12px 0;
+      background:#fff9dc;
+      line-height:1.65;
+    }
+    .hint-box.show{display:block}
+
+    .checklist{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:13px 0;
+    }
+    .check-chip{
+      padding:7px 10px;
+      border-radius:999px;
+      background:#eef3fb;
+      color:#34445f;
+      font-size:.8rem;
+    }
+    .oral-row{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:12px;
+      margin-top:14px;
+    }
+    .timer-display{
+      min-width:78px;
+      padding:11px 14px;
+      border-radius:14px;
+      background:#eef4ff;
+      color:var(--blue);
+      font-weight:700;
+      text-align:center;
+      font-variant-numeric:tabular-nums;
+    }
+    .self-review{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+      padding:0;
+      border:0;
+    }
+    .self-review label{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      line-height:1.5;
+      cursor:pointer;
+    }
+    .self-review input{
+      width:20px;
+      height:20px;
+      margin-top:2px;
+      flex:0 0 auto;
+      accent-color:var(--blue);
+    }
+
+    .cta-box{
+      margin-top:22px;
+      padding:20px;
+      border-radius:18px;
+      background:#071f4f;
+      color:var(--white);
+    }
+    .cta-box p{color:#e7efff;line-height:1.65}
+    .cta-box .btn{box-shadow:none}
+
+    .final-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .score-card{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:30px;
+      border-radius:20px;
+      background:var(--blue);
+      color:var(--white);
+      text-align:center;
+    }
+    .score-num{
+      font-size:clamp(4rem,10vw,7rem);
+      font-weight:700;
+      line-height:1;
+      color:var(--yellow);
+    }
+    .final-list{
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--white);
+    }
+    .final-list ul{margin-bottom:0;padding-left:22px;line-height:1.9}
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:18px;
+    }
+    .nav .btn{min-width:132px}
+
+    .tiny{font-size:.8rem;color:var(--muted);line-height:1.6}
+    .accent{color:var(--blue);font-weight:700}
+    .yellow-line{width:58px;height:6px;border-radius:999px;background:var(--yellow);margin:0 0 22px}
+
+    @media (max-width:820px){
+      .topbar{grid-template-columns:auto 1fr;gap:10px}
+      .topbar .icon-btn{grid-column:2;grid-row:2;justify-self:end}
+      .brand-mini{grid-column:1;grid-row:1 / span 2}
+      .progress-wrap{grid-column:2;grid-row:1}
+      .hero,.final-grid{grid-template-columns:1fr}
+      .hero{min-height:auto}
+      .choice-grid,.grammar-grid,.pattern-grid,.split,.builder{grid-template-columns:1fr}
+      .context-strip{grid-template-columns:1fr}
+      .task-row{grid-template-columns:1fr}
+      .scenario-data{grid-template-columns:1fr}
+      .bubble{max-width:96%}
+      main{min-height:auto}
+    }
+
+    @media (max-width:520px){
+      .app{width:min(100% - 18px,1120px);padding-top:9px}
+      .topbar{padding:9px 10px;border-radius:14px}
+      .brand-mini{font-size:0}.brand-mini .brand-mark{font-size:.9rem}
+      .panel-pad{padding:20px}
+      .hero-main,.hero-side{padding:24px}
+      .choice{min-height:unset}
+      .nav{position:sticky;bottom:8px;padding:8px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+      .nav .btn{min-width:0;flex:1}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar" aria-label="Progreso de la lección">
+      <div class="brand-mini"><span class="brand-mark" aria-hidden="true">SW</span><span>Spanish at Work</span></div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span id="screenLabel">Inicio</span><span id="progressText">0 %</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+      <button class="icon-btn" type="button" id="resetTop" aria-label="Reiniciar progreso" title="Reiniciar progreso">↻</button>
+    </header>
+
+    <main id="lesson">
+      <section class="screen active" data-screen="0" aria-labelledby="title-0">
+        <div class="panel hero">
+          <div class="hero-main">
+            <p class="eyebrow">Lección 7 · Spanish at Work</p>
+            <h1 id="title-0" tabindex="-1">Explica beneficios y condiciones</h1>
+            <p class="lead">Aprende a comparar opciones, hablar de precios y cantidades y conectar una propuesta con sus razones y consecuencias.</p>
+            <div class="tool-line"><strong>Herramientas:</strong> comparativos + por/para + cantidades + causa/consecuencia.</div>
+            <div class="btn-row">
+              <button class="btn yellow" type="button" data-go="1">Comenzar</button>
+            </div>
+          </div>
+          <aside class="hero-side" aria-label="Objetivos de la lección">
+            <div class="goal-card"><b>Vas a comprender</b> cómo cambia el significado cuando comparas, indicas precio o finalidad y explicas una razón.</div>
+            <div class="goal-card"><b>Vas a construir</b> frases como «es más flexible que…», «USD 20 por usuario» y «es adecuado para…».</div>
+            <div class="goal-card"><b>Vas a aplicar</b> estas herramientas para presentar dos alternativas y explicar por qué una puede ser adecuada.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="1" aria-labelledby="title-1">
+        <div class="panel panel-pad">
+          <div class="section-head">
+            <div>
+              <span class="step">1 · Activa lo que ya sabes</span>
+              <h2 id="title-1" tabindex="-1">¿Cuál frase compara dos opciones?</h2>
+              <p class="section-intro">Estás hablando con un cliente que quiere elegir entre dos planes. Antes de entrar en detalles, identifica la frase que realmente establece una comparación.</p>
+            </div>
+          </div>
+          <div class="context-strip">
+            <div class="context-item"><span>Situación</span><b>Conversación con un cliente</b></div>
+            <div class="context-item"><span>Objetivo</span><b>Explicar dos alternativas</b></div>
+            <div class="context-item"><span>Lengua</span><b>Comparar + justificar</b></div>
+          </div>
+          <div class="choice-grid" id="activationChoices">
+            <button class="choice" type="button" data-value="a">El plan Pro cuesta USD 59 al mes.</button>
+            <button class="choice" type="button" data-value="b">El plan Pro es <strong>más flexible que</strong> el Esencial.</button>
+            <button class="choice" type="button" data-value="c">El plan Pro incluye soporte prioritario.</button>
+          </div>
+          <div class="feedback" id="activationFeedback" role="status" aria-live="polite"></div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="0">Anterior</button><button class="btn" type="button" data-go="2">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="2" aria-labelledby="title-2">
+        <div class="panel panel-pad">
+          <span class="step">2 · Input comprensible</span>
+          <h2 id="title-2" tabindex="-1">Observa la lógica de una propuesta</h2>
+          <p class="section-intro">No memorices el diálogo. Observa qué palabras permiten comparar, indicar precio, señalar destinatario y explicar una razón.</p>
+
+          <div class="dialogue" aria-label="Diálogo profesional">
+            <div class="bubble a"><span class="speaker">CLIENTE</span>Somos ocho personas. ¿Qué diferencia hay entre el plan Esencial y el Pro?</div>
+            <div class="bubble b"><span class="speaker">ASESORA</span>El Pro es <mark>más completo que</mark> el Esencial y tiene <mark>más almacenamiento</mark>.</div>
+            <div class="bubble b"><span class="speaker">ASESORA</span>El Esencial cuesta USD 39 por mes. El Pro cuesta USD 59 <mark>por mes</mark>: son USD 20 más, pero incluye soporte prioritario y hasta 50 GB de almacenamiento.</div>
+            <div class="bubble a"><span class="speaker">CLIENTE</span>¿Y cuál es mejor para un equipo pequeño?</div>
+            <div class="bubble b"><span class="speaker">ASESORA</span>El Esencial puede ser suficiente <mark>para un equipo de ocho personas</mark> <mark>porque</mark> incluye las funciones principales. El Pro tiene más capacidad; <mark>por eso</mark> puede ser útil si el equipo va a crecer.</div>
+          </div>
+
+          <h3>Descubre el patrón</h3>
+          <p class="tiny">Pulsa cada frase para revelar qué función lingüística cumple. Abre las cuatro.</p>
+          <div class="pattern-grid" id="patternGrid">
+            <button class="pattern-btn" type="button" data-pattern="compare" aria-expanded="false"><strong>más completo que</strong><span class="label">Comparativo: relaciona dos opciones.</span></button>
+            <button class="pattern-btn" type="button" data-pattern="por" aria-expanded="false"><strong>USD 59 por mes</strong><span class="label">POR: expresa precio o cantidad por unidad.</span></button>
+            <button class="pattern-btn" type="button" data-pattern="para" aria-expanded="false"><strong>para un equipo de ocho personas</strong><span class="label">PARA: indica destinatario, uso o finalidad.</span></button>
+            <button class="pattern-btn" type="button" data-pattern="cause" aria-expanded="false"><strong>porque… / por eso…</strong><span class="label">Causa y consecuencia: explica la razón y el resultado.</span></button>
+          </div>
+          <div class="feedback neutral show" id="patternFeedback" role="status" aria-live="polite">Encuentra las cuatro funciones.</div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="1">Anterior</button><button class="btn" type="button" data-go="3">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="3" aria-labelledby="title-3">
+        <div class="panel panel-pad">
+          <span class="step">3 · Herramienta 1</span>
+          <h2 id="title-3" tabindex="-1">Compara sin enumerar</h2>
+          <p class="section-intro">Los comparativos te permiten relacionar dos opciones. En lugar de dar dos listas separadas, puedes mostrar qué cambia entre una y otra.</p>
+
+          <div class="grammar-grid">
+            <article class="grammar-card">
+              <h3>Más / menos + adjetivo + que</h3>
+              <div class="formula">A es más/menos + adjetivo + que B</div>
+              <ul class="example-list">
+                <li>El plan Pro es <strong>más flexible que</strong> el Esencial.</li>
+                <li>La opción anual es <strong>menos costosa que</strong> la mensual.</li>
+              </ul>
+            </article>
+            <article class="grammar-card">
+              <h3>Más / menos + sustantivo + que</h3>
+              <div class="formula">A + verbo + más/menos + sustantivo + que B</div>
+              <ul class="example-list">
+                <li>El Pro tiene <strong>más capacidad que</strong> el Esencial.</li>
+                <li>La opción básica ofrece <strong>menos funciones que</strong> la avanzada.</li>
+              </ul>
+            </article>
+            <article class="grammar-card">
+              <h3>Tan + adjetivo + como</h3>
+              <div class="formula">A es tan + adjetivo + como B</div>
+              <ul class="example-list">
+                <li>La opción A es <strong>tan rápida como</strong> la B.</li>
+                <li>El proceso estándar es <strong>tan sencillo como</strong> el avanzado.</li>
+              </ul>
+            </article>
+            <article class="grammar-card">
+              <h3>Mejor / peor que</h3>
+              <div class="formula">mejor que · peor que</div>
+              <ul class="example-list">
+                <li>Esta alternativa es <strong>mejor que</strong> la anterior para este caso.</li>
+                <li>La cobertura básica es <strong>peor que</strong> la ampliada para este caso.</li>
+                <li>«Más mejor» no funciona: usamos <strong>mejor</strong>.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="quiz-card" id="compareQuiz" aria-live="polite">
+            <div class="quiz-counter" id="compareCounter"></div>
+            <div class="quiz-question" id="compareQuestion"></div>
+            <div class="quiz-options" id="compareOptions"></div>
+            <div class="feedback" id="compareFeedback" role="status"></div>
+          </div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="2">Anterior</button><button class="btn" type="button" data-go="4">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="4" aria-labelledby="title-4">
+        <div class="panel panel-pad">
+          <span class="step">4 · Herramientas 2 y 3</span>
+          <h2 id="title-4" tabindex="-1">Precio, cantidad, destinatario y finalidad</h2>
+          <p class="section-intro">En este contexto, <strong>por</strong> y <strong>para</strong> cumplen funciones diferentes. Las expresiones de cantidad ayudan a precisar la condición.</p>
+
+          <div class="split">
+            <article class="grammar-card">
+              <h3>POR: precio o unidad</h3>
+              <p>Usa <strong>por</strong> cuando expresas cuánto corresponde a cada unidad, período o elemento.</p>
+              <ul class="example-list">
+                <li>USD 12 <strong>por usuario</strong>.</li>
+                <li>USD 59 <strong>por mes</strong>.</li>
+                <li>Dos sesiones <strong>por semana</strong>.</li>
+              </ul>
+            </article>
+            <article class="grammar-card">
+              <h3>PARA: destinatario o finalidad</h3>
+              <p>Usa <strong>para</strong> cuando indicas quién recibe algo o para qué sirve.</p>
+              <ul class="example-list">
+                <li>Una opción <strong>para equipos pequeños</strong>.</li>
+                <li>Esta función sirve <strong>para organizar tareas</strong>.</li>
+                <li>El descuento es <strong>para clientes nuevos</strong>.</li>
+              </ul>
+            </article>
+          </div>
+
+          <article class="grammar-card">
+            <h3>Cantidades que aparecen con frecuencia</h3>
+            <table class="mini-table">
+              <thead><tr><th>Forma</th><th>Ejemplo</th></tr></thead>
+              <tbody>
+                <tr><td>más / menos</td><td>Incluye <strong>más espacio</strong> y <strong>menos límites</strong>.</td></tr>
+                <tr><td>desde</td><td>Planes <strong>desde USD 39</strong> al mes.</td></tr>
+                <tr><td>hasta</td><td>Incluye <strong>hasta 50 GB</strong> de almacenamiento.</td></tr>
+                <tr><td>porcentaje</td><td>Hay <strong>un 15 % de descuento</strong> con pago anual.</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <div class="select-task" id="porParaTask">
+            <div class="task-row"><span>El servicio cuesta USD 80 ___ hora.</span><select data-answer="por" aria-label="Elige por o para: precio por hora"><option value="">Elige</option><option>por</option><option>para</option></select><span class="row-result" ></span></div>
+            <div class="task-row"><span>Esta opción es ___ empresas con equipos pequeños.</span><select data-answer="para" aria-label="Elige por o para: destinatario"><option value="">Elige</option><option>por</option><option>para</option></select><span class="row-result" ></span></div>
+            <div class="task-row"><span>Incluye cinco licencias ___ departamento.</span><select data-answer="por" aria-label="Elige por o para: cantidad por departamento"><option value="">Elige</option><option>por</option><option>para</option></select><span class="row-result" ></span></div>
+            <div class="task-row"><span>Esta función sirve ___ reducir tareas repetitivas.</span><select data-answer="para" aria-label="Elige por o para: finalidad"><option value="">Elige</option><option>por</option><option>para</option></select><span class="row-result" ></span></div>
+          </div>
+          <div class="btn-row"><button class="btn" type="button" id="checkPorPara">Comprobar</button></div>
+          <div class="feedback" id="porParaFeedback" role="status" aria-live="polite"></div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="3">Anterior</button><button class="btn" type="button" data-go="5">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="5" aria-labelledby="title-5">
+        <div class="panel panel-pad">
+          <span class="step">5 · Herramienta 4</span>
+          <h2 id="title-5" tabindex="-1">Conecta la razón con la consecuencia</h2>
+          <p class="section-intro">Una propuesta suena más completa cuando puedes decir <strong>por qué</strong> y qué consecuencia tiene esa información.</p>
+
+          <div class="grammar-grid">
+            <article class="grammar-card">
+              <h3>porque = causa</h3>
+              <div class="formula">resultado + porque + razón</div>
+              <p>El plan puede ser adecuado <strong>porque incluye soporte prioritario</strong>.</p>
+            </article>
+            <article class="grammar-card">
+              <h3>por eso = consecuencia</h3>
+              <div class="formula">causa. Por eso + consecuencia</div>
+              <p>El equipo va a crecer. <strong>Por eso</strong>, necesita una opción más flexible.</p>
+            </article>
+          </div>
+
+          <div class="quiz-card" id="connectorTask">
+            <p class="quiz-question">Completa las tres frases. Piensa si necesitas introducir una <strong>causa</strong> o una <strong>consecuencia</strong>.</p>
+            <div class="select-task">
+              <div class="task-row"><span>La opción anual cuesta menos ___ tiene un descuento del 15 %.</span><select data-answer="porque" aria-label="Conector de causa"><option value="">Elige</option><option>porque</option><option>por eso</option></select><span class="row-result" ></span></div>
+              <div class="task-row"><span>El cliente necesita más capacidad. ___, recomendamos el plan Pro.</span><select data-answer="por eso" aria-label="Conector de consecuencia"><option value="">Elige</option><option>porque</option><option value="por eso">Por eso</option></select><span class="row-result" ></span></div>
+              <div class="task-row"><span>Este servicio puede ser útil para el equipo ___ reduce tareas repetitivas.</span><select data-answer="porque" aria-label="Conector de causa"><option value="">Elige</option><option>porque</option><option>por eso</option></select><span class="row-result" ></span></div>
+            </div>
+            <div class="btn-row"><button class="btn" type="button" id="checkConnectors">Comprobar</button></div>
+            <div class="feedback" id="connectorFeedback" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="nav"><button class="btn secondary" type="button" data-go="4">Anterior</button><button class="btn" type="button" data-go="6">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="6" aria-labelledby="title-6">
+        <div class="panel panel-pad">
+          <span class="step">6 · Construye</span>
+          <h2 id="title-6" tabindex="-1">Arma una explicación completa</h2>
+          <p class="section-intro">Selecciona una comparación, un dato concreto y una razón. El objetivo es ver cómo varias herramientas pueden funcionar juntas en una intervención breve.</p>
+
+          <div class="builder">
+            <label>Comparación
+              <select id="builderCompare">
+                <option value="El plan Pro es más completo que el Esencial">El Pro es más completo que el Esencial</option>
+                <option value="El plan Pro tiene más almacenamiento que el Esencial">El Pro tiene más almacenamiento que el Esencial</option>
+                <option value="El plan Pro es más costoso que el Esencial">El Pro es más costoso que el Esencial</option>
+              </select>
+            </label>
+            <label>Dato concreto
+              <select id="builderCondition">
+                <option value="cuesta USD 59 por mes">USD 59 por mes</option>
+                <option value="incluye hasta 50 GB de almacenamiento">hasta 50 GB</option>
+                <option value="incluye soporte prioritario">soporte prioritario</option>
+              </select>
+            </label>
+            <label>Razón
+              <select id="builderReason">
+                <option value="el equipo necesita más almacenamiento" data-benefit="El Pro ofrece más almacenamiento que el Esencial.">El equipo necesita más almacenamiento</option>
+                <option value="el cliente da mucha importancia al soporte técnico" data-benefit="El Pro incluye soporte prioritario.">El cliente da prioridad al soporte técnico</option>
+                <option value="el cliente tiene un presupuesto de USD 60 al mes" data-benefit="El Pro cuesta USD 59 por mes.">El cliente dispone de USD 60 al mes</option>
+              </select>
+            </label>
+          </div>
+          <div class="btn-row"><button class="btn" type="button" id="buildSentence">Construir respuesta</button><button class="btn secondary small" type="button" id="swapConnector">Cambiar conector</button></div>
+          <div class="output-box" id="builderOutput" role="status" aria-live="polite">Elige tus elementos y construye una respuesta.</div>
+          <div class="feedback neutral show">Observa la estructura: <strong>comparación + dato concreto + causa/consecuencia</strong>. No necesitas usar siempre el mismo orden.</div>
+
+          <div class="nav"><button class="btn secondary" type="button" data-go="5">Anterior</button><button class="btn" type="button" data-go="7">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="7" aria-labelledby="title-7">
+        <div class="panel panel-pad">
+          <span class="step">7 · Recupera y reacciona</span>
+          <h2 id="title-7" tabindex="-1">Ahora con menos apoyo</h2>
+          <p class="section-intro">Lee la situación y escribe dos o tres frases. Recupera las estructuras antes de abrir la pista. La comprobación automática detecta elementos, pero no puede evaluar la corrección de todo el texto.</p>
+
+          <div class="scenario">
+            <h3>Un cliente compara dos opciones</h3>
+            <p>Quiere una alternativa económica, pero también necesita soporte rápido porque su equipo trabaja con clientes todos los días.</p>
+            <div class="scenario-data">
+              <div class="data-card"><strong>Plan Esencial</strong><br>USD 39 por mes · soporte en 48 h · 20 GB</div>
+              <div class="data-card"><strong>Plan Pro</strong><br>USD 59 por mes · soporte en 4 h · hasta 50 GB</div>
+            </div>
+          </div>
+
+          <label for="recoveryAnswer"><strong>¿Qué le dirías?</strong></label>
+          <textarea id="recoveryAnswer" placeholder="Compara los planes y explica una razón..."></textarea>
+          <div class="checklist" aria-label="Elementos sugeridos">
+            <span class="check-chip">1 comparación</span>
+            <span class="check-chip">1 precio, cantidad, destinatario o finalidad</span>
+            <span class="check-chip">1 razón con porque / por eso</span>
+          </div>
+          <div class="btn-row"><button class="btn secondary small" type="button" id="showHint" aria-controls="recoveryHint" aria-expanded="false">Ver pista</button><button class="btn" type="button" id="checkRecovery">Revisar mi respuesta</button></div>
+          <div class="hint-box" id="recoveryHint">Puedes empezar con: «El plan Pro es más… que…». Después añade un dato con <strong>por</strong> o una cantidad. Termina con una razón usando <strong>porque</strong> o una consecuencia con <strong>por eso</strong>.</div>
+          <div class="feedback" id="recoveryFeedback" role="status" aria-live="polite"></div>
+
+          <div class="cta-box">
+            <h3>Ya puedes construir la estructura. Ahora úsala con una persona.</h3>
+            <p>La siguiente dificultad no es reconocer la regla, sino recuperarla mientras escuchas y respondes.</p>
+            <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+          </div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="6">Anterior</button><button class="btn" type="button" data-go="8">Continuar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="8" aria-labelledby="title-8">
+        <div class="panel panel-pad">
+          <span class="step">8 · Producción</span>
+          <h2 id="title-8" tabindex="-1">Llévalo a una situación de tu trabajo</h2>
+          <p class="section-intro">Piensa en dos productos, servicios, propuestas, procesos o alternativas que realmente podrías comparar en tu trabajo. No necesitas escribir un discurso largo.</p>
+
+          <div class="scenario">
+            <h3>Micromisión</h3>
+            <p>Escribe una intervención breve de 3 a 5 frases que incluya:</p>
+            <div class="checklist">
+              <span class="check-chip">una comparación</span>
+              <span class="check-chip">un precio, cantidad o condición</span>
+              <span class="check-chip">una frase con para o por</span>
+              <span class="check-chip">una causa o consecuencia</span>
+            </div>
+          </div>
+          <label for="productionAnswer"><strong>Tu versión</strong></label>
+          <textarea id="productionAnswer" placeholder="Ejemplo: La opción A es más... que... Cuesta... por... Es adecuada para... porque..."></textarea>
+          <div class="btn-row"><button class="btn" type="button" id="saveProduction">Revisar mi versión</button></div>
+          <div class="feedback" id="productionFeedback" role="status" aria-live="polite"></div>
+
+          <div class="scenario" id="oralPractice">
+            <h3>Ahora dilo tú</h3>
+            <p>Sin leer tu texto completo, explica las dos opciones en voz alta. Intenta usar una comparación, una expresión con <strong>por</strong> o <strong>para</strong> y una razón con <strong>porque</strong> o <strong>por eso</strong>.</p>
+            <div class="oral-row">
+              <div class="timer-display" id="oralTimer" role="timer" aria-live="off">30 s</div>
+              <button class="btn secondary small" type="button" id="startOralTimer">Iniciar 30 segundos</button>
+              <button class="btn small" type="button" id="markOralDone">Ya lo dije en voz alta</button>
+            </div>
+            <div class="feedback" id="oralFeedback" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="scenario">
+            <h3>Revisa tu respuesta</h3>
+            <p>Marca únicamente lo que realmente conseguiste hacer al hablar.</p>
+            <fieldset class="self-review" id="selfReview">
+              <legend class="sr-only">Autoevaluación de la producción oral</legend>
+              <label><input type="checkbox" value="compare"><span>Utilicé una comparación entre las opciones.</span></label>
+              <label><input type="checkbox" value="porpara"><span>Utilicé <strong>por</strong> o <strong>para</strong> con el sentido trabajado.</span></label>
+              <label><input type="checkbox" value="cause"><span>Expliqué una razón o consecuencia con <strong>porque</strong> o <strong>por eso</strong>.</span></label>
+              <label><input type="checkbox" value="independent"><span>Intenté decirlo sin leer una respuesta completa.</span></label>
+            </fieldset>
+            <div class="btn-row"><button class="btn secondary small" type="button" id="checkSelfReview">Revisar mi práctica</button></div>
+            <div class="feedback" id="selfReviewFeedback" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="scenario">
+            <h3>Transferencia</h3>
+            <p>En tu próxima conversación profesional, intenta usar <strong>una comparación</strong> y <strong>una razón</strong> sin leer un modelo completo. Después revisa si la otra persona entendió claramente qué cambia entre las opciones.</p>
+          </div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="7">Anterior</button><button class="btn" type="button" data-go="9" id="finishLesson" disabled>Finalizar</button></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="9" aria-labelledby="title-9">
+        <div class="panel panel-pad">
+          <span class="step">9 · Cierre</span>
+          <h2 id="title-9" tabindex="-1">Tienes más recursos para explicar una propuesta</h2>
+          <div class="yellow-line" aria-hidden="true"></div>
+          <div class="final-grid">
+            <div class="score-card">
+              <span class="score-num" id="finalPercent">0%</span>
+              <strong>progreso de la lección</strong>
+              <p class="tiny" style="color:#dce7ff;margin-top:12px">El porcentaje aumenta con las actividades significativas que completas.</p>
+            </div>
+            <div class="final-list">
+              <h3>Ahora puedes trabajar con estas herramientas</h3>
+              <p><strong>Aplicación profesional:</strong> presentar beneficios, precios, condiciones y alternativas, y explicar por qué una propuesta puede ser adecuada.</p>
+              <ul>
+                <li>Comparo opciones con <strong>más, menos, tan… como, mejor y peor</strong>.</li>
+                <li>Expreso <strong>precios, cantidades, destinatarios y finalidades</strong> con recursos como <strong>por, para, desde, hasta</strong> y porcentajes.</li>
+                <li>Conecto una razón con su consecuencia usando <strong>porque</strong> y <strong>por eso</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cta-box">
+            <h3>Spanish at Work · Español para trabajar</h3>
+            <p>Ya practicaste la estructura dentro de la lección. El siguiente paso es recuperarla en una conversación, escuchar una respuesta real y adaptar lo que dices.</p>
+            <div class="btn-row">
+              <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+              <button class="btn secondary" type="button" id="repeatPractice">Repetir práctica</button>
+              <button class="btn secondary" type="button" id="resetFinal">Reiniciar lección</button>
+            </div>
+          </div>
+          <div class="nav"><button class="btn secondary" type="button" data-go="8">Anterior</button><button class="btn" type="button" data-go="0">Volver al inicio</button></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sr-only" id="liveStatus" aria-live="polite"></div>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const ACTIVITY_IDS = ['activation','pattern','comparatives','porpara','connectors','builder','recovery','production'];
+      const TOTAL_ACTIVITIES = ACTIVITY_IDS.length;
+      const STORAGE_KEY = 'spanishAtWorkLesson07ProgressV19';
+      const LEGACY_STORAGE_KEYS = ['spanishAtWorkLesson07ProgressV18','spanishAtWorkLesson07ProgressV17','spanishAtWorkLesson07ProgressV16','spanishAtWorkLesson07ProgressV15','spanishAtWorkLesson07ProgressV14','spanishAtWorkLesson07ProgressV13','spanishAtWorkLesson07ProgressV12','spanishAtWorkLesson07ProgressV11','spanishAtWorkLesson07ProgressV10','spanishAtWorkLesson07ProgressV9','spanishAtWorkLesson07ProgressV8','spanishAtWorkLesson07ProgressV7','spanishAtWorkLesson07ProgressV6','spanishAtWorkLesson07ProgressV5','spanishAtWorkLesson07ProgressV4','spanishAtWorkLesson07ProgressV3','spanishAtWorkLesson07ProgressV2','spanishAtWorkLesson07Progress'];
+      const LEGACY_INVALIDATED_IDS = ['comparatives','recovery','production'];
+      const screenNames = [
+        'Inicio','Activa','Observa','Comparativos','Por, para y cantidades',
+        'Causa y consecuencia','Construye','Recupera','Produce','Cierre'
+      ];
+
+      const state = {
+        screen: 0,
+        completed: new Set(),
+        compareIndex: 0,
+        compareScore: 0,
+        compareAnswered: false,
+        compareHadError: false,
+        compareTimer: null,
+        connectorMode: 'porque',
+        productionDraftReady: false,
+        oralDone: false,
+        selfReviewDone: false,
+        oralTimer: null,
+        oralSeconds: 30
+      };
+
+      const qs = (s, root=document) => root.querySelector(s);
+      const qsa = (s, root=document) => [...root.querySelectorAll(s)];
+      const status = qs('#liveStatus');
+
+      function countSentences(text){
+        // Protege decimales y abreviaturas frecuentes para no contarlas como
+        // finales de frase: «59.99», «Sr. Pérez», «EE. UU.», «S. A. S.», etc.
+        let normalized = text.replace(/(\d)\.(\d)/g, '$1__DECIMAL__$2');
+        normalized = normalized.replace(/\b(?:Sr|Sra|Srta|Dr|Dra|Lic|Ing|Prof)\./gi, m => m.slice(0,-1) + '__DOT__');
+        normalized = normalized.replace(/\bp\.\s*ej\./gi, m => m.replace(/\./g,'__DOT__'));
+        normalized = normalized.replace(/\b(?:[A-ZÁÉÍÓÚÑ]{1,3}\.\s*){2,}/g, (m, offset, whole) => {
+          const after = whole.slice(offset + m.length);
+          const next = after.match(/\S/);
+          let protectedText = m.replace(/\./g,'__DOT__');
+          // Si la abreviatura cierra la oración, el último punto conserva
+          // también su función de cierre; si continúa con minúscula, no.
+          if(!next || /[A-ZÁÉÍÓÚÑ¿¡]/.test(next[0])){
+            const pos = protectedText.lastIndexOf('__DOT__');
+            if(pos >= 0) protectedText = protectedText.slice(0,pos) + '.' + protectedText.slice(pos + 7);
+          }
+          return protectedText;
+        });
+        return normalized.split(/[.!?]+|\n+/).map(part => part.trim()).filter(Boolean).length;
+      }
+
+      function hasPriceText(text){
+        const lower = text.toLocaleLowerCase('es');
+        const number = '\\d+(?:[.,]\\d+)?';
+        const currencyBefore = new RegExp(`(?:\\b(?:usd|cop|eur)\\b|[$€])\\s*${number}`);
+        const currencyAfter = new RegExp(`${number}\\s*(?:\\b(?:usd|cop|eur)\\b|[$€]|euros?|pesos?|dólares?|dolares?)`);
+        return currencyBefore.test(lower) || currencyAfter.test(lower);
+      }
+
+      function hasQuantityText(text){
+        const lower = text.toLocaleLowerCase('es');
+        const unit = '(?:gb|tb|mb|kb|licencias?|usuarios?|personas?|clientes?|proyectos?|productos?|servicios?|planes?|sesiones?|reuniones?|tareas?|equipos?|departamentos?|horas?|meses?|semanas?|días?|dias?|años?|anos?|unidades?|archivos?|cuentas?|sedes?|sucursales?|documentos?|contratos?|pedidos?|entregas?)';
+        const numeric = new RegExp(`\\b\\d+(?:[.,]\\d+)?\\s*${unit}\\b`);
+        const percentage = /\b\d+(?:[.,]\d+)?\s*(?:%|por\s+(?:ciento|cien))(?=\s|[?¿!.,;:]|$)/;
+        const range = /\b(?:hasta|desde)\s+(?:(?:usd|cop|eur|[$€])\s*)?\d+(?:[.,]\d+)?/;
+        const comparative = /\b(?:más|menos)\s+(?:almacenamiento|capacidad|espacio|funciones?|licencias?|usuarios?|personas?|clientes?|proyectos?|horas?|servicios?|opciones?|unidades?|archivos?|cuentas?|documentos?)\b/;
+        const quantifier = new RegExp(`\\b(?:un|una|unos|unas|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|veinte|treinta|cincuenta|cien|varios|varias|muchos|muchas|pocos|pocas|algunos|algunas|demasiados|demasiadas|suficiente|suficientes)\\s+${unit}\\b`);
+        const moreLessThan = new RegExp(`\\b(?:más|menos)\\s+de\\s+(?:\\d+(?:[.,]\\d+)?|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|veinte|cincuenta|cien)\\s+${unit}\\b`);
+        return numeric.test(lower) || percentage.test(lower) || range.test(lower) || comparative.test(lower) || quantifier.test(lower) || moreLessThan.test(lower);
+      }
+
+      function hasParaPurposeText(text){
+        // Normaliza tildes para reconocer infinitivos con pronombres enclíticos:
+        // comunicarse, comunicarnos, usarlo, ayudarlos, enviárselo, etc.
+        const plain = text.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return /\bpara\s+(?:no\s+)?(?:poder\s+)?(?!poder\b|no\b)(?:ir|[a-z]+(?:ar|er|ir))(?:(?:me|te|se|nos|os|lo|la|los|las|le|les)(?:lo|la|los|las)?)?\b/.test(plain);
+      }
+
+      function hasParaRecipientText(text){
+        const lower = text.toLocaleLowerCase('es');
+        // Excluye usos temporales de «para», porque aquí se practica
+        // destinatario/uso y finalidad, no fecha, hora ni plazo.
+        const temporalPatterns = [
+          /\bpara\s+(?:(?:el|la|los|las)\s+)?(?:(?:próxim[oa]s?|este|esta|estos|estas|ese|esa|esos|esas|aquel|aquella|aquellos|aquellas)\s+)?(?:hoy|mañana|ayer|lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado|domingo|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre|mañana|tarde|noche|madrugada|mediodía|mediodia|semana|semanas|mes|meses|año|ano|años|anos|trimestre|trimestres|semestre|semestres|fin\s+de\s+semana)\b/g,
+          /\bpara\s+(?:las?|los?)\s+(?:una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|\d{1,2})(?::\d{2})?\b/g,
+          /\bpara\s+dentro\s+de\s+(?:(?:un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|\d+)\s+)?(?:minutos?|horas?|días?|dias?|semanas?|meses?|años?|anos?)\b/g,
+          /\bpara\s+(?:(?:el|la)\s+)?(?:inicio|inicios|principio|principios|mitad|final|finales|fin|fines|cierre|comienzo|comienzos|mediados)\s+(?:de\s+(?:(?:la|el)\s+)?|del\s+)(?:(?:próxim[oa]s?|este|esta|estos|estas|ese|esa|esos|esas|aquel|aquella|aquellos|aquellas)\s+)?(?:semana|mes|año|ano|trimestre|semestre|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)\b/g,
+          /\bpara\s+(?:(?:el|la|los|las)\s+)?(?:(?:próxim[oa]s?|este|esta|estos|estas|ese|esa|esos|esas)\s+)?(?:día|dia|días|dias|fecha|fechas|hora|horas|plazo|plazos)\b(?:\s+\d{1,2})?/g,
+          /\bpara\s+(?:un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|\d+)\s+(?:minutos?|horas?|días?|dias?|semanas?|mes(?:es)?|años?|anos?)\b/g,
+          /\bpara\s+(?:muy\s+)?(?:pronto|tarde|luego|después|despues|antes)\b/g,
+          /\bpara\s+(?:más|mas)\s+(?:tarde|adelante)\b/g,
+          /\bpara\s+(?:cuando|cuándo)(?=\s|[?¿!.,;:]|$)/g,
+          /\bpara\s+(?:qué|quién|quiénes|cuál|cuáles|dónde|adónde|cuándo|cuánto|cuánta|cuántos|cuántas)(?=\s|[?¿!.,;:]|$)/g,
+          /\bpara\s+(?:(?:el|la|los|las)\s+)?(?:(?:próxim[oa]s?|siguiente|siguientes|este|esta|estos|estas|ese|esa|esos|esas|aquel|aquella|aquellos|aquellas|otro|otra|otros|otras)\s+)?(?:momento|momentos|futuro|presente|vez|veces|ocasión|ocasion|ocasiones)\b/g,
+          /\bpara\s+(?:arriba|abajo|afuera|adentro|adelante|atrás|atras|allá|alla|acá|aca|bien|mal)(?=\s|[?¿!.,;:]|$)/g,
+          /\bpara\s+dentro\s+de\s+(?:(?:un\s+par\s+de|un|una|unos|unas|medio|media|varios|varias|algunos|algunas|pocos|pocas|muchos|muchas|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|\d+)\s+)?(?:minutos?|horas?|días?|dias?|semanas?|meses?|años?|anos?)\b/g,
+          /\bpara\s+dentro\s+de\s+(?:poco|mucho|un\s+rato|unos\s+momentos)(?=\s|[?¿!.,;:]|$)/g,
+          /\bpara\s+(?:(?:el|a)\s+)?(?:corto|medio|largo)\s+plazo\b/g
+        ];
+        let cleaned = lower;
+        temporalPatterns.forEach(pattern => { cleaned = cleaned.replace(pattern, ' '); });
+        // Excluye PARA con verbos de movimiento cuando expresa dirección/destino
+        // («voy para casa», «salimos para Madrid»), que no es el uso trabajado aquí.
+        cleaned = cleaned.replace(/\b(?:voy|vas|va|vamos|vais|van|iba|ibas|íbamos|ibamos|iban|fui|fuiste|fue|fuimos|fueron|vengo|vienes|viene|venimos|vienen|salgo|sales|sale|salimos|salen|marcho|marchas|marcha|marchamos|marchan|me\s+dirijo|te\s+diriges|se\s+dirige|nos\s+dirigimos|se\s+dirigen)\s+para\s+(?:(?:el|la|los|las|un|una)\s+)?[a-záéíóúüñ]+(?:\s+[a-záéíóúüñ]+){0,2}/g, ' ');
+        // El lookahead final evita depender de \b después de vocales acentuadas,
+        // de modo que destinatarios pronominales como «para mí» se reconocen bien.
+        return /\bpara\s+(?!(?:hoy|mañana|ayer|después|despues|antes|entonces|siempre|nunca|que|qué|nada|poder)\b)(?:(?:el|la|los|las|un|una|unos|unas|mi|mis|tu|tus|su|sus)\s+)?(?:[a-záéíóúüñ]{3,}|mí|ti|él)(?=\s|[?¿!.,;:]|$)/.test(cleaned);
+      }
+
+      function hasPorUnitText(text){
+        const lower = text.toLocaleLowerCase('es');
+        // «Por ciento / por cien» expresa porcentaje; no cuenta como el uso
+        // de POR para precio o distribución por unidad practicado aquí.
+        const cleaned = lower.replace(/\b\d+(?:[.,]\d+)?\s+por\s+(?:ciento|cien)\b/g, ' ');
+        const unit = '(?:mes|hora|día|dia|semana|año|ano|trimestre|semestre|usuario|licencia|departamento|persona|empleado|equipo|unidad|elemento|cliente|proyecto|producto|servicio|sesión|sesion|reunión|reunion|tarea|paquete|pedido|factura|archivo|cuenta|sede|sucursal|caso|consulta|llamada|minuto|noche|kilogramo|kilo|litro|metro|kg|km|mb|gb|tb|min|h|dispositivo|ejemplar|dólar|dolar|euro|peso|alquiler|café|cafe|curso|clase|crédito|credito|asiento|plaza|copia|página|pagina|documento|contrato|ticket|solicitud|transacción|transaccion|entrega|envío|envio|reserva|pdf|webinar|evento|participante|miembro|contacto|registro|descarga)';
+        const direct = new RegExp(`\\bpor\\s+(?:cada\\s+)?${unit}s?(?=\\s|[?¿!.,;:]|$)`);
+        if(direct.test(cleaned)) return true;
+
+        // «Por cada + sustantivo» expresa de forma inequívoca distribución,
+        // incluso cuando la unidad no está en la lista anterior.
+        if(/\bpor\s+cada\s+(?!(?:favor|eso|ejemplo|supuesto|cierto|tanto|poco|mucho|ahora|entonces|aquí|alli|allí|que|si|sí|no|fin|ciento|cien)\b)[a-záéíóúüñ][a-záéíóúüñ-]{2,}\b/.test(cleaned)) return true;
+
+        // También acepta unidades profesionales no previstas en la lista cerrada
+        // cuando «por + unidad» aparece inmediatamente después de un precio o
+        // de una cantidad: «USD 40 por consultor», «3 licencias por analista».
+        const genericUnit = '(?!(?:favor|eso|ejemplo|supuesto|cierto|tanto|poco|mucho|ahora|entonces|aquí|alli|allí|que|si|sí|no|fin|ciento|cien)\\b)[a-záéíóúüñ][a-záéíóúüñ-]{2,}';
+        const priceRate = new RegExp(`(?:\\b(?:usd|cop|eur)\\b|[$€])\\s*\\d+(?:[.,]\\d+)?\\s+por\\s+(?:cada\\s+)?${genericUnit}(?=\\s|[?¿!.,;:]|$)`);
+        const priceRateAfter = new RegExp(`\\b\\d+(?:[.,]\\d+)?\\s+(?:dólares?|dolares?|euros?|pesos?)\\s+por\\s+(?:cada\\s+)?${genericUnit}(?=\\s|[?¿!.,;:]|$)`);
+        const quantityRate = new RegExp(`\\b(?:\\d+(?:[.,]\\d+)?|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|veinte|treinta|cincuenta|cien|varios|varias|muchos|muchas|pocos|pocas|algunos|algunas)\\s+[a-záéíóúüñ][a-záéíóúüñ-]{2,}(?:\\s+[a-záéíóúüñ][a-záéíóúüñ-]{2,}){0,2}\\s+por\\s+(?:cada\\s+)?${genericUnit}(?=\\s|[?¿!.,;:]|$)`);
+        return priceRate.test(cleaned) || priceRateAfter.test(cleaned) || quantityRate.test(cleaned);
+      }
+
+      function hasComparativeText(text){
+        const lower = text.toLocaleLowerCase('es');
+        // La actividad pide comparar dos alternativas explícitas. Para evitar
+        // falsos positivos como «mejor que trabajemos» o «más caro que esperaba»,
+        // la segunda parte debe identificar una opción, entidad o alternativa.
+        const cleaned = lower
+          .replace(/\bmenos\s+mal\s+que\b/g, ' ')
+          .replace(/\bmás\s+vale\s+que\b/g, ' ')
+          .replace(/\btan\s+(?:[a-záéíóúüñ]+\s+){0,4}pronto\s+como\b/g, ' ')
+          .replace(/\btan\s+(?:[a-záéíóúüñ]+\s+){1,4}como\s+(?:sea|sean|fuera|fueran|fuese|fuesen)\s+posible\b/g, ' ');
+
+        const head = '(?:plan|opción|opcion|alternativa|servicio|producto|propuesta|proceso|paquete|versión|version|modelo|oferta|solución|solucion|sistema|herramienta|plataforma|proveedor|cliente|empresa|equipo|departamento|sede|sucursal|competidor|competencia)';
+        const descriptor = '(?:a|b|1|2|pro|esencial|premium|básico|basico|estándar|estandar|standard|corporativo|corporativa|empresarial|profesional|individual|mensual|anual|enterprise|business|lite|plus|starter|avanzado|avanzada|anterior|actual|nuevo|nueva|primero|primera|segundo|segunda|otro|otra)';
+        const det = '(?:el|la|los|las|un|una|unos|unas|este|esta|estos|estas|ese|esa|esos|esas|aquel|aquella|aquellos|aquellas|mi|mis|tu|tus|su|sus|nuestro|nuestra|nuestros|nuestras|otro|otra|otros|otras)';
+        const pronoun = '(?:yo|tú|tu|él|ella|usted|nosotros|nosotras|vosotros|vosotras|ellos|ellas|ustedes|esto|eso|aquello|este|esta|ese|esa|aquel|aquella)';
+        const boundary = '(?=\\s*(?:[.!?,;:]|$|\\b(?:para|porque|por|y|pero|aunque|cuando|si|con|sin|en|de|del|al)\\b))';
+        const target = `(?:${det}\\s+${head}(?:\\s+${descriptor})?|${det}\\s+${descriptor}|${pronoun}|${descriptor})${boundary}`;
+
+        const regular = new RegExp(`\\b(?:más|menos)\\s+(?:[a-záéíóúüñ]+\\s+){1,5}que\\s+${target}`);
+        const equality = new RegExp(`\\btan\\s+(?:[a-záéíóúüñ]+\\s+){1,5}como\\s+${target}`);
+        const irregular = new RegExp(`\\b(?:mejor|peor)\\s+que\\s+${target}`);
+        const verbComparison = new RegExp(`\\b(?:cuesta|cuestan|vale|valen|dura|duran|tarda|tardan|pesa|pesan|mide|miden|consume|consumen|rinde|rinden)\\s+(?:más|menos)\\s+que\\s+${target}`);
+
+        // En producción abierta el estudiante puede comparar opciones con nombres
+        // reales («Acme», «Salesforce», «Plan Norte»). La detección no debe
+        // bloquear una comparación válida solo porque el segundo término no
+        // aparezca en una lista cerrada.
+        const excludedTarget = '(?!(?:sea|sean|fuera|fueran|fuese|fuesen|trabaje|trabajemos|trabajen|haga|hagamos|hagan|tenga|tengamos|tengan|pueda|podamos|puedan|deba|debamos|deban|quiera|queramos|quieran|necesite|necesitemos|necesiten|esperaba|esperábamos|esperabamos|pensaba|pensábamos|pensabamos|creía|creia|creíamos|creiamos|parece|parecen|parezca|parezcan|antes|después|despues|ahora|entonces|nunca|siempre|hoy|ayer|mañana|aquí|aqui|allí|alli)\\b)';
+        const genericName = `${excludedTarget}(?:(?:${det})\\s+)?[a-záéíóúüñ0-9][a-záéíóúüñ0-9.-]*(?:\\s+[a-záéíóúüñ0-9][a-záéíóúüñ0-9.-]*){0,3}${boundary}`;
+        const regularGeneric = new RegExp(`\\b(?:más|menos)\\s+(?:[a-záéíóúüñ]+\\s+){1,5}que\\s+${genericName}`);
+        const equalityGeneric = new RegExp(`\\btan\\s+(?:[a-záéíóúüñ]+\\s+){1,5}como\\s+${genericName}`);
+        const irregularGeneric = new RegExp(`\\b(?:mejor|peor)\\s+que\\s+${genericName}`);
+        const verbComparisonGeneric = new RegExp(`\\b(?:cuesta|cuestan|vale|valen|dura|duran|tarda|tardan|pesa|pesan|mide|miden|consume|consumen|rinde|rinden)\\s+(?:más|menos)\\s+que\\s+${genericName}`);
+
+        return regular.test(cleaned) || equality.test(cleaned) || irregular.test(cleaned) || verbComparison.test(cleaned) ||
+          regularGeneric.test(cleaned) || equalityGeneric.test(cleaned) || irregularGeneric.test(cleaned) || verbComparisonGeneric.test(cleaned);
+      }
+
+      function announce(message){
+        status.textContent = '';
+        window.setTimeout(() => { status.textContent = message; }, 30);
+      }
+
+      function safeLoad(){
+        try{
+          let raw = localStorage.getItem(STORAGE_KEY);
+          let legacy = false;
+          if(!raw){
+            for(const key of LEGACY_STORAGE_KEYS){
+              raw = localStorage.getItem(key);
+              if(raw){
+                legacy = true;
+                break;
+              }
+            }
+          }
+          if(!raw) return;
+          const parsed = JSON.parse(raw);
+          if(Array.isArray(parsed.completed)){
+            parsed.completed
+              .filter(id => ACTIVITY_IDS.includes(id))
+              .filter(id => !(legacy && LEGACY_INVALIDATED_IDS.includes(id)))
+              .forEach(id => state.completed.add(id));
+          }
+          if(legacy) safeSave();
+        }catch(_err){ /* La lección funciona sin localStorage. */ }
+      }
+
+      function safeSave(){
+        try{
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({completed:[...state.completed]}));
+        }catch(_err){ /* Sin persistencia, pero sin bloquear la lección. */ }
+      }
+
+      function complete(id){
+        if(!ACTIVITY_IDS.includes(id)) return;
+        state.completed.add(id);
+        safeSave();
+        updateProgress();
+      }
+
+      function uncomplete(id){
+        if(!ACTIVITY_IDS.includes(id) || !state.completed.has(id)) return;
+        state.completed.delete(id);
+        safeSave();
+        updateProgress();
+      }
+
+      function updateProgress(){
+        const pct = Math.round((state.completed.size / TOTAL_ACTIVITIES) * 100);
+        qs('#progressBar').style.width = `${pct}%`;
+        qs('#progressText').textContent = `${pct} %`;
+        qs('#progressTrack').setAttribute('aria-valuenow', String(pct));
+        qs('#finalPercent').textContent = `${pct}%`;
+        const finish = qs('#finishLesson');
+        if(finish){
+          finish.disabled = pct < 100;
+          finish.setAttribute('aria-disabled', String(pct < 100));
+          finish.title = pct < 100 ? 'Completa las actividades pendientes para finalizar.' : 'Finalizar la lección';
+        }
+      }
+
+      function goTo(index){
+        const next = Math.max(0, Math.min(9, Number(index)));
+        if(state.screen === 8 && next !== 8 && state.oralTimer !== null){
+          stopOralTimer();
+          state.oralSeconds = 30;
+          renderOralTimer();
+          qs('#startOralTimer').textContent = 'Iniciar 30 segundos';
+        }
+        if(next === 9 && state.completed.size < TOTAL_ACTIVITIES){
+          const fb = qs('#productionFeedback');
+          if(fb){
+            fb.className = 'feedback show neutral';
+            fb.textContent = 'Completa las actividades pendientes antes de finalizar la lección.';
+          }
+          announce('Aún hay actividades pendientes antes del cierre.');
+          return;
+        }
+        qsa('.screen').forEach(s => s.classList.toggle('active', Number(s.dataset.screen) === next));
+        state.screen = next;
+        qs('#screenLabel').textContent = screenNames[next];
+        const heading = qs(`[data-screen="${next}"] h1, [data-screen="${next}"] h2`);
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
+        if(heading) window.setTimeout(() => heading.focus({preventScroll:true}), 80);
+        if(next === 9) updateProgress();
+      }
+
+      qsa('[data-go]').forEach(btn => btn.addEventListener('click', () => goTo(btn.dataset.go)));
+
+      // 1. Activación
+      qs('#activationChoices').addEventListener('click', (event) => {
+        const btn = event.target.closest('.choice');
+        if(!btn) return;
+        qsa('.choice', qs('#activationChoices')).forEach(x => x.classList.remove('correct','wrong'));
+        const fb = qs('#activationFeedback');
+        if(btn.dataset.value === 'b'){
+          btn.classList.add('correct');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Funciona.</strong> «Más flexible que» relaciona directamente dos opciones. Las otras frases dan información, pero no comparan.';
+          complete('activation');
+        }else{
+          if(state.completed.has('activation')) uncomplete('activation');
+          btn.classList.add('wrong');
+          fb.className = 'feedback show no';
+          fb.innerHTML = '<strong>Observa la relación.</strong> Esa frase describe precio o contenido. Busca una estructura que ponga una opción frente a otra.';
+        }
+      });
+
+      // 2. Descubrimiento
+      const revealedPatterns = new Set();
+      qs('#patternGrid').addEventListener('click', (event) => {
+        const btn = event.target.closest('.pattern-btn');
+        if(!btn) return;
+        btn.classList.add('revealed');
+        btn.setAttribute('aria-expanded', 'true');
+        revealedPatterns.add(btn.dataset.pattern);
+        const fb = qs('#patternFeedback');
+        if(revealedPatterns.size === 4){
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Patrón completo.</strong> Aquí observaste cuatro funciones: comparar, expresar precio o unidad, indicar destinatario o finalidad y conectar causa con consecuencia.';
+          complete('pattern');
+        }else{
+          fb.className = 'feedback show neutral';
+          fb.textContent = `Has identificado ${revealedPatterns.size} de 4 funciones.`;
+        }
+      });
+
+      // 3. Quiz comparativos
+      const compareItems = [
+        {
+          q:'Quieres decir que el plan A cuesta menos que el plan B. ¿Qué frase funciona?',
+          options:['El plan A es menos caro que el plan B.','El plan A es menos que caro el plan B.','El plan A es tan barato que el plan B.'],
+          answer:0,
+          ok:'«Menos + adjetivo + que» construye la comparación: menos caro que.',
+          no:'La comparación necesita el patrón «menos + adjetivo + que».'
+        },
+        {
+          q:'Quieres comparar cantidad de almacenamiento. ¿Qué opción funciona?',
+          options:['El Pro tiene más almacenamiento que el Esencial.','El Pro tiene más que almacenamiento el Esencial.','El Pro es más almacenamiento que el Esencial.'],
+          answer:0,
+          ok:'Con un sustantivo usamos «más + sustantivo + que»: más almacenamiento que.',
+          no:'Aquí comparas una cantidad expresada con un sustantivo: «más almacenamiento que».'
+        },
+        {
+          q:'Las dos opciones tienen el mismo nivel de facilidad. ¿Qué frase expresa igualdad?',
+          options:['La opción A es tan fácil como la B.','La opción A es más fácil como la B.','La opción A es tan fácil que la B.'],
+          answer:0,
+          ok:'«Tan + adjetivo + como» expresa igualdad: tan fácil como.',
+          no:'Para igualdad con un adjetivo usa «tan… como».'
+        },
+        {
+          q:'¿Qué forma es correcta?',
+          options:['Esta opción es más mejor para el cliente.','Esta opción es mejor que la anterior.','Esta opción es mejor como la anterior.'],
+          answer:1,
+          ok:'«Mejor» ya es un comparativo. No usamos «más mejor».',
+          no:'Recuerda: usamos «mejor que», sin «más».'
+        }
+      ];
+
+      function renderCompare(){
+        const item = compareItems[state.compareIndex];
+        qs('#compareCounter').textContent = `Pregunta ${state.compareIndex + 1} de ${compareItems.length}`;
+        qs('#compareQuestion').textContent = item.q;
+        const wrap = qs('#compareOptions');
+        wrap.innerHTML = '';
+        item.options.forEach((opt,i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'quiz-option';
+          b.textContent = opt;
+          b.addEventListener('click', () => answerCompare(i,b));
+          wrap.appendChild(b);
+        });
+        const fb = qs('#compareFeedback');
+        fb.className = 'feedback';
+        fb.textContent = '';
+        state.compareAnswered = false;
+        state.compareHadError = false;
+      }
+
+      function answerCompare(index, button){
+        if(state.compareAnswered || button.disabled) return;
+        const item = compareItems[state.compareIndex];
+        const fb = qs('#compareFeedback');
+
+        if(index !== item.answer){
+          state.compareHadError = true;
+          button.classList.add('wrong');
+          button.textContent = `✗ ${button.textContent}`;
+          button.disabled = true;
+          fb.className = 'feedback show no';
+          fb.textContent = `${item.no} Inténtalo otra vez.`;
+          return;
+        }
+
+        state.compareAnswered = true;
+        button.classList.add('correct');
+        button.textContent = `✓ ${button.textContent}`;
+        qsa('.quiz-option', qs('#compareOptions')).forEach(option => { option.disabled = true; });
+        if(!state.compareHadError) state.compareScore += 1;
+        fb.className = 'feedback show ok';
+        fb.textContent = item.ok;
+
+        state.compareTimer = window.setTimeout(() => {
+          state.compareTimer = null;
+          if(state.compareIndex < compareItems.length - 1){
+            state.compareIndex += 1;
+            renderCompare();
+          }else{
+            complete('comparatives');
+            qs('#compareCounter').textContent = `Completado · ${state.compareScore} de ${compareItems.length} correctas al primer intento`;
+            qs('#compareQuestion').textContent = 'Has terminado esta práctica. Puedes continuar. Si quieres volver a practicarla, reinicia la lección.';
+            qs('#compareOptions').innerHTML = '';
+            fb.className = 'feedback show neutral';
+            fb.textContent = 'La clave es distinguir si comparas una cualidad, una cantidad o igualdad. Todas las preguntas quedaron resueltas correctamente.';
+          }
+        }, 3000);
+      }
+      renderCompare();
+
+      function restoreCompletedUI(){
+        // El progreso puede persistir entre recargas. Como no almacenamos
+        // respuestas abiertas ni datos personales, reconstruimos únicamente
+        // una representación segura del estado completado para evitar que la
+        // interfaz muestre una actividad como nueva mientras el progreso la
+        // cuenta como terminada.
+        if(state.completed.has('activation')){
+          const correctChoice = qs('#activationChoices .choice[data-value="b"]');
+          if(correctChoice) correctChoice.classList.add('correct');
+          const fb = qs('#activationFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Actividad completada anteriormente.</strong> «Más flexible que» relaciona directamente dos opciones.';
+        }
+
+        if(state.completed.has('pattern')){
+          qsa('#patternGrid .pattern-btn').forEach(btn => {
+            btn.classList.add('revealed');
+            btn.setAttribute('aria-expanded', 'true');
+            revealedPatterns.add(btn.dataset.pattern);
+          });
+          const fb = qs('#patternFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Patrón completado anteriormente.</strong> Las cuatro funciones ya están reveladas.';
+        }
+
+        if(state.completed.has('comparatives')){
+          state.compareIndex = compareItems.length - 1;
+          state.compareAnswered = true;
+          qs('#compareCounter').textContent = 'Completado anteriormente';
+          qs('#compareQuestion').textContent = 'Esta práctica ya estaba completada. Si quieres hacerla otra vez desde la primera pregunta, reinicia la lección.';
+          qs('#compareOptions').innerHTML = '';
+          const fb = qs('#compareFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'La clave es distinguir si comparas una cualidad, una cantidad o igualdad.';
+        }
+
+        if(state.completed.has('porpara')){
+          qsa('#porParaTask select').forEach(select => {
+            select.value = select.dataset.answer;
+            select.style.borderColor = '#62a981';
+            select.setAttribute('aria-invalid', 'false');
+            const result = select.parentElement.querySelector('.row-result');
+            if(result){
+              result.textContent = '✓ Correcto';
+              result.className = 'row-result ok';
+            }
+          });
+          const fb = qs('#porParaFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Actividad completada anteriormente.</strong> POR expresa aquí precio o distribución por unidad; PARA indica destinatario o finalidad.';
+        }
+
+        if(state.completed.has('connectors')){
+          qsa('#connectorTask select').forEach(select => {
+            select.value = select.dataset.answer;
+            select.style.borderColor = '#62a981';
+            select.setAttribute('aria-invalid', 'false');
+            const result = select.parentElement.querySelector('.row-result');
+            if(result){
+              result.textContent = '✓ Correcto';
+              result.className = 'row-result ok';
+            }
+          });
+          const fb = qs('#connectorFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Actividad completada anteriormente.</strong> «Porque» introduce la razón y «por eso» presenta la consecuencia.';
+        }
+
+        if(state.completed.has('builder')){
+          qs('#builderOutput').textContent = 'Esta actividad ya estaba completada. Cambia una selección y pulsa «Construir respuesta» si quieres crear otra versión.';
+        }
+
+        if(state.completed.has('recovery')){
+          const fb = qs('#recoveryFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Actividad completada anteriormente.</strong> Puedes escribir una nueva respuesta para repetirla; el progreso se actualizará.';
+        }
+
+        if(state.completed.has('production')){
+          const fb = qs('#productionFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Producción completada anteriormente.</strong> Puedes preparar una nueva versión si quieres repetir la práctica.';
+        }
+      }
+
+      // 4. Por / para
+      qs('#porParaTask').addEventListener('change', (event) => {
+        const select = event.target.closest('select');
+        if(!select) return;
+        const hadResult = select.hasAttribute('aria-invalid');
+        const wasCompleted = state.completed.has('porpara');
+        if(wasCompleted) uncomplete('porpara');
+        if(hadResult || wasCompleted){
+          select.style.borderColor = '';
+          select.removeAttribute('aria-invalid');
+          const result = select.parentElement.querySelector('.row-result');
+          if(result){
+            result.textContent = '';
+            result.className = 'row-result';
+          }
+          const fb = qs('#porParaFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Has cambiado una respuesta. Comprueba de nuevo las cuatro frases.';
+        }
+      });
+
+      qs('#checkPorPara').addEventListener('click', () => {
+        const selects = qsa('#porParaTask select');
+        if(selects.some(s => !s.value)){
+          const fb = qs('#porParaFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Completa las cuatro frases antes de comprobar.';
+          return;
+        }
+        const correct = selects.filter(s => s.value === s.dataset.answer).length;
+        selects.forEach(s => {
+          const isCorrect = s.value === s.dataset.answer;
+          s.style.borderColor = isCorrect ? '#62a981' : '#CE1126';
+          s.setAttribute('aria-invalid', isCorrect ? 'false' : 'true');
+          const result = s.parentElement.querySelector('.row-result');
+          if(result){
+            result.textContent = isCorrect ? '✓ Correcto' : 'Revisa';
+            result.className = `row-result ${isCorrect ? 'ok' : 'no'}`;
+          }
+        });
+        const fb = qs('#porParaFeedback');
+        if(correct === selects.length){
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Las cuatro funcionan.</strong> POR expresa aquí precio o distribución por unidad; PARA indica destinatario o finalidad.';
+          complete('porpara');
+        }else{
+          fb.className = 'feedback show no';
+          fb.innerHTML = `<strong>${correct} de ${selects.length} correctas.</strong> Revisa: precio/unidad → POR; destinatario/finalidad → PARA.`;
+        }
+      });
+
+      // 5. Conectores
+      qs('#connectorTask').addEventListener('change', (event) => {
+        const select = event.target.closest('select');
+        if(!select) return;
+        const hadResult = select.hasAttribute('aria-invalid');
+        const wasCompleted = state.completed.has('connectors');
+        if(wasCompleted) uncomplete('connectors');
+        if(hadResult || wasCompleted){
+          select.style.borderColor = '';
+          select.removeAttribute('aria-invalid');
+          const result = select.parentElement.querySelector('.row-result');
+          if(result){
+            result.textContent = '';
+            result.className = 'row-result';
+          }
+          const fb = qs('#connectorFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Has cambiado una respuesta. Comprueba de nuevo las tres frases.';
+        }
+      });
+
+      qs('#checkConnectors').addEventListener('click', () => {
+        const selects = qsa('#connectorTask select');
+        if(selects.some(s => !s.value)){
+          const fb = qs('#connectorFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Completa las tres frases antes de comprobar.';
+          return;
+        }
+        const correct = selects.filter(s => s.value === s.dataset.answer).length;
+        selects.forEach(s => {
+          const isCorrect = s.value === s.dataset.answer;
+          s.style.borderColor = isCorrect ? '#62a981' : '#CE1126';
+          s.setAttribute('aria-invalid', isCorrect ? 'false' : 'true');
+          const result = s.parentElement.querySelector('.row-result');
+          if(result){
+            result.textContent = isCorrect ? '✓ Correcto' : 'Revisa';
+            result.className = `row-result ${isCorrect ? 'ok' : 'no'}`;
+          }
+        });
+        const fb = qs('#connectorFeedback');
+        if(correct === selects.length){
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Correcto.</strong> «Porque» introduce la razón. «Por eso» presenta la consecuencia de la información anterior.';
+          complete('connectors');
+        }else{
+          fb.className = 'feedback show no';
+          fb.innerHTML = `<strong>${correct} de ${selects.length} correctas.</strong> Pregúntate: ¿lo que sigue explica la razón? → porque. ¿expresa el resultado? → por eso.`;
+        }
+      });
+
+      // 6. Constructor
+      function buildOutput(){
+        const comparison = qs('#builderCompare').value;
+        const condition = qs('#builderCondition').value;
+        const reasonSelect = qs('#builderReason');
+        const reason = reasonSelect.value;
+        const benefit = reasonSelect.selectedOptions[0].dataset.benefit;
+        const output = qs('#builderOutput');
+        const sentences = [`<strong>${comparison}.</strong>`, `Además, ${condition}.`];
+        // El dato que justifica la recomendación debe aparecer en la respuesta.
+        // Evita repetirlo cuando la comparación o la condición ya lo expresa.
+        const alreadySupported =
+          (reasonSelect.selectedIndex === 0 && qs('#builderCompare').selectedIndex === 1) ||
+          (reasonSelect.selectedIndex === 1 && qs('#builderCondition').selectedIndex === 2) ||
+          (reasonSelect.selectedIndex === 2 && qs('#builderCondition').selectedIndex === 0);
+        if(!alreadySupported) sentences.push(benefit);
+        if(state.connectorMode === 'porque'){
+          sentences.push(`Puede ser una opción adecuada porque ${reason}.`);
+        }else{
+          sentences.push(`${reason.charAt(0).toUpperCase() + reason.slice(1)}. Por eso, puede ser una opción adecuada.`);
+        }
+        output.innerHTML = sentences.join(' ');
+        complete('builder');
+        announce('Respuesta construida.');
+      }
+      qs('#buildSentence').addEventListener('click', buildOutput);
+      qs('.builder').addEventListener('change', (event) => {
+        if(!event.target.matches('select')) return;
+        if(state.completed.has('builder')) uncomplete('builder');
+        qs('#builderOutput').textContent = 'Has cambiado una selección. Pulsa «Construir respuesta» para generar una versión actualizada.';
+      });
+      qs('#swapConnector').addEventListener('click', () => {
+        state.connectorMode = state.connectorMode === 'porque' ? 'por eso' : 'porque';
+        buildOutput();
+      });
+
+      // 7. Recuperación
+      qs('#recoveryAnswer').addEventListener('input', () => {
+        if(!state.completed.has('recovery')) return;
+        uncomplete('recovery');
+        const fb = qs('#recoveryFeedback');
+        fb.className = 'feedback show neutral';
+        fb.textContent = 'Has cambiado tu respuesta. Revísala de nuevo para comprobar que todavía incluye los elementos solicitados.';
+      });
+
+      qs('#showHint').addEventListener('click', () => {
+        const visible = qs('#recoveryHint').classList.toggle('show');
+        const button = qs('#showHint');
+        button.textContent = visible ? 'Ocultar pista' : 'Ver pista';
+        button.setAttribute('aria-expanded', String(visible));
+      });
+      qs('#checkRecovery').addEventListener('click', () => {
+        const text = qs('#recoveryAnswer').value.trim();
+        const fb = qs('#recoveryFeedback');
+        if(text.length < 35){
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Añade un poco más: intenta incluir una comparación y una razón. No necesitas escribir más de tres frases.';
+          return;
+        }
+        const sentenceCount = countSentences(text);
+        if(sentenceCount < 2 || sentenceCount > 3){
+          fb.className = 'feedback show neutral';
+          fb.textContent = sentenceCount < 2
+            ? 'Escribe dos o tres frases: separa la comparación y la razón para que la respuesta sea más clara.'
+            : 'La práctica pide solo dos o tres frases. Reduce la respuesta y conserva la comparación, un dato concreto y la razón.';
+          return;
+        }
+        const lower = text.toLocaleLowerCase('es');
+        const hasCompare = hasComparativeText(lower);
+        const hasCause = /\bporque\b|\bpor\s+eso\b/.test(lower);
+        // Una preposición aislada («por favor», «por eso») o el número de una opción
+        // no demuestra que el estudiante haya incluido un precio, cantidad o finalidad.
+        const hasPrice = hasPriceText(lower);
+        const hasQuantity = hasQuantityText(lower);
+        const hasRate = hasPorUnitText(lower);
+        const hasRecipient = hasParaRecipientText(lower);
+        const hasPurpose = hasParaPurposeText(lower);
+        const hasDetail = hasPrice || hasQuantity || hasRate || hasRecipient || hasPurpose;
+        if(hasCompare && hasCause && hasDetail){
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Se detectan las tres partes solicitadas.</strong> Ahora revisa tú la gramática, las cifras y la relación entre las ideas. Después, di una segunda versión sin leer.';
+          complete('recovery');
+        }else{
+          const missing = [
+            !hasCompare && 'una comparación con «que» o «como»',
+            !hasDetail && 'un precio, una cantidad, un destinatario o una finalidad',
+            !hasCause && 'una razón con «porque» o «por eso»'
+          ].filter(Boolean);
+          fb.className = 'feedback show neutral';
+          fb.textContent = `Revisa estos elementos: ${missing.join('; ')}. La comprobación es orientativa y no sustituye tu revisión del significado.`;
+        }
+      });
+
+      // 8. Producción
+      qs('#productionAnswer').addEventListener('input', () => {
+        const wasCompleted = state.completed.has('production');
+        if(wasCompleted) uncomplete('production');
+        if(state.productionDraftReady || wasCompleted){
+          state.productionDraftReady = false;
+          state.oralDone = false;
+          state.selfReviewDone = false;
+          stopOralTimer();
+          state.oralSeconds = 30;
+          renderOralTimer();
+          qs('#startOralTimer').textContent = 'Iniciar 30 segundos';
+          qsa('#selfReview input[type="checkbox"]').forEach(c => { c.checked = false; });
+          const oralFb = qs('#oralFeedback');
+          oralFb.className = 'feedback';
+          oralFb.textContent = '';
+          const selfFb = qs('#selfReviewFeedback');
+          selfFb.className = 'feedback';
+          selfFb.textContent = '';
+          const fb = qs('#productionFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Has cambiado tu versión. Revísala, vuelve a decirla en voz alta y completa otra vez la autoevaluación.';
+        }
+      });
+
+      qs('#selfReview').addEventListener('change', () => {
+        const wasCompleted = state.completed.has('production');
+        if(wasCompleted) uncomplete('production');
+        if(state.selfReviewDone || wasCompleted){
+          state.selfReviewDone = false;
+          const fb = qs('#selfReviewFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Has cambiado tu autoevaluación. Pulsa «Revisar mi práctica» de nuevo.';
+        }
+      });
+
+      qs('#saveProduction').addEventListener('click', () => {
+        const text = qs('#productionAnswer').value.trim();
+        const fb = qs('#productionFeedback');
+        const sentenceCount = countSentences(text);
+        if(text.length < 55 || sentenceCount < 3){
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Desarrolla un poco más tu intervención: escribe al menos 3 frases breves con una comparación, un dato concreto y una razón.';
+          return;
+        }
+        if(sentenceCount > 5){
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'La micromisión pide una intervención breve de 3 a 5 frases. Reduce tu respuesta y conserva solo la información esencial.';
+          return;
+        }
+
+        const lower = text.toLocaleLowerCase('es');
+        const hasCompare = hasComparativeText(lower);
+        const hasCause = /\bporque\b|\bpor\s+eso\b/.test(lower);
+        const hasPorRate = hasPorUnitText(lower);
+        const hasParaRecipient = hasParaRecipientText(lower);
+        const hasParaPurpose = hasParaPurposeText(lower);
+        const hasPorPara = hasPorRate || hasParaRecipient || hasParaPurpose;
+        const hasPrice = hasPriceText(lower);
+        const hasQuantity = hasQuantityText(lower);
+        const hasCondition = /\b(?:condición|condicion|condiciones|descuento|plazo|plazos|pago|pagos|entrega|entregas|soporte|garantía|garantia|mínimo|minimo|máximo|maximo|límite|limite|límites|limites|cancelación|cancelacion|renovación|renovacion|duración|duracion)\b/.test(lower);
+        const hasDetail = hasPrice || hasQuantity || hasCondition;
+
+        if(!(hasCompare && hasDetail && hasPorPara && hasCause)){
+          const missing = [
+            !hasCompare && 'una comparación',
+            !hasDetail && 'un precio, una cantidad o una condición',
+            !hasPorPara && 'una frase con «por» o «para»',
+            !hasCause && 'una causa o consecuencia con «porque» o «por eso»'
+          ].filter(Boolean);
+          fb.className = 'feedback show neutral';
+          fb.textContent = `Antes de marcarla como completada, revisa: ${missing.join('; ')}. La comprobación es orientativa y no evalúa toda la gramática de tu texto.`;
+          return;
+        }
+
+        // Cada nueva versión validada inicia una secuencia oral limpia.
+        // Así no se pueden reutilizar estados marcados antes de revisar el texto.
+        if(!state.productionDraftReady){
+          state.oralDone = false;
+          state.selfReviewDone = false;
+          stopOralTimer();
+          state.oralSeconds = 30;
+          renderOralTimer();
+          qs('#startOralTimer').textContent = 'Iniciar 30 segundos';
+          qsa('#selfReview input[type="checkbox"]').forEach(c => { c.checked = false; });
+          const oralFb = qs('#oralFeedback');
+          oralFb.className = 'feedback';
+          oralFb.textContent = '';
+          const selfFb = qs('#selfReviewFeedback');
+          selfFb.className = 'feedback';
+          selfFb.textContent = '';
+        }
+        state.productionDraftReady = true;
+        fb.className = 'feedback show ok';
+        fb.innerHTML = '<strong>Tu versión está preparada.</strong> Se detectan los cuatro elementos de la micromisión en 3 a 5 frases. Ahora dilo en voz alta sin leer el texto completo y completa la autoevaluación.';
+        tryCompleteProduction();
+      });
+
+      function renderOralTimer(){
+        qs('#oralTimer').textContent = `${state.oralSeconds} s`;
+      }
+
+      function stopOralTimer(){
+        if(state.oralTimer !== null){
+          window.clearInterval(state.oralTimer);
+          state.oralTimer = null;
+        }
+      }
+
+      qs('#startOralTimer').addEventListener('click', () => {
+        if(!state.productionDraftReady){
+          const fb = qs('#oralFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Primero revisa tu versión escrita. Cuando esté preparada, practica la producción oral.';
+          announce('Primero revisa tu versión escrita.');
+          return;
+        }
+        stopOralTimer();
+        state.oralSeconds = 30;
+        renderOralTimer();
+        const button = qs('#startOralTimer');
+        button.textContent = 'Reiniciar 30 segundos';
+        announce('Temporizador iniciado: 30 segundos.');
+        state.oralTimer = window.setInterval(() => {
+          state.oralSeconds -= 1;
+          renderOralTimer();
+          if(state.oralSeconds <= 0){
+            stopOralTimer();
+            qs('#oralFeedback').className = 'feedback show neutral';
+            qs('#oralFeedback').textContent = 'Tiempo terminado. Acaba tu idea si lo necesitas y después marca que ya la dijiste en voz alta.';
+            announce('Tiempo terminado.');
+          }
+        }, 1000);
+      });
+
+      qs('#markOralDone').addEventListener('click', () => {
+        if(!state.productionDraftReady){
+          const fb = qs('#oralFeedback');
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Primero revisa tu versión escrita. Después di esa versión en voz alta.';
+          announce('Primero revisa tu versión escrita.');
+          return;
+        }
+        stopOralTimer();
+        state.oralDone = true;
+        const fb = qs('#oralFeedback');
+        fb.className = 'feedback show ok';
+        fb.innerHTML = '<strong>Producción oral registrada.</strong> Ahora revisa qué recursos lingüísticos conseguiste utilizar sin leer una respuesta completa.';
+        tryCompleteProduction();
+      });
+
+      qs('#checkSelfReview').addEventListener('click', () => {
+        const fb = qs('#selfReviewFeedback');
+        if(!state.productionDraftReady){
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Primero revisa tu versión escrita.';
+          announce('Primero revisa tu versión escrita.');
+          return;
+        }
+        if(!state.oralDone){
+          fb.className = 'feedback show neutral';
+          fb.textContent = 'Primero di tu intervención en voz alta. Después completa esta autoevaluación.';
+          announce('Primero completa la producción oral.');
+          return;
+        }
+        const checks = qsa('#selfReview input[type="checkbox"]');
+        const checked = checks.filter(x => x.checked).length;
+        if(checked < checks.length){
+          state.selfReviewDone = false;
+          fb.className = 'feedback show neutral';
+          fb.textContent = `Has marcado ${checked} de ${checks.length}. Si falta algún elemento, vuelve a decir tu intervención e inténtalo de nuevo antes de finalizar.`;
+          return;
+        }
+        state.selfReviewDone = true;
+        fb.className = 'feedback show ok';
+        fb.innerHTML = '<strong>Autoevaluación completa.</strong> Has comprobado el uso de las herramientas y la recuperación sin leer un modelo completo.';
+        tryCompleteProduction();
+      });
+
+      function tryCompleteProduction(){
+        if(state.productionDraftReady && state.oralDone && state.selfReviewDone){
+          complete('production');
+          const fb = qs('#productionFeedback');
+          fb.className = 'feedback show ok';
+          fb.innerHTML = '<strong>Producción completada.</strong> Preparaste una versión, la dijiste en voz alta y revisaste qué herramientas conseguiste recuperar.';
+          announce('Producción completada. Ya puedes finalizar la lección si no hay otras actividades pendientes.');
+        }
+      }
+
+      qs('#repeatPractice').addEventListener('click', () => {
+        qs('#recoveryAnswer').value = '';
+        const fb = qs('#recoveryFeedback');
+        fb.className = 'feedback';
+        fb.textContent = '';
+        qs('#recoveryHint').classList.remove('show');
+        qs('#showHint').textContent = 'Ver pista';
+        qs('#showHint').setAttribute('aria-expanded', 'false');
+        goTo(7);
+        announce('Práctica lista para un nuevo intento.');
+      });
+
+      function resetLesson(){
+        const accepted = window.confirm('¿Quieres reiniciar el progreso de esta lección?');
+        if(!accepted) return;
+        state.completed.clear();
+        if(state.compareTimer !== null) window.clearTimeout(state.compareTimer);
+        state.compareTimer = null;
+        state.compareIndex = 0;
+        state.compareScore = 0;
+        state.compareAnswered = false;
+        state.compareHadError = false;
+        state.connectorMode = 'porque';
+        state.productionDraftReady = false;
+        state.oralDone = false;
+        state.selfReviewDone = false;
+        stopOralTimer();
+        state.oralSeconds = 30;
+        try{
+          localStorage.removeItem(STORAGE_KEY);
+          LEGACY_STORAGE_KEYS.forEach(key => localStorage.removeItem(key));
+        }catch(_err){}
+
+        qsa('.choice').forEach(x => x.classList.remove('correct','wrong'));
+        qsa('.pattern-btn').forEach(x => {
+          x.classList.remove('revealed');
+          x.setAttribute('aria-expanded', 'false');
+        });
+        revealedPatterns.clear();
+        qsa('select[data-answer]').forEach(s => { s.value=''; s.style.borderColor=''; s.removeAttribute('aria-invalid'); });
+        qsa('.row-result').forEach(r => { r.textContent=''; r.className='row-result'; });
+        qsa('.builder select').forEach(s => { s.selectedIndex = 0; });
+        qsa('textarea').forEach(t => t.value='');
+        qsa('#selfReview input[type="checkbox"]').forEach(c => { c.checked = false; });
+        qs('#oralTimer').textContent = '30 s';
+        qs('#startOralTimer').textContent = 'Iniciar 30 segundos';
+        qsa('.feedback').forEach(f => {
+          if(f.id === 'patternFeedback'){
+            f.className = 'feedback neutral show';
+            f.textContent = 'Encuentra las cuatro funciones.';
+          }else if(f.id){
+            // Solo se reinician los feedback dinámicos identificados.
+            // Los avisos estáticos sin id (por ejemplo, la nota del constructor)
+            // deben conservar su visibilidad y su texto.
+            f.classList.remove('show','ok','no');
+            f.textContent='';
+          }
+        });
+        qs('#builderOutput').textContent = 'Elige tus elementos y construye una respuesta.';
+        qs('#recoveryHint').classList.remove('show');
+        qs('#showHint').textContent = 'Ver pista';
+        qs('#showHint').setAttribute('aria-expanded', 'false');
+        renderCompare();
+        updateProgress();
+        goTo(0);
+        announce('Lección reiniciada.');
+      }
+
+      qs('#resetTop').addEventListener('click', resetLesson);
+      qs('#resetFinal').addEventListener('click', resetLesson);
+
+      safeLoad();
+      restoreCompletedUI();
+      updateProgress();
+      goTo(0);
+    })();
+  </script>
+</body>
+</html>
