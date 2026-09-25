@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#003893">
+  <title>Lección 11 · Negocia | Spanish at Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#003893;
+      --blue-2:#002d74;
+      --yellow:#FCD116;
+      --red:#CE1126;
+      --white:#FFFFFF;
+      --ink:#111827;
+      --muted:#5f6b7a;
+      --line:#dce3ee;
+      --soft:#f5f8fc;
+      --success:#126a3a;
+      --success-bg:#edf8f1;
+      --danger-bg:#fff0f2;
+      --shadow:0 12px 28px rgba(0,56,147,.11);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#eef4ff 0,#f8fafc 38%,#ffffff 100%);
+      overflow-x:hidden;
+    }
+    button,input,textarea{font:inherit}
+    button,a{ -webkit-tap-highlight-color:transparent; }
+    button{cursor:pointer}
+    a{color:inherit}
+
+    h1:focus,h2:focus,h3:focus,#title-0:focus{outline:none;box-shadow:none}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+      outline:3px solid var(--blue);
+      outline-offset:3px;
+      box-shadow:0 0 0 3px var(--white);
+    }
+
+    .app{
+      width:min(100%,1050px);
+      margin:0 auto;
+      min-height:100vh;
+      padding:0 14px 28px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      padding:10px 0 8px;
+      background:rgba(248,250,252,.94);
+      backdrop-filter:blur(12px);
+    }
+    .topbar-inner{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:10px 14px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 6px 20px rgba(15,23,42,.06);
+    }
+    .brand-mini{font-weight:700;color:var(--blue);font-size:.86rem;white-space:nowrap}
+    .progress-wrap{min-width:0}
+    .progress-label{display:flex;justify-content:space-between;gap:8px;font-size:.73rem;color:var(--muted);margin-bottom:5px}
+    .progress-track{height:8px;border-radius:999px;background:#e6ecf5;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:var(--yellow);transition:width .35s ease}
+    .icon-btn{
+      width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--blue);display:grid;place-items:center;
+    }
+
+    .screen{display:none;animation:fade .25s ease}
+    .screen.active{display:block}
+    @keyframes fade{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+    .panel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:clamp(20px,4vw,42px);
+      margin-top:12px;
+    }
+
+    .hero{
+      background:var(--blue);
+      color:#fff;
+      border:none;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:260px;height:260px;
+      right:-90px;top:-110px;
+      border:34px solid rgba(252,209,22,.18);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+    .hero h1{font-size:clamp(2rem,7vw,4.25rem);line-height:1.02;margin:.1em 0 .25em;max-width:800px}
+    .hero .lead{font-size:clamp(1rem,2.2vw,1.25rem);max-width:760px;line-height:1.65;color:#eef5ff}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+    .pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 12px;font-size:.82rem;font-weight:600;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+    .outcome{
+      margin:24px 0 6px;padding:16px 18px;border-left:4px solid var(--yellow);background:rgba(255,255,255,.09);border-radius:0 12px 12px 0;max-width:800px
+    }
+
+    h2{font-size:clamp(1.55rem,4vw,2.45rem);line-height:1.15;margin:0 0 12px;color:var(--blue)}
+    h3{font-size:1.08rem;line-height:1.3;margin:0 0 8px;color:var(--blue)}
+    p{line-height:1.7;margin:.65em 0}
+    .sub{color:var(--muted);max-width:790px}
+    .kicker{display:inline-block;font-size:.76rem;font-weight:700;color:var(--blue);background:#edf3ff;border-radius:999px;padding:6px 10px;margin-bottom:10px}
+    .yellow-mark{background:linear-gradient(transparent 58%,rgba(252,209,22,.7) 58%)}
+
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .card{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff}
+    .card.soft{background:var(--soft)}
+    .card.accent{border-top:4px solid var(--yellow)}
+    .card p:last-child{margin-bottom:0}
+
+    .scenario{
+      display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:#f7f9fc;border:1px solid var(--line);padding:16px;border-radius:16px;margin:18px 0
+    }
+    .scenario-icon{width:52px;height:52px;border-radius:14px;background:var(--blue);color:#fff;display:grid;place-items:center}
+    .scenario-icon svg{width:26px;height:26px}
+
+    .dialogue{display:grid;gap:12px;margin:20px 0}
+    .bubble{max-width:86%;border-radius:17px;padding:14px 16px;line-height:1.6;border:1px solid var(--line)}
+    .bubble.a{background:#eef4ff;border-bottom-left-radius:5px}
+    .bubble.b{background:#fff9df;border-bottom-right-radius:5px;margin-left:auto}
+    .speaker{font-size:.74rem;font-weight:700;color:var(--blue);display:block;margin-bottom:4px}
+    mark{background:#fff0a6;color:inherit;padding:1px 3px;border-radius:4px}
+
+    .choice-list{display:grid;gap:10px;margin-top:16px}
+    .choice{
+      width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px 16px;color:var(--ink);transition:.15s ease;line-height:1.5
+    }
+    .choice:hover{border-color:#9bb6e6;transform:translateY(-1px)}
+    .choice.selected{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,56,147,.12)}
+    .choice.correct{border-color:var(--success);background:var(--success-bg)}
+    .choice.wrong{border-color:var(--red);background:var(--danger-bg)}
+
+    .feedback{display:none;margin-top:14px;padding:13px 15px;border-radius:13px;border-left:4px solid var(--blue);background:#eef4ff;line-height:1.55}
+    .feedback.show{display:block}
+    .feedback.good{border-color:var(--success);background:var(--success-bg)}
+    .feedback.bad{border-color:var(--red);background:var(--danger-bg)}
+
+    .tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+    .tool-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+    .tool-head{padding:13px 16px;background:var(--blue);color:#fff;font-weight:700}
+    .tool-body{padding:16px}
+    .formula{font-weight:700;color:var(--blue);font-size:1.03rem;margin:8px 0}
+    .example{padding:10px 12px;border-left:3px solid var(--yellow);background:#fffdf2;border-radius:0 9px 9px 0;margin:10px 0}
+    .note{font-size:.9rem;color:var(--muted)}
+    .warning{padding:13px 15px;background:#fff5f6;border:1px solid #f1c4ca;border-radius:12px;margin-top:12px}
+    .warning strong{color:var(--red)}
+
+    .pattern-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .token{border:1px solid #b9c9e6;background:#f5f8ff;color:var(--blue);padding:8px 10px;border-radius:10px;font-weight:600;font-size:.9rem}
+
+    .builder{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:16px;background:#fbfcfe}
+    .builder-target{min-height:54px;border:2px dashed #b8c7de;border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#fff;margin:12px 0}
+    .word-bank{display:flex;flex-wrap:wrap;gap:8px}
+    .word-btn{border:1px solid #aebfdb;background:#fff;border-radius:10px;padding:9px 11px;min-width:44px;min-height:44px;color:var(--ink)}
+    .word-btn:disabled{opacity:.35;cursor:default}
+    .built-word{background:#edf3ff;border:1px solid #bed0ee;border-radius:9px;padding:7px 9px;color:var(--blue);font-weight:600}
+
+    .recall-grid{display:grid;gap:14px;margin-top:18px}
+    .recall{border:1px solid var(--line);border-radius:16px;padding:17px}
+    .recall label{display:block;font-weight:600;margin-bottom:8px}
+    .text-input,textarea{width:100%;border:1px solid #bdc9da;border-radius:12px;padding:12px 13px;background:#fff;color:var(--ink)}
+    textarea{min-height:100px;resize:vertical}
+    .hint{display:none;margin-top:10px;padding:10px 12px;background:#fff9df;border-radius:10px;font-size:.9rem}
+    .hint.show{display:block}
+
+    .sim-wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;margin-top:18px}
+    .deal-card{background:var(--blue);color:#fff;border-radius:18px;padding:20px;align-self:start;position:sticky;top:88px}
+    .deal-card h3{color:var(--yellow)}
+    .deal-list{list-style:none;padding:0;margin:12px 0 0}
+    .deal-list li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+    .sim-step{display:none}
+    .sim-step.active{display:block}
+
+    .timer-box{text-align:center;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--soft);margin:18px 0}
+    .timer{font-size:3rem;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1}
+    .checklist{display:grid;gap:9px;margin-top:16px}
+    .check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:12px;background:#fff}
+    .check-item input{margin-top:4px;accent-color:var(--blue);width:18px;height:18px}
+
+    .transfer-options{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}
+    .transfer-btn{border:1px solid #b9c8df;background:#fff;border-radius:999px;padding:9px 13px;min-height:44px}
+    .transfer-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+    .summary-list{display:grid;gap:10px;margin:20px 0}
+    .summary-item{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:13px;background:#f4f8ff;border:1px solid #dce8fb}
+    .checkmark{width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;color:#1c2c4b;font-weight:700}
+
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;align-items:center}
+    .btn{border:none;border-radius:12px;padding:12px 17px;font-weight:700;min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+    .btn.primary{background:var(--blue);color:#fff}
+    .btn.primary:hover{background:var(--blue-2)}
+    .btn.yellow{background:var(--yellow);color:#14203a}
+    .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--blue)}
+    .btn.small{padding:9px 12px;min-height:44px;font-size:.86rem}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+
+    .nav-footer{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+    .nav-footer .btn{min-width:110px}
+    .mini-status{font-size:.8rem;color:var(--muted);margin-left:auto}
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .hide{display:none!important}
+
+    @media(max-width:760px){
+      .topbar-inner{grid-template-columns:1fr auto}.brand-mini{display:none}.progress-wrap{grid-column:1}
+      .grid-2,.grid-3,.tool-grid,.sim-wrap{grid-template-columns:1fr}
+      .bubble{max-width:94%}
+      .deal-card{position:static}
+      .panel{padding:22px 17px}
+      .nav-footer{position:sticky;bottom:8px;background:rgba(255,255,255,.94);padding:8px;border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)}
+    }
+    @media(max-width:420px){
+      .topbar{padding-top:6px}.topbar-inner{padding:8px 10px}.progress-label{font-size:.68rem}
+      .hero h1{font-size:2.25rem}.btn{width:100%}.actions{align-items:stretch}.nav-footer .btn{width:auto;flex:1;min-width:0;padding-inline:10px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="topbar" aria-label="Progreso de la lección">
+      <div class="topbar-inner">
+        <div class="brand-mini">Spanish at Work</div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span id="stepLabel">Inicio</span><span id="progressText">0 %</span></div>
+          <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Progreso de la lección" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar" aria-hidden="true"></div></div>
+        </div>
+        <button class="icon-btn" id="resetTop" type="button" aria-label="Reiniciar lección" title="Reiniciar lección">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="screen active" data-screen="0" aria-labelledby="title-0">
+      <div class="panel hero">
+        <p class="eyebrow">Spanish at Work · Lección 11</p>
+        <h1 id="title-0" tabindex="-1">Negocia</h1>
+        <p class="lead">Aprende a usar <strong>el condicional, estructuras de cortesía, condiciones y formas de acuerdo o desacuerdo</strong> para negociar precios, fechas y alternativas en español.</p>
+        <div class="pill-row" aria-label="Herramientas de la lección">
+          <span class="pill"><span class="dot"></span>Condicional</span>
+          <span class="pill"><span class="dot"></span>Cortesía</span>
+          <span class="pill"><span class="dot"></span>Condiciones</span>
+          <span class="pill"><span class="dot"></span>Acuerdo y desacuerdo</span>
+        </div>
+        <div class="outcome"><strong>Al terminar:</strong> podrás proponer y responder a una contraoferta, aceptar o rechazar con cortesía, expresar una condición y justificar brevemente tu decisión.</div>
+        <div class="actions"><button class="btn yellow" id="startBtn" type="button">Comenzar</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="1" aria-labelledby="title-1">
+      <div class="panel">
+        <span class="kicker">1 · Encuentra la lengua</span>
+        <h2 id="title-1" tabindex="-1">Una propuesta cambia</h2>
+        <p class="sub">Una empresa está renovando un servicio con un proveedor. El precio, la fecha de entrega y la forma de pago todavía pueden cambiar.</p>
+        <div class="scenario">
+          <div class="scenario-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2M8 12h8M8 16h5"/></svg></div>
+          <div><strong>Tu objetivo lingüístico:</strong> observa cómo las personas hacen propuestas menos directas, expresan condiciones, justifican una decisión y responden sin usar frases demasiado rígidas.</div>
+        </div>
+
+        <h3>Activa lo que ya sabes</h3>
+        <p>Las dos frases pueden entenderse. ¿Cuál presenta la petición de forma más cortés y negociable?</p>
+        <div class="choice-list" id="warmupChoices">
+          <button class="choice" type="button" data-correct="false">Queremos que bajen el precio.</button>
+          <button class="choice" type="button" data-correct="true">¿Sería posible ajustar un poco el precio?</button>
+        </div>
+        <div class="feedback" id="warmupFeedback" aria-live="polite"></div>
+        <div class="actions"><button class="btn primary" id="warmupContinue" type="button" disabled>Continuar</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="2" aria-labelledby="title-2">
+      <div class="panel">
+        <span class="kicker">2 · Observa</span>
+        <h2 id="title-2" tabindex="-1">Mira qué cambia</h2>
+        <p class="sub">Lee este intercambio. Las palabras resaltadas son herramientas que vas a reutilizar.</p>
+        <div class="dialogue" aria-label="Diálogo de negociación">
+          <div class="bubble a"><span class="speaker">CLIENTE</span>Nos <mark>gustaría</mark> mantener el precio actual. ¿<mark>Sería posible</mark> entregar el martes?</div>
+          <div class="bubble b"><span class="speaker">PROVEEDOR</span><mark>Podríamos</mark> entregar el miércoles <mark>si confirman hoy</mark>.</div>
+          <div class="bubble a"><span class="speaker">CLIENTE</span>El miércoles nos funciona, <mark>pero necesitaríamos</mark> mantener el mismo precio.</div>
+          <div class="bubble b"><span class="speaker">PROVEEDOR</span>De acuerdo. <mark>Podemos aceptar esa condición</mark> si el pago se realiza esta semana.</div>
+        </div>
+        <div class="grid-2">
+          <div class="card accent"><h3>¿Qué notas?</h3><p>El condicional aparece en <strong>gustaría, sería, podríamos, necesitaríamos</strong>. Ayuda a presentar propuestas o peticiones de forma menos directa.</p></div>
+          <div class="card accent"><h3>¿Dónde está la condición?</h3><p>En estructuras con <strong>si + presente</strong>: “si confirman hoy”, “si el pago se realiza esta semana”.</p></div>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" type="button" data-speak="Nos gustaría mantener el precio actual. ¿Sería posible entregar el martes?">Escuchar un ejemplo</button>
+          <button class="btn primary" id="inputContinue" type="button">Entender las herramientas</button>
+        </div>
+        <div class="feedback" id="speechFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="3" aria-labelledby="title-3">
+      <div class="panel">
+        <span class="kicker">3 · Aprende la herramienta</span>
+        <h2 id="title-3" tabindex="-1">Cuatro recursos para negociar en español</h2>
+        <p class="sub">No necesitas dominar todo el condicional. En esta lección vas a trabajar formas frecuentes que sirven para proponer, pedir, condicionar y responder.</p>
+
+        <div class="tool-grid">
+          <article class="tool-card">
+            <div class="tool-head">1. Proponer con condicional</div>
+            <div class="tool-body">
+              <div class="formula">Podríamos + infinitivo</div>
+              <div class="example">Podríamos cambiar la fecha.</div>
+              <div class="example">Podríamos mantener el precio.</div>
+              <p class="note">Sirve para presentar una opción sin imponerla.</p>
+            </div>
+          </article>
+          <article class="tool-card">
+            <div class="tool-head">2. Pedir con cortesía</div>
+            <div class="tool-body">
+              <div class="formula">¿Sería posible + infinitivo...?</div>
+              <div class="example">¿Sería posible entregar el martes?</div>
+              <div class="formula">Nos gustaría + infinitivo</div>
+              <div class="example">Nos gustaría revisar las condiciones.</div>
+            </div>
+          </article>
+          <article class="tool-card">
+            <div class="tool-head">3. Expresar una condición</div>
+            <div class="tool-body">
+              <div class="formula">si + presente</div>
+              <div class="example">Podemos confirmar hoy <strong>si mantienen el precio</strong>.</div>
+              <div class="example">Podríamos aceptar el plazo <strong>si incluyen el soporte</strong>.</div>
+              <div class="warning"><strong>Evita:</strong> “si podrían entregar...”. En una condición real de este tipo, usa <strong>si + presente</strong>: “si pueden entregar...”.</div>
+            </div>
+          </article>
+          <article class="tool-card">
+            <div class="tool-head">4. Acordar o discrepar</div>
+            <div class="tool-body">
+              <div class="example"><strong>Acuerdo:</strong> “De acuerdo.” / “Esa opción nos funciona.”</div>
+              <div class="example"><strong>Acuerdo con condición:</strong> “Podemos aceptar si mantienen el precio.”</div>
+              <div class="example"><strong>Desacuerdo:</strong> “Entiendo la propuesta, pero no podríamos aceptar ese plazo <strong>porque necesitamos entregar el proyecto el viernes</strong>.”</div>
+              <p class="note"><strong>“No podemos”</strong> también es correcto; <strong>“no podríamos”</strong> suele sonar menos tajante en una negociación. Para justificar una decisión, puedes reciclar una estructura conocida: <strong>porque + razón</strong>.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="card soft" style="margin-top:18px">
+          <h3>Cómo reconocer el condicional que necesitas aquí</h3>
+          <p>En los verbos regulares, el condicional conserva el infinitivo y añade terminaciones que empiezan por <strong>-ía</strong>: <em>necesitar → necesitaría / necesitaríamos</em>. Algunos verbos frecuentes cambian la raíz: <em>poder → podría / podríamos</em>. También vas a encontrar <em>ser → sería</em> y <em>gustar → gustaría</em>.</p>
+          <p class="note">No necesitas memorizar toda la conjugación para esta práctica. Necesitas reconocer y recuperar estas formas frecuentes.</p>
+          <h3 style="margin-top:16px">Patrones que conviene recuperar</h3>
+          <div class="pattern-row">
+            <span class="token">Podríamos + infinitivo</span>
+            <span class="token">¿Sería posible + infinitivo...?</span>
+            <span class="token">Nos gustaría + infinitivo</span>
+            <span class="token">si + presente</span>
+            <span class="token">Entiendo..., pero...</span>
+            <span class="token">porque + razón</span>
+          </div>
+        </div>
+        <div class="actions"><button class="btn primary" id="toolsContinue" type="button">Comprobar comprensión</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="4" aria-labelledby="title-4">
+      <div class="panel">
+        <span class="kicker">4 · Comprueba</span>
+        <h2 id="title-4" tabindex="-1">Elige por forma y significado</h2>
+        <p class="sub">Responde las cuatro preguntas. Puedes corregir cada respuesta antes de continuar.</p>
+        <div id="quiz"></div>
+        <div class="actions"><button class="btn primary" id="quizContinue" type="button" disabled>Construir frases</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="5" aria-labelledby="title-5">
+      <div class="panel">
+        <span class="kicker">5 · Construye</span>
+        <h2 id="title-5" tabindex="-1">Arma la respuesta</h2>
+        <p class="sub">Pulsa las palabras en orden. No necesitas arrastrar: funciona igual en móvil, teclado y escritorio.</p>
+        <div id="builders"></div>
+        <div class="actions"><button class="btn primary" id="builderContinue" type="button" disabled>Recuperar con menos apoyo</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="6" aria-labelledby="title-6">
+      <div class="panel">
+        <span class="kicker">6 · Recupera</span>
+        <h2 id="title-6" tabindex="-1">Ahora sin modelo completo</h2>
+        <p class="sub">Escribe una frase breve. La comprobación busca las estructuras trabajadas; no intenta evaluar todas las respuestas posibles.</p>
+        <div class="recall-grid">
+          <div class="recall">
+            <label for="recall1">1. Propón cambiar la fecha con <em>podríamos</em>.</label>
+            <input class="text-input" id="recall1" type="text" autocomplete="off" placeholder="Escribe tu frase">
+            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint1" aria-controls="hint1" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="1">Comprobar</button></div>
+            <div class="hint" id="hint1">Empieza con: <strong>Podríamos...</strong></div>
+            <div class="feedback" id="recallFeedback1" aria-live="polite"></div>
+          </div>
+          <div class="recall">
+            <label for="recall2">2. Pide revisar el precio con una pregunta cortés.</label>
+            <input class="text-input" id="recall2" type="text" autocomplete="off" placeholder="Escribe tu frase">
+            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint2" aria-controls="hint2" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="2">Comprobar</button></div>
+            <div class="hint" id="hint2">Puedes usar: <strong>¿Sería posible...?</strong></div>
+            <div class="feedback" id="recallFeedback2" aria-live="polite"></div>
+          </div>
+          <div class="recall">
+            <label for="recall3">3. Acepta una propuesta con una condición.</label>
+            <input class="text-input" id="recall3" type="text" autocomplete="off" placeholder="Escribe tu frase">
+            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint3" aria-controls="hint3" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="3">Comprobar</button></div>
+            <div class="hint" id="hint3">Incluye <strong>si + presente</strong>: “... si mantienen / incluyen / pueden...”</div>
+            <div class="feedback" id="recallFeedback3" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="actions"><button class="btn primary" id="recallContinue" type="button" disabled>Entrar en la negociación</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="7" aria-labelledby="title-7">
+      <div class="panel">
+        <span class="kicker">7 · Reacciona</span>
+        <h2 id="title-7" tabindex="-1">Una contraoferta, tres decisiones lingüísticas</h2>
+        <p class="sub">No estás resolviendo una estrategia comercial. Estás eligiendo español que te permita proponer, condicionar y responder.</p>
+        <div class="sim-wrap">
+          <aside class="deal-card" aria-label="Condiciones actuales">
+            <h3>Propuesta actual</h3>
+            <ul class="deal-list">
+              <li><strong>Precio:</strong> 1.200 USD</li>
+              <li><strong>Entrega:</strong> viernes</li>
+              <li><strong>Pago:</strong> esta semana</li>
+            </ul>
+          </aside>
+          <div id="simulation">
+            <div class="sim-step active" data-sim="0">
+              <h3>Proveedor</h3><p>“Podemos mantener el precio, pero la entrega tendría que ser el viernes.”</p>
+              <p><strong>Quieres proponer el miércoles.</strong></p>
+              <div class="choice-list">
+                <button class="choice sim-choice" type="button" data-good="false">La entrega tiene que ser el miércoles.</button>
+                <button class="choice sim-choice" type="button" data-good="true">¿Sería posible entregar el miércoles?</button>
+                <button class="choice sim-choice" type="button" data-good="false">Si podrían entregar el miércoles, confirmamos.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite"></div>
+            </div>
+            <div class="sim-step" data-sim="1">
+              <h3>Proveedor</h3><p>“Podemos entregar el miércoles si aceptan un costo adicional de 80 USD.”</p>
+              <p><strong>Quieres aceptar el miércoles solo si mantienen el precio.</strong></p>
+              <div class="choice-list">
+                <button class="choice sim-choice" type="button" data-good="true">Podríamos aceptar la entrega para el miércoles si mantienen el precio actual.</button>
+                <button class="choice sim-choice" type="button" data-good="false">Podríamos aceptar si mantendrían el precio.</button>
+                <button class="choice sim-choice" type="button" data-good="false">No. El precio no cambia.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite"></div>
+            </div>
+            <div class="sim-step" data-sim="2">
+              <h3>Proveedor</h3><p>“Podemos mantener el precio si el pago se realiza esta semana.”</p>
+              <p><strong>La condición te funciona.</strong></p>
+              <div class="choice-list">
+                <button class="choice sim-choice" type="button" data-good="false">Bueno.</button>
+                <button class="choice sim-choice" type="button" data-good="true">De acuerdo. Esa condición nos funciona y podemos confirmar hoy.</button>
+                <button class="choice sim-choice" type="button" data-good="false">Nos gustaría que sí.</button>
+              </div>
+              <div class="feedback sim-feedback" aria-live="polite"></div>
+            </div>
+            <div class="card soft hide" id="simDone">
+              <h3>Has recorrido una negociación breve</h3>
+              <p>Has utilizado tres funciones distintas: <strong>proponer → condicionar → acordar</strong>.</p>
+              <div class="actions">
+                <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+                <button class="btn primary" id="simContinue" type="button" disabled>Cambiar la situación</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="8" aria-labelledby="title-8">
+      <div class="panel">
+        <span class="kicker">8 · Cambia la situación</span>
+        <h2 id="title-8" tabindex="-1">Misma lengua, otra negociación</h2>
+        <p class="sub">Ahora negocias la fecha de entrega de un informe. La otra persona propone el lunes, pero tú necesitas entregarlo el viernes anterior.</p>
+        <div class="grid-2">
+          <div class="card"><h3>Tu intención</h3><p>1. Haz una propuesta cortés.<br>2. Añade una condición.<br>3. Justifica tu decisión con una razón breve y, si puedes, deja abierta una alternativa.</p></div>
+          <div class="card soft"><h3>Palabras disponibles</h3><p><strong>sería posible · podríamos · si · porque · necesitamos · viernes · lunes · confirmar · alternativa</strong></p></div>
+        </div>
+        <label for="variationText" style="display:block;font-weight:600;margin-top:18px">Construye una intervención de 2 o 3 frases:</label>
+        <textarea id="variationText" placeholder="Escribe una versión propia"></textarea>
+        <div class="actions"><button class="btn primary" id="variationCheck" type="button">Revisar con criterios</button></div>
+        <div class="feedback" id="variationFeedback" aria-live="polite"></div>
+        <div class="actions"><button class="btn primary" id="variationContinue" type="button" disabled>Ahora dilo tú</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="9" aria-labelledby="title-9">
+      <div class="panel">
+        <span class="kicker">9 · Producción oral</span>
+        <h2 id="title-9" tabindex="-1">Ahora dilo tú</h2>
+        <p class="sub">Imagina que un proveedor te ofrece una fecha que no te conviene. Tienes 60 segundos para responder. No leas un modelo completo.</p>
+        <div class="timer-box">
+          <div class="timer" id="timer">01:00</div>
+          <p>Intenta incluir <strong>una propuesta con condicional</strong>, <strong>una condición con si + presente</strong>, <strong>una forma de rechazo o desacuerdo cortés</strong> y <strong>una razón breve con porque</strong>.</p>
+          <div class="actions" style="justify-content:center"><button class="btn primary" id="timerBtn" type="button">Iniciar 60 segundos</button><button class="btn ghost" id="timerReset" type="button">Reiniciar tiempo</button></div>
+        </div>
+        <h3>Después de hablar, revisa:</h3>
+        <div class="checklist" id="oralChecklist">
+          <label class="check-item"><input type="checkbox"> <span>Usé una forma como <strong>podríamos / sería posible / nos gustaría</strong>.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Expresé una condición con <strong>si + presente</strong>.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Expresé un rechazo o desacuerdo de forma comprensible y cortés.</span></label>
+          <label class="check-item"><input type="checkbox" id="oralReason"> <span>Justifiqué mi decisión con una razón breve usando <strong>porque</strong>.</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Pude reaccionar sin leer una respuesta completa.</span></label>
+        </div>
+        <div class="feedback" id="oralFeedback" aria-live="polite"></div>
+        <div class="actions"><button class="btn primary" id="oralContinue" type="button" disabled>Llevarlo a mi trabajo</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="10" aria-labelledby="title-10">
+      <div class="panel">
+        <span class="kicker">10 · Transfiere</span>
+        <h2 id="title-10" tabindex="-1">¿Dónde vas a usarlo?</h2>
+        <p class="sub">Elige una situación real. La misión es lingüística: recuperar al menos dos estructuras de esta lección cuando las necesites.</p>
+        <div class="transfer-options" id="transferOptions">
+          <button class="transfer-btn" type="button" aria-pressed="false">Proveedor</button>
+          <button class="transfer-btn" type="button" aria-pressed="false">Cliente</button>
+          <button class="transfer-btn" type="button" aria-pressed="false">Compañero</button>
+          <button class="transfer-btn" type="button" aria-pressed="false">Proyecto</button>
+          <button class="transfer-btn" type="button" aria-pressed="false">Otra situación</button>
+        </div>
+        <div class="card accent" id="missionCard" aria-live="polite"><h3>Tu misión</h3><p>Selecciona una situación para crear tu misión de transferencia.</p></div>
+        <div class="actions"><button class="btn primary" id="finishBtn" type="button" disabled>Completar lección</button></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="11" aria-labelledby="title-11">
+      <div class="panel">
+        <span class="kicker">Spanish at Work · Lección completada</span>
+        <h2 id="title-11" tabindex="-1">Ya tienes más recursos para negociar en español</h2>
+        <p class="sub">La meta no era memorizar una negociación. Era disponer de estructuras que puedas recuperar cuando cambien el precio, la fecha o las condiciones.</p>
+        <div class="summary-list">
+          <div class="summary-item"><span class="checkmark">✓</span><span>Utilizas <strong>podríamos, sería posible y nos gustaría</strong> para proponer o pedir de forma menos directa.</span></div>
+          <div class="summary-item"><span class="checkmark">✓</span><span>Construyes condiciones frecuentes con <strong>si + presente</strong>.</span></div>
+          <div class="summary-item"><span class="checkmark">✓</span><span>Expresas <strong>acuerdo, desacuerdo y contrapropuestas</strong> y puedes justificar una decisión con una razón breve.</span></div>
+        </div>
+        <div class="card soft"><h3>Aplicación profesional</h3><p>Negociar condiciones, fechas, precios o alternativas y reaccionar ante una contraoferta.</p></div>
+        <div class="actions">
+          <button class="btn ghost" id="repeatSim" type="button">Repetir la negociación</button>
+          <button class="btn ghost" id="resetFinal" type="button">Reiniciar lección</button>
+          <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-footer" id="navFooter" aria-label="Navegación de la lección">
+      <button class="btn ghost" id="backBtn" type="button">← Anterior</button>
+      <span class="mini-status" id="screenCounter">1 / 12</span>
+      <button class="btn ghost" id="nextBtn" type="button">Siguiente →</button>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const screens = [...document.querySelectorAll('.screen')];
+      const totalScreens = screens.length;
+      const stateKey = 'saw_lesson_11_v1';
+      const state = {
+        current: 0,
+        completed: new Set(),
+        selectedTransfer: '',
+        quizDone: new Set(),
+        buildersDone: new Set(),
+        recallDone: new Set()
+      };
+
+      const milestones = ['warmup','quiz','builders','recall','simulation','variation','oral','transfer'];
+      const $ = (id) => document.getElementById(id);
+      const screenRequirements = {
+        1:'warmup',
+        4:'quiz',
+        5:'builders',
+        6:'recall',
+        7:'simulation',
+        8:'variation',
+        9:'oral'
+      };
+
+      function canAdvanceFrom(index) {
+        if (index === 10 || index >= totalScreens - 1) return false;
+        const requirement = screenRequirements[index];
+        return !requirement || state.completed.has(requirement);
+      }
+
+      function updateNavigation() {
+        $('backBtn').disabled = state.current === 0;
+        $('nextBtn').disabled = !canAdvanceFrom(state.current);
+      }
+
+      function safeLoad() {
+        try {
+          const raw = localStorage.getItem(stateKey);
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (Number.isInteger(saved.current) && saved.current >= 0 && saved.current < totalScreens) state.current = saved.current;
+          if (Array.isArray(saved.completed)) state.completed = new Set(saved.completed);
+          if (typeof saved.selectedTransfer === 'string' && ['Proveedor','Cliente','Compañero','Proyecto','Otra situación'].includes(saved.selectedTransfer)) state.selectedTransfer = saved.selectedTransfer;
+        } catch (_) { /* localStorage is optional */ }
+      }
+
+      function safeSave() {
+        try {
+          localStorage.setItem(stateKey, JSON.stringify({
+            current: state.current,
+            completed: [...state.completed],
+            selectedTransfer: state.selectedTransfer
+          }));
+        } catch (_) { /* lesson still works without storage */ }
+      }
+
+      function completionPercent() {
+        const done = milestones.filter(m => state.completed.has(m)).length;
+        if (state.completed.has('finished')) return 100;
+        return Math.round((done / milestones.length) * 92);
+      }
+
+      function updateProgress() {
+        const pct = completionPercent();
+        $('progressBar').style.width = pct + '%';
+        $('progressTrack').setAttribute('aria-valuenow', String(pct));
+        $('progressText').textContent = pct + ' %';
+        $('stepLabel').textContent = state.current === 0 ? 'Inicio' : (state.current === totalScreens - 1 ? 'Completada' : 'Paso ' + state.current + ' de ' + (totalScreens - 2));
+        $('screenCounter').textContent = (state.current + 1) + ' / ' + totalScreens;
+      }
+
+      function showScreen(index, focusTitle = true) {
+        const target = Math.max(0, Math.min(index, totalScreens - 1));
+        screens.forEach((s,i) => s.classList.toggle('active', i === target));
+        state.current = target;
+        updateNavigation();
+        $('navFooter').classList.toggle('hide', target === 0);
+        updateProgress();
+        safeSave();
+        const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top:0,behavior:reducedMotion ? 'auto' : 'smooth'});
+        if (focusTitle) {
+          const title = screens[target].querySelector('h1,h2');
+          if (title) setTimeout(() => title.focus({preventScroll:true}), 50);
+        }
+      }
+
+      function complete(name) {
+        state.completed.add(name);
+        updateProgress();
+        updateNavigation();
+        safeSave();
+      }
+
+      function uncomplete(name, preserveFinished = false) {
+        state.completed.delete(name);
+        if (!preserveFinished && name !== 'finished') state.completed.delete('finished');
+        updateProgress();
+        updateNavigation();
+        safeSave();
+      }
+
+      function resetAll() {
+        try { localStorage.removeItem(stateKey); } catch (_) {}
+        location.reload();
+      }
+
+      $('startBtn').addEventListener('click', () => showScreen(1));
+      $('backBtn').addEventListener('click', () => showScreen(state.current - 1));
+      $('nextBtn').addEventListener('click', () => showScreen(state.current + 1));
+      $('resetTop').addEventListener('click', resetAll);
+      $('resetFinal').addEventListener('click', resetAll);
+
+      // Warmup
+      [...document.querySelectorAll('#warmupChoices .choice')].forEach(btn => {
+        btn.setAttribute('aria-pressed','false');
+        btn.addEventListener('click', () => {
+          [...document.querySelectorAll('#warmupChoices .choice')].forEach(b => { b.classList.remove('selected','correct','wrong'); b.setAttribute('aria-pressed','false'); });
+          btn.classList.add('selected');
+          btn.setAttribute('aria-pressed','true');
+          const good = btn.dataset.correct === 'true';
+          btn.classList.add(good ? 'correct' : 'wrong');
+          const fb = $('warmupFeedback');
+          fb.className = 'feedback show ' + (good ? 'good' : 'bad');
+          fb.innerHTML = good
+            ? '<strong>Funciona.</strong> “¿Sería posible...?” presenta la petición como una posibilidad y deja espacio para responder.'
+            : '<strong>La frase es comprensible, pero es más directa.</strong> En esta lección vamos a practicar formas como “¿Sería posible...?” para presentar una petición con más cortesía.';
+          $('warmupContinue').disabled = !good;
+          if (good) complete('warmup'); else uncomplete('warmup');
+        });
+      });
+      $('warmupContinue').addEventListener('click', () => showScreen(2));
+      $('inputContinue').addEventListener('click', () => showScreen(3));
+      $('toolsContinue').addEventListener('click', () => showScreen(4));
+
+      // Speech synthesis (optional enhancement)
+      document.querySelectorAll('[data-speak]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const fb = $('speechFeedback');
+          if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
+            fb.className = 'feedback show';
+            fb.textContent = 'Tu navegador no ofrece reproducción de voz aquí. Puedes leer el ejemplo en voz alta y continuar.';
+            return;
+          }
+          speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(btn.dataset.speak);
+          u.lang = 'es-ES';
+          u.rate = 0.92;
+          speechSynthesis.speak(u);
+        });
+      });
+
+      // Quiz
+      const quizData = [
+        {
+          q:'1. ¿Qué frase presenta una propuesta usando condicional?',
+          opts:['Podríamos revisar la fecha.','Revisamos la fecha ayer.','Revisen la fecha ahora.'],
+          answer:0,
+          good:'“Podríamos + infinitivo” sirve para presentar una posibilidad o propuesta.',
+          bad:'Busca una forma en condicional. “Podríamos revisar...” presenta una opción.'
+        },
+        {
+          q:'2. Completa: “Podemos aceptar el precio si ___ el soporte.”',
+          opts:['incluyen','incluirían','incluyeron'],
+          answer:0,
+          good:'Después de “si”, aquí usamos presente: “si incluyen el soporte”.',
+          bad:'En esta condición real usamos “si + presente”: “si incluyen...”.'
+        },
+        {
+          q:'3. ¿Cuál expresa desacuerdo sin cerrar la conversación?',
+          opts:['No.','Entiendo la propuesta, pero no podríamos aceptar ese plazo.','Aceptamos.'],
+          answer:1,
+          good:'La frase reconoce la propuesta y después marca el desacuerdo con “pero”.',
+          bad:'Busca una frase que exprese el desacuerdo y mantenga abierta la interacción.'
+        },
+        {
+          q:'4. ¿Qué frase es correcta para pedir un cambio con cortesía?',
+          opts:['¿Sería posible cambiar la fecha?','¿Ser posible cambiar la fecha?','¿Si sería posible cambiar la fecha?'],
+          answer:0,
+          good:'“¿Sería posible + infinitivo...?” es una estructura completa y frecuente.',
+          bad:'La estructura trabajada es “¿Sería posible + infinitivo...?”.'
+        }
+      ];
+
+      function renderQuiz() {
+        const box = $('quiz');
+        quizData.forEach((item, idx) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'builder';
+          wrap.innerHTML = `<h3>${item.q}</h3><div class="choice-list" id="q${idx}"></div><div class="feedback" id="qfb${idx}" aria-live="polite"></div>`;
+          box.appendChild(wrap);
+          const list = wrap.querySelector('.choice-list');
+          item.opts.forEach((opt, oi) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'choice'; b.textContent = opt; b.setAttribute('aria-pressed','false');
+            b.addEventListener('click', () => {
+              [...list.querySelectorAll('.choice')].forEach(x => { x.classList.remove('selected','correct','wrong'); x.setAttribute('aria-pressed','false'); });
+              b.classList.add('selected');
+              b.setAttribute('aria-pressed','true');
+              const good = oi === item.answer;
+              b.classList.add(good ? 'correct' : 'wrong');
+              const fb = $('qfb'+idx);
+              fb.className = 'feedback show ' + (good ? 'good' : 'bad');
+              fb.innerHTML = good ? `<strong>Correcto.</strong> ${item.good}` : `<strong>Revisa la estructura.</strong> ${item.bad}`;
+              if (good) state.quizDone.add(idx); else state.quizDone.delete(idx);
+              const quizComplete = state.quizDone.size === quizData.length;
+              $('quizContinue').disabled = !quizComplete;
+              if (quizComplete) complete('quiz'); else uncomplete('quiz');
+            });
+            list.appendChild(b);
+          });
+        });
+      }
+      renderQuiz();
+      $('quizContinue').addEventListener('click', () => showScreen(5));
+
+      // Sentence builders
+      const builderData = [
+        {prompt:'Construye una propuesta.', words:['Podríamos','revisar','el','precio.'], answer:'Podríamos revisar el precio.'},
+        {prompt:'Construye una petición cortés.', words:['¿Sería','posible','cambiar','la','fecha?'], answer:'¿Sería posible cambiar la fecha?'},
+        {prompt:'Construye una condición.', words:['Podemos','confirmar','hoy','si','mantienen','el','precio.'], answer:'Podemos confirmar hoy si mantienen el precio.'}
+      ];
+      function renderBuilders() {
+        const host = $('builders');
+        builderData.forEach((item, idx) => {
+          const box = document.createElement('div'); box.className='builder';
+          const wordObjects = item.words.map((w,i)=>({w,i})).sort(()=>Math.random()-.5);
+          box.innerHTML = `<h3>${idx+1}. ${item.prompt}</h3><div class="builder-target" id="target${idx}" aria-label="Frase construida" aria-live="polite"></div><div class="word-bank" id="bank${idx}"></div><div class="actions"><button class="btn ghost small" type="button" id="clear${idx}">Borrar</button><button class="btn primary small" type="button" id="check${idx}">Comprobar</button></div><div class="feedback" id="bfb${idx}" aria-live="polite"></div>`;
+          host.appendChild(box);
+          const target = $('target'+idx), bank = $('bank'+idx);
+          const chosen=[];
+          wordObjects.forEach(obj => {
+            const b=document.createElement('button'); b.type='button'; b.className='word-btn'; b.textContent=obj.w; b.dataset.wordIndex=obj.i;
+            b.addEventListener('click',()=>{
+              chosen.push({w:obj.w,el:b}); b.disabled=true;
+              const token=document.createElement('span'); token.className='built-word'; token.textContent=obj.w; token.dataset.wordIndex=obj.i; target.appendChild(token);
+              const fb=$('bfb'+idx); fb.className='feedback'; fb.textContent='';
+              state.buildersDone.delete(idx);
+              $('builderContinue').disabled=true;
+              uncomplete('builders');
+            });
+            bank.appendChild(b);
+          });
+          $('clear'+idx).addEventListener('click',()=>{
+            chosen.splice(0).forEach(x=>x.el.disabled=false);
+            target.innerHTML='';
+            const fb=$('bfb'+idx); fb.className='feedback'; fb.textContent='';
+            state.buildersDone.delete(idx);
+            $('builderContinue').disabled=true;
+            uncomplete('builders');
+          });
+          $('check'+idx).addEventListener('click',()=>{
+            const phrase=[...target.querySelectorAll('.built-word')].map(x=>x.textContent).join(' ');
+            const good=phrase===item.answer;
+            const fb=$('bfb'+idx); fb.className='feedback show '+(good?'good':'bad');
+            fb.innerHTML=good?'<strong>La estructura está bien construida.</strong> Ahora intenta decirla sin mirar las palabras.':'<strong>Revisa el orden.</strong> Borra la frase y vuelve a construirla. Observa dónde aparece el infinitivo o la condición.';
+            if(good) state.buildersDone.add(idx); else state.buildersDone.delete(idx);
+            const buildersComplete=state.buildersDone.size===builderData.length;
+            $('builderContinue').disabled=!buildersComplete;
+            if(buildersComplete) complete('builders'); else uncomplete('builders');
+          });
+        });
+      }
+      renderBuilders();
+      $('builderContinue').addEventListener('click', () => showScreen(6));
+
+      // Recall
+      document.querySelectorAll('.hint-btn').forEach(btn => btn.addEventListener('click', () => {
+        const hint=$(btn.dataset.hint);
+        const expanded=hint.classList.toggle('show');
+        btn.setAttribute('aria-expanded', String(expanded));
+        btn.textContent=expanded ? 'Ocultar pista' : 'Ver pista';
+      }));
+      // Detecta el condicional al inicio de una condición real, con pronombres o sujeto breve.
+      // No rechaza el condicional de la oración principal: «Si mantienen el precio, podríamos aceptar».
+      const regularConditionalTokenPattern=/^[a-záéíóúüñ]*(?:ar|er|ir)(?:ía|ías|íamos|íais|ían)$/i;
+      const irregularConditionalTokenPattern=/^[a-záéíóúüñ]*(?:podr|tendr|querr|vendr|saldr|pondr|sabr|cabr|valdr|habr|har|dir)(?:ía|ías|íamos|íais|ían)$/i;
+      const regularFutureTokenPattern=/^[a-záéíóúüñ]*(?:ar|er|ir)(?:é|ás|á|emos|éis|án)$/i;
+      const irregularFutureTokenPattern=/^[a-záéíóúüñ]*(?:podr|tendr|querr|vendr|saldr|pondr|sabr|cabr|valdr|habr|har|dir)(?:é|ás|á|emos|éis|án)$/i;
+      // Comprobación orientativa: reconoce formas frecuentes de presente en la cláusula con «si»
+      // y comprueba la concordancia cuando el estudiante escribe un sujeto explícito.
+      const personTags=['1s','2s','3s','1p','2p','3p'];
+      const presentForms=new Map();
+      function addPresentParadigm(forms){
+        forms.forEach((form,index)=>{
+          if(!form) return;
+          if(!presentForms.has(form)) presentForms.set(form,new Set());
+          presentForms.get(form).add(personTags[index]);
+        });
+      }
+      [
+        ['puedo','puedes','puede','podemos','podéis','pueden'],
+        ['tengo','tienes','tiene','tenemos','tenéis','tienen'],
+        ['soy','eres','es','somos','sois','son'],
+        ['estoy','estás','está','estamos','estáis','están'],
+        ['voy','vas','va','vamos','vais','van'],
+        ['quiero','quieres','quiere','queremos','queréis','quieren'],
+        ['incluyo','incluyes','incluye','incluimos','incluís','incluyen'],
+        ['mantengo','mantienes','mantiene','mantenemos','mantenéis','mantienen'],
+        ['convengo','convienes','conviene','convenimos','convenís','convienen'],
+        ['reduzco','reduces','reduce','reducimos','reducís','reducen'],
+        ['envío','envías','envía','enviamos','enviáis','envían'],
+        ['ofrezco','ofreces','ofrece','ofrecemos','ofrecéis','ofrecen'],
+        ['hago','haces','hace','hacemos','hacéis','hacen'],
+        ['digo','dices','dice','decimos','decís','dicen'],
+        ['doy','das','da','damos','dais','dan'],
+        ['veo','ves','ve','vemos','veis','ven'],
+        ['sé','sabes','sabe','sabemos','sabéis','saben'],
+        ['consigo','consigues','consigue','conseguimos','conseguís','consiguen'],
+        ['muevo','mueves','mueve','movemos','movéis','mueven'],
+        ['pospongo','pospones','pospone','posponemos','posponéis','posponen'],
+        ['apruebo','apruebas','aprueba','aprobamos','aprobáis','aprueban'],
+        ['acuerdo','acuerdas','acuerda','acordamos','acordáis','acuerdan'],
+        ['propongo','propones','propone','proponemos','proponéis','proponen'],
+        ['recomiendo','recomiendas','recomienda','recomendamos','recomendáis','recomiendan'],
+        ['prefiero','prefieres','prefiere','preferimos','preferís','prefieren'],
+        ['pido','pides','pide','pedimos','pedís','piden'],
+        ['sigo','sigues','sigue','seguimos','seguís','siguen'],
+        ['elijo','eliges','elige','elegimos','elegís','eligen'],
+        ['amplío','amplías','amplía','ampliamos','ampliáis','amplían'],
+        ['extiendo','extiendes','extiende','extendemos','extendéis','extienden'],
+        ['dispongo','dispones','dispone','disponemos','disponéis','disponen']
+      ].forEach(addPresentParadigm);
+      const regularPresentInfinitives=['confirmar','entregar','llegar','aceptar','firmar','pagar','realizar','necesitar','funcionar','ajustar','cambiar','bajar','mejorar','respetar','cumplir','conservar','garantizar','revisar','terminar','recibir','quedar','trabajar','autorizar','dejar','responder','preparar','hablar','negociar','modificar','adelantar','aplazar','reprogramar','decidir','permitir','asegurar','reservar','completar','finalizar','presentar','coordinar','comprar','vender','solicitar','informar','llamar','escribir','aumentar','añadir','cobrar','aplicar','cubrir','existir','subir','conceder','vencer'];
+      regularPresentInfinitives.forEach(inf=>{
+        const ending=inf.slice(-2);
+        const stem=inf.slice(0,-2);
+        const endings=ending==='ar'?['o','as','a','amos','áis','an']:ending==='er'?['o','es','e','emos','éis','en']:['o','es','e','imos','ís','en'];
+        addPresentParadigm(endings.map(end=>stem+end));
+      });
+      const pastSiForms=new Set();
+      const addPastForms=inf=>{
+        const ending=inf.slice(-2), stem=inf.slice(0,-2);
+        const pret=ending==='ar'?['é','aste','ó','amos','asteis','aron']:['í','iste','ió','imos','isteis','ieron'];
+        const imp=ending==='ar'?['aba','abas','aba','ábamos','abais','aban']:['ía','ías','ía','íamos','íais','ían'];
+        [...pret,...imp].map(end=>stem+end).forEach(form=>{if(!presentForms.has(form)) pastSiForms.add(form);});
+      };
+      [...regularPresentInfinitives,'mantener','poder','tener','hacer','decir','venir','poner','saber','querer'].forEach(addPastForms);
+      [
+        'mantuve','mantuviste','mantuvo','mantuvimos','mantuvisteis','mantuvieron',
+        'pude','pudiste','pudo','pudimos','pudisteis','pudieron',
+        'tuve','tuviste','tuvo','tuvimos','tuvisteis','tuvieron',
+        'hice','hiciste','hizo','hicimos','hicisteis','hicieron',
+        'dije','dijiste','dijo','dijimos','dijisteis','dijeron',
+        'vine','viniste','vino','vinimos','vinisteis','vinieron',
+        'puse','pusiste','puso','pusimos','pusisteis','pusieron',
+        'supe','supiste','supo','supimos','supisteis','supieron',
+        'quise','quisiste','quiso','quisimos','quisisteis','quisieron',
+        'fui','fuiste','fue','fuimos','fuisteis','fueron','era','eras','éramos','erais','eran'
+      ].forEach(form=>{if(!presentForms.has(form)) pastSiForms.add(form);});
+      function hasSiPast(value){
+        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
+          const clause=coreSiClause(match[1]);
+          const tokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]).map(token=>token.toLowerCase());
+          if(tokens.some(token=>pastSiForms.has(token))) return true;
+        }
+        return false;
+      }
+      const nominalDeterminers=new Set(['el','la','los','las','un','una','unos','unas','este','esta','estos','estas','ese','esa','esos','esas','aquel','aquella','aquellos','aquellas','mi','mis','tu','tus','su','sus','nuestro','nuestra','nuestros','nuestras']);
+      const singularNominalDeterminers=new Set(['el','la','un','una','este','esta','ese','esa','aquel','aquella','mi','tu','su','nuestro','nuestra']);
+      const pluralNominalDeterminers=new Set(['los','las','unos','unas','estos','estas','esos','esas','aquellos','aquellas','mis','tus','sus','nuestros','nuestras']);
+      const subjectPrepositions=new Set(['a','ante','bajo','con','contra','de','desde','durante','en','entre','hacia','hasta','para','por','según','sin','sobre','tras']);
+      function isPrepositionGovernedItem(tokens,index,start=0){
+        const previous=tokens[index-1]||'';
+        if(subjectPrepositions.has(previous)) return true;
+        if(/^(?:y|o)$/.test(previous)){
+          for(let j=index-2;j>=start;j--){
+            if(/^(?:pero|aunque|porque|que|si)$/.test(tokens[j])) break;
+            if(tokens[j]==='hay'||presentForms.has(tokens[j])) break;
+            if(subjectPrepositions.has(tokens[j])) return true;
+          }
+        }
+        return false;
+      }
+      function coreSiClause(clause){
+        return clause.split(/\b(?:porque|ya que|puesto que|dado que|aunque|pero|pues)\b/i)[0].trim();
+      }
+      function hasSiConditional(value){
+        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
+          const clause=coreSiClause(match[1]);
+          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]);
+          const tokens=rawTokens.map(token=>token.toLowerCase());
+          for(let i=0;i<tokens.length;i++){
+            const token=tokens[i];
+            const looksConditional=regularConditionalTokenPattern.test(token)||irregularConditionalTokenPattern.test(token);
+            if(!looksConditional) continue;
+            // Evita confundir nombres propios como «María» con una forma condicional.
+            if(/^[A-ZÁÉÍÓÚÜÑ]/.test(rawTokens[i])) continue;
+            // Evita sustantivos precedidos por determinante cuando coinciden formalmente.
+            if(nominalDeterminers.has(tokens[i-1]||'')) continue;
+            return true;
+          }
+        }
+        return false;
+      }
+      function hasSiFuture(value){
+        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
+          const clause=coreSiClause(match[1]);
+          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]);
+          const tokens=rawTokens.map(token=>token.toLowerCase());
+          for(let i=0;i<tokens.length;i++){
+            const token=tokens[i];
+            if(!(regularFutureTokenPattern.test(token)||irregularFutureTokenPattern.test(token))) continue;
+            if(/^[A-ZÁÉÍÓÚÜÑ]/.test(rawTokens[i])) continue;
+            return true;
+          }
+        }
+        return false;
+      }
+      const subjectPronounPerson=new Map([
+        ['yo','1s'],['tú','2s'],['usted','3s'],['él','3s'],['ella','3s'],
+        ['nosotros','1p'],['nosotras','1p'],['vosotros','2p'],['vosotras','2p'],
+        ['ustedes','3p'],['ellos','3p'],['ellas','3p']
+      ]);
+      function nominalSubjectNumber(tokens,verbIndex){
+        // «tokens» ya llega limitado a la ventana local de la cláusula; conservarla completa
+        // permite reconocer preposiciones que gobiernan un complemento coordinado.
+        const start=0;
+        for(let i=verbIndex-1;i>=start;i--){
+          if(/^(?:o|pero|aunque|porque|que)$/.test(tokens[i])) break;
+          // «lo/la/los/las» justo antes del verbo pueden ser pronombres de objeto:
+          // «los clientes la aceptan», «el cliente los acepta». No deben decidir
+          // el número del sujeto; seguimos buscando el determinante del sujeto.
+          if(i===verbIndex-1 && /^(?:lo|la|los|las)$/.test(tokens[i])) continue;
+          if(singularNominalDeterminers.has(tokens[i])) {
+            if(isPrepositionGovernedItem(tokens,i,start)) continue;
+            return 'singular';
+          }
+          if(pluralNominalDeterminers.has(tokens[i])) {
+            if(isPrepositionGovernedItem(tokens,i,start)) continue;
+            return 'plural';
+          }
+        }
+        return '';
+      }
+      const isProperNameToken=token=>/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’-]*$/.test(token);
+      function expectedSubjectPersons(tokens,verbIndex,rawTokens=tokens){
+        const start=Math.max(0,verbIndex-6);
+        let localStart=start;
+        let lastY=-1;
+        for(let i=verbIndex-1;i>=start;i--){
+          if(tokens[i]==='y'){lastY=i;break;}
+          if(/^(?:o|pero|aunque|porque|que)$/.test(tokens[i])) break;
+        }
+        if(lastY>=0){
+          const beforeY=tokens.slice(start,lastY);
+          const afterY=tokens.slice(lastY+1,verbIndex);
+          const priorFiniteVerb=beforeY.some(token=>token==='hay'||presentForms.has(token));
+          if(!priorFiniteVerb){
+            const span=tokens.slice(start,verbIndex);
+            const pronouns=span.filter((token,offset)=>subjectPronounPerson.has(token)&&!isPrepositionGovernedItem(tokens,start+offset,start));
+            if(pronouns.length){
+              if(pronouns.some(p=>p==='yo'||p==='nosotros'||p==='nosotras')) return new Set(['1p']);
+              if(pronouns.some(p=>p==='vosotros'||p==='vosotras')) return new Set(['2p']);
+              // Con «tú» + otra persona, la concordancia puede ser 2.ª plural
+              // (vosotros, España) o 3.ª plural (ustedes, gran parte de América).
+              if(pronouns.includes('tú')) return new Set(['2p','3p']);
+              return new Set(['3p']);
+            }
+            const leftHasNominal=beforeY.some((token,offset)=>(singularNominalDeterminers.has(token)||pluralNominalDeterminers.has(token))&&!isPrepositionGovernedItem(tokens,start+offset,start));
+            const rightHasNominal=afterY.some((token,offset)=>(singularNominalDeterminers.has(token)||pluralNominalDeterminers.has(token))&&!isPrepositionGovernedItem(tokens,lastY+1+offset,start));
+            const leftHasProper=rawTokens.slice(start,lastY).some((token,offset)=>isProperNameToken(token)&&!isPrepositionGovernedItem(tokens,start+offset,start));
+            const rightHasProper=rawTokens.slice(lastY+1,verbIndex).some((token,offset)=>isProperNameToken(token)&&!isPrepositionGovernedItem(tokens,lastY+1+offset,start));
+            if((leftHasNominal||leftHasProper)&&(rightHasNominal||rightHasProper)) return new Set(['3p']);
+          }else{
+            // Si «y» une dos cláusulas («revisamos... y la fecha cambia»),
+            // la concordancia del segundo verbo depende solo del sujeto posterior a «y».
+            localStart=lastY+1;
+          }
+        }
+        for(let i=verbIndex-1;i>=localStart;i--){
+          if(/^(?:y|o|pero|aunque|porque|que)$/.test(tokens[i])) break;
+          const person=subjectPronounPerson.get(tokens[i]);
+          if(person) {
+            if(isPrepositionGovernedItem(tokens,i,localStart)) continue;
+            return new Set([person]);
+          }
+        }
+        const localTokens=tokens.slice(localStart,verbIndex+1);
+        const localVerbIndex=localTokens.length-1;
+        const number=nominalSubjectNumber(localTokens,localVerbIndex);
+        if(number==='singular') return new Set(['3s']);
+        if(number==='plural') return new Set(['3p']);
+        const previousIndex=verbIndex-1;
+        if(previousIndex>=localStart && isProperNameToken(rawTokens[previousIndex]||'') && !isPrepositionGovernedItem(tokens,previousIndex,localStart)) return new Set(['3s']);
+        return null;
+      }
+      function personsCompatible(actual,expected){
+        if(!expected) return true;
+        return [...actual].some(person=>expected.has(person));
+      }
+      function hasPresentCondition(value){
+        let foundValidPresent=false;
+        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
+          const clause=coreSiClause(match[1]);
+          if(hasSiConditional('si '+clause)) continue;
+          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’-]+/g)||[]);
+          const tokens=rawTokens.map(token=>token.toLowerCase());
+          let clauseHasPresent=false;
+          let clauseHasAgreementError=false;
+          for(let i=0;i<tokens.length;i++){
+            const token=tokens[i];
+            if(token==='hay'){
+              const expected=expectedSubjectPersons(tokens,i,rawTokens);
+              if(!expected) clauseHasPresent=true;
+              continue;
+            }
+            const persons=presentForms.get(token);
+            if(!persons) continue;
+            // Distingue determinantes de pronombres de objeto. «el pago» y «la entrega es...»
+            // contienen nombres homógrafos de formas verbales, pero «los clientes la aceptan»
+            // y «el cliente la entrega mañana» contienen pronombres de objeto + verbo.
+            const previous=tokens[i-1]||'';
+            const cliticLike=/^(?:la|los|las)$/.test(previous);
+            if(nominalDeterminers.has(previous)){
+              if(!cliticLike) continue;
+              const nominalHomographs=new Set(['pago','entrega','cambio','trabajo','acuerdo','bajo','baja','completo','completa','aumento','reserva','firma','compra','mejora','envío']);
+              const laterFinite=tokens.slice(i+1).some(next=>next==='hay'||presentForms.has(next));
+              const prior=tokens.slice(0,Math.max(0,i-1));
+              const hasPriorExplicitSubject=prior.some((item,index)=>
+                subjectPronounPerson.has(item)||singularNominalDeterminers.has(item)||pluralNominalDeterminers.has(item)||isProperNameToken(rawTokens[index]||'')
+              );
+              if(nominalHomographs.has(token) && (laterFinite || (i===tokens.length-1 && !hasPriorExplicitSubject))) continue;
+            }
+            let expected=expectedSubjectPersons(tokens,i,rawTokens);
+            if(!expected && tokens[i-1]==='se'){
+              // En construcciones con «se» y sujeto pospuesto, el verbo debe concordar
+              // con ese grupo nominal: «se mantiene el precio» / «se mantienen los precios».
+              const next=tokens[i+1]||'';
+              if(singularNominalDeterminers.has(next)) expected=new Set(['3s']);
+              else if(pluralNominalDeterminers.has(next)) expected=new Set(['3p']);
+            }
+            if(!expected){
+              // Un pronombre sujeto también puede ir después del verbo: «si mantienen ellos...».
+              // No confundimos pronombres regidos por preposición: «para ellos», «con usted», etc.
+              for(let j=i+1;j<Math.min(tokens.length,i+5);j++){
+                if(/^(?:y|o|pero|aunque|porque|que|si)$/.test(tokens[j])) break;
+                const postPerson=subjectPronounPerson.get(tokens[j]);
+                if(!postPerson) continue;
+                if(subjectPrepositions.has(tokens[j-1]||'')) continue;
+                expected=new Set([postPerson]);
+                break;
+              }
+            }
+            if(expected && !personsCompatible(persons,expected)){
+              clauseHasAgreementError=true;
+              continue;
+            }
+            clauseHasPresent=true;
+          }
+          // Una cláusula no se considera válida si contiene una forma verbal reconocida
+          // que no concuerda con su sujeto explícito, aunque después aparezca otro verbo correcto.
+          if(clauseHasAgreementError) return false;
+          if(clauseHasPresent) foundValidPresent=true;
+        }
+        return foundValidPresent;
+      }
+      const infinitiveAfter = '(?:ir|[a-záéíóúüñ]+(?:ar|er|ir))(?:me|te|se|nos|os|lo|la|los|las|le|les)?';
+      const politeSubject = '(?:yo|tú|vos|usted|él|ella|nosotros|nosotras|vosotros|vosotras|ustedes|ellos|ellas)';
+      const politeSubjectPattern = '(?:\\s+' + politeSubject + ')?';
+      const politeQuestionPattern = new RegExp('(?:sería\\s+posible\\s+' + infinitiveAfter + '|podrí(?:a|as|amos|ais|an)' + politeSubjectPattern + '\\s+' + infinitiveAfter + '|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)\\s+' + infinitiveAfter + ')', 'i');
+      const politeProductionPattern = new RegExp('(?:sería\\s+posible\\s+' + infinitiveAfter + '|podrí(?:a|as|amos|ais|an)' + politeSubjectPattern + '\\s+' + infinitiveAfter + '|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)\\s+' + infinitiveAfter + '|(?:me|te|nos|os|le|les)\\s+gustaría\\s+' + infinitiveAfter + ')', 'i');
+      const negativePoliteProductionPattern = new RegExp('\\b(?:no|nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:(?:me|te|nos|os|le|les)\\s+)?sería\\s+posible\\b|\\b(?:no|nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:podrí(?:a|as|amos|ais|an)(?:\\s+' + politeSubject + ')?|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)|(?:me|te|nos|os|le|les)\\s+gustaría)\\b', 'i');
+      const blockingPoliteAdverbPattern = new RegExp('\\b(?:nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:(?:me|te|nos|os|le|les)\\s+)?sería\\s+posible\\b|\\b(?:nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:podrí(?:a|as|amos|ais|an)(?:\\s+' + politeSubject + ')?|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)|(?:me|te|nos|os|le|les)\\s+gustaría)\\b', 'i');
+      const poderSubjectAgreement = {
+        'podría': new Set(['yo','usted','él','ella']),
+        'podrías': new Set(['tú','vos']),
+        'podríamos': new Set(['nosotros','nosotras']),
+        'podríais': new Set(['vosotros','vosotras']),
+        'podrían': new Set(['ustedes','ellos','ellas'])
+      };
+      function hasInvalidPoliteSubjectAgreement(value){
+        // Evita \b alrededor de pronombres con tilde (tú, él), porque en JavaScript
+        // ese límite de palabra es ASCII y puede no reconocer correctamente esos casos.
+        const subjectEnd = '(?=\\s|[,.;:?!)]|$)';
+        const beforeVerb = new RegExp('(?:^|[¿¡(\\s])(' + politeSubject + ')\\s+(podría|podrías|podríamos|podríais|podrían)\\b', 'gi');
+        const afterVerb = new RegExp('\\b(podría|podrías|podríamos|podríais|podrían)\\s+(' + politeSubject + ')' + subjectEnd, 'gi');
+        const afterInfinitive = new RegExp('\\b(podría|podrías|podríamos|podríais|podrían)\\s+' + infinitiveAfter + '\\s+(' + politeSubject + ')' + subjectEnd, 'gi');
+        for(const match of value.matchAll(beforeVerb)){
+          if(!poderSubjectAgreement[match[2].toLowerCase()]?.has(match[1].toLowerCase())) return true;
+        }
+        for(const match of value.matchAll(afterVerb)){
+          if(!poderSubjectAgreement[match[1].toLowerCase()]?.has(match[2].toLowerCase())) return true;
+        }
+        for(const match of value.matchAll(afterInfinitive)){
+          if(!poderSubjectAgreement[match[1].toLowerCase()]?.has(match[2].toLowerCase())) return true;
+        }
+        // El sujeto también puede aparecer al final del complemento:
+        // «¿Podría revisar el precio usted?». Comprobamos esa posición sin confundir
+        // pronombres regidos por una preposición: «para vosotros», «con usted», etc.
+        const poderForm = /\b(podría|podrías|podríamos|podríais|podrían)\b/gi;
+        const prepositions = new Set(['a','ante','bajo','con','contra','de','desde','durante','en','entre','hacia','hasta','para','por','según','sin','sobre','tras']);
+        const wordPattern = /[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g;
+        for(const match of value.matchAll(poderForm)){
+          const form=match[1].toLowerCase();
+          const start=(match.index||0)+match[0].length;
+          const tail=value.slice(start).split(/[.!?;\n]|\b(?:y|o|pero|aunque|porque|si|que|mientras|cuando|donde|como|sin\s+embargo|no\s+obstante|en\s+cambio)\b/i)[0];
+          const words=[...tail.matchAll(wordPattern)];
+          for(let i=0;i<words.length;i++){
+            const subject=words[i][0].toLowerCase();
+            if(!subjectPronounPerson.has(subject)) continue;
+            const previous=(words[i-1]?.[0]||'').toLowerCase();
+            if(prepositions.has(previous)) continue;
+            if(!poderSubjectAgreement[form]?.has(subject)) return true;
+          }
+        }
+        return false;
+      }
+      function hasPoliteQuestionForm(value){
+        return !hasInvalidPoliteSubjectAgreement(value) && !blockingPoliteAdverbPattern.test(value) && politeQuestionPattern.test(value);
+      }
+      function hasPoliteProductionForm(value){
+        return !hasInvalidPoliteSubjectAgreement(value) && !blockingPoliteAdverbPattern.test(value) && politeProductionPattern.test(value);
+      }
+      const invalidSiPoliteQuestionPattern = /\bsi\s+(?:sería\s+posible|podrí(?:a|as|amos|ais|an)\b)/i;
+      const podriamosProductionPattern = new RegExp('\\bpodríamos\\s+' + infinitiveAfter + '\\b', 'i');
+      const dateContextPattern=/\b(?:fecha|fechas|día|días|semana|semanas|plazo|plazos|entrega|entregas|lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy)\b/i;
+      const dateNounPattern='(?:fecha|fechas|plazo|plazos|entrega|entregas|día|días)';
+      const cliticSuffix='(?:me|te|se|nos|os|lo|la|los|las|le|les)?';
+      const explicitDateChangePattern=new RegExp(String.raw`\b(?:cambiar|mover)${cliticSuffix}(?:\s+[a-záéíóúüñ]+){0,3}\s+${dateNounPattern}\b`,'i');
+      const dateReferencePattern=String.raw`(?:lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy|(?:(?:un|una|dos|tres|cuatro|cinco|\d+)\s+(?:día|días|semana|semanas)))`;
+      const cliticDateChangePattern=new RegExp(String.raw`\b(?:cambiar|mover)(?:lo|la|los|las)\b(?:\s+(?!(?:y|o|ni|pero|aunque)\b)[a-záéíóúüñ]+){0,3}\s+(?:(?:al)|(?:(?:para|hasta|por)(?:\s+el)?))?\s*${dateReferencePattern}\b`,'i');
+      const scheduleVerbPattern=new RegExp('\\b(?:adelantar|aplazar|posponer|retrasar|reprogramar|programar|agendar|fijar|acordar|negociar|proponer|definir|pactar|concertar|establecer|buscar|elegir|escoger|coordinar)(?:\\s+(?:la|el|las|los|una|un|unas|unos|otra|otro|otras|otros|nueva|nuevo|nuevas|nuevos)){0,2}\\s+'+dateNounPattern+'\\b','i');
+      const scheduleCliticDatePattern=new RegExp(String.raw`\b(?:adelantar|aplazar|posponer|retrasar|reprogramar|programar|agendar|fijar)(?:lo|la|los|las)\b(?:\s+(?!(?:y|o|ni|pero|aunque)\b)[a-záéíóúüñ]+){0,3}\s+(?:(?:al)|(?:(?:para|hasta|por)(?:\s+el)?))?\s*${dateReferencePattern}\b`,'i');
+      const dateObjectVerbPattern=new RegExp('\\b(?:revisar|modificar|ajustar|confirmar)'+cliticSuffix+'(?:\\s+[a-záéíóúüñ]+){0,3}\\s+'+dateNounPattern+'\\b','i');
+      const datedActionPattern=new RegExp('\\b(?:entregar|recibir|enviar|tener|presentar|terminar|finalizar)'+cliticSuffix+'\\b(?:\\s+(?!(?:y|o|ni|pero|aunque)\\b)[a-záéíóúüñ]+){0,6}\\s+(?:(?:el|para|hasta\\s+el|antes\\s+del)\\s+)?(?:lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy|fecha|fechas|plazo|plazos)\\b','i');
+      function hasDateNegotiationInSegment(segment){
+        if(!dateContextPattern.test(segment)) return false;
+        return explicitDateChangePattern.test(segment) || cliticDateChangePattern.test(segment) || scheduleVerbPattern.test(segment) || scheduleCliticDatePattern.test(segment) || dateObjectVerbPattern.test(segment) || datedActionPattern.test(segment);
+      }
+      function normalizePoliteInsertions(value){
+        return value.replace(/,\s*(?:por favor|si\s+(?:te|le|les|os)\s+parece)\s*,/gi,' ');
+      }
+      function hasPoliteDateProposal(value, politePattern){
+        // Conserva incisos breves dentro de la propuesta («por favor», «si les parece»),
+        // pero separa giros de contraste para no mezclar una propuesta sobre precio con
+        // una segunda cláusula independiente que simplemente menciona una fecha.
+        const normalized=normalizePoliteInsertions(value);
+        const segments=normalized.split(/[.!?;\n]+|(?:,\s*|\s+)(?=(?:pero|aunque|sin\s+embargo|no\s+obstante|en\s+cambio)\b)/i);
+        return segments.some(segment => {
+          const isNoSuggestionQuestion=/^\s*¿\s*no\s+/i.test(segment);
+          const blockedByNegative=negativePoliteProductionPattern.test(segment) && !isNoSuggestionQuestion;
+          return politePattern.test(segment) && !blockedByNegative && !blockingPoliteAdverbPattern.test(segment) && hasDateNegotiationInSegment(segment);
+        });
+      }
+      function hasBriefReason(value){
+        for(const match of value.matchAll(/\b(?:porque|ya que)\s+([^.!?;]+)/gi)){
+          const reason=match[1].trim().replace(/[,\s]+$/g,'');
+          if(!reason || /^(?:sí|si|no)$/i.test(reason)) continue;
+          if(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(reason)) return true;
+        }
+        return false;
+      }
+      const priceRequestVerbPattern=/\b(?:revisar|ajustar|negociar|modificar|bajar|reducir|cambiar|mantener|mejorar)(?:me|te|se|nos|os|lo|la|los|las|le|les)?\b/i;
+      const acceptanceVerbPattern=/\b(?:acepto|aceptamos|aceptaría|aceptaríamos|puedo\s+aceptar|podemos\s+aceptar|podría\s+aceptar|podríamos\s+aceptar|confirmo|confirmamos|puedo\s+confirmar|podemos\s+confirmar)\b/i;
+      const acceptanceAgreementPattern=/\b(?:estoy|estamos)\s+de\s+acuerdo\b|\b(?:me|nos)\s+parece\s+(?:bien|perfecto)\b|\b(?:me|nos)\s+(?:funciona|sirve|va\s+bien)\b|\b(?:la|esta|esa)\s+(?:propuesta|opción|condición)\s+(?:(?:me|nos)\s+(?:funciona|sirve|va\s+bien)|está\s+bien)\b/i;
+      const acceptanceMarkerPattern=/(?:^|[.!?]\s*|,\s*|\b(?:pero|aunque)\s+)(?:sí|claro|por\s+supuesto|de\s+acuerdo|está\s+bien|vale|perfecto)(?=\s*(?:$|[.!?](?:\s|$)|[,;:]\s*si\b|si\b))/i;
+      const negativeAcceptancePattern=/\b(?:(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:acepto|aceptamos|aceptaría|aceptaríamos|puedo\s+aceptar|podemos\s+aceptar|podría\s+aceptar|podríamos\s+aceptar|está\s+bien|me\s+parece\s+(?:bien|perfecto)|nos\s+parece\s+(?:bien|perfecto)|vale|confirmo|confirmamos|puedo\s+confirmar|podemos\s+confirmar|me\s+(?:funciona|sirve|va\s+bien)|nos\s+(?:funciona|sirve|va\s+bien))|(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:estoy|estamos)\s+de\s+acuerdo|(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:es|está|sería)\s+perfecto)\b/i;
+      const negativeAfterAcceptanceMarkerPattern=/(?:^|[.!?]\s*|,\s*)(?:sí|claro|por\s+supuesto|de\s+acuerdo|está\s+bien|vale|perfecto)\s*[,;:]?\s*(?:(?:pero|aunque)\s+)?(?:no|nunca|jamás|tampoco|ni\s+siquiera)\b/i;
+      function lastPatternIndex(value,pattern){
+        const flags=pattern.flags.includes('g')?pattern.flags:pattern.flags+'g';
+        const re=new RegExp(pattern.source,flags);
+        let last=-1;
+        for(const match of value.matchAll(re)) last=Math.max(last,match.index??-1);
+        return last;
+      }
+      function maskPattern(value,pattern){
+        const flags=pattern.flags.includes('g')?pattern.flags:pattern.flags+'g';
+        const re=new RegExp(pattern.source,flags);
+        return value.replace(re,match=>' '.repeat(match.length));
+      }
+      function hasAcceptance(value){
+        // Decide por el último acto explícito de aceptación/rechazo. Así una negativa previa
+        // no invalida una aceptación posterior, pero un rechazo posterior sí anula un
+        // marcador inicial: «Sí, si mantienen el precio, no aceptamos».
+        const lastNegative=lastPatternIndex(value,negativeAcceptancePattern);
+        const positiveText=maskPattern(value,negativeAcceptancePattern);
+        const lastPositive=Math.max(
+          lastPatternIndex(positiveText,acceptanceVerbPattern),
+          lastPatternIndex(positiveText,acceptanceAgreementPattern),
+          lastPatternIndex(positiveText,acceptanceMarkerPattern)
+        );
+        return lastPositive>=0 && lastPositive>lastNegative;
+      }
+      const recallChecks = {
+        1: value => hasPoliteDateProposal(value, podriamosProductionPattern),
+        2: value => [...value.matchAll(/¿[^?]*\?/g)].some(match => {
+          const question=normalizePoliteInsertions(match[0]);
+          return !invalidSiPoliteQuestionPattern.test(question) &&
+            hasPoliteQuestionForm(question) && /\bprecio\b/i.test(question) && priceRequestVerbPattern.test(question);
+        }),
+        3: value => hasPresentCondition(value) && !hasSiConditional(value) && !hasSiFuture(value) && !hasSiPast(value) &&
+          hasAcceptance(value) && value.trim().split(/\s+/).length >= 5
+      };
+      const recallGood = {
+        1:'Has recuperado “podríamos” y has construido una propuesta propia.',
+        2:'Has usado una forma de petición cortés relacionada con el precio.',
+        3:'Has formulado una aceptación e incluido una condición con “si + presente”. Revisa que ambas expresen lo que necesitas negociar.'
+      };
+      const recallBad = {
+        1:'Propón cambiar una fecha o un plazo con “podríamos + infinitivo”, por ejemplo: “Podríamos cambiar la fecha”.',
+        2:'Formula en una misma pregunta cortés la petición de revisar o ajustar el precio, por ejemplo: “¿Sería posible revisar el precio?”.',
+        3:'Acepta la propuesta e incluye una condición con “si + presente”, por ejemplo: “Podemos aceptar si mantienen el precio”.'
+      };
+      document.querySelectorAll('.recall-check').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const n=Number(btn.dataset.check); const input=$('recall'+n); const good=recallChecks[n](input.value);
+          const fb=$('recallFeedback'+n); fb.className='feedback show '+(good?'good':'bad'); fb.innerHTML=(good?'<strong>Funciona.</strong> ':'<strong>Revisa.</strong> ')+(good?recallGood[n]:recallBad[n]);
+          if(good) state.recallDone.add(n); else state.recallDone.delete(n);
+          const recallComplete=state.recallDone.size===3;
+          $('recallContinue').disabled=!recallComplete;
+          if(recallComplete) complete('recall'); else uncomplete('recall');
+        });
+      });
+      [1,2,3].forEach(n => {
+        $('recall'+n).addEventListener('input', () => {
+          const wasValidated = state.completed.has('recall') || state.recallDone.has(n);
+          state.recallDone.delete(n);
+          const fb=$('recallFeedback'+n);
+          fb.className='feedback';
+          fb.innerHTML='';
+          if (wasValidated) {
+            $('recallContinue').disabled=true;
+            uncomplete('recall');
+          }
+        });
+      });
+      $('recallContinue').addEventListener('click', () => showScreen(7));
+
+      // Simulation
+      let simIndex=0;
+      const simSteps=[...document.querySelectorAll('.sim-step')];
+      simSteps.forEach(step=>{const heading=step.querySelector('h3');if(heading)heading.tabIndex=-1;});
+      const simDoneHeading=$('simDone').querySelector('h3');
+      if(simDoneHeading) simDoneHeading.tabIndex=-1;
+      function showSim(i, focusStep=false){
+        simSteps.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+        if(focusStep){
+          const heading=simSteps[i]&&simSteps[i].querySelector('h3');
+          if(heading) setTimeout(()=>heading.focus({preventScroll:true}),0);
+        }
+      }
+      simSteps.forEach((step, idx) => {
+        step.querySelectorAll('.sim-choice').forEach(choice => {
+          choice.setAttribute('aria-pressed','false');
+          choice.addEventListener('click', () => {
+            // Si la simulación venía completada de una sesión anterior y el estudiante
+            // vuelve a interactuar con ella, deja de considerarse completada hasta recorrerla otra vez.
+            if (state.completed.has('simulation')) {
+              uncomplete('simulation');
+              $('simContinue').disabled=true;
+              $('simDone').classList.add('hide');
+            }
+            const good=choice.dataset.good==='true';
+            step.querySelectorAll('.sim-choice').forEach(c=>{c.classList.remove('selected','correct','wrong');c.setAttribute('aria-pressed','false');});
+            choice.classList.add('selected',good?'correct':'wrong');
+            choice.setAttribute('aria-pressed','true');
+            const fb=step.querySelector('.sim-feedback'); fb.className='feedback sim-feedback show '+(good?'good':'bad');
+            const selectedText=choice.textContent.trim();
+            let message='';
+            if(good){
+              message=[
+                '“¿Sería posible...?” formula la propuesta con cortesía.',
+                'La frase combina contrapropuesta y condición: “podríamos aceptar... si mantienen...”.',
+                'La frase confirma el acuerdo y añade una acción concreta.'
+              ][idx];
+            }else if(idx===0 && selectedText.startsWith('La entrega tiene que')){
+              message='La frase es correcta, pero expresa la exigencia de forma muy directa. Aquí buscas una propuesta negociable, por ejemplo con “¿Sería posible...?”.';
+            }else if(idx===0){
+              message='Después de “si” no usamos el condicional en esta condición real. Di “si pueden entregar...”, no “si podrían entregar...”.';
+            }else if(idx===1 && selectedText.startsWith('No.')){
+              message='La frase es comprensible, pero cierra la negociación y no expresa la condición solicitada. Formula qué aceptarías si mantienen el precio.';
+            }else if(idx===1){
+              message='Después de “si” usa presente en esta condición: “si mantienen el precio”, no “si mantendrían el precio”.';
+            }else if(idx===2 && selectedText==='Bueno.'){
+              message='“Bueno” por sí solo no confirma con claridad que aceptas la condición. Expresa el acuerdo de forma explícita.';
+            }else{
+              message='La frase expresa una preferencia, pero no confirma con claridad el acuerdo ni el siguiente paso.';
+            }
+            fb.innerHTML=(good?'<strong>Funciona.</strong> ':'<strong>Revisa.</strong> ')+message;
+            if(good){
+              step.querySelectorAll('.sim-choice').forEach(c=>c.disabled=true);
+              setTimeout(()=>{
+                if(idx<simSteps.length-1){
+                  simIndex=idx+1;
+                  showSim(simIndex,true);
+                }else{
+                  $('simDone').classList.remove('hide');
+                  complete('simulation');
+                  $('simContinue').disabled=false;
+                  if(simDoneHeading) simDoneHeading.focus({preventScroll:true});
+                }
+              },500);
+            }
+          });
+        });
+      });
+      $('simContinue').addEventListener('click',()=>showScreen(8));
+      $('repeatSim').addEventListener('click',()=>{
+        uncomplete('simulation');
+        simIndex=0;
+        simSteps.forEach(step=>{
+          step.querySelectorAll('.sim-choice').forEach(c=>{c.disabled=false;c.classList.remove('selected','correct','wrong');c.setAttribute('aria-pressed','false');});
+          const fb=step.querySelector('.sim-feedback'); fb.className='feedback sim-feedback'; fb.innerHTML='';
+        });
+        $('simDone').classList.add('hide');
+        $('simContinue').disabled=true;
+        showSim(0);
+        showScreen(7);
+      });
+
+      // Variation
+      $('variationCheck').addEventListener('click',()=>{
+        const value=$('variationText').value.trim();
+        const hasPolite=hasPoliteProductionForm(normalizePoliteInsertions(value));
+        const hasCondition=hasPresentCondition(value);
+        const hasInvalidSiConditional=hasSiConditional(value);
+        const hasInvalidSiFuture=hasSiFuture(value);
+        const hasInvalidSiPast=hasSiPast(value);
+        const hasReason=hasBriefReason(value);
+        const hasDateNegotiation=hasPoliteDateProposal(value, politeProductionPattern);
+        const longEnough=value.split(/\s+/).filter(Boolean).length>=10;
+        const sentenceCount=value.split(/[.!?]+/).map(part=>part.trim()).filter(Boolean).length;
+        const hasRequiredSentenceCount=sentenceCount>=2&&sentenceCount<=3;
+        const fb=$('variationFeedback');
+        if(hasPolite&&hasCondition&&!hasInvalidSiConditional&&!hasInvalidSiFuture&&!hasInvalidSiPast&&hasReason&&hasDateNegotiation&&longEnough&&hasRequiredSentenceCount){
+          fb.className='feedback show good';
+          fb.innerHTML='<strong>Has incluido las estructuras solicitadas.</strong> La comprobación es orientativa: revisa que el verbo de tu condición esté en presente, que la razón explique tu decisión y que tu frase sea natural. Después, léela en voz alta.';
+          complete('variation'); $('variationContinue').disabled=false;
+        }else{
+          uncomplete('variation');
+          $('variationContinue').disabled=true;
+          fb.className='feedback show bad';
+          const missing=[]; if(!hasPolite)missing.push('una forma como “sería posible”, “podríamos” o “nos gustaría”'); if(!hasCondition)missing.push('una condición con “si + presente” (por ejemplo, “si mantienen el precio”)'); if(hasInvalidSiConditional||hasInvalidSiFuture||hasInvalidSiPast)missing.push('“si + presente”, no pasado, futuro ni condicional, en esta condición real'); if(!hasReason)missing.push('una razón breve con “porque” o “ya que”'); if(!hasDateNegotiation)missing.push('una propuesta relacionada con la fecha o el plazo de entrega'); if(!longEnough)missing.push('un poco más de desarrollo'); if(!hasRequiredSentenceCount)missing.push('una intervención de 2 o 3 frases');
+          fb.innerHTML='<strong>Falta ajustar la producción.</strong> Intenta incluir '+missing.join(', ')+'.';
+        }
+      });
+      $('variationText').addEventListener('input',()=>{
+        const wasComplete = state.completed.has('variation');
+        $('variationFeedback').className='feedback';
+        $('variationFeedback').innerHTML='';
+        if (wasComplete) {
+          uncomplete('variation');
+          $('variationContinue').disabled=true;
+        }
+      });
+      $('variationContinue').addEventListener('click',()=>showScreen(9));
+
+      // Timer + oral checklist
+      let timerSeconds=60, timerId=null;
+      function paintTimer(){const m=String(Math.floor(timerSeconds/60)).padStart(2,'0');const s=String(timerSeconds%60).padStart(2,'0');$('timer').textContent=m+':'+s;}
+      $('timerBtn').addEventListener('click',()=>{
+        if(timerId) return;
+        $('timerBtn').textContent='Tiempo en curso'; $('timerBtn').disabled=true;
+        timerId=setInterval(()=>{timerSeconds--;paintTimer();if(timerSeconds<=0){clearInterval(timerId);timerId=null;$('timerBtn').textContent='Tiempo terminado';$('oralFeedback').className='feedback show';$('oralFeedback').textContent='Ahora marca lo que conseguiste utilizar. Si te faltó una estructura, puedes repetir el minuto.';}},1000);
+      });
+      $('timerReset').addEventListener('click',()=>{if(timerId){clearInterval(timerId);timerId=null;}timerSeconds=60;paintTimer();$('timerBtn').disabled=false;$('timerBtn').textContent='Iniciar 60 segundos';});
+      document.querySelectorAll('#oralChecklist input').forEach(cb=>cb.addEventListener('change',()=>{
+        const checks=[...document.querySelectorAll('#oralChecklist input')];
+        const coreChecked=checks.slice(0,4).every(item=>item.checked);
+        const fb=$('oralFeedback');
+        if(coreChecked){fb.className='feedback show good';fb.innerHTML='<strong>Ya tienes los cuatro recursos lingüísticos centrales.</strong> Has incluido una propuesta con condicional, una condición con “si + presente”, un rechazo o desacuerdo cortés y una razón breve. El último criterio te sirve para observar cuánta autonomía tuviste al reaccionar.';complete('oral');$('oralContinue').disabled=false;}
+        else{uncomplete('oral');$('oralContinue').disabled=true;fb.className='feedback show';fb.textContent='Marca los cuatro recursos lingüísticos centrales después de producir tu respuesta oral. Si te faltó uno, repite el minuto e intenta incorporarlo.';}
+      }));
+      $('oralContinue').addEventListener('click',()=>showScreen(10));
+
+      // Transfer
+      const transferLead = {
+        'Proveedor':'En tu próxima interacción con un proveedor',
+        'Cliente':'En tu próxima interacción con un cliente',
+        'Compañero':'En tu próxima interacción con un compañero',
+        'Proyecto':'En tu próxima conversación sobre un proyecto',
+        'Otra situación':'En otra situación profesional real'
+      };
+      function paintTransferMission(){
+        const lead=transferLead[state.selectedTransfer]||'En una próxima situación profesional';
+        $('missionCard').innerHTML=`<h3>Tu misión · ${state.selectedTransfer}</h3><p>${lead}, intenta usar <strong>una propuesta con condicional</strong> y <strong>una condición con “si + presente”</strong>. Después identifica cuál de las dos estructuras recuperaste con más facilidad.</p>`;
+      }
+      document.querySelectorAll('.transfer-btn').forEach(btn=>btn.addEventListener('click',()=>{
+        document.querySelectorAll('.transfer-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});btn.classList.add('active');btn.setAttribute('aria-pressed','true');state.selectedTransfer=btn.textContent.trim();
+        paintTransferMission();
+        complete('transfer');$('finishBtn').disabled=false;safeSave();
+      }));
+      $('finishBtn').addEventListener('click',()=>{complete('finished');showScreen(11);});
+
+      safeLoad();
+      // Restore only safe navigation/progress state; activities can be repeated after reload.
+      if(state.completed.has('warmup')) $('warmupContinue').disabled=false;
+      if(state.completed.has('quiz')) $('quizContinue').disabled=false;
+      if(state.completed.has('builders')) $('builderContinue').disabled=false;
+      if(state.completed.has('recall')) $('recallContinue').disabled=false;
+      if(state.completed.has('simulation')) $('simContinue').disabled=false;
+      if(state.completed.has('variation')) $('variationContinue').disabled=false;
+      if(state.completed.has('oral')) $('oralContinue').disabled=false;
+      if(state.completed.has('transfer')) $('finishBtn').disabled=false;
+      if(state.selectedTransfer){
+        [...document.querySelectorAll('.transfer-btn')].forEach(b=>{const active=b.textContent.trim()===state.selectedTransfer;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+        paintTransferMission();
+      }
+      showScreen(state.current,false);
+    })();
+  </script>
+</body>
+</html>
