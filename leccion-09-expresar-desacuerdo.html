@@ -222,12 +222,12 @@
       <div class="hero">
         <div class="eyebrow">Lección 9 · Maneja conversaciones difíciles</div>
         <h1 id="title-0" tabindex="-1">Expresa desacuerdo</h1>
-        <p class="tool-line"><strong>Conectores de contraste</strong> + opinión + cortesía + modalización</p>
+        <p class="tool-line"><strong>Entiendo tu punto, pero creo que…</strong> + una razón sencilla</p>
         <div class="hero-grid grid-2">
-          <div class="hero-card"><strong>Aplicación</strong>Introducir otra perspectiva, explicar tus razones y mantener una conversación profesional.</div>
-          <div class="hero-card"><strong>Al terminar</strong>Podrás expresar una posición diferente con un tono más preciso y adaptar cuánto suavizas tu mensaje.</div>
+          <div class="hero-card"><strong>Aplicación</strong>Decir que piensas algo diferente, de forma clara y respetuosa, en el trabajo.</div>
+          <div class="hero-card"><strong>Al terminar</strong>Podrás reconocer la idea de otra persona, decir lo que piensas y explicar una razón breve.</div>
         </div>
-        <p>No necesitas memorizar frases completas. Vas a observar patrones, construir tus propias respuestas y reducir el apoyo poco a poco.</p>
+        <p>Trabajarás con una frase modelo y después cambiarás las palabras para hablar de tu trabajo. Las expresiones más avanzadas serán opcionales.</p>
         <button class="btn yellow" id="startBtn">Comenzar</button>
       </div>
     </section>
@@ -240,7 +240,7 @@
         <p><strong>¿Qué respuesta mantiene el desacuerdo, pero lo presenta con más matiz?</strong></p>
         <div class="choice-list" id="warmupChoices">
           <button class="choice" data-correct="false">No. Esa idea no funciona. La entrega es el miércoles.</button>
-          <button class="choice" data-correct="true">Entiendo tu idea, pero creo que sería mejor mantener el miércoles porque el cliente la necesita antes.</button>
+          <button class="choice" data-correct="true">Entiendo tu punto, pero creo que debemos mantener el miércoles porque el cliente lo necesita antes.</button>
           <button class="choice" data-correct="false">Sí, estoy de acuerdo, aunque quiero mantener el miércoles.</button>
         </div>
         <div class="feedback" id="warmupFeedback" aria-live="polite"></div>
@@ -257,17 +257,17 @@
         <h2 id="s2title" tabindex="-1">¿Qué hace cada parte de la respuesta?</h2>
         <div class="dialogue" aria-label="Conversación profesional de ejemplo">
           <div class="bubble"><div class="speaker">MARIO</div>Propongo mover la entrega al viernes. Así tenemos dos días más para revisar.</div>
-          <div class="bubble me"><div class="speaker">SOFÍA</div><span class="highlight">Entiendo tu punto</span>, <span class="highlight">pero</span> <span class="highlight">creo que sería mejor</span> mantener el miércoles. El cliente necesita el informe antes. <span class="highlight">Quizá podríamos</span> revisar solo la parte pendiente hoy.</div>
+          <div class="bubble me"><div class="speaker">SOFÍA</div><span class="highlight">Entiendo tu punto</span>, <span class="highlight">pero</span> <span class="highlight">creo que debemos mantener el miércoles</span> <span class="highlight">porque</span> el cliente necesita el informe antes. Si quieres, podemos revisar la parte pendiente hoy.</div>
           <div class="bubble"><div class="speaker">MARIO</div>De acuerdo. Podemos revisar esa parte esta tarde.</div>
         </div>
         <p>Pulsa cada función para reconocerla en la respuesta de Sofía.</p>
         <div class="function-grid" id="functionGrid">
           <button class="function-btn" data-key="courtesy"><strong>1. Reconocer</strong>Entiendo tu punto</button>
           <button class="function-btn" data-key="contrast"><strong>2. Contrastar</strong>pero</button>
-          <button class="function-btn" data-key="opinion"><strong>3. Dar opinión</strong>creo que sería mejor</button>
-          <button class="function-btn" data-key="soften"><strong>4. Suavizar propuesta</strong>Quizá podríamos</button>
+          <button class="function-btn" data-key="opinion"><strong>3. Decir tu idea</strong>creo que debemos mantener el miércoles</button>
+          <button class="function-btn" data-key="soften"><strong>4. Dar una razón</strong>porque el cliente lo necesita</button>
         </div>
-        <div class="feedback info" id="functionFeedback" aria-live="polite">Pulsa las cuatro funciones. La idea es observar cómo se combinan.</div>
+        <div class="feedback info" id="functionFeedback" aria-live="polite">Pulsa las cuatro partes de la frase: reconocer + pero + tu idea + porque.</div>
         <div class="nav">
           <button class="btn ghost" data-back="1">Anterior</button>
           <button class="btn primary" id="s2Next" disabled>Continuar</button>
@@ -278,59 +278,53 @@
     <section class="screen" data-screen="3" aria-labelledby="s3title">
       <div class="panel">
         <div class="section-kicker">3 · Aprende la herramienta</div>
-        <h2 id="s3title" tabindex="-1">Cuatro recursos para expresar una posición diferente</h2>
-        <p class="lead">No todas las frases tienen el mismo grado de fuerza. Puedes combinar estos recursos según la situación y la relación con la otra persona.</p>
+        <h2 id="s3title" tabindex="-1">Una frase útil para expresar desacuerdo</h2>
+        <p class="lead">Empieza con una frase que puedes usar en reuniones y conversaciones del trabajo. Cambia solo la idea y la razón.</p>
+        <div class="formula"><strong>Entiendo tu punto, pero creo que… porque…</strong><br>Ejemplo: Entiendo tu punto, pero creo que necesitamos más tiempo porque faltan datos.</div>
+        <p class="note"><strong>Objetivo básico:</strong> usar <strong>entiendo tu punto + pero + creo que + porque</strong>. Los otros conectores son <strong>ampliación opcional</strong>; no necesitas usarlos para completar la lección.</p>
 
         <div class="tabs" role="tablist" aria-label="Herramientas lingüísticas">
-          <button class="tab" role="tab" aria-selected="true" aria-controls="tab-contrast" id="tabbtn-contrast" tabindex="0" data-tab="contrast">Contraste</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-opinion" id="tabbtn-opinion" tabindex="-1" data-tab="opinion">Opinión</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-courtesy" id="tabbtn-courtesy" tabindex="-1" data-tab="courtesy">Cortesía</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-modal" id="tabbtn-modal" tabindex="-1" data-tab="modal">Modalización</button>
+          <button class="tab" role="tab" aria-selected="true" aria-controls="tab-contrast" id="tabbtn-contrast" tabindex="0" data-tab="contrast">Pero</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-opinion" id="tabbtn-opinion" tabindex="-1" data-tab="opinion">Tu idea</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-courtesy" id="tabbtn-courtesy" tabindex="-1" data-tab="courtesy">Reconocer</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-modal" id="tabbtn-modal" tabindex="-1" data-tab="modal">Otras formas</button>
         </div>
 
         <div class="tab-panel active" id="tab-contrast" role="tabpanel" aria-labelledby="tabbtn-contrast">
-          <h3>Conectores de contraste</h3>
-          <div class="grid-2">
-            <div class="mini-card"><span class="tag">pero</span><p>Contraste directo dentro de la misma idea.</p><div class="formula">Entiendo la propuesta, <strong>pero</strong> prefiero mantener la fecha.</div></div>
-            <div class="mini-card"><span class="tag">sin embargo</span><p>Contrasta con una idea anterior. Suele aparecer como un nuevo segmento del mensaje.</p><div class="formula">Tenemos poco tiempo. <strong>Sin embargo</strong>, podemos revisar lo esencial hoy.</div></div>
-            <div class="mini-card"><span class="tag">aunque</span><p>Reconoce una información y después presenta otra idea.</p><div class="formula"><strong>Aunque</strong> entiendo la urgencia, creo que necesitamos un día más.</div></div>
-            <div class="mini-card"><span class="tag">en cambio</span><p>Contrasta dos opciones, situaciones o elementos.</p><div class="formula">La opción A es más rápida. <strong>En cambio</strong>, la B es más económica.</div></div>
-          </div>
-          <p class="note"><strong>Evita:</strong> “aunque pero…”. Normalmente eliges un conector principal para esa relación de contraste.</p>
+          <h3>Para decir algo diferente: pero</h3>
+          <p>Usa <strong>pero</strong> para presentar tu idea después de reconocer la de otra persona.</p>
+          <div class="formula">Entiendo tu propuesta, <strong>pero</strong> creo que necesitamos más tiempo.</div>
+          <p class="note"><strong>Para esta lección:</strong> con <strong>pero</strong> es suficiente. No tienes que aprender otros conectores ahora.</p>
         </div>
 
         <div class="tab-panel" id="tab-opinion" role="tabpanel" aria-labelledby="tabbtn-opinion">
-          <h3>Estructuras de opinión</h3>
-          <div class="formula">Creo que + idea → Creo que necesitamos revisar el plazo.</div>
-          <div class="formula">Pienso que + idea → Pienso que esta opción es más clara.</div>
-          <div class="formula">Desde mi punto de vista, + idea → Desde mi punto de vista, conviene mantener el plan original.</div>
-          <div class="formula">Para mí, + idea → Para mí, el miércoles sigue siendo la mejor fecha.</div>
-          <p class="note"><strong>Error frecuente:</strong> decimos “pienso que…”, no “pienso de que…”.</p>
+          <h3>Para decir lo que piensas: creo que</h3>
+          <div class="formula"><strong>Creo que</strong> + tu idea → Creo que necesitamos mantener la reunión.</div>
+          <div class="formula"><strong>Porque</strong> + tu razón → porque todavía falta una decisión.</div>
+          <p class="note">Puedes unir las dos partes: “Creo que necesitamos mantener la reunión <strong>porque</strong> falta una decisión”. No necesitas explicar más de una razón.</p>
         </div>
 
         <div class="tab-panel" id="tab-courtesy" role="tabpanel" aria-labelledby="tabbtn-courtesy">
-          <h3>Cortesía para mantener la conversación</h3>
-          <p>Reconocer la idea de la otra persona no significa aceptar todo.</p>
-          <div class="formula">Entiendo tu punto, pero…</div>
-          <div class="formula">Veo lo que dices. Sin embargo, creo que necesitamos revisar la fecha.</div>
-          <div class="formula">Estoy de acuerdo en parte, pero…</div>
-          <div class="formula">No estoy del todo de acuerdo porque…</div>
-          <p class="note">“No estoy de acuerdo” es correcto y puede ser apropiado. “No estoy <strong>del todo</strong> de acuerdo” reduce la fuerza y deja espacio para matizar.</p>
+          <h3>Para reconocer otra idea: entiendo tu punto</h3>
+          <p>Reconocer una propuesta no significa que estés de acuerdo. Te ayuda a mantener un tono respetuoso.</p>
+          <div class="formula"><strong>Entiendo tu punto</strong>, pero creo que debemos mantener la fecha.</div>
+          <div class="formula"><strong>Entiendo tu idea</strong>, pero creo que necesitamos otra opción.</div>
+          <p class="note">Elige una de estas dos formas. No necesitas memorizar muchas expresiones para discrepar.</p>
         </div>
 
         <div class="tab-panel" id="tab-modal" role="tabpanel" aria-labelledby="tabbtn-modal">
-          <h3>Modalización: hacer la propuesta menos categórica</h3>
-          <p>Modalizar es ajustar la fuerza con la que presentas una idea. No elimina tu posición; cambia cómo la formulas.</p>
+          <h3>Para avanzar cuando te sientas preparado</h3>
+          <p>Estas expresiones pueden enriquecer tu español, pero <strong>son opcionales</strong> para el objetivo básico de la lección.</p>
           <div class="grid-2">
-            <div class="mini-card"><strong>Más directa</strong><div class="formula">Tenemos que cambiar la fecha.</div></div>
-            <div class="mini-card"><strong>Más matizada</strong><div class="formula">Creo que sería mejor cambiar la fecha.</div></div>
-            <div class="mini-card"><strong>Más directa</strong><div class="formula">Revisemos otra opción.</div></div>
-            <div class="mini-card"><strong>Más matizada</strong><div class="formula">Quizá podríamos revisar otra opción.</div></div>
+            <div class="mini-card"><span class="tag">aunque</span><div class="formula"><strong>Aunque</strong> entiendo la propuesta, prefiero mantener la fecha.</div></div>
+            <div class="mini-card"><span class="tag">sin embargo</span><div class="formula">Tenemos poco tiempo. <strong>Sin embargo</strong>, podemos revisar lo esencial.</div></div>
+            <div class="mini-card"><span class="tag">en cambio</span><div class="formula">La opción A es rápida. <strong>En cambio</strong>, la B es más barata.</div></div>
+            <div class="mini-card"><span class="tag">quizá podríamos</span><div class="formula"><strong>Quizá podríamos</strong> revisar otra alternativa.</div></div>
           </div>
-          <p class="note">“Sería mejor” y “podríamos” reutilizan el condicional inicial trabajado previamente y ayudan a presentar alternativas con menos imposición.</p>
+          <p class="note">Si quieres probarlas, elige <strong>solo una</strong>. No combines “aunque” y “pero” para introducir el mismo contraste.</p>
         </div>
 
-        <div class="feedback info show" id="tabsFeedback">Explora las cuatro herramientas. Después podrás continuar.</div>
+        <div class="feedback info show" id="tabsFeedback">Revisa las tres partes principales. La pestaña «Otras formas» es opcional.</div>
         <div class="nav">
           <button class="btn ghost" data-back="2">Anterior</button>
           <button class="btn primary" id="s3Next" disabled>Continuar</button>
@@ -344,31 +338,31 @@
         <h2 id="s4title" tabindex="-1">Elige la forma que mejor cumple la intención.</h2>
 
         <div class="quiz-item" data-q="1">
-          <p>1. Quieres discrepar sin negar por completo la idea de tu compañero.</p>
+          <p>1. Quieres expresar otra opinión y mantener un tono respetuoso.</p>
           <div class="choice-list">
-            <button class="choice" data-correct="false">No estoy acuerdo con esa opción.</button>
-            <button class="choice" data-correct="true">No estoy del todo de acuerdo con esa opción.</button>
-            <button class="choice" data-correct="false">No estoy de acuerdo de esa opción.</button>
+            <button class="choice" data-correct="false">No. Tu idea está mal.</button>
+            <button class="choice" data-correct="true">Entiendo tu punto, pero creo que necesitamos otra opción.</button>
+            <button class="choice" data-correct="false">Sí, estoy de acuerdo con todo.</button>
           </div>
           <div class="feedback" aria-live="polite"></div>
         </div>
 
         <div class="quiz-item" data-q="2">
-          <p>2. Quieres reconocer una dificultad real y después presentar otra idea.</p>
+          <p>2. Tu compañera propone cancelar la reunión. Tú prefieres mantenerla.</p>
           <div class="choice-list">
-            <button class="choice" data-correct="true">Aunque tenemos poco tiempo, creo que podemos terminar hoy.</button>
-            <button class="choice" data-correct="false">Aunque pero tenemos poco tiempo, podemos terminar hoy.</button>
-            <button class="choice" data-correct="false">Sin embargo, aunque tenemos poco tiempo, pero podemos terminar hoy.</button>
+            <button class="choice" data-correct="true">Entiendo tu idea, pero creo que debemos mantener la reunión.</button>
+            <button class="choice" data-correct="false">Entiendo tu idea, porque pero necesitamos una reunión.</button>
+            <button class="choice" data-correct="false">Entiendo tu idea, pero estoy totalmente de acuerdo en cancelar la reunión.</button>
           </div>
           <div class="feedback" aria-live="polite"></div>
         </div>
 
         <div class="quiz-item" data-q="3">
-          <p>3. ¿Qué frase presenta una alternativa de forma más matizada?</p>
+          <p>3. Quieres explicar por qué necesitas mantener una fecha. ¿Qué respuesta incluye una razón?</p>
           <div class="choice-list">
-            <button class="choice" data-correct="false">Cambiemos el proveedor.</button>
-            <button class="choice" data-correct="true">Quizá podríamos revisar otro proveedor.</button>
-            <button class="choice" data-correct="false">Tenemos que cambiar de proveedor hoy.</button>
+            <button class="choice" data-correct="false">Creo que necesitamos mantener la fecha.</button>
+            <button class="choice" data-correct="true">Creo que necesitamos mantener la fecha porque el cliente la necesita.</button>
+            <button class="choice" data-correct="false">Debemos mantener la fecha.</button>
           </div>
           <div class="feedback" aria-live="polite"></div>
         </div>
@@ -384,11 +378,11 @@
     <section class="screen" data-screen="5" aria-labelledby="s5title">
       <div class="panel">
         <div class="section-kicker">5 · Construye</div>
-        <h2 id="s5title" tabindex="-1">Combina las piezas sin copiar una frase completa.</h2>
-        <p class="lead">Situación: una compañera quiere eliminar una reunión de seguimiento. Tú prefieres mantenerla porque todavía hay decisiones pendientes.</p>
+        <h2 id="s5title" tabindex="-1">Construye una respuesta con cuatro piezas.</h2>
+        <p class="lead">Situación: una compañera quiere cancelar una reunión. Tú prefieres mantenerla porque todavía faltan decisiones. Puedes usar el modelo «Entiendo tu punto, pero…». Si te resulta fácil, prueba otra combinación.</p>
         <div class="builder grid-2">
           <div>
-            <label for="buildOpen">1. Reconoce o introduce tu posición</label>
+            <label for="buildOpen">1. Reconoce la idea de la otra persona</label>
             <select id="buildOpen">
               <option value="">Selecciona…</option>
               <option>Entiendo tu punto</option>
@@ -397,20 +391,20 @@
             </select>
           </div>
           <div>
-            <label for="buildConnector">2. Añade contraste</label>
+            <label for="buildConnector">2. Añade «pero»</label>
             <select id="buildConnector">
               <option value="">Selecciona…</option>
               <option value="pero">pero</option>
-              <option value="sin embargo">sin embargo</option>
+              <option value="sin embargo">sin embargo (opcional)</option>
             </select>
           </div>
           <div>
-            <label for="buildOpinion">3. Formula tu idea</label>
+            <label for="buildOpinion">3. Di tu opinión</label>
             <select id="buildOpinion">
               <option value="">Selecciona…</option>
-              <option>creo que sería mejor mantener la reunión</option>
-              <option>pienso que necesitamos mantener la reunión</option>
-              <option>quizá podríamos mantener una reunión más corta</option>
+              <option>creo que necesitamos mantener la reunión</option>
+              <option>creo que podemos mantener una reunión corta</option>
+              <option value="pienso que sería mejor mantener una reunión corta">pienso que sería mejor mantener una reunión corta (opcional)</option>
             </select>
           </div>
           <div>
@@ -439,15 +433,15 @@
     <section class="screen" data-screen="6" aria-labelledby="s6title">
       <div class="panel">
         <div class="section-kicker">6 · Recupera y reacciona</div>
-        <h2 id="s6title" tabindex="-1">Menos apoyo. Recupera la estructura.</h2>
-        <p class="lead">Escribe una respuesta breve para cada situación. No necesitas una frase “perfecta”; intenta recuperar al menos una herramienta de la lección.</p>
+        <h2 id="s6title" tabindex="-1">Prueba la frase en situaciones nuevas.</h2>
+        <p class="lead">Escribe una respuesta breve en <strong>dos situaciones</strong>. La tercera es opcional para practicar más. Puedes consultar la pista cuando lo necesites.</p>
         <p class="note">Por privacidad, tus respuestas escritas no se guardan al recargar esta página. Si las necesitas, cópialas antes de salir.</p>
         <div class="grid-3">
           <div class="recall-card" data-recall="0">
             <span class="status-pill">Cliente</span>
             <p>El cliente quiere adelantar una fecha que tu equipo no puede cumplir.</p>
             <button class="btn ghost hintBtn" type="button">Ver pista</button>
-            <div class="hint">Prueba: <strong>Entiendo…, pero… / Creo que sería mejor…</strong></div>
+            <div class="hint">Prueba: <strong>Entiendo tu punto, pero creo que… porque…</strong></div>
             <label for="recall0">Tu respuesta</label>
             <textarea id="recall0" placeholder="Escribe 1–2 frases."></textarea>
           </div>
@@ -455,15 +449,15 @@
             <span class="status-pill">Compañero</span>
             <p>Tu compañero cree que la opción más barata es la mejor. Tú prefieres la más rápida.</p>
             <button class="btn ghost hintBtn" type="button">Ver pista</button>
-            <div class="hint">Prueba: <strong>En cambio… / Desde mi punto de vista…</strong></div>
+            <div class="hint">Prueba: <strong>Entiendo tu punto, pero creo que la opción rápida es mejor porque…</strong></div>
             <label for="recall1">Tu respuesta</label>
             <textarea id="recall1" placeholder="Escribe 1–2 frases."></textarea>
           </div>
           <div class="recall-card" data-recall="2">
-            <span class="status-pill">Reunión</span>
+            <span class="status-pill">Reunión · Opcional</span>
             <p>El equipo quiere cancelar una tarea. Tú piensas que todavía es necesaria.</p>
             <button class="btn ghost hintBtn" type="button">Ver pista</button>
-            <div class="hint">Prueba: <strong>No estoy del todo de acuerdo… / Quizá podríamos…</strong></div>
+            <div class="hint">Prueba: <strong>Entiendo tu idea, pero creo que necesitamos…</strong></div>
             <label for="recall2">Tu respuesta</label>
             <textarea id="recall2" placeholder="Escribe 1–2 frases."></textarea>
           </div>
@@ -499,16 +493,16 @@
             <p>“Podemos hacer una entrega parcial el viernes y completar el lunes.”</p>
             <p><strong>La propuesta ayuda, pero todavía necesitas confirmar qué parte llegará el viernes.</strong></p>
             <div class="choice-list">
-              <button class="choice scenarioChoice" disabled data-step="2" data-score="2">Esa opción puede funcionar. Sin embargo, necesitamos confirmar qué parte recibiríamos el viernes.</button>
+              <button class="choice scenarioChoice" disabled data-step="2" data-score="2">Entiendo tu propuesta, pero necesitamos confirmar qué parte recibiremos el viernes.</button>
               <button class="choice scenarioChoice" disabled data-step="2" data-score="0">Sí. Está bien.</button>
-              <button class="choice scenarioChoice" disabled data-step="2" data-score="1">Aunque puede funcionar, necesito más información.</button>
+              <button class="choice scenarioChoice" disabled data-step="2" data-score="1">La propuesta puede funcionar, pero necesito más información.</button>
             </div>
             <div class="feedback" id="scenarioFeedback2" aria-live="polite"></div>
           </div>
         </div>
         <div class="panel soft" id="scenarioResult" style="display:none">
           <h3>Lo importante aquí</h3>
-          <p>Has tenido que <strong>mantener tu posición</strong>, <strong>matizar</strong> y <strong>reaccionar a una propuesta nueva</strong>. Esa adaptación es parte de la progresión de esta lección.</p>
+          <p>Has reconocido una propuesta, expresado tu idea y pedido la información que falta. Esta es una forma sencilla y útil de expresar desacuerdo en el trabajo.</p>
           <a class="btn secondary" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
         </div>
         <div class="nav">
@@ -521,15 +515,12 @@
     <section class="screen" data-screen="8" aria-labelledby="s8title">
       <div class="panel">
         <div class="section-kicker">8 · Ahora dilo tú</div>
-        <h2 id="s8title" tabindex="-1">Habla durante 45 segundos.</h2>
-        <p class="lead">Situación: tu equipo quiere retrasar un lanzamiento una semana. Tú prefieres mantener la fecha original, pero aceptas revisar el alcance.</p>
+        <h2 id="s8title" tabindex="-1">Expresa tu desacuerdo en voz alta.</h2>
+        <p class="lead">Situación: tu equipo quiere retrasar un lanzamiento una semana. Tú prefieres mantener la fecha original porque el cliente la necesita. Explica tu idea en dos o tres frases.</p>
         <div class="panel soft">
-          <p><strong>Objetivo lingüístico:</strong> expresa una posición diferente y explica una razón o propone una alternativa. Intenta usar al menos:</p>
-          <ul>
-            <li>un conector de contraste;</li>
-            <li>una estructura de opinión;</li>
-            <li>un recurso de cortesía o modalización.</li>
-          </ul>
+          <p><strong>Objetivo básico:</strong> usa una frase sencilla para expresar tu desacuerdo con respeto.</p>
+          <div class="formula"><strong>Entiendo tu punto, pero creo que… porque…</strong></div>
+          <p class="note">Puedes hablar menos de 45 segundos: el reloj es opcional y no determina si has completado la actividad. Si te resulta fácil, añade una propuesta alternativa como reto opcional.</p>
           <div class="timer-box">
             <div class="timer" id="timerDisplay">00:45</div>
             <span class="sr-only" id="timerStatus" role="status" aria-live="polite"></span>
@@ -544,12 +535,12 @@
 
         <h3 style="margin-top:1.4rem">Revisa tu respuesta</h3>
         <div class="check-grid" id="selfCheck">
-          <label class="check-item"><input type="checkbox" value="contrast"> <span>Usé un conector de contraste.</span></label>
-          <label class="check-item"><input type="checkbox" value="opinion"> <span>Expresé claramente mi posición.</span></label>
-          <label class="check-item"><input type="checkbox" value="soften"> <span>Usé cortesía o modalización.</span></label>
-          <label class="check-item"><input type="checkbox" value="reason"> <span>Expliqué una razón o propuse una alternativa.</span></label>
+          <label class="check-item"><input type="checkbox" value="contrast"> <span>Usé «pero» para expresar una diferencia.</span></label>
+          <label class="check-item"><input type="checkbox" value="opinion"> <span>Dije mi idea con «creo que».</span></label>
+          <label class="check-item"><input type="checkbox" value="soften"> <span>Reconocí la otra idea con «entiendo tu punto» o «entiendo tu idea».</span></label>
+          <label class="check-item"><input type="checkbox" value="reason"> <span>Expliqué una razón con «porque».</span></label>
         </div>
-        <div class="feedback info show" id="selfFeedback">Marca al menos tres criterios después de hablar, incluido el de la razón o alternativa.</div>
+        <div class="feedback info show" id="selfFeedback">Después de hablar, marca los criterios que lograste. Incluye una razón con «porque».</div>
 
         <h3 style="margin-top:1.4rem">Llévalo a tu trabajo</h3>
         <p>¿Dónde podrías utilizar estas herramientas?</p>
@@ -573,20 +564,21 @@
     <section class="screen" data-screen="9" aria-labelledby="s9title">
       <div class="hero">
         <div class="eyebrow">Lección completada</div>
-        <h2 id="s9title" tabindex="-1">Ya puedes construir un desacuerdo con más matiz.</h2>
+        <h2 id="s9title" tabindex="-1">Ya puedes expresar una opinión diferente con respeto.</h2>
         <div class="final-score" id="finalScore">100 %</div>
         <p>Has trabajado estas herramientas:</p>
         <ul class="summary-list">
-          <li><strong>Conectores de contraste:</strong> pero, sin embargo, aunque, en cambio.</li>
-          <li><strong>Opinión:</strong> creo que, pienso que, desde mi punto de vista, para mí.</li>
-          <li><strong>Cortesía y modalización:</strong> entiendo tu punto, no estoy del todo de acuerdo, sería mejor, quizá podríamos.</li>
+          <li><strong>Reconocer:</strong> entiendo tu punto / entiendo tu idea.</li>
+          <li><strong>Expresar tu posición:</strong> pero creo que…</li>
+          <li><strong>Dar una razón:</strong> porque…</li>
+          <li><strong>Ampliación opcional:</strong> aunque, sin embargo, en cambio, quizá podríamos.</li>
         </ul>
-        <p><strong>Aplicación:</strong> expresar una posición diferente, justificarla, proponer alternativas y reaccionar cuando la conversación cambia.</p>
+        <p><strong>Aplicación:</strong> expresar desacuerdo con respeto, decir tu idea y dar una razón breve.</p>
         <p>Ahora intenta llevar una de estas estructuras a una conversación real de trabajo.</p>
         <div class="btn-row">
           <button class="btn yellow" id="repeatScenario">Repetir una práctica</button>
           <button class="btn secondary" id="restartBtn">Reiniciar lección</button>
-          <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en Spanish at Work</a>
+          <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Seguir entrenando en La Oficina en Español</a>
         </div>
       </div>
     </section>
@@ -601,7 +593,7 @@
   const progressText = document.getElementById('progressText');
   const stepLabel = document.getElementById('stepLabel');
   const completed = new Set();
-  const storageKey = 'saw-lesson-09-progress-v1';
+  const storageKey = 'saw-lesson-09-progress-v2';
   let current = 0;
   let restoring = false;
   let savedSnapshot = null;
@@ -718,8 +710,8 @@
   const functionTexts = {
     courtesy:'“Entiendo tu punto” reconoce lo que la otra persona acaba de decir sin obligarte a aceptarlo.',
     contrast:'“Pero” introduce la diferencia entre la propuesta anterior y tu posición.',
-    opinion:'“Creo que sería mejor” presenta tu posición y, con “sería”, la formula de manera menos categórica.',
-    soften:'“Quizá podríamos” abre una alternativa con menor imposición y mantiene la conversación.'
+    opinion:'“Creo que…” presenta tu posición con palabras sencillas.',
+    soften:'“Porque” explica una razón sencilla. Con una razón es suficiente para esta actividad.'
   };
   document.querySelectorAll('.function-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -739,9 +731,9 @@
   // 3 · Tabs
   const visitedTabs = new Set(['contrast']);
   function updateTabs(){
-    if(visitedTabs.size === 4){
+    if(['contrast','opinion','courtesy'].every(key => visitedTabs.has(key))){
       document.getElementById('s3Next').disabled = false;
-      document.getElementById('tabsFeedback').innerHTML = 'Ya revisaste las cuatro herramientas. Ahora comprueba si puedes elegirlas según la intención.';
+      document.getElementById('tabsFeedback').textContent = 'Has revisado las tres partes principales. Si quieres, explora «Otras formas» como ampliación opcional.';
       markDone(3);
     }
   }
@@ -786,22 +778,22 @@
         if(ok){
           quizDone.add(item.dataset.q);
           const msg = item.dataset.q === '1'
-            ? 'Correcto: la expresión es <strong>estar de acuerdo con</strong> algo. “Del todo” reduce la fuerza del desacuerdo.'
+            ? 'Correcto: “Entiendo tu punto, pero creo que…” reconoce otra idea y después presenta la tuya.'
             : item.dataset.q === '2'
-              ? 'Correcto: “aunque” puede reconocer un hecho real antes de presentar otra idea. Aquí no necesitas añadir “pero”.'
-              : 'Correcto: “quizá podríamos…” presenta una alternativa con menos imposición que un imperativo directo.';
+              ? 'Correcto: “pero” conecta el reconocimiento de otra propuesta con tu opinión diferente.'
+              : 'Correcto: “porque” explica por qué quieres mantener la fecha.';
           setFeedback(feedback,'good',msg);
         }else{
           quizDone.delete(item.dataset.q);
           const msg = item.dataset.q === '1'
-            ? 'Revisa la estructura: decimos <strong>estar de acuerdo con</strong> algo. Para matizar, puedes añadir “del todo”.'
+            ? 'Busca una frase que reconozca lo que dice la otra persona sin abandonar tu opinión.'
             : item.dataset.q === '2'
-              ? 'Busca una estructura clara de concesión + idea principal. “Aunque… pero…” duplica la relación de contraste.'
-              : 'La frase puede expresar una idea, pero la tarea pide una alternativa <strong>más matizada</strong>. Busca una forma como “quizá podríamos…”.';
+              ? 'Recuerda el orden: “Entiendo tu idea, pero creo que…”. La respuesta debe expresar una opinión diferente.'
+              : 'La tarea pide una razón clara. Busca una respuesta que incluya “porque”.';
           setFeedback(feedback,'bad',msg);
         }
         if(quizDone.size === 3){
-          setFeedback(document.getElementById('quizSummary'),'good','Has identificado forma, contraste y grado de fuerza. Puedes continuar.');
+          setFeedback(document.getElementById('quizSummary'),'good','Has reconocido una respuesta respetuosa, usado “pero” e identificado una razón. Puedes continuar.');
           document.getElementById('s4Next').disabled = false;
           markDone(4);
         }else{
@@ -880,19 +872,19 @@
     const nonEmpty = values.filter(v => v.length >= 12).length;
     // Detectar expresiones completas; «espero» no contiene el conector «pero».
     // Es una comprobación orientativa de recuperación, no un corrector gramatical.
-    const language = /(?:^|[^\p{L}\p{N}])(?:pero|aunque|sin\s+embargo|en\s+cambio|creo\s+que|pienso\s+que|desde\s+mi\s+punto\s+de\s+vista|para\s+mí|entiendo\s+(?:(?:tu|su)\s+(?:idea|punto|propuesta)|la\s+(?:dificultad|propuesta|situación)|el\s+(?:problema|contexto))|veo\s+lo\s+que\s+dices|(?:no\s+)?(?:estoy|estamos)\s+(?:del\s+todo\s+)?de\s+acuerdo|sería\s+mejor|podríamos|quizá)(?=$|[^\p{L}\p{N}])/iu;
+    const language = /(?:^|[^\p{L}\p{N}])(?:pero|porque|aunque|sin\s+embargo|en\s+cambio|creo\s+que|pienso\s+que|desde\s+mi\s+punto\s+de\s+vista|para\s+mí|entiendo\s+(?:(?:tu|su)\s+(?:idea|punto|propuesta)|la\s+(?:dificultad|propuesta|situación)|el\s+(?:problema|contexto))|veo\s+lo\s+que\s+dices|(?:no\s+)?(?:estoy|estamos)\s+(?:del\s+todo\s+)?de\s+acuerdo|sería\s+mejor|podríamos|quizá)(?=$|[^\p{L}\p{N}])/iu;
     // «No entiendo la propuesta» expresa falta de comprensión, no la fórmula
     // de cortesía «Entiendo la propuesta» trabajada en esta lección.
     const withTool = values.filter(v => language.test(v.replace(/\bno\s+entiendo\b/giu,'no comprendo'))).length;
-    if(nonEmpty < 3){
-      setFeedback(document.getElementById('recallFeedback'),'bad','Completa las tres respuestas con al menos una frase breve. La recuperación necesita producción, no solo reconocimiento.');
+    if(nonEmpty < 2){
+      setFeedback(document.getElementById('recallFeedback'),'bad','Escribe al menos dos respuestas breves. La tercera es opcional.');
       return;
     }
-    if(withTool < 2){
-      setFeedback(document.getElementById('recallFeedback'),'bad','Tus respuestas tienen contenido, pero intenta recuperar de forma visible al menos dos herramientas de la lección: un conector, una estructura de opinión o una forma de modalizar.');
+    if(withTool < 1){
+      setFeedback(document.getElementById('recallFeedback'),'bad','Incluye al menos una expresión de la frase principal: “entiendo tu punto”, “pero”, “creo que” o “porque”.');
       return;
     }
-    setFeedback(document.getElementById('recallFeedback'),'good','Has escrito tres respuestas e incluido expresiones de la lección en al menos dos. Esta comprobación detecta expresiones, pero no corrige tus frases: revisa que cada respuesta exprese tu posición, tenga sentido y mantenga el tono que buscas.');
+    setFeedback(document.getElementById('recallFeedback'),'good','Has escrito al menos dos respuestas y usado una expresión de la lección. Esta revisión es orientativa: comprueba que expresaste tu idea y, si puedes, una razón.');
     document.getElementById('s6Next').disabled = false;
     markDone(6);
   });
@@ -935,9 +927,9 @@
         }
       }else{
         const msg = score === 2
-          ? 'Buena adaptación: aceptas que la propuesta puede funcionar, introduces contraste y pides la información que todavía falta.'
+          ? 'Buena respuesta: reconoces la propuesta, usas “pero” y pides el dato que falta.'
           : score === 1
-            ? 'La respuesta reconoce la propuesta y pide más información. Podrías ser más precisa indicando qué necesitas confirmar.'
+            ? 'La respuesta es comprensible, pero puedes decir qué información necesitas confirmar.'
             : 'La respuesta acepta, pero no recupera la información que necesitas para decidir. Mantén la conversación con una aclaración.';
         setFeedback(feedback, score === 2 ? 'good' : score === 0 ? 'bad' : 'info', msg);
       }
@@ -993,9 +985,9 @@
     const priorComplete = requiredSteps.slice(0,-1).every(step => completed.has(step));
     const ready = checked >= 3 && hasAction && Boolean(chosenContext) && priorComplete;
     if(checked < 3){
-      setFeedback(document.getElementById('selfFeedback'),'info','Marca al menos tres criterios después de hablar, incluido el de la razón o alternativa.');
+      setFeedback(document.getElementById('selfFeedback'),'info','Revisa si reconociste la idea, expresaste tu opinión y diste una razón. Marca los criterios que cumpliste.');
     }else if(!hasAction){
-      setFeedback(document.getElementById('selfFeedback'),'info','Marca también el último criterio: explica una razón o propone una alternativa antes de finalizar.');
+      setFeedback(document.getElementById('selfFeedback'),'info','Añade una razón con “porque” antes de finalizar.');
     }else if(!priorComplete){
       setFeedback(document.getElementById('selfFeedback'),'info','Has revisado tu producción, pero todavía queda una actividad anterior por completar. Revisa el progreso antes de finalizar.');
     }else if(!chosenContext){
@@ -1017,7 +1009,7 @@
       btn.classList.add('selected');
       btn.setAttribute('aria-pressed','true');
       chosenContext = btn.textContent.trim();
-      setFeedback(document.getElementById('mission'),'info',`Micro misión: en tu próxima situación de <strong>${chosenContext.toLowerCase()}</strong>, expresa una posición diferente usando un conector de contraste y una forma de modalizar. Después observa si pudiste mantener tu idea sin sonar más categórico de lo necesario.`);
+      setFeedback(document.getElementById('mission'),'info',`Micro misión: en tu próxima situación de <strong>${chosenContext.toLowerCase()}</strong>, usa “Entiendo tu punto, pero creo que…” y añade una razón sencilla con “porque”.`);
       validateFinalPractice();
     });
   });
