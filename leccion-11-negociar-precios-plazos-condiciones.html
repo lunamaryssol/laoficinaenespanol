@@ -261,314 +261,238 @@
       </div>
     </header>
 
-    <section class="screen active" data-screen="0" aria-labelledby="title-0">
-      <div class="panel hero">
-        <p class="eyebrow">Spanish at Work · Lección 11</p>
-        <h1 id="title-0" tabindex="-1">Negocia</h1>
-        <p class="lead">Aprende a usar <strong>el condicional, estructuras de cortesía, condiciones y formas de acuerdo o desacuerdo</strong> para negociar precios, fechas y alternativas en español.</p>
-        <div class="pill-row" aria-label="Herramientas de la lección">
-          <span class="pill"><span class="dot"></span>Condicional</span>
-          <span class="pill"><span class="dot"></span>Cortesía</span>
-          <span class="pill"><span class="dot"></span>Condiciones</span>
-          <span class="pill"><span class="dot"></span>Acuerdo y desacuerdo</span>
-        </div>
-        <div class="outcome"><strong>Al terminar:</strong> podrás proponer y responder a una contraoferta, aceptar o rechazar con cortesía, expresar una condición y justificar brevemente tu decisión.</div>
-        <div class="actions"><button class="btn yellow" id="startBtn" type="button">Comenzar</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-0" class="screen active" data-screen="0">
+<div class="panel hero">
+<p class="eyebrow">Spanish at Work · Lección 11</p>
+<h1 id="title-0" tabindex="-1">Negocia una propuesta con claridad</h1>
+<p class="lead">Practica cómo <strong>proponer un cambio</strong> y <strong>aceptar o rechazar una oferta con cortesía</strong> cuando negocias fechas, precios o condiciones en el trabajo.</p>
+<div aria-label="Herramientas de la lección" class="pill-row">
+<span class="pill"><span class="dot"></span> Proponer una alternativa</span>
+<span class="pill"><span class="dot"></span> Aceptar una oferta</span>
+<span class="pill"><span class="dot"></span> Rechazar con cortesía</span>
+<span class="pill"><span class="dot"></span> Reto extra: contraofertas</span>
+</div>
+<div class="outcome"><strong>Logro básico:</strong> podrás hacer una propuesta y responder con claridad: aceptar o rechazar educadamente. <strong>Reto opcional:</strong> formular una contraoferta con «podríamos» o «si».</div>
+<div class="actions"><button class="btn yellow" id="startBtn" type="button">Comenzar</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="1" aria-labelledby="title-1">
-      <div class="panel">
-        <span class="kicker">1 · Encuentra la lengua</span>
-        <h2 id="title-1" tabindex="-1">Una propuesta cambia</h2>
-        <p class="sub">Una empresa está renovando un servicio con un proveedor. El precio, la fecha de entrega y la forma de pago todavía pueden cambiar.</p>
-        <div class="scenario">
-          <div class="scenario-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2M8 12h8M8 16h5"/></svg></div>
-          <div><strong>Tu objetivo lingüístico:</strong> observa cómo las personas hacen propuestas menos directas, expresan condiciones, justifican una decisión y responden sin usar frases demasiado rígidas.</div>
-        </div>
+    <section aria-labelledby="title-1" class="screen" data-screen="1">
+<div class="panel">
+<span class="kicker">1 · Encuentra la lengua</span>
+<h2 id="title-1" tabindex="-1">¿Cómo propones un cambio?</h2>
+<p class="sub">Un proveedor propone entregar un informe el lunes. Tu equipo lo necesita el viernes anterior. Vas a pedir otra fecha y responder sin cerrar la conversación.</p>
+<div class="scenario">
+<div aria-hidden="true" class="scenario-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 7h16v12H4z"></path><path d="M8 7V5h8v2M8 12h8M8 16h5"></path></svg></div>
+<div><strong>Tu misión:</strong> proponer una alternativa y decir si una oferta te funciona. Primero observa frases fáciles de reutilizar.</div>
+</div>
+<h3>Elige una petición clara y cortés</h3>
+<p>Necesitas pedir un cambio de fecha. ¿Qué dirías para abrir la conversación?</p>
+<div class="choice-list" id="warmupChoices">
+<button class="choice" data-correct="false" type="button">La fecha tiene que cambiar.</button>
+<button class="choice" data-correct="true" type="button">¿Podemos cambiar la fecha?</button>
+</div>
+<div aria-live="polite" class="feedback" id="warmupFeedback"></div>
+<div class="actions"><button class="btn primary" disabled="" id="warmupContinue" type="button">Continuar</button></div>
+</div>
+</section>
 
-        <h3>Activa lo que ya sabes</h3>
-        <p>Las dos frases pueden entenderse. ¿Cuál presenta la petición de forma más cortés y negociable?</p>
-        <div class="choice-list" id="warmupChoices">
-          <button class="choice" type="button" data-correct="false">Queremos que bajen el precio.</button>
-          <button class="choice" type="button" data-correct="true">¿Sería posible ajustar un poco el precio?</button>
-        </div>
-        <div class="feedback" id="warmupFeedback" aria-live="polite"></div>
-        <div class="actions"><button class="btn primary" id="warmupContinue" type="button" disabled>Continuar</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-2" class="screen" data-screen="2">
+<div class="panel">
+<span class="kicker">2 · Observa</span>
+<h2 id="title-2" tabindex="-1">Una negociación breve</h2>
+<p class="sub">Lee la conversación. Observa cómo las personas proponen, rechazan y aceptan con frases cortas.</p>
+<div aria-label="Diálogo de negociación" class="dialogue">
+<div class="bubble a"><span class="speaker">CLIENTE</span> Gracias por la oferta. <mark>¿Podemos adelantar la entrega al viernes?</mark></div>
+<div class="bubble b"><span class="speaker">PROVEEDOR</span> Podemos entregar el viernes, pero cuesta 80 USD más.</div>
+<div class="bubble a"><span class="speaker">CLIENTE</span> <mark>Gracias, pero no podemos aceptar el costo adicional.</mark> ¿Podemos mantener el precio?</div>
+<div class="bubble b"><span class="speaker">PROVEEDOR</span> <mark>De acuerdo.</mark> Mantenemos el precio y entregamos el viernes.</div>
+<div class="bubble a"><span class="speaker">CLIENTE</span> Perfecto. <mark>Confirmamos la entrega para el viernes.</mark></div>
+</div>
+<div class="grid-2">
+<div class="card accent"><h3>Para proponer</h3><p><strong>¿Podemos adelantar la entrega al viernes?</strong> Una pregunta breve abre la negociación y deja espacio para responder.</p></div>
+<div class="card accent"><h3>Para responder</h3><p><strong>Gracias, pero no podemos aceptar el costo adicional</strong> rechaza una condición con cortesía. <strong>De acuerdo</strong> confirma la aceptación de la contraoferta.</p></div>
+</div>
+<div class="actions">
+<button class="btn ghost" data-speak="Gracias por la oferta. ¿Podemos adelantar la entrega al viernes? Podemos entregar el viernes, pero cuesta ochenta dólares más. Gracias, pero no podemos aceptar el costo adicional. ¿Podemos mantener el precio? De acuerdo. Mantenemos el precio y entregamos el viernes. Perfecto. Confirmamos la entrega para el viernes." type="button">Escuchar un ejemplo</button>
+<button class="btn primary" id="inputContinue" type="button">Ver las frases útiles</button>
+</div>
+<div aria-live="polite" class="feedback" id="speechFeedback"></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="2" aria-labelledby="title-2">
-      <div class="panel">
-        <span class="kicker">2 · Observa</span>
-        <h2 id="title-2" tabindex="-1">Mira qué cambia</h2>
-        <p class="sub">Lee este intercambio. Las palabras resaltadas son herramientas que vas a reutilizar.</p>
-        <div class="dialogue" aria-label="Diálogo de negociación">
-          <div class="bubble a"><span class="speaker">CLIENTE</span>Nos <mark>gustaría</mark> mantener el precio actual. ¿<mark>Sería posible</mark> entregar el martes?</div>
-          <div class="bubble b"><span class="speaker">PROVEEDOR</span><mark>Podríamos</mark> entregar el miércoles <mark>si confirman hoy</mark>.</div>
-          <div class="bubble a"><span class="speaker">CLIENTE</span>El miércoles nos funciona, <mark>pero necesitaríamos</mark> mantener el mismo precio.</div>
-          <div class="bubble b"><span class="speaker">PROVEEDOR</span>De acuerdo. <mark>Podemos aceptar esa condición</mark> si el pago se realiza esta semana.</div>
-        </div>
-        <div class="grid-2">
-          <div class="card accent"><h3>¿Qué notas?</h3><p>El condicional aparece en <strong>gustaría, sería, podríamos, necesitaríamos</strong>. Ayuda a presentar propuestas o peticiones de forma menos directa.</p></div>
-          <div class="card accent"><h3>¿Dónde está la condición?</h3><p>En estructuras con <strong>si + presente</strong>: “si confirman hoy”, “si el pago se realiza esta semana”.</p></div>
-        </div>
-        <div class="actions">
-          <button class="btn ghost" type="button" data-speak="Nos gustaría mantener el precio actual. ¿Sería posible entregar el martes?">Escuchar un ejemplo</button>
-          <button class="btn primary" id="inputContinue" type="button">Entender las herramientas</button>
-        </div>
-        <div class="feedback" id="speechFeedback" aria-live="polite"></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-3" class="screen" data-screen="3">
+<div class="panel">
+<span class="kicker">3 · Frases para negociar</span>
+<h2 id="title-3" tabindex="-1">Tres acciones que ya puedes hacer</h2>
+<p class="sub">En una negociación breve necesitas hacer una propuesta, aceptar o rechazar. Puedes hacerlo con estructuras que ya conoces. El condicional aparece solo como ampliación.</p>
+<div class="tool-grid">
+<article class="tool-card"><div class="tool-head">1. Proponer una alternativa</div><div class="tool-body"><div class="formula">¿Podemos + infinitivo...?</div><div class="example">¿Podemos cambiar la fecha?</div><div class="example">¿Podemos revisar el precio?</div><p class="note">Menciona el cambio concreto que necesitas.</p></div></article>
+<article class="tool-card"><div class="tool-head">2. Aceptar una oferta</div><div class="tool-body"><div class="formula">De acuerdo. / Esa opción nos funciona.</div><div class="example">De acuerdo. Aceptamos el precio.</div><div class="example">El jueves nos funciona. Confirmamos hoy.</div><p class="note">Confirma qué aceptas para evitar malentendidos.</p></div></article>
+<article class="tool-card"><div class="tool-head">3. Rechazar sin cerrar la conversación</div><div class="tool-body"><div class="formula">Gracias, pero no podemos + infinitivo.</div><div class="example">Gracias, pero no podemos aceptar el lunes.</div><div class="example">Entiendo, pero necesitamos otra fecha.</div><p class="note">Después puedes ofrecer una alternativa: «¿Podemos adelantar la entrega al viernes?»</p></div></article>
+<article class="tool-card"><div class="tool-head">⭐ Reto opcional · Una contraoferta</div><div class="tool-body"><div class="formula">Podríamos + infinitivo</div><div class="example">Podríamos cambiar la entrega al jueves.</div><div class="formula">Podemos aceptar si + presente</div><div class="example">Podemos aceptar si mantienen el precio.</div><p class="note">«Podríamos» presenta una alternativa con más suavidad. «Si» introduce una condición. <strong>Estas formas no son necesarias para completar el logro básico.</strong></p></div></article>
+</div>
+<div class="card soft" style="margin-top:18px"><h3>Tu guía rápida</h3>
+<p><strong>Proponer:</strong> «¿Podemos cambiar la fecha?»</p>
+<p><strong>Aceptar:</strong> «De acuerdo. Esa fecha nos funciona».</p>
+<p><strong>Rechazar:</strong> «Gracias, pero no podemos aceptar esa fecha».</p>
+<p class="note">Si estas tres respuestas ya te salen con facilidad, prueba el <strong>reto opcional</strong>: «¿Sería posible cambiar la fecha?» o «Podríamos aceptar si mantienen el precio». No necesitas estudiar conjugaciones completas.</p>
+<div class="pattern-row"><span class="token">¿Podemos...?</span><span class="token">De acuerdo.</span><span class="token">Gracias, pero no podemos...</span><span class="token">Opcional: Podríamos...</span><span class="token">Opcional: si + presente</span></div></div>
+<div class="actions"><button class="btn primary" id="toolsContinue" type="button">Practicar respuestas</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="3" aria-labelledby="title-3">
-      <div class="panel">
-        <span class="kicker">3 · Aprende la herramienta</span>
-        <h2 id="title-3" tabindex="-1">Cuatro recursos para negociar en español</h2>
-        <p class="sub">No necesitas dominar todo el condicional. En esta lección vas a trabajar formas frecuentes que sirven para proponer, pedir, condicionar y responder.</p>
+    <section aria-labelledby="title-4" class="screen" data-screen="4">
+<div class="panel">
+<span class="kicker">4 · Comprueba</span>
+<h2 id="title-4" tabindex="-1">¿Qué dirías en esta situación?</h2>
+<p class="sub">Elige la respuesta que mejor comunica tu intención. Practica el significado de cada frase; no necesitas analizar tiempos verbales.</p>
+<div id="quiz"></div>
+<div class="actions"><button class="btn primary" disabled="" id="quizContinue" type="button">Construir frases</button></div>
+</div>
+</section>
 
-        <div class="tool-grid">
-          <article class="tool-card">
-            <div class="tool-head">1. Proponer con condicional</div>
-            <div class="tool-body">
-              <div class="formula">Podríamos + infinitivo</div>
-              <div class="example">Podríamos cambiar la fecha.</div>
-              <div class="example">Podríamos mantener el precio.</div>
-              <p class="note">Sirve para presentar una opción sin imponerla.</p>
-            </div>
-          </article>
-          <article class="tool-card">
-            <div class="tool-head">2. Pedir con cortesía</div>
-            <div class="tool-body">
-              <div class="formula">¿Sería posible + infinitivo...?</div>
-              <div class="example">¿Sería posible entregar el martes?</div>
-              <div class="formula">Nos gustaría + infinitivo</div>
-              <div class="example">Nos gustaría revisar las condiciones.</div>
-            </div>
-          </article>
-          <article class="tool-card">
-            <div class="tool-head">3. Expresar una condición</div>
-            <div class="tool-body">
-              <div class="formula">si + presente</div>
-              <div class="example">Podemos confirmar hoy <strong>si mantienen el precio</strong>.</div>
-              <div class="example">Podríamos aceptar el plazo <strong>si incluyen el soporte</strong>.</div>
-              <div class="warning"><strong>Evita:</strong> “si podrían entregar...”. En una condición real de este tipo, usa <strong>si + presente</strong>: “si pueden entregar...”.</div>
-            </div>
-          </article>
-          <article class="tool-card">
-            <div class="tool-head">4. Acordar o discrepar</div>
-            <div class="tool-body">
-              <div class="example"><strong>Acuerdo:</strong> “De acuerdo.” / “Esa opción nos funciona.”</div>
-              <div class="example"><strong>Acuerdo con condición:</strong> “Podemos aceptar si mantienen el precio.”</div>
-              <div class="example"><strong>Desacuerdo:</strong> “Entiendo la propuesta, pero no podríamos aceptar ese plazo <strong>porque necesitamos entregar el proyecto el viernes</strong>.”</div>
-              <p class="note"><strong>“No podemos”</strong> también es correcto; <strong>“no podríamos”</strong> suele sonar menos tajante en una negociación. Para justificar una decisión, puedes reciclar una estructura conocida: <strong>porque + razón</strong>.</p>
-            </div>
-          </article>
-        </div>
+    <section aria-labelledby="title-5" class="screen" data-screen="5">
+<div class="panel">
+<span class="kicker">5 · Construye</span>
+<h2 id="title-5" tabindex="-1">Arma tres respuestas útiles</h2>
+<p class="sub">Ordena las palabras para hacer una propuesta, aceptar y rechazar. Son frases que puedes utilizar de inmediato en una conversación laboral.</p>
+<div id="builders"></div>
+<div class="actions"><button class="btn primary" disabled="" id="builderContinue" type="button">Recuperar con menos apoyo</button></div>
+</div>
+</section>
 
-        <div class="card soft" style="margin-top:18px">
-          <h3>Cómo reconocer el condicional que necesitas aquí</h3>
-          <p>En los verbos regulares, el condicional conserva el infinitivo y añade terminaciones que empiezan por <strong>-ía</strong>: <em>necesitar → necesitaría / necesitaríamos</em>. Algunos verbos frecuentes cambian la raíz: <em>poder → podría / podríamos</em>. También vas a encontrar <em>ser → sería</em> y <em>gustar → gustaría</em>.</p>
-          <p class="note">No necesitas memorizar toda la conjugación para esta práctica. Necesitas reconocer y recuperar estas formas frecuentes.</p>
-          <h3 style="margin-top:16px">Patrones que conviene recuperar</h3>
-          <div class="pattern-row">
-            <span class="token">Podríamos + infinitivo</span>
-            <span class="token">¿Sería posible + infinitivo...?</span>
-            <span class="token">Nos gustaría + infinitivo</span>
-            <span class="token">si + presente</span>
-            <span class="token">Entiendo..., pero...</span>
-            <span class="token">porque + razón</span>
-          </div>
-        </div>
-        <div class="actions"><button class="btn primary" id="toolsContinue" type="button">Comprobar comprensión</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-6" class="screen" data-screen="6">
+<div class="panel">
+<span class="kicker">6 · Recupera</span>
+<h2 id="title-6" tabindex="-1">Responde con tus propias palabras</h2>
+<p class="sub">Escribe una frase corta para cada situación. La comprobación es orientativa: muchas respuestas naturales también son válidas. Si no reconoce tu frase, compara el ejemplo y vuelve a probar.</p>
+<div class="recall-grid">
+<div class="recall">
+<label for="recall1">1. Propón otra fecha de entrega de forma amable.</label>
+<input autocomplete="off" class="text-input" id="recall1" placeholder="Escribe tu frase" type="text"/>
+<div class="actions"><button aria-controls="hint1" aria-expanded="false" class="btn ghost small hint-btn" data-hint="hint1" type="button">Ver pista</button><button class="btn primary small recall-check" data-check="1" type="button">Comprobar</button></div>
+<div class="hint" id="hint1">Puedes empezar con <strong>¿Podemos...?</strong> y mencionar «entregar» o «fecha».</div>
+<div aria-live="polite" class="feedback" id="recallFeedback1"></div>
+</div>
+<div class="recall">
+<label for="recall2">2. La otra persona ofrece un precio que te conviene. Acéptalo claramente.</label>
+<input autocomplete="off" class="text-input" id="recall2" placeholder="Escribe tu frase" type="text"/>
+<div class="actions"><button aria-controls="hint2" aria-expanded="false" class="btn ghost small hint-btn" data-hint="hint2" type="button">Ver pista</button><button class="btn primary small recall-check" data-check="2" type="button">Comprobar</button></div>
+<div class="hint" id="hint2">Ejemplo: <strong>De acuerdo. Aceptamos el precio.</strong></div>
+<div aria-live="polite" class="feedback" id="recallFeedback2"></div>
+</div>
+<div class="recall">
+<label for="recall3">3. No puedes aceptar la entrega del lunes. Rechaza esa fecha con cortesía.</label>
+<input autocomplete="off" class="text-input" id="recall3" placeholder="Escribe tu frase" type="text"/>
+<div class="actions"><button aria-controls="hint3" aria-expanded="false" class="btn ghost small hint-btn" data-hint="hint3" type="button">Ver pista</button><button class="btn primary small recall-check" data-check="3" type="button">Comprobar</button></div>
+<div class="hint" id="hint3">Ejemplo: <strong>Gracias, pero no podemos aceptar el lunes.</strong></div>
+<div aria-live="polite" class="feedback" id="recallFeedback3"></div>
+</div>
+</div>
+<div class="actions"><button class="btn primary" disabled="" id="recallContinue" type="button">Entrar en la negociación</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="4" aria-labelledby="title-4">
-      <div class="panel">
-        <span class="kicker">4 · Comprueba</span>
-        <h2 id="title-4" tabindex="-1">Elige por forma y significado</h2>
-        <p class="sub">Responde las cuatro preguntas. Puedes corregir cada respuesta antes de continuar.</p>
-        <div id="quiz"></div>
-        <div class="actions"><button class="btn primary" id="quizContinue" type="button" disabled>Construir frases</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-7" class="screen" data-screen="7">
+<div class="panel">
+<span class="kicker">7 · Reacciona</span>
+<h2 id="title-7" tabindex="-1">Negocia en tres pasos</h2>
+<p class="sub">Elige qué decir en cada momento: primero propones, después rechazas una condición que no te conviene y al final aceptas una alternativa. No necesitas usar el condicional.</p>
+<div class="sim-wrap">
+<aside aria-label="Condiciones actuales" class="deal-card">
+<h3>Situación: renovar un servicio</h3>
+<ul class="deal-list">
+<li><strong>Precio:</strong> 1.200 USD</li>
+<li><strong>Entrega:</strong> viernes</li>
+<li><strong>Pago:</strong> esta semana</li>
+</ul>
+</aside>
+<div id="simulation">
+<div class="sim-step active" data-sim="0"><h3>Proveedor</h3><p>«Podemos mantener el precio, pero entregamos el viernes».</p><p><strong>Tú necesitas el miércoles. ¿Qué propones?</strong></p><div class="choice-list"><button class="choice sim-choice" data-good="false" type="button">La entrega tiene que ser el miércoles.</button><button class="choice sim-choice" data-good="true" type="button">¿Podemos adelantar la entrega al miércoles?</button><button class="choice sim-choice" data-good="false" type="button">Confirmamos la entrega para el viernes.</button></div><div aria-live="polite" class="feedback sim-feedback"></div></div>
+<div class="sim-step" data-sim="1"><h3>Proveedor</h3><p>«Podemos entregar el miércoles, pero cuesta 80 USD más».</p><p><strong>No puedes aceptar el costo adicional. ¿Qué respondes?</strong></p><div class="choice-list"><button class="choice sim-choice" data-good="true" type="button">Gracias, pero no podemos aceptar el costo adicional.</button><button class="choice sim-choice" data-good="false" type="button">De acuerdo. Aceptamos los 80 USD extra.</button><button class="choice sim-choice" data-good="false" type="button">No. Todo está mal.</button></div><div aria-live="polite" class="feedback sim-feedback"></div></div>
+<div class="sim-step" data-sim="2"><h3>Proveedor</h3><p>«Podemos entregar el miércoles sin costo adicional si pagan esta semana».</p><p><strong>Puedes pagar esta semana. ¿Qué dices?</strong></p><div class="choice-list"><button class="choice sim-choice" data-good="false" type="button">Tal vez.</button><button class="choice sim-choice" data-good="true" type="button">De acuerdo. Podemos pagar esta semana.</button><button class="choice sim-choice" data-good="false" type="button">No podemos pagar esta semana.</button></div><div aria-live="polite" class="feedback sim-feedback"></div></div>
+<div class="card soft hide" id="simDone"><h3>Has completado una negociación sencilla</h3><p>Has practicado tres decisiones: <strong>proponer → rechazar con cortesía → aceptar</strong>.</p><p class="note"><strong>Reto opcional:</strong> expresa una contraoferta más elaborada: «Podríamos aceptar el miércoles si mantienen el precio». Si todavía no te sale, continúa: ya cumpliste el objetivo.</p><div class="actions"><a class="btn yellow" href="https://skool.spanishatwork.co" rel="noopener noreferrer" target="_blank">Practicar en la comunidad</a><button class="btn primary" disabled="" id="simContinue" type="button">Cambiar la situación</button></div></div>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="screen" data-screen="5" aria-labelledby="title-5">
-      <div class="panel">
-        <span class="kicker">5 · Construye</span>
-        <h2 id="title-5" tabindex="-1">Arma la respuesta</h2>
-        <p class="sub">Pulsa las palabras en orden. No necesitas arrastrar: funciona igual en móvil, teclado y escritorio.</p>
-        <div id="builders"></div>
-        <div class="actions"><button class="btn primary" id="builderContinue" type="button" disabled>Recuperar con menos apoyo</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-8" class="screen" data-screen="8">
+<div class="panel">
+<span class="kicker">8 · Cambia la situación</span>
+<h2 id="title-8" tabindex="-1">Otra situación, el mismo objetivo</h2>
+<p class="sub">Un compañero propone entregar un informe el lunes, pero tu equipo necesita el informe el viernes anterior. Vas a rechazar el lunes y proponer el viernes.</p>
+<div class="grid-2">
+<div class="card"><h3>Logro básico</h3><p><strong>1.</strong> Rechaza el lunes con cortesía.<br/><strong>2.</strong> Propón el viernes como alternativa.</p><p class="note">Puedes escribir dos frases cortas. No necesitas explicar las razones ni añadir condiciones.</p></div>
+<div class="card soft"><h3>Frases de apoyo</h3><p><strong>Gracias, pero no podemos...<br/>¿Podemos adelantar la entrega...?</strong></p><p class="note"><strong>Solo si quieres:</strong> añade «porque...» o una contraoferta con «podríamos».</p></div>
+</div>
+<label for="variationText" style="display:block;font-weight:600;margin-top:18px">Escribe una respuesta de una o dos frases:</label>
+<textarea id="variationText" placeholder="Gracias, pero no podemos aceptar el lunes. ¿Podemos adelantar la entrega al viernes?"></textarea>
+<div class="actions"><button class="btn primary" id="variationCheck" type="button">Revisar con criterios</button></div>
+<div aria-live="polite" class="feedback" id="variationFeedback"></div>
+<div class="actions"><button class="btn primary" disabled="" id="variationContinue" type="button">Ahora dilo tú</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="6" aria-labelledby="title-6">
-      <div class="panel">
-        <span class="kicker">6 · Recupera</span>
-        <h2 id="title-6" tabindex="-1">Ahora sin modelo completo</h2>
-        <p class="sub">Escribe una frase breve. La comprobación busca las estructuras trabajadas; no intenta evaluar todas las respuestas posibles.</p>
-        <div class="recall-grid">
-          <div class="recall">
-            <label for="recall1">1. Propón cambiar la fecha con <em>podríamos</em>.</label>
-            <input class="text-input" id="recall1" type="text" autocomplete="off" placeholder="Escribe tu frase">
-            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint1" aria-controls="hint1" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="1">Comprobar</button></div>
-            <div class="hint" id="hint1">Empieza con: <strong>Podríamos...</strong></div>
-            <div class="feedback" id="recallFeedback1" aria-live="polite"></div>
-          </div>
-          <div class="recall">
-            <label for="recall2">2. Pide revisar el precio con una pregunta cortés.</label>
-            <input class="text-input" id="recall2" type="text" autocomplete="off" placeholder="Escribe tu frase">
-            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint2" aria-controls="hint2" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="2">Comprobar</button></div>
-            <div class="hint" id="hint2">Puedes usar: <strong>¿Sería posible...?</strong></div>
-            <div class="feedback" id="recallFeedback2" aria-live="polite"></div>
-          </div>
-          <div class="recall">
-            <label for="recall3">3. Acepta una propuesta con una condición.</label>
-            <input class="text-input" id="recall3" type="text" autocomplete="off" placeholder="Escribe tu frase">
-            <div class="actions"><button class="btn ghost small hint-btn" type="button" data-hint="hint3" aria-controls="hint3" aria-expanded="false">Ver pista</button><button class="btn primary small recall-check" type="button" data-check="3">Comprobar</button></div>
-            <div class="hint" id="hint3">Incluye <strong>si + presente</strong>: “... si mantienen / incluyen / pueden...”</div>
-            <div class="feedback" id="recallFeedback3" aria-live="polite"></div>
-          </div>
-        </div>
-        <div class="actions"><button class="btn primary" id="recallContinue" type="button" disabled>Entrar en la negociación</button></div>
-      </div>
-    </section>
+    <section aria-labelledby="title-9" class="screen" data-screen="9">
+<div class="panel">
+<span class="kicker">9 · Producción oral</span>
+<h2 id="title-9" tabindex="-1">Ahora dilo tú: propone y responde</h2>
+<p class="sub">Un proveedor propone una fecha que no te conviene. Responde en una o dos frases. Tienes hasta 60 segundos y puedes terminar antes. Es válido apoyarte en las palabras clave.</p>
+<div class="timer-box">
+<div class="timer" id="timer">01:00</div>
+<p><strong>Logro básico:</strong> rechaza con respeto y propone una fecha diferente. <strong>Si quieres ampliar:</strong> añade un «porque» o una condición con «si» y «podríamos».</p>
+<div class="actions" style="justify-content:center"><button class="btn primary" id="timerBtn" type="button">Iniciar 60 segundos</button><button class="btn ghost" disabled id="timerStop" type="button">Terminar antes</button><button class="btn ghost" id="timerReset" type="button">Reiniciar tiempo</button></div>
+</div>
+<h3>Después de hablar, revisa:</h3>
+<div class="checklist" id="oralChecklist">
+<label class="check-item"><input type="checkbox"/> <span>Rechacé la propuesta de forma <strong>clara y respetuosa</strong>.</span></label>
+<label class="check-item"><input type="checkbox"/> <span>Propuse <strong>una alternativa concreta</strong> (por ejemplo, otra fecha).</span></label>
+<label class="check-item"><input type="checkbox"/> <span>Usé <strong>frases que puedo decir en el trabajo</strong>, aunque fueran cortas.</span></label>
+<label class="check-item"><input id="oralReason" type="checkbox"/> <span><strong>Reto opcional:</strong> expliqué mi razón con «porque».</span></label>
+<label class="check-item"><input type="checkbox"/> <span><strong>Reto opcional:</strong> usé una contraoferta con «podríamos» o una condición con «si».</span></label>
+</div>
+<div aria-live="polite" class="feedback" id="oralFeedback"></div>
+<div class="actions"><button class="btn primary" disabled="" id="oralContinue" type="button">Preparar la práctica en vivo</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="7" aria-labelledby="title-7">
-      <div class="panel">
-        <span class="kicker">7 · Reacciona</span>
-        <h2 id="title-7" tabindex="-1">Una contraoferta, tres decisiones lingüísticas</h2>
-        <p class="sub">No estás resolviendo una estrategia comercial. Estás eligiendo español que te permita proponer, condicionar y responder.</p>
-        <div class="sim-wrap">
-          <aside class="deal-card" aria-label="Condiciones actuales">
-            <h3>Propuesta actual</h3>
-            <ul class="deal-list">
-              <li><strong>Precio:</strong> 1.200 USD</li>
-              <li><strong>Entrega:</strong> viernes</li>
-              <li><strong>Pago:</strong> esta semana</li>
-            </ul>
-          </aside>
-          <div id="simulation">
-            <div class="sim-step active" data-sim="0">
-              <h3>Proveedor</h3><p>“Podemos mantener el precio, pero la entrega tendría que ser el viernes.”</p>
-              <p><strong>Quieres proponer el miércoles.</strong></p>
-              <div class="choice-list">
-                <button class="choice sim-choice" type="button" data-good="false">La entrega tiene que ser el miércoles.</button>
-                <button class="choice sim-choice" type="button" data-good="true">¿Sería posible entregar el miércoles?</button>
-                <button class="choice sim-choice" type="button" data-good="false">Si podrían entregar el miércoles, confirmamos.</button>
-              </div>
-              <div class="feedback sim-feedback" aria-live="polite"></div>
-            </div>
-            <div class="sim-step" data-sim="1">
-              <h3>Proveedor</h3><p>“Podemos entregar el miércoles si aceptan un costo adicional de 80 USD.”</p>
-              <p><strong>Quieres aceptar el miércoles solo si mantienen el precio.</strong></p>
-              <div class="choice-list">
-                <button class="choice sim-choice" type="button" data-good="true">Podríamos aceptar la entrega para el miércoles si mantienen el precio actual.</button>
-                <button class="choice sim-choice" type="button" data-good="false">Podríamos aceptar si mantendrían el precio.</button>
-                <button class="choice sim-choice" type="button" data-good="false">No. El precio no cambia.</button>
-              </div>
-              <div class="feedback sim-feedback" aria-live="polite"></div>
-            </div>
-            <div class="sim-step" data-sim="2">
-              <h3>Proveedor</h3><p>“Podemos mantener el precio si el pago se realiza esta semana.”</p>
-              <p><strong>La condición te funciona.</strong></p>
-              <div class="choice-list">
-                <button class="choice sim-choice" type="button" data-good="false">Bueno.</button>
-                <button class="choice sim-choice" type="button" data-good="true">De acuerdo. Esa condición nos funciona y podemos confirmar hoy.</button>
-                <button class="choice sim-choice" type="button" data-good="false">Nos gustaría que sí.</button>
-              </div>
-              <div class="feedback sim-feedback" aria-live="polite"></div>
-            </div>
-            <div class="card soft hide" id="simDone">
-              <h3>Has recorrido una negociación breve</h3>
-              <p>Has utilizado tres funciones distintas: <strong>proponer → condicionar → acordar</strong>.</p>
-              <div class="actions">
-                <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
-                <button class="btn primary" id="simContinue" type="button" disabled>Cambiar la situación</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section aria-labelledby="title-10" class="screen" data-screen="10">
+<div class="panel">
+<span class="kicker">10 · Prepara la práctica en vivo</span>
+<h2 id="title-10" tabindex="-1">¿Con quién o sobre qué vas a practicar?</h2>
+<p class="sub">Elige un interlocutor o una situación para preparar un juego de roles para tu sesión en vivo. Durante esa sesión practicarás con acompañamiento, recibirás comentarios y volverás a intentarlo. Después podrás aplicar las frases en el trabajo.</p>
+<div class="transfer-options" id="transferOptions">
+<button aria-pressed="false" class="transfer-btn" type="button">Proveedor</button>
+<button aria-pressed="false" class="transfer-btn" type="button">Cliente</button>
+<button aria-pressed="false" class="transfer-btn" type="button">Compañero</button>
+<button aria-pressed="false" class="transfer-btn" type="button">Proyecto</button>
+<button aria-pressed="false" class="transfer-btn" type="button">Otra situación</button>
+</div>
+<div aria-live="polite" class="card accent" id="missionCard"><h3>Tu misión</h3><p>Elige una situación para llevar a la sesión en vivo. Prepara una propuesta corta y una respuesta respetuosa: aceptar o rechazar.</p></div>
+<div class="actions"><button class="btn primary" disabled="" id="finishBtn" type="button">Terminar preparación</button></div>
+</div>
+</section>
 
-    <section class="screen" data-screen="8" aria-labelledby="title-8">
-      <div class="panel">
-        <span class="kicker">8 · Cambia la situación</span>
-        <h2 id="title-8" tabindex="-1">Misma lengua, otra negociación</h2>
-        <p class="sub">Ahora negocias la fecha de entrega de un informe. La otra persona propone el lunes, pero tú necesitas entregarlo el viernes anterior.</p>
-        <div class="grid-2">
-          <div class="card"><h3>Tu intención</h3><p>1. Haz una propuesta cortés.<br>2. Añade una condición.<br>3. Justifica tu decisión con una razón breve y, si puedes, deja abierta una alternativa.</p></div>
-          <div class="card soft"><h3>Palabras disponibles</h3><p><strong>sería posible · podríamos · si · porque · necesitamos · viernes · lunes · confirmar · alternativa</strong></p></div>
-        </div>
-        <label for="variationText" style="display:block;font-weight:600;margin-top:18px">Construye una intervención de 2 o 3 frases:</label>
-        <textarea id="variationText" placeholder="Escribe una versión propia"></textarea>
-        <div class="actions"><button class="btn primary" id="variationCheck" type="button">Revisar con criterios</button></div>
-        <div class="feedback" id="variationFeedback" aria-live="polite"></div>
-        <div class="actions"><button class="btn primary" id="variationContinue" type="button" disabled>Ahora dilo tú</button></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="9" aria-labelledby="title-9">
-      <div class="panel">
-        <span class="kicker">9 · Producción oral</span>
-        <h2 id="title-9" tabindex="-1">Ahora dilo tú</h2>
-        <p class="sub">Imagina que un proveedor te ofrece una fecha que no te conviene. Tienes 60 segundos para responder. No leas un modelo completo.</p>
-        <div class="timer-box">
-          <div class="timer" id="timer">01:00</div>
-          <p>Intenta incluir <strong>una propuesta con condicional</strong>, <strong>una condición con si + presente</strong>, <strong>una forma de rechazo o desacuerdo cortés</strong> y <strong>una razón breve con porque</strong>.</p>
-          <div class="actions" style="justify-content:center"><button class="btn primary" id="timerBtn" type="button">Iniciar 60 segundos</button><button class="btn ghost" id="timerReset" type="button">Reiniciar tiempo</button></div>
-        </div>
-        <h3>Después de hablar, revisa:</h3>
-        <div class="checklist" id="oralChecklist">
-          <label class="check-item"><input type="checkbox"> <span>Usé una forma como <strong>podríamos / sería posible / nos gustaría</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Expresé una condición con <strong>si + presente</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Expresé un rechazo o desacuerdo de forma comprensible y cortés.</span></label>
-          <label class="check-item"><input type="checkbox" id="oralReason"> <span>Justifiqué mi decisión con una razón breve usando <strong>porque</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Pude reaccionar sin leer una respuesta completa.</span></label>
-        </div>
-        <div class="feedback" id="oralFeedback" aria-live="polite"></div>
-        <div class="actions"><button class="btn primary" id="oralContinue" type="button" disabled>Llevarlo a mi trabajo</button></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="10" aria-labelledby="title-10">
-      <div class="panel">
-        <span class="kicker">10 · Transfiere</span>
-        <h2 id="title-10" tabindex="-1">¿Dónde vas a usarlo?</h2>
-        <p class="sub">Elige una situación real. La misión es lingüística: recuperar al menos dos estructuras de esta lección cuando las necesites.</p>
-        <div class="transfer-options" id="transferOptions">
-          <button class="transfer-btn" type="button" aria-pressed="false">Proveedor</button>
-          <button class="transfer-btn" type="button" aria-pressed="false">Cliente</button>
-          <button class="transfer-btn" type="button" aria-pressed="false">Compañero</button>
-          <button class="transfer-btn" type="button" aria-pressed="false">Proyecto</button>
-          <button class="transfer-btn" type="button" aria-pressed="false">Otra situación</button>
-        </div>
-        <div class="card accent" id="missionCard" aria-live="polite"><h3>Tu misión</h3><p>Selecciona una situación para crear tu misión de transferencia.</p></div>
-        <div class="actions"><button class="btn primary" id="finishBtn" type="button" disabled>Completar lección</button></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="11" aria-labelledby="title-11">
-      <div class="panel">
-        <span class="kicker">Spanish at Work · Lección completada</span>
-        <h2 id="title-11" tabindex="-1">Ya tienes más recursos para negociar en español</h2>
-        <p class="sub">La meta no era memorizar una negociación. Era disponer de estructuras que puedas recuperar cuando cambien el precio, la fecha o las condiciones.</p>
-        <div class="summary-list">
-          <div class="summary-item"><span class="checkmark">✓</span><span>Utilizas <strong>podríamos, sería posible y nos gustaría</strong> para proponer o pedir de forma menos directa.</span></div>
-          <div class="summary-item"><span class="checkmark">✓</span><span>Construyes condiciones frecuentes con <strong>si + presente</strong>.</span></div>
-          <div class="summary-item"><span class="checkmark">✓</span><span>Expresas <strong>acuerdo, desacuerdo y contrapropuestas</strong> y puedes justificar una decisión con una razón breve.</span></div>
-        </div>
-        <div class="card soft"><h3>Aplicación profesional</h3><p>Negociar condiciones, fechas, precios o alternativas y reaccionar ante una contraoferta.</p></div>
-        <div class="actions">
-          <button class="btn ghost" id="repeatSim" type="button">Repetir la negociación</button>
-          <button class="btn ghost" id="resetFinal" type="button">Reiniciar lección</button>
-          <a class="btn yellow" href="https://skool.spanishatwork.co" target="_blank" rel="noopener noreferrer">Entrenar en la comunidad</a>
-        </div>
-      </div>
-    </section>
+    <section aria-labelledby="title-11" class="screen" data-screen="11">
+<div class="panel">
+<span class="kicker">Spanish at Work · Lección completada</span>
+<h2 id="title-11" tabindex="-1">Ya preparaste una negociación sencilla</h2>
+<p class="sub">Preparaste frases para pedir un cambio, aceptar una oferta y rechazarla con respeto. En tu sesión en vivo podrás ponerlas a prueba y mejorarlas con comentarios de la profesora.</p>
+<div class="summary-list">
+<div class="summary-item"><span class="checkmark">✓</span><span>Preparaste una alternativa con <strong>«¿Podemos...?»</strong> y una fecha o condición concreta.</span></div>
+<div class="summary-item"><span class="checkmark">✓</span><span>Preparaste una aceptación clara: <strong>«De acuerdo. Esa opción nos funciona».</strong></span></div>
+<div class="summary-item"><span class="checkmark">✓</span><span>Preparaste un rechazo cortés: <strong>«Gracias, pero no podemos...»</strong> y, cuando lo necesitas, propones otra opción.</span></div>
+</div>
+<div class="card soft"><h3>Para seguir avanzando</h3><p><strong>Opcional:</strong> practica «podríamos» y «si + presente» para formular una contraoferta más compleja. El logro básico ya es útil para negociar fechas, precios y condiciones.</p></div>
+<div class="actions">
+<button class="btn ghost" id="repeatSim" type="button">Repetir la negociación</button>
+<button class="btn ghost" id="resetFinal" type="button">Reiniciar lección</button>
+<a class="btn yellow" href="https://skool.spanishatwork.co" rel="noopener noreferrer" target="_blank">Entrenar en la comunidad</a>
+</div>
+</div>
+</section>
 
     <div class="nav-footer" id="navFooter" aria-label="Navegación de la lección">
       <button class="btn ghost" id="backBtn" type="button">← Anterior</button>
@@ -583,7 +507,7 @@
 
       const screens = [...document.querySelectorAll('.screen')];
       const totalScreens = screens.length;
-      const stateKey = 'saw_lesson_11_v1';
+      const stateKey = 'saw_lesson_11_a2_v2';
       const state = {
         current: 0,
         completed: new Set(),
@@ -654,6 +578,12 @@
 
       function showScreen(index, focusTitle = true) {
         const target = Math.max(0, Math.min(index, totalScreens - 1));
+        if (target !== 9 && timerId !== null) {
+          clearInterval(timerId); timerId = null;
+          $('timerStop').disabled=true;
+          $('timerBtn').disabled=false;
+          $('timerBtn').textContent='Continuar tiempo';
+        }
         screens.forEach((s,i) => s.classList.toggle('active', i === target));
         state.current = target;
         updateNavigation();
@@ -706,8 +636,8 @@
           const fb = $('warmupFeedback');
           fb.className = 'feedback show ' + (good ? 'good' : 'bad');
           fb.innerHTML = good
-            ? '<strong>Funciona.</strong> “¿Sería posible...?” presenta la petición como una posibilidad y deja espacio para responder.'
-            : '<strong>La frase es comprensible, pero es más directa.</strong> En esta lección vamos a practicar formas como “¿Sería posible...?” para presentar una petición con más cortesía.';
+            ? '<strong>Funciona.</strong> “¿Podemos...?” hace una propuesta clara y deja espacio para responder.'
+            : '<strong>La frase es comprensible, pero suena exigente.</strong> “¿Podemos cambiar la fecha?” invita a buscar una alternativa.';
           $('warmupContinue').disabled = !good;
           if (good) complete('warmup'); else uncomplete('warmup');
         });
@@ -735,34 +665,10 @@
 
       // Quiz
       const quizData = [
-        {
-          q:'1. ¿Qué frase presenta una propuesta usando condicional?',
-          opts:['Podríamos revisar la fecha.','Revisamos la fecha ayer.','Revisen la fecha ahora.'],
-          answer:0,
-          good:'“Podríamos + infinitivo” sirve para presentar una posibilidad o propuesta.',
-          bad:'Busca una forma en condicional. “Podríamos revisar...” presenta una opción.'
-        },
-        {
-          q:'2. Completa: “Podemos aceptar el precio si ___ el soporte.”',
-          opts:['incluyen','incluirían','incluyeron'],
-          answer:0,
-          good:'Después de “si”, aquí usamos presente: “si incluyen el soporte”.',
-          bad:'En esta condición real usamos “si + presente”: “si incluyen...”.'
-        },
-        {
-          q:'3. ¿Cuál expresa desacuerdo sin cerrar la conversación?',
-          opts:['No.','Entiendo la propuesta, pero no podríamos aceptar ese plazo.','Aceptamos.'],
-          answer:1,
-          good:'La frase reconoce la propuesta y después marca el desacuerdo con “pero”.',
-          bad:'Busca una frase que exprese el desacuerdo y mantenga abierta la interacción.'
-        },
-        {
-          q:'4. ¿Qué frase es correcta para pedir un cambio con cortesía?',
-          opts:['¿Sería posible cambiar la fecha?','¿Ser posible cambiar la fecha?','¿Si sería posible cambiar la fecha?'],
-          answer:0,
-          good:'“¿Sería posible + infinitivo...?” es una estructura completa y frecuente.',
-          bad:'La estructura trabajada es “¿Sería posible + infinitivo...?”.'
-        }
+        {q:'1. Quieres proponer otra fecha. ¿Qué dices?', opts:['¿Podemos cambiar la fecha?','La fecha no cambia.','El lunes ya terminó.'], answer:0, good:'Has propuesto un cambio con una pregunta clara.', bad:'Para proponer, pregunta si es posible cambiar la fecha.'},
+        {q:'2. El precio te conviene. ¿Cómo aceptas?', opts:['No podemos aceptarlo.','De acuerdo. Aceptamos el precio.','¿Y si cambiamos el precio?'], answer:1, good:'«De acuerdo» confirma la aceptación.', bad:'Busca una frase que confirme de manera clara que aceptas la oferta.'},
+        {q:'3. No puedes aceptar esa fecha. ¿Qué respuesta mantiene la cortesía?', opts:['Gracias, pero no podemos aceptar esa fecha.','Es una mala oferta.','De acuerdo. Aceptamos.'], answer:0, good:'Expresas el rechazo de forma educada y clara.', bad:'Puedes comenzar con «Gracias, pero...» y explicar qué no puedes aceptar.'},
+        {q:'4. Después de rechazar, quieres ofrecer el jueves. ¿Qué dices?', opts:['El jueves pasó.','¿Podemos cambiar la entrega al jueves?','Ya aceptamos el lunes.'], answer:1, good:'Has abierto una alternativa concreta para negociar.', bad:'La propuesta debe pedir de forma amable la fecha que necesitas.'}
       ];
 
       function renderQuiz() {
@@ -784,7 +690,7 @@
               b.classList.add(good ? 'correct' : 'wrong');
               const fb = $('qfb'+idx);
               fb.className = 'feedback show ' + (good ? 'good' : 'bad');
-              fb.innerHTML = good ? `<strong>Correcto.</strong> ${item.good}` : `<strong>Revisa la estructura.</strong> ${item.bad}`;
+              fb.innerHTML = good ? `<strong>Correcto.</strong> ${item.good}` : `<strong>Revisa la respuesta.</strong> ${item.bad}`;
               if (good) state.quizDone.add(idx); else state.quizDone.delete(idx);
               const quizComplete = state.quizDone.size === quizData.length;
               $('quizContinue').disabled = !quizComplete;
@@ -799,15 +705,20 @@
 
       // Sentence builders
       const builderData = [
-        {prompt:'Construye una propuesta.', words:['Podríamos','revisar','el','precio.'], answer:'Podríamos revisar el precio.'},
-        {prompt:'Construye una petición cortés.', words:['¿Sería','posible','cambiar','la','fecha?'], answer:'¿Sería posible cambiar la fecha?'},
-        {prompt:'Construye una condición.', words:['Podemos','confirmar','hoy','si','mantienen','el','precio.'], answer:'Podemos confirmar hoy si mantienen el precio.'}
+        {prompt:'Propón cambiar la fecha.', words:['¿Podemos','cambiar','la','fecha?'], answer:'¿Podemos cambiar la fecha?'},
+        {prompt:'Acepta el precio.', words:['De','acuerdo.','Aceptamos','el','precio.'], answer:'De acuerdo. Aceptamos el precio.'},
+        {prompt:'Rechaza una fecha con cortesía.', words:['Gracias,','pero','no','podemos','aceptar','el','lunes.'], answer:'Gracias, pero no podemos aceptar el lunes.'}
       ];
       function renderBuilders() {
         const host = $('builders');
         builderData.forEach((item, idx) => {
           const box = document.createElement('div'); box.className='builder';
-          const wordObjects = item.words.map((w,i)=>({w,i})).sort(()=>Math.random()-.5);
+          const wordObjects = item.words.map((w,i)=>({w,i}));
+          // Fisher–Yates evita el sesgo de ordenar con Math.random() en el comparador.
+          for (let i=wordObjects.length-1; i>0; i--) {
+            const j=Math.floor(Math.random()*(i+1));
+            [wordObjects[i], wordObjects[j]]=[wordObjects[j], wordObjects[i]];
+          }
           box.innerHTML = `<h3>${idx+1}. ${item.prompt}</h3><div class="builder-target" id="target${idx}" aria-label="Frase construida" aria-live="polite"></div><div class="word-bank" id="bank${idx}"></div><div class="actions"><button class="btn ghost small" type="button" id="clear${idx}">Borrar</button><button class="btn primary small" type="button" id="check${idx}">Comprobar</button></div><div class="feedback" id="bfb${idx}" aria-live="polite"></div>`;
           host.appendChild(box);
           const target = $('target'+idx), bank = $('bank'+idx);
@@ -836,7 +747,7 @@
             const phrase=[...target.querySelectorAll('.built-word')].map(x=>x.textContent).join(' ');
             const good=phrase===item.answer;
             const fb=$('bfb'+idx); fb.className='feedback show '+(good?'good':'bad');
-            fb.innerHTML=good?'<strong>La estructura está bien construida.</strong> Ahora intenta decirla sin mirar las palabras.':'<strong>Revisa el orden.</strong> Borra la frase y vuelve a construirla. Observa dónde aparece el infinitivo o la condición.';
+            fb.innerHTML=good?'<strong>La estructura está bien construida.</strong> Ahora intenta decirla sin mirar las palabras.':'<strong>Revisa el orden.</strong> Borra la frase y vuelve a construirla. Observa cómo se ordenan las palabras para pedir, aceptar o rechazar.';
             if(good) state.buildersDone.add(idx); else state.buildersDone.delete(idx);
             const buildersComplete=state.buildersDone.size===builderData.length;
             $('builderContinue').disabled=!buildersComplete;
@@ -854,392 +765,133 @@
         btn.setAttribute('aria-expanded', String(expanded));
         btn.textContent=expanded ? 'Ocultar pista' : 'Ver pista';
       }));
-      // Detecta el condicional al inicio de una condición real, con pronombres o sujeto breve.
-      // No rechaza el condicional de la oración principal: «Si mantienen el precio, podríamos aceptar».
-      const regularConditionalTokenPattern=/^[a-záéíóúüñ]*(?:ar|er|ir)(?:ía|ías|íamos|íais|ían)$/i;
-      const irregularConditionalTokenPattern=/^[a-záéíóúüñ]*(?:podr|tendr|querr|vendr|saldr|pondr|sabr|cabr|valdr|habr|har|dir)(?:ía|ías|íamos|íais|ían)$/i;
-      const regularFutureTokenPattern=/^[a-záéíóúüñ]*(?:ar|er|ir)(?:é|ás|á|emos|éis|án)$/i;
-      const irregularFutureTokenPattern=/^[a-záéíóúüñ]*(?:podr|tendr|querr|vendr|saldr|pondr|sabr|cabr|valdr|habr|har|dir)(?:é|ás|á|emos|éis|án)$/i;
-      // Comprobación orientativa: reconoce formas frecuentes de presente en la cláusula con «si»
-      // y comprueba la concordancia cuando el estudiante escribe un sujeto explícito.
-      const personTags=['1s','2s','3s','1p','2p','3p'];
-      const presentForms=new Map();
-      function addPresentParadigm(forms){
-        forms.forEach((form,index)=>{
-          if(!form) return;
-          if(!presentForms.has(form)) presentForms.set(form,new Set());
-          presentForms.get(form).add(personTags[index]);
+      // Los verificadores de texto son orientativos: evalúan la intención comunicativa,
+      // no exigen una conjugación ni una sola redacción para la propuesta.
+      function normalizeText(value) {
+        return value.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      }
+      function hasDateProposal(value, expectedDay) {
+        // Separa preguntas nuevas dentro de una misma frase para no confundir
+        // el día rechazado con la fecha que se propone después.
+        const text = normalizeText(value)
+          .replace(/\bpero\b/g, ';')
+          .replace(/\s+y\s+(?=(?:¿\s*)?(?:propongo|proponemos|propondria|sugiero|sugerimos|prefiero|preferimos|podemos\s+(?:entregar|cambiar|adelantar)|podriamos|quisiera|quisieramos|(?:me|nos)\s+gustaria)\b)/g, ';')
+          .replace(/,\s*(?=¿)/g, ';')
+          .replace(/([^.!?;\n])\s+(?=¿)/g, '$1;');
+        const day = expectedDay ? normalizeText(expectedDay) : '(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo|manana|pasado\\s+manana|(?:la\\s+)?(?:proxima|siguiente)\\s+semana|el\\s+\\d{1,2}(?:\\s+de\\s+[a-z]+)?|\\d{1,2}[/-]\\d{1,2}(?:[/-]\\d{2,4})?)';
+        const dayPattern = new RegExp('\\b' + day + '\\b');
+        if (expectedDay) {
+          const original=normalizeText(value);
+          // No aceptar una propuesta que contradiga explícitamente la fecha pedida.
+          // «El viernes no nos funciona» no se convierte en propuesta por
+          // mencionar después una pregunta contradictoria sobre ese mismo día.
+          const rejectedDate = new RegExp('\\b(?:(?:el|para el)\\s+)?' + day + '\\s+no\\s+(?:(?:me|nos)\\s+)?(?:funciona|sirve|conviene|viene\\s+bien|es\\s+(?:posible|viable))\\b');
+          if (rejectedDate.test(original)) return false;
+          // La última contraoferta prevalece sobre una pregunta anterior:
+          // «¿Podemos entregar el viernes? No, mejor el lunes» propone lunes.
+          const override=[...original.matchAll(/\b(?:mejor|propongo|proponemos|prefiero|preferimos)\s+(?:(?:para\s+)?el\s+)?(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/g)].pop();
+          if (override && override.index > original.indexOf(day) && override[1] !== day) return false;
+        }
+        // La alternativa A2 puede expresarse por contraste sin repetir el verbo:
+        // «Gracias, el lunes no nos funciona, el viernes sí».
+        if (expectedDay) {
+          const contrast = new RegExp('(?:\\b(?:y|pero)\\s+|[,;]\\s*)(?:(?:el|para el)\\s+)?' + day + '\\s+(?:si|(?:me|nos)\\s+(?:funciona|sirve|conviene))\\b');
+          if (contrast.test(text)) return true;
+        }
+        return text.split(/[.!?;\n]+/).some(part => {
+          const candidate=part.trim();
+          if (!candidate || !dayPattern.test(candidate)) return false;
+          // Si se ofrecen dos fechas con «o», no hay una alternativa concreta.
+          // El ejercicio pide elegir el viernes, no dejar la fecha abierta.
+          if (expectedDay && /\b(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\s+o\s+(?:el\s+)?(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/.test(candidate)) return false;
+          // Después de corregirse, «No, mejor el viernes» sí propone el viernes.
+          // La negación aislada responde a la propuesta anterior, no a la nueva fecha.
+          if (expectedDay && new RegExp('^(?:no\\s*[,;]?\\s*)?mejor\\s+(?:para\\s+)?(?:el\\s+)?' + day + '$').test(candidate)) return true;
+          // En el nivel A2 «el viernes sí» es una alternativa suficiente si se
+          // contrapone a la fecha rechazada en la misma respuesta.
+          if (expectedDay && /^(?:(?:el|para el)\s+)?viernes\s+(?:si|(?:nos|me)\s+(?:funciona|sirve|conviene))$/.test(candidate) && day === 'viernes') return true;
+          if (expectedDay) {
+            // La fecha pedida debe ser el destino de la propuesta, no el día que se
+            // intenta retirar: «cambiar la entrega del viernes al lunes» NO propone viernes.
+            const sourceDay = new RegExp('\\b(?:del|desde\\s+el|de\\s+el)\\s+' + day + '\\b');
+            const destinationDay = new RegExp('\\b(?:al|para\\s+el|hasta\\s+el)\\s+' + day + '\\b');
+            // «La entrega del viernes nos funciona» nombra una fecha válida,
+            // aunque use «del viernes»; no la confundimos con mover la fecha de origen.
+            const acceptedDeliveryDay = new RegExp('\\b(?:la\\s+entrega|el\\s+informe|la\\s+fecha)\\s+(?:del|para\\s+el)\\s+' + day + '\\s+(?:me|nos)\\s+(?:funciona|sirve|conviene)\\b').test(candidate);
+            if (sourceDay.test(candidate) && !destinationDay.test(candidate) && !acceptedDeliveryDay) return false;
+            // «Prefiero el lunes antes que el viernes» descarta el viernes;
+            // mencionarlo como opción rechazada no equivale a proponerlo.
+            const rejectedComparison=new RegExp('\\b(?:antes\\s+que\\s+el|en\\s+vez\\s+del|en\\s+lugar\\s+del)\\s+' + day + '\\b');
+            if (rejectedComparison.test(candidate)) return false;
+            // «Cambiar el viernes al lunes» y «adelantar el viernes al jueves»
+            // también señalan el viernes como fecha de origen, no como propuesta.
+            const movesFromDay = new RegExp('\\b(?:cambiar|mover|adelantar|reprogramar)\\b[^.!?;\\n]*?\\b(?:el|del|de\\s+el)\\s+' + day + '\\s+(?:al|para\\s+el|hasta\\s+el)\\s+(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\b');
+            if (movesFromDay.test(candidate)) return false;
+            // «Cambiar el viernes por el lunes» también usa viernes como origen.
+            const exchangesFromDay = new RegExp('\\b(?:cambiar|mover|reprogramar|adelantar)\\b[^.!?;\\n]*?\\b(?:el|del|de\\s+el)\\s+' + day + '\\s+(?:por|a|para)\\s+(?:el\\s+)?(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\b');
+            if (exchangesFromDay.test(candidate)) return false;
+            // «Cancelar el viernes y entregar el lunes» ofrece el lunes, no el viernes.
+            const cancellation = candidate.match(/\b(?:cancelar|cancelamos|cancelo|cancela|anular|anulamos|anulo|anula|suspender|suspendemos|suspendo|suspende)\b[^.!?;\n]*?\b(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/);
+            if (cancellation && cancellation[1] === day) return false;
+          }
+          // Para A2, proponer una alternativa también puede consistir en expresar
+          // una preferencia por la nueva fecha frente a la propuesta rechazada.
+          if (expectedDay) {
+            const prefersDay = new RegExp('\\b(?:prefiero|preferimos|preferiria|prefeririamos)\\s+(?:(?:el|para\\s+el)\\s+)?' + day + '\\s+(?:en\\s+lugar\\s+del|en\\s+vez\\s+del|antes\\s+que\\s+el)\\s+(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\b');
+            const dayWorks = new RegExp('\\b(?:(?:el|para\\s+el)\\s+)?' + day + '\\s+(?:(?:me|nos)\\s+(?:funciona|sirve|conviene)|(?:esta|es)\\s+bien)\\s*[,;]\\s*no\\s+(?:(?:el|para\\s+el)\\s+)?(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\b');
+            if (prefersDay.test(candidate) || dayWorks.test(candidate)) return true;
+          }
+          // Una fecha negada o una cancelación no son propuestas de entrega.
+          const negatedDay = new RegExp('\\b(?:no\\s+(?:(?:al|el|para\\s+el)\\s+)?|sin\\s+)' + day + '\\b');
+          if (negatedDay.test(candidate) || /\b(?:no|sin)\s+(?:entregar|entregamos|enviar|enviamos|programar|programamos|hacer\s+la\s+entrega)\b/.test(candidate)) return false;
+          // «No se puede entregar el viernes» o «No les podemos entregar el viernes»
+          // expresan una imposibilidad, aunque mencionen un día y un verbo de entrega.
+          if (/\b(?:no|nunca|tampoco)\s+(?:(?:se|les|le|lo|la|nos|me|te)\s+)?(?:podemos|puedo|puede|puedes|pueden|podrian|podriamos|podria|quiero|queremos|propongo|proponemos|sugiero|sugerimos)\b/.test(candidate) && !candidate.startsWith('¿')) return false;
+          // «No me gustaría» y «No preferiríamos» expresan rechazo, no una propuesta.
+          if (/\b(?:no|nunca|tampoco)\s+(?:(?:me|nos)\s+gustaria|preferiria|prefeririamos|preferimos)\b/.test(candidate) && !candidate.startsWith('¿')) return false;
+          const cancelsDelivery=/\b(?:cancelar|cancelamos|cancelo|cancela|anular|anulamos|anulo|anula|suspender|suspendemos|suspendo|suspende|rechazar|rechazamos|rechazo)\b/.test(candidate);
+          const proposesNewDelivery=/\b(?:adelantar|cambiar|mover|reprogramar|entregar(?:lo|la)?|enviar(?:lo|la)?)\b/.test(candidate);
+          if (cancelsDelivery && !proposesNewDelivery) return false;
+          // «No sería posible entregar el viernes» es una imposibilidad, no una propuesta.
+          // Una pregunta como «¿No sería posible entregar el viernes?» sí puede proponer un cambio.
+          if (/\bno\s+seria\s+posible\b/.test(candidate) && !candidate.startsWith('¿')) return false;
+          const explicitOffer=/\b(?:propongo|proponemos|propondria|sugiero|sugerimos|prefiero|preferimos|preferiria|prefeririamos|quisiera|quisieramos|(?:me|nos)\s+gustaria)\b/.test(candidate);
+          const alternativeQuestion=/^(?:¿\s*)?(?:y\s+si|(?:te|le|les|os|nos)\s+parece\s+(?:bien|si))\b/.test(candidate);
+          const politeQuestion=(/\b(?:podemos|podrian|podriamos|podria|pueden|puedes|puede|puedo|seria posible|que tal)\b/.test(candidate) || alternativeQuestion)
+            && /\b(?:entrega|entregar(?:lo|la)?|entregamos|enviar(?:lo|la)?|enviamos|recibir(?:lo|la)?|cambiar(?:lo|la)?|adelantar(?:lo|la)?|mover(?:lo|la)?|fecha|plazo|reprogramar(?:lo|la)?|tener(?:lo|la)?\s+list[oa])\b/.test(candidate);
+          // La propuesta debe hablar de entrega o fecha, no de precios o planes ajenos:
+          // «Propongo un precio de 80 USD» y «Me gustaría descansar el viernes»
+          // no responden a «Propón otra fecha de entrega».
+          // «Cambiar el precio del viernes» no es una propuesta de fecha: la
+          // presencia de «cambiar» sin un objeto relacionado con la entrega no basta.
+          const deliveryContext=/\b(?:entrega|entregar(?:lo|la)?|entregamos|envio|enviar(?:lo|la)?|enviamos|recibir(?:lo|la)?|informe|pedido|fecha|plazo|tener(?:lo|la)?\s+list[oa])\b/.test(candidate)
+            || /\b(?:cambiar|adelantar|mover|reprogramar)\s+(?:(?:la|el|una|un)\s+)?(?:entrega|fecha|plazo|envio|pedido|informe)\b/.test(candidate)
+            || /\b(?:cambiar|adelantar|mover|reprogramar)(?:lo|la)\b/.test(candidate);
+          // Dos maneras A2 de ofrecer una fecha: sustituir el día propuesto y
+          // expresar que la nueva fecha sí funciona («El viernes nos sirve»).
+          // El día de destino debe ser el esperado: no se acepta cambiarlo por otro.
+          const dateSwap = expectedDay && new RegExp('\\b(?:podemos|podriamos|podria|quiero|queremos|propongo|proponemos|quisiera|quisieramos)\\s+(?:cambiar|mover|reprogramar|pasar)\\s+(?:(?:la|el)\\s+(?:fecha|entrega|informe)\\s+)?(?:del|el)\\s+(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\s+(?:por|al|para\\s+el)\\s+(?:el\\s+)?'+day+'\\b').test(candidate);
+          const proposedDayWorks = expectedDay && new RegExp('\\b(?:(?:(?:la\\s+entrega|el\\s+informe|la\\s+fecha)\\s+(?:(?:para|del)\\s+)?)|(?:(?:el|para\\s+el)\\s+))'+day+'\\s+(?:(?:me|nos)\\s+(?:funciona|sirve|conviene)|(?:esta|es)\\s+bien)\\b').test(candidate);
+          // Una fórmula de cortesía inicial no invalida una propuesta breve:
+          // «Gracias, propongo el viernes» cumple el objetivo del ejercicio.
+          const offerPhrase=candidate.replace(/^(?:(?:muchas\s+)?gracias|por\s+favor)\s*[,]\s*/, '');
+          const shortDateOffer=/^(?:¿?\s*)?(?:propongo|proponemos|prefiero|preferimos|quisiera|quisieramos|(?:me|nos)\s+gustaria|podriamos)\s+(?:la\s+entrega\s+)?(?:para\s+el|el|para)?\s*(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo|manana)\s*$/.test(offerPhrase);
+          // En este contexto «¿Qué tal el viernes?» o «¿Te parece bien el viernes?»
+          // son propuestas completas para A2, aunque no repitan «entrega».
+          const simpleDateQuestion=new RegExp('^(?:¿\\s*)?(?:y\\s+si|que\\s+tal|(?:te|le|les)\\s+parece(?:\\s+bien)?|(?:te|le|les)\\s+viene\\s+bien|seria\\s+posible|podria\\s+ser)(?:\\s+(?:para\\s+)?el)?\\s+'+day+'\\s*$').test(candidate);
+          const subjunctiveOffer=new RegExp('\\b(?:propongo|proponemos|sugiero|sugerimos)\\s+que\\s+(?:entreguemos|entreguen|entregue|entregues|enviemos|envien|recibamos)\\s+(?:(?:el|la)\\s+(?:pedido|informe|entrega)\\s+)?(?:el|para\\s+el)\\s+'+day+'\\b').test(candidate);
+          return ((explicitOffer || politeQuestion) && (deliveryContext || shortDateOffer)) || simpleDateQuestion || subjunctiveOffer || dateSwap || proposedDayWorks;
         });
       }
-      [
-        ['puedo','puedes','puede','podemos','podéis','pueden'],
-        ['tengo','tienes','tiene','tenemos','tenéis','tienen'],
-        ['soy','eres','es','somos','sois','son'],
-        ['estoy','estás','está','estamos','estáis','están'],
-        ['voy','vas','va','vamos','vais','van'],
-        ['quiero','quieres','quiere','queremos','queréis','quieren'],
-        ['incluyo','incluyes','incluye','incluimos','incluís','incluyen'],
-        ['mantengo','mantienes','mantiene','mantenemos','mantenéis','mantienen'],
-        ['convengo','convienes','conviene','convenimos','convenís','convienen'],
-        ['reduzco','reduces','reduce','reducimos','reducís','reducen'],
-        ['envío','envías','envía','enviamos','enviáis','envían'],
-        ['ofrezco','ofreces','ofrece','ofrecemos','ofrecéis','ofrecen'],
-        ['hago','haces','hace','hacemos','hacéis','hacen'],
-        ['digo','dices','dice','decimos','decís','dicen'],
-        ['doy','das','da','damos','dais','dan'],
-        ['veo','ves','ve','vemos','veis','ven'],
-        ['sé','sabes','sabe','sabemos','sabéis','saben'],
-        ['consigo','consigues','consigue','conseguimos','conseguís','consiguen'],
-        ['muevo','mueves','mueve','movemos','movéis','mueven'],
-        ['pospongo','pospones','pospone','posponemos','posponéis','posponen'],
-        ['apruebo','apruebas','aprueba','aprobamos','aprobáis','aprueban'],
-        ['acuerdo','acuerdas','acuerda','acordamos','acordáis','acuerdan'],
-        ['propongo','propones','propone','proponemos','proponéis','proponen'],
-        ['recomiendo','recomiendas','recomienda','recomendamos','recomendáis','recomiendan'],
-        ['prefiero','prefieres','prefiere','preferimos','preferís','prefieren'],
-        ['pido','pides','pide','pedimos','pedís','piden'],
-        ['sigo','sigues','sigue','seguimos','seguís','siguen'],
-        ['elijo','eliges','elige','elegimos','elegís','eligen'],
-        ['amplío','amplías','amplía','ampliamos','ampliáis','amplían'],
-        ['extiendo','extiendes','extiende','extendemos','extendéis','extienden'],
-        ['dispongo','dispones','dispone','disponemos','disponéis','disponen']
-      ].forEach(addPresentParadigm);
-      const regularPresentInfinitives=['confirmar','entregar','llegar','aceptar','firmar','pagar','realizar','necesitar','funcionar','ajustar','cambiar','bajar','mejorar','respetar','cumplir','conservar','garantizar','revisar','terminar','recibir','quedar','trabajar','autorizar','dejar','responder','preparar','hablar','negociar','modificar','adelantar','aplazar','reprogramar','decidir','permitir','asegurar','reservar','completar','finalizar','presentar','coordinar','comprar','vender','solicitar','informar','llamar','escribir','aumentar','añadir','cobrar','aplicar','cubrir','existir','subir','conceder','vencer'];
-      regularPresentInfinitives.forEach(inf=>{
-        const ending=inf.slice(-2);
-        const stem=inf.slice(0,-2);
-        const endings=ending==='ar'?['o','as','a','amos','áis','an']:ending==='er'?['o','es','e','emos','éis','en']:['o','es','e','imos','ís','en'];
-        addPresentParadigm(endings.map(end=>stem+end));
-      });
-      const pastSiForms=new Set();
-      const addPastForms=inf=>{
-        const ending=inf.slice(-2), stem=inf.slice(0,-2);
-        const pret=ending==='ar'?['é','aste','ó','amos','asteis','aron']:['í','iste','ió','imos','isteis','ieron'];
-        const imp=ending==='ar'?['aba','abas','aba','ábamos','abais','aban']:['ía','ías','ía','íamos','íais','ían'];
-        [...pret,...imp].map(end=>stem+end).forEach(form=>{if(!presentForms.has(form)) pastSiForms.add(form);});
-      };
-      [...regularPresentInfinitives,'mantener','poder','tener','hacer','decir','venir','poner','saber','querer'].forEach(addPastForms);
-      [
-        'mantuve','mantuviste','mantuvo','mantuvimos','mantuvisteis','mantuvieron',
-        'pude','pudiste','pudo','pudimos','pudisteis','pudieron',
-        'tuve','tuviste','tuvo','tuvimos','tuvisteis','tuvieron',
-        'hice','hiciste','hizo','hicimos','hicisteis','hicieron',
-        'dije','dijiste','dijo','dijimos','dijisteis','dijeron',
-        'vine','viniste','vino','vinimos','vinisteis','vinieron',
-        'puse','pusiste','puso','pusimos','pusisteis','pusieron',
-        'supe','supiste','supo','supimos','supisteis','supieron',
-        'quise','quisiste','quiso','quisimos','quisisteis','quisieron',
-        'fui','fuiste','fue','fuimos','fuisteis','fueron','era','eras','éramos','erais','eran'
-      ].forEach(form=>{if(!presentForms.has(form)) pastSiForms.add(form);});
-      function hasSiPast(value){
-        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
-          const clause=coreSiClause(match[1]);
-          const tokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]).map(token=>token.toLowerCase());
-          if(tokens.some(token=>pastSiForms.has(token))) return true;
-        }
-        return false;
-      }
-      const nominalDeterminers=new Set(['el','la','los','las','un','una','unos','unas','este','esta','estos','estas','ese','esa','esos','esas','aquel','aquella','aquellos','aquellas','mi','mis','tu','tus','su','sus','nuestro','nuestra','nuestros','nuestras']);
-      const singularNominalDeterminers=new Set(['el','la','un','una','este','esta','ese','esa','aquel','aquella','mi','tu','su','nuestro','nuestra']);
-      const pluralNominalDeterminers=new Set(['los','las','unos','unas','estos','estas','esos','esas','aquellos','aquellas','mis','tus','sus','nuestros','nuestras']);
-      const subjectPrepositions=new Set(['a','ante','bajo','con','contra','de','desde','durante','en','entre','hacia','hasta','para','por','según','sin','sobre','tras']);
-      function isPrepositionGovernedItem(tokens,index,start=0){
-        const previous=tokens[index-1]||'';
-        if(subjectPrepositions.has(previous)) return true;
-        if(/^(?:y|o)$/.test(previous)){
-          for(let j=index-2;j>=start;j--){
-            if(/^(?:pero|aunque|porque|que|si)$/.test(tokens[j])) break;
-            if(tokens[j]==='hay'||presentForms.has(tokens[j])) break;
-            if(subjectPrepositions.has(tokens[j])) return true;
-          }
-        }
-        return false;
-      }
-      function coreSiClause(clause){
-        return clause.split(/\b(?:porque|ya que|puesto que|dado que|aunque|pero|pues)\b/i)[0].trim();
-      }
-      function hasSiConditional(value){
-        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
-          const clause=coreSiClause(match[1]);
-          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]);
-          const tokens=rawTokens.map(token=>token.toLowerCase());
-          for(let i=0;i<tokens.length;i++){
-            const token=tokens[i];
-            const looksConditional=regularConditionalTokenPattern.test(token)||irregularConditionalTokenPattern.test(token);
-            if(!looksConditional) continue;
-            // Evita confundir nombres propios como «María» con una forma condicional.
-            if(/^[A-ZÁÉÍÓÚÜÑ]/.test(rawTokens[i])) continue;
-            // Evita sustantivos precedidos por determinante cuando coinciden formalmente.
-            if(nominalDeterminers.has(tokens[i-1]||'')) continue;
-            return true;
-          }
-        }
-        return false;
-      }
-      function hasSiFuture(value){
-        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
-          const clause=coreSiClause(match[1]);
-          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]);
-          const tokens=rawTokens.map(token=>token.toLowerCase());
-          for(let i=0;i<tokens.length;i++){
-            const token=tokens[i];
-            if(!(regularFutureTokenPattern.test(token)||irregularFutureTokenPattern.test(token))) continue;
-            if(/^[A-ZÁÉÍÓÚÜÑ]/.test(rawTokens[i])) continue;
-            return true;
-          }
-        }
-        return false;
-      }
-      const subjectPronounPerson=new Map([
-        ['yo','1s'],['tú','2s'],['usted','3s'],['él','3s'],['ella','3s'],
-        ['nosotros','1p'],['nosotras','1p'],['vosotros','2p'],['vosotras','2p'],
-        ['ustedes','3p'],['ellos','3p'],['ellas','3p']
-      ]);
-      function nominalSubjectNumber(tokens,verbIndex){
-        // «tokens» ya llega limitado a la ventana local de la cláusula; conservarla completa
-        // permite reconocer preposiciones que gobiernan un complemento coordinado.
-        const start=0;
-        for(let i=verbIndex-1;i>=start;i--){
-          if(/^(?:o|pero|aunque|porque|que)$/.test(tokens[i])) break;
-          // «lo/la/los/las» justo antes del verbo pueden ser pronombres de objeto:
-          // «los clientes la aceptan», «el cliente los acepta». No deben decidir
-          // el número del sujeto; seguimos buscando el determinante del sujeto.
-          if(i===verbIndex-1 && /^(?:lo|la|los|las)$/.test(tokens[i])) continue;
-          if(singularNominalDeterminers.has(tokens[i])) {
-            if(isPrepositionGovernedItem(tokens,i,start)) continue;
-            return 'singular';
-          }
-          if(pluralNominalDeterminers.has(tokens[i])) {
-            if(isPrepositionGovernedItem(tokens,i,start)) continue;
-            return 'plural';
-          }
-        }
-        return '';
-      }
-      const isProperNameToken=token=>/^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’-]*$/.test(token);
-      function expectedSubjectPersons(tokens,verbIndex,rawTokens=tokens){
-        const start=Math.max(0,verbIndex-6);
-        let localStart=start;
-        let lastY=-1;
-        for(let i=verbIndex-1;i>=start;i--){
-          if(tokens[i]==='y'){lastY=i;break;}
-          if(/^(?:o|pero|aunque|porque|que)$/.test(tokens[i])) break;
-        }
-        if(lastY>=0){
-          const beforeY=tokens.slice(start,lastY);
-          const afterY=tokens.slice(lastY+1,verbIndex);
-          const priorFiniteVerb=beforeY.some(token=>token==='hay'||presentForms.has(token));
-          if(!priorFiniteVerb){
-            const span=tokens.slice(start,verbIndex);
-            const pronouns=span.filter((token,offset)=>subjectPronounPerson.has(token)&&!isPrepositionGovernedItem(tokens,start+offset,start));
-            if(pronouns.length){
-              if(pronouns.some(p=>p==='yo'||p==='nosotros'||p==='nosotras')) return new Set(['1p']);
-              if(pronouns.some(p=>p==='vosotros'||p==='vosotras')) return new Set(['2p']);
-              // Con «tú» + otra persona, la concordancia puede ser 2.ª plural
-              // (vosotros, España) o 3.ª plural (ustedes, gran parte de América).
-              if(pronouns.includes('tú')) return new Set(['2p','3p']);
-              return new Set(['3p']);
-            }
-            const leftHasNominal=beforeY.some((token,offset)=>(singularNominalDeterminers.has(token)||pluralNominalDeterminers.has(token))&&!isPrepositionGovernedItem(tokens,start+offset,start));
-            const rightHasNominal=afterY.some((token,offset)=>(singularNominalDeterminers.has(token)||pluralNominalDeterminers.has(token))&&!isPrepositionGovernedItem(tokens,lastY+1+offset,start));
-            const leftHasProper=rawTokens.slice(start,lastY).some((token,offset)=>isProperNameToken(token)&&!isPrepositionGovernedItem(tokens,start+offset,start));
-            const rightHasProper=rawTokens.slice(lastY+1,verbIndex).some((token,offset)=>isProperNameToken(token)&&!isPrepositionGovernedItem(tokens,lastY+1+offset,start));
-            if((leftHasNominal||leftHasProper)&&(rightHasNominal||rightHasProper)) return new Set(['3p']);
-          }else{
-            // Si «y» une dos cláusulas («revisamos... y la fecha cambia»),
-            // la concordancia del segundo verbo depende solo del sujeto posterior a «y».
-            localStart=lastY+1;
-          }
-        }
-        for(let i=verbIndex-1;i>=localStart;i--){
-          if(/^(?:y|o|pero|aunque|porque|que)$/.test(tokens[i])) break;
-          const person=subjectPronounPerson.get(tokens[i]);
-          if(person) {
-            if(isPrepositionGovernedItem(tokens,i,localStart)) continue;
-            return new Set([person]);
-          }
-        }
-        const localTokens=tokens.slice(localStart,verbIndex+1);
-        const localVerbIndex=localTokens.length-1;
-        const number=nominalSubjectNumber(localTokens,localVerbIndex);
-        if(number==='singular') return new Set(['3s']);
-        if(number==='plural') return new Set(['3p']);
-        const previousIndex=verbIndex-1;
-        if(previousIndex>=localStart && isProperNameToken(rawTokens[previousIndex]||'') && !isPrepositionGovernedItem(tokens,previousIndex,localStart)) return new Set(['3s']);
-        return null;
-      }
-      function personsCompatible(actual,expected){
-        if(!expected) return true;
-        return [...actual].some(person=>expected.has(person));
-      }
-      function hasPresentCondition(value){
-        let foundValidPresent=false;
-        for(const match of value.matchAll(/\bsi\s+([^,.;!?]+)/gi)){
-          const clause=coreSiClause(match[1]);
-          if(hasSiConditional('si '+clause)) continue;
-          const rawTokens=(clause.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’-]+/g)||[]);
-          const tokens=rawTokens.map(token=>token.toLowerCase());
-          let clauseHasPresent=false;
-          let clauseHasAgreementError=false;
-          for(let i=0;i<tokens.length;i++){
-            const token=tokens[i];
-            if(token==='hay'){
-              const expected=expectedSubjectPersons(tokens,i,rawTokens);
-              if(!expected) clauseHasPresent=true;
-              continue;
-            }
-            const persons=presentForms.get(token);
-            if(!persons) continue;
-            // Distingue determinantes de pronombres de objeto. «el pago» y «la entrega es...»
-            // contienen nombres homógrafos de formas verbales, pero «los clientes la aceptan»
-            // y «el cliente la entrega mañana» contienen pronombres de objeto + verbo.
-            const previous=tokens[i-1]||'';
-            const cliticLike=/^(?:la|los|las)$/.test(previous);
-            if(nominalDeterminers.has(previous)){
-              if(!cliticLike) continue;
-              const nominalHomographs=new Set(['pago','entrega','cambio','trabajo','acuerdo','bajo','baja','completo','completa','aumento','reserva','firma','compra','mejora','envío']);
-              const laterFinite=tokens.slice(i+1).some(next=>next==='hay'||presentForms.has(next));
-              const prior=tokens.slice(0,Math.max(0,i-1));
-              const hasPriorExplicitSubject=prior.some((item,index)=>
-                subjectPronounPerson.has(item)||singularNominalDeterminers.has(item)||pluralNominalDeterminers.has(item)||isProperNameToken(rawTokens[index]||'')
-              );
-              if(nominalHomographs.has(token) && (laterFinite || (i===tokens.length-1 && !hasPriorExplicitSubject))) continue;
-            }
-            let expected=expectedSubjectPersons(tokens,i,rawTokens);
-            if(!expected && tokens[i-1]==='se'){
-              // En construcciones con «se» y sujeto pospuesto, el verbo debe concordar
-              // con ese grupo nominal: «se mantiene el precio» / «se mantienen los precios».
-              const next=tokens[i+1]||'';
-              if(singularNominalDeterminers.has(next)) expected=new Set(['3s']);
-              else if(pluralNominalDeterminers.has(next)) expected=new Set(['3p']);
-            }
-            if(!expected){
-              // Un pronombre sujeto también puede ir después del verbo: «si mantienen ellos...».
-              // No confundimos pronombres regidos por preposición: «para ellos», «con usted», etc.
-              for(let j=i+1;j<Math.min(tokens.length,i+5);j++){
-                if(/^(?:y|o|pero|aunque|porque|que|si)$/.test(tokens[j])) break;
-                const postPerson=subjectPronounPerson.get(tokens[j]);
-                if(!postPerson) continue;
-                if(subjectPrepositions.has(tokens[j-1]||'')) continue;
-                expected=new Set([postPerson]);
-                break;
-              }
-            }
-            if(expected && !personsCompatible(persons,expected)){
-              clauseHasAgreementError=true;
-              continue;
-            }
-            clauseHasPresent=true;
-          }
-          // Una cláusula no se considera válida si contiene una forma verbal reconocida
-          // que no concuerda con su sujeto explícito, aunque después aparezca otro verbo correcto.
-          if(clauseHasAgreementError) return false;
-          if(clauseHasPresent) foundValidPresent=true;
-        }
-        return foundValidPresent;
-      }
-      const infinitiveAfter = '(?:ir|[a-záéíóúüñ]+(?:ar|er|ir))(?:me|te|se|nos|os|lo|la|los|las|le|les)?';
-      const politeSubject = '(?:yo|tú|vos|usted|él|ella|nosotros|nosotras|vosotros|vosotras|ustedes|ellos|ellas)';
-      const politeSubjectPattern = '(?:\\s+' + politeSubject + ')?';
-      const politeQuestionPattern = new RegExp('(?:sería\\s+posible\\s+' + infinitiveAfter + '|podrí(?:a|as|amos|ais|an)' + politeSubjectPattern + '\\s+' + infinitiveAfter + '|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)\\s+' + infinitiveAfter + ')', 'i');
-      const politeProductionPattern = new RegExp('(?:sería\\s+posible\\s+' + infinitiveAfter + '|podrí(?:a|as|amos|ais|an)' + politeSubjectPattern + '\\s+' + infinitiveAfter + '|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)\\s+' + infinitiveAfter + '|(?:me|te|nos|os|le|les)\\s+gustaría\\s+' + infinitiveAfter + ')', 'i');
-      const negativePoliteProductionPattern = new RegExp('\\b(?:no|nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:(?:me|te|nos|os|le|les)\\s+)?sería\\s+posible\\b|\\b(?:no|nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:podrí(?:a|as|amos|ais|an)(?:\\s+' + politeSubject + ')?|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)|(?:me|te|nos|os|le|les)\\s+gustaría)\\b', 'i');
-      const blockingPoliteAdverbPattern = new RegExp('\\b(?:nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:(?:me|te|nos|os|le|les)\\s+)?sería\\s+posible\\b|\\b(?:nunca|jamás|tampoco|ni\\s+siquiera)\\s+(?:podrí(?:a|as|amos|ais|an)(?:\\s+' + politeSubject + ')?|' + politeSubject + '\\s+podrí(?:a|as|amos|ais|an)|(?:me|te|nos|os|le|les)\\s+gustaría)\\b', 'i');
-      const poderSubjectAgreement = {
-        'podría': new Set(['yo','usted','él','ella']),
-        'podrías': new Set(['tú','vos']),
-        'podríamos': new Set(['nosotros','nosotras']),
-        'podríais': new Set(['vosotros','vosotras']),
-        'podrían': new Set(['ustedes','ellos','ellas'])
-      };
-      function hasInvalidPoliteSubjectAgreement(value){
-        // Evita \b alrededor de pronombres con tilde (tú, él), porque en JavaScript
-        // ese límite de palabra es ASCII y puede no reconocer correctamente esos casos.
-        const subjectEnd = '(?=\\s|[,.;:?!)]|$)';
-        const beforeVerb = new RegExp('(?:^|[¿¡(\\s])(' + politeSubject + ')\\s+(podría|podrías|podríamos|podríais|podrían)\\b', 'gi');
-        const afterVerb = new RegExp('\\b(podría|podrías|podríamos|podríais|podrían)\\s+(' + politeSubject + ')' + subjectEnd, 'gi');
-        const afterInfinitive = new RegExp('\\b(podría|podrías|podríamos|podríais|podrían)\\s+' + infinitiveAfter + '\\s+(' + politeSubject + ')' + subjectEnd, 'gi');
-        for(const match of value.matchAll(beforeVerb)){
-          if(!poderSubjectAgreement[match[2].toLowerCase()]?.has(match[1].toLowerCase())) return true;
-        }
-        for(const match of value.matchAll(afterVerb)){
-          if(!poderSubjectAgreement[match[1].toLowerCase()]?.has(match[2].toLowerCase())) return true;
-        }
-        for(const match of value.matchAll(afterInfinitive)){
-          if(!poderSubjectAgreement[match[1].toLowerCase()]?.has(match[2].toLowerCase())) return true;
-        }
-        // El sujeto también puede aparecer al final del complemento:
-        // «¿Podría revisar el precio usted?». Comprobamos esa posición sin confundir
-        // pronombres regidos por una preposición: «para vosotros», «con usted», etc.
-        const poderForm = /\b(podría|podrías|podríamos|podríais|podrían)\b/gi;
-        const prepositions = new Set(['a','ante','bajo','con','contra','de','desde','durante','en','entre','hacia','hasta','para','por','según','sin','sobre','tras']);
-        const wordPattern = /[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g;
-        for(const match of value.matchAll(poderForm)){
-          const form=match[1].toLowerCase();
-          const start=(match.index||0)+match[0].length;
-          const tail=value.slice(start).split(/[.!?;\n]|\b(?:y|o|pero|aunque|porque|si|que|mientras|cuando|donde|como|sin\s+embargo|no\s+obstante|en\s+cambio)\b/i)[0];
-          const words=[...tail.matchAll(wordPattern)];
-          for(let i=0;i<words.length;i++){
-            const subject=words[i][0].toLowerCase();
-            if(!subjectPronounPerson.has(subject)) continue;
-            const previous=(words[i-1]?.[0]||'').toLowerCase();
-            if(prepositions.has(previous)) continue;
-            if(!poderSubjectAgreement[form]?.has(subject)) return true;
-          }
-        }
-        return false;
-      }
-      function hasPoliteQuestionForm(value){
-        return !hasInvalidPoliteSubjectAgreement(value) && !blockingPoliteAdverbPattern.test(value) && politeQuestionPattern.test(value);
-      }
-      function hasPoliteProductionForm(value){
-        return !hasInvalidPoliteSubjectAgreement(value) && !blockingPoliteAdverbPattern.test(value) && politeProductionPattern.test(value);
-      }
-      const invalidSiPoliteQuestionPattern = /\bsi\s+(?:sería\s+posible|podrí(?:a|as|amos|ais|an)\b)/i;
-      const podriamosProductionPattern = new RegExp('\\bpodríamos\\s+' + infinitiveAfter + '\\b', 'i');
-      const dateContextPattern=/\b(?:fecha|fechas|día|días|semana|semanas|plazo|plazos|entrega|entregas|lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy)\b/i;
-      const dateNounPattern='(?:fecha|fechas|plazo|plazos|entrega|entregas|día|días)';
-      const cliticSuffix='(?:me|te|se|nos|os|lo|la|los|las|le|les)?';
-      const explicitDateChangePattern=new RegExp(String.raw`\b(?:cambiar|mover)${cliticSuffix}(?:\s+[a-záéíóúüñ]+){0,3}\s+${dateNounPattern}\b`,'i');
-      const dateReferencePattern=String.raw`(?:lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy|(?:(?:un|una|dos|tres|cuatro|cinco|\d+)\s+(?:día|días|semana|semanas)))`;
-      const cliticDateChangePattern=new RegExp(String.raw`\b(?:cambiar|mover)(?:lo|la|los|las)\b(?:\s+(?!(?:y|o|ni|pero|aunque)\b)[a-záéíóúüñ]+){0,3}\s+(?:(?:al)|(?:(?:para|hasta|por)(?:\s+el)?))?\s*${dateReferencePattern}\b`,'i');
-      const scheduleVerbPattern=new RegExp('\\b(?:adelantar|aplazar|posponer|retrasar|reprogramar|programar|agendar|fijar|acordar|negociar|proponer|definir|pactar|concertar|establecer|buscar|elegir|escoger|coordinar)(?:\\s+(?:la|el|las|los|una|un|unas|unos|otra|otro|otras|otros|nueva|nuevo|nuevas|nuevos)){0,2}\\s+'+dateNounPattern+'\\b','i');
-      const scheduleCliticDatePattern=new RegExp(String.raw`\b(?:adelantar|aplazar|posponer|retrasar|reprogramar|programar|agendar|fijar)(?:lo|la|los|las)\b(?:\s+(?!(?:y|o|ni|pero|aunque)\b)[a-záéíóúüñ]+){0,3}\s+(?:(?:al)|(?:(?:para|hasta|por)(?:\s+el)?))?\s*${dateReferencePattern}\b`,'i');
-      const dateObjectVerbPattern=new RegExp('\\b(?:revisar|modificar|ajustar|confirmar)'+cliticSuffix+'(?:\\s+[a-záéíóúüñ]+){0,3}\\s+'+dateNounPattern+'\\b','i');
-      const datedActionPattern=new RegExp('\\b(?:entregar|recibir|enviar|tener|presentar|terminar|finalizar)'+cliticSuffix+'\\b(?:\\s+(?!(?:y|o|ni|pero|aunque)\\b)[a-záéíóúüñ]+){0,6}\\s+(?:(?:el|para|hasta\\s+el|antes\\s+del)\\s+)?(?:lunes|martes|miércoles|jueves|viernes|sábado|domingo|mañana|hoy|fecha|fechas|plazo|plazos)\\b','i');
-      function hasDateNegotiationInSegment(segment){
-        if(!dateContextPattern.test(segment)) return false;
-        return explicitDateChangePattern.test(segment) || cliticDateChangePattern.test(segment) || scheduleVerbPattern.test(segment) || scheduleCliticDatePattern.test(segment) || dateObjectVerbPattern.test(segment) || datedActionPattern.test(segment);
-      }
-      function normalizePoliteInsertions(value){
-        return value.replace(/,\s*(?:por favor|si\s+(?:te|le|les|os)\s+parece)\s*,/gi,' ');
-      }
-      function hasPoliteDateProposal(value, politePattern){
-        // Conserva incisos breves dentro de la propuesta («por favor», «si les parece»),
-        // pero separa giros de contraste para no mezclar una propuesta sobre precio con
-        // una segunda cláusula independiente que simplemente menciona una fecha.
-        const normalized=normalizePoliteInsertions(value);
-        const segments=normalized.split(/[.!?;\n]+|(?:,\s*|\s+)(?=(?:pero|aunque|sin\s+embargo|no\s+obstante|en\s+cambio)\b)/i);
-        return segments.some(segment => {
-          const isNoSuggestionQuestion=/^\s*¿\s*no\s+/i.test(segment);
-          const blockedByNegative=negativePoliteProductionPattern.test(segment) && !isNoSuggestionQuestion;
-          return politePattern.test(segment) && !blockedByNegative && !blockingPoliteAdverbPattern.test(segment) && hasDateNegotiationInSegment(segment);
-        });
-      }
-      function hasBriefReason(value){
-        for(const match of value.matchAll(/\b(?:porque|ya que)\s+([^.!?;]+)/gi)){
-          const reason=match[1].trim().replace(/[,\s]+$/g,'');
-          if(!reason || /^(?:sí|si|no)$/i.test(reason)) continue;
-          if(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(reason)) return true;
-        }
-        return false;
-      }
-      const priceRequestVerbPattern=/\b(?:revisar|ajustar|negociar|modificar|bajar|reducir|cambiar|mantener|mejorar)(?:me|te|se|nos|os|lo|la|los|las|le|les)?\b/i;
-      const acceptanceVerbPattern=/\b(?:acepto|aceptamos|aceptaría|aceptaríamos|puedo\s+aceptar|podemos\s+aceptar|podría\s+aceptar|podríamos\s+aceptar|confirmo|confirmamos|puedo\s+confirmar|podemos\s+confirmar)\b/i;
-      const acceptanceAgreementPattern=/\b(?:estoy|estamos)\s+de\s+acuerdo\b|\b(?:me|nos)\s+parece\s+(?:bien|perfecto)\b|\b(?:me|nos)\s+(?:funciona|sirve|va\s+bien)\b|\b(?:la|esta|esa)\s+(?:propuesta|opción|condición)\s+(?:(?:me|nos)\s+(?:funciona|sirve|va\s+bien)|está\s+bien)\b/i;
+      const acceptanceVerbPattern=/\b(?:acepto|aceptamos|puedo\s+aceptar|podemos\s+aceptar|confirmo|confirmamos|puedo\s+confirmar|podemos\s+confirmar)\b/i;
+      // El condicional («aceptaría», «podríamos aceptar») expresa disposición,
+      // pero no confirma una aceptación de la oferta tal como está.
+      const conditionalAcceptancePattern=/\b(?:aceptar[ií]a|aceptar[ií]amos|podr[ií]a(?:mos)?\s+aceptar)\b/i;
+      const acceptanceAgreementPattern=/\b(?:estoy|estamos)\s+de\s+acuerdo\b|\bde\s+acuerdo\s+con\s+(?:el|la)\s+(?:precio|oferta|propuesta)\b|\b(?:me|nos)\s+parece\s+(?:bien|perfecto)\b|\b(?:me|nos)\s+(?:funciona|sirve|va\s+bien)\b|\b(?:el|ese|este|la|esta|esa)\s+(?:precio|costo|oferta|propuesta|opción|condición)\s+(?:(?:me|nos)\s+(?:funciona|sirve|conviene|cuadra|va\s+bien|viene\s+bien)|está\s+bien)\b|\b(?:me|nos)\s+(?:conviene|cuadra)\s+(?:el|ese|este)\s+(?:precio|costo)\b|\bestá\s+bien\s+(?:(?:el|la|ese|esa|este|esta)\s+)?(?:precio|costo|oferta|propuesta|opción|condición)\b/i;
       const acceptanceMarkerPattern=/(?:^|[.!?]\s*|,\s*|\b(?:pero|aunque)\s+)(?:sí|claro|por\s+supuesto|de\s+acuerdo|está\s+bien|vale|perfecto)(?=\s*(?:$|[.!?](?:\s|$)|[,;:]\s*si\b|si\b))/i;
       const negativeAcceptancePattern=/\b(?:(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:acepto|aceptamos|aceptaría|aceptaríamos|puedo\s+aceptar|podemos\s+aceptar|podría\s+aceptar|podríamos\s+aceptar|está\s+bien|me\s+parece\s+(?:bien|perfecto)|nos\s+parece\s+(?:bien|perfecto)|vale|confirmo|confirmamos|puedo\s+confirmar|podemos\s+confirmar|me\s+(?:funciona|sirve|va\s+bien)|nos\s+(?:funciona|sirve|va\s+bien))|(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:estoy|estamos)\s+de\s+acuerdo|(?:no|nunca|jamás|tampoco|ni\s+siquiera)\s+(?:es|está|sería)\s+perfecto)\b/i;
-      const negativeAfterAcceptanceMarkerPattern=/(?:^|[.!?]\s*|,\s*)(?:sí|claro|por\s+supuesto|de\s+acuerdo|está\s+bien|vale|perfecto)\s*[,;:]?\s*(?:(?:pero|aunque)\s+)?(?:no|nunca|jamás|tampoco|ni\s+siquiera)\b/i;
+      // Rechazos con pronombre o con «no nos conviene» invalidan un acuerdo aparente.
+      const negativeDecisionPattern=/\b(?:no|nunca|jamas|jamás|tampoco)\s+(?:(?:lo|la)\s+(?:acepto|aceptamos|aceptar[ií]a|aceptar[ií]amos|(?:puedo|podemos|puede|pueden|podr[ií]a|podr[ií]amos)\s+(?:pagar|costear))|(?:me|nos)\s+(?:conviene|cuadra|alcanza)|(?:es|ser[ií]a)\s+posible|(?:puedo|podemos|puede|pueden|podr[ií]a|podr[ií]amos)\s+(?:pagar|costear)(?:lo|la)?|(?:tengo|tenemos)\s+(?:presupuesto|dinero))\b/i;
       function lastPatternIndex(value,pattern){
         const flags=pattern.flags.includes('g')?pattern.flags:pattern.flags+'g';
         const re=new RegExp(pattern.source,flags);
@@ -1253,37 +905,102 @@
         return value.replace(re,match=>' '.repeat(match.length));
       }
       function hasAcceptance(value){
+        // «No, de acuerdo» y «No, perfecto» no expresan una aceptación inequívoca.
+        if (/^\s*no\s*[,;]\s*(?:de\s+acuerdo|vale|claro|perfecto|s[ií]\b|aceptamos\b|acepto\b|confirmamos\b|confirmo\b)/i.test(value)) return false;
         // Decide por el último acto explícito de aceptación/rechazo. Así una negativa previa
         // no invalida una aceptación posterior, pero un rechazo posterior sí anula un
         // marcador inicial: «Sí, si mantienen el precio, no aceptamos».
-        const lastNegative=lastPatternIndex(value,negativeAcceptancePattern);
-        const positiveText=maskPattern(value,negativeAcceptancePattern);
+        const lastNegative=Math.max(lastPatternIndex(value,negativeAcceptancePattern),lastPatternIndex(value,negativeDecisionPattern));
+        const positiveText=maskPattern(maskPattern(value,negativeAcceptancePattern),negativeDecisionPattern);
         const lastPositive=Math.max(
           lastPatternIndex(positiveText,acceptanceVerbPattern),
           lastPatternIndex(positiveText,acceptanceAgreementPattern),
           lastPatternIndex(positiveText,acceptanceMarkerPattern)
         );
-        return lastPositive>=0 && lastPositive>lastNegative;
+        const lastConditional=lastPatternIndex(value,conditionalAcceptancePattern);
+        if (lastPositive<0 || lastPositive<=lastNegative || lastConditional>lastPositive) return false;
+        // La actividad pide aceptar el precio ofrecido. Una aceptación subordinada a
+        // un descuento u otra condición es una contraoferta, no una aceptación firme.
+        // Se conserva la tilde de «sí»: la afirmación no debe confundirse con «si» condicional.
+        const normalized=value.toLocaleLowerCase('es');
+        if (/\b(?:si|siempre\s+que|con\s+tal\s+de\s+que|a\s+condici[oó]n\s+de\s+que)\b/.test(normalized)) return false;
+        if (/\b(?:pero|aunque)\b[^.!?;]*\b(?:necesito|necesitamos|quiero|queremos|pido|pedimos|solicito|solicitamos|quisiera|quisieramos|exijo|exigimos)\b[^.!?;]*\b(?:descuento|rebaja|reduccion)\b/.test(normalized)) return false;
+        return true;
+      }
+      function hasPoliteMondayRejection(value){
+        const text=normalizeText(value);
+        const polite=/\b(?:gracias|entiendo|comprendo|agradezco|agradecemos|disculpa|disculpe|perdona|perdone|lo siento|lo lamento|lamentablemente)\b/.test(text);
+        if(!polite) return false;
+        // El estudiante debe rechazar la FECHA de entrega, no la fecha de pago.
+        // Tampoco se aprueba un rechazo revocado por una aceptación posterior.
+        if (/\blunes\s+(?:como\s+)?(?:fecha|dia)\s+de\s+(?:pago|cobro|facturacion)\b/.test(text)
+            && !/\b(?:entrega|informe|pedido)\b[^.!?;]*\blunes\b/.test(text)) return false;
+        const mondayAcceptance=/\b(?:aceptamos|acepto|confirmamos|confirmo)\s+(?:(?:la|el)\s+(?:entrega|fecha|plazo)\s+)?(?:el|para\s+el)\s+lunes\b/g;
+        for (const a of text.matchAll(mondayAcceptance)) {
+          if (!/\bno\s*$/.test(text.slice(Math.max(0,a.index-8),a.index))) return false;
+        }
+        // Identifica un rechazo dirigido al lunes aunque en la misma oración
+        // aparezca después una propuesta para el viernes.
+        if (/\b(?:no\s+(?:podemos|puedo)\s+aceptar|no\s+(?:aceptamos|acepto)|rechazamos)\s+(?:(?:la|esa|esta)\s+(?:entrega|fecha)\s+(?:de|del|para)\s+)?(?:el\s+)?lunes\b/.test(text)) return true;
+        if (/\b(?:el|para el)\s+lunes\s+no\s+(?:(?:nos|me)\s+)?(?:funciona|sirve|conviene|viene\s+bien)\b/.test(text)) return true;
+        // «Lo siento», necesitamos el informe antes del lunes» rechaza de
+        // manera implícita la fecha ofrecida sin tener que repetir «no aceptamos».
+        if (/\b(?:necesitamos|necesito|requerimos|requiero)\s+(?:(?:la|el|un|una)\s+)?(?:entrega|informe|pedido|documento|material|producto)\s+antes\s+del\s+lunes\b/.test(text)) return true;
+        // Una preferencia explícita por otra fecha rechaza cortésmente el lunes:
+        // «Gracias, pero preferimos entregar el viernes en lugar del lunes».
+        if (/\b(?:preferimos|preferiria|prefeririamos|prefiero)\b[^.!?;]*\b(?:entregar|recibir|fecha|entrega)\b[^.!?;]*\b(?:en lugar del|en vez del|antes que el)\s+lunes\b/.test(text)
+          && /\b(?:martes|miercoles|jueves|viernes|sabado|domingo)\b/.test(text)
+          && !/\b(?:precio|costo|coste|tarifa|importe|presupuesto|valor)\b/.test(text)) return true;
+        // En una conversación sobre fechas también basta contrastar dos días:
+        // «Gracias, prefiero el viernes en lugar del lunes» (sin repetir «entrega»).
+        if (/\b(?:prefiero|preferimos|preferiria|prefeririamos)\s+(?:(?:el|para el)\s+)?(?:martes|miercoles|jueves|viernes|sabado|domingo)\s+(?:en lugar del|en vez del|antes que el)\s+lunes\b/.test(text)
+          && !/\b(?:precio|costo|coste|tarifa|importe|presupuesto|valor)\b/.test(text)) return true;
+        // Reconoce «el lunes no nos funciona» y «no podemos aceptar el lunes».
+        // La fecha debe referirse a la entrega rechazada, no a un precio «del lunes»
+        // ni a la fecha mencionada después de «porque necesitamos...».
+        const parts=text.replace(/\bpero\b/g,';')
+          .replace(/\s+y\s+(?=(?:¿\s*)?(?:propongo|proponemos|podemos\s+(?:entregar|adelantar|cambiar)|podriamos|sugiero|sugerimos)\b)/g,';')
+          .split(/[.!?;\n]+/);
+        const negative=/\b(?:no\s+(?:podemos|puedo)\s+(?:aceptar|entregar|confirmar|recibir(?:lo|la)?)|no\s+(?:acepto|aceptamos)|no\s+(?:(?:nos|me)\s+)?(?:funciona|sirve|viene\s+bien|conviene)|no\s+(?:es|resulta)\s+(?:posible|viable|factible)|(?:es|resulta)\s+(?:inviable|imposible)|no\s+tenemos\s+(?:disponibilidad|tiempo)|necesitamos\s+otra\s+fecha|rechazo|rechazamos)\b/g;
+        for(const part of parts){
+          for(const match of part.matchAll(negative)){
+            const before=part.slice(0,match.index).split(/[,;:]/).pop()||'';
+            const after=part.slice(match.index+match[0].length)
+              .split(/\b(?:porque|ya\s+que|pues|necesitamos|preferimos|queremos|en\s+cambio|sino)\b|[,;:]/)[0];
+            const scope=before+' '+match[0]+' '+after;
+            const monday=/\blunes\b/.test(scope);
+            const explicitOffer=/\b(?:esa|esta|la|ese|este)\s+(?:fecha|entrega|propuesta|plazo)\b|\botra\s+fecha\b|\beso\b/.test(scope);
+            const rejectsOtherDay=/\b(?:martes|miercoles|jueves|viernes|sabado|domingo)\b/.test(scope);
+            // Rechazar «el lunes por el costo» sigue siendo un rechazo de la fecha.
+            // «No podemos aceptar el precio del lunes» rechaza el precio, no la fecha.
+            const priceWord='(?:precio|costo|coste|tarifa|importe|presupuesto|valor)';
+            const refersToPrice=new RegExp('\\b'+priceWord+'\\s+(?:del|de\\s+el|para\\s+el)\\s+lunes\\b').test(scope)
+              || new RegExp('\\b(?:no\\s+(?:podemos|puedo)\\s+aceptar|no\\s+(?:acepto|aceptamos)|rechazo|rechazamos)\\s+(?:(?:el|la|ese|esa|este|esta)\\s+)?'+priceWord+'\\b').test(scope);
+            // «El lunes no nos funciona y el viernes sí» rechaza el lunes y
+            // contrasta con una fecha aceptable; no es un rechazo del viernes.
+            const mondayBefore = /\blunes\b/.test(before);
+            const otherDayBefore = /\b(?:martes|miercoles|jueves|viernes|sabado|domingo)\b/.test(before);
+            const positiveContrast = /\b(?:y|pero)\s+(?:el\s+)?(?:martes|miercoles|jueves|viernes|sabado|domingo)\b[^.!?;]*\b(?:si|funciona|sirve|conviene|bien|posible)\b/.test(after);
+            const validContrast = mondayBefore && !otherDayBefore && positiveContrast;
+            if(!refersToPrice && (monday || explicitOffer) && (!rejectsOtherDay || validContrast)) return true;
+          }
+        }
+        return false;
       }
       const recallChecks = {
-        1: value => hasPoliteDateProposal(value, podriamosProductionPattern),
-        2: value => [...value.matchAll(/¿[^?]*\?/g)].some(match => {
-          const question=normalizePoliteInsertions(match[0]);
-          return !invalidSiPoliteQuestionPattern.test(question) &&
-            hasPoliteQuestionForm(question) && /\bprecio\b/i.test(question) && priceRequestVerbPattern.test(question);
-        }),
-        3: value => hasPresentCondition(value) && !hasSiConditional(value) && !hasSiFuture(value) && !hasSiPast(value) &&
-          hasAcceptance(value) && value.trim().split(/\s+/).length >= 5
+        1: value => hasDateProposal(value),
+        2: value => hasAcceptance(value) && /\b(?:precio|oferta|propuesta|costo|coste|valor)\b/i.test(value),
+        3: value => hasPoliteMondayRejection(value)
       };
       const recallGood = {
-        1:'Has recuperado “podríamos” y has construido una propuesta propia.',
-        2:'Has usado una forma de petición cortés relacionada con el precio.',
-        3:'Has formulado una aceptación e incluido una condición con “si + presente”. Revisa que ambas expresen lo que necesitas negociar.'
+        1:'Has propuesto una fecha alternativa con una frase comprensible.',
+        2:'Has confirmado con claridad que aceptas la oferta.',
+        3:'Has rechazado la fecha con cortesía. Puedes proponer otra opción si lo necesitas.'
       };
       const recallBad = {
-        1:'Propón cambiar una fecha o un plazo con “podríamos + infinitivo”, por ejemplo: “Podríamos cambiar la fecha”.',
-        2:'Formula en una misma pregunta cortés la petición de revisar o ajustar el precio, por ejemplo: “¿Sería posible revisar el precio?”.',
-        3:'Acepta la propuesta e incluye una condición con “si + presente”, por ejemplo: “Podemos aceptar si mantienen el precio”.'
+        1:'Propón una fecha con una frase corta, por ejemplo: «¿Podemos cambiar la entrega al jueves?».',
+        2:'Confirma que aceptas el precio, por ejemplo: «De acuerdo. Aceptamos el precio».',
+        3:'Rechaza la fecha con respeto, por ejemplo: «Gracias, pero no podemos aceptar el lunes».'
       };
       document.querySelectorAll('.recall-check').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1339,26 +1056,19 @@
             choice.classList.add('selected',good?'correct':'wrong');
             choice.setAttribute('aria-pressed','true');
             const fb=step.querySelector('.sim-feedback'); fb.className='feedback sim-feedback show '+(good?'good':'bad');
-            const selectedText=choice.textContent.trim();
             let message='';
             if(good){
               message=[
-                '“¿Sería posible...?” formula la propuesta con cortesía.',
-                'La frase combina contrapropuesta y condición: “podríamos aceptar... si mantienen...”.',
-                'La frase confirma el acuerdo y añade una acción concreta.'
+                '«¿Podemos...?» propone la fecha de manera clara y cortés.',
+                '«Gracias, pero no podemos...» rechaza una condición sin atacar a la otra persona.',
+                '«De acuerdo» confirma la aceptación y el siguiente paso.'
               ][idx];
-            }else if(idx===0 && selectedText.startsWith('La entrega tiene que')){
-              message='La frase es correcta, pero expresa la exigencia de forma muy directa. Aquí buscas una propuesta negociable, por ejemplo con “¿Sería posible...?”.';
             }else if(idx===0){
-              message='Después de “si” no usamos el condicional en esta condición real. Di “si pueden entregar...”, no “si podrían entregar...”.';
-            }else if(idx===1 && selectedText.startsWith('No.')){
-              message='La frase es comprensible, pero cierra la negociación y no expresa la condición solicitada. Formula qué aceptarías si mantienen el precio.';
+              message='Aquí necesitas proponer el miércoles sin imponerlo. Prueba «¿Podemos adelantar la entrega al miércoles?».';
             }else if(idx===1){
-              message='Después de “si” usa presente en esta condición: “si mantienen el precio”, no “si mantendrían el precio”.';
-            }else if(idx===2 && selectedText==='Bueno.'){
-              message='“Bueno” por sí solo no confirma con claridad que aceptas la condición. Expresa el acuerdo de forma explícita.';
+              message='No puedes aceptar el costo adicional. Rechaza ese costo con una frase clara y respetuosa.';
             }else{
-              message='La frase expresa una preferencia, pero no confirma con claridad el acuerdo ni el siguiente paso.';
+              message='La alternativa te conviene y puedes pagar esta semana. Confirma la aceptación con claridad.';
             }
             fb.innerHTML=(good?'<strong>Funciona.</strong> ':'<strong>Revisa.</strong> ')+message;
             if(good){
@@ -1395,27 +1105,22 @@
       // Variation
       $('variationCheck').addEventListener('click',()=>{
         const value=$('variationText').value.trim();
-        const hasPolite=hasPoliteProductionForm(normalizePoliteInsertions(value));
-        const hasCondition=hasPresentCondition(value);
-        const hasInvalidSiConditional=hasSiConditional(value);
-        const hasInvalidSiFuture=hasSiFuture(value);
-        const hasInvalidSiPast=hasSiPast(value);
-        const hasReason=hasBriefReason(value);
-        const hasDateNegotiation=hasPoliteDateProposal(value, politeProductionPattern);
-        const longEnough=value.split(/\s+/).filter(Boolean).length>=10;
-        const sentenceCount=value.split(/[.!?]+/).map(part=>part.trim()).filter(Boolean).length;
-        const hasRequiredSentenceCount=sentenceCount>=2&&sentenceCount<=3;
+        const rejection=hasPoliteMondayRejection(value);
+        const propose=hasDateProposal(value,'viernes');
+        const enough=value.split(/\s+/).filter(Boolean).length>=8;
         const fb=$('variationFeedback');
-        if(hasPolite&&hasCondition&&!hasInvalidSiConditional&&!hasInvalidSiFuture&&!hasInvalidSiPast&&hasReason&&hasDateNegotiation&&longEnough&&hasRequiredSentenceCount){
+        if(rejection && propose && enough){
           fb.className='feedback show good';
-          fb.innerHTML='<strong>Has incluido las estructuras solicitadas.</strong> La comprobación es orientativa: revisa que el verbo de tu condición esté en presente, que la razón explique tu decisión y que tu frase sea natural. Después, léela en voz alta.';
+          fb.innerHTML='<strong>Has conseguido el logro básico.</strong> Rechazaste la fecha con cortesía y ofreciste el viernes como alternativa. Si quieres ampliar, añade una razón con «porque» o una contraoferta con «podríamos». Esta comprobación es orientativa.';
           complete('variation'); $('variationContinue').disabled=false;
         }else{
-          uncomplete('variation');
-          $('variationContinue').disabled=true;
+          uncomplete('variation'); $('variationContinue').disabled=true;
           fb.className='feedback show bad';
-          const missing=[]; if(!hasPolite)missing.push('una forma como “sería posible”, “podríamos” o “nos gustaría”'); if(!hasCondition)missing.push('una condición con “si + presente” (por ejemplo, “si mantienen el precio”)'); if(hasInvalidSiConditional||hasInvalidSiFuture||hasInvalidSiPast)missing.push('“si + presente”, no pasado, futuro ni condicional, en esta condición real'); if(!hasReason)missing.push('una razón breve con “porque” o “ya que”'); if(!hasDateNegotiation)missing.push('una propuesta relacionada con la fecha o el plazo de entrega'); if(!longEnough)missing.push('un poco más de desarrollo'); if(!hasRequiredSentenceCount)missing.push('una intervención de 2 o 3 frases');
-          fb.innerHTML='<strong>Falta ajustar la producción.</strong> Intenta incluir '+missing.join(', ')+'.';
+          const missing=[];
+          if(!rejection)missing.push('rechazar el lunes con cortesía, por ejemplo «Gracias, pero no podemos aceptar el lunes»');
+          if(!propose)missing.push('proponer explícitamente el viernes, por ejemplo «¿Podemos adelantar la entrega al viernes?»');
+          if(!enough)missing.push('escribir una respuesta un poco más completa');
+          fb.innerHTML='<strong>Revisa tu respuesta.</strong> Intenta '+missing.join('; ')+'. No necesitas usar «podríamos» ni «si». Si tu respuesta es natural y la comprobación no la reconoce, revísala con tu profesora.';
         }
       });
       $('variationText').addEventListener('input',()=>{
@@ -1433,31 +1138,66 @@
       let timerSeconds=60, timerId=null;
       function paintTimer(){const m=String(Math.floor(timerSeconds/60)).padStart(2,'0');const s=String(timerSeconds%60).padStart(2,'0');$('timer').textContent=m+':'+s;}
       $('timerBtn').addEventListener('click',()=>{
-        if(timerId) return;
+        if(timerId || timerSeconds<=0) return;
         $('timerBtn').textContent='Tiempo en curso'; $('timerBtn').disabled=true;
-        timerId=setInterval(()=>{timerSeconds--;paintTimer();if(timerSeconds<=0){clearInterval(timerId);timerId=null;$('timerBtn').textContent='Tiempo terminado';$('oralFeedback').className='feedback show';$('oralFeedback').textContent='Ahora marca lo que conseguiste utilizar. Si te faltó una estructura, puedes repetir el minuto.';}},1000);
+        $('timerStop').disabled=false;
+        timerId=setInterval(()=>{
+          timerSeconds--; paintTimer();
+          if(timerSeconds<=0){
+            clearInterval(timerId);timerId=null;
+            $('timerBtn').textContent='Tiempo terminado';
+            $('timerStop').disabled=true;
+            if(!state.completed.has('oral')){
+              $('oralFeedback').className='feedback show';
+              $('oralFeedback').textContent='Ahora marca lo que conseguiste comunicar. Puedes repetir el intento si quieres.';
+            }
+          }
+        },1000);
       });
-      $('timerReset').addEventListener('click',()=>{if(timerId){clearInterval(timerId);timerId=null;}timerSeconds=60;paintTimer();$('timerBtn').disabled=false;$('timerBtn').textContent='Iniciar 60 segundos';});
+      $('timerStop').addEventListener('click',()=>{
+        if(timerId!==null){clearInterval(timerId);timerId=null;}
+        $('timerStop').disabled=true;
+        $('timerBtn').disabled=true;
+        $('timerBtn').textContent='Intervención terminada';
+        if(!state.completed.has('oral')){
+          $('oralFeedback').className='feedback show';
+          $('oralFeedback').textContent='Ahora marca lo que conseguiste comunicar. No necesitas utilizar los 60 segundos.';
+        }
+      });
+      $('timerReset').addEventListener('click',()=>{
+        if(timerId!==null){clearInterval(timerId);timerId=null;}
+        timerSeconds=60;paintTimer();
+        $('timerStop').disabled=true;
+        $('timerBtn').disabled=false;
+        $('timerBtn').textContent='Iniciar 60 segundos';
+      });
       document.querySelectorAll('#oralChecklist input').forEach(cb=>cb.addEventListener('change',()=>{
         const checks=[...document.querySelectorAll('#oralChecklist input')];
-        const coreChecked=checks.slice(0,4).every(item=>item.checked);
+        const coreChecked=checks.slice(0,3).every(item=>item.checked);
         const fb=$('oralFeedback');
-        if(coreChecked){fb.className='feedback show good';fb.innerHTML='<strong>Ya tienes los cuatro recursos lingüísticos centrales.</strong> Has incluido una propuesta con condicional, una condición con “si + presente”, un rechazo o desacuerdo cortés y una razón breve. El último criterio te sirve para observar cuánta autonomía tuviste al reaccionar.';complete('oral');$('oralContinue').disabled=false;}
-        else{uncomplete('oral');$('oralContinue').disabled=true;fb.className='feedback show';fb.textContent='Marca los cuatro recursos lingüísticos centrales después de producir tu respuesta oral. Si te faltó uno, repite el minuto e intenta incorporarlo.';}
+        if(coreChecked){
+          fb.className='feedback show good';
+          fb.innerHTML='<strong>Logro básico alcanzado.</strong> Rechazaste una propuesta con respeto y ofreciste una alternativa clara. Los dos últimos criterios son retos opcionales, no requisitos para avanzar.';
+          complete('oral'); $('oralContinue').disabled=false;
+        }else{
+          uncomplete('oral'); $('oralContinue').disabled=true;
+          fb.className='feedback show';
+          fb.textContent='Marca los tres criterios básicos si los cumpliste. Si algo te faltó, repite el intento con dos frases cortas.';
+        }
       }));
       $('oralContinue').addEventListener('click',()=>showScreen(10));
 
       // Transfer
       const transferLead = {
-        'Proveedor':'En tu próxima interacción con un proveedor',
-        'Cliente':'En tu próxima interacción con un cliente',
-        'Compañero':'En tu próxima interacción con un compañero',
-        'Proyecto':'En tu próxima conversación sobre un proyecto',
-        'Otra situación':'En otra situación profesional real'
+        'Proveedor':'En una simulación con un proveedor',
+        'Cliente':'En una simulación con un cliente',
+        'Compañero':'En una simulación con un compañero',
+        'Proyecto':'En una simulación sobre un proyecto',
+        'Otra situación':'En otra situación profesional simulada'
       };
       function paintTransferMission(){
-        const lead=transferLead[state.selectedTransfer]||'En una próxima situación profesional';
-        $('missionCard').innerHTML=`<h3>Tu misión · ${state.selectedTransfer}</h3><p>${lead}, intenta usar <strong>una propuesta con condicional</strong> y <strong>una condición con “si + presente”</strong>. Después identifica cuál de las dos estructuras recuperaste con más facilidad.</p>`;
+        const lead=transferLead[state.selectedTransfer]||'En una situación profesional simulada';
+        $('missionCard').innerHTML=`<h3>Tu misión · ${state.selectedTransfer}</h3><p>${lead}, practica <strong>una propuesta clara</strong> y <strong>una respuesta cortés para aceptar o rechazar</strong>. Lleva estas frases a tu sesión en vivo: allí podrás ensayar, recibir correcciones y volver a probar. Si ya te resulta fácil, añade una condición con «si» o una contraoferta con «podríamos».</p>`;
       }
       document.querySelectorAll('.transfer-btn').forEach(btn=>btn.addEventListener('click',()=>{
         document.querySelectorAll('.transfer-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});btn.classList.add('active');btn.setAttribute('aria-pressed','true');state.selectedTransfer=btn.textContent.trim();
