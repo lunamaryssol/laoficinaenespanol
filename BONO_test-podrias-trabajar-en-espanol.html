@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#003893">
-  <meta name="description" content="¿Podrías trabajar en español? Responde siempre 10 preguntas aleatorias de un banco de 100 ejercicios interactivos. Un test gratuito de Spanish at Work.">
+  <meta name="description" content="¿Podrías trabajar en español? Elige entre 10 y 100 preguntas de un banco de 100 actividades interactivas. Un test gratuito de Spanish at Work.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="¿Podrías trabajar en español? | Spanish at Work">
-  <meta property="og:description" content="10 preguntas aleatorias por intento, 7 formatos de ejercicios y un resultado de 0 a 100 %.">
+  <meta property="og:description" content="100 preguntas posibles, 7 formatos y un resultado de 0 a 100 %. Tú eliges cuántas responder.">
   <title>¿Podrías trabajar en español? · Spanish at Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,7 +191,18 @@
     }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; } }
 
-    /* Seven interaction formats */
+    /* Selector and seven interaction formats */
+    .count-selector { margin:0 0 21px; border:1px solid rgba(255,255,255,.4); border-radius:16px; background:rgba(255,255,255,.075); padding:17px 18px; max-width:440px; }
+    .count-selector label { display:block; font-weight:700; font-size:15px; }
+    .count-selector p { color:rgba(255,255,255,.83); font-size:11px; line-height:1.5; margin:4px 0 12px; }
+    .count-row { display:flex; gap:12px; align-items:center; margin-bottom:13px; flex-wrap:wrap; }
+    .count-row input { width:98px; height:52px; color:var(--blue); background:#fff; font:700 23px Poppins,system-ui,sans-serif; border:2px solid var(--yellow); border-radius:11px; padding:7px 10px; text-align:center; }
+    .count-row input:focus-visible, .write-answer:focus-visible, .choice-check:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
+    .count-row span { font-size:12px; color:#fff; }
+    .count-presets { display:flex; flex-wrap:wrap; gap:7px; }
+    .preset { border:1px solid rgba(255,255,255,.45); color:white; background:transparent; min-width:47px; min-height:38px; border-radius:9px; cursor:pointer; font:600 12px Poppins,system-ui,sans-serif; }
+    .preset.selected,.preset:hover { background:var(--yellow); color:var(--blue); border-color:var(--yellow); }
+    .count-error { color:#FFF5B7; min-height:15px; font-weight:600; font-size:11px; padding-top:5px; }
     .prompt { font-size:14px; color:var(--ink); margin:0 0 16px; line-height:1.75; font-weight:600; }
     .answer.selected { border-color:var(--blue); background:#F1F6FF; }
     .answer small { font-size:11px; line-height:1.4; }
@@ -232,22 +243,15 @@
       .match-option { padding:10px 8px; font-size:11px; min-height:77px; }
       .score-ring > div { font-size:23px; }
       .category-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .count-selector { padding:15px; }
     }
-
-    .booking-nudge { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:18px; background:white; border:1px solid var(--line); border-radius:16px; padding:20px 23px; margin:4px 0 34px; box-shadow:0 8px 30px rgba(0,22,71,.06); }
-    .booking-nudge > div { flex:1 1 245px; }
-    .booking-nudge strong { color:var(--blue); font-size:14px; line-height:1.5; }
-    .booking-nudge p { margin:6px 0 0; color:var(--muted); font-size:12px; line-height:1.75; }
-    .booking-nudge .primary { flex:0 0 auto; font-size:13px; }
-    .booking-nudge-quiz { margin-top:25px; margin-bottom:0; }
-    @media (max-width:540px) { .booking-nudge { padding:18px; } .booking-nudge .primary { width:100%; } }
   </style>
 </head>
 <body>
   <div class="topline"></div>
   <header class="site-header">
     <div class="shell header-inner">
-      <a href="https://spanishatwork.lunamaryssol.chatgpt.site/#booking" target="_blank" rel="noopener noreferrer" class="wordmark" aria-label="Spanish at Work, ir a reservar una sesión de prueba">SPANISH <span>AT WORK</span></a>
+      <a href="https://spanishatwork.co" target="_blank" rel="noopener noreferrer" class="wordmark" aria-label="Spanish at Work, sitio oficial">SPANISH <span>AT WORK</span></a>
       <div class="header-tag">Luna | Profesora de Español</div>
     </div>
   </header>
@@ -260,9 +264,16 @@
             <div class="eyebrow">Un test gratis de Spanish at Work</div>
             <h1>¿PODRÍAS <strong>TRABAJAR EN ESPAÑOL?</strong></h1>
             <p class="hero-copy">Imagina que mañana tienes una reunión, recibes una pregunta inesperada o necesitas responder a un cliente. ¿Qué dirías?</p>
-            <p class="english-sub" lang="en">Could you handle everyday work situations in Spanish? Answer 10 random questions and see your percentage score.</p>
+            <p class="english-sub" lang="en">Could you handle everyday work situations in Spanish? Choose between 10 and 100 challenges and see your percentage score.</p>
             <div class="chips" aria-label="Detalles del test">
               <span class="chip free">100 % gratis</span><span class="chip">100 preguntas posibles</span><span class="chip">7 tipos de ejercicios</span>
+            </div>
+            <div class="count-selector" aria-labelledby="quantity-title">
+              <label id="quantity-title" for="question-count">¿Cuántas preguntas quieres resolver?</label>
+              <p lang="en">How many questions would you like to answer?</p>
+              <div class="count-row"><input type="number" inputmode="numeric" id="question-count" min="10" max="100" step="1" value="10" required aria-describedby="count-help"><span id="count-help">Mínimo 10 · Máximo 100</span></div>
+              <div class="count-presets" aria-label="Cantidades sugeridas"><button type="button" class="preset selected" data-count="10" aria-pressed="true">10</button><button type="button" class="preset" data-count="20" aria-pressed="false">20</button><button type="button" class="preset" data-count="30" aria-pressed="false">30</button><button type="button" class="preset" data-count="50" aria-pressed="false">50</button><button type="button" class="preset" data-count="100" aria-pressed="false">100</button></div>
+              <div class="count-error" id="count-error" role="alert"></div>
             </div>
             <button id="start-btn" type="button" class="primary">Comenzar el test <span class="arrow" aria-hidden="true">→</span></button>
           </div>
@@ -280,16 +291,12 @@
         </div>
       </div>
       <div class="shell below">
-        <div class="promise-bar"><div><b>Ya tienes una base de español; ahora aprende a usarla en el trabajo.</b><p>Responde 10 preguntas aleatorias en cada intento. El orden cambia y recibirás una explicación después de cada respuesta.</p></div><div class="promise-number">10<span>preguntas por intento</span></div></div>
+        <div class="promise-bar"><div><b>Ya tienes una base de español; ahora aprende a usarla en el trabajo.</b><p>Elige cuántas preguntas quieres responder. El orden cambia en cada intento y recibirás una explicación después de cada respuesta.</p></div><div class="promise-number">100<span>preguntas en el banco</span></div></div>
         <div class="details">
           <div class="detail"><span class="detail-mark">01</span><div><b>Comprende</b><p>Interpreta situaciones y escucha mensajes profesionales.</p></div></div>
           <div class="detail"><span class="detail-mark">02</span><div><b>Responde</b><p>Completa, ordena, relaciona y selecciona respuestas.</p></div></div>
           <div class="detail"><span class="detail-mark">03</span><div><b>Resuelve</b><p>Recibe una calificación final del 0 al 100 %.</p></div></div>
         </div>
-        <aside class="booking-nudge" aria-label="Reserva de clase de prueba">
-          <div><strong>¿Quieres usar estas expresiones en una conversación real?</strong><p>Podemos explorar tus situaciones de trabajo en una sesión de prueba gratuita. Primero, completa el test a tu ritmo.</p></div>
-          <a class="primary" lang="en" href="https://spanishatwork.lunamaryssol.chatgpt.site/#booking" target="_blank" rel="noopener noreferrer">Book my free trial class <span class="arrow" aria-hidden="true">↗</span></a>
-        </aside>
       </div>
     </section>
 
@@ -299,10 +306,6 @@
         <div class="progress-track" role="progressbar" aria-label="Progreso del test" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="progress-track"><div class="progress-fill" id="progress"></div></div>
         <article class="quiz-card" id="question-content"></article>
         <p class="keys">Cada pregunta vale 1 punto. En los ejercicios con varias respuestas debes completarlas todas para obtenerlo.</p>
-        <aside class="booking-nudge booking-nudge-quiz" aria-label="Reserva de clase de prueba">
-          <div><strong>Del ejercicio a tu próxima conversación en español.</strong><p>La sesión gratuita es un espacio para descubrir qué necesitas practicar en tu trabajo.</p></div>
-          <a class="primary" lang="en" href="https://spanishatwork.lunamaryssol.chatgpt.site/#booking" target="_blank" rel="noopener noreferrer">Book my free trial class <span class="arrow" aria-hidden="true">↗</span></a>
-        </aside>
       </div>
     </section>
 
@@ -310,9 +313,9 @@
       <div class="shell">
         <div class="result-box">
           <div class="result-hero">
-            <div class="result-eyebrow">Has completado el test · Test completed</div>
+            <div class="result-eyebrow">Has completado el test · Challenge completed</div>
             <h2 id="result-heading" tabindex="-1">Tu resultado</h2>
-            <p>Porcentaje de aciertos en tus 10 preguntas. El siguiente paso es llevar estas respuestas a una conversación real.</p>
+            <p>Porcentaje de aciertos en las preguntas que elegiste. Tu práctica puede continuar con una conversación real.</p>
           </div>
           <div class="result-content">
             <div class="score-head">
@@ -322,10 +325,10 @@
             <div class="category-grid" id="type-breakdown" aria-label="Resultados por tipo de ejercicio"></div>
             <div class="next-step"><span>Una idea para seguir mejorando</span><p id="next-tip"></p></div>
             <div class="cta">
-              <h3 id="result-cta-title">¿Y si practicamos una situación de tu trabajo?</h3>
-              <p id="result-cta-copy">En una sesión de prueba gratuita conversamos sobre tus objetivos profesionales y comprobamos si el programa encaja contigo.</p>
-              <a class="primary" lang="en" href="https://spanishatwork.lunamaryssol.chatgpt.site/#booking" target="_blank" rel="noopener noreferrer">Book my free trial class <span class="arrow" aria-hidden="true">↗</span></a>
-              <small id="result-cta-note">Sesión gratuita de 60 minutos · En español con Luna · Reservar no implica suscribirte · spanishatwork.co</small>
+              <h3>¿Y si practicamos una situación de tu trabajo?</h3>
+              <p>Soy Luna, profesora de español. En una sesión de prueba gratuita podemos conversar, revisar tu nivel de conversación, conocer para qué necesitas español y comprobar si La Oficina en Español puede ayudarte en este momento.</p>
+              <a class="primary" lang="en" href="https://spanishatwork.co" target="_blank" rel="noopener noreferrer">Book my free trial class <span class="arrow" aria-hidden="true">↗</span></a>
+              <small>En español · Con Luna · Reserva en spanishatwork.co</small>
             </div>
             <div class="result-actions"><button class="secondary" type="button" id="copy-result">Copiar mi resultado</button><button class="secondary" type="button" id="restart-btn">Nuevo test ↻</button></div>
             <div id="copy-status" class="inline-status" role="status" aria-live="polite"></div>
@@ -334,7 +337,7 @@
       </div>
     </section>
   </main>
-  <footer class="shell foot">Spanish at Work · Español para trabajar · <a href="https://spanishatwork.lunamaryssol.chatgpt.site/#booking" target="_blank" rel="noopener noreferrer">spanishatwork.co</a><br>Las respuestas se corrigen localmente en este navegador; Spanish at Work no las recibe ni guarda. Los audios usan la voz de tu dispositivo cuando está disponible.</footer>
+  <footer class="shell foot">Spanish at Work · Español para trabajar · <a href="https://spanishatwork.co" target="_blank" rel="noopener noreferrer">spanishatwork.co</a><br>Las respuestas se corrigen localmente en este navegador; Spanish at Work no las recibe ni guarda. Los audios usan la voz de tu dispositivo cuando está disponible.</footer>
 
   <script>
 'use strict';
@@ -354,35 +357,34 @@ const $ = id => document.getElementById(id);
 const esc = v => String(v).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Elimina tildes comunes, pero conserva la letra ñ (diferente de n en español).
 const normal = v => String(v??'').toLowerCase().normalize('NFD').replace(/n\u0303/g,'ñ').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9ñ\s]/g,' ').replace(/\s+/g,' ').trim();
-const TEST_LENGTH = 10;
-const state = {chosen:[],at:0,answers:[],isLocked:false,choice:null,multi:new Set(),tiles:[],pairs:{},activeLeft:null,unavailableText:false,lastIds:new Set(),unseenIds:new Set(bank.map(q=>q.id))};
+const state = {chosen:[],at:0,answers:[],isLocked:false,choice:null,multi:new Set(),tiles:[],pairs:{},activeLeft:null,unavailableText:false,lastOrder:''};
 function rnd(n) {
   if(window.crypto?.getRandomValues){ const a=new Uint32Array(1); const limit=4294967296-(4294967296%n); do {crypto.getRandomValues(a)} while(a[0]>=limit); return a[0]%n; }
   return Math.floor(Math.random()*n);
 }
 function shuffle(items){const a=items.slice();for(let i=a.length-1;i>0;i--){let j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a;}
-function selectQuestions(){
-  // Prioriza preguntas no utilizadas; nunca repite una del intento inmediatamente anterior.
-  let available=bank.filter(q=>state.unseenIds.has(q.id));
-  if(available.length<TEST_LENGTH || kinds.some(k=>!available.some(q=>q.type===k))){
-    state.unseenIds=new Set(bank.filter(q=>!state.lastIds.has(q.id)).map(q=>q.id));
-    available=bank.filter(q=>state.unseenIds.has(q.id));
-  }
-  const selection=kinds.map(k=>shuffle(available.filter(q=>q.type===k))[0]);
+function selectQuestions(count){
+  let selection=kinds.map(k=>shuffle(bank.filter(q=>q.type===k))[0]);
   const selectedIds=new Set(selection.map(q=>q.id));
-  const extra=shuffle(available.filter(q=>!selectedIds.has(q.id))).slice(0,TEST_LENGTH-selection.length);
-  const questions=shuffle(selection.concat(extra));
-  for(const q of questions)state.unseenIds.delete(q.id);
-  state.lastIds=new Set(questions.map(q=>q.id));
-  return questions;
+  const remaining=shuffle(bank.filter(q=>!selectedIds.has(q.id)));
+  selection=shuffle(selection.concat(remaining.slice(0,count-selection.length)));
+  let key=selection.map(q=>q.id).join('|');
+  if(key===state.lastOrder){selection.push(selection.shift());key=selection.map(q=>q.id).join('|');}
+  state.lastOrder=key;
+  return selection;
 }
 function setView(which){
   ['intro','quiz','result'].forEach(name=>$('screen-'+name).classList.toggle('hidden',name!==which));
   window.scrollTo(0,0);
 }
+function setCount(v){const input=$('question-count');input.value=String(v);$('count-error').textContent='';
+  document.querySelectorAll('[data-count]').forEach(b=>{let active=Number(b.dataset.count)===Number(v);b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active));});
+}
 function start(){
+  const raw=$('question-count').value.trim(), count=Number(raw);
+  if(!/^\d+$/.test(raw)||!Number.isInteger(count)||count<10||count>100){$('count-error').textContent='Elige un número entero de 10 a 100.';$('question-count').focus();return;}
   speechStop();
-  state.chosen=selectQuestions();state.at=0;state.answers=[];state.isLocked=false;
+  state.chosen=selectQuestions(count);state.at=0;state.answers=[];state.isLocked=false;
   $('copy-status').textContent='';setView('quiz');render();
 }
 function resetCurrent(){state.isLocked=false;state.choice=null;state.multi=new Set();state.tiles=[];state.pairs={};state.activeLeft=null;state.unavailableText=false;}
@@ -486,10 +488,10 @@ function next(){if(!state.isLocked)return;if(state.at===state.chosen.length-1){r
 function results(){
   const n=state.answers.length,points=state.answers.filter(a=>a.ok).length,pct=Math.round(points*100/n);
   const bands=[
-    {max:39,title:'Empieza por las expresiones más frecuentes',desc:'Identifica qué frases necesitas comprender y utilizar en tu trabajo. Revisa los ejemplos y practica con respuestas breves.',ctaTitle:'En tu trabajo, las preguntas no vienen con opciones.',ctaCopy:'Si algunas respuestas te hicieron dudar, ya tienes un punto de partida. No necesitas practicar todas las expresiones a la vez: en una sesión gratuita de 60 minutos podemos conversar sobre tu trabajo, identificar qué necesitas comunicar y descubrir qué sería útil practicar primero. Así sabrás si La Oficina en Español encaja contigo.'},
-    {max:69,title:'Reconoces parte de las herramientas que necesitas',desc:'Has acertado varias situaciones profesionales. Repite las estructuras que te cuestan y trata de responder con tus propias palabras.',ctaTitle:'Ya reconoces frases útiles. ¿Puedes decirlas cuando las necesitas?',ctaCopy:'Piensa en un cliente que espera tu respuesta o en un compañero que te pide una actualización. En esos momentos no hay opciones para elegir. En una sesión gratuita de 60 minutos podemos practicar una conversación sobre tu trabajo, reconocer qué te ayuda a responder y decidir si este programa es el siguiente paso adecuado para ti.'},
-    {max:89,title:'Reconoces muchas respuestas útiles',desc:'Has interpretado y construido varias respuestas adecuadas. Practicar sin opciones ayuda a utilizarlas con más autonomía.',ctaTitle:'Vas bien en el test. ¿Responderías igual sin ver las opciones?',ctaCopy:'Has reconocido muchas expresiones adecuadas. Ahora imagina una pregunta inesperada en una reunión: escucharla, encontrar las palabras y responder en el momento. En una sesión gratuita de 60 minutos podemos probar esa conversación, observar qué recursos ya utilizas y valorar cómo seguir practicando para tu trabajo.'},
-    {max:100,title:'Muy buen resultado en este test',desc:'Has acertado la mayoría o todas las preguntas elegidas. Tu siguiente paso puede ser practicar estas situaciones oralmente.',ctaTitle:'Buen resultado. Ahora prueba tu español en una conversación real.',ctaCopy:'Responder bien a estas preguntas demuestra que reconoces muchas herramientas útiles. En el trabajo también necesitas escuchar, reaccionar y continuar una conversación sin prepararla de antemano. En una sesión gratuita de 60 minutos podemos explorar una situación profesional tuya y descubrir si La Oficina en Español puede ayudarte a seguir avanzando.'}
+    {max:39,title:'Empieza por las expresiones más frecuentes',desc:'Identifica qué frases necesitas comprender y utilizar en tu trabajo. Revisa los ejemplos y practica con respuestas breves.'},
+    {max:69,title:'Reconoces parte de las herramientas que necesitas',desc:'Has acertado varias situaciones profesionales. Repite las estructuras que te cuestan y trata de responder con tus propias palabras.'},
+    {max:89,title:'Reconoces muchas respuestas útiles',desc:'Has interpretado y construido varias respuestas adecuadas. Practicar sin opciones ayuda a utilizarlas con más autonomía.'},
+    {max:100,title:'Muy buen resultado en este test',desc:'Has acertado la mayoría o todas las preguntas elegidas. Tu siguiente paso puede ser practicar estas situaciones oralmente.'}
   ];
   const band=bands.find(b=>pct<=b.max);
   $('result-heading').textContent=`Tu resultado: ${pct}%`;
@@ -497,8 +499,6 @@ function results(){
   $('score-ring').style.setProperty('--pct',`${pct}%`);
   $('score-title').textContent=band.title;
   $('score-description').textContent=`${points} de ${n} respuestas correctas. ${band.desc}`;
-  $('result-cta-title').textContent=band.ctaTitle;
-  $('result-cta-copy').textContent=band.ctaCopy;
   const tally=new Map(kinds.map(k=>[k,{n:0,c:0}]));
   state.chosen.forEach((q,i)=>{const d=tally.get(q.type);d.n++;if(state.answers[i].ok)d.c++;});
   $('type-breakdown').innerHTML=kinds.filter(k=>tally.get(k).n>0).map(k=>{const d=tally.get(k);return `<div class="category"><b>${Math.round(100*d.c/d.n)}%</b><span>${esc(KIND[k].short)} · ${d.c}/${d.n}</span></div>`;}).join('');
@@ -518,8 +518,10 @@ async function copyResult(){
   $('copy-status').textContent=copied?'Resultado copiado.':'Tu navegador no permitió copiar automáticamente.';
 }
 $('start-btn').addEventListener('click',start);
+$('question-count').addEventListener('input',e=>setCount(e.target.value));
+document.querySelectorAll('[data-count]').forEach(b=>b.addEventListener('click',()=>setCount(Number(b.dataset.count))));
 $('back-to-start').addEventListener('click',()=>{speechStop();setView('intro');$('start-btn').focus({preventScroll:true});});
-$('restart-btn').addEventListener('click',()=>{speechStop();setView('intro');$('start-btn').focus({preventScroll:true});});
+$('restart-btn').addEventListener('click',()=>{speechStop();setView('intro');$('question-count').focus({preventScroll:true});});
 $('copy-result').addEventListener('click',copyResult);
 $('question-content').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b||state.isLocked)return;
