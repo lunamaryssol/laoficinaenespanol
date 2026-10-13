@@ -51,8 +51,6 @@
     .primary { display:inline-flex; align-items:center; justify-content:center; gap:12px; background:var(--yellow); color:var(--blue); border:0; border-radius:13px; font-weight:700; padding:17px 22px; cursor:pointer; min-height:56px; text-decoration:none; box-shadow:0 6px 0 rgba(0,0,0,.09); transition:transform .2s,box-shadow .2s,background .2s; }
     .primary:hover { background:#FFE25E; transform:translateY(-2px); box-shadow:0 8px 0 rgba(0,0,0,.09); }
     .primary:active { transform:translateY(1px); box-shadow:0 3px 0 rgba(0,0,0,.09); }
-    .secondary { display:inline-flex; align-items:center; justify-content:center; background:white; color:var(--blue); border:1.5px solid var(--blue); border-radius:12px; font-size:13px; font-weight:700; min-height:45px; padding:12px 17px; cursor:pointer; text-decoration:none; }
-    .secondary:hover { background:#EDF3FF; }
     .arrow { font-size:20px; line-height:1; }
     .foot { padding:30px 0 38px; text-align:center; font-size:11px; line-height:1.85; color:var(--muted); }
     .foot a { color:var(--blue); text-decoration:none; font-weight:700; }
@@ -118,9 +116,6 @@
     .cta p { font-size:12px; line-height:1.8; color:rgba(255,255,255,.88); margin:0 0 18px; }
     .cta .primary { min-width:240px; }
     .cta small { display:block; margin-top:12px; opacity:.7; font-size:11px; }
-    .result-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:20px; }
-    .result-actions .secondary { min-width:172px; }
-    .inline-status { text-align:center; color:var(--green); font-size:11px; min-height:18px; margin:10px 0 0; }
     .hidden { display:none !important; }
     @keyframes arrive { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     @media (max-width:770px) {
@@ -272,8 +267,6 @@
               <a class="primary" lang="en" href="https://spanishatwork.co" target="_blank" rel="noopener noreferrer">Book my free trial class <span class="arrow" aria-hidden="true">↗</span></a>
               <small>En español · Con Luna · Reserva en spanishatwork.co</small>
             </div>
-            <div class="result-actions"><button class="secondary" type="button" id="copy-result">Copiar mi resultado</button><button class="secondary" type="button" id="restart-btn">Nuevo test ↻</button></div>
-            <div id="copy-status" class="inline-status" role="status" aria-live="polite"></div>
           </div>
         </div>
       </div>
@@ -326,7 +319,7 @@ function start(){
   if(!/^\d+$/.test(raw)||!Number.isInteger(count)||count<5||count>100){$('count-error').textContent='Elige un número entero de 5 a 100.';$('question-count').focus();return;}
   speechStop();
   state.chosen=selectQuestions(count);state.at=0;state.answers=[];state.isLocked=false;
-  $('copy-status').textContent='';setView('quiz');render();
+  setView('quiz');render();
 }
 function resetCurrent(){state.isLocked=false;state.choice=null;state.multi=new Set();state.tiles=[];state.pairs={};state.activeLeft=null;state.unavailableText=false;}
 function progress(){
@@ -448,16 +441,6 @@ function results(){
   $('next-tip').textContent=tips[weakest];
   setView('result');$('result-heading').focus({preventScroll:true});
 }
-async function copyResult(){
-  const n=state.answers.length,points=state.answers.filter(a=>a.ok).length,pct=Math.round(points*100/n);
-  const hosted=['http:','https:'].includes(location.protocol)&&!['localhost','127.0.0.1'].includes(location.hostname);
-  const link=hosted?location.origin+location.pathname:'https://spanishatwork.co';
-  const message=`Hice el test «¿Podrías trabajar en español?» de Spanish at Work: ${pct}% (${points}/${n}). Hazlo tú también: ${link}`;
-  let copied=false;
-  if(navigator.clipboard&&window.isSecureContext)try{await navigator.clipboard.writeText(message);copied=true}catch(e){}
-  if(!copied){const field=document.createElement('textarea');field.value=message;field.readOnly=true;field.style.cssText='position:fixed;left:-9999px;opacity:0';document.body.appendChild(field);try{field.select();copied=document.execCommand('copy')}catch(e){}finally{field.remove();$('copy-result').focus({preventScroll:true})}}
-  $('copy-status').textContent=copied?'Resultado copiado.':'Tu navegador no permitió copiar automáticamente.';
-}
 $('start-btn').addEventListener('click',start);
 $('question-count').addEventListener('input',()=>{$('count-error').textContent='';});
 $('question-count').addEventListener('change',e=>{
@@ -468,8 +451,6 @@ $('question-count').addEventListener('change',e=>{
   else if(Number.isFinite(value)&&value>100)e.target.value='100';
 });
 $('back-to-start').addEventListener('click',()=>{speechStop();setView('intro');$('start-btn').focus({preventScroll:true});});
-$('restart-btn').addEventListener('click',()=>{speechStop();setView('intro');$('question-count').focus({preventScroll:true});});
-$('copy-result').addEventListener('click',copyResult);
 $('question-content').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b||state.isLocked)return;
   const q=state.chosen[state.at];
