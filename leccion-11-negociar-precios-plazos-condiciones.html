@@ -792,7 +792,7 @@
           const override=[...original.matchAll(/\b(?:mejor|propongo|proponemos|prefiero|preferimos)\s+(?:(?:para\s+)?el\s+)?(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/g)].pop();
           if (override && override.index > original.indexOf(day) && override[1] !== day) return false;
         }
-        // La alternativa A2 puede expresarse por contraste sin repetir el verbo:
+        // La alternativa de principiante puede expresarse por contraste sin repetir el verbo:
         // «Gracias, el lunes no nos funciona, el viernes sí».
         if (expectedDay) {
           const contrast = new RegExp('(?:\\b(?:y|pero)\\s+|[,;]\\s*)(?:(?:el|para el)\\s+)?' + day + '\\s+(?:si|(?:me|nos)\\s+(?:funciona|sirve|conviene))\\b');
@@ -807,7 +807,7 @@
           // Después de corregirse, «No, mejor el viernes» sí propone el viernes.
           // La negación aislada responde a la propuesta anterior, no a la nueva fecha.
           if (expectedDay && new RegExp('^(?:no\\s*[,;]?\\s*)?mejor\\s+(?:para\\s+)?(?:el\\s+)?' + day + '$').test(candidate)) return true;
-          // En el nivel A2 «el viernes sí» es una alternativa suficiente si se
+          // En el nivel principiante «el viernes sí» es una alternativa suficiente si se
           // contrapone a la fecha rechazada en la misma respuesta.
           if (expectedDay && /^(?:(?:el|para el)\s+)?viernes\s+(?:si|(?:nos|me)\s+(?:funciona|sirve|conviene))$/.test(candidate) && day === 'viernes') return true;
           if (expectedDay) {
@@ -834,7 +834,7 @@
             const cancellation = candidate.match(/\b(?:cancelar|cancelamos|cancelo|cancela|anular|anulamos|anulo|anula|suspender|suspendemos|suspendo|suspende)\b[^.!?;\n]*?\b(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/);
             if (cancellation && cancellation[1] === day) return false;
           }
-          // Para A2, proponer una alternativa también puede consistir en expresar
+          // Para principiantes, proponer una alternativa también puede consistir en expresar
           // una preferencia por la nueva fecha frente a la propuesta rechazada.
           if (expectedDay) {
             const prefersDay = new RegExp('\\b(?:prefiero|preferimos|preferiria|prefeririamos)\\s+(?:(?:el|para\\s+el)\\s+)?' + day + '\\s+(?:en\\s+lugar\\s+del|en\\s+vez\\s+del|antes\\s+que\\s+el)\\s+(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\b');
@@ -867,7 +867,7 @@
           const deliveryContext=/\b(?:entrega|entregar(?:lo|la)?|entregamos|envio|enviar(?:lo|la)?|enviamos|recibir(?:lo|la)?|informe|pedido|fecha|plazo|tener(?:lo|la)?\s+list[oa])\b/.test(candidate)
             || /\b(?:cambiar|adelantar|mover|reprogramar)\s+(?:(?:la|el|una|un)\s+)?(?:entrega|fecha|plazo|envio|pedido|informe)\b/.test(candidate)
             || /\b(?:cambiar|adelantar|mover|reprogramar)(?:lo|la)\b/.test(candidate);
-          // Dos maneras A2 de ofrecer una fecha: sustituir el día propuesto y
+          // Dos maneras de nivel principiante de ofrecer una fecha: sustituir el día propuesto y
           // expresar que la nueva fecha sí funciona («El viernes nos sirve»).
           // El día de destino debe ser el esperado: no se acepta cambiarlo por otro.
           const dateSwap = expectedDay && new RegExp('\\b(?:podemos|podriamos|podria|quiero|queremos|propongo|proponemos|quisiera|quisieramos)\\s+(?:cambiar|mover|reprogramar|pasar)\\s+(?:(?:la|el)\\s+(?:fecha|entrega|informe)\\s+)?(?:del|el)\\s+(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo)\\s+(?:por|al|para\\s+el)\\s+(?:el\\s+)?'+day+'\\b').test(candidate);
@@ -877,7 +877,7 @@
           const offerPhrase=candidate.replace(/^(?:(?:muchas\s+)?gracias|por\s+favor)\s*[,]\s*/, '');
           const shortDateOffer=/^(?:¿?\s*)?(?:propongo|proponemos|prefiero|preferimos|quisiera|quisieramos|(?:me|nos)\s+gustaria|podriamos)\s+(?:la\s+entrega\s+)?(?:para\s+el|el|para)?\s*(?:lunes|martes|miercoles|jueves|viernes|sabado|domingo|manana)\s*$/.test(offerPhrase);
           // En este contexto «¿Qué tal el viernes?» o «¿Te parece bien el viernes?»
-          // son propuestas completas para A2, aunque no repitan «entrega».
+          // son propuestas completas para principiantes, aunque no repitan «entrega».
           const simpleDateQuestion=new RegExp('^(?:¿\\s*)?(?:y\\s+si|que\\s+tal|(?:te|le|les)\\s+parece(?:\\s+bien)?|(?:te|le|les)\\s+viene\\s+bien|seria\\s+posible|podria\\s+ser)(?:\\s+(?:para\\s+)?el)?\\s+'+day+'\\s*$').test(candidate);
           const subjunctiveOffer=new RegExp('\\b(?:propongo|proponemos|sugiero|sugerimos)\\s+que\\s+(?:entreguemos|entreguen|entregue|entregues|enviemos|envien|recibamos)\\s+(?:(?:el|la)\\s+(?:pedido|informe|entrega)\\s+)?(?:el|para\\s+el)\\s+'+day+'\\b').test(candidate);
           return ((explicitOffer || politeQuestion) && (deliveryContext || shortDateOffer)) || simpleDateQuestion || subjunctiveOffer || dateSwap || proposedDayWorks;
